@@ -7,6 +7,7 @@ uses InvokeRegistry
    , XSBuiltIns
    , UAuthenticatorIntf
    , Classes
+   , SyncObjs
    , KRK.Win32.Rtl.Common.Classes;
 
 type
@@ -24,13 +25,11 @@ type
   TSessionsCollection = class(TCollection)
   private
     function GetSessionItemByIndex(aIndex: Integer): TSessionItem;
-    function GetSessionItemById(aID: String): TSessionItem;
-//    function GetSessionItemByUser(aUser: String): TSessionItem;
+    function GetSessionItemBySessionId(aID: String): TSessionItem;
   public
     function Add: TSessionItem;
     property ItemByIndex[aIndex: Integer]: TSessionItem read GetSessionItemByIndex;
-    property ItemByID[aID: String]: TSessionItem read GetSessionItemById; default;
-//    property ItemByUser[aUser: String]: TSessionItem read GetSessionItemByUser;
+    property ItemBySessionID[aSessionID: String]: TSessionItem read GetSessionItemBySessionId; default;
   end;
 
   TSessionsFile = class(TOBjectFile)
@@ -57,16 +56,16 @@ type
     function Logout(const aSessionID: String): Boolean; stdcall;
   end;
 
-implementation
-
-uses SysUtils
-   , Windows
-   , SyncObjs
-   , KRK.Win32.Rtl.Common.StringUtils;
 
 var
   SessionsFile: TSessionsFile;
   CS: TCriticalSection;
+
+implementation
+
+uses SysUtils
+   , Windows
+   , KRK.Win32.Rtl.Common.StringUtils;
 
 { TAuthenticator }
 
@@ -134,9 +133,9 @@ end;
 function TAuthenticator.CreateSessionID: String;
 begin
   Result := GetStringGUID;
-  Result := StringReplace(Result,'{','',[rfReplaceAll]);
-  Result := StringReplace(Result,'-','',[rfReplaceAll]);
-  Result := StringReplace(Result,'}','',[rfReplaceAll]);
+//  Result := StringReplace(Result,'{','',[rfReplaceAll]);
+//  Result := StringReplace(Result,'-','',[rfReplaceAll]);
+//  Result := StringReplace(Result,'}','',[rfReplaceAll]);
 end;
 
 function TAuthenticator.Login(const aUser, aPassword: String; out aSessionID: String): Boolean;
@@ -235,7 +234,7 @@ begin
   Result := TSessionItem(inherited Add);
 end;
 
-function TSessionsCollection.GetSessionItemById(aID: String): TSessionItem;
+function TSessionsCollection.GetSessionItemBySessionId(aID: String): TSessionItem;
 var
 	CollectionItem: TCollectionItem;
 begin
@@ -254,21 +253,6 @@ function TSessionsCollection.GetSessionItemByIndex(aIndex: Integer): TSessionIte
 begin
   Result := TSessionItem(inherited Items[aIndex])
 end;
-
-//function TSessionsCollection.GetSessionItemByUser(aUser: String): TSessionItem;
-//var
-//	CollectionItem: TCollectionItem;
-//begin
-//	Result := nil;
-//
-//  if Count > 0 then
-//    for CollectionItem in Self do
-//      if CompareStr(TSessionItem(CollectionItem).SessionUser,aUser) = 0 then
-//      begin
-//        Result := TSessionItem(CollectionItem);
-//        Break;
-//      end;
-//end;
 
 initialization
   CS := TCriticalSection.Create;

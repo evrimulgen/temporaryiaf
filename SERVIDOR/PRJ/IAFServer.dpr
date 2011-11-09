@@ -9,7 +9,8 @@ uses
   UWEBMWebService in '..\SRC\UWEBMWebService.pas' {WEBMWebService: TWebModule},
   UAuthenticatorImpl in '..\SRC\UAuthenticatorImpl.pas',
   UAuthenticatorIntf in '..\SRC\UAuthenticatorIntf.pas',
-  USSDMIAF in '..\SRC\USSDMIAF.pas' {SSDMIAF: TSoapDataModule};
+  UKRSDIAF in '..\SRC\UKRSDIAF.pas' {KRSDIAF: TSoapDataModule},
+  URNUsuarios in '..\SRC\URNUsuarios.pas';
 
 {$R *.res}
 

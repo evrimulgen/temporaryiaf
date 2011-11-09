@@ -13,16 +13,16 @@ object WEBMWebService: TWEBMWebService
       ProducerContent = PAPRSobre
     end>
   Height = 229
-  Width = 141
+  Width = 121
   object HTSDWebService: THTTPSoapDispatcher
     Dispatcher = HSPIWebService
     WebDispatch.PathInfo = 'soap*'
-    Left = 60
+    Left = 45
     Top = 11
   end
   object HSPIWebService: THTTPSoapPascalInvoker
     Converter.Options = [soSendMultiRefObj, soTryAllSchema, soUTF8InHeader]
-    Left = 60
+    Left = 45
     Top = 67
   end
   object WSHPWebService: TWSDLHTMLPublish
@@ -30,7 +30,7 @@ object WEBMWebService: TWEBMWebService
     WebDispatch.PathInfo = 'wsdl*'
     TargetNamespace = 'http://www.zettaomnis.com.br/'
     PublishOptions = [poUTF8ContentType]
-    Left = 60
+    Left = 45
     Top = 123
   end
   object PAPRSobre: TPageProducer
@@ -74,7 +74,7 @@ object WEBMWebService: TWEBMWebService
       '  </body>'
       '</html>')
     OnHTMLTag = PAPRSobreHTMLTag
-    Left = 60
+    Left = 45
     Top = 174
   end
 end

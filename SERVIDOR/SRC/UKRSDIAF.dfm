@@ -1,15 +1,17 @@
-object SSDMIAF: TSSDMIAF
+object KRSDIAF: TKRSDIAF
   OldCreateOrder = False
-  Height = 218
-  Width = 751
+  OnCreate = KRKSoapDataModuleCreate
+  OnDestroy = KRKSoapDataModuleDestroy
+  Height = 268
+  Width = 745
   object ZCONIAF: TZConnection
     Protocol = 'postgresql'
     HostName = '127.0.0.1'
     Database = 'iaf'
     User = 'postgres'
     Password = 'sarcopenia'
-    Left = 360
-    Top = 12
+    Left = 354
+    Top = 6
   end
   object ZQRYUsuarios: TZQuery
     Connection = ZCONIAF
@@ -17,11 +19,11 @@ object SSDMIAF: TSSDMIAF
       'SELECT * FROM usuarios')
     Params = <>
     Left = 24
-    Top = 60
+    Top = 54
   end
   object DSPRUsuarios: TDataSetProvider
     DataSet = ZQRYUsuarios
     Left = 24
-    Top = 108
+    Top = 102
   end
 end
