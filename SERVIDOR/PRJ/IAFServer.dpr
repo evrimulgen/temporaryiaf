@@ -7,10 +7,9 @@ uses
   ISAPIApp,
   ISAPIThreadPool,
   UWEBMWebService in '..\SRC\UWEBMWebService.pas' {WEBMWebService: TWebModule},
-  UAuthenticatorImpl in '..\SRC\UAuthenticatorImpl.pas',
-  UAuthenticatorIntf in '..\SRC\UAuthenticatorIntf.pas',
   UKRSDIAF in '..\SRC\UKRSDIAF.pas' {KRSDIAF: TSoapDataModule},
-  URNUsuarios in '..\SRC\URNUsuarios.pas';
+  URNUsuarios in '..\SRC\URNUsuarios.pas',
+  USessionsManager in '..\SRC\USessionsManager.pas';
 
 {$R *.res}
 
