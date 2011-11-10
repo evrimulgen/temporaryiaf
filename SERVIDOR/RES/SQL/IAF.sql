@@ -1,4 +1,4 @@
-﻿-- DROP DATABASE IF EXISTS IAF;
+﻿DROP DATABASE IF EXISTS IAF;
 
 CREATE DATABASE IAF
   WITH OWNER = IAF
@@ -8,116 +8,156 @@ CREATE DATABASE IAF
        LC_CTYPE = 'Portuguese, Brazil'
        CONNECTION LIMIT = -1;
 ---------------------------------------------------------------
-CREATE SEQUENCE USU_SM_USUARIOS_ID_SEQ
+CREATE SEQUENCE sq_usu_in_entidadesdosistema_id
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 2147483647
+  START 1
+  CACHE 1;
+  
+CREATE TABLE ENTIDADESDOSISTEMA (in_entidadesdosistema_id integer NOT NULL DEFAULT nextval('sq_usu_in_entidadesdosistema_id')
+                                ,va_nome varchar(128) NOT NULL
+                                ,sm_tipo smallint NOT NULL
+                                ,CONSTRAINT pk_eds PRIMARY KEY (in_entidadesdosistema_id)
+                                ,CONSTRAINT uc_eds_va_nome UNIQUE (va_nome));
+
+ALTER SEQUENCE sq_usu_in_entidadesdosistema_id 
+      OWNED BY ENTIDADESDOSISTEMA.in_entidadesdosistema_id;
+---------------------------------------------------------------
+CREATE SEQUENCE sq_usu_sm_usuarios_id
       INCREMENT 1
        MINVALUE 1
        MAXVALUE 32767
           START 1
           CACHE 1;
           
-CREATE TABLE USUARIOS (SM_USUARIOS_ID smallint    NOT NULL DEFAULT NEXTVAL('USU_SM_USUARIOS_ID_SEQ')
-                      ,VA_NOME        varchar(64)
-                      ,VA_LOGIN       varchar(16) NOT NULL
-                      ,CH_SENHA       char(128)   NOT NULL
-                      ,VA_EMAIL       varchar(64) NULL
-                      ,CONSTRAINT PK_USU PRIMARY KEY (SM_USUARIOS_ID)
-                      ,CONSTRAINT UC_USU_VA_LOGIN UNIQUE (VA_LOGIN )
-                      ,CONSTRAINT UC_USU_VA_EMAIL UNIQUE (VA_EMAIL)
-);
+CREATE TABLE usuarios (sm_usuarios_id smallint NOT NULL DEFAULT nextval('sq_usu_sm_usuarios_id')
+                      ,va_nome VARCHAR(64) NOT NULL
+                      ,va_login VARCHAR(16) NOT NULL
+                      ,ch_senha CHAR(128) NOT NULL
+                      ,va_email VARCHAR(64)
+                      ,CONSTRAINT pk_usu PRIMARY KEY (sm_usuarios_id)
+                      ,CONSTRAINT uc_usu_va_email UNIQUE (va_email)
+                      ,CONSTRAINT uc_usu_va_login UNIQUE (va_login));
 
-ALTER SEQUENCE USU_SM_USUARIOS_ID_SEQ 
+ALTER SEQUENCE sq_usu_sm_usuarios_id 
       OWNED BY USUARIOS.SM_USUARIOS_ID;
 ---------------------------------------------------------------
-CREATE SEQUENCE GRU_SM_GRUPOS_ID_SEQ
+CREATE SEQUENCE sq_gru_sm_grupos_id
       INCREMENT 1
        MINVALUE 1
        MAXVALUE 32767
           START 1
           CACHE 1;
 
-CREATE TABLE GRUPOS (SM_GRUPOS_ID smallint     NOT NULL DEFAULT NEXTVAL('GRU_SM_GRUPOS_ID_SEQ')
-                    ,VA_NOME      varchar(64)  NOT NULL
-                    ,VA_DESCRICAO varchar(128) NOT NULL
-                    ,CONSTRAINT PK_GRU PRIMARY KEY (SM_GRUPOS_ID)
-                    ,CONSTRAINT UC_GRU_VA_NOME UNIQUE (VA_NOME)
-);
-ALTER SEQUENCE GRU_SM_GRUPOS_ID_SEQ 
+CREATE TABLE grupos (sm_grupos_id smallint NOT NULL DEFAULT nextval('sq_gru_sm_grupos_id')
+                    ,va_nome VARCHAR(64) NOT NULL
+                    ,va_descricao VARCHAR(128) NOT NULL
+                    ,CONSTRAINT pk_gru PRIMARY KEY (sm_grupos_id)
+                    ,CONSTRAINT uc_gru_va_nome UNIQUE (va_nome));
+
+ALTER SEQUENCE sq_gru_sm_grupos_id 
       OWNED BY GRUPOS.SM_GRUPOS_ID;
 ---------------------------------------------------------------
-/*
+CREATE SEQUENCE sq_gdu_in_gruposdosusuarios_id
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 2147483647
+  START 1
+  CACHE 1;
 
+CREATE TABLE gruposdosusuarios(in_gruposdosusuarios_id integer NOT NULL DEFAULT nextval('sq_gdu_in_gruposdosusuarios_id')
+                              ,sm_grupos_id smallint NOT NULL
+                              ,sm_usuarios_id smallint NOT NULL
+                              ,CONSTRAINT pk_gdu PRIMARY KEY (in_gruposdosusuarios_id )
+                              ,CONSTRAINT fk_gdu_gru FOREIGN KEY (sm_grupos_id) REFERENCES grupos (sm_grupos_id) ON UPDATE CASCADE ON DELETE CASCADE
+                              ,CONSTRAINT fk_gdu_usu FOREIGN KEY (sm_usuarios_id) REFERENCES usuarios (sm_usuarios_id) ON UPDATE CASCADE ON DELETE CASCADE
+                              ,CONSTRAINT uc_gdu_sm_grupos_id_sm_usuarios_id UNIQUE (sm_grupos_id , sm_usuarios_id));
 
+ALTER SEQUENCE sq_gdu_in_gruposdosusuarios_id 
+      OWNED BY gruposdosusuarios.in_gruposdosusuarios_id;
+---------------------------------------------------------------
+CREATE SEQUENCE sq_pdg_in_permissoesdosgrupos_id
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 2147483647
+  START 1
+  CACHE 1;
 
-
-
-CREATE TABLE GRUPOSDOSUSUARIOS (
-  `MI_GRUPOSDOSUSUARIOS_ID` mediumint(8) NOT NULL AUTO_INCREMENT,
-  `TI_GRUPOS_ID` tinyint(3) NOT NULL,
-  `SM_USUARIOS_ID` smallint(5) NOT NULL,
-  `SM_USUARIOCRIADOR_ID` smallint(5) unsigned DEFAULT NULL,
-  `DT_DATAEHORADACRIACAO` datetime DEFAULT NULL,
-  `SM_USUARIOMODIFICADOR_ID` smallint(5) unsigned DEFAULT NULL,
-  `DT_DATAEHORADAMODIFICACAO` datetime DEFAULT NULL,
-  `EN_SITUACAO` enum('INSERIDO','MODIFICADO','SINCRONIZADO') COLLATE latin1_bin DEFAULT NULL,
-  PRIMARY KEY (`MI_GRUPOSDOSUSUARIOS_ID`),
-  UNIQUE KEY `GDU_TI_GRUPOS_ID_SM_USUARIOS_ID_UI` (`TI_GRUPOS_ID`,`SM_USUARIOS_ID`),
-  KEY `USU_GDU_IX` (`SM_USUARIOS_ID`),
-  KEY `GRU_GDU_IX` (`TI_GRUPOS_ID`),
-  CONSTRAINT `GRU_GDU_FK` FOREIGN KEY (`TI_GRUPOS_ID`) REFERENCES `grupos` (`TI_GRUPOS_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `USU_GDU_FK` FOREIGN KEY (`SM_USUARIOS_ID`) REFERENCES `usuarios` (`SM_USUARIOS_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=177 DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
-
-CREATE TABLE `permissoesdosusuarios` (
-  `IN_PERMISSOESDOSUSUARIOS_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `IN_ENTIDADESDOSISTEMA_ID` int(11) NOT NULL,
-  `SM_USUARIOS_ID` smallint(5) NOT NULL,
-  `TI_LER` tinyint(1) NOT NULL DEFAULT '0',
-  `TI_INSERIR` tinyint(1) NOT NULL DEFAULT '0',
-  `TI_ALTERAR` tinyint(1) NOT NULL DEFAULT '0',
-  `TI_EXCLUIR` tinyint(1) NOT NULL DEFAULT '0',
-  `SM_USUARIOCRIADOR_ID` smallint(5) unsigned DEFAULT NULL,
-  `DT_DATAEHORADACRIACAO` datetime DEFAULT NULL,
-  `SM_USUARIOMODIFICADOR_ID` smallint(5) unsigned DEFAULT NULL,
-  `DT_DATAEHORADAMODIFICACAO` datetime DEFAULT NULL,
-  `EN_SITUACAO` enum('INSERIDO','MODIFICADO','SINCRONIZADO') COLLATE latin1_bin DEFAULT NULL,
-  PRIMARY KEY (`IN_PERMISSOESDOSUSUARIOS_ID`),
-  UNIQUE KEY `PDU_IN_ENTIDADESDOSISTEMA_ID_SM_USUARIOS_ID_UI` (`IN_ENTIDADESDOSISTEMA_ID`,`SM_USUARIOS_ID`),
-  KEY `USU_PDU_IX` (`SM_USUARIOS_ID`),
-  KEY `EDS_PDU_IX` (`IN_ENTIDADESDOSISTEMA_ID`),
-  CONSTRAINT `EDS_PDU_FK` FOREIGN KEY (`IN_ENTIDADESDOSISTEMA_ID`) REFERENCES `entidadesdosistema` (`IN_ENTIDADESDOSISTEMA_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `USU_PDU_FK` FOREIGN KEY (`SM_USUARIOS_ID`) REFERENCES `usuarios` (`SM_USUARIOS_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
-
-CREATE TABLE `permissoesdosgrupos` (
-  `IN_PERMISSOESDOSGRUPOS_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `IN_ENTIDADESDOSISTEMA_ID` int(11) NOT NULL,
-  `TI_GRUPOS_ID` tinyint(3) NOT NULL,
-  `TI_LER` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `TI_INSERIR` tinyint(1) NOT NULL DEFAULT '0',
-  `TI_ALTERAR` tinyint(1) NOT NULL DEFAULT '0',
-  `TI_EXCLUIR` tinyint(1) NOT NULL DEFAULT '0',
-  `SM_USUARIOCRIADOR_ID` smallint(5) unsigned DEFAULT NULL,
-  `DT_DATAEHORADACRIACAO` datetime DEFAULT NULL,
-  `SM_USUARIOMODIFICADOR_ID` smallint(5) unsigned DEFAULT NULL,
-  `DT_DATAEHORADAMODIFICACAO` datetime DEFAULT NULL,
-  `EN_SITUACAO` enum('INSERIDO','MODIFICADO','SINCRONIZADO') COLLATE latin1_bin DEFAULT NULL,
-  PRIMARY KEY (`IN_PERMISSOESDOSGRUPOS_ID`),
-  UNIQUE KEY `PDG_IN_ENTIDADESDOSISTEMA_ID_TI_GRUPOS_UI` (`IN_ENTIDADESDOSISTEMA_ID`,`TI_GRUPOS_ID`),
-  KEY `GRU_PDG_IX` (`TI_GRUPOS_ID`),
-  KEY `EDS_PDG_IX` (`IN_ENTIDADESDOSISTEMA_ID`),
-  CONSTRAINT `EDS_PDG_FK` FOREIGN KEY (`IN_ENTIDADESDOSISTEMA_ID`) REFERENCES `entidadesdosistema` (`IN_ENTIDADESDOSISTEMA_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `GRU_PDG_FK` FOREIGN KEY (`TI_GRUPOS_ID`) REFERENCES `grupos` (`TI_GRUPOS_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=345 DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
-
-
-*/
-
-CREATE TABLE USUARIOS
-(
-  BS_USUARIOS_ID bigserial NOT NULL,
-  VA_NOME varchar(64) NOT NULL,
-  VA_EMAIL varchar(40) NOT NULL,
-  VA_LOGIN varchar(20) NOT NULL,
-  CH_PASSWORD char(32) NOT NULL,
-  PRIMARY KEY (BS_USUARIOS_ID)
+CREATE TABLE permissoesdosgrupos (in_permissoesdosgrupos_id integer NOT NULL DEFAULT nextval('sq_pdg_in_permissoesdosgrupos_id')
+                                 ,in_entidadesdosistema_id integer NOT NULL
+                                 ,sm_grupos_id smallint NOT NULL
+                                 ,sm_ler smallint NOT NULL DEFAULT 0
+                                 ,sm_inserir smallint NOT NULL DEFAULT 0
+                                 ,sm_alterar smallint NOT NULL DEFAULT 0
+                                 ,sm_excluir smallint NOT NULL DEFAULT 0
+                                 ,CONSTRAINT pk_pdg PRIMARY KEY (in_permissoesdosgrupos_id )
+                                 ,CONSTRAINT fk_pdg_eds FOREIGN KEY (in_entidadesdosistema_id) REFERENCES entidadesdosistema (in_entidadesdosistema_id) ON UPDATE CASCADE ON DELETE CASCADE
+                                 ,CONSTRAINT fk_pdg_gru FOREIGN KEY (sm_grupos_id) REFERENCES grupos (sm_grupos_id) ON UPDATE CASCADE ON DELETE CASCADE
+                                 ,CONSTRAINT uc_pdg_in_entidadesdosistema_id_ti_grupos UNIQUE (in_entidadesdosistema_id, sm_grupos_id)
 );
+
+ALTER SEQUENCE sq_pdg_in_permissoesdosgrupos_id 
+      OWNED BY permissoesdosgrupos.in_permissoesdosgrupos_id;
+---------------------------------------------------------------
+CREATE SEQUENCE sq_pdu_in_permissoesdosusuarios_id
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 2147483647
+  START 1
+  CACHE 1;
+
+CREATE TABLE permissoesdosusuarios (in_permissoesdosusuarios_id integer NOT NULL DEFAULT nextval('sq_pdu_in_permissoesdosusuarios_id')
+                                   ,in_entidadesdosistema_id integer NOT NULL
+                                   ,sm_usuarios_id smallint NOT NULL
+                                   ,sm_ler smallint NOT NULL DEFAULT 0
+                                   ,sm_inserir smallint NOT NULL DEFAULT 0
+                                   ,sm_alterar smallint NOT NULL DEFAULT 0
+                                   ,sm_excluir smallint NOT NULL DEFAULT 0
+                                   ,CONSTRAINT pk_pdu PRIMARY KEY (in_permissoesdosusuarios_id )
+                                   ,CONSTRAINT fk_pdu_eds FOREIGN KEY (in_entidadesdosistema_id) REFERENCES entidadesdosistema (in_entidadesdosistema_id) ON UPDATE CASCADE ON DELETE CASCADE
+                                   ,CONSTRAINT fk_pdu_usu FOREIGN KEY (sm_usuarios_id) REFERENCES usuarios (sm_usuarios_id) ON UPDATE CASCADE ON DELETE CASCADE
+                                   ,CONSTRAINT uc_pdu_in_entidadesdosistema_id_sm_usuarios_id UNIQUE (in_entidadesdosistema_id , sm_usuarios_id ));
+
+ALTER SEQUENCE sq_pdu_in_permissoesdosusuarios_id 
+      OWNED BY permissoesdosusuarios.in_permissoesdosusuarios_id;
+---------------------------------------------------------------
+CREATE OR REPLACE FUNCTION IDU_USUARIOS(IN pModo           CHAR(1) 
+                                       ,IN pSM_USUARIOS_ID USUARIOS.SM_USUARIOS_ID%TYPE = NULL
+                                       ,IN pVA_NOME        USUARIOS.VA_NOME%TYPE        = NULL
+                                       ,IN pVA_LOGIN       USUARIOS.VA_LOGIN%TYPE       = NULL
+                                       ,IN pCH_SENHA       USUARIOS.CH_SENHA%TYPE       = NULL
+                                       ,IN pVA_EMAIL       USUARIOS.VA_EMAIL%TYPE       = NULL)
+RETURNS BIGINT AS 
+$BODY$
+DECLARE
+	vRETURN BIGINT = 0;
+BEGIN
+  CASE pModo
+    WHEN 'I' THEN ----------------------------------------------------------- [ INSERT ] --
+      INSERT INTO USUARIOS (VA_NOME
+                           ,VA_LOGIN
+                           ,CH_SENHA
+                           ,VA_EMAIL)
+                    VALUES (pVA_NOME
+                           ,pVA_LOGIN
+                           ,pCH_SENHA
+                           ,pVA_EMAIL);
+    GET DIAGNOSTICS integer_var = ROW_COUNT
+    ---------------------------------------------------------------------------------------
+    WHEN 'D' THEN ----------------------------------------------------------- [ DELETE ] --
+    NULL; 
+    GET DIAGNOSTICS integer_var = ROW_COUNT
+    ---------------------------------------------------------------------------------------
+    WHEN 'U' THEN ----------------------------------------------------------- [ UPDATE ] --
+    NULL;
+    ---------------------------------------------------------------------------------------
+  END CASE;
+END;
+$BODY$
+LANGUAGE PLPGSQL;
+---------------------------------------------------------------
+---------------------------------------------------------------
+---------------------------------------------------------------
+---------------------------------------------------------------
+---------------------------------------------------------------
