@@ -1,7 +1,7 @@
 DROP DATABASE IF EXISTS IAF;
 
 CREATE DATABASE IAF
-  WITH OWNER = IAF
+  WITH OWNER = POSTGRES
        ENCODING = 'UTF8'
        TABLESPACE = pg_default
        LC_COLLATE = 'Portuguese, Brazil'
@@ -168,6 +168,9 @@ BEGIN
 END;
 $BODY$
 LANGUAGE PLPGSQL;
+
+ALTER FUNCTION IDU_USUARIOS(CHAR,USUARIOS.SM_USUARIOS_ID%TYPE,USUARIOS.VA_NOME%TYPE,USUARIOS.VA_LOGIN%TYPE,USUARIOS.CH_SENHA%TYPE,USUARIOS.VA_EMAIL%TYPE)
+         OWNER TO POSTGRES;
 ---------------------------------------------------------------
 ---------------------------------------------------------------
 ---------------------------------------------------------------
