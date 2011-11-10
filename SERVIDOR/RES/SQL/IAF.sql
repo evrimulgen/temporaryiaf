@@ -1,4 +1,4 @@
-﻿DROP DATABASE IF EXISTS IAF;
+DROP DATABASE IF EXISTS IAF;
 
 CREATE DATABASE IAF
   WITH OWNER = IAF
@@ -8,121 +8,121 @@ CREATE DATABASE IAF
        LC_CTYPE = 'Portuguese, Brazil'
        CONNECTION LIMIT = -1;
 ---------------------------------------------------------------
-CREATE SEQUENCE sq_usu_in_entidadesdosistema_id
-  INCREMENT 1
-  MINVALUE 1
-  MAXVALUE 2147483647
-  START 1
-  CACHE 1;
+CREATE SEQUENCE SQ_USU_IN_ENTIDADESDOSISTEMA_ID
+      INCREMENT 1
+       MINVALUE 1
+       MAXVALUE 2147483647
+          START 1
+          CACHE 1;
   
-CREATE TABLE ENTIDADESDOSISTEMA (in_entidadesdosistema_id integer NOT NULL DEFAULT nextval('sq_usu_in_entidadesdosistema_id')
-                                ,va_nome varchar(128) NOT NULL
-                                ,sm_tipo smallint NOT NULL
-                                ,CONSTRAINT pk_eds PRIMARY KEY (in_entidadesdosistema_id)
-                                ,CONSTRAINT uc_eds_va_nome UNIQUE (va_nome));
+CREATE TABLE ENTIDADESDOSISTEMA (IN_ENTIDADESDOSISTEMA_ID INTEGER NOT NULL DEFAULT NEXTVAL('SQ_USU_IN_ENTIDADESDOSISTEMA_ID')
+                                ,VA_NOME VARCHAR(128) NOT NULL
+                                ,SM_TIPO SMALLINT NOT NULL
+                                ,CONSTRAINT PK_EDS PRIMARY KEY (IN_ENTIDADESDOSISTEMA_ID)
+                                ,CONSTRAINT UC_EDS_VA_NOME UNIQUE (VA_NOME));
 
-ALTER SEQUENCE sq_usu_in_entidadesdosistema_id 
-      OWNED BY ENTIDADESDOSISTEMA.in_entidadesdosistema_id;
+ALTER SEQUENCE SQ_USU_IN_ENTIDADESDOSISTEMA_ID 
+      OWNED BY ENTIDADESDOSISTEMA.IN_ENTIDADESDOSISTEMA_ID;
 ---------------------------------------------------------------
-CREATE SEQUENCE sq_usu_sm_usuarios_id
+CREATE SEQUENCE SQ_USU_SM_USUARIOS_ID
       INCREMENT 1
        MINVALUE 1
        MAXVALUE 32767
           START 1
           CACHE 1;
           
-CREATE TABLE usuarios (sm_usuarios_id smallint NOT NULL DEFAULT nextval('sq_usu_sm_usuarios_id')
-                      ,va_nome VARCHAR(64) NOT NULL
-                      ,va_login VARCHAR(16) NOT NULL
-                      ,ch_senha CHAR(128) NOT NULL
-                      ,va_email VARCHAR(64)
-                      ,CONSTRAINT pk_usu PRIMARY KEY (sm_usuarios_id)
-                      ,CONSTRAINT uc_usu_va_email UNIQUE (va_email)
-                      ,CONSTRAINT uc_usu_va_login UNIQUE (va_login));
+CREATE TABLE USUARIOS (SM_USUARIOS_ID SMALLINT NOT NULL DEFAULT NEXTVAL('SQ_USU_SM_USUARIOS_ID')
+                      ,VA_NOME VARCHAR(64) NOT NULL
+                      ,VA_LOGIN VARCHAR(16) NOT NULL
+                      ,CH_SENHA CHAR(128) NOT NULL
+                      ,VA_EMAIL VARCHAR(64)
+                      ,CONSTRAINT PK_USU PRIMARY KEY (SM_USUARIOS_ID)
+                      ,CONSTRAINT UC_USU_VA_EMAIL UNIQUE (VA_EMAIL)
+                      ,CONSTRAINT UC_USU_VA_LOGIN UNIQUE (VA_LOGIN));
 
-ALTER SEQUENCE sq_usu_sm_usuarios_id 
+ALTER SEQUENCE SQ_USU_SM_USUARIOS_ID 
       OWNED BY USUARIOS.SM_USUARIOS_ID;
 ---------------------------------------------------------------
-CREATE SEQUENCE sq_gru_sm_grupos_id
+CREATE SEQUENCE SQ_GRU_SM_GRUPOS_ID
       INCREMENT 1
        MINVALUE 1
        MAXVALUE 32767
           START 1
           CACHE 1;
 
-CREATE TABLE grupos (sm_grupos_id smallint NOT NULL DEFAULT nextval('sq_gru_sm_grupos_id')
-                    ,va_nome VARCHAR(64) NOT NULL
-                    ,va_descricao VARCHAR(128) NOT NULL
-                    ,CONSTRAINT pk_gru PRIMARY KEY (sm_grupos_id)
-                    ,CONSTRAINT uc_gru_va_nome UNIQUE (va_nome));
+CREATE TABLE GRUPOS (SM_GRUPOS_ID SMALLINT NOT NULL DEFAULT NEXTVAL('SQ_GRU_SM_GRUPOS_ID')
+                    ,VA_NOME VARCHAR(64) NOT NULL
+                    ,VA_DESCRICAO VARCHAR(128) NOT NULL
+                    ,CONSTRAINT PK_GRU PRIMARY KEY (SM_GRUPOS_ID)
+                    ,CONSTRAINT UC_GRU_VA_NOME UNIQUE (VA_NOME));
 
-ALTER SEQUENCE sq_gru_sm_grupos_id 
+ALTER SEQUENCE SQ_GRU_SM_GRUPOS_ID 
       OWNED BY GRUPOS.SM_GRUPOS_ID;
 ---------------------------------------------------------------
-CREATE SEQUENCE sq_gdu_in_gruposdosusuarios_id
-  INCREMENT 1
-  MINVALUE 1
-  MAXVALUE 2147483647
-  START 1
-  CACHE 1;
+CREATE SEQUENCE SQ_GDU_IN_GRUPOSDOSUSUARIOS_ID
+      INCREMENT 1
+       MINVALUE 1
+       MAXVALUE 2147483647
+          START 1
+          CACHE 1;
 
-CREATE TABLE gruposdosusuarios(in_gruposdosusuarios_id integer NOT NULL DEFAULT nextval('sq_gdu_in_gruposdosusuarios_id')
-                              ,sm_grupos_id smallint NOT NULL
-                              ,sm_usuarios_id smallint NOT NULL
-                              ,CONSTRAINT pk_gdu PRIMARY KEY (in_gruposdosusuarios_id )
-                              ,CONSTRAINT fk_gdu_gru FOREIGN KEY (sm_grupos_id) REFERENCES grupos (sm_grupos_id) ON UPDATE CASCADE ON DELETE CASCADE
-                              ,CONSTRAINT fk_gdu_usu FOREIGN KEY (sm_usuarios_id) REFERENCES usuarios (sm_usuarios_id) ON UPDATE CASCADE ON DELETE CASCADE
-                              ,CONSTRAINT uc_gdu_sm_grupos_id_sm_usuarios_id UNIQUE (sm_grupos_id , sm_usuarios_id));
+CREATE TABLE GRUPOSDOSUSUARIOS(IN_GRUPOSDOSUSUARIOS_ID INTEGER NOT NULL DEFAULT NEXTVAL('SQ_GDU_IN_GRUPOSDOSUSUARIOS_ID')
+                              ,SM_GRUPOS_ID SMALLINT NOT NULL
+                              ,SM_USUARIOS_ID SMALLINT NOT NULL
+                              ,CONSTRAINT PK_GDU PRIMARY KEY (IN_GRUPOSDOSUSUARIOS_ID )
+                              ,CONSTRAINT FK_GDU_GRU FOREIGN KEY (SM_GRUPOS_ID) REFERENCES GRUPOS (SM_GRUPOS_ID) ON UPDATE CASCADE ON DELETE CASCADE
+                              ,CONSTRAINT FK_GDU_USU FOREIGN KEY (SM_USUARIOS_ID) REFERENCES USUARIOS (SM_USUARIOS_ID) ON UPDATE CASCADE ON DELETE CASCADE
+                              ,CONSTRAINT UC_GDU_SM_GRUPOS_ID_SM_USUARIOS_ID UNIQUE (SM_GRUPOS_ID , SM_USUARIOS_ID));
 
-ALTER SEQUENCE sq_gdu_in_gruposdosusuarios_id 
-      OWNED BY gruposdosusuarios.in_gruposdosusuarios_id;
+ALTER SEQUENCE SQ_GDU_IN_GRUPOSDOSUSUARIOS_ID 
+      OWNED BY GRUPOSDOSUSUARIOS.IN_GRUPOSDOSUSUARIOS_ID;
 ---------------------------------------------------------------
-CREATE SEQUENCE sq_pdg_in_permissoesdosgrupos_id
-  INCREMENT 1
-  MINVALUE 1
-  MAXVALUE 2147483647
-  START 1
-  CACHE 1;
+CREATE SEQUENCE SQ_PDG_IN_PERMISSOESDOSGRUPOS_ID
+      INCREMENT 1
+       MINVALUE 1
+       MAXVALUE 2147483647
+          START 1
+          CACHE 1;
 
-CREATE TABLE permissoesdosgrupos (in_permissoesdosgrupos_id integer NOT NULL DEFAULT nextval('sq_pdg_in_permissoesdosgrupos_id')
-                                 ,in_entidadesdosistema_id integer NOT NULL
-                                 ,sm_grupos_id smallint NOT NULL
-                                 ,sm_ler smallint NOT NULL DEFAULT 0
-                                 ,sm_inserir smallint NOT NULL DEFAULT 0
-                                 ,sm_alterar smallint NOT NULL DEFAULT 0
-                                 ,sm_excluir smallint NOT NULL DEFAULT 0
-                                 ,CONSTRAINT pk_pdg PRIMARY KEY (in_permissoesdosgrupos_id )
-                                 ,CONSTRAINT fk_pdg_eds FOREIGN KEY (in_entidadesdosistema_id) REFERENCES entidadesdosistema (in_entidadesdosistema_id) ON UPDATE CASCADE ON DELETE CASCADE
-                                 ,CONSTRAINT fk_pdg_gru FOREIGN KEY (sm_grupos_id) REFERENCES grupos (sm_grupos_id) ON UPDATE CASCADE ON DELETE CASCADE
-                                 ,CONSTRAINT uc_pdg_in_entidadesdosistema_id_ti_grupos UNIQUE (in_entidadesdosistema_id, sm_grupos_id)
+CREATE TABLE PERMISSOESDOSGRUPOS (IN_PERMISSOESDOSGRUPOS_ID INTEGER NOT NULL DEFAULT NEXTVAL('SQ_PDG_IN_PERMISSOESDOSGRUPOS_ID')
+                                 ,IN_ENTIDADESDOSISTEMA_ID INTEGER NOT NULL
+                                 ,SM_GRUPOS_ID SMALLINT NOT NULL
+                                 ,SM_LER SMALLINT NOT NULL DEFAULT 0
+                                 ,SM_INSERIR SMALLINT NOT NULL DEFAULT 0
+                                 ,SM_ALTERAR SMALLINT NOT NULL DEFAULT 0
+                                 ,SM_EXCLUIR SMALLINT NOT NULL DEFAULT 0
+                                 ,CONSTRAINT PK_PDG PRIMARY KEY (IN_PERMISSOESDOSGRUPOS_ID )
+                                 ,CONSTRAINT FK_PDG_EDS FOREIGN KEY (IN_ENTIDADESDOSISTEMA_ID) REFERENCES ENTIDADESDOSISTEMA (IN_ENTIDADESDOSISTEMA_ID) ON UPDATE CASCADE ON DELETE CASCADE
+                                 ,CONSTRAINT FK_PDG_GRU FOREIGN KEY (SM_GRUPOS_ID) REFERENCES GRUPOS (SM_GRUPOS_ID) ON UPDATE CASCADE ON DELETE CASCADE
+                                 ,CONSTRAINT UC_PDG_IN_ENTIDADESDOSISTEMA_ID_TI_GRUPOS UNIQUE (IN_ENTIDADESDOSISTEMA_ID, SM_GRUPOS_ID)
 );
 
-ALTER SEQUENCE sq_pdg_in_permissoesdosgrupos_id 
-      OWNED BY permissoesdosgrupos.in_permissoesdosgrupos_id;
+ALTER SEQUENCE SQ_PDG_IN_PERMISSOESDOSGRUPOS_ID 
+      OWNED BY PERMISSOESDOSGRUPOS.IN_PERMISSOESDOSGRUPOS_ID;
 ---------------------------------------------------------------
-CREATE SEQUENCE sq_pdu_in_permissoesdosusuarios_id
-  INCREMENT 1
-  MINVALUE 1
-  MAXVALUE 2147483647
-  START 1
-  CACHE 1;
+CREATE SEQUENCE SQ_PDU_IN_PERMISSOESDOSUSUARIOS_ID
+      INCREMENT 1
+       MINVALUE 1
+       MAXVALUE 2147483647
+          START 1
+          CACHE 1;
 
-CREATE TABLE permissoesdosusuarios (in_permissoesdosusuarios_id integer NOT NULL DEFAULT nextval('sq_pdu_in_permissoesdosusuarios_id')
-                                   ,in_entidadesdosistema_id integer NOT NULL
-                                   ,sm_usuarios_id smallint NOT NULL
-                                   ,sm_ler smallint NOT NULL DEFAULT 0
-                                   ,sm_inserir smallint NOT NULL DEFAULT 0
-                                   ,sm_alterar smallint NOT NULL DEFAULT 0
-                                   ,sm_excluir smallint NOT NULL DEFAULT 0
-                                   ,CONSTRAINT pk_pdu PRIMARY KEY (in_permissoesdosusuarios_id )
-                                   ,CONSTRAINT fk_pdu_eds FOREIGN KEY (in_entidadesdosistema_id) REFERENCES entidadesdosistema (in_entidadesdosistema_id) ON UPDATE CASCADE ON DELETE CASCADE
-                                   ,CONSTRAINT fk_pdu_usu FOREIGN KEY (sm_usuarios_id) REFERENCES usuarios (sm_usuarios_id) ON UPDATE CASCADE ON DELETE CASCADE
-                                   ,CONSTRAINT uc_pdu_in_entidadesdosistema_id_sm_usuarios_id UNIQUE (in_entidadesdosistema_id , sm_usuarios_id ));
+CREATE TABLE PERMISSOESDOSUSUARIOS (IN_PERMISSOESDOSUSUARIOS_ID INTEGER NOT NULL DEFAULT NEXTVAL('SQ_PDU_IN_PERMISSOESDOSUSUARIOS_ID')
+                                   ,IN_ENTIDADESDOSISTEMA_ID INTEGER NOT NULL
+                                   ,SM_USUARIOS_ID SMALLINT NOT NULL
+                                   ,SM_LER SMALLINT NOT NULL DEFAULT 0
+                                   ,SM_INSERIR SMALLINT NOT NULL DEFAULT 0
+                                   ,SM_ALTERAR SMALLINT NOT NULL DEFAULT 0
+                                   ,SM_EXCLUIR SMALLINT NOT NULL DEFAULT 0
+                                   ,CONSTRAINT PK_PDU PRIMARY KEY (IN_PERMISSOESDOSUSUARIOS_ID )
+                                   ,CONSTRAINT FK_PDU_EDS FOREIGN KEY (IN_ENTIDADESDOSISTEMA_ID) REFERENCES ENTIDADESDOSISTEMA (IN_ENTIDADESDOSISTEMA_ID) ON UPDATE CASCADE ON DELETE CASCADE
+                                   ,CONSTRAINT FK_PDU_USU FOREIGN KEY (SM_USUARIOS_ID) REFERENCES USUARIOS (SM_USUARIOS_ID) ON UPDATE CASCADE ON DELETE CASCADE
+                                   ,CONSTRAINT UC_PDU_IN_ENTIDADESDOSISTEMA_ID_SM_USUARIOS_ID UNIQUE (IN_ENTIDADESDOSISTEMA_ID , SM_USUARIOS_ID ));
 
-ALTER SEQUENCE sq_pdu_in_permissoesdosusuarios_id 
-      OWNED BY permissoesdosusuarios.in_permissoesdosusuarios_id;
+ALTER SEQUENCE SQ_PDU_IN_PERMISSOESDOSUSUARIOS_ID 
+      OWNED BY PERMISSOESDOSUSUARIOS.IN_PERMISSOESDOSUSUARIOS_ID;
 ---------------------------------------------------------------
-CREATE OR REPLACE FUNCTION IDU_USUARIOS(IN pModo           CHAR(1) 
+CREATE OR REPLACE FUNCTION IDU_USUARIOS(IN pMODO           CHAR(1) 
                                        ,IN pSM_USUARIOS_ID USUARIOS.SM_USUARIOS_ID%TYPE = NULL
                                        ,IN pVA_NOME        USUARIOS.VA_NOME%TYPE        = NULL
                                        ,IN pVA_LOGIN       USUARIOS.VA_LOGIN%TYPE       = NULL
@@ -131,9 +131,9 @@ CREATE OR REPLACE FUNCTION IDU_USUARIOS(IN pModo           CHAR(1)
 RETURNS BIGINT AS 
 $BODY$
 DECLARE
-	vRETURN BIGINT = 0;
+	vRETURN BIGINT := 0;
 BEGIN
-  CASE pModo
+  CASE pMODO
     WHEN 'I' THEN ----------------------------------------------------------- [ INSERT ] --
       INSERT INTO USUARIOS (VA_NOME
                            ,VA_LOGIN
@@ -143,16 +143,28 @@ BEGIN
                            ,pVA_LOGIN
                            ,pCH_SENHA
                            ,pVA_EMAIL);
-    GET DIAGNOSTICS integer_var = ROW_COUNT
+
+    vRETURN := CURRVAL('SQ_USU_SM_USUARIOS_ID');
     ---------------------------------------------------------------------------------------
     WHEN 'D' THEN ----------------------------------------------------------- [ DELETE ] --
-    NULL; 
-    GET DIAGNOSTICS integer_var = ROW_COUNT
+      DELETE FROM USUARIOS
+            WHERE SM_USUARIOS_ID = pSM_USUARIOS_ID;
+            
+    GET DIAGNOSTICS vRETURN := ROW_COUNT;
     ---------------------------------------------------------------------------------------
     WHEN 'U' THEN ----------------------------------------------------------- [ UPDATE ] --
-    NULL;
+      UPDATE USUARIOS
+         SET VA_NOME = pVA_NOME
+           , VA_LOGIN = pVA_LOGIN
+           , CH_SENHA = pCH_SENHA
+           , VA_EMAIL = pVA_EMAIL
+       WHERE SM_USUARIOS_ID = pSM_USUARIOS_ID;
+
+    GET DIAGNOSTICS vRETURN := ROW_COUNT;
     ---------------------------------------------------------------------------------------
   END CASE;
+  
+  RETURN vRETURN;
 END;
 $BODY$
 LANGUAGE PLPGSQL;
