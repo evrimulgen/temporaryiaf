@@ -7,6 +7,11 @@ CREATE DATABASE IAF
        LC_COLLATE = 'Portuguese, Brazil'
        LC_CTYPE = 'Portuguese, Brazil'
        CONNECTION LIMIT = -1;
+       
+---------------------------------------------------------------
+CREATE EXTENSION pgcrypto
+          SCHEMA public
+         VERSION "1.0"
 ---------------------------------------------------------------
 CREATE SEQUENCE SQ_USU_IN_ENTIDADESDOSISTEMA_ID
       INCREMENT 1
@@ -122,7 +127,7 @@ CREATE TABLE PERMISSOESDOSUSUARIOS (IN_PERMISSOESDOSUSUARIOS_ID INTEGER NOT NULL
 ALTER SEQUENCE SQ_PDU_IN_PERMISSOESDOSUSUARIOS_ID 
       OWNED BY PERMISSOESDOSUSUARIOS.IN_PERMISSOESDOSUSUARIOS_ID;
 ---------------------------------------------------------------
-CREATE OR REPLACE FUNCTION IDU_USUARIOS(IN pMODO           CHAR(1) 
+CREATE OR REPLACE FUNCTION IDU_USUARIOS(IN pMODO           CHAR
                                        ,IN pSM_USUARIOS_ID USUARIOS.SM_USUARIOS_ID%TYPE = NULL
                                        ,IN pVA_NOME        USUARIOS.VA_NOME%TYPE        = NULL
                                        ,IN pVA_LOGIN       USUARIOS.VA_LOGIN%TYPE       = NULL
@@ -168,10 +173,13 @@ BEGIN
 END;
 $BODY$
 LANGUAGE PLPGSQL;
-
-ALTER FUNCTION IDU_USUARIOS(CHAR,USUARIOS.SM_USUARIOS_ID%TYPE,USUARIOS.VA_NOME%TYPE,USUARIOS.VA_LOGIN%TYPE,USUARIOS.CH_SENHA%TYPE,USUARIOS.VA_EMAIL%TYPE)
-         OWNER TO POSTGRES;
 ---------------------------------------------------------------
+CREATE OR REPLACE FUNCTION SHA512(VARCHAR) 
+RETURNS CHAR AS
+$BODY$
+	SELECT UPPER(ENCODE(DIGEST($1, 'sha512'), 'hex'))
+$BODY$
+LANGUAGE SQL;
 ---------------------------------------------------------------
 ---------------------------------------------------------------
 ---------------------------------------------------------------
