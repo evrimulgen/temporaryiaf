@@ -12,6 +12,7 @@ object FORMPrincipal: TFORMPrincipal
   Font.Style = []
   FormStyle = fsMDIForm
   OldCreateOrder = False
+  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   object ActionMainMenuBar1: TActionMainMenuBar
@@ -19,18 +20,18 @@ object FORMPrincipal: TFORMPrincipal
     Top = 0
     Width = 784
     Height = 25
+    UseSystemFont = False
     ActionManager = DAMOPrincipal.ACMAPrincipal
     Caption = 'ActionMainMenuBar1'
     Color = clMenuBar
     ColorMap.HighlightColor = clWhite
     ColorMap.UnusedColor = clWhite
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clMenuText
+    Font.Color = clBlack
     Font.Height = -12
     Font.Name = 'Segoe UI'
     Font.Style = []
     Spacing = 0
-    ExplicitHeight = 29
   end
   object ActionToolBar1: TActionToolBar
     Left = 0
@@ -42,7 +43,6 @@ object FORMPrincipal: TFORMPrincipal
     Color = clMenuBar
     ColorMap.HighlightColor = clWhite
     ColorMap.UnusedColor = clWhite
-    EdgeBorders = [ebTop, ebBottom]
     EdgeOuter = esLowered
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack

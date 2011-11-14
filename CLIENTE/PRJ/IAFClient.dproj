@@ -2,7 +2,7 @@
 		<PropertyGroup>
 			<ProjectGuid>{73C9C79A-33B4-4B22-BCF1-920E1147AEE2}</ProjectGuid>
 			<ProjectVersion>12.3</ProjectVersion>
-			<MainSource>IAF.dpr</MainSource>
+			<MainSource>IAFClient.dpr</MainSource>
 			<Base>True</Base>
 			<Config Condition="'$(Config)'==''">Debug</Config>
 			<Platform>Win32</Platform>
@@ -42,7 +42,7 @@
 			<DCC_DebugInformation>false</DCC_DebugInformation>
 		</PropertyGroup>
 		<ItemGroup>
-			<DelphiCompile Include="IAF.dpr">
+			<DelphiCompile Include="IAFClient.dpr">
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
 			<DCCReference Include="..\SRC\UFORMPrincipal.pas">
@@ -51,6 +51,10 @@
 			<DCCReference Include="..\SRC\UDAMOPrincipal.pas">
 				<Form>DAMOPrincipal</Form>
 				<DesignClass>TDataModule</DesignClass>
+			</DCCReference>
+			<DCCReference Include="..\SRC\UAuthenticator.pas"/>
+			<DCCReference Include="..\SRC\UFORMLogin.pas">
+				<Form>FORMLogin</Form>
 			</DCCReference>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>
@@ -77,7 +81,7 @@
 						<VersionInfo Name="MajorVer">1</VersionInfo>
 						<VersionInfo Name="MinorVer">0</VersionInfo>
 						<VersionInfo Name="Release">0</VersionInfo>
-						<VersionInfo Name="Build">6</VersionInfo>
+						<VersionInfo Name="Build">56</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -89,7 +93,7 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName"/>
 						<VersionInfoKeys Name="FileDescription"/>
-						<VersionInfoKeys Name="FileVersion">1.0.0.6</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">1.0.0.56</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName"/>
 						<VersionInfoKeys Name="LegalCopyright"/>
 						<VersionInfoKeys Name="LegalTrademarks"/>
@@ -103,7 +107,7 @@
 						<Excluded_Packages Name="$(BDSBIN)\dclofficexp150.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
 					</Excluded_Packages>
 					<Source>
-						<Source Name="MainSource">IAF.dpr</Source>
+						<Source Name="MainSource">IAFClient.dpr</Source>
 					</Source>
 				</Delphi.Personality>
 				<Platforms>

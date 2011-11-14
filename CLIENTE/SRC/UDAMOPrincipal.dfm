@@ -1,5 +1,6 @@
 object DAMOPrincipal: TDAMOPrincipal
   OldCreateOrder = False
+  OnCreate = DataModuleCreate
   Height = 150
   Width = 215
   object ACMAPrincipal: TActionManager
@@ -12,7 +13,7 @@ object DAMOPrincipal: TDAMOPrincipal
                 Action = ACTNAlterarSenha
                 Caption = '&Alterar senha'
               end>
-            Caption = '&Op'#231#245'es'
+            Caption = '&Usu'#225'rio'
           end>
         ActionBar = FORMPrincipal.ActionMainMenuBar1
       end>
@@ -20,7 +21,7 @@ object DAMOPrincipal: TDAMOPrincipal
     Top = 12
     StyleName = 'Platform Default'
     object ACTNAlterarSenha: TAction
-      Category = 'Op'#231#245'es'
+      Category = 'Usu'#225'rio'
       Caption = 'Alterar senha'
     end
     object ACTNAjuda: TAction
@@ -34,5 +35,11 @@ object DAMOPrincipal: TDAMOPrincipal
     object Action5: TAction
       Caption = 'Action5'
     end
+  end
+  object SoapConnection1: TSoapConnection
+    SOAPServerIID = 'IAppServerSOAP - {C99F4735-D6D2-495C-8CA2-E53E5A439E61}'
+    UseSOAPAdapter = True
+    Left = 36
+    Top = 60
   end
 end

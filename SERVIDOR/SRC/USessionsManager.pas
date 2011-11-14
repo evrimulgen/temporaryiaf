@@ -3,6 +3,7 @@ unit USessionsManager;
 interface
 
 uses Classes
+   , SyncObjs
    , KRK.Win32.Rtl.Common.Classes;
 
 type
@@ -41,6 +42,7 @@ type
 
 var
   SessionsFile: TSessionsFile;
+  CS: TCriticalSection;
 
 implementation
 
@@ -114,9 +116,11 @@ begin
 end;
 
 initialization
+  CS := TCriticalSection.Create;
   SessionsFile := TSessionsFile.Create(nil);
 
 finalization
   SessionsFile.Free;
+  CS.Free;
 
 end.
