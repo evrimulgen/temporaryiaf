@@ -7,11 +7,11 @@ uses
   ISAPIApp,
   ISAPIThreadPool,
   UWEBMWebService in '..\SRC\UWEBMWebService.pas' {WEBMWebService: TWebModule},
-  UKRSDPrincipal in '..\SRC\UKRSDPrincipal.pas' {KRSDPrincipal: TSoapDataModule},
+  USODMPrincipal in '..\SRC\USODMPrincipal.pas' {SODMPrincipal: TSoapDataModule},
   USessionsManager in '..\SRC\USessionsManager.pas',
   UAuthenticatorImpl in '..\SRC\UAuthenticatorImpl.pas',
   UAuthenticatorIntf in '..\SRC\UAuthenticatorIntf.pas',
-  UKRDAUsuarios in '..\SRC\UKRDAUsuarios.pas' {KRDAUsuarios: TKRKDataModule};
+  UKRRDUsuarios in '..\SRC\UKRRDUsuarios.pas' {KRRDUsuarios: TKRKDataModule};
 
 {$R *.res}
 

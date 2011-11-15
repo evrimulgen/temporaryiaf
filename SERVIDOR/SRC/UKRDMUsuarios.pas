@@ -1,4 +1,4 @@
-unit UKRDAUsuarios;
+unit UKRDMUsuarios;
 
 { Anak Krakatoa DataModule. Copyright 2011 / 2012 Zetta-Ømnis Soluções Tecnológicas Ltda. }
 
@@ -10,7 +10,7 @@ uses
   ZAbstractDataset, ZDataset;
 
 type
-  TKRDAUsuarios = class(TKRKDataModule)
+  TKRRDUsuarios = class(TKRKDataModule)
     ZQRYUsuarios: TZQuery;
     ZQRYUsuariossm_usuarios_id: TSmallintField;
     ZQRYUsuariosva_nome: TWideStringField;
@@ -29,7 +29,7 @@ type
 
 implementation
 
-uses UKRSDPrincipal;
+uses USODMPrincipal;
 
 {$R *.dfm}
 

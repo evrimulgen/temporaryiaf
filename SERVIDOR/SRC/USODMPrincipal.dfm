@@ -1,4 +1,4 @@
-object KRSDPrincipal: TKRSDPrincipal
+object SODMPrincipal: TSODMPrincipal
   OldCreateOrder = False
   OnCreate = KRKSoapDataModuleCreate
   OnDestroy = KRKSoapDataModuleDestroy

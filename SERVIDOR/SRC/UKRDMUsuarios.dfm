@@ -1,10 +1,10 @@
-object KRDAUsuarios: TKRDAUsuarios
+object KRRDUsuarios: TKRRDUsuarios
   OldCreateOrder = False
   SQLs = <>
   Height = 172
   Width = 81
   object ZQRYUsuarios: TZQuery
-    Connection = KRSDPrincipal.ZCONIAF
+    Connection = SODMPrincipal.ZCONIAF
     UpdateObject = ZUSQUsuarios
     SQL.Strings = (
       'SELECT * FROM USUARIOS')

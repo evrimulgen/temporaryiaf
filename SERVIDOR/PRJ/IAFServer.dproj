@@ -49,15 +49,15 @@
 				<Form>WEBMWebService</Form>
 				<DesignClass>TWebModule</DesignClass>
 			</DCCReference>
-			<DCCReference Include="..\SRC\UKRSDPrincipal.pas">
-				<Form>KRSDPrincipal</Form>
+			<DCCReference Include="..\SRC\USODMPrincipal.pas">
+				<Form>SODMPrincipal</Form>
 				<DesignClass>TSoapDataModule</DesignClass>
 			</DCCReference>
 			<DCCReference Include="..\SRC\USessionsManager.pas"/>
 			<DCCReference Include="..\SRC\UAuthenticatorImpl.pas"/>
 			<DCCReference Include="..\SRC\UAuthenticatorIntf.pas"/>
-			<DCCReference Include="..\SRC\UKRDAUsuarios.pas">
-				<Form>KRDAUsuarios</Form>
+			<DCCReference Include="..\SRC\UKRRDUsuarios.pas">
+				<Form>KRRDUsuarios</Form>
 				<DesignClass>TKRKDataModule</DesignClass>
 			</DCCReference>
 			<BuildConfiguration Include="Release">
@@ -85,7 +85,7 @@
 						<VersionInfo Name="MajorVer">1</VersionInfo>
 						<VersionInfo Name="MinorVer">0</VersionInfo>
 						<VersionInfo Name="Release">0</VersionInfo>
-						<VersionInfo Name="Build">131</VersionInfo>
+						<VersionInfo Name="Build">133</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -97,7 +97,7 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName">Zetta-Ømnis Soluções Tecnológicas Ltda</VersionInfoKeys>
 						<VersionInfoKeys Name="FileDescription">Servidor do IAF</VersionInfoKeys>
-						<VersionInfoKeys Name="FileVersion">1.0.0.131</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">1.0.0.133</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName">IAF</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalCopyright"/>
 						<VersionInfoKeys Name="LegalTrademarks"/>
