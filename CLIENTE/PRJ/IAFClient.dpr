@@ -5,14 +5,15 @@ uses
   UFORMPrincipal in '..\SRC\UFORMPrincipal.pas' {FORMPrincipal},
   UDAMOPrincipal in '..\SRC\UDAMOPrincipal.pas' {DAMOPrincipal: TDataModule},
   UAuthenticator in '..\SRC\UAuthenticator.pas',
-  UFORMLogin in '..\SRC\UFORMLogin.pas' {FORMLogin};
+  UFORMLogin in '..\SRC\UFORMLogin.pas' {FORMLogin},
+  UFORMSplash in '..\SRC\UFORMSplash.pas' {FORMSplash};
 
 {$R *.res}
 
 begin
   Application.Initialize;
-  Application.MainFormOnTaskbar := True;
+  Application.MainFormOnTaskBar := True;
   Application.Title := 'IAF - Indicadores de Aptidão Física';
-  TFORMPrincipal.ShowMe;
+  Application.CreateForm(TDAMOPrincipal,DAMOPrincipal);
   Application.Run;
 end.

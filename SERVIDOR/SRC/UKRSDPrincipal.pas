@@ -1,4 +1,4 @@
-Unit UKRSDIAF;
+Unit UKRSDPrincipal;
 
 interface
 
@@ -16,28 +16,20 @@ uses SysUtils
    , ZAbstractRODataset
    , ZDataset
    , ZAbstractDataset
-   , URNUsuarios
+   , UKRDAUsuarios
    , ZSqlUpdate;
 
 type
-  IKRSDIAF = interface(IAppServerSOAP)
+  IKRSDPrincipal = interface(IAppServerSOAP)
   ['{E3E8C375-D907-469E-B419-BC7AB6EB7F18}']
   end;
 
-  TKRSDIAF = class(TKRKSoapDataModule, IKRSDIAF, IAppServerSOAP, IAppServer)
+  TKRSDPrincipal = class(TKRKSoapDataModule, IKRSDPrincipal, IAppServerSOAP, IAppServer)
     ZCONIAF: TZConnection;
-    ZQRYUsuarios: TZQuery;
-    DSPRUsuarios: TDataSetProvider;
-    ZUSQUsuarios: TZUpdateSQL;
-    ZQRYUsuariossm_usuarios_id: TSmallintField;
-    ZQRYUsuariosva_nome: TWideStringField;
-    ZQRYUsuariosva_login: TWideStringField;
-    ZQRYUsuariosch_senha: TWideStringField;
-    ZQRYUsuariosva_email: TWideStringField;
     procedure KRKSoapDataModuleCreate(Sender: TObject);
     procedure KRKSoapDataModuleDestroy(Sender: TObject);
   private
-    FUsuarios: TRNUsuarios;
+    FKRDAUsuarios: TKRDAUsuarios;
     function SessionExists(const aSessionID: String): Boolean; stdcall;
   public
     function SAS_ApplyUpdates(const ProviderName: WideString; Delta: OleVariant; MaxErrors: Integer; out ErrorCount: Integer; var OwnerData: OleVariant): OleVariant; override; stdcall;
@@ -54,24 +46,24 @@ implementation
 uses SyncObjs
    , USessionsManager;
 
-procedure TKRSDIAFCreateInstance(out obj: TObject);
+procedure TKRSDPrincipalCreateInstance(out obj: TObject);
 begin
- obj := TKRSDIAF.Create(nil);
+ obj := TKRSDPrincipal.Create(nil);
 end;
 
 { TSSDMIAF }
 
-procedure TKRSDIAF.KRKSoapDataModuleCreate(Sender: TObject);
+procedure TKRSDPrincipal.KRKSoapDataModuleCreate(Sender: TObject);
 begin
-  FUsuarios := TRNUsuarios.Create(Self);
+  FKRDAUsuarios := TKRDAUsuarios.Create(Self);
 end;
 
-procedure TKRSDIAF.KRKSoapDataModuleDestroy(Sender: TObject);
+procedure TKRSDPrincipal.KRKSoapDataModuleDestroy(Sender: TObject);
 begin
-  FUsuarios.Free;
+  FKRDAUsuarios.Free;
 end;
 
-function TKRSDIAF.SAS_ApplyUpdates(const ProviderName: WideString; Delta: OleVariant; MaxErrors: Integer; out ErrorCount: Integer; var OwnerData: OleVariant): OleVariant;
+function TKRSDPrincipal.SAS_ApplyUpdates(const ProviderName: WideString; Delta: OleVariant; MaxErrors: Integer; out ErrorCount: Integer; var OwnerData: OleVariant): OleVariant;
 begin
   if SessionExists(OwnerData) then
     Result := inherited
@@ -79,7 +71,7 @@ begin
     raise Exception.Create('Para usar este método é necessário que você seja um usuário autenticado no sistema');
 end;
 
-procedure TKRSDIAF.SAS_Execute(const ProviderName, CommandText: WideString; var Params, OwnerData: OleVariant);
+procedure TKRSDPrincipal.SAS_Execute(const ProviderName, CommandText: WideString; var Params, OwnerData: OleVariant);
 begin
   if SessionExists(OwnerData) then
     inherited
@@ -87,7 +79,7 @@ begin
     raise Exception.Create('Para usar este método é necessário que você seja um usuário autenticado no sistema');
 end;
 
-function TKRSDIAF.SAS_GetParams(const ProviderName: WideString; var OwnerData: OleVariant): OleVariant;
+function TKRSDPrincipal.SAS_GetParams(const ProviderName: WideString; var OwnerData: OleVariant): OleVariant;
 begin
   if SessionExists(OwnerData) then
     Result := inherited
@@ -95,7 +87,7 @@ begin
     raise Exception.Create('Para usar este método é necessário que você seja um usuário autenticado no sistema');
 end;
 
-function TKRSDIAF.SAS_GetRecords(const ProviderName: WideString; Count: Integer; out RecsOut: Integer; Options: Integer; const CommandText: WideString; var Params, OwnerData: OleVariant): OleVariant;
+function TKRSDPrincipal.SAS_GetRecords(const ProviderName: WideString; Count: Integer; out RecsOut: Integer; Options: Integer; const CommandText: WideString; var Params, OwnerData: OleVariant): OleVariant;
 begin
   if SessionExists(OwnerData) then
     Result := inherited
@@ -103,7 +95,7 @@ begin
     raise Exception.Create('Para usar este método é necessário que você seja um usuário autenticado no sistema');
 end;
 
-function TKRSDIAF.SAS_RowRequest(const ProviderName: WideString; Row: OleVariant; RequestType: Integer; var OwnerData: OleVariant): OleVariant;
+function TKRSDPrincipal.SAS_RowRequest(const ProviderName: WideString; Row: OleVariant; RequestType: Integer; var OwnerData: OleVariant): OleVariant;
 begin
   if SessionExists(OwnerData) then
     Result := inherited
@@ -111,7 +103,7 @@ begin
     raise Exception.Create('Para usar este método é necessário que você seja um usuário autenticado no sistema');
 end;
 
-function TKRSDIAF.SessionExists(const aSessionID: String): Boolean;
+function TKRSDPrincipal.SessionExists(const aSessionID: String): Boolean;
 begin
   CS.Enter;
   try
@@ -122,7 +114,7 @@ begin
 end;
 
 initialization
-  InvRegistry.RegisterInvokableClass(TKRSDIAF, TKRSDIAFCreateInstance);
-  InvRegistry.RegisterInterface(TypeInfo(IKRSDIAF));
+  InvRegistry.RegisterInvokableClass(TKRSDPrincipal, TKRSDPrincipalCreateInstance);
+  InvRegistry.RegisterInterface(TypeInfo(IKRSDPrincipal));
 
 end.

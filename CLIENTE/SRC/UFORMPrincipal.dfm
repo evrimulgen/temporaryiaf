@@ -12,7 +12,6 @@ object FORMPrincipal: TFORMPrincipal
   Font.Style = []
   FormStyle = fsMDIForm
   OldCreateOrder = False
-  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   object ActionMainMenuBar1: TActionMainMenuBar
@@ -37,8 +36,9 @@ object FORMPrincipal: TFORMPrincipal
     Left = 0
     Top = 25
     Width = 784
-    Height = 27
+    Height = 23
     ActionManager = DAMOPrincipal.ACMAPrincipal
+    BiDiMode = bdRightToLeft
     Caption = 'ActionToolBar1'
     Color = clMenuBar
     ColorMap.HighlightColor = clWhite
@@ -49,6 +49,8 @@ object FORMPrincipal: TFORMPrincipal
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
+    Orientation = boRightToLeft
+    ParentBiDiMode = False
     ParentFont = False
     Spacing = 0
   end

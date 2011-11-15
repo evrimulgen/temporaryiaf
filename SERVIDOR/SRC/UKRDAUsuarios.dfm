@@ -1,28 +1,16 @@
-object KRSDIAF: TKRSDIAF
+object KRDAUsuarios: TKRDAUsuarios
   OldCreateOrder = False
-  OnCreate = KRKSoapDataModuleCreate
-  OnDestroy = KRKSoapDataModuleDestroy
   SQLs = <>
-  Height = 268
-  Width = 745
-  object ZCONIAF: TZConnection
-    Connected = True
-    Protocol = 'postgresql'
-    HostName = '127.0.0.1'
-    Database = 'iaf'
-    User = 'postgres'
-    Password = 'sarcopenia'
-    Left = 354
-    Top = 6
-  end
+  Height = 172
+  Width = 81
   object ZQRYUsuarios: TZQuery
-    Connection = ZCONIAF
+    Connection = KRSDPrincipal.ZCONIAF
     UpdateObject = ZUSQUsuarios
     SQL.Strings = (
       'SELECT * FROM USUARIOS')
     Params = <>
     Left = 24
-    Top = 54
+    Top = 12
     object ZQRYUsuariossm_usuarios_id: TSmallintField
       FieldName = 'sm_usuarios_id'
     end
@@ -50,11 +38,11 @@ object KRSDIAF: TKRSDIAF
   object DSPRUsuarios: TDataSetProvider
     DataSet = ZQRYUsuarios
     Left = 24
-    Top = 150
+    Top = 108
   end
   object ZUSQUsuarios: TZUpdateSQL
     UseSequenceFieldForRefreshSQL = False
     Left = 24
-    Top = 102
+    Top = 60
   end
 end

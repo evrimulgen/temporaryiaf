@@ -4,11 +4,12 @@ interface
 
 uses
   SysUtils, Classes, PlatformDefaultStyleActnCtrls, ActnList, ActnMan, DB,
-  DBClient, SOAPConn;
+  DBClient, SOAPConn, ImgList, Controls;
 
 type
-  TSessionData = record
+  TSessionConnection = record
     ID: String;
+    Data: String;
   end;
 
   TDAMOPrincipal = class(TDataModule)
@@ -16,39 +17,58 @@ type
     ACTNAlterarSenha: TAction;
     ACTNAjuda: TAction;
     ACTNSobre: TAction;
-    Action5: TAction;
-    SoapConnection1: TSoapConnection;
-    procedure DataModuleCreate(Sender: TObject);
+    ACTNSair: TAction;
+    SOCNPrincipal: TSoapConnection;
+    IMLIPrincipal: TImageList;
   private
     { Private declarations }
-    FSessionData: TSessionData;
+    FSessionConnection: TSessionConnection;
   public
     { Public declarations }
-    property SessionData: TSessionData read FSessionData;
+    constructor Create(aOwner: TComponent); override;
+    destructor Destroy; override;
+    property SessionConnection: TSessionConnection read FSessionConnection;
   end;
+
+var
+  DAMOPrincipal: TDAMOPrincipal;
 
 implementation
 
-uses UFORMPrincipal, Forms, UFORMLogin, Windows, Controls;
-
 {$R *.dfm}
 
-procedure TDAMOPrincipal.DataModuleCreate(Sender: TObject);
+uses Forms
+   , Windows
+   , Controls
+   , UAuthenticator
+   , UFORMPrincipal
+   , UFORMLogin
+   , UFORMSplash;
+
+var
+  FORMPrincipal: TFORMPrincipal;
+
+constructor TDAMOPrincipal.Create(aOwner: TComponent);
 begin
-  ZeroMemory(@FSessionData,SizeOf(TSessionData));
+  inherited;
+  ZeroMemory(@FSessionConnection,SizeOf(TSessionConnection));
 
-  if not (TFORMLogin.ShowMe(FSessionData.ID) = mrOk) then
-    Application.Terminate
-  else
-//       with TBDOForm_Splash.Create(Application) do
-//        begin
-//            CanClose := False;
-//            Show;
-//            Update;
-//            inherited;
-//            CloseDelayed(2);
-//        end;
+  TFORMSplash.ShowMe(2);
 
+  if (TFORMLogin.ShowMe(FSessionConnection.ID) = mrOk) then
+    Application.CreateForm(TFORMPrincipal,FORMPrincipal);
+end;
+
+destructor TDAMOPrincipal.Destroy;
+begin
+  { TODO -oCBFF : Isso pode causar problemas se a conexão cair. Uma mensagem de
+  erro pode aparecer para o usuario, mas pelo menos sempre tudo vai ser
+  destruído corretamente }
+  try
+    Logout(FSessionConnection.ID);
+  finally
+    inherited;
+  end;
 end;
 
 end.
