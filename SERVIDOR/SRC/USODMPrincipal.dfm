@@ -1,12 +1,9 @@
 object SODMPrincipal: TSODMPrincipal
   OldCreateOrder = False
   OnCreate = KRKSoapDataModuleCreate
-  OnDestroy = KRKSoapDataModuleDestroy
-  SQLs = <>
-  Height = 67
-  Width = 79
+  Height = 165
+  Width = 321
   object ZCONIAF: TZConnection
-    Connected = True
     Protocol = 'postgresql'
     HostName = '127.0.0.1'
     Database = 'iaf'
@@ -14,5 +11,10 @@ object SODMPrincipal: TSODMPrincipal
     Password = 'sarcopenia'
     Left = 24
     Top = 6
+  end
+  object DSPRUsuarios: TDataSetProvider
+    DataSet = KRDMUsuarios.ZQRYUsuarios
+    Left = 24
+    Top = 60
   end
 end

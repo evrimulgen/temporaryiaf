@@ -20,6 +20,10 @@ type
     ACTNSair: TAction;
     SOCNPrincipal: TSoapConnection;
     IMLIPrincipal: TImageList;
+    ACTNConfiguracoes: TAction;
+    ACTNSegurancaEPermissoes: TAction;
+    CNBRPrincipal: TConnectionBroker;
+    procedure ACTNSegurancaEPermissoesExecute(Sender: TObject);
   private
     { Private declarations }
     FSessionConnection: TSessionConnection;
@@ -39,14 +43,18 @@ implementation
 
 uses Forms
    , Windows
-   , Controls
    , UAuthenticator
    , UFORMPrincipal
    , UFORMLogin
-   , UFORMSplash;
+   , UFORMSplash, UFORMSegurancaEPermissoes;
 
 var
   FORMPrincipal: TFORMPrincipal;
+
+procedure TDAMOPrincipal.ACTNSegurancaEPermissoesExecute(Sender: TObject);
+begin
+  Application.CreateForm(TFORMSegurancaEPermissoes,FORMSegurancaEPermissoes);
+end;
 
 constructor TDAMOPrincipal.Create(aOwner: TComponent);
 begin

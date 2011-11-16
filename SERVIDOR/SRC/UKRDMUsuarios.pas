@@ -1,30 +1,25 @@
 unit UKRDMUsuarios;
 
-{ Anak Krakatoa DataModule. Copyright 2011 / 2012 Zetta-Ømnis Soluções Tecnológicas Ltda. }
-
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms,
-  KRK.Wizards.DataModule, ZSqlUpdate, Provider, DB, ZAbstractRODataset,
-  ZAbstractDataset, ZDataset;
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, UKRDMBasico, ZSqlUpdate, Provider, DB, ZDataset, ZAbstractDataset,
+  ZStoredProcedure, ZAbstractRODataset;
 
 type
-  TKRRDUsuarios = class(TKRKDataModule)
+  TKRDMUsuarios = class(TKRDMBasico)
     ZQRYUsuarios: TZQuery;
     ZQRYUsuariossm_usuarios_id: TSmallintField;
     ZQRYUsuariosva_nome: TWideStringField;
     ZQRYUsuariosva_login: TWideStringField;
     ZQRYUsuariosch_senha: TWideStringField;
     ZQRYUsuariosva_email: TWideStringField;
-    DSPRUsuarios: TDataSetProvider;
     ZUSQUsuarios: TZUpdateSQL;
   private
-    { Declarações privadas }
-  protected
-    { Declarações protegidas }
+    { Private declarations }
   public
-    { Declarações públicas }
+    { Public declarations }
   end;
 
 implementation
@@ -32,5 +27,7 @@ implementation
 uses USODMPrincipal;
 
 {$R *.dfm}
+
+{ TKRDMUsuarios }
 
 end.

@@ -11,7 +11,8 @@ uses
   USessionsManager in '..\SRC\USessionsManager.pas',
   UAuthenticatorImpl in '..\SRC\UAuthenticatorImpl.pas',
   UAuthenticatorIntf in '..\SRC\UAuthenticatorIntf.pas',
-  UKRRDUsuarios in '..\SRC\UKRRDUsuarios.pas' {KRRDUsuarios: TKRKDataModule};
+  UKRDMBasico in '..\SRC\UKRDMBasico.pas' {KRDMBasico: TKRKDataModule},
+  UKRDMUsuarios in '..\SRC\UKRDMUsuarios.pas' {KRDMUsuarios: TKRKDataModule};
 
 {$R *.res}
 

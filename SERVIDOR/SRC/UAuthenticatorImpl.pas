@@ -2,14 +2,24 @@ unit UAuthenticatorImpl;
 
 interface
 
-uses InvokeRegistry, Types, XSBuiltIns, UAuthenticatorIntf, USessionsManager;
+uses InvokeRegistry
+   , Types
+   , XSBuiltIns
+   , UAuthenticatorIntf
+   , USessionsManager
+   , Windows
+   , ZConnection;
 
 type
   TAuthenticator = class(TInvokableClass, IAuthenticator)
   private
+    FZConnection: TZConnection;
+    function UsuarioLogado(aLogin, aSenha: String; out aDados: String): Boolean;
     function GetSessionByID(const aSessionID: String; out aSession: TSessionItem): Boolean;
     function CreateSessionID: String;
   public
+    constructor Create; override;
+    destructor Destroy; override;
     function SetSessionData(const aSessionID: String; const aData: String): Boolean; stdcall;
     function GetSessionData(const aSessionID: String): String; stdcall;
     function SessionExists(const aSessionID: String): Boolean; stdcall;
@@ -20,9 +30,56 @@ type
 implementation
 
 uses SysUtils
-   , KRK.Win32.Rtl.Common.StringUtils;
+   , KRK.Win32.Rtl.Common.StringUtils
+   , ZDataset;
 
 { TAuthenticator }
+
+constructor TAuthenticator.Create;
+begin
+  inherited;
+  FZConnection := TZConnection.Create(nil);
+
+  { Configura a conexão aqui }
+  FZConnection.Database := 'iaf';
+  FZConnection.HostName := '127.0.0.1';
+  FZConnection.Password := 'sarcopenia';
+  FZConnection.Protocol := 'postgresql';
+  FZConnection.User     := 'postgres';
+end;
+
+destructor TAuthenticator.Destroy;
+begin
+  FZConnection.Free;
+  inherited;
+end;
+
+function TAuthenticator.UsuarioLogado(aLogin, aSenha: String; out aDados: String): Boolean;
+const
+  SQLText = 'SELECT *'#13#10 +
+            '  FROM USUARIOS'#13#10 +
+            ' WHERE VA_LOGIN = :VA_LOGIN'#13#10 +
+            '   AND CH_SENHA = :CH_SENHA';
+begin
+  with TZReadOnlyQuery.Create(nil) do
+    try
+      SQL.Text := SQLText;
+      ParamByName('VA_LOGIN').AsString := aLogin;
+      ParamByName('CH_SENHA').AsString := aSenha;
+      Connection := FZConnection;
+      Open;
+
+      Result := RecordCount = 1;
+
+      if Result then
+      begin
+        aDados := 'aqui, serialize os dados do usuario e passe para aDados como um objeto dfm em texto';
+      end;
+    finally
+      Free;
+    end;
+end;
+
 
 function TAuthenticator.CreateSessionID: String;
 begin
@@ -60,14 +117,19 @@ begin
 end;
 
 function TAuthenticator.Login(const aUser, aPassword: string; out aSessionID: string): Boolean;
+var
+  SD: String;
 begin
+  aSessionID := '';
+
   CS.Enter;
   try
     { Here you would check for the validity of the User/Password pair
     The implementation below is just a simple substitute of a better
     mechanism }
-    Result := (CompareText(aUser,'sarcopenia') = 0) and (aPassword = '123');
 
+//    Result := (CompareText(aUser,'sarcopenia') = 0) and (aPassword = '123');
+    Result := UsuarioLogado(aUser,aPassword,SD);
     if Result then
     begin
 //      if Assigned(SessionsFile.Sessions.ItemByUser[aUser]) then
@@ -79,7 +141,7 @@ begin
       with SessionsFile.Sessions.Add do
       begin
         SessionID   := aSessionID;
-        SessionData := '{"User":"' + aUser + '","Password":"' + aPassword + '"}';
+        SessionData := SD;
         SessionLastModified := Now;
       end;
       SessionsFile.Save;

@@ -4,11 +4,15 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ExtCtrls;
+  Dialogs, ExtCtrls, StdCtrls;
 
 type
   TFORMSplash = class(TForm)
     IMAGClose: TImage;
+    Panel1: TPanel;
+    Image1: TImage;
+    Shape1: TShape;
+    StaticText1: TStaticText;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure IMAGCloseClick(Sender: TObject);
