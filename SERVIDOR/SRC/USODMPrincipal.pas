@@ -28,6 +28,7 @@ type
     ZCONIAF: TZConnection;
     DSPRUsuarios: TDataSetProvider;
     procedure KRKSoapDataModuleCreate(Sender: TObject);
+    procedure ZCONIAFAfterConnect(Sender: TObject);
   private
     function SessionExists(const aSessionID: String): Boolean; stdcall;
   public
@@ -119,6 +120,31 @@ begin
   finally
     CS.Leave;
   end;
+end;
+
+procedure TSODMPrincipal.ZCONIAFAfterConnect(Sender: TObject);
+//var qryUpit:TZQuery;
+begin
+//qryUpit := TZQuery.Create(nil);
+//qryUpit.Connection := ZCONIAF;
+//qryUpit.SQL.Add('SET NAMES ''utf8''');
+//qryUpit.ExecSQL();
+//qryUpit.SQL.Clear;
+//qryUpit.SQL.Add('SET CHARACTER SET ''utf8''');
+//qryUpit.ExecSQL();
+//qryUpit.SQL.Clear;
+//qryUpit.SQL.Add('SET character_set_client=utf8');
+//qryUpit.ExecSQL();
+//qryUpit.SQL.Clear;
+//qryUpit.SQL.Add('SET character_set_connection=utf8');
+//qryUpit.ExecSQL();
+//qryUpit.Free;
+
+{
+codepage=UTF8
+client_encoding=UTF8
+
+}
 end;
 
 initialization

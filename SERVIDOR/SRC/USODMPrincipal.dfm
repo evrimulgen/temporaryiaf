@@ -4,6 +4,11 @@ object SODMPrincipal: TSODMPrincipal
   Height = 165
   Width = 321
   object ZCONIAF: TZConnection
+    Properties.Strings = (
+      'codepage=UTF8'
+      'client_encoding=UTF8')
+    TransactIsolationLevel = tiReadCommitted
+    AfterConnect = ZCONIAFAfterConnect
     Protocol = 'postgresql'
     HostName = '127.0.0.1'
     Database = 'iaf'
