@@ -12,7 +12,8 @@ uses
   UAuthenticatorImpl in '..\SRC\UAuthenticatorImpl.pas',
   UAuthenticatorIntf in '..\SRC\UAuthenticatorIntf.pas',
   UKRDMBasico in '..\SRC\UKRDMBasico.pas' {KRDMBasico: TKRKDataModule},
-  UKRDMUsuarios in '..\SRC\UKRDMUsuarios.pas' {KRDMUsuarios: TKRKDataModule};
+  UKRDMUsuarios in '..\SRC\UKRDMUsuarios.pas' {KRDMUsuarios: TKRKDataModule},
+  UTiposComuns in '..\..\COMUM\SRC\UTiposComuns.pas';
 
 {$R *.res}
 

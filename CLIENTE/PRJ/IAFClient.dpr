@@ -4,11 +4,12 @@ uses
   Forms,
   UFORMPrincipal in '..\SRC\UFORMPrincipal.pas' {FORMPrincipal},
   UDAMOPrincipal in '..\SRC\UDAMOPrincipal.pas' {DAMOPrincipal: TDataModule},
-  UAuthenticator in '..\SRC\UAuthenticator.pas',
   UFORMLogin in '..\SRC\UFORMLogin.pas' {FORMLogin},
   UFORMSplash in '..\SRC\UFORMSplash.pas' {FORMSplash},
   UFORMSegurancaEPermissoes in '..\SRC\UFORMSegurancaEPermissoes.pas' {FORMSegurancaEPermissoes},
-  UReconcileErrorDialog in '..\SRC\UReconcileErrorDialog.pas' {ReconcileErrorForm};
+  UReconcileErrorDialog in '..\SRC\UReconcileErrorDialog.pas' {ReconcileErrorForm},
+  UAuthenticator in '..\SRC\UAuthenticator.pas',
+  UTiposComuns in '..\..\COMUM\SRC\UTiposComuns.pas';
 
 {$R *.res}
 

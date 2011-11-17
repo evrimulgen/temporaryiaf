@@ -5,6 +5,8 @@ object FORMPrincipal: TFORMPrincipal
   ClientHeight = 562
   ClientWidth = 784
   Color = clBtnFace
+  Constraints.MinHeight = 600
+  Constraints.MinWidth = 800
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -12,6 +14,7 @@ object FORMPrincipal: TFORMPrincipal
   Font.Style = []
   FormStyle = fsMDIForm
   OldCreateOrder = False
+  Position = poScreenCenter
   PixelsPerInch = 96
   TextHeight = 13
   object ActionMainMenuBar1: TActionMainMenuBar
@@ -36,7 +39,7 @@ object FORMPrincipal: TFORMPrincipal
     Left = 0
     Top = 25
     Width = 784
-    Height = 23
+    Height = 26
     ActionManager = DAMOPrincipal.ACMAPrincipal
     BiDiMode = bdRightToLeft
     Caption = 'ActionToolBar1'
@@ -53,5 +56,15 @@ object FORMPrincipal: TFORMPrincipal
     ParentBiDiMode = False
     ParentFont = False
     Spacing = 0
+  end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Top = 543
+    Width = 784
+    Height = 19
+    Panels = <>
+    ExplicitLeft = 318
+    ExplicitTop = 312
+    ExplicitWidth = 0
   end
 end

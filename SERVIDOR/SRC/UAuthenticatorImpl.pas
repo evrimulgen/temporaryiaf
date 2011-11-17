@@ -14,26 +14,89 @@ type
   TAuthenticator = class(TInvokableClass, IAuthenticator)
   private
     FZConnection: TZConnection;
-    function UsuarioLogado(aLogin, aSenha: String; out aDados: String): Boolean;
+    { métodos privados não precisam ser protegidos dentro de seções críticas
+    porque eles sempre são usados por outros métodos que obrigatoriamente usam
+    seções críticas }
     function GetSessionByID(const aSessionID: String; out aSession: TSessionItem): Boolean;
     function CreateSessionID: String;
   public
     constructor Create; override;
     destructor Destroy; override;
-    function SetSessionData(const aSessionID: String; const aData: String): Boolean; stdcall;
+    function SetSessionData(const aSessionID, aData: String): Boolean; stdcall;
     function GetSessionData(const aSessionID: String): String; stdcall;
     function SessionExists(const aSessionID: String): Boolean; stdcall;
-    function Login(const aUser: string; const aPassword: string; out aSessionID: string): Boolean; stdcall;
+    function Login(const aUserName: string; const aPassword: string; out aSessionID: string): Boolean; stdcall;
     function Logout(const aSessionID: string): Boolean; stdcall;
+    function ChangePassword(const aSessionID, aOldPassword, aNewPassword: String): Byte; stdcall;
   end;
 
 implementation
 
 uses SysUtils
    , KRK.Win32.Rtl.Common.StringUtils
-   , ZDataset;
+   , ZDataset
+   , ZDbcIntfs, UTiposComuns;
 
 { TAuthenticator }
+
+{ 1: A sessão não existe
+  2: A senha antiga não confere }
+function TAuthenticator.ChangePassword(const aSessionID, aOldPassword, aNewPassword: String): Byte;
+const
+  SQLText = 'UPDATE USUARIOS'#13#10 +
+            '   SET CH_SENHA = :CH_SENHA' +
+            ' WHERE SM_USUARIOS_ID = :SM_USUARIOS_ID';
+var
+  SessionItem: TSessionItem;
+  SessionData: TSessionData;
+begin
+  Result := 0;
+  SessionData := nil;
+
+  CS.Enter;
+  try
+    SessionData := TSessionData.Create(nil);
+
+    { Obtém a sessão do arquivo de sessões }
+    GetSessionByID(aSessionID,SessionItem);
+
+    { Se a sessão existir, continua }
+    if Assigned(SessionItem) then
+    begin
+      SessionData.LoadFromTextualRepresentation(SessionItem.SessionData);
+      { Compara a senha da sessão com a senha antiga, supostamente do usuário da
+      sessão, se as senhas forem iguais, continua criando uma transação e
+      atualizando o registro do usuário identificado pela sessão com a nova senha }
+      if SessionData.ch_senha = aOldPassword then
+        with TZReadOnlyQuery.Create(nil) do
+          try
+            FZConnection.StartTransaction;
+            try
+              SQL.Text := SQLText;
+
+              ParamByName('SM_USUARIOS_ID').AsInteger := SessionData.sm_usuarios_id;
+              ParamByName('CH_SENHA').AsString := aNewPassword;
+
+              ExecSQL;
+
+              FZConnection.Commit;
+            except
+              FZConnection.Rollback;
+            end;
+          finally
+            Free;
+          end
+      else
+        Result := 2;
+
+    end
+    else
+      Result := 1
+  finally
+    SessionData.Free;
+    CS.Leave;
+  end;
+end;
 
 constructor TAuthenticator.Create;
 begin
@@ -46,6 +109,7 @@ begin
   FZConnection.Password := 'sarcopenia';
   FZConnection.Protocol := 'postgresql';
   FZConnection.User     := 'postgres';
+  FZConnection.TransactIsolationLevel := tiReadCommitted;
 end;
 
 destructor TAuthenticator.Destroy;
@@ -53,33 +117,6 @@ begin
   FZConnection.Free;
   inherited;
 end;
-
-function TAuthenticator.UsuarioLogado(aLogin, aSenha: String; out aDados: String): Boolean;
-const
-  SQLText = 'SELECT *'#13#10 +
-            '  FROM USUARIOS'#13#10 +
-            ' WHERE VA_LOGIN = :VA_LOGIN'#13#10 +
-            '   AND CH_SENHA = :CH_SENHA';
-begin
-  with TZReadOnlyQuery.Create(nil) do
-    try
-      SQL.Text := SQLText;
-      ParamByName('VA_LOGIN').AsString := aLogin;
-      ParamByName('CH_SENHA').AsString := aSenha;
-      Connection := FZConnection;
-      Open;
-
-      Result := RecordCount = 1;
-
-      if Result then
-      begin
-        aDados := 'aqui, serialize os dados do usuario e passe para aDados como um objeto dfm em texto';
-      end;
-    finally
-      Free;
-    end;
-end;
-
 
 function TAuthenticator.CreateSessionID: String;
 begin
@@ -89,13 +126,8 @@ end;
 
 function TAuthenticator.GetSessionByID(const aSessionID: String; out aSession: TSessionItem): Boolean;
 begin
-  CS.Enter;
-  try
-    aSession := SessionsFile.Sessions[aSessionID];
-    Result := Assigned(aSession);
-  finally
-    CS.Leave;
-  end;
+  aSession := SessionsFile.Sessions[aSessionID];
+  Result := Assigned(aSession);
 end;
 
 function TAuthenticator.GetSessionData(const aSessionID: String): String;
@@ -104,7 +136,7 @@ var
 begin
   CS.Enter;
   try
-    Result := '';
+    ZeroMemory(@Result,SizeOf(TSessionData));
 
     { Obtém uma sessão a partir de seu ID e se esta sessão existir, retorna seus
     dados. O formato dos dados pode ser qualquer um. Até mesmo um objeto DFM em
@@ -116,20 +148,46 @@ begin
   end;
 end;
 
-function TAuthenticator.Login(const aUser, aPassword: string; out aSessionID: string): Boolean;
+function TAuthenticator.Login(const aUserName, aPassword: string; out aSessionID: string): Boolean;
+const
+  SQLText = 'SELECT *'#13#10 +
+            '  FROM USUARIOS'#13#10 +
+            ' WHERE VA_LOGIN = :VA_LOGIN'#13#10 +
+            '   AND CH_SENHA = :CH_SENHA';
 var
-  SD: String;
+  SD: TSessionData;
 begin
   aSessionID := '';
+  SD := nil;
 
   CS.Enter;
   try
-    { Here you would check for the validity of the User/Password pair
-    The implementation below is just a simple substitute of a better
-    mechanism }
+    SD := TSessionData.Create(nil);
+    { Faz uma busca dentro do banco de dados para saber se o para usuário/senha
+    existe }
+    with TZReadOnlyQuery.Create(nil) do
+      try
+        SQL.Text := SQLText;
+        ParamByName('VA_LOGIN').AsString := aUserName;
+        ParamByName('CH_SENHA').AsString := aPassword;
+        Connection := FZConnection;
+        Open;
 
-//    Result := (CompareText(aUser,'sarcopenia') = 0) and (aPassword = '123');
-    Result := UsuarioLogado(aUser,aPassword,SD);
+        Result := RecordCount = 1;
+
+        if Result then
+        begin
+          SD.sm_usuarios_id := FieldByName('sm_usuarios_id').AsInteger;
+          SD.va_nome        := FieldByName('va_nome').AsString;
+          SD.va_login       := FieldByName('va_login').AsString;
+          SD.ch_senha       := FieldByName('ch_senha').AsString;
+          SD.va_email       := FieldByName('va_email').AsString;
+        end;
+      finally
+        Free;
+      end;
+
+    { Se o usuário/senha for válido, continua }
     if Result then
     begin
 //      if Assigned(SessionsFile.Sessions.ItemByUser[aUser]) then
@@ -141,12 +199,13 @@ begin
       with SessionsFile.Sessions.Add do
       begin
         SessionID   := aSessionID;
-        SessionData := SD;
+        SessionData := SD.ToString;
         SessionLastModified := Now;
       end;
       SessionsFile.Save;
     end;
   finally
+    SD.Free;
     CS.Leave;
   end;
 end;

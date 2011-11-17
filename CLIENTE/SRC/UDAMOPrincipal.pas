@@ -4,17 +4,12 @@ interface
 
 uses
   SysUtils, Classes, PlatformDefaultStyleActnCtrls, ActnList, ActnMan, DB,
-  DBClient, SOAPConn, ImgList, Controls;
+  DBClient, SOAPConn, ImgList, Controls, UTiposComuns;
 
 type
-  TSessionConnection = record
-    ID: String;
-    Data: String;
-  end;
-
   TDAMOPrincipal = class(TDataModule)
     ACMAPrincipal: TActionManager;
-    ACTNAlterarSenha: TAction;
+    ACTNAlterarMinhasPreferencias: TAction;
     ACTNAjuda: TAction;
     ACTNSobre: TAction;
     ACTNSair: TAction;
@@ -24,14 +19,17 @@ type
     ACTNSegurancaEPermissoes: TAction;
     CNBRPrincipal: TConnectionBroker;
     procedure ACTNSegurancaEPermissoesExecute(Sender: TObject);
+    procedure ACTNAjudaExecute(Sender: TObject);
+    procedure ACTNSobreExecute(Sender: TObject);
+    procedure ACTNAlterarMinhasPreferenciasExecute(Sender: TObject);
   private
     { Private declarations }
-    FSessionConnection: TSessionConnection;
+    FSessionConnection: TCurrentSession;
   public
     { Public declarations }
     constructor Create(aOwner: TComponent); override;
     destructor Destroy; override;
-    property SessionConnection: TSessionConnection read FSessionConnection;
+    property CurrentSession: TCurrentSession read FSessionConnection;
   end;
 
 var
@@ -46,20 +44,36 @@ uses Forms
    , UAuthenticator
    , UFORMPrincipal
    , UFORMLogin
-   , UFORMSplash, UFORMSegurancaEPermissoes;
+   , UFORMSplash
+   , UFORMSegurancaEPermissoes;
 
 var
   FORMPrincipal: TFORMPrincipal;
+
+procedure TDAMOPrincipal.ACTNAjudaExecute(Sender: TObject);
+begin
+//
+end;
+
+procedure TDAMOPrincipal.ACTNAlterarMinhasPreferenciasExecute(Sender: TObject);
+begin
+  //
+end;
 
 procedure TDAMOPrincipal.ACTNSegurancaEPermissoesExecute(Sender: TObject);
 begin
   Application.CreateForm(TFORMSegurancaEPermissoes,FORMSegurancaEPermissoes);
 end;
 
+procedure TDAMOPrincipal.ACTNSobreExecute(Sender: TObject);
+begin
+  TFORMSplash.ShowMe;
+end;
+
 constructor TDAMOPrincipal.Create(aOwner: TComponent);
 begin
   inherited;
-  ZeroMemory(@FSessionConnection,SizeOf(TSessionConnection));
+  ZeroMemory(@FSessionConnection,SizeOf(TCurrentSession));
 
   TFORMSplash.ShowMe(2);
 

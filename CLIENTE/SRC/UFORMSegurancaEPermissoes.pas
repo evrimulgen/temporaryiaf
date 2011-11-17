@@ -58,39 +58,32 @@ begin
   ClientDataSet1.Open;
 end;
 
-procedure TFORMSegurancaEPermissoes.ClientDataSet1BeforeApplyUpdates(
-  Sender: TObject; var OwnerData: OleVariant);
+procedure TFORMSegurancaEPermissoes.ClientDataSet1BeforeApplyUpdates(Sender: TObject; var OwnerData: OleVariant);
 begin
-  OwnerData := '{10C97A80-761D-45E3-B192-173D16DE5FAE}';
+  OwnerData := DAMOPrincipal.CurrentSession.ID;
 end;
 
-procedure TFORMSegurancaEPermissoes.ClientDataSet1BeforeExecute(Sender: TObject;
-  var OwnerData: OleVariant);
+procedure TFORMSegurancaEPermissoes.ClientDataSet1BeforeExecute(Sender: TObject; var OwnerData: OleVariant);
 begin
-  OwnerData := '{10C97A80-761D-45E3-B192-173D16DE5FAE}';
+  OwnerData := DAMOPrincipal.CurrentSession.ID;
 end;
 
-procedure TFORMSegurancaEPermissoes.ClientDataSet1BeforeGetParams(
-  Sender: TObject; var OwnerData: OleVariant);
+procedure TFORMSegurancaEPermissoes.ClientDataSet1BeforeGetParams(Sender: TObject; var OwnerData: OleVariant);
 begin
-  OwnerData := '{10C97A80-761D-45E3-B192-173D16DE5FAE}';
+  OwnerData := DAMOPrincipal.CurrentSession.ID;
 end;
 
-procedure TFORMSegurancaEPermissoes.ClientDataSet1BeforeGetRecords(
-  Sender: TObject; var OwnerData: OleVariant);
+procedure TFORMSegurancaEPermissoes.ClientDataSet1BeforeGetRecords(Sender: TObject; var OwnerData: OleVariant);
 begin
-  OwnerData := '{10C97A80-761D-45E3-B192-173D16DE5FAE}';
+  OwnerData := DAMOPrincipal.CurrentSession.ID;
 end;
 
-procedure TFORMSegurancaEPermissoes.ClientDataSet1BeforeRowRequest(
-  Sender: TObject; var OwnerData: OleVariant);
+procedure TFORMSegurancaEPermissoes.ClientDataSet1BeforeRowRequest(Sender: TObject; var OwnerData: OleVariant);
 begin
-  OwnerData := '{10C97A80-761D-45E3-B192-173D16DE5FAE}';
+  OwnerData := DAMOPrincipal.CurrentSession.ID;
 end;
 
-procedure TFORMSegurancaEPermissoes.ClientDataSet1ReconcileError(
-  DataSet: TCustomClientDataSet; E: EReconcileError; UpdateKind: TUpdateKind;
-  var Action: TReconcileAction);
+procedure TFORMSegurancaEPermissoes.ClientDataSet1ReconcileError(DataSet: TCustomClientDataSet; E: EReconcileError; UpdateKind: TUpdateKind; var Action: TReconcileAction);
 begin
   HandleReconcileError(DataSet,UpdateKind,E);
 end;

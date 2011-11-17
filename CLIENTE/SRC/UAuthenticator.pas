@@ -3,7 +3,7 @@
 // WSDL File described below:
 // WSDL     : http://127.0.0.1/iaf/IAFServer.dll/wsdl/IAuthenticator
 // Version  : 1.0
-// (13/11/2011 23:30:50 - - $Rev: 34800 $)
+// (17/11/2011 01:28:39 - - $Rev: 34800 $)
 // ************************************************************************ //
 
 unit UAuthenticator;
@@ -13,6 +13,7 @@ interface
 uses InvokeRegistry, SOAPHTTPClient, Types, XSBuiltIns;
 
 type
+
   // ************************************************************************ //
   // The following types, referred to in the WSDL document are not being represented
   // in this file. They are either aliases[@] of other types represented or were referred
@@ -20,6 +21,7 @@ type
   // typically map to predefined/known XML or Embarcadero types; however, they could also 
   // indicate incorrect WSDL documents that failed to declare or import a schema type.
   // ************************************************************************ //
+  // !:unsignedByte    - "http://www.w3.org/2001/XMLSchema"[]
   // !:boolean         - "http://www.w3.org/2001/XMLSchema"[]
   // !:string          - "http://www.w3.org/2001/XMLSchema"[]
 
@@ -42,13 +44,15 @@ type
     function  GetSessionData(const aSessionID: string): string; stdcall;
     function  SessionExists(const aSessionID: string): Boolean; stdcall;
     function  Logout(const aSessionID: string): Boolean; stdcall;
+    function  ChangePassword(const aSessionID: string; const aOldPassword: string; const aNewPassword: string): Byte; stdcall;
   end;
 
-  function Login(const aUser: string; const aPassword: string; out aSessionID: string): Boolean; stdcall;
-  function SetSessionData(const aSessionID: string; const aData: string): Boolean; stdcall;
-  function GetSessionData(const aSessionID: string): string; stdcall;
-  function SessionExists(const aSessionID: string): Boolean; stdcall;
-  function Logout(const aSessionID: string): Boolean; stdcall;
+function Login(const aUser: string; const aPassword: string; out aSessionID: string): Boolean;
+function SetSessionData(const aSessionID: string; const aData: string): Boolean;
+function GetSessionData(const aSessionID: string): string;
+function SessionExists(const aSessionID: string): Boolean;
+function Logout(const aSessionID: string): Boolean;
+function ChangePassword(const aSessionID: string; const aOldPassword: string; const aNewPassword: string): Byte;
 
 function GetIAuthenticator(UseWSDL: Boolean=System.False; Addr: string=''; HTTPRIO: THTTPRIO = nil): IAuthenticator;
 
@@ -115,6 +119,11 @@ end;
 function SetSessionData(const aSessionID, aData: string): Boolean;
 begin
   Result := GetIAuthenticator.SetSessionData(aSessionID, aData);
+end;
+
+function ChangePassword(const aSessionID: string; const aOldPassword: string; const aNewPassword: string): Byte;
+begin
+  Result := GetIAuthenticator.ChangePassword(aSessionID, aOldPassword, aNewPassword);
 end;
 
 initialization
