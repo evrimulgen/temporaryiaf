@@ -11,7 +11,7 @@ CREATE DATABASE IAF
 ---------------------------------------------------------------
 CREATE EXTENSION pgcrypto
           SCHEMA public
-         VERSION "1.0"
+         VERSION "1.0";
 ---------------------------------------------------------------
 CREATE SEQUENCE SQ_USU_IN_ENTIDADESDOSISTEMA_ID
       INCREMENT 1
