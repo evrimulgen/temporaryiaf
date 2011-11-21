@@ -17,21 +17,26 @@ inherited KRDMUsuarios: TKRDMUsuarios
     Left = 24
     Top = 60
     object ZQRYUsuariossm_usuarios_id: TSmallintField
+      DisplayLabel = 'ID'
       FieldName = 'sm_usuarios_id'
     end
     object ZQRYUsuariosva_nome: TWideStringField
+      DisplayLabel = 'Nome'
       FieldName = 'va_nome'
       Size = 64
     end
     object ZQRYUsuariosva_login: TWideStringField
+      DisplayLabel = 'Login'
       FieldName = 'va_login'
       Size = 16
     end
     object ZQRYUsuariosch_senha: TWideStringField
+      DisplayLabel = 'Senha'
       FieldName = 'ch_senha'
       Size = 128
     end
     object ZQRYUsuariosva_email: TWideStringField
+      DisplayLabel = 'E-mail'
       FieldName = 'va_email'
       Size = 64
     end
@@ -43,12 +48,12 @@ inherited KRDMUsuarios: TKRDMUsuarios
       '  ((USUARIOS.sm_usuarios_id IS NULL AND :OLD_sm_usuarios_id IS '
       'NULL) OR (USUARIOS.sm_usuarios_id = :OLD_sm_usuarios_id))')
     InsertSQL.Strings = (
-      'SELECT idu_usuarios('#39'I'#39
+      'SELECT IDU_USUARIOS('#39'I'#39
       '                   ,NULL'
-      '                   ,:va_nome'
-      '                   ,:va_login'
-      '                   ,:ch_senha'
-      '                   ,:va_email)')
+      '                   ,:VA_NOME'
+      '                   ,:VA_LOGIN'
+      '                   ,:CH_SENHA'
+      '                   ,:VA_EMAIL)')
     ModifySQL.Strings = (
       'UPDATE USUARIOS SET'
       '  va_nome = :va_nome,'

@@ -9,7 +9,8 @@ uses
   UFORMSegurancaEPermissoes in '..\SRC\UFORMSegurancaEPermissoes.pas' {FORMSegurancaEPermissoes},
   UReconcileErrorDialog in '..\SRC\UReconcileErrorDialog.pas' {ReconcileErrorForm},
   UAuthenticator in '..\SRC\UAuthenticator.pas',
-  UTiposComuns in '..\..\COMUM\SRC\UTiposComuns.pas';
+  UTiposComuns in '..\..\COMUM\SRC\UTiposComuns.pas',
+  UServerManager in '..\SRC\UServerManager.pas';
 
 {$R *.res}
 

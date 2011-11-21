@@ -127,7 +127,6 @@ begin
 end;
 
 initialization
-  { IAuthenticator }
   InvRegistry.RegisterInterface(TypeInfo(IAuthenticator), 'urn:UAuthenticatorIntf-IAuthenticator', '');
   InvRegistry.RegisterDefaultSOAPAction(TypeInfo(IAuthenticator), 'urn:UAuthenticatorIntf-IAuthenticator#%operationName%');
 

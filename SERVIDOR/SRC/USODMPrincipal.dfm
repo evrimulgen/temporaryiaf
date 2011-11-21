@@ -8,7 +8,7 @@ object SODMPrincipal: TSODMPrincipal
       'codepage=UTF8'
       'client_encoding=UTF8')
     TransactIsolationLevel = tiReadCommitted
-    AfterConnect = ZCONIAFAfterConnect
+    BeforeConnect = ZCONIAFBeforeConnect
     Protocol = 'postgresql'
     HostName = '127.0.0.1'
     Database = 'iaf'
@@ -19,6 +19,7 @@ object SODMPrincipal: TSODMPrincipal
   end
   object DSPRUsuarios: TDataSetProvider
     DataSet = KRDMUsuarios.ZQRYUsuarios
+    Constraints = False
     Left = 24
     Top = 60
   end

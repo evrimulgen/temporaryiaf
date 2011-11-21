@@ -33,9 +33,11 @@ type
 implementation
 
 uses SysUtils
-   , KRK.Win32.Rtl.Common.StringUtils
    , ZDataset
-   , ZDbcIntfs, UTiposComuns;
+   , ZDbcIntfs
+   , KRK.Win32.Rtl.Common.StringUtils
+   , UServerConfiguration
+   , UTiposComuns;
 
 { TAuthenticator }
 
@@ -104,12 +106,13 @@ begin
   FZConnection := TZConnection.Create(nil);
 
   { Configura a conexão aqui }
-  FZConnection.Database := 'iaf';
-  FZConnection.HostName := '127.0.0.1';
-  FZConnection.Password := 'sarcopenia';
-  FZConnection.Protocol := 'postgresql';
-  FZConnection.User     := 'postgres';
-  FZConnection.TransactIsolationLevel := tiReadCommitted;
+  FZConnection.Database := ServerConfiguration.DBDatabase;
+  FZConnection.HostName := ServerConfiguration.DBHostName;
+  FZConnection.Password := ServerConfiguration.DBPassword;
+  FZConnection.Protocol := ServerConfiguration.DBProtocol;
+  FZConnection.User     := ServerConfiguration.DBUserName;
+  FZConnection.Port     := ServerConfiguration.DBPortNumb;
+  FZConnection.TransactIsolationLevel := ServerConfiguration.DBTransactIsolationLevel;
 end;
 
 destructor TAuthenticator.Destroy;

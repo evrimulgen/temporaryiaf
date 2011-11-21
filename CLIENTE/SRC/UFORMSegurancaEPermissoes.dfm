@@ -46,6 +46,11 @@ object FORMSegurancaEPermissoes: TFORMSegurancaEPermissoes
     TabOrder = 2
     OnClick = Button2Click
   end
+  object DataSource1: TDataSource
+    DataSet = ClientDataSet1
+    Left = 90
+    Top = 12
+  end
   object ClientDataSet1: TClientDataSet
     Aggregates = <>
     ConnectionBroker = DAMOPrincipal.CNBRPrincipal
@@ -57,8 +62,8 @@ object FORMSegurancaEPermissoes: TFORMSegurancaEPermissoes
     BeforeRowRequest = ClientDataSet1BeforeRowRequest
     BeforeExecute = ClientDataSet1BeforeExecute
     BeforeGetParams = ClientDataSet1BeforeGetParams
-    Left = 30
-    Top = 6
+    Left = 36
+    Top = 12
     object ClientDataSet1sm_usuarios_id: TSmallintField
       FieldName = 'sm_usuarios_id'
     end
@@ -78,10 +83,5 @@ object FORMSegurancaEPermissoes: TFORMSegurancaEPermissoes
       FieldName = 'va_email'
       Size = 64
     end
-  end
-  object DataSource1: TDataSource
-    DataSet = ClientDataSet1
-    Left = 360
-    Top = 18
   end
 end

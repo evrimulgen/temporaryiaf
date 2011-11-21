@@ -19,27 +19,25 @@ interface
                           
 uses
   SysUtils, Windows, Variants, Messages, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Grids, DB, DBClient, Provider, ExtCtrls, DBConsts;
+  Dialogs, StdCtrls, Grids, DB, DBClient, Provider, ExtCtrls, DBConsts, pngimage;
 
 resourcestring
 
-  SCaption = 'Update Error - %s';
-  SUnchanged = '<Unchanged>';
-  SBinary = '(Binary)';
+  SCaption = 'Erro de atualização - %s';
+  SUnchanged = '<Não modificado>';
+  SBinary = '(Binário)';
   SAdt = '(ADT)';
   SArray = '(Array)';
-  SFieldName = 'Field Name';
-  SOriginal = 'Original Value';
-  SConflict = 'Conflicting Value';
-  SValue = ' Value';
-  SNoData = '<No Records>';
-  SNew = 'New';
+  SFieldName = 'Nome do campo';
+  SOriginal = 'Valor original';
+  SConflict = 'Valor conflitante';
+  SValue = 'Valor ';
+  SNoData = '<Sem registros>';
+  SNew = 'Novo';
 
 const
-  ActionStr: array[TReconcileAction] of string = (sSkip, sAbort, sMerge,
-    sCorrect, sCancel, sRefresh);
-  UpdateKindStr: array[TUpdateKind] of string = (SModified, SInserted,
-    SDeleted);
+  ActionStr: array[TReconcileAction] of string = ('Ignorar', 'Abortar', 'Mesclar', 'Corrigir', 'Cancelar', 'Atualizar');
+  UpdateKindStr: array[TUpdateKind] of string = ('Modificado', 'Inserido', 'Excluído');
 
 type
   TReconcileErrorForm = class(TForm)
@@ -54,11 +52,9 @@ type
     ChangedOnly: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure UpdateDataSetEditText(Sender: TObject; ACol, ARow: Integer;
-      const Value: string);
+    procedure UpdateDataSetEditText(Sender: TObject; ACol, ARow: Integer; const Value: string);
     procedure DisplayFieldValues(Sender: TObject);
-    procedure UpdateDataSelectCell(Sender: TObject; Col, Row: Integer;
-      var CanSelect: Boolean);
+    procedure UpdateDataSelectCell(Sender: TObject; Col, Row: Integer; var CanSelect: Boolean);
   private
     FDataSet: TDataSet;
     FError: EReconcileError;
@@ -77,8 +73,7 @@ type
       Error: EReconcileError);
   end;
 
-function HandleReconcileError(DataSet: TDataSet;  UpdateKind: TUpdateKind;
-  ReconcileError: EReconcileError): TReconcileAction;
+function HandleReconcileError(DataSet: TDataSet;  UpdateKind: TUpdateKind; ReconcileError: EReconcileError): TReconcileAction;
 
 implementation
 
@@ -97,8 +92,7 @@ type
 
 { Public and Private Methods }
 
-function HandleReconcileError(DataSet: TDataSet; UpdateKind: TUpdateKind;
-  ReconcileError: EReconcileError): TReconcileAction;
+function HandleReconcileError(DataSet: TDataSet; UpdateKind: TUpdateKind; ReconcileError: EReconcileError): TReconcileAction;
 var
   UpdateForm: TReconcileErrorForm;
 begin
@@ -201,7 +195,7 @@ begin
   begin
     FNewColIdx := FColCount;
     Inc(FColCount);
-    UpdateData.Cells[FNewColIdx,0] := UpdateKindStr[FUpdateKind] + SValue;
+    UpdateData.Cells[FNewColIdx,0] := SValue + UpdateKindStr[FUpdateKind];
   end else
   begin
     FOldColIdx := FColCount;

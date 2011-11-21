@@ -28,9 +28,10 @@ type
     ZCONIAF: TZConnection;
     DSPRUsuarios: TDataSetProvider;
     procedure KRKSoapDataModuleCreate(Sender: TObject);
-    procedure ZCONIAFAfterConnect(Sender: TObject);
+    procedure ZCONIAFBeforeConnect(Sender: TObject);
   private
-    function SessionExists(const aSessionID: String): Boolean; stdcall;
+    function SessionExists(const aSessionID: String): Boolean;
+    function CheckSessions: Boolean;
   public
     function SAS_ApplyUpdates(const ProviderName: WideString; Delta: OleVariant; MaxErrors: Integer; out ErrorCount: Integer; var OwnerData: OleVariant): OleVariant; override; stdcall;
     procedure SAS_Execute(const ProviderName: WideString; const CommandText: WideString; var Params: OleVariant; var OwnerData: OleVariant); override; stdcall;
@@ -45,15 +46,26 @@ implementation
 {$R *.DFM}
 
 uses SyncObjs
+   , UServerConfiguration
    , USessionsManager
    , UKRDMUsuarios;
 
 procedure TSODMPrincipalCreateInstance(out obj: TObject);
 begin
- obj := TSODMPrincipal.Create(nil);
+  obj := TSODMPrincipal.Create(nil);
 end;
 
 { TSSDMIAF }
+
+function TSODMPrincipal.CheckSessions: Boolean;
+begin
+  CS.Enter;
+  try
+    Result := ServerConfiguration.CheckSessions;
+  finally
+    CS.Leave;
+  end;
+end;
 
 procedure TSODMPrincipal.KRKSoapDataModuleCreate(Sender: TObject);
 begin
@@ -69,7 +81,7 @@ end;
 
 function TSODMPrincipal.SAS_ApplyUpdates(const ProviderName: WideString; Delta: OleVariant; MaxErrors: Integer; out ErrorCount: Integer; var OwnerData: OleVariant): OleVariant;
 begin
-  if SessionExists(OwnerData) then
+  if (not CheckSessions) or SessionExists(OwnerData) then
     Result := inherited
   else
     raise Exception.Create('Para usar este método é necessário que você seja um usuário autenticado no sistema');
@@ -77,12 +89,12 @@ end;
 
 function TSODMPrincipal.SAS_DataRequest(const ProviderName: WideString; Data: OleVariant): OleVariant;
 begin
-  inherited;
+  Result := inherited;
 end;
 
 procedure TSODMPrincipal.SAS_Execute(const ProviderName, CommandText: WideString; var Params, OwnerData: OleVariant);
 begin
-  if SessionExists(OwnerData) then
+  if (not CheckSessions) or SessionExists(OwnerData) then
     inherited
   else
     raise Exception.Create('Para usar este método é necessário que você seja um usuário autenticado no sistema');
@@ -90,7 +102,7 @@ end;
 
 function TSODMPrincipal.SAS_GetParams(const ProviderName: WideString; var OwnerData: OleVariant): OleVariant;
 begin
-  if SessionExists(OwnerData) then
+  if (not CheckSessions) or SessionExists(OwnerData) then
     Result := inherited
   else
     raise Exception.Create('Para usar este método é necessário que você seja um usuário autenticado no sistema');
@@ -98,7 +110,7 @@ end;
 
 function TSODMPrincipal.SAS_GetRecords(const ProviderName: WideString; Count: Integer; out RecsOut: Integer; Options: Integer; const CommandText: WideString; var Params, OwnerData: OleVariant): OleVariant;
 begin
-  if SessionExists(OwnerData) then
+  if (not CheckSessions) or SessionExists(OwnerData) then
     Result := inherited
   else
     raise Exception.Create('Para usar este método é necessário que você seja um usuário autenticado no sistema');
@@ -106,7 +118,7 @@ end;
 
 function TSODMPrincipal.SAS_RowRequest(const ProviderName: WideString; Row: OleVariant; RequestType: Integer; var OwnerData: OleVariant): OleVariant;
 begin
-  if SessionExists(OwnerData) then
+  if (not CheckSessions) or SessionExists(OwnerData) then
     Result := inherited
   else
     raise Exception.Create('Para usar este método é necessário que você seja um usuário autenticado no sistema');
@@ -122,29 +134,20 @@ begin
   end;
 end;
 
-procedure TSODMPrincipal.ZCONIAFAfterConnect(Sender: TObject);
-//var qryUpit:TZQuery;
+procedure TSODMPrincipal.ZCONIAFBeforeConnect(Sender: TObject);
 begin
-//qryUpit := TZQuery.Create(nil);
-//qryUpit.Connection := ZCONIAF;
-//qryUpit.SQL.Add('SET NAMES ''utf8''');
-//qryUpit.ExecSQL();
-//qryUpit.SQL.Clear;
-//qryUpit.SQL.Add('SET CHARACTER SET ''utf8''');
-//qryUpit.ExecSQL();
-//qryUpit.SQL.Clear;
-//qryUpit.SQL.Add('SET character_set_client=utf8');
-//qryUpit.ExecSQL();
-//qryUpit.SQL.Clear;
-//qryUpit.SQL.Add('SET character_set_connection=utf8');
-//qryUpit.ExecSQL();
-//qryUpit.Free;
+  with TZConnection(Sender) do
+  begin
+    HostName := ServerConfiguration.DBHostName;
+    Port     := ServerConfiguration.DBPortNumb;
+    Database := ServerConfiguration.DBDatabase;
+    User     := ServerConfiguration.DBUserName;
+    Password := ServerConfiguration.DBPassword;
+    Protocol := ServerConfiguration.DBProtocol;
 
-{
-codepage=UTF8
-client_encoding=UTF8
+  end;
 
-}
+  {}
 end;
 
 initialization

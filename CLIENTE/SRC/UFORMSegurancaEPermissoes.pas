@@ -8,16 +8,16 @@ uses
 
 type
   TFORMSegurancaEPermissoes = class(TForm)
-    ClientDataSet1: TClientDataSet;
     DataSource1: TDataSource;
     DBGrid1: TDBGrid;
+    Button1: TButton;
+    Button2: TButton;
+    ClientDataSet1: TClientDataSet;
     ClientDataSet1sm_usuarios_id: TSmallintField;
     ClientDataSet1va_nome: TWideStringField;
     ClientDataSet1va_login: TWideStringField;
     ClientDataSet1ch_senha: TWideStringField;
     ClientDataSet1va_email: TWideStringField;
-    Button1: TButton;
-    Button2: TButton;
     procedure ClientDataSet1BeforeGetRecords(Sender: TObject;
       var OwnerData: OleVariant);
     procedure ClientDataSet1BeforeApplyUpdates(Sender: TObject;
