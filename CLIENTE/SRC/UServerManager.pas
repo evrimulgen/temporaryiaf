@@ -86,7 +86,7 @@ begin
   end;
 end;
 
-procedure CheckSessions(const aPassword: string; const aValue: Boolean);
+procedure SetCheckSessions(const aPassword: string; const aValue: Boolean);
 begin
   GetIServerManager.SetCheckSessions(aPassword,aValue);
 end;

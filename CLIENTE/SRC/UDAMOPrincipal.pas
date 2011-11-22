@@ -4,7 +4,7 @@ interface
 
 uses
   SysUtils, Classes, PlatformDefaultStyleActnCtrls, ActnList, ActnMan, DB,
-  DBClient, SOAPConn, ImgList, Controls, UTiposComuns;
+  DBClient, SOAPConn, ImgList, Controls, UTiposComuns, UKRDMSegurancaEPermissoes;
 
 type
   TDAMOPrincipal = class(TDataModule)
@@ -21,10 +21,10 @@ type
     procedure ACTNSegurancaEPermissoesExecute(Sender: TObject);
     procedure ACTNAjudaExecute(Sender: TObject);
     procedure ACTNSobreExecute(Sender: TObject);
-    procedure ACTNAlterarMinhasPreferenciasExecute(Sender: TObject);
   private
     { Private declarations }
     FSessionConnection: TCurrentSession;
+    FKRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes;
   public
     { Public declarations }
     constructor Create(aOwner: TComponent); override;
@@ -44,25 +44,20 @@ uses Forms
    , UAuthenticator
    , UFORMPrincipal
    , UFORMLogin
-   , UFORMSplash
-   , UFORMSegurancaEPermissoes;
+   , UFORMSplash;
 
 var
   FORMPrincipal: TFORMPrincipal;
 
 procedure TDAMOPrincipal.ACTNAjudaExecute(Sender: TObject);
 begin
-//
-end;
-
-procedure TDAMOPrincipal.ACTNAlterarMinhasPreferenciasExecute(Sender: TObject);
-begin
   //
 end;
 
 procedure TDAMOPrincipal.ACTNSegurancaEPermissoesExecute(Sender: TObject);
 begin
-  Application.CreateForm(TFORMSegurancaEPermissoes,FORMSegurancaEPermissoes);
+  if not Assigned(FKRDMSegurancaEPermissoes) then
+    TKRDMSegurancaEPermissoes.CreateMe(Self,FKRDMSegurancaEPermissoes,TKRDMSegurancaEPermissoes);
 end;
 
 procedure TDAMOPrincipal.ACTNSobreExecute(Sender: TObject);
@@ -74,6 +69,7 @@ constructor TDAMOPrincipal.Create(aOwner: TComponent);
 begin
   inherited;
   ZeroMemory(@FSessionConnection,SizeOf(TCurrentSession));
+  FKRDMSegurancaEPermissoes := nil;
 
   TFORMSplash.ShowMe(2);
 

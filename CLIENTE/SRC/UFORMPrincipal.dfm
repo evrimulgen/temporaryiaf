@@ -63,8 +63,5 @@ object FORMPrincipal: TFORMPrincipal
     Width = 784
     Height = 19
     Panels = <>
-    ExplicitLeft = 318
-    ExplicitTop = 312
-    ExplicitWidth = 0
   end
 end

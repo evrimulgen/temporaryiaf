@@ -6,11 +6,12 @@ uses
   UDAMOPrincipal in '..\SRC\UDAMOPrincipal.pas' {DAMOPrincipal: TDataModule},
   UFORMLogin in '..\SRC\UFORMLogin.pas' {FORMLogin},
   UFORMSplash in '..\SRC\UFORMSplash.pas' {FORMSplash},
-  UFORMSegurancaEPermissoes in '..\SRC\UFORMSegurancaEPermissoes.pas' {FORMSegurancaEPermissoes},
   UReconcileErrorDialog in '..\SRC\UReconcileErrorDialog.pas' {ReconcileErrorForm},
   UAuthenticator in '..\SRC\UAuthenticator.pas',
   UTiposComuns in '..\..\COMUM\SRC\UTiposComuns.pas',
-  UServerManager in '..\SRC\UServerManager.pas';
+  UServerManager in '..\SRC\UServerManager.pas',
+  UKRFMSegurancaEPermissoes in '..\SRC\UKRFMSegurancaEPermissoes.pas' {KRFMSegurancaEPermissoes: TKRKForm},
+  UKRDMSegurancaEPermissoes in '..\SRC\UKRDMSegurancaEPermissoes.pas' {KRDMSegurancaEPermissoes: TKRKDataModule};
 
 {$R *.res}
 
