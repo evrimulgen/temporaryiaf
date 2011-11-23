@@ -1,18 +1,28 @@
 unit UKRFMSegurancaEPermissoes;
 
-{ Anak Krakatoa Form. Copyright 2011 / 2012 Zetta-Ømnis Soluções Tecnológicas Ltda. }
-
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms,
-  KRK.Wizards.Form, Mask, DBCtrls, Buttons, ExtCtrls, StdCtrls, ComCtrls,
-  pngimage, Grids, DBGrids, KRK.Components.DataControls.DBGrid;
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, UKRFMDBAwareBasico, Mask, DBCtrls, Buttons, pngimage, ExtCtrls,
+  StdCtrls, Grids, DBGrids, KRK.Components.DataControls.DBGrid, ComCtrls,
+  ToolWin, ActnList, ImgList;
 
 type
-  TKRFMSegurancaEPermissoes = class(TKRKForm)
+  TKRFMSegurancaEPermissoes = class(TKRFMDBAwareBasico)
     PGCTSegurancaEPermissoes: TPageControl;
     TabSheet_Permissions: TTabSheet;
+    PANLLayerSuperior: TPanel;
+    PGCTUSUGRUConsultar: TPageControl;
+    TabSheet_USU_Consultar: TTabSheet;
+    GroupBoxUsuarioConsultaRapida: TGroupBox;
+    Label3: TLabel;
+    LAEDUSU_VA_NOME: TLabeledEdit;
+    LAEDUSU_VA_LOGIN: TLabeledEdit;
+    KRKDBGrid1: TKRKDBGrid;
+    TabSheet_GRU_Consultar: TTabSheet;
+    GroupBoxGrupoConsultaRapida: TGroupBox;
+    LabeledEdit_GRU_VA_NOME: TLabeledEdit;
     GroupBoxEntidadesDoSistema: TGroupBox;
     GroupBoxFiltro: TGroupBox;
     LabelTipo: TLabel;
@@ -20,15 +30,37 @@ type
     ComboBox_EDS_TI_TIPO: TComboBox;
     LabeledEdit_EDS_VA_NOME: TLabeledEdit;
     BitBtn_EDS_AdicionarA: TBitBtn;
-    PGCTUSUGRUConsultar: TPageControl;
-    TabSheet_USU_Consultar: TTabSheet;
-    GroupBoxUsuarioConsultaRapida: TGroupBox;
-    Label3: TLabel;
-    LAEDUSU_VA_NOME: TLabeledEdit;
-    LAEDUSU_VA_LOGIN: TLabeledEdit;
-    TabSheet_GRU_Consultar: TTabSheet;
-    GroupBoxGrupoConsultaRapida: TGroupBox;
-    LabeledEdit_GRU_VA_NOME: TLabeledEdit;
+    KRDGEntidadesDoSistema: TKRKDBGrid;
+    PANLFooter: TPanel;
+    PGCTPermissoes: TPageControl;
+    TBSHGRU: TTabSheet;
+    PANLGRULayerTop: TPanel;
+    GroupBoxGrupoConsultaRapida2: TGroupBox;
+    LabelGrupoConsultarTipoDaEntidade: TLabel;
+    LabelE2: TLabel;
+    ComboBox_PDG_TI_TIPO: TComboBox;
+    LabeledEdit_PDG_VA_NOME: TLabeledEdit;
+    GroupBoxGrupoLegenda: TGroupBox;
+    ImageGrupoSim: TImage;
+    ImageGrupoNao: TImage;
+    LabelGrupoSim: TLabel;
+    LabelGrupoNao: TLabel;
+    ImageGrupoNaoSeAplica: TImage;
+    LabelGrupoNaoSeAplica: TLabel;
+    TBSHUSU: TTabSheet;
+    PANLUSULayerTop: TPanel;
+    GroupBoxUsuarioConsultaRapida2: TGroupBox;
+    LabelTipo2: TLabel;
+    LabelE: TLabel;
+    ComboBox_PDU_TI_TIPO: TComboBox;
+    LabeledEdit_PDU_VA_NOME: TLabeledEdit;
+    GroupBoxUsuarioLegenda: TGroupBox;
+    LabelUsuarioAutorizado: TLabel;
+    LabelUsuarioDesaltoriza: TLabel;
+    LabelUsuarioNaoAplicavel: TLabel;
+    Image1: TImage;
+    Image2: TImage;
+    Image3: TImage;
     TabSheet_USU: TTabSheet;
     GroupBoxUsuariosConsultar2: TGroupBox;
     LabelE3: TLabel;
@@ -78,54 +110,17 @@ type
     LabelGrupoDescricao: TLabel;
     DBEdit_GRU_VA_NOME: TDBEdit;
     DBEdit_GRU_VA_DESCRICAO: TDBEdit;
-    PANLLayerSuperior: TPanel;
-    KRDGEntidadesDoSistema: TKRKDBGrid;
-    KRKDBGrid1: TKRKDBGrid;
-    PANLFooter: TPanel;
-    PGCTPermissoes: TPageControl;
-    TBSHGRU: TTabSheet;
-    PANLGRULayerTop: TPanel;
-    GroupBoxGrupoConsultaRapida2: TGroupBox;
-    LabelGrupoConsultarTipoDaEntidade: TLabel;
-    LabelE2: TLabel;
-    ComboBox_PDG_TI_TIPO: TComboBox;
-    LabeledEdit_PDG_VA_NOME: TLabeledEdit;
-    GroupBoxGrupoLegenda: TGroupBox;
-    ImageGrupoSim: TImage;
-    ImageGrupoNao: TImage;
-    LabelGrupoSim: TLabel;
-    LabelGrupoNao: TLabel;
-    ImageGrupoNaoSeAplica: TImage;
-    LabelGrupoNaoSeAplica: TLabel;
-    TBSHUSU: TTabSheet;
-    PANLUSULayerTop: TPanel;
-    GroupBoxUsuarioConsultaRapida2: TGroupBox;
-    LabelTipo2: TLabel;
-    LabelE: TLabel;
-    ComboBox_PDU_TI_TIPO: TComboBox;
-    LabeledEdit_PDU_VA_NOME: TLabeledEdit;
-    GroupBoxUsuarioLegenda: TGroupBox;
-    LabelUsuarioAutorizado: TLabel;
-    LabelUsuarioDesaltoriza: TLabel;
-    LabelUsuarioNaoAplicavel: TLabel;
-    Image1: TImage;
-    Image2: TImage;
-    Image3: TImage;
   private
-    { Declarações privadas }
-  protected
-    { Declarações protegidas }
+    { Private declarations }
   public
-    { Declarações públicas }
+    { Public declarations }
   end;
 
 implementation
 
-{$R *.dfm}
-
 uses UKRDMSegurancaEPermissoes;
 
-{ TKRFMSegurancaEPermissoes }
+{$R *.dfm}
 
 initialization
   RegisterClass(TKRFMSegurancaEPermissoes)

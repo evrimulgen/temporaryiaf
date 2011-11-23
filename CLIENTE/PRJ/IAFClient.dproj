@@ -64,13 +64,17 @@
 			<DCCReference Include="..\SRC\UAuthenticator.pas"/>
 			<DCCReference Include="..\..\COMUM\SRC\UTiposComuns.pas"/>
 			<DCCReference Include="..\SRC\UServerManager.pas"/>
-			<DCCReference Include="..\SRC\UKRFMSegurancaEPermissoes.pas">
-				<Form>KRFMSegurancaEPermissoes</Form>
-				<DesignClass>TKRKForm</DesignClass>
-			</DCCReference>
 			<DCCReference Include="..\SRC\UKRDMSegurancaEPermissoes.pas">
 				<Form>KRDMSegurancaEPermissoes</Form>
 				<DesignClass>TKRKDataModule</DesignClass>
+			</DCCReference>
+			<DCCReference Include="..\SRC\UKRFMDBAwareBasico.pas">
+				<Form>KRFMDBAwareBasico</Form>
+				<DesignClass>TKRKForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="..\SRC\UKRFMSegurancaEPermissoes.pas">
+				<Form>KRFMSegurancaEPermissoes</Form>
+				<DesignClass>TKRKForm</DesignClass>
 			</DCCReference>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>
@@ -97,7 +101,7 @@
 						<VersionInfo Name="MajorVer">1</VersionInfo>
 						<VersionInfo Name="MinorVer">0</VersionInfo>
 						<VersionInfo Name="Release">0</VersionInfo>
-						<VersionInfo Name="Build">202</VersionInfo>
+						<VersionInfo Name="Build">211</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -109,7 +113,7 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName"/>
 						<VersionInfoKeys Name="FileDescription"/>
-						<VersionInfoKeys Name="FileVersion">1.0.0.202</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">1.0.0.211</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName"/>
 						<VersionInfoKeys Name="LegalCopyright"/>
 						<VersionInfoKeys Name="LegalTrademarks"/>

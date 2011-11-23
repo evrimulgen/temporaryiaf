@@ -5,6 +5,7 @@ object KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
   Height = 150
   Width = 215
   object CLDSUsuarios: TClientDataSet
+    Active = True
     Aggregates = <>
     ConnectionBroker = DAMOPrincipal.CNBRPrincipal
     Params = <>
