@@ -34,6 +34,7 @@ object FORMPrincipal: TFORMPrincipal
     Font.Name = 'Segoe UI'
     Font.Style = []
     Spacing = 0
+    OnPaint = ActionMainMenuBar1Paint
   end
   object ActionToolBar1: TActionToolBar
     Left = 0

@@ -2,8 +2,8 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
   Left = 0
   Top = 0
   Caption = 'Seguran'#231'a e Permiss'#245'es'
-  ClientHeight = 614
-  ClientWidth = 1142
+  ClientHeight = 562
+  ClientWidth = 784
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,24 +13,29 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
   FormStyle = fsMDIChild
   OldCreateOrder = False
   Visible = True
+  WindowState = wsMaximized
   PixelsPerInch = 96
   TextHeight = 13
   object PGCTSegurancaEPermissoes: TPageControl
     Left = 0
     Top = 0
-    Width = 1142
-    Height = 614
+    Width = 784
+    Height = 562
     ActivePage = TabSheet_Permissions
     Align = alClient
     TabOrder = 0
+    ExplicitWidth = 1142
+    ExplicitHeight = 614
     object TabSheet_Permissions: TTabSheet
       AlignWithMargins = True
       Caption = 'Permiss'#245'es'
+      ExplicitWidth = 1128
+      ExplicitHeight = 580
       object PANLLayerSuperior: TPanel
         AlignWithMargins = True
         Left = 0
         Top = 0
-        Width = 1128
+        Width = 770
         Height = 228
         Margins.Left = 0
         Margins.Top = 0
@@ -38,8 +43,9 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
         Align = alTop
         BevelOuter = bvNone
         TabOrder = 0
+        ExplicitWidth = 1128
         object PGCTUSUGRUConsultar: TPageControl
-          Left = 779
+          Left = 421
           Top = 0
           Width = 349
           Height = 228
@@ -47,8 +53,12 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
           ActivePage = TabSheet_USU_Consultar
           Align = alRight
           TabOrder = 0
+          ExplicitLeft = 779
           object TabSheet_USU_Consultar: TTabSheet
             Caption = 'Usu'#225'rios'
+            DesignSize = (
+              341
+              200)
             object GroupBoxUsuarioConsultaRapida: TGroupBox
               AlignWithMargins = True
               Left = 4
@@ -99,6 +109,27 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
                 TabOrder = 1
               end
             end
+            object KRKDBGrid1: TKRKDBGrid
+              Left = 4
+              Top = 63
+              Width = 331
+              Height = 132
+              Anchors = [akLeft, akTop, akRight, akBottom]
+              DataSource = KRDMSegurancaEPermissoes.DTSRUsuarios
+              Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+              ReadOnly = True
+              TabOrder = 1
+              TitleFont.Charset = DEFAULT_CHARSET
+              TitleFont.Color = clWindowText
+              TitleFont.Height = -11
+              TitleFont.Name = 'Tahoma'
+              TitleFont.Style = []
+              RowColors = <
+                item
+                  BackgroundColor = clBtnFace
+                  ForegroundColor = clNone
+                end>
+            end
           end
           object TabSheet_GRU_Consultar: TTabSheet
             Caption = 'Grupos'
@@ -138,7 +169,7 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
           AlignWithMargins = True
           Left = 0
           Top = 0
-          Width = 773
+          Width = 415
           Height = 228
           Margins.Left = 0
           Margins.Top = 0
@@ -147,14 +178,15 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
           Align = alClient
           Caption = ' Entidades do sistema '
           TabOrder = 1
+          ExplicitWidth = 773
           DesignSize = (
-            773
+            415
             228)
           object GroupBoxFiltro: TGroupBox
             AlignWithMargins = True
             Left = 6
             Top = 15
-            Width = 760
+            Width = 402
             Height = 57
             Margins.Left = 4
             Margins.Top = 0
@@ -162,11 +194,12 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
             Align = alTop
             Caption = ' Localiza'#231#227'o r'#225'pida '
             TabOrder = 0
+            ExplicitWidth = 760
             DesignSize = (
-              760
+              402
               57)
             object LabelTipo: TLabel
-              Left = 656
+              Left = 298
               Top = 13
               Width = 20
               Height = 13
@@ -175,7 +208,7 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
               ExplicitLeft = 522
             end
             object Label2: TLabel
-              Left = 642
+              Left = 284
               Top = 31
               Width = 6
               Height = 13
@@ -184,7 +217,7 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
               ExplicitLeft = 508
             end
             object ComboBox_EDS_TI_TIPO: TComboBox
-              Left = 654
+              Left = 296
               Top = 27
               Width = 98
               Height = 21
@@ -197,11 +230,12 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
                 'Todos'
                 'Tabela'
                 'A'#231#227'o')
+              ExplicitLeft = 654
             end
             object LabeledEdit_EDS_VA_NOME: TLabeledEdit
               Left = 8
               Top = 27
-              Width = 628
+              Width = 270
               Height = 21
               Anchors = [akLeft, akTop, akRight]
               CharCase = ecUpperCase
@@ -210,10 +244,11 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
               EditLabel.Caption = 'Nome / Identifica'#231#227'o cont'#233'm'
               LabelSpacing = 1
               TabOrder = 0
+              ExplicitWidth = 628
             end
           end
           object BitBtn_EDS_AdicionarA: TBitBtn
-            Left = 655
+            Left = 297
             Top = 195
             Width = 112
             Height = 25
@@ -292,454 +327,497 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
             ParentDoubleBuffered = False
             Spacing = 8
             TabOrder = 1
+            ExplicitLeft = 655
+          end
+          object KRDGEntidadesDoSistema: TKRKDBGrid
+            Left = 6
+            Top = 78
+            Width = 402
+            Height = 111
+            Anchors = [akLeft, akTop, akRight, akBottom]
+            Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+            ReadOnly = True
+            TabOrder = 2
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -11
+            TitleFont.Name = 'Tahoma'
+            TitleFont.Style = []
+            RowColors = <>
           end
         end
       end
-      object PGCTPermissoes: TPageControl
+      object PANLFooter: TPanel
         AlignWithMargins = True
         Left = 0
         Top = 234
-        Width = 1128
-        Height = 346
+        Width = 770
+        Height = 294
         Margins.Left = 0
         Margins.Right = 0
         Margins.Bottom = 0
-        ActivePage = TBSHGRU
         Align = alClient
+        BevelOuter = bvNone
         TabOrder = 1
-        object TBSHGRU: TTabSheet
-          Caption = 'Entidades e permiss'#245'es do grupo selecionado'
-          object PANLGRULayerTop: TPanel
-            Left = 0
-            Top = 0
-            Width = 1120
-            Height = 57
-            Align = alTop
-            BevelOuter = bvNone
-            TabOrder = 0
-            object GroupBoxGrupoConsultaRapida2: TGroupBox
-              AlignWithMargins = True
-              Left = 4
+        ExplicitLeft = 120
+        ExplicitTop = 240
+        ExplicitHeight = 197
+        object PGCTPermissoes: TPageControl
+          Left = 0
+          Top = 0
+          Width = 770
+          Height = 294
+          ActivePage = TBSHGRU
+          Align = alClient
+          MultiLine = True
+          ParentShowHint = False
+          ShowHint = False
+          TabOrder = 0
+          ExplicitLeft = 3
+          ExplicitTop = 3
+          ExplicitHeight = 194
+          object TBSHGRU: TTabSheet
+            Caption = 'Entidades e permiss'#245'es do grupo selecionado'
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
+            object PANLGRULayerTop: TPanel
+              Left = 0
               Top = 0
-              Width = 849
+              Width = 762
               Height = 57
-              Margins.Left = 4
-              Margins.Top = 0
-              Margins.Bottom = 0
-              Align = alClient
-              Caption = ' Localiza'#231#227'o r'#225'pida '
+              Align = alTop
+              BevelOuter = bvNone
               TabOrder = 0
-              DesignSize = (
-                849
-                57)
-              object LabelGrupoConsultarTipoDaEntidade: TLabel
-                Left = 745
-                Top = 13
-                Width = 20
-                Height = 13
-                Anchors = [akTop, akRight]
-                Caption = 'Tipo'
-                ExplicitLeft = 616
-              end
-              object LabelE2: TLabel
-                Left = 732
-                Top = 31
-                Width = 6
-                Height = 13
-                Anchors = [akTop, akRight]
-                Caption = 'e'
-                ExplicitLeft = 313
-              end
-              object ComboBox_PDG_TI_TIPO: TComboBox
-                Left = 745
-                Top = 27
-                Width = 96
-                Height = 21
-                Style = csDropDownList
-                Anchors = [akTop, akRight]
-                ItemIndex = 0
-                TabOrder = 1
-                Text = 'Todos'
-                Items.Strings = (
-                  'Todos'
-                  'Tabela'
-                  'A'#231#227'o')
-              end
-              object LabeledEdit_PDG_VA_NOME: TLabeledEdit
-                Left = 8
-                Top = 27
-                Width = 717
-                Height = 21
-                Anchors = [akLeft, akTop, akRight]
-                CharCase = ecUpperCase
-                EditLabel.Width = 137
-                EditLabel.Height = 13
-                EditLabel.Caption = 'Nome / Identifica'#231#227'o cont'#233'm'
-                LabelSpacing = 1
+              object GroupBoxGrupoConsultaRapida2: TGroupBox
+                AlignWithMargins = True
+                Left = 4
+                Top = 0
+                Width = 491
+                Height = 57
+                Margins.Left = 4
+                Margins.Top = 0
+                Margins.Bottom = 0
+                Align = alClient
+                Caption = ' Localiza'#231#227'o r'#225'pida '
                 TabOrder = 0
+                DesignSize = (
+                  491
+                  57)
+                object LabelGrupoConsultarTipoDaEntidade: TLabel
+                  Left = 387
+                  Top = 13
+                  Width = 20
+                  Height = 13
+                  Anchors = [akTop, akRight]
+                  Caption = 'Tipo'
+                  ExplicitLeft = 616
+                end
+                object LabelE2: TLabel
+                  Left = 374
+                  Top = 31
+                  Width = 6
+                  Height = 13
+                  Anchors = [akTop, akRight]
+                  Caption = 'e'
+                  ExplicitLeft = 313
+                end
+                object ComboBox_PDG_TI_TIPO: TComboBox
+                  Left = 387
+                  Top = 27
+                  Width = 96
+                  Height = 21
+                  Style = csDropDownList
+                  Anchors = [akTop, akRight]
+                  ItemIndex = 0
+                  TabOrder = 1
+                  Text = 'Todos'
+                  Items.Strings = (
+                    'Todos'
+                    'Tabela'
+                    'A'#231#227'o')
+                end
+                object LabeledEdit_PDG_VA_NOME: TLabeledEdit
+                  Left = 8
+                  Top = 27
+                  Width = 359
+                  Height = 21
+                  Anchors = [akLeft, akTop, akRight]
+                  CharCase = ecUpperCase
+                  EditLabel.Width = 137
+                  EditLabel.Height = 13
+                  EditLabel.Caption = 'Nome / Identifica'#231#227'o cont'#233'm'
+                  LabelSpacing = 1
+                  TabOrder = 0
+                end
               end
-            end
-            object GroupBoxGrupoLegenda: TGroupBox
-              AlignWithMargins = True
-              Left = 859
-              Top = 0
-              Width = 255
-              Height = 57
-              Margins.Top = 0
-              Margins.Right = 6
-              Margins.Bottom = 0
-              Align = alRight
-              Caption = ' Legenda '
-              TabOrder = 1
-              object ImageGrupoSim: TImage
-                Left = 8
-                Top = 13
-                Width = 16
-                Height = 16
-                AutoSize = True
-                Picture.Data = {
-                  0954506E67496D61676589504E470D0A1A0A0000000D49484452000000100000
-                  001008060000001FF3FF610000002B744558744372656174696F6E2054696D65
-                  004672203135204E6F7620323030322031303A30383A3239202B30313030F5A2
-                  62C60000000774494D4507D30A06140A2A0DDEA9AC000000097048597300000A
-                  F000000AF00142AC34980000000467414D410000B18F0BFC6105000003284944
-                  415478DA55937D68536714C67F3736A96D6DFA613B61B1DDFAC5E6948943288C
-                  EA4A2DF8CFCAC6C650FF90C2869B6E1DC24464281DAC73FD6B30D45270AD6255
-                  FC18223AAC5B5BB0ADE83E32BF2ADAAE9F6B6C6D9BB4D96D6E127373939B9DA4
-                  D1EA0B0FEF7D0FE779EE79CFFB1C85E7D7113251D961B1596A5664E694452311
-                  C5A36A23B139F3379C9CE406D3926508624F29CA33722B557991ACB6DA759B1D
-                  AB5E2AC2A5B9980EB8F1EA1A4333D33C1C9C721BFDC65E4E7349B2FD82E8A280
-                  90572F2D6EDFBFB136D5151861C8771F550FE2D7C3F8C311B4B08E4FD7991CD3
-                  C246AFB98776CE0B6B56602AF1B2F352ECFD876BF63AFABC7FE20EB9884AD81F
-                  0EE30BE9897D52FB8F4F4B77737CBC99E19BAA87E3B11D78E9118179856FF9AA
-                  AEFAC31F0A72EDFCE3BB452CA6108A44F11B0601F9EBBFF333746EBA47F1B232
-                  063427EBDAAA095DF6B5D2CD2111185068E45AD347FB2A6FCC5CC113D4C8494B
-                  471781A011615CC857ABEE506C2F4B5CB679F46B3EBFF413F479EFD2166B1481
-                  2E25FF70CEC467EFBCEB3877AF834F56EEA365B68195F674A6FC2ABF56DDE5D5
-                  ECD2449B8E0E1F60D7F58398D30E989C53690AC505CE2A793F664D56BCB9E6E5
-                  2D19BBF9A0E87D069EF4F3F1ED1ACE5776519C5D9620B78C1EA0AEE7A0542607
-                  D72A981B53690E35CBE998C23796DEF72ACB370C79A6E8AEF89BF4A56964C835
-                  482181D6D17ABEEC6D48904DDD0223EBE1F15F7D9CE3CA82401DFBD756947E37
-                  AB4C509251C2D50A27569B0D6BDA125AC7EAF9A2BB01435EDC34257DA248FA6E
-                  85EB833F73875B1239A3B08182D46A9B33FB35EB8AA0BCFDE6C2729AD69FE2B2
-                  FB183BBBBF271A49FA6E2E17A65E8790D3CB09E3A2F8B14BA21D712359D9C6D6
-                  94372C2D2905165B48189936D09E24BD1687BB5004A479E6C308BFCC9F658231
-                  895E10F42B4937DAA9663B6B957AF253F3B1A68AE3A501C16562DAE5F22DCE0D
-                  8C7BE9D4DB798447F23B057F08D4A7B320DD6139B9BCCD6A6A7058DE22CB5648
-                  4C5164181E316C0EF2009F94FD58F27E17DC167816ACBCB896083205522F7259
-                  5E1164272B54E30F182F39B9FB5E1CA6C5B5D01390DAC910D892F1F808079253
-                  187E7E9CFF07092151D68910EF880000000049454E44AE426082}
-                Transparent = True
-              end
-              object ImageGrupoNao: TImage
-                Left = 141
-                Top = 13
-                Width = 16
-                Height = 16
-                AutoSize = True
-                Picture.Data = {
-                  0954506E67496D61676589504E470D0A1A0A0000000D49484452000000100000
-                  001008060000001FF3FF610000002B744558744372656174696F6E2054696D65
-                  004672203135204E6F7620323030322031303A30383A3239202B30313030F5A2
-                  62C60000000774494D4507D30A06140B174CADD4FC000000097048597300000A
-                  F000000AF00142AC34980000000467414D410000B18F0BFC6105000002F74944
-                  415478DA5D535B485451145DF7CE9D3B2F1F9323193E981F31B3A20FD17EA294
-                  C0AFD0FE8C08C21FA33E7A7C988A45207DF59141106588143D30222B1184327A
-                  A7480FCD46C7741C5FE8E8A0335EE771DFED3B8E317560DD7DCEB97BADB3CFD9
-                  7B334819D142E407459CE5B2D38E98B7390B5559C57A706D6A762DDEF75EC0DD
-                  D608A6C84D22E85B1C666B2216E144DC9D7FCB51539B6E72B980391F105C0484
-                  10E44000BE9139E14B50BC5417C243720F11D4BF020659292FBF67AF3DC9C237
-                  0ECC7B81C80685142144694E568AC2EF17B4FB0BEAE52B5174126DD910615628
-                  6CDE9DEFC9B8D0928E914F407885B6493C1223F296082166208677D3BA707A59
-                  A91FD3F08A0456195F1EAEB91BCE35B09C06CC8E6FDE2E2E92737453C088C488
-                  C0584B2246A34E744C861EDD10719D3C4799F93D364F5E73CBAE99CE4E8433F2
-                  E0E454D8391D5633C07326C0446009160BF889AF189D93F1615AF09E89C85749
-                  A08F5938B043CA3D5A6D5EEAEA42F8F5226C8A049BDD0E1B29D8C9834D4D5363
-                  0D065F7C862F10938E8722ADB4F38099DD9F2315549499634383987CE2439A12
-                  879D04AC74A29537814F49957EB11A3DCF7F62351014EBD6376ED2563B335268
-                  19DB5B55568C895F104A0FC36CB383B559C1F0168ADE0C96311EC5049DE7218F
-                  8FA0BD771151FFB0B751527A1202BD5968AB3A54749E0B2F019A710C65405600
-                  BA0A241D3A99184196818F5C1EFC6A26FAFD9EEE6EE06BE20A4D0E941CCBB10C
-                  ECCB453A5422E83A188D94540D92A243243D95C8BFB54CBC35ED86C3FF5D688C
-                  C79E526EDE241E913E96DB693855E142DB4E175899B81A9114B2C65CA4607EA0
-                  00C36C3E9C8B5EEDCEFAEAE36FC00CF19E25D2987CA3AC662BEA2BED6C536EB6
-                  3583E13844351E2B7060467741A5026202D34287187F49E420F9F713A8EAB0B6
-                  F5C094686C2F6271B092417531672ACD345BDC12451094C4992145F550D985A8
-                  94A83930401822AC244A3925CB868893E0269424AD33F9CF681E236C4FD2FEDB
-                  4C29C3581BA94F27389273245B98EA19C2FFEDFC07F72753E0E73544FB000000
-                  0049454E44AE426082}
-                Transparent = True
-              end
-              object LabelGrupoSim: TLabel
-                Left = 27
-                Top = 14
-                Width = 99
-                Height = 13
-                Caption = 'Permiss'#227'o concedida'
-              end
-              object LabelGrupoNao: TLabel
-                Left = 160
-                Top = 14
-                Width = 87
-                Height = 13
-                Caption = 'Permiss'#227'o negada'
-              end
-              object ImageGrupoNaoSeAplica: TImage
-                Left = 56
-                Top = 34
-                Width = 16
-                Height = 16
-                AutoSize = True
-                Picture.Data = {
-                  0954506E67496D61676589504E470D0A1A0A0000000D49484452000000100000
-                  001008060000001FF3FF610000002B744558744372656174696F6E2054696D65
-                  00536F203132204F6B7420323030332032333A34323A3137202B30313030AD5F
-                  A7170000000774494D4507D30A0E0B0B2828053563000000097048597300000A
-                  F000000AF00142AC34980000000467414D410000B18F0BFC6105000001F14944
-                  415478DAA5935D4893511CC67FEF186313090A54BC2888A834882EFA106F0ABA
-                  2C8641104197E27589D08D1741DD595654102E820A22C9C0E5065D95861294AE
-                  9BA0189105C2686638B7BDFB7ABF7A962B582B54FAC3EFE69CE73CE739FF738E
-                  C17F96B181396F5D06EF221CF99EA5DFE7370ED996C7D232730B4BDC198830A9
-                  E98270FF69F0E52103A5A6D0D0F6035B7C017F05CC02A5AF2689046EE23D4367
-                  47B821D93761371854770EB4865EECEAD9E3239F856C1EF2396152A978CC4CE3
-                  5E1FA33F36CB63C9177F25F96D30758568F7E96D3D81CD4D502A2BACD2E67278
-                  669142D123B30C774799BCF0884B92CF8A7C9DC1CBAB46EAF099B6761C1F380E
-                  9465629AD8258BA2BC2A3AD1D338E9DE9B5C943C2A527506CF2F933A7AB2B91D
-                  4B43AED2D9166EB142B9A430F2B265107B46BAEF162392DF17F3750663834C1C
-                  3F6684432103CFF5706C0F4B8B14808A4C56562032CAF4F0045392DF6B3018EE
-                  25DCB597685737BE6A5C5BA770ACD5E8B67A9E788B7BEE360F3E2F3227F978C3
-                  1154CDD7FA18DCB793F3BB3BF00583AB0B331948267123719EC4133F17C5C49B
-                  8626AAD43D5AC30739B57F0727B6B6D0E9A815C9053E8EBFE6D37C1A59F14ACC
-                  8874C335D6CA2F5A4487E8146DB5F1EABD7FA8F1F787F447123D063689606D4C
-                  6D24BBE6535EE39FACEF336DB47E008BE4CF11436A3C840000000049454E44AE
-                  426082}
-                Transparent = True
-              end
-              object LabelGrupoNaoSeAplica: TLabel
-                Left = 75
-                Top = 36
-                Width = 123
-                Height = 13
-                Caption = 'A permiss'#227'o n'#227'o se aplica'
+              object GroupBoxGrupoLegenda: TGroupBox
+                AlignWithMargins = True
+                Left = 501
+                Top = 0
+                Width = 255
+                Height = 57
+                Margins.Top = 0
+                Margins.Right = 6
+                Margins.Bottom = 0
+                Align = alRight
+                Caption = ' Legenda '
+                TabOrder = 1
+                object ImageGrupoSim: TImage
+                  Left = 8
+                  Top = 13
+                  Width = 16
+                  Height = 16
+                  AutoSize = True
+                  Picture.Data = {
+                    0954506E67496D61676589504E470D0A1A0A0000000D49484452000000100000
+                    001008060000001FF3FF610000002B744558744372656174696F6E2054696D65
+                    004672203135204E6F7620323030322031303A30383A3239202B30313030F5A2
+                    62C60000000774494D4507D30A06140A2A0DDEA9AC000000097048597300000A
+                    F000000AF00142AC34980000000467414D410000B18F0BFC6105000003284944
+                    415478DA55937D68536714C67F3736A96D6DFA613B61B1DDFAC5E6948943288C
+                    EA4A2DF8CFCAC6C650FF90C2869B6E1DC24464281DAC73FD6B30D45270AD6255
+                    FC18223AAC5B5BB0ADE83E32BF2ADAAE9F6B6C6D9BB4D96D6E127373939B9DA4
+                    D1EA0B0FEF7D0FE779EE79CFFB1C85E7D7113251D961B1596A5664E694452311
+                    C5A36A23B139F3379C9CE406D3926508624F29CA33722B557991ACB6DA759B1D
+                    AB5E2AC2A5B9980EB8F1EA1A4333D33C1C9C721BFDC65E4E7349B2FD82E8A280
+                    90572F2D6EDFBFB136D5151861C8771F550FE2D7C3F8C311B4B08E4FD7991CD3
+                    C246AFB98776CE0B6B56602AF1B2F352ECFD876BF63AFABC7FE20EB9884AD81F
+                    0EE30BE9897D52FB8F4F4B77737CBC99E19BAA87E3B11D78E9118179856FF9AA
+                    AEFAC31F0A72EDFCE3BB452CA6108A44F11B0601F9EBBFF333746EBA47F1B232
+                    063427EBDAAA095DF6B5D2CD2111185068E45AD347FB2A6FCC5CC113D4C8494B
+                    471781A011615CC857ABEE506C2F4B5CB679F46B3EBFF413F479EFD2166B1481
+                    2E25FF70CEC467EFBCEB3877AF834F56EEA365B68195F674A6FC2ABF56DDE5D5
+                    ECD2449B8E0E1F60D7F58398D30E989C53690AC505CE2A793F664D56BCB9E6E5
+                    2D19BBF9A0E87D069EF4F3F1ED1ACE5776519C5D9620B78C1EA0AEE7A0542607
+                    D72A981B53690E35CBE998C23796DEF72ACB370C79A6E8AEF89BF4A56964C835
+                    482181D6D17ABEEC6D48904DDD0223EBE1F15F7D9CE3CA82401DFBD756947E37
+                    AB4C509251C2D50A27569B0D6BDA125AC7EAF9A2BB01435EDC34257DA248FA6E
+                    85EB833F73875B1239A3B08182D46A9B33FB35EB8AA0BCFDE6C2729AD69FE2B2
+                    FB183BBBBF271A49FA6E2E17A65E8790D3CB09E3A2F8B14BA21D712359D9C6D6
+                    94372C2D2905165B48189936D09E24BD1687BB5004A479E6C308BFCC9F658231
+                    895E10F42B4937DAA9663B6B957AF253F3B1A68AE3A501C16562DAE5F22DCE0D
+                    8C7BE9D4DB798447F23B057F08D4A7B320DD6139B9BCCD6A6A7058DE22CB5648
+                    4C5164181E316C0EF2009F94FD58F27E17DC167816ACBCB896083205522F7259
+                    5E1164272B54E30F182F39B9FB5E1CA6C5B5D01390DAC910D892F1F808079253
+                    187E7E9CFF07092151D68910EF880000000049454E44AE426082}
+                  Transparent = True
+                end
+                object ImageGrupoNao: TImage
+                  Left = 141
+                  Top = 13
+                  Width = 16
+                  Height = 16
+                  AutoSize = True
+                  Picture.Data = {
+                    0954506E67496D61676589504E470D0A1A0A0000000D49484452000000100000
+                    001008060000001FF3FF610000002B744558744372656174696F6E2054696D65
+                    004672203135204E6F7620323030322031303A30383A3239202B30313030F5A2
+                    62C60000000774494D4507D30A06140B174CADD4FC000000097048597300000A
+                    F000000AF00142AC34980000000467414D410000B18F0BFC6105000002F74944
+                    415478DA5D535B485451145DF7CE9D3B2F1F9323193E981F31B3A20FD17EA294
+                    C0AFD0FE8C08C21FA33E7A7C988A45207DF59141106588143D30222B1184327A
+                    A7480FCD46C7741C5FE8E8A0335EE771DFED3B8E317560DD7DCEB97BADB3CFD9
+                    7B334819D142E407459CE5B2D38E98B7390B5559C57A706D6A762DDEF75EC0DD
+                    D608A6C84D22E85B1C666B2216E144DC9D7FCB51539B6E72B980391F105C0484
+                    10E44000BE9139E14B50BC5417C243720F11D4BF020659292FBF67AF3DC9C237
+                    0ECC7B81C80685142144694E568AC2EF17B4FB0BEAE52B5174126DD910615628
+                    6CDE9DEFC9B8D0928E914F407885B6493C1223F296082166208677D3BA707A59
+                    A91FD3F08A0456195F1EAEB91BCE35B09C06CC8E6FDE2E2E92737453C088C488
+                    C0584B2246A34E744C861EDD10719D3C4799F93D364F5E73CBAE99CE4E8433F2
+                    E0E454D8391D5633C07326C0446009160BF889AF189D93F1615AF09E89C85749
+                    A08F5938B043CA3D5A6D5EEAEA42F8F5226C8A049BDD0E1B29D8C9834D4D5363
+                    0D065F7C862F10938E8722ADB4F38099DD9F2315549499634383987CE2439A12
+                    879D04AC74A29537814F49957EB11A3DCF7F62351014EBD6376ED2563B335268
+                    19DB5B55568C895F104A0FC36CB383B559C1F0168ADE0C96311EC5049DE7218F
+                    8FA0BD771151FFB0B751527A1202BD5968AB3A54749E0B2F019A710C65405600
+                    BA0A241D3A99184196818F5C1EFC6A26FAFD9EEE6EE06BE20A4D0E941CCBB10C
+                    ECCB453A5422E83A188D94540D92A243243D95C8BFB54CBC35ED86C3FF5D688C
+                    C79E526EDE241E913E96DB693855E142DB4E175899B81A9114B2C65CA4607EA0
+                    00C36C3E9C8B5EEDCEFAEAE36FC00CF19E25D2987CA3AC662BEA2BED6C536EB6
+                    3583E13844351E2B7060467741A5026202D34287187F49E420F9F713A8EAB0B6
+                    F5C094686C2F6271B092417531672ACD345BDC12451094C4992145F550D985A8
+                    94A83930401822AC244A3925CB868893E0269424AD33F9CF681E236C4FD2FEDB
+                    4C29C3581BA94F27389273245B98EA19C2FFEDFC07F72753E0E73544FB000000
+                    0049454E44AE426082}
+                  Transparent = True
+                end
+                object LabelGrupoSim: TLabel
+                  Left = 27
+                  Top = 14
+                  Width = 99
+                  Height = 13
+                  Caption = 'Permiss'#227'o concedida'
+                end
+                object LabelGrupoNao: TLabel
+                  Left = 160
+                  Top = 14
+                  Width = 87
+                  Height = 13
+                  Caption = 'Permiss'#227'o negada'
+                end
+                object ImageGrupoNaoSeAplica: TImage
+                  Left = 56
+                  Top = 34
+                  Width = 16
+                  Height = 16
+                  AutoSize = True
+                  Picture.Data = {
+                    0954506E67496D61676589504E470D0A1A0A0000000D49484452000000100000
+                    001008060000001FF3FF610000002B744558744372656174696F6E2054696D65
+                    00536F203132204F6B7420323030332032333A34323A3137202B30313030AD5F
+                    A7170000000774494D4507D30A0E0B0B2828053563000000097048597300000A
+                    F000000AF00142AC34980000000467414D410000B18F0BFC6105000001F14944
+                    415478DAA5935D4893511CC67FEF186313090A54BC2888A834882EFA106F0ABA
+                    2C8641104197E27589D08D1741DD595654102E820A22C9C0E5065D95861294AE
+                    9BA0189105C2686638B7BDFB7ABF7A962B582B54FAC3EFE69CE73CE739FF738E
+                    C17F96B181396F5D06EF221CF99EA5DFE7370ED996C7D232730B4BDC198830A9
+                    E98270FF69F0E52103A5A6D0D0F6035B7C017F05CC02A5AF2689046EE23D4367
+                    47B821D93761371854770EB4865EECEAD9E3239F856C1EF2396152A978CC4CE3
+                    5E1FA33F36CB63C9177F25F96D30758568F7E96D3D81CD4D502A2BACD2E67278
+                    669142D123B30C774799BCF0884B92CF8A7C9DC1CBAB46EAF099B6761C1F380E
+                    9465629AD8258BA2BC2A3AD1D338E9DE9B5C943C2A527506CF2F933A7AB2B91D
+                    4B43AED2D9166EB142B9A430F2B265107B46BAEF162392DF17F3750663834C1C
+                    3F6684432103CFF5706C0F4B8B14808A4C56562032CAF4F0045392DF6B3018EE
+                    25DCB597685737BE6A5C5BA770ACD5E8B67A9E788B7BEE360F3E2F3227F978C3
+                    1154CDD7FA18DCB793F3BB3BF00583AB0B331948267123719EC4133F17C5C49B
+                    8626AAD43D5AC30739B57F0727B6B6D0E9A815C9053E8EBFE6D37C1A59F14ACC
+                    8874C335D6CA2F5A4487E8146DB5F1EABD7FA8F1F787F447123D063689606D4C
+                    6D24BBE6535EE39FACEF336DB47E008BE4CF11436A3C840000000049454E44AE
+                    426082}
+                  Transparent = True
+                end
+                object LabelGrupoNaoSeAplica: TLabel
+                  Left = 75
+                  Top = 36
+                  Width = 123
+                  Height = 13
+                  Caption = 'A permiss'#227'o n'#227'o se aplica'
+                end
               end
             end
           end
-        end
-        object TBSHUSU: TTabSheet
-          Caption = 'Entidades e permiss'#245'es do usu'#225'rio selecionado'
-          ImageIndex = 1
-          object PANLUSULayerTop: TPanel
-            Left = 0
-            Top = 0
-            Width = 1120
-            Height = 57
-            Align = alTop
-            BevelOuter = bvNone
-            TabOrder = 0
-            object GroupBoxUsuarioConsultaRapida2: TGroupBox
-              AlignWithMargins = True
-              Left = 4
+          object TBSHUSU: TTabSheet
+            Caption = 'Entidades e permiss'#245'es do usu'#225'rio selecionado'
+            ImageIndex = 1
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
+            object PANLUSULayerTop: TPanel
+              Left = 0
               Top = 0
-              Width = 849
+              Width = 762
               Height = 57
-              Margins.Left = 4
-              Margins.Top = 0
-              Margins.Bottom = 0
-              Align = alClient
-              Caption = ' Localiza'#231#227'o r'#225'pida '
+              Align = alTop
+              BevelOuter = bvNone
               TabOrder = 0
-              DesignSize = (
-                849
-                57)
-              object LabelTipo2: TLabel
-                Left = 745
-                Top = 13
-                Width = 20
-                Height = 13
-                Anchors = [akTop, akRight]
-                Caption = 'Tipo'
-              end
-              object LabelE: TLabel
-                Left = 732
-                Top = 31
-                Width = 6
-                Height = 13
-                Anchors = [akTop, akRight]
-                Caption = 'e'
-              end
-              object ComboBox_PDU_TI_TIPO: TComboBox
-                Left = 745
-                Top = 27
-                Width = 96
-                Height = 21
-                Style = csDropDownList
-                Anchors = [akTop, akRight]
-                ItemIndex = 0
-                TabOrder = 1
-                Text = 'Todos'
-                Items.Strings = (
-                  'Todos'
-                  'Tabela'
-                  'A'#231#227'o')
-              end
-              object LabeledEdit_PDU_VA_NOME: TLabeledEdit
-                Left = 8
-                Top = 27
-                Width = 717
-                Height = 21
-                Anchors = [akLeft, akTop, akRight]
-                CharCase = ecUpperCase
-                EditLabel.Width = 137
-                EditLabel.Height = 13
-                EditLabel.Caption = 'Nome / Identifica'#231#227'o cont'#233'm'
-                LabelSpacing = 1
+              object GroupBoxUsuarioConsultaRapida2: TGroupBox
+                AlignWithMargins = True
+                Left = 4
+                Top = 0
+                Width = 491
+                Height = 57
+                Margins.Left = 4
+                Margins.Top = 0
+                Margins.Bottom = 0
+                Align = alClient
+                Caption = ' Localiza'#231#227'o r'#225'pida '
                 TabOrder = 0
-                ExplicitWidth = 164
+                DesignSize = (
+                  491
+                  57)
+                object LabelTipo2: TLabel
+                  Left = 387
+                  Top = 13
+                  Width = 20
+                  Height = 13
+                  Anchors = [akTop, akRight]
+                  Caption = 'Tipo'
+                  ExplicitLeft = 745
+                end
+                object LabelE: TLabel
+                  Left = 374
+                  Top = 31
+                  Width = 6
+                  Height = 13
+                  Anchors = [akTop, akRight]
+                  Caption = 'e'
+                  ExplicitLeft = 732
+                end
+                object ComboBox_PDU_TI_TIPO: TComboBox
+                  Left = 387
+                  Top = 27
+                  Width = 96
+                  Height = 21
+                  Style = csDropDownList
+                  Anchors = [akTop, akRight]
+                  ItemIndex = 0
+                  TabOrder = 1
+                  Text = 'Todos'
+                  Items.Strings = (
+                    'Todos'
+                    'Tabela'
+                    'A'#231#227'o')
+                end
+                object LabeledEdit_PDU_VA_NOME: TLabeledEdit
+                  Left = 8
+                  Top = 27
+                  Width = 359
+                  Height = 21
+                  Anchors = [akLeft, akTop, akRight]
+                  CharCase = ecUpperCase
+                  EditLabel.Width = 137
+                  EditLabel.Height = 13
+                  EditLabel.Caption = 'Nome / Identifica'#231#227'o cont'#233'm'
+                  LabelSpacing = 1
+                  TabOrder = 0
+                end
               end
-            end
-            object GroupBoxUsuarioLegenda: TGroupBox
-              AlignWithMargins = True
-              Left = 859
-              Top = 0
-              Width = 255
-              Height = 57
-              Margins.Top = 0
-              Margins.Right = 6
-              Margins.Bottom = 0
-              Align = alRight
-              Caption = ' Legenda '
-              TabOrder = 1
-              ExplicitLeft = 280
-              object LabelUsuarioAutorizado: TLabel
-                Left = 27
-                Top = 14
-                Width = 99
-                Height = 13
-                Caption = 'Permiss'#227'o concedida'
-              end
-              object LabelUsuarioDesaltoriza: TLabel
-                Left = 160
-                Top = 14
-                Width = 87
-                Height = 13
-                Caption = 'Permiss'#227'o negada'
-              end
-              object LabelUsuarioNaoAplicavel: TLabel
-                Left = 75
-                Top = 36
-                Width = 123
-                Height = 13
-                Caption = 'A permiss'#227'o n'#227'o se aplica'
-              end
-              object Image1: TImage
-                Left = 8
-                Top = 13
-                Width = 16
-                Height = 16
-                AutoSize = True
-                Picture.Data = {
-                  0954506E67496D61676589504E470D0A1A0A0000000D49484452000000100000
-                  001008060000001FF3FF610000002B744558744372656174696F6E2054696D65
-                  004672203135204E6F7620323030322031303A30383A3239202B30313030F5A2
-                  62C60000000774494D4507D30A06140A2A0DDEA9AC000000097048597300000A
-                  F000000AF00142AC34980000000467414D410000B18F0BFC6105000003284944
-                  415478DA55937D68536714C67F3736A96D6DFA613B61B1DDFAC5E6948943288C
-                  EA4A2DF8CFCAC6C650FF90C2869B6E1DC24464281DAC73FD6B30D45270AD6255
-                  FC18223AAC5B5BB0ADE83E32BF2ADAAE9F6B6C6D9BB4D96D6E127373939B9DA4
-                  D1EA0B0FEF7D0FE779EE79CFFB1C85E7D7113251D961B1596A5664E694452311
-                  C5A36A23B139F3379C9CE406D3926508624F29CA33722B557991ACB6DA759B1D
-                  AB5E2AC2A5B9980EB8F1EA1A4333D33C1C9C721BFDC65E4E7349B2FD82E8A280
-                  90572F2D6EDFBFB136D5151861C8771F550FE2D7C3F8C311B4B08E4FD7991CD3
-                  C246AFB98776CE0B6B56602AF1B2F352ECFD876BF63AFABC7FE20EB9884AD81F
-                  0EE30BE9897D52FB8F4F4B77737CBC99E19BAA87E3B11D78E9118179856FF9AA
-                  AEFAC31F0A72EDFCE3BB452CA6108A44F11B0601F9EBBFF333746EBA47F1B232
-                  063427EBDAAA095DF6B5D2CD2111185068E45AD347FB2A6FCC5CC113D4C8494B
-                  471781A011615CC857ABEE506C2F4B5CB679F46B3EBFF413F479EFD2166B1481
-                  2E25FF70CEC467EFBCEB3877AF834F56EEA365B68195F674A6FC2ABF56DDE5D5
-                  ECD2449B8E0E1F60D7F58398D30E989C53690AC505CE2A793F664D56BCB9E6E5
-                  2D19BBF9A0E87D069EF4F3F1ED1ACE5776519C5D9620B78C1EA0AEE7A0542607
-                  D72A981B53690E35CBE998C23796DEF72ACB370C79A6E8AEF89BF4A56964C835
-                  482181D6D17ABEEC6D48904DDD0223EBE1F15F7D9CE3CA82401DFBD756947E37
-                  AB4C509251C2D50A27569B0D6BDA125AC7EAF9A2BB01435EDC34257DA248FA6E
-                  85EB833F73875B1239A3B08182D46A9B33FB35EB8AA0BCFDE6C2729AD69FE2B2
-                  FB183BBBBF271A49FA6E2E17A65E8790D3CB09E3A2F8B14BA21D712359D9C6D6
-                  94372C2D2905165B48189936D09E24BD1687BB5004A479E6C308BFCC9F658231
-                  895E10F42B4937DAA9663B6B957AF253F3B1A68AE3A501C16562DAE5F22DCE0D
-                  8C7BE9D4DB798447F23B057F08D4A7B320DD6139B9BCCD6A6A7058DE22CB5648
-                  4C5164181E316C0EF2009F94FD58F27E17DC167816ACBCB896083205522F7259
-                  5E1164272B54E30F182F39B9FB5E1CA6C5B5D01390DAC910D892F1F808079253
-                  187E7E9CFF07092151D68910EF880000000049454E44AE426082}
-                Transparent = True
-              end
-              object Image2: TImage
-                Left = 141
-                Top = 13
-                Width = 16
-                Height = 16
-                AutoSize = True
-                Picture.Data = {
-                  0954506E67496D61676589504E470D0A1A0A0000000D49484452000000100000
-                  001008060000001FF3FF610000002B744558744372656174696F6E2054696D65
-                  004672203135204E6F7620323030322031303A30383A3239202B30313030F5A2
-                  62C60000000774494D4507D30A06140B174CADD4FC000000097048597300000A
-                  F000000AF00142AC34980000000467414D410000B18F0BFC6105000002F74944
-                  415478DA5D535B485451145DF7CE9D3B2F1F9323193E981F31B3A20FD17EA294
-                  C0AFD0FE8C08C21FA33E7A7C988A45207DF59141106588143D30222B1184327A
-                  A7480FCD46C7741C5FE8E8A0335EE771DFED3B8E317560DD7DCEB97BADB3CFD9
-                  7B334819D142E407459CE5B2D38E98B7390B5559C57A706D6A762DDEF75EC0DD
-                  D608A6C84D22E85B1C666B2216E144DC9D7FCB51539B6E72B980391F105C0484
-                  10E44000BE9139E14B50BC5417C243720F11D4BF020659292FBF67AF3DC9C237
-                  0ECC7B81C80685142144694E568AC2EF17B4FB0BEAE52B5174126DD910615628
-                  6CDE9DEFC9B8D0928E914F407885B6493C1223F296082166208677D3BA707A59
-                  A91FD3F08A0456195F1EAEB91BCE35B09C06CC8E6FDE2E2E92737453C088C488
-                  C0584B2246A34E744C861EDD10719D3C4799F93D364F5E73CBAE99CE4E8433F2
-                  E0E454D8391D5633C07326C0446009160BF889AF189D93F1615AF09E89C85749
-                  A08F5938B043CA3D5A6D5EEAEA42F8F5226C8A049BDD0E1B29D8C9834D4D5363
-                  0D065F7C862F10938E8722ADB4F38099DD9F2315549499634383987CE2439A12
-                  879D04AC74A29537814F49957EB11A3DCF7F62351014EBD6376ED2563B335268
-                  19DB5B55568C895F104A0FC36CB383B559C1F0168ADE0C96311EC5049DE7218F
-                  8FA0BD771151FFB0B751527A1202BD5968AB3A54749E0B2F019A710C65405600
-                  BA0A241D3A99184196818F5C1EFC6A26FAFD9EEE6EE06BE20A4D0E941CCBB10C
-                  ECCB453A5422E83A188D94540D92A243243D95C8BFB54CBC35ED86C3FF5D688C
-                  C79E526EDE241E913E96DB693855E142DB4E175899B81A9114B2C65CA4607EA0
-                  00C36C3E9C8B5EEDCEFAEAE36FC00CF19E25D2987CA3AC662BEA2BED6C536EB6
-                  3583E13844351E2B7060467741A5026202D34287187F49E420F9F713A8EAB0B6
-                  F5C094686C2F6271B092417531672ACD345BDC12451094C4992145F550D985A8
-                  94A83930401822AC244A3925CB868893E0269424AD33F9CF681E236C4FD2FEDB
-                  4C29C3581BA94F27389273245B98EA19C2FFEDFC07F72753E0E73544FB000000
-                  0049454E44AE426082}
-                Transparent = True
-              end
-              object Image3: TImage
-                Left = 56
-                Top = 34
-                Width = 16
-                Height = 16
-                AutoSize = True
-                Picture.Data = {
-                  0954506E67496D61676589504E470D0A1A0A0000000D49484452000000100000
-                  001008060000001FF3FF610000002B744558744372656174696F6E2054696D65
-                  00536F203132204F6B7420323030332032333A34323A3137202B30313030AD5F
-                  A7170000000774494D4507D30A0E0B0B2828053563000000097048597300000A
-                  F000000AF00142AC34980000000467414D410000B18F0BFC6105000001F14944
-                  415478DAA5935D4893511CC67FEF186313090A54BC2888A834882EFA106F0ABA
-                  2C8641104197E27589D08D1741DD595654102E820A22C9C0E5065D95861294AE
-                  9BA0189105C2686638B7BDFB7ABF7A962B582B54FAC3EFE69CE73CE739FF738E
-                  C17F96B181396F5D06EF221CF99EA5DFE7370ED996C7D232730B4BDC198830A9
-                  E98270FF69F0E52103A5A6D0D0F6035B7C017F05CC02A5AF2689046EE23D4367
-                  47B821D93761371854770EB4865EECEAD9E3239F856C1EF2396152A978CC4CE3
-                  5E1FA33F36CB63C9177F25F96D30758568F7E96D3D81CD4D502A2BACD2E67278
-                  669142D123B30C774799BCF0884B92CF8A7C9DC1CBAB46EAF099B6761C1F380E
-                  9465629AD8258BA2BC2A3AD1D338E9DE9B5C943C2A527506CF2F933A7AB2B91D
-                  4B43AED2D9166EB142B9A430F2B265107B46BAEF162392DF17F3750663834C1C
-                  3F6684432103CFF5706C0F4B8B14808A4C56562032CAF4F0045392DF6B3018EE
-                  25DCB597685737BE6A5C5BA770ACD5E8B67A9E788B7BEE360F3E2F3227F978C3
-                  1154CDD7FA18DCB793F3BB3BF00583AB0B331948267123719EC4133F17C5C49B
-                  8626AAD43D5AC30739B57F0727B6B6D0E9A815C9053E8EBFE6D37C1A59F14ACC
-                  8874C335D6CA2F5A4487E8146DB5F1EABD7FA8F1F787F447123D063689606D4C
-                  6D24BBE6535EE39FACEF336DB47E008BE4CF11436A3C840000000049454E44AE
-                  426082}
-                Transparent = True
+              object GroupBoxUsuarioLegenda: TGroupBox
+                AlignWithMargins = True
+                Left = 501
+                Top = 0
+                Width = 255
+                Height = 57
+                Margins.Top = 0
+                Margins.Right = 6
+                Margins.Bottom = 0
+                Align = alRight
+                Caption = ' Legenda '
+                TabOrder = 1
+                object LabelUsuarioAutorizado: TLabel
+                  Left = 27
+                  Top = 14
+                  Width = 99
+                  Height = 13
+                  Caption = 'Permiss'#227'o concedida'
+                end
+                object LabelUsuarioDesaltoriza: TLabel
+                  Left = 160
+                  Top = 14
+                  Width = 87
+                  Height = 13
+                  Caption = 'Permiss'#227'o negada'
+                end
+                object LabelUsuarioNaoAplicavel: TLabel
+                  Left = 75
+                  Top = 36
+                  Width = 123
+                  Height = 13
+                  Caption = 'A permiss'#227'o n'#227'o se aplica'
+                end
+                object Image1: TImage
+                  Left = 8
+                  Top = 13
+                  Width = 16
+                  Height = 16
+                  AutoSize = True
+                  Picture.Data = {
+                    0954506E67496D61676589504E470D0A1A0A0000000D49484452000000100000
+                    001008060000001FF3FF610000002B744558744372656174696F6E2054696D65
+                    004672203135204E6F7620323030322031303A30383A3239202B30313030F5A2
+                    62C60000000774494D4507D30A06140A2A0DDEA9AC000000097048597300000A
+                    F000000AF00142AC34980000000467414D410000B18F0BFC6105000003284944
+                    415478DA55937D68536714C67F3736A96D6DFA613B61B1DDFAC5E6948943288C
+                    EA4A2DF8CFCAC6C650FF90C2869B6E1DC24464281DAC73FD6B30D45270AD6255
+                    FC18223AAC5B5BB0ADE83E32BF2ADAAE9F6B6C6D9BB4D96D6E127373939B9DA4
+                    D1EA0B0FEF7D0FE779EE79CFFB1C85E7D7113251D961B1596A5664E694452311
+                    C5A36A23B139F3379C9CE406D3926508624F29CA33722B557991ACB6DA759B1D
+                    AB5E2AC2A5B9980EB8F1EA1A4333D33C1C9C721BFDC65E4E7349B2FD82E8A280
+                    90572F2D6EDFBFB136D5151861C8771F550FE2D7C3F8C311B4B08E4FD7991CD3
+                    C246AFB98776CE0B6B56602AF1B2F352ECFD876BF63AFABC7FE20EB9884AD81F
+                    0EE30BE9897D52FB8F4F4B77737CBC99E19BAA87E3B11D78E9118179856FF9AA
+                    AEFAC31F0A72EDFCE3BB452CA6108A44F11B0601F9EBBFF333746EBA47F1B232
+                    063427EBDAAA095DF6B5D2CD2111185068E45AD347FB2A6FCC5CC113D4C8494B
+                    471781A011615CC857ABEE506C2F4B5CB679F46B3EBFF413F479EFD2166B1481
+                    2E25FF70CEC467EFBCEB3877AF834F56EEA365B68195F674A6FC2ABF56DDE5D5
+                    ECD2449B8E0E1F60D7F58398D30E989C53690AC505CE2A793F664D56BCB9E6E5
+                    2D19BBF9A0E87D069EF4F3F1ED1ACE5776519C5D9620B78C1EA0AEE7A0542607
+                    D72A981B53690E35CBE998C23796DEF72ACB370C79A6E8AEF89BF4A56964C835
+                    482181D6D17ABEEC6D48904DDD0223EBE1F15F7D9CE3CA82401DFBD756947E37
+                    AB4C509251C2D50A27569B0D6BDA125AC7EAF9A2BB01435EDC34257DA248FA6E
+                    85EB833F73875B1239A3B08182D46A9B33FB35EB8AA0BCFDE6C2729AD69FE2B2
+                    FB183BBBBF271A49FA6E2E17A65E8790D3CB09E3A2F8B14BA21D712359D9C6D6
+                    94372C2D2905165B48189936D09E24BD1687BB5004A479E6C308BFCC9F658231
+                    895E10F42B4937DAA9663B6B957AF253F3B1A68AE3A501C16562DAE5F22DCE0D
+                    8C7BE9D4DB798447F23B057F08D4A7B320DD6139B9BCCD6A6A7058DE22CB5648
+                    4C5164181E316C0EF2009F94FD58F27E17DC167816ACBCB896083205522F7259
+                    5E1164272B54E30F182F39B9FB5E1CA6C5B5D01390DAC910D892F1F808079253
+                    187E7E9CFF07092151D68910EF880000000049454E44AE426082}
+                  Transparent = True
+                end
+                object Image2: TImage
+                  Left = 141
+                  Top = 13
+                  Width = 16
+                  Height = 16
+                  AutoSize = True
+                  Picture.Data = {
+                    0954506E67496D61676589504E470D0A1A0A0000000D49484452000000100000
+                    001008060000001FF3FF610000002B744558744372656174696F6E2054696D65
+                    004672203135204E6F7620323030322031303A30383A3239202B30313030F5A2
+                    62C60000000774494D4507D30A06140B174CADD4FC000000097048597300000A
+                    F000000AF00142AC34980000000467414D410000B18F0BFC6105000002F74944
+                    415478DA5D535B485451145DF7CE9D3B2F1F9323193E981F31B3A20FD17EA294
+                    C0AFD0FE8C08C21FA33E7A7C988A45207DF59141106588143D30222B1184327A
+                    A7480FCD46C7741C5FE8E8A0335EE771DFED3B8E317560DD7DCEB97BADB3CFD9
+                    7B334819D142E407459CE5B2D38E98B7390B5559C57A706D6A762DDEF75EC0DD
+                    D608A6C84D22E85B1C666B2216E144DC9D7FCB51539B6E72B980391F105C0484
+                    10E44000BE9139E14B50BC5417C243720F11D4BF020659292FBF67AF3DC9C237
+                    0ECC7B81C80685142144694E568AC2EF17B4FB0BEAE52B5174126DD910615628
+                    6CDE9DEFC9B8D0928E914F407885B6493C1223F296082166208677D3BA707A59
+                    A91FD3F08A0456195F1EAEB91BCE35B09C06CC8E6FDE2E2E92737453C088C488
+                    C0584B2246A34E744C861EDD10719D3C4799F93D364F5E73CBAE99CE4E8433F2
+                    E0E454D8391D5633C07326C0446009160BF889AF189D93F1615AF09E89C85749
+                    A08F5938B043CA3D5A6D5EEAEA42F8F5226C8A049BDD0E1B29D8C9834D4D5363
+                    0D065F7C862F10938E8722ADB4F38099DD9F2315549499634383987CE2439A12
+                    879D04AC74A29537814F49957EB11A3DCF7F62351014EBD6376ED2563B335268
+                    19DB5B55568C895F104A0FC36CB383B559C1F0168ADE0C96311EC5049DE7218F
+                    8FA0BD771151FFB0B751527A1202BD5968AB3A54749E0B2F019A710C65405600
+                    BA0A241D3A99184196818F5C1EFC6A26FAFD9EEE6EE06BE20A4D0E941CCBB10C
+                    ECCB453A5422E83A188D94540D92A243243D95C8BFB54CBC35ED86C3FF5D688C
+                    C79E526EDE241E913E96DB693855E142DB4E175899B81A9114B2C65CA4607EA0
+                    00C36C3E9C8B5EEDCEFAEAE36FC00CF19E25D2987CA3AC662BEA2BED6C536EB6
+                    3583E13844351E2B7060467741A5026202D34287187F49E420F9F713A8EAB0B6
+                    F5C094686C2F6271B092417531672ACD345BDC12451094C4992145F550D985A8
+                    94A83930401822AC244A3925CB868893E0269424AD33F9CF681E236C4FD2FEDB
+                    4C29C3581BA94F27389273245B98EA19C2FFEDFC07F72753E0E73544FB000000
+                    0049454E44AE426082}
+                  Transparent = True
+                end
+                object Image3: TImage
+                  Left = 56
+                  Top = 34
+                  Width = 16
+                  Height = 16
+                  AutoSize = True
+                  Picture.Data = {
+                    0954506E67496D61676589504E470D0A1A0A0000000D49484452000000100000
+                    001008060000001FF3FF610000002B744558744372656174696F6E2054696D65
+                    00536F203132204F6B7420323030332032333A34323A3137202B30313030AD5F
+                    A7170000000774494D4507D30A0E0B0B2828053563000000097048597300000A
+                    F000000AF00142AC34980000000467414D410000B18F0BFC6105000001F14944
+                    415478DAA5935D4893511CC67FEF186313090A54BC2888A834882EFA106F0ABA
+                    2C8641104197E27589D08D1741DD595654102E820A22C9C0E5065D95861294AE
+                    9BA0189105C2686638B7BDFB7ABF7A962B582B54FAC3EFE69CE73CE739FF738E
+                    C17F96B181396F5D06EF221CF99EA5DFE7370ED996C7D232730B4BDC198830A9
+                    E98270FF69F0E52103A5A6D0D0F6035B7C017F05CC02A5AF2689046EE23D4367
+                    47B821D93761371854770EB4865EECEAD9E3239F856C1EF2396152A978CC4CE3
+                    5E1FA33F36CB63C9177F25F96D30758568F7E96D3D81CD4D502A2BACD2E67278
+                    669142D123B30C774799BCF0884B92CF8A7C9DC1CBAB46EAF099B6761C1F380E
+                    9465629AD8258BA2BC2A3AD1D338E9DE9B5C943C2A527506CF2F933A7AB2B91D
+                    4B43AED2D9166EB142B9A430F2B265107B46BAEF162392DF17F3750663834C1C
+                    3F6684432103CFF5706C0F4B8B14808A4C56562032CAF4F0045392DF6B3018EE
+                    25DCB597685737BE6A5C5BA770ACD5E8B67A9E788B7BEE360F3E2F3227F978C3
+                    1154CDD7FA18DCB793F3BB3BF00583AB0B331948267123719EC4133F17C5C49B
+                    8626AAD43D5AC30739B57F0727B6B6D0E9A815C9053E8EBFE6D37C1A59F14ACC
+                    8874C335D6CA2F5A4487E8146DB5F1EABD7FA8F1F787F447123D063689606D4C
+                    6D24BBE6535EE39FACEF336DB47E008BE4CF11436A3C840000000049454E44AE
+                    426082}
+                  Transparent = True
+                end
               end
             end
           end
@@ -749,22 +827,25 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
     object TabSheet_USU: TTabSheet
       Caption = 'Gerenciamento de usu'#225'rios'
       ImageIndex = 1
+      ExplicitWidth = 1134
+      ExplicitHeight = 586
       DesignSize = (
-        1134
-        586)
+        776
+        534)
       object GroupBoxUsuariosConsultar2: TGroupBox
         Left = 5
         Top = 2
-        Width = 1124
+        Width = 766
         Height = 57
         Anchors = [akLeft, akTop, akRight]
         Caption = ' Localiza'#231#227'o r'#225'pida '
         TabOrder = 0
+        ExplicitWidth = 1124
         DesignSize = (
-          1124
+          766
           57)
         object LabelE3: TLabel
-          Left = 1000
+          Left = 642
           Top = 31
           Width = 12
           Height = 13
@@ -775,7 +856,7 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
         object LabeledEdit_USU_VA_NOME2: TLabeledEdit
           Left = 8
           Top = 27
-          Width = 986
+          Width = 628
           Height = 21
           Anchors = [akLeft, akTop, akRight]
           CharCase = ecUpperCase
@@ -784,9 +865,10 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
           EditLabel.Caption = 'Nome'
           LabelSpacing = 1
           TabOrder = 0
+          ExplicitWidth = 986
         end
         object LabeledEdit_USU_VA_LOGIN2: TLabeledEdit
-          Left = 1018
+          Left = 660
           Top = 27
           Width = 98
           Height = 21
@@ -797,10 +879,11 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
           EditLabel.Caption = 'Login'
           LabelSpacing = 1
           TabOrder = 1
+          ExplicitLeft = 1018
         end
       end
       object Panel_USU_Layer: TPanel
-        Left = 848
+        Left = 490
         Top = 65
         Width = 281
         Height = 22
@@ -808,6 +891,7 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
         BevelOuter = bvNone
         ParentColor = True
         TabOrder = 2
+        ExplicitLeft = 848
         DesignSize = (
           281
           22)
@@ -1139,29 +1223,32 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
         end
       end
       object GroupBox_GDU: TGroupBox
-        Left = 848
+        Left = 490
         Top = 235
         Width = 281
-        Height = 346
+        Height = 294
         Anchors = [akTop, akRight, akBottom]
         Caption = ' Grupos aos quais o usu'#225'rio selecionado pertence '
         TabOrder = 1
+        ExplicitLeft = 848
+        ExplicitHeight = 346
         DesignSize = (
           281
-          346)
+          294)
         object Panel_GDU_Info: TPanel
           Left = 8
           Top = 15
           Width = 265
-          Height = 323
+          Height = 271
           Anchors = [akLeft, akTop, akRight, akBottom]
           BevelOuter = bvNone
           TabOrder = 0
+          ExplicitHeight = 323
           object Label_GDU_Info: TLabel
             Left = 0
             Top = 0
             Width = 265
-            Height = 323
+            Height = 271
             Align = alClient
             Alignment = taCenter
             AutoSize = False
@@ -1176,7 +1263,7 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
         end
         object BitBtn_GDU_Adicionar: TBitBtn
           Left = 27
-          Top = 313
+          Top = 261
           Width = 112
           Height = 25
           Anchors = [akBottom]
@@ -1253,10 +1340,11 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
           NumGlyphs = 2
           ParentDoubleBuffered = False
           TabOrder = 2
+          ExplicitTop = 313
         end
         object BitBtn_GDU_Remover: TBitBtn
           Left = 141
-          Top = 313
+          Top = 261
           Width = 112
           Height = 25
           Anchors = [akBottom]
@@ -1334,16 +1422,18 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
           ParentDoubleBuffered = False
           Spacing = 5
           TabOrder = 1
+          ExplicitTop = 313
         end
       end
       object GroupBoxUsuariosCadastrar: TGroupBox
-        Left = 848
+        Left = 490
         Top = 93
         Width = 281
         Height = 139
         Anchors = [akTop, akRight]
         Caption = ' Dados do usu'#225'rio '
         TabOrder = 3
+        ExplicitLeft = 848
         DesignSize = (
           281
           139)
@@ -1418,24 +1508,27 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
     object TabSheet_GRU: TTabSheet
       Caption = 'Gerenciamento de grupos'
       ImageIndex = 2
+      ExplicitWidth = 1134
+      ExplicitHeight = 586
       DesignSize = (
-        1134
-        586)
+        776
+        534)
       object GroupBoxGruposConsultar: TGroupBox
         Left = 5
         Top = 2
-        Width = 1124
+        Width = 766
         Height = 57
         Anchors = [akLeft, akTop, akRight]
         Caption = ' Localiza'#231#227'o r'#225'pida '
         TabOrder = 0
+        ExplicitWidth = 1124
         DesignSize = (
-          1124
+          766
           57)
         object LabeledEdit_GRU_VA_NOME2: TLabeledEdit
           Left = 8
           Top = 27
-          Width = 1108
+          Width = 750
           Height = 21
           Anchors = [akLeft, akTop, akRight]
           CharCase = ecUpperCase
@@ -1444,23 +1537,26 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
           EditLabel.Caption = 'Nome'
           LabelSpacing = 1
           TabOrder = 0
+          ExplicitWidth = 1108
         end
       end
       object Panel_GRU_Layer: TPanel
         Left = 5
-        Top = 501
-        Width = 1123
+        Top = 449
+        Width = 765
         Height = 22
         Anchors = [akLeft, akRight, akBottom]
         BevelOuter = bvNone
         ParentColor = True
         TabOrder = 2
+        ExplicitTop = 501
+        ExplicitWidth = 1123
         DesignSize = (
-          1123
+          765
           22)
         object SpeedButton_GRU_Delete: TSpeedButton
           Tag = 15
-          Left = 605
+          Left = 409
           Top = 0
           Width = 22
           Height = 22
@@ -1540,7 +1636,7 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
         end
         object SpeedButton_GRU_Refresh: TSpeedButton
           Tag = 19
-          Left = 1101
+          Left = 743
           Top = 0
           Width = 22
           Height = 22
@@ -1553,7 +1649,7 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
         end
         object SpeedButton_GRU_Edit: TSpeedButton
           Tag = 16
-          Left = 722
+          Left = 488
           Top = 0
           Width = 22
           Height = 22
@@ -1633,7 +1729,7 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
         end
         object SpeedButton_GRU_Insert: TSpeedButton
           Tag = 14
-          Left = 492
+          Left = 332
           Top = 0
           Width = 22
           Height = 22
@@ -1724,7 +1820,7 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
         end
         object SpeedButton_GRU_Previous: TSpeedButton
           Tag = 11
-          Left = 147
+          Left = 97
           Top = 0
           Width = 22
           Height = 22
@@ -1737,7 +1833,7 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
         end
         object SpeedButton_GRU_Next: TSpeedButton
           Tag = 12
-          Left = 263
+          Left = 176
           Top = 0
           Width = 22
           Height = 22
@@ -1750,7 +1846,7 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
         end
         object SpeedButton_GRU_Last: TSpeedButton
           Tag = 13
-          Left = 376
+          Left = 253
           Top = 0
           Width = 22
           Height = 22
@@ -1763,7 +1859,7 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
         end
         object SpeedButton_GRU_Post: TSpeedButton
           Tag = 17
-          Left = 834
+          Left = 565
           Top = 0
           Width = 22
           Height = 22
@@ -1776,7 +1872,7 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
         end
         object SpeedButton_GRU_Cancel: TSpeedButton
           Tag = 18
-          Left = 952
+          Left = 645
           Top = 0
           Width = 22
           Height = 22
@@ -1790,14 +1886,16 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
       end
       object GroupBoxGruposCadastrar: TGroupBox
         Left = 5
-        Top = 526
-        Width = 1124
+        Top = 474
+        Width = 766
         Height = 56
         Anchors = [akLeft, akRight, akBottom]
         Caption = ' Dados do grupo '
         TabOrder = 1
+        ExplicitTop = 526
+        ExplicitWidth = 1124
         DesignSize = (
-          1124
+          766
           56)
         object LabelGrupoNome: TLabel
           Left = 8
@@ -1824,11 +1922,12 @@ object KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
         object DBEdit_GRU_VA_DESCRICAO: TDBEdit
           Left = 224
           Top = 27
-          Width = 893
+          Width = 535
           Height = 21
           Anchors = [akLeft, akTop, akRight]
           DataField = 'VA_DESCRICAO'
           TabOrder = 1
+          ExplicitWidth = 893
         end
       end
     end

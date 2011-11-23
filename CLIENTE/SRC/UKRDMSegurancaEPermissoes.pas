@@ -6,10 +6,12 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms,
-  KRK.Wizards.DataModule;
+  KRK.Wizards.DataModule, DB, DBClient;
 
 type
   TKRDMSegurancaEPermissoes = class(TKRKDataModule)
+    CLDSUsuarios: TClientDataSet;
+    DTSRUsuarios: TDataSource;
   private
     { Declarações privadas }
   protected
@@ -20,8 +22,9 @@ type
 
 implementation
 
-uses UKRFMSegurancaEPermissoes;
-
 {$R *.dfm}
+
+uses UKRFMSegurancaEPermissoes
+   , UDAMOPrincipal;
 
 end.

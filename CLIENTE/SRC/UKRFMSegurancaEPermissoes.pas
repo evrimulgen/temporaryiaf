@@ -7,33 +7,12 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms,
   KRK.Wizards.Form, Mask, DBCtrls, Buttons, ExtCtrls, StdCtrls, ComCtrls,
-  pngimage;
+  pngimage, Grids, DBGrids, KRK.Components.DataControls.DBGrid;
 
 type
   TKRFMSegurancaEPermissoes = class(TKRKForm)
     PGCTSegurancaEPermissoes: TPageControl;
     TabSheet_Permissions: TTabSheet;
-    GroupBoxGrupoConsultaRapida2: TGroupBox;
-    LabelGrupoConsultarTipoDaEntidade: TLabel;
-    LabelE2: TLabel;
-    ComboBox_PDG_TI_TIPO: TComboBox;
-    LabeledEdit_PDG_VA_NOME: TLabeledEdit;
-    GroupBoxGrupoLegenda: TGroupBox;
-    ImageGrupoSim: TImage;
-    ImageGrupoNao: TImage;
-    LabelGrupoSim: TLabel;
-    LabelGrupoNao: TLabel;
-    ImageGrupoNaoSeAplica: TImage;
-    LabelGrupoNaoSeAplica: TLabel;
-    GroupBoxUsuarioConsultaRapida2: TGroupBox;
-    LabelTipo2: TLabel;
-    LabelE: TLabel;
-    ComboBox_PDU_TI_TIPO: TComboBox;
-    LabeledEdit_PDU_VA_NOME: TLabeledEdit;
-    GroupBoxUsuarioLegenda: TGroupBox;
-    LabelUsuarioAutorizado: TLabel;
-    LabelUsuarioDesaltoriza: TLabel;
-    LabelUsuarioNaoAplicavel: TLabel;
     GroupBoxEntidadesDoSistema: TGroupBox;
     GroupBoxFiltro: TGroupBox;
     LabelTipo: TLabel;
@@ -100,11 +79,35 @@ type
     DBEdit_GRU_VA_NOME: TDBEdit;
     DBEdit_GRU_VA_DESCRICAO: TDBEdit;
     PANLLayerSuperior: TPanel;
+    KRDGEntidadesDoSistema: TKRKDBGrid;
+    KRKDBGrid1: TKRKDBGrid;
+    PANLFooter: TPanel;
     PGCTPermissoes: TPageControl;
     TBSHGRU: TTabSheet;
-    TBSHUSU: TTabSheet;
     PANLGRULayerTop: TPanel;
+    GroupBoxGrupoConsultaRapida2: TGroupBox;
+    LabelGrupoConsultarTipoDaEntidade: TLabel;
+    LabelE2: TLabel;
+    ComboBox_PDG_TI_TIPO: TComboBox;
+    LabeledEdit_PDG_VA_NOME: TLabeledEdit;
+    GroupBoxGrupoLegenda: TGroupBox;
+    ImageGrupoSim: TImage;
+    ImageGrupoNao: TImage;
+    LabelGrupoSim: TLabel;
+    LabelGrupoNao: TLabel;
+    ImageGrupoNaoSeAplica: TImage;
+    LabelGrupoNaoSeAplica: TLabel;
+    TBSHUSU: TTabSheet;
     PANLUSULayerTop: TPanel;
+    GroupBoxUsuarioConsultaRapida2: TGroupBox;
+    LabelTipo2: TLabel;
+    LabelE: TLabel;
+    ComboBox_PDU_TI_TIPO: TComboBox;
+    LabeledEdit_PDU_VA_NOME: TLabeledEdit;
+    GroupBoxUsuarioLegenda: TGroupBox;
+    LabelUsuarioAutorizado: TLabel;
+    LabelUsuarioDesaltoriza: TLabel;
+    LabelUsuarioNaoAplicavel: TLabel;
     Image1: TImage;
     Image2: TImage;
     Image3: TImage;
@@ -120,7 +123,7 @@ implementation
 
 {$R *.dfm}
 
-uses UKRDMSegurancaEPermissoes, Dialogs;
+uses UKRDMSegurancaEPermissoes;
 
 { TKRFMSegurancaEPermissoes }
 
