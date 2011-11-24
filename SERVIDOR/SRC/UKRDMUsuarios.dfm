@@ -12,10 +12,77 @@ inherited KRDMUsuarios: TKRDMUsuarios
     Connection = SODMPrincipal.ZCONIAF
     UpdateObject = ZUSQUsuarios
     SQL.Strings = (
-      'SELECT * FROM USUARIOS')
-    Params = <>
+      'SELECT *'
+      '  FROM USUARIOS'
+      
+        ' WHERE ((:SM_USUARIOS_ID IS NULL) OR (SM_USUARIOS_ID = :SM_USUAR' +
+        'IOS_ID))'
+      '   AND ((:VA_NOME IS NULL) OR (VA_NOME LIKE :VA_NOME))'
+      '   AND ((:VA_LOGIN IS NULL) OR (VA_LOGIN LIKE :VA_LOGIN))'
+      '   AND ((:CH_SENHA IS NULL) OR (CH_SENHA = :CH_SENHA))'
+      '   AND ((:VA_EMAIL IS NULL) OR (VA_EMAIL LIKE :VA_EMAIL))')
+    Params = <
+      item
+        DataType = ftSmallint
+        Name = 'SM_USUARIOS_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'VA_NOME'
+        ParamType = ptInput
+        Size = 64
+      end
+      item
+        DataType = ftString
+        Name = 'VA_LOGIN'
+        ParamType = ptInput
+        Size = 16
+      end
+      item
+        DataType = ftString
+        Name = 'CH_SENHA'
+        ParamType = ptInput
+        Size = 128
+      end
+      item
+        DataType = ftString
+        Name = 'VA_EMAIL'
+        ParamType = ptInput
+        Size = 64
+      end>
     Left = 24
     Top = 60
+    ParamData = <
+      item
+        DataType = ftSmallint
+        Name = 'SM_USUARIOS_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'VA_NOME'
+        ParamType = ptInput
+        Size = 64
+      end
+      item
+        DataType = ftString
+        Name = 'VA_LOGIN'
+        ParamType = ptInput
+        Size = 16
+      end
+      item
+        DataType = ftString
+        Name = 'CH_SENHA'
+        ParamType = ptInput
+        Size = 128
+      end
+      item
+        DataType = ftString
+        Name = 'VA_EMAIL'
+        ParamType = ptInput
+        Size = 64
+      end>
     object ZQRYUsuariossm_usuarios_id: TSmallintField
       DisplayLabel = 'ID'
       FieldName = 'sm_usuarios_id'

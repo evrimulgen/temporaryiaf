@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, UKRFMDBAwareBasico, Mask, DBCtrls, Buttons, pngimage, ExtCtrls,
   StdCtrls, Grids, DBGrids, KRK.Components.DataControls.DBGrid, ComCtrls,
-  ToolWin, ActnList, ImgList;
+  ActnList, ImgList, ToolWin;
 
 type
   TKRFMSegurancaEPermissoes = class(TKRFMDBAwareBasico)
@@ -110,6 +110,8 @@ type
     LabelGrupoDescricao: TLabel;
     DBEdit_GRU_VA_NOME: TDBEdit;
     DBEdit_GRU_VA_DESCRICAO: TDBEdit;
+    procedure LAEDUSU_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
+    procedure LAEDUSU_VA_LOGINKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -121,6 +123,20 @@ implementation
 uses UKRDMSegurancaEPermissoes;
 
 {$R *.dfm}
+
+procedure TKRFMSegurancaEPermissoes.LAEDUSU_VA_LOGINKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  if Key = #13 then
+    TKRDMSegurancaEPermissoes(Owner).FiltrarUsuarios(0,'',TLabeledEdit(Sender).Text,'','');
+end;
+
+procedure TKRFMSegurancaEPermissoes.LAEDUSU_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  if Key = #13 then
+    TKRDMSegurancaEPermissoes(Owner).FiltrarUsuarios(0,TLabeledEdit(Sender).Text,'','','');
+end;
 
 initialization
   RegisterClass(TKRFMSegurancaEPermissoes)
