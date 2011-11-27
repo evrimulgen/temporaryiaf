@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, UKRFMDBAwareBasico, Mask, DBCtrls, Buttons, pngimage, ExtCtrls,
   StdCtrls, Grids, DBGrids, KRK.Components.DataControls.DBGrid, ComCtrls,
-  ActnList, ImgList, ToolWin;
+  ActnList, ImgList, ToolWin, KRK.Components.DataControls.LabeledDBEdit;
 
 type
   TKRFMSegurancaEPermissoes = class(TKRFMDBAwareBasico)
@@ -66,31 +66,14 @@ type
     LabelE3: TLabel;
     LabeledEdit_USU_VA_NOME2: TLabeledEdit;
     LabeledEdit_USU_VA_LOGIN2: TLabeledEdit;
-    Panel_USU_Layer: TPanel;
-    SpeedButton_USU_Delete: TSpeedButton;
-    SpeedButton_USU_Refresh: TSpeedButton;
-    SpeedButton_USU_Edit: TSpeedButton;
-    SpeedButton_USU_Insert: TSpeedButton;
-    SpeedButton_USU_First: TSpeedButton;
-    SpeedButton_USU_Previous: TSpeedButton;
-    SpeedButton_USU_Next: TSpeedButton;
-    SpeedButton_USU_Last: TSpeedButton;
-    SpeedButton_USU_Post: TSpeedButton;
-    SpeedButton_USU_Cancel: TSpeedButton;
     GroupBox_GDU: TGroupBox;
     Panel_GDU_Info: TPanel;
     Label_GDU_Info: TLabel;
     BitBtn_GDU_Adicionar: TBitBtn;
     BitBtn_GDU_Remover: TBitBtn;
     GroupBoxUsuariosCadastrar: TGroupBox;
-    LabelUsuarioNome: TLabel;
-    LabelUsuarioLogin: TLabel;
-    LabelSenha1: TLabel;
-    Label_USU_VA_EMAIL: TLabel;
-    DBEdit_USU_VA_NOME: TDBEdit;
-    DBEdit_USU_VA_LOGIN: TDBEdit;
-    DBEdit_USU_TB_SENHA: TDBEdit;
-    DBEdit_USU_VA_EMAIL: TDBEdit;
+    KRDE_USU_CH_SENHA: TKRKLabeledDBEdit;
+    KRDE_USU_VA_EMAIL: TKRKLabeledDBEdit;
     TabSheet_GRU: TTabSheet;
     GroupBoxGruposConsultar: TGroupBox;
     LabeledEdit_GRU_VA_NOME2: TLabeledEdit;
@@ -110,6 +93,12 @@ type
     LabelGrupoDescricao: TLabel;
     DBEdit_GRU_VA_NOME: TDBEdit;
     DBEdit_GRU_VA_DESCRICAO: TDBEdit;
+    DBNAUsuarios: TDBNavigator;
+    KRDGUsuarios: TKRKDBGrid;
+    PANLGerenciamentoDeUsuarios: TPanel;
+    PANLUsariosEGrupos: TPanel;
+    KRDE_USU_VA_NOME: TKRKLabeledDBEdit;
+    KRDE_USU_VA_LOGIN: TKRKLabeledDBEdit;
     procedure LAEDUSU_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
     procedure LAEDUSU_VA_LOGINKeyPress(Sender: TObject; var Key: Char);
     procedure LabeledEdit_EDS_VA_NOMEKeyPress(Sender: TObject; var Key: Char);

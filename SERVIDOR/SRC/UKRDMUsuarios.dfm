@@ -1,7 +1,7 @@
 inherited KRDMUsuarios: TKRDMUsuarios
   OldCreateOrder = True
-  Height = 164
-  Width = 239
+  Height = 334
+  Width = 393
   inherited ZROQ: TZReadOnlyQuery
     Connection = SODMPrincipal.ZCONIAF
   end
@@ -161,5 +161,24 @@ inherited KRDMUsuarios: TKRDMUsuarios
         Name = 'va_email'
         ParamType = ptUnknown
       end>
+  end
+  object ZQRYGruposDosUsuarios: TZQuery
+    Connection = SODMPrincipal.ZCONIAF
+    SQL.Strings = (
+      'SELECT GDU.*'
+      '     , GRU.VA_NOME AS GRUPO'
+      '  FROM GRUPOSDOSUSUARIOS GDU'
+      '  JOIN GRUPOS GRU USING (SM_GRUPOS_ID)')
+    Params = <>
+    MasterFields = 'sm_usuarios_id'
+    MasterSource = DTSRUsuarios
+    LinkedFields = 'sm_usuarios_id'
+    Left = 126
+    Top = 60
+  end
+  object DTSRUsuarios: TDataSource
+    DataSet = ZQRYUsuarios
+    Left = 24
+    Top = 156
   end
 end

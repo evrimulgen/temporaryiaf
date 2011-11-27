@@ -6,7 +6,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms,
-  UKRDMBasico, DB, DBClient, ImgList, ActnList;
+  DBClient, UKRDMBasico, DB, ImgList, ActnList;
 
 type
   TKRDMSegurancaEPermissoes = class(TKRDMBasico)
@@ -24,8 +24,19 @@ type
     CLDSConsEntidadesDoSistemasm_tipo: TSmallintField;
     CLDSUsuarios: TClientDataSet;
     DTSRUsuarios: TDataSource;
-    procedure CLDSConsEntidadesDoSistemasm_tipoGetText(Sender: TField;
-      var Text: string; DisplayText: Boolean);
+    CLDSUsuariossm_usuarios_id: TSmallintField;
+    CLDSUsuariosva_nome: TWideStringField;
+    CLDSUsuariosva_login: TWideStringField;
+    CLDSUsuariosch_senha: TWideStringField;
+    CLDSUsuariosva_email: TWideStringField;
+    CLDSGruposDosUsuarios: TClientDataSet;
+    CLDSUsuariosZQRYGruposDosUsuarios: TDataSetField;
+    CLDSGruposDosUsuariosin_gruposdosusuarios_id: TIntegerField;
+    CLDSGruposDosUsuariossm_grupos_id: TSmallintField;
+    CLDSGruposDosUsuariossm_usuarios_id: TSmallintField;
+    CLDSGruposDosUsuariosgrupo: TWideStringField;
+    procedure CLDSConsEntidadesDoSistemasm_tipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
+    procedure CLDSUsuariosch_senhaGetText(Sender: TField; var Text: string; DisplayText: Boolean);
   private
     { Declarações privadas }
   protected
@@ -72,6 +83,14 @@ begin
     AssignParam(CLDSConsUsuarios.Params.ParamByName('VA_EMAIL'),aVA_EMAIL);
     CLDSConsUsuarios.Refresh;
   end;
+end;
+
+procedure TKRDMSegurancaEPermissoes.CLDSUsuariosch_senhaGetText(Sender: TField; var Text: string; DisplayText: Boolean);
+begin
+  inherited;
+  { Senhas nunca são exibidas }
+  if DisplayText then
+    Text := '';
 end;
 
 procedure TKRDMSegurancaEPermissoes.FiltrarEntidadesDoSistema(aIN_ENTIDADESDOSISTEMA_ID: Integer; aVA_NOME: String; aSM_TIPO: SmallInt);

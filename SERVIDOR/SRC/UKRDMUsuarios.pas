@@ -16,6 +16,8 @@ type
     ZQRYUsuariosch_senha: TWideStringField;
     ZQRYUsuariosva_email: TWideStringField;
     ZUSQUsuarios: TZUpdateSQL;
+    ZQRYGruposDosUsuarios: TZQuery;
+    DTSRUsuarios: TDataSource;
   private
     { Private declarations }
   public
