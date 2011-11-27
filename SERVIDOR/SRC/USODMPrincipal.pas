@@ -27,11 +27,12 @@ type
   TSODMPrincipal = class(TSoapDataModule, ISODMPrincipal, IAppServerSOAP, IAppServer)
     ZCONIAF: TZConnection;
     DSPRUsuarios: TDataSetProvider;
-    procedure KRKSoapDataModuleCreate(Sender: TObject);
+    DSPREntidadesDoSistema: TDataSetProvider;
     procedure ZCONIAFBeforeConnect(Sender: TObject);
   private
     function SessionExists(const aSessionID: String): Boolean;
     function CheckSessions: Boolean;
+    procedure CreateDataModules(const aProviderName: WideString);
   public
     function SAS_ApplyUpdates(const ProviderName: WideString; Delta: OleVariant; MaxErrors: Integer; out ErrorCount: Integer; var OwnerData: OleVariant): OleVariant; override; stdcall;
     procedure SAS_Execute(const ProviderName: WideString; const CommandText: WideString; var Params: OleVariant; var OwnerData: OleVariant); override; stdcall;
@@ -48,7 +49,8 @@ implementation
 uses SyncObjs
    , UServerConfiguration
    , USessionsManager
-   , UKRDMUsuarios;
+   , UKRDMUsuarios
+   , UKRDMEntidadesDoSistema;
 
 procedure TSODMPrincipalCreateInstance(out obj: TObject);
 begin
@@ -67,35 +69,40 @@ begin
   end;
 end;
 
-procedure TSODMPrincipal.KRKSoapDataModuleCreate(Sender: TObject);
+procedure TSODMPrincipal.CreateDataModules(const aProviderName: WideString);
 begin
-  { TODO -oCBFF : Quando o servidor é criado ele instancia todos os outros
-  datamodules e talvez isso seja muito dispendioso em termos de memória. Caso
-  isso aconteça, considere instanciar cada datamodule específico de acordo com o
-  provider, nos métodos SAS }
-
   { Não é necessário usar free para destruir, visto que usamos este datamodule
   como dono dos datamodules criados }
-  TKRDMUsuarios.Create(Self);
+  if aProviderName = 'DSPRUsuarios' then
+    TKRDMUsuarios.Create(Self)
+  else if aProviderName = 'DSPREntidadesDoSistema' then
+    TKRDMEntidadesDoSistema.Create(Self)
 end;
 
 function TSODMPrincipal.SAS_ApplyUpdates(const ProviderName: WideString; Delta: OleVariant; MaxErrors: Integer; out ErrorCount: Integer; var OwnerData: OleVariant): OleVariant;
 begin
   if (not CheckSessions) or SessionExists(OwnerData) then
-    Result := inherited
+  begin
+    CreateDataModules(ProviderName);
+    Result := inherited;
+  end
   else
     raise Exception.Create('Para usar este método é necessário que você seja um usuário autenticado no sistema');
 end;
 
 function TSODMPrincipal.SAS_DataRequest(const ProviderName: WideString; Data: OleVariant): OleVariant;
 begin
+  CreateDataModules(ProviderName);
   Result := inherited;
 end;
 
 procedure TSODMPrincipal.SAS_Execute(const ProviderName, CommandText: WideString; var Params, OwnerData: OleVariant);
 begin
   if (not CheckSessions) or SessionExists(OwnerData) then
-    inherited
+  begin
+    CreateDataModules(ProviderName);
+    inherited;
+  end
   else
     raise Exception.Create('Para usar este método é necessário que você seja um usuário autenticado no sistema');
 end;
@@ -103,7 +110,10 @@ end;
 function TSODMPrincipal.SAS_GetParams(const ProviderName: WideString; var OwnerData: OleVariant): OleVariant;
 begin
   if (not CheckSessions) or SessionExists(OwnerData) then
-    Result := inherited
+  begin
+    CreateDataModules(ProviderName);
+    Result := inherited;
+  end
   else
     raise Exception.Create('Para usar este método é necessário que você seja um usuário autenticado no sistema');
 end;
@@ -111,7 +121,10 @@ end;
 function TSODMPrincipal.SAS_GetRecords(const ProviderName: WideString; Count: Integer; out RecsOut: Integer; Options: Integer; const CommandText: WideString; var Params, OwnerData: OleVariant): OleVariant;
 begin
   if (not CheckSessions) or SessionExists(OwnerData) then
-    Result := inherited
+  begin
+    CreateDataModules(ProviderName);
+    Result := inherited;
+  end
   else
     raise Exception.Create('Para usar este método é necessário que você seja um usuário autenticado no sistema');
 end;
@@ -119,7 +132,10 @@ end;
 function TSODMPrincipal.SAS_RowRequest(const ProviderName: WideString; Row: OleVariant; RequestType: Integer; var OwnerData: OleVariant): OleVariant;
 begin
   if (not CheckSessions) or SessionExists(OwnerData) then
-    Result := inherited
+  begin
+    CreateDataModules(ProviderName);
+    Result := inherited;
+  end
   else
     raise Exception.Create('Para usar este método é necessário que você seja um usuário autenticado no sistema');
 end;
@@ -146,8 +162,6 @@ begin
     Protocol := ServerConfiguration.DBProtocol;
 
   end;
-
-  {}
 end;
 
 initialization

@@ -3,8 +3,8 @@ object ReconcileErrorForm: TReconcileErrorForm
   Top = 151
   BorderStyle = bsDialog
   Caption = 'Update Error'
-  ClientHeight = 306
-  ClientWidth = 527
+  ClientHeight = 372
+  ClientWidth = 634
   Color = clBtnFace
   ParentFont = True
   OldCreateOrder = False
@@ -12,6 +12,9 @@ object ReconcileErrorForm: TReconcileErrorForm
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnShow = DisplayFieldValues
+  DesignSize = (
+    634
+    372)
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -118,74 +121,89 @@ object ReconcileErrorForm: TReconcileErrorForm
   object UpdateData: TStringGrid
     Left = 6
     Top = 125
-    Width = 515
-    Height = 144
+    Width = 622
+    Height = 210
+    Anchors = [akLeft, akTop, akRight, akBottom]
     ColCount = 4
     DefaultColWidth = 119
+    DefaultRowHeight = 19
     RowCount = 2
     Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goThumbTracking]
     TabOrder = 1
     OnSelectCell = UpdateDataSelectCell
     OnSetEditText = UpdateDataSetEditText
-    RowHeights = (
-      24
-      24)
+    ExplicitWidth = 515
+    ExplicitHeight = 144
   end
   object ActionGroup: TRadioGroup
-    Left = 418
+    Left = 525
     Top = 6
     Width = 103
     Height = 113
+    Anchors = [akTop, akRight]
     Caption = ' Medida corretiva '
     TabOrder = 0
     OnClick = DisplayFieldValues
+    ExplicitLeft = 418
   end
   object CancelBtn: TButton
-    Left = 446
-    Top = 275
+    Left = 553
+    Top = 341
     Width = 75
     Height = 25
+    Anchors = [akRight, akBottom]
     Cancel = True
-    Caption = 'Cancel'
+    Caption = 'Cancelar'
     ModalResult = 2
     TabOrder = 5
+    ExplicitLeft = 446
+    ExplicitTop = 275
   end
   object OKBtn: TButton
-    Left = 365
-    Top = 275
+    Left = 472
+    Top = 341
     Width = 75
     Height = 25
+    Anchors = [akRight, akBottom]
     Caption = 'OK'
     Default = True
     ModalResult = 1
     TabOrder = 4
+    ExplicitLeft = 365
+    ExplicitTop = 275
   end
   object ConflictsOnly: TCheckBox
     Left = 6
-    Top = 279
+    Top = 345
     Width = 177
     Height = 17
+    Anchors = [akLeft, akBottom]
     Caption = 'Exibir apenas campos conflitantes'
     TabOrder = 2
     OnClick = DisplayFieldValues
+    ExplicitTop = 279
   end
   object ErrorMsg: TMemo
     Left = 44
     Top = 41
-    Width = 368
+    Width = 475
     Height = 78
     TabStop = False
+    Anchors = [akLeft, akTop, akRight]
     Color = clBtnFace
     ReadOnly = True
     TabOrder = 6
+    ExplicitWidth = 368
   end
   object ChangedOnly: TCheckBox
     Left = 189
-    Top = 279
+    Top = 345
     Width = 167
     Height = 17
+    Anchors = [akLeft, akBottom]
     Caption = 'Exibir apenas campos alterados'
     TabOrder = 3
     OnClick = DisplayFieldValues
+    ExplicitTop = 279
   end
 end

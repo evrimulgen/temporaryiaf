@@ -19,7 +19,7 @@ type
     Label3: TLabel;
     LAEDUSU_VA_NOME: TLabeledEdit;
     LAEDUSU_VA_LOGIN: TLabeledEdit;
-    KRKDBGrid1: TKRKDBGrid;
+    KRDGConsUsuarios: TKRKDBGrid;
     TabSheet_GRU_Consultar: TTabSheet;
     GroupBoxGrupoConsultaRapida: TGroupBox;
     LabeledEdit_GRU_VA_NOME: TLabeledEdit;
@@ -30,7 +30,7 @@ type
     ComboBox_EDS_TI_TIPO: TComboBox;
     LabeledEdit_EDS_VA_NOME: TLabeledEdit;
     BitBtn_EDS_AdicionarA: TBitBtn;
-    KRDGEntidadesDoSistema: TKRKDBGrid;
+    KRDGConsEntidadesDoSistema: TKRKDBGrid;
     PANLFooter: TPanel;
     PGCTPermissoes: TPageControl;
     TBSHGRU: TTabSheet;
@@ -112,8 +112,11 @@ type
     DBEdit_GRU_VA_DESCRICAO: TDBEdit;
     procedure LAEDUSU_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
     procedure LAEDUSU_VA_LOGINKeyPress(Sender: TObject; var Key: Char);
+    procedure LabeledEdit_EDS_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
+    procedure ComboBox_EDS_TI_TIPOChange(Sender: TObject);
   private
     { Private declarations }
+    procedure FiltrarEntidadesDoSistema;
   public
     { Public declarations }
   end;
@@ -123,6 +126,33 @@ implementation
 uses UKRDMSegurancaEPermissoes;
 
 {$R *.dfm}
+
+procedure TKRFMSegurancaEPermissoes.ComboBox_EDS_TI_TIPOChange(Sender: TObject);
+begin
+  inherited;
+  FiltrarEntidadesDoSistema;
+end;
+
+procedure TKRFMSegurancaEPermissoes.FiltrarEntidadesDoSistema;
+var
+  Tipo: ShortInt;
+begin
+  case ComboBox_EDS_TI_TIPO.ItemIndex of
+    1: Tipo := 0;
+    2: Tipo := 1;
+    else
+      Tipo := -1;
+  end;
+
+  TKRDMSegurancaEPermissoes(Owner).FiltrarEntidadesDoSistema(0,LabeledEdit_EDS_VA_NOME.Text,Tipo);
+end;
+
+procedure TKRFMSegurancaEPermissoes.LabeledEdit_EDS_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  if Key = #13 then
+    FiltrarEntidadesDoSistema;
+end;
 
 procedure TKRFMSegurancaEPermissoes.LAEDUSU_VA_LOGINKeyPress(Sender: TObject; var Key: Char);
 begin

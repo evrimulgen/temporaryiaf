@@ -11,8 +11,8 @@ uses
 
 type
   TKRDMBasico = class(TKRKDataModule)
-    ZROQAux: TZReadOnlyQuery;
-    ZSTPAux: TZStoredProc;
+    ZROQ: TZReadOnlyQuery;
+    ZSTP: TZStoredProc;
   private
     { Declarações privadas }
   protected

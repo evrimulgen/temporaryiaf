@@ -16,7 +16,8 @@ uses
   UTiposComuns in '..\..\COMUM\SRC\UTiposComuns.pas',
   UServerManagerImpl in '..\SRC\UServerManagerImpl.pas',
   UServerManagerIntf in '..\SRC\UServerManagerIntf.pas',
-  UServerConfiguration in '..\SRC\UServerConfiguration.pas';
+  UServerConfiguration in '..\SRC\UServerConfiguration.pas',
+  UKRDMEntidadesDoSistema in '..\SRC\UKRDMEntidadesDoSistema.pas' {KRDMEntidadesDoSistema: TKRKDataModule};
 
 {$R *.res}
 

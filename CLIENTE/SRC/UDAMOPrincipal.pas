@@ -71,10 +71,12 @@ begin
   ZeroMemory(@FSessionConnection,SizeOf(TCurrentSession));
   FKRDMSegurancaEPermissoes := nil;
 
-  TFORMSplash.ShowMe(2);
-
   if (TFORMLogin.ShowMe(FSessionConnection.ID) = mrOk) then
+  begin
+    Sleep(500);
+    TFORMSplash.ShowMe(2);
     Application.CreateForm(TFORMPrincipal,FORMPrincipal);
+  end;
 end;
 
 destructor TDAMOPrincipal.Destroy;

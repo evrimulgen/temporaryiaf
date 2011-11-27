@@ -1,11 +1,10 @@
-object KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
-  OldCreateOrder = False
+inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
+  OldCreateOrder = True
   Properties.OpenAllDataSets = True
-  SQLs = <>
   MyFormClass = 'TKRFMSegurancaEPermissoes'
-  Height = 150
-  Width = 215
-  object CLDSUsuarios: TClientDataSet
+  Height = 246
+  Width = 261
+  object CLDSConsUsuarios: TClientDataSet
     Aggregates = <>
     ConnectionBroker = DAMOPrincipal.CNBRPrincipal
     Params = <
@@ -44,36 +43,98 @@ object KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
         Value = Null
       end>
     ProviderName = 'DSPRUsuarios'
-    Left = 24
-    Top = 6
-    object CLDSUsuariossm_usuarios_id: TSmallintField
+    Left = 36
+    Top = 54
+    object CLDSConsUsuariossm_usuarios_id: TSmallintField
       DisplayLabel = 'ID'
       FieldName = 'sm_usuarios_id'
     end
-    object CLDSUsuariosva_nome: TWideStringField
+    object CLDSConsUsuariosva_nome: TWideStringField
       DisplayLabel = 'Nome'
       FieldName = 'va_nome'
       Size = 64
     end
-    object CLDSUsuariosva_login: TWideStringField
+    object CLDSConsUsuariosva_login: TWideStringField
       DisplayLabel = 'Login'
       FieldName = 'va_login'
       Size = 16
     end
-    object CLDSUsuariosch_senha: TWideStringField
+    object CLDSConsUsuariosch_senha: TWideStringField
       DisplayLabel = 'Senha'
       FieldName = 'ch_senha'
       Size = 128
     end
-    object CLDSUsuariosva_email: TWideStringField
+    object CLDSConsUsuariosva_email: TWideStringField
       DisplayLabel = 'E-mail'
       FieldName = 'va_email'
       Size = 64
     end
   end
+  object DTSRConsUsuarios: TDataSource
+    DataSet = CLDSConsUsuarios
+    Left = 36
+    Top = 102
+  end
+  object CLDSConsEntidadesDoSistema: TClientDataSet
+    Aggregates = <>
+    ConnectionBroker = DAMOPrincipal.CNBRPrincipal
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'IN_ENTIDADESDOSISTEMA_ID'
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        DataType = ftString
+        Name = 'VA_NOME'
+        ParamType = ptInput
+        Size = 128
+        Value = Null
+      end
+      item
+        DataType = ftSmallint
+        Name = 'SM_TIPO'
+        ParamType = ptInput
+        Value = Null
+      end>
+    ProviderName = 'DSPREntidadesDoSistema'
+    Left = 162
+    Top = 54
+    object CLDSConsEntidadesDoSistemain_entidadesdosistema_id: TIntegerField
+      DisplayLabel = 'ID'
+      FieldName = 'in_entidadesdosistema_id'
+      ReadOnly = True
+    end
+    object CLDSConsEntidadesDoSistemava_nome: TWideStringField
+      DisplayLabel = 'Entidade'
+      FieldName = 'va_nome'
+      ReadOnly = True
+      Size = 128
+    end
+    object CLDSConsEntidadesDoSistemasm_tipo: TSmallintField
+      DisplayLabel = 'Tipo'
+      FieldName = 'sm_tipo'
+      ReadOnly = True
+      OnGetText = CLDSConsEntidadesDoSistemasm_tipoGetText
+    end
+  end
+  object DTSRConsEntidadesDoSistema: TDataSource
+    DataSet = CLDSConsEntidadesDoSistema
+    Left = 162
+    Top = 102
+  end
+  object CLDSUsuarios: TClientDataSet
+    Aggregates = <>
+    ConnectionBroker = DAMOPrincipal.CNBRPrincipal
+    Params = <>
+    ProviderName = 'DSPRUsuarios'
+    Left = 36
+    Top = 150
+  end
   object DTSRUsuarios: TDataSource
     DataSet = CLDSUsuarios
-    Left = 24
-    Top = 54
+    Left = 36
+    Top = 198
   end
 end

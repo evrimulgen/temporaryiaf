@@ -68,6 +68,10 @@
 			<DCCReference Include="..\SRC\UServerManagerImpl.pas"/>
 			<DCCReference Include="..\SRC\UServerManagerIntf.pas"/>
 			<DCCReference Include="..\SRC\UServerConfiguration.pas"/>
+			<DCCReference Include="..\SRC\UKRDMEntidadesDoSistema.pas">
+				<Form>KRDMEntidadesDoSistema</Form>
+				<DesignClass>TKRKDataModule</DesignClass>
+			</DCCReference>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>
@@ -93,7 +97,7 @@
 						<VersionInfo Name="MajorVer">1</VersionInfo>
 						<VersionInfo Name="MinorVer">0</VersionInfo>
 						<VersionInfo Name="Release">0</VersionInfo>
-						<VersionInfo Name="Build">273</VersionInfo>
+						<VersionInfo Name="Build">278</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -105,7 +109,7 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName">Zetta-Ømnis Soluções Tecnológicas Ltda</VersionInfoKeys>
 						<VersionInfoKeys Name="FileDescription">Servidor do IAF</VersionInfoKeys>
-						<VersionInfoKeys Name="FileVersion">1.0.0.273</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">1.0.0.278</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName">IAF</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalCopyright"/>
 						<VersionInfoKeys Name="LegalTrademarks"/>

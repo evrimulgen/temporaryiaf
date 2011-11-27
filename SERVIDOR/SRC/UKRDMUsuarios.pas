@@ -24,10 +24,8 @@ type
 
 implementation
 
-uses USODMPrincipal;
-
 {$R *.dfm}
 
-{ TKRDMUsuarios }
+uses USODMPrincipal;
 
 end.

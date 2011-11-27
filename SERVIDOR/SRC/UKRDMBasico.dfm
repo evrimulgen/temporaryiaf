@@ -3,12 +3,12 @@ object KRDMBasico: TKRDMBasico
   SQLs = <>
   Height = 150
   Width = 215
-  object ZROQAux: TZReadOnlyQuery
+  object ZROQ: TZReadOnlyQuery
     Params = <>
     Left = 18
     Top = 12
   end
-  object ZSTPAux: TZStoredProc
+  object ZSTP: TZStoredProc
     Params = <>
     Left = 72
     Top = 12

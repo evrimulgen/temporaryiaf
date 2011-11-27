@@ -95,13 +95,13 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
                 OnKeyPress = LAEDUSU_VA_LOGINKeyPress
               end
             end
-            object KRKDBGrid1: TKRKDBGrid
+            object KRDGConsUsuarios: TKRKDBGrid
               Left = 4
               Top = 63
               Width = 331
               Height = 132
               Anchors = [akLeft, akTop, akRight, akBottom]
-              DataSource = KRDMSegurancaEPermissoes.DTSRUsuarios
+              DataSource = KRDMSegurancaEPermissoes.DTSRConsUsuarios
               Options = [dgTitles, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
               OptionsEx = [dgAutomaticColumSizes]
               ReadOnly = True
@@ -224,6 +224,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
               ItemIndex = 0
               TabOrder = 1
               Text = 'Todos'
+              OnChange = ComboBox_EDS_TI_TIPOChange
               Items.Strings = (
                 'Todos'
                 'Tabela'
@@ -236,11 +237,12 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
               Height = 21
               Anchors = [akLeft, akTop, akRight]
               CharCase = ecUpperCase
-              EditLabel.Width = 137
+              EditLabel.Width = 42
               EditLabel.Height = 13
-              EditLabel.Caption = 'Nome / Identifica'#231#227'o cont'#233'm'
+              EditLabel.Caption = 'Entidade'
               LabelSpacing = 1
               TabOrder = 0
+              OnKeyPress = LabeledEdit_EDS_VA_NOMEKeyPress
             end
           end
           object BitBtn_EDS_AdicionarA: TBitBtn
@@ -324,13 +326,15 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
             Spacing = 8
             TabOrder = 1
           end
-          object KRDGEntidadesDoSistema: TKRKDBGrid
+          object KRDGConsEntidadesDoSistema: TKRKDBGrid
             Left = 6
             Top = 78
             Width = 402
             Height = 111
             Anchors = [akLeft, akTop, akRight, akBottom]
-            Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+            DataSource = KRDMSegurancaEPermissoes.DTSRConsEntidadesDoSistema
+            Options = [dgTitles, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+            OptionsEx = [dgAutomaticColumSizes]
             ReadOnly = True
             TabOrder = 2
             TitleFont.Charset = DEFAULT_CHARSET
@@ -338,7 +342,26 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
             TitleFont.Height = -11
             TitleFont.Name = 'Tahoma'
             TitleFont.Style = []
-            RowColors = <>
+            RowColors = <
+              item
+                BackgroundColor = clBtnFace
+                ForegroundColor = clNone
+              end>
+            VariableWidthColumns = '<va_nome>'
+            Columns = <
+              item
+                Expanded = False
+                FieldName = 'va_nome'
+                Width = 315
+                Visible = True
+              end
+              item
+                Alignment = taCenter
+                Expanded = False
+                FieldName = 'sm_tipo'
+                Title.Alignment = taCenter
+                Visible = True
+              end>
           end
         end
       end
@@ -1896,10 +1919,13 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
     Width = 784
     TabOrder = 1
     ExplicitWidth = 784
+    inherited LABLCaption: TLabel
+      Height = 38
+    end
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C010102000800380020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800440020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2436,7 +2462,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C010102000800480020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800540020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

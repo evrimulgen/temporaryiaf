@@ -4,7 +4,7 @@ object FORMSplash: TFORMSplash
   BorderIcons = []
   BorderStyle = bsNone
   Caption = 'FORMSplash'
-  ClientHeight = 180
+  ClientHeight = 203
   ClientWidth = 320
   Color = clBlack
   Font.Charset = DEFAULT_CHARSET
@@ -20,9 +20,9 @@ object FORMSplash: TFORMSplash
   TextHeight = 13
   object Shape1: TShape
     Left = 0
-    Top = 0
+    Top = 203
     Width = 320
-    Height = 180
+    Height = 0
     Align = alClient
     Brush.Color = clYellow
     Brush.Style = bsBDiagonal
@@ -36,28 +36,25 @@ object FORMSplash: TFORMSplash
     Left = 6
     Top = 6
     Width = 308
-    Height = 168
+    Height = 191
     Margins.Left = 6
     Margins.Top = 6
     Margins.Right = 6
     Margins.Bottom = 6
-    Align = alClient
+    Align = alTop
     BevelOuter = bvNone
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = 216
-    ExplicitTop = 78
-    ExplicitWidth = 185
-    ExplicitHeight = 41
+    ExplicitHeight = 168
     DesignSize = (
       308
-      168)
+      191)
     object Image1: TImage
       Left = 0
       Top = 0
       Width = 308
-      Height = 143
+      Height = 166
       Align = alClient
       Center = True
       Picture.Data = {
@@ -643,7 +640,7 @@ object FORMSplash: TFORMSplash
     end
     object StaticText1: TStaticText
       Left = 0
-      Top = 143
+      Top = 166
       Width = 308
       Height = 25
       Align = alBottom
@@ -657,7 +654,7 @@ object FORMSplash: TFORMSplash
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
-      ExplicitTop = 144
+      ExplicitTop = 143
     end
   end
 end

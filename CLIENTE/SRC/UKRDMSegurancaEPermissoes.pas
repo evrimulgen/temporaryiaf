@@ -6,26 +6,34 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms,
-  KRK.Wizards.DataModule, DB, DBClient;
+  UKRDMBasico, DB, DBClient, ImgList, ActnList;
 
 type
-  TKRDMSegurancaEPermissoes = class(TKRKDataModule)
+  TKRDMSegurancaEPermissoes = class(TKRDMBasico)
+    CLDSConsUsuarios: TClientDataSet;
+    DTSRConsUsuarios: TDataSource;
+    CLDSConsUsuariossm_usuarios_id: TSmallintField;
+    CLDSConsUsuariosva_nome: TWideStringField;
+    CLDSConsUsuariosva_login: TWideStringField;
+    CLDSConsUsuariosch_senha: TWideStringField;
+    CLDSConsUsuariosva_email: TWideStringField;
+    CLDSConsEntidadesDoSistema: TClientDataSet;
+    DTSRConsEntidadesDoSistema: TDataSource;
+    CLDSConsEntidadesDoSistemain_entidadesdosistema_id: TIntegerField;
+    CLDSConsEntidadesDoSistemava_nome: TWideStringField;
+    CLDSConsEntidadesDoSistemasm_tipo: TSmallintField;
     CLDSUsuarios: TClientDataSet;
     DTSRUsuarios: TDataSource;
-    CLDSUsuariossm_usuarios_id: TSmallintField;
-    CLDSUsuariosva_nome: TWideStringField;
-    CLDSUsuariosva_login: TWideStringField;
-    CLDSUsuariosch_senha: TWideStringField;
-    CLDSUsuariosva_email: TWideStringField;
+    procedure CLDSConsEntidadesDoSistemasm_tipoGetText(Sender: TField;
+      var Text: string; DisplayText: Boolean);
   private
     { Declarações privadas }
-    procedure AssignParam(aParam: TParam; aValue: String; aNullValue: String = ''); overload;
-    procedure AssignParam(aParam: TParam; aValue: Integer; aNullValue: Integer = 0); overload;
   protected
     { Declarações protegidas }
   public
     { Declarações públicas }
-    procedure FiltrarUsuarios(aSM_USUARIOS_ID: Cardinal; aVA_NOME, aVA_LOGIN, aCH_SENHA, aVA_EMAIL: String);
+    procedure FiltrarUsuarios(aSM_USUARIOS_ID: SmallInt; aVA_NOME, aVA_LOGIN, aCH_SENHA, aVA_EMAIL: String);
+    procedure FiltrarEntidadesDoSistema(aIN_ENTIDADESDOSISTEMA_ID: Integer; aVA_NOME: String; aSM_TIPO: SmallInt);
   end;
 
 implementation
@@ -33,36 +41,47 @@ implementation
 {$R *.dfm}
 
 uses UKRFMSegurancaEPermissoes
-   , UDAMOPrincipal;
+   , UDAMOPrincipal
+   , KRK.Win32.Db.Utils;
 
 { TKRDMSegurancaEPermissoes }
 
-procedure TKRDMSegurancaEPermissoes.AssignParam(aParam: TParam; aValue: String; aNullValue: String = '');
+procedure TKRDMSegurancaEPermissoes.CLDSConsEntidadesDoSistemasm_tipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
 begin
-  if aNullValue = aValue then
-    aParam.Clear
-  else
-    aParam.AsString := aValue;
-end;
-
-procedure TKRDMSegurancaEPermissoes.AssignParam(aParam: TParam; aValue: Integer; aNullValue: Integer = 0);
-begin
-  if aNullValue = aValue then
-    aParam.Clear
-  else
-    aParam.AsInteger := aValue;
-end;
-
-procedure TKRDMSegurancaEPermissoes.FiltrarUsuarios(aSM_USUARIOS_ID: Cardinal; aVA_NOME, aVA_LOGIN, aCH_SENHA, aVA_EMAIL: String);
-begin
-  if CLDSUsuarios.ChangeCount = 0 then
+  inherited;
+  if DisplayText then
   begin
-    AssignParam(CLDSUsuarios.Params.ParamByName('SM_USUARIOS_ID'),aSM_USUARIOS_ID);
-    AssignParam(CLDSUsuarios.Params.ParamByName('VA_NOME'),aVA_NOME);
-    AssignParam(CLDSUsuarios.Params.ParamByName('VA_LOGIN'),aVA_LOGIN);
-    AssignParam(CLDSUsuarios.Params.ParamByName('CH_SENHA'),aCH_SENHA);
-    AssignParam(CLDSUsuarios.Params.ParamByName('VA_EMAIL'),aVA_EMAIL);
-    CLDSUsuarios.Refresh;
+    if not Sender.IsNull then
+      case Sender.AsInteger of
+        0: Text := 'Tabela';
+        1: Text := 'Ação';
+      end
+    else
+      Text := 'N/A';
+  end;
+end;
+
+procedure TKRDMSegurancaEPermissoes.FiltrarUsuarios(aSM_USUARIOS_ID: SmallInt; aVA_NOME, aVA_LOGIN, aCH_SENHA, aVA_EMAIL: String);
+begin
+  if CLDSConsUsuarios.ChangeCount = 0 then
+  begin
+    AssignParam(CLDSConsUsuarios.Params.ParamByName('SM_USUARIOS_ID'),aSM_USUARIOS_ID);
+    AssignParam(CLDSConsUsuarios.Params.ParamByName('VA_NOME'),aVA_NOME);
+    AssignParam(CLDSConsUsuarios.Params.ParamByName('VA_LOGIN'),aVA_LOGIN);
+    AssignParam(CLDSConsUsuarios.Params.ParamByName('CH_SENHA'),aCH_SENHA);
+    AssignParam(CLDSConsUsuarios.Params.ParamByName('VA_EMAIL'),aVA_EMAIL);
+    CLDSConsUsuarios.Refresh;
+  end;
+end;
+
+procedure TKRDMSegurancaEPermissoes.FiltrarEntidadesDoSistema(aIN_ENTIDADESDOSISTEMA_ID: Integer; aVA_NOME: String; aSM_TIPO: SmallInt);
+begin
+  if CLDSConsEntidadesDoSistema.ChangeCount = 0 then
+  begin
+    AssignParam(CLDSConsEntidadesDoSistema.Params.ParamByName('IN_ENTIDADESDOSISTEMA_ID'),aIN_ENTIDADESDOSISTEMA_ID);
+    AssignParam(CLDSConsEntidadesDoSistema.Params.ParamByName('VA_NOME'),aVA_NOME);
+    AssignParam(CLDSConsEntidadesDoSistema.Params.ParamByName('SM_TIPO'),aSM_TIPO,-1);
+    CLDSConsEntidadesDoSistema.Refresh;
   end;
 end;
 

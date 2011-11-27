@@ -76,6 +76,10 @@
 				<Form>KRFMSegurancaEPermissoes</Form>
 				<DesignClass>TKRKForm</DesignClass>
 			</DCCReference>
+			<DCCReference Include="..\SRC\UKRDMBasico.pas">
+				<Form>KRDMBasico</Form>
+				<DesignClass>TKRKDataModule</DesignClass>
+			</DCCReference>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>
@@ -101,7 +105,7 @@
 						<VersionInfo Name="MajorVer">1</VersionInfo>
 						<VersionInfo Name="MinorVer">0</VersionInfo>
 						<VersionInfo Name="Release">0</VersionInfo>
-						<VersionInfo Name="Build">234</VersionInfo>
+						<VersionInfo Name="Build">257</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -113,7 +117,7 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName"/>
 						<VersionInfoKeys Name="FileDescription"/>
-						<VersionInfoKeys Name="FileVersion">1.0.0.234</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">1.0.0.257</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName"/>
 						<VersionInfoKeys Name="LegalCopyright"/>
 						<VersionInfoKeys Name="LegalTrademarks"/>

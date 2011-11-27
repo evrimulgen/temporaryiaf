@@ -18,12 +18,12 @@ type
     procedure IMAGCloseClick(Sender: TObject);
   private
     { Private declarations }
-    FCloseDelay: Byte;
+    FCloseDelay: SmallInt;
     procedure DelayedClose(const aSeconds: Byte);
     procedure DoCloseDelayed(var Msg: TMessage);
   public
     { Public declarations }
-    class procedure ShowMe(aCloseDelay: Byte = 0);
+    class function ShowMe(aCloseDelay: SmallInt = -1): TFORMSplash;
   end;
 
 implementation
@@ -53,10 +53,15 @@ end;
 
 procedure TFORMSplash.FormShow(Sender: TObject);
 begin
-  if FCloseDelay > 0 then
-    DelayedClose(FCloseDelay)
-  else
-    IMAGClose.Show;
+  case FCloseDelay of
+    { Qualquer número maior que zero, fecha automaticamente }
+    1..32767: DelayedClose(FCloseDelay);
+    { Zero não faz nada, nem mesmo mostra o botão de fechar }
+    0: Update;
+    { Valores negativos mostram um botão de fechar }
+    else
+      IMAGClose.Show;
+  end;
 end;
 
 procedure TFORMSplash.IMAGCloseClick(Sender: TObject);
@@ -64,12 +69,21 @@ begin
   Close;
 end;
 
-class procedure TFORMSplash.ShowMe(aCloseDelay: Byte = 0);
+class function TFORMSplash.ShowMe(aCloseDelay: SmallInt = -1): TFORMSplash;
 begin
-  with TFORMSplash.Create(nil) do
+  Result := TFORMSplash.Create(nil);
+
+  with Result do
   begin
     FCloseDelay := aCloseDelay;
-    ShowModal;
+
+    if aCloseDelay = 0 then
+    begin
+      FormStyle := fsStayOnTop;
+      Show;
+    end
+    else
+      ShowModal;
   end;
 end;
 

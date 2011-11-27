@@ -174,6 +174,45 @@ END;
 $BODY$
 LANGUAGE PLPGSQL;
 ---------------------------------------------------------------
+CREATE OR REPLACE FUNCTION IDU_ENTIDADESDOSISTEMA(IN pMODO                     CHAR
+                                                 ,IN pIN_ENTIDADESDOSISTEMA_ID ENTIDADESDOSISTEMA.IN_ENTIDADESDOSISTEMA_ID%TYPE = NULL
+                                                 ,IN pVA_NOME                  ENTIDADESDOSISTEMA.VA_NOME%TYPE                  = NULL
+                                                 ,IN pSM_TIPO                  ENTIDADESDOSISTEMA.SM_TIPO%TYPE                  = NULL)
+RETURNS BIGINT AS 
+$BODY$
+DECLARE
+	vRETURN BIGINT := 0;
+BEGIN
+  CASE pMODO
+    WHEN 'I' THEN ----------------------------------------------------------- [ INSERT ] --
+      INSERT INTO ENTIDADESDOSISTEMA (VA_NOME
+                                     ,SM_TIPO)
+                    VALUES (pVA_NOME
+                           ,pSM_TIPO);
+
+    vRETURN := CURRVAL('SQ_USU_IN_ENTIDADESDOSISTEMA_ID');
+    ---------------------------------------------------------------------------------------
+    WHEN 'D' THEN ----------------------------------------------------------- [ DELETE ] --
+      DELETE FROM ENTIDADESDOSISTEMA
+            WHERE IN_ENTIDADESDOSISTEMA_ID = pIN_ENTIDADESDOSISTEMA_ID;
+            
+    GET DIAGNOSTICS vRETURN := ROW_COUNT;
+    ---------------------------------------------------------------------------------------
+    WHEN 'U' THEN ----------------------------------------------------------- [ UPDATE ] --
+      UPDATE ENTIDADESDOSISTEMA
+         SET VA_NOME = pVA_NOME
+           , SM_TIPO = pSM_TIPO
+       WHERE IN_ENTIDADESDOSISTEMA_ID = pIN_ENTIDADESDOSISTEMA_ID;
+
+    GET DIAGNOSTICS vRETURN := ROW_COUNT;
+    ---------------------------------------------------------------------------------------
+  END CASE;
+  
+  RETURN vRETURN;
+END;
+$BODY$
+LANGUAGE PLPGSQL;
+---------------------------------------------------------------
 CREATE OR REPLACE FUNCTION SHA512(VARCHAR) 
 RETURNS CHAR AS
 $BODY$
@@ -184,3 +223,11 @@ LANGUAGE SQL;
 ---------------------------------------------------------------
 ---------------------------------------------------------------
 ---------------------------------------------------------------
+SELECT IDU_ENTIDADESDOSISTEMA('I'::CHAR,NULL::INTEGER,'DAMOPrincipal.ACTNConfiguracoes'::VARCHAR,1::SMALLINT);
+SELECT IDU_ENTIDADESDOSISTEMA('I'::CHAR,NULL::INTEGER,'DAMOPrincipal.ACTNSegurancaEPermissoes'::VARCHAR,1::SMALLINT);
+SELECT IDU_ENTIDADESDOSISTEMA('I'::CHAR,NULL::INTEGER,'USUARIOS'::VARCHAR,0::SMALLINT);
+SELECT IDU_ENTIDADESDOSISTEMA('I'::CHAR,NULL::INTEGER,'GRUPOS'::VARCHAR,0::SMALLINT);
+SELECT IDU_ENTIDADESDOSISTEMA('I'::CHAR,NULL::INTEGER,'PERMISSOESDOSUSUARIOS'::VARCHAR,0::SMALLINT);
+SELECT IDU_ENTIDADESDOSISTEMA('I'::CHAR,NULL::INTEGER,'PERMISSOESDOSGRUPOS'::VARCHAR,0::SMALLINT);
+SELECT IDU_ENTIDADESDOSISTEMA('I'::CHAR,NULL::INTEGER,'ENTIDADESDOSISTEMA'::VARCHAR,0::SMALLINT);
+SELECT IDU_ENTIDADESDOSISTEMA('I'::CHAR,NULL::INTEGER,'GRUPOSDOSUSUARIOS'::VARCHAR,0::SMALLINT);

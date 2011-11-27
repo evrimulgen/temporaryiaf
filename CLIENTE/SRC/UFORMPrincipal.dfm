@@ -63,6 +63,17 @@ object FORMPrincipal: TFORMPrincipal
     Top = 543
     Width = 784
     Height = 19
-    Panels = <>
+    Panels = <
+      item
+        Width = 200
+      end
+      item
+        Alignment = taCenter
+        Text = 'usuario'
+        Width = 200
+      end
+      item
+        Width = 50
+      end>
   end
 end
