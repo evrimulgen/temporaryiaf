@@ -58,12 +58,13 @@ function GetIAuthenticator(UseWSDL: Boolean=System.False; Addr: string=''; HTTPR
 
 implementation
 
-uses SysUtils;
+uses SysUtils
+   , UConfiguracoes;
 
 function GetIAuthenticator(UseWSDL: Boolean; Addr: string; HTTPRIO: THTTPRIO): IAuthenticator;
 const
-  defWSDL = 'http://127.0.0.1/iaf/IAFServer.dll/wsdl/IAuthenticator';
-  defURL  = 'http://127.0.0.1/iaf/IAFServer.dll/soap/IAuthenticator';
+//  defWSDL = 'http://127.0.0.1/iaf/IAFServer.dll/wsdl/IAuthenticator';
+//  defURL  = 'http://127.0.0.1/iaf/IAFServer.dll/soap/IAuthenticator';
   defSvc  = 'IAuthenticatorservice';
   defPrt  = 'IAuthenticatorPort';
 var
@@ -73,9 +74,9 @@ begin
   if (Addr = '') then
   begin
     if UseWSDL then
-      Addr := defWSDL
+      Addr := Configuracoes.Servidor + '/wsdl/IAuthenticator'//defWSDL
     else
-      Addr := defURL;
+      Addr := Configuracoes.Servidor + '/soap/IAuthenticator';// defURL;
   end;
   if HTTPRIO = nil then
     RIO := THTTPRIO.Create(nil)

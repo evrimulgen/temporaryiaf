@@ -4,7 +4,8 @@ interface
 
 uses
   SysUtils, Classes, PlatformDefaultStyleActnCtrls, ActnList, ActnMan, DB,
-  DBClient, SOAPConn, ImgList, Controls, UTiposComuns, UKRDMSegurancaEPermissoes;
+  DBClient, SOAPConn, ImgList, Controls, UTiposComuns,
+  UFORMPrincipal, UKRDMSegurancaEPermissoes;
 
 type
   TDAMOPrincipal = class(TDataModule)
@@ -21,10 +22,12 @@ type
     procedure ACTNSegurancaEPermissoesExecute(Sender: TObject);
     procedure ACTNAjudaExecute(Sender: TObject);
     procedure ACTNSobreExecute(Sender: TObject);
+    procedure SOCNPrincipalBeforeConnect(Sender: TObject);
   private
     { Private declarations }
     FSessionConnection: TCurrentSession;
     FKRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes;
+    FFORMPrincipal: TFORMPrincipal;
   public
     { Public declarations }
     constructor Create(aOwner: TComponent); override;
@@ -41,13 +44,11 @@ implementation
 
 uses Forms
    , Windows
+   , KRK.Win32.Rtl.Common.Classes
+   , UConfiguracoes
    , UAuthenticator
-   , UFORMPrincipal
    , UFORMLogin
    , UFORMSplash;
-
-var
-  FORMPrincipal: TFORMPrincipal;
 
 procedure TDAMOPrincipal.ACTNAjudaExecute(Sender: TObject);
 begin
@@ -66,17 +67,27 @@ begin
 end;
 
 constructor TDAMOPrincipal.Create(aOwner: TComponent);
+var
+  FORMSplash: TFORMSplash;
 begin
   inherited;
   ZeroMemory(@FSessionConnection,SizeOf(TCurrentSession));
+  FFORMPrincipal := nil;
+  FORMSplash     := nil;
+
+  { DataModules criados por demanda }
   FKRDMSegurancaEPermissoes := nil;
 
   if (TFORMLogin.ShowMe(FSessionConnection.ID) = mrOk) then
-  begin
-    Sleep(500);
-    TFORMSplash.ShowMe(2);
-    Application.CreateForm(TFORMPrincipal,FORMPrincipal);
-  end;
+    try
+      Sleep(500);
+      FORMSplash := TFORMSplash.ShowMe(0);
+      { TODO -oCBFF : Neste ponto, obtenha o restante dos dados da sessão e aplique
+      as permissões }
+      Application.CreateForm(TFORMPrincipal,FFORMPrincipal);
+    finally
+      FORMSplash.Close;
+    end;
 end;
 
 destructor TDAMOPrincipal.Destroy;
@@ -89,6 +100,11 @@ begin
   finally
     inherited;
   end;
+end;
+
+procedure TDAMOPrincipal.SOCNPrincipalBeforeConnect(Sender: TObject);
+begin
+  TSoapConnection(Sender).URL := Configuracoes.Servidor + '/soap/ISODMPrincipal';
 end;
 
 end.

@@ -85,7 +85,7 @@ object DAMOPrincipal: TDAMOPrincipal
   end
   object SOCNPrincipal: TSoapConnection
     Agent = 'CodeGear SOAP 1.3'
-    Connected = True
+    BeforeConnect = SOCNPrincipalBeforeConnect
     URL = 'http://127.0.0.1/iaf/IAFServer.dll/soap/ISODMPrincipal'
     SOAPServerIID = 'IAppServerSOAP - {C99F4735-D6D2-495C-8CA2-E53E5A439E61}'
     UseSOAPAdapter = True
@@ -98,7 +98,7 @@ object DAMOPrincipal: TDAMOPrincipal
     Left = 90
     Top = 12
     Bitmap = {
-      494C010106000800880010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C0101060008009C0010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       00000000000000000000000000000000000000000000000000030000000C0000
       00170000001F0000002400000025000000250000002600000027000000270000
@@ -370,7 +370,6 @@ object DAMOPrincipal: TDAMOPrincipal
       000000000000}
   end
   object CNBRPrincipal: TConnectionBroker
-    Connected = True
     Connection = SOCNPrincipal
     Left = 24
     Top = 108

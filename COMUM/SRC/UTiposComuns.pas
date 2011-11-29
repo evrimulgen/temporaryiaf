@@ -6,6 +6,9 @@ uses
   KRK.Win32.Rtl.Common.Classes;
 
 type
+  { TSessionData precisa ser do tipo TObjectFile de forma a poder usar o método
+  LoadFromTextualRepresentation para carregar uma sessão a partir da lista de
+  sessões em UAuthenticatorImpl.pas no servidor }
   TSessionData = class(TObjectFile)
   private
     Fsm_usuarios_id: SmallInt;
@@ -21,6 +24,8 @@ type
     property va_email: String read Fva_email write Fva_email;
   end;
 
+  { Usado no cliente, este record, guarda os dados da sessão do usuário
+  atualmente logado}
   TCurrentSession = record
     ID: String;
     Data: TSessionData;
