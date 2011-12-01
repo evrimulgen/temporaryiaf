@@ -32,9 +32,8 @@ type
     FFileName: String;
     FSessions: TSessionsCollection;
   public
-    constructor Create(aOwner: TComponent); override;
+    constructor Create(aOwner: TComponent; aAutoSaveMode: TAutoSaveMode = asmNone); override;
     destructor Destroy; override;
-    procedure Save;
   published
     property Sessions: TSessionsCollection read FSessions write FSessions;
   end;
@@ -76,7 +75,7 @@ end;
 
 { TSessionsFile }
 
-constructor TSessionsFile.Create(aOwner: TComponent);
+constructor TSessionsFile.Create(aOwner: TComponent; aAutoSaveMode: TAutoSaveMode = asmNone);
 var
   ModuleName: PWideChar;
 begin
@@ -100,20 +99,12 @@ end;
 
 destructor TSessionsFile.Destroy;
 begin
-  Save;
-
   FSessions.Free;
   inherited;
 end;
 
-procedure TSessionsFile.Save;
-begin
-  if FFileName <> '' then
-    SaveToBinaryFile(FFileName);
-end;
-
 initialization
-  SessionsFile := TSessionsFile.Create(nil);
+  SessionsFile := TSessionsFile.Create(nil,asmBinary);
 
 finalization
   SessionsFile.Free;

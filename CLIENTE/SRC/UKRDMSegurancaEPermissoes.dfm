@@ -165,31 +165,37 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
         Value = Null
       end>
     ProviderName = 'DSPRUsuarios'
+    OnPostError = CLDSUsuariosPostError
     Left = 36
     Top = 150
     object CLDSUsuariossm_usuarios_id: TSmallintField
       DisplayLabel = 'ID'
       FieldName = 'sm_usuarios_id'
+      ProviderFlags = [pfInKey]
     end
     object CLDSUsuariosva_nome: TWideStringField
       DisplayLabel = 'Nome'
       FieldName = 'va_nome'
+      ProviderFlags = [pfInUpdate]
       Size = 64
     end
     object CLDSUsuariosva_login: TWideStringField
       DisplayLabel = 'Login'
       FieldName = 'va_login'
+      ProviderFlags = [pfInUpdate]
       Size = 16
     end
     object CLDSUsuariosch_senha: TWideStringField
       DisplayLabel = 'Senha'
       FieldName = 'ch_senha'
+      ProviderFlags = [pfInUpdate]
       OnGetText = CLDSUsuariosch_senhaGetText
       Size = 128
     end
     object CLDSUsuariosva_email: TWideStringField
       DisplayLabel = 'E-mail'
       FieldName = 'va_email'
+      ProviderFlags = [pfInUpdate]
       Size = 64
     end
     object CLDSUsuariosZQRYGruposDosUsuarios: TDataSetField
@@ -211,17 +217,20 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
     object CLDSGruposDosUsuariosin_gruposdosusuarios_id: TIntegerField
       DisplayLabel = 'ID'
       FieldName = 'in_gruposdosusuarios_id'
+      ProviderFlags = [pfInKey]
       ReadOnly = True
     end
     object CLDSGruposDosUsuariossm_grupos_id: TSmallintField
       DisplayLabel = 'ID do grupo'
       FieldName = 'sm_grupos_id'
-      ReadOnly = True
+      ProviderFlags = [pfInUpdate]
+      Required = True
     end
     object CLDSGruposDosUsuariossm_usuarios_id: TSmallintField
       DisplayLabel = 'ID do usu'#225'rio'
       FieldName = 'sm_usuarios_id'
-      ReadOnly = True
+      ProviderFlags = [pfInUpdate]
+      Required = True
     end
     object CLDSGruposDosUsuariosgrupo: TWideStringField
       DisplayLabel = 'Grupo'

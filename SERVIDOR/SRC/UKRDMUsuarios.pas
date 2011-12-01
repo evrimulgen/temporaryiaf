@@ -18,6 +18,10 @@ type
     ZUSQUsuarios: TZUpdateSQL;
     ZQRYGruposDosUsuarios: TZQuery;
     DTSRUsuarios: TDataSource;
+    ZQRYGruposDosUsuariosin_gruposdosusuarios_id: TIntegerField;
+    ZQRYGruposDosUsuariossm_grupos_id: TSmallintField;
+    ZQRYGruposDosUsuariossm_usuarios_id: TSmallintField;
+    ZQRYGruposDosUsuariosgrupo: TWideStringField;
   private
     { Private declarations }
   public

@@ -9,10 +9,24 @@ type
   TConfiguracoes = class(TObjectFile)
   private
     FServidor: String;
+    FServico: String;
+    FEnderecoProxy: String;
+    FUsuarioProxy: String;
+    FSenhaProxy: String;
+    FModulo: String;
+    function GetServicoWeb: String;
+    function GetModuloWeb: String;
   public
-    constructor Create(aOwner: TComponent; aAutoSaveMode: TAutoSaveMode = asNone); override;
+    constructor Create(aOwner: TComponent; aAutoSaveMode: TAutoSaveMode = asmNone); override;
+    property ServicoWeb: String read GetServicoWeb;
+    property ModuloWeb: String read GetModuloWeb;
   published
+    property Servico: String read FServico write FServico;
     property Servidor: String read FServidor write FServidor;
+    property Modulo: String read FModulo write FModulo;
+    property EnderecoProxy: String read FEnderecoProxy write FEnderecoProxy;
+    property UsuarioProxy: String read FUsuarioProxy write FUsuarioProxy;
+    property SenhaProxy: String read FSenhaProxy write FSenhaProxy;
   end;
 
 var
@@ -24,19 +38,36 @@ uses SysUtils
    , Forms;
 
 const
-  SERVIDOR_PADRAO = 'http://127.0.0.1/iaf/IAFServer.dll';
+  SERVIDOR_PADRAO = 'http://127.0.0.1';
+  SERVICO_PADRAO = '/iaf/IAFServer.dll';
+  MODULO_PADRAO = '/soap/ISODMPrincipal';
 
 { TConfiguracoes }
 
-constructor TConfiguracoes.Create(aOwner: TComponent; aAutoSaveMode: TAutoSaveMode);
+constructor TConfiguracoes.Create(aOwner: TComponent; aAutoSaveMode: TAutoSaveMode = asmNone);
 begin
   inherited;
-  FServidor := SERVIDOR_PADRAO;
+  FServidor      := SERVIDOR_PADRAO;
+  FEnderecoProxy := '';
+  FUsuarioProxy  := '';
+  FSenhaProxy    := '';
+  FServico       := SERVICO_PADRAO;
+  FModulo        := MODULO_PADRAO;
+end;
+
+function TConfiguracoes.GetModuloWeb: String;
+begin
+  Result := GetServicoWeb + FModulo;
+end;
+
+function TConfiguracoes.GetServicoWeb: String;
+begin
+  Result := FServidor + FServico;
 end;
 
 initialization
-  Configuracoes := TConfiguracoes.Create(nil,asText);
-  Configuracoes.LoadFromTextFile(ChangeFileExt(Application.ExeName,'.cfg'));
+  Configuracoes := TConfiguracoes.Create(nil,asmText);
+  Configuracoes.LoadFromTextFile(ChangeFileExt(Application.ExeName,'.Configs'));
 
 finalization
   Configuracoes.Free;

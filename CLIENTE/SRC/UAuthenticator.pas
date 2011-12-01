@@ -74,14 +74,23 @@ begin
   if (Addr = '') then
   begin
     if UseWSDL then
-      Addr := Configuracoes.Servidor + '/wsdl/IAuthenticator'//defWSDL
+      Addr := Configuracoes.ServicoWeb + '/wsdl/IAuthenticator'
     else
-      Addr := Configuracoes.Servidor + '/soap/IAuthenticator';// defURL;
+      Addr := Configuracoes.ServicoWeb + '/soap/IAuthenticator';
   end;
   if HTTPRIO = nil then
     RIO := THTTPRIO.Create(nil)
   else
     RIO := HTTPRIO;
+
+  { Autenticação proxy }
+  if Configuracoes.EnderecoProxy <> '' then
+  begin
+    RIO.HTTPWebNode.Proxy := Configuracoes.EnderecoProxy;
+    RIO.HTTPWebNode.UserName := Configuracoes.UsuarioProxy;
+    RIO.HTTPWebNode.Password := Configuracoes.SenhaProxy;
+  end;
+
   try
     Result := (RIO as IAuthenticator);
     if UseWSDL then

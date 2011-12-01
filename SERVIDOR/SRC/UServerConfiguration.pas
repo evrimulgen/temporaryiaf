@@ -22,9 +22,8 @@ type
     FDBProtocol: String;
     FDBTransactIsolationLevel: TZTransactIsolationLevel;
   public
-    constructor Create(aOwner: TComponent); override;
+    constructor Create(aOwner: TComponent; aAutoSaveMode: TAutoSaveMode = asmNone); override;
     destructor Destroy; override;
-    procedure Save;
   published
     property CheckSessions: Boolean read FCheckSessions write FCheckSessions;
     property DBDatabase: String read FDBDatabase write FDBDatabase;
@@ -47,7 +46,7 @@ uses Windows
 
 { TServerConfiguration }
 
-constructor TServerConfiguration.Create(aOwner: TComponent);
+constructor TServerConfiguration.Create(aOwner: TComponent; aAutoSaveMode: TAutoSaveMode = asmNone);
 var
   ModuleName: PWideChar;
 begin
@@ -64,31 +63,26 @@ begin
 
   FCheckSessions  := True;
 
-  FDBDatabase := '';
-  FDBHostName     := '';
-  FDBPassword     := '';
-  FDBUserName     := '';
-  FDBPortNumb     := 0;
+  FDBDatabase               := '';
+  FDBHostName               := '';
+  FDBPassword               := '';
+  FDBUserName               := '';
+  FDBPortNumb               := 0;
+  FDBTransactIsolationLevel := tiReadCommitted;
 
   { Carrega o arquivo, caso ele exista }
-  LoadFromBinaryFile(FFileName);
+  LoadFromTextFile(FFileName);
 end;
 
 destructor TServerConfiguration.Destroy;
 begin
-  Save;
-  inherited;
-end;
 
-procedure TServerConfiguration.Save;
-begin
-  if FFileName <> '' then
-    SaveToBinaryFile(FFileName);
+  inherited;
 end;
 
 initialization
   CS := TCriticalSection.Create;
-  ServerConfiguration := TServerConfiguration.Create(nil);
+  ServerConfiguration := TServerConfiguration.Create(nil,asmText);
 
 finalization
   ServerConfiguration.Free;

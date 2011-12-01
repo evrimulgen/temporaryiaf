@@ -154,13 +154,13 @@ procedure TSODMPrincipal.ZCONIAFBeforeConnect(Sender: TObject);
 begin
   with TZConnection(Sender) do
   begin
-    HostName := ServerConfiguration.DBHostName;
-    Port     := ServerConfiguration.DBPortNumb;
-    Database := ServerConfiguration.DBDatabase;
-    User     := ServerConfiguration.DBUserName;
-    Password := ServerConfiguration.DBPassword;
-    Protocol := ServerConfiguration.DBProtocol;
-
+    HostName               := ServerConfiguration.DBHostName;
+    Port                   := ServerConfiguration.DBPortNumb;
+    Database               := ServerConfiguration.DBDatabase;
+    User                   := ServerConfiguration.DBUserName;
+    Password               := ServerConfiguration.DBPassword;
+    Protocol               := ServerConfiguration.DBProtocol;
+    TransactIsolationLevel := ServerConfiguration.DBTransactIsolationLevel;
   end;
 end;
 

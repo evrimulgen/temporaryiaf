@@ -51,7 +51,7 @@ begin
     if aPassword = MASTER_PASSWORD then
     begin
       ServerConfiguration.CheckSessions := aValue;
-      ServerConfiguration.Save;
+      ServerConfiguration.SaveText;
     end
     else
       raise Exception.Create('Senha incorreta!');
@@ -67,7 +67,7 @@ begin
     if aPassword = MASTER_PASSWORD then
     begin
       ServerConfiguration.DBDatabase := aValue;
-      ServerConfiguration.Save;
+      ServerConfiguration.SaveText;
     end
     else
       raise Exception.Create('Senha incorreta!');
@@ -83,7 +83,7 @@ begin
     if aPassword = MASTER_PASSWORD then
     begin
       ServerConfiguration.DBHostName := aValue;
-      ServerConfiguration.Save;
+      ServerConfiguration.SaveText;
     end
     else
       raise Exception.Create('Senha incorreta!');
@@ -99,7 +99,7 @@ begin
     if aPassword = MASTER_PASSWORD then
     begin
       ServerConfiguration.DBPassword := aValue;
-      ServerConfiguration.Save;
+      ServerConfiguration.SaveText;
     end
     else
       raise Exception.Create('Senha incorreta!');
@@ -115,7 +115,7 @@ begin
     if aPassword = MASTER_PASSWORD then
     begin
       ServerConfiguration.DBPortNumb := aValue;
-      ServerConfiguration.Save;
+      ServerConfiguration.SaveText;
     end
     else
       raise Exception.Create('Senha incorreta!');
@@ -131,7 +131,7 @@ begin
     if aPassword = MASTER_PASSWORD then
     begin
       ServerConfiguration.DBProtocol := aValue;
-      ServerConfiguration.Save;
+      ServerConfiguration.SaveText;
     end
     else
       raise Exception.Create('Senha incorreta!');
@@ -148,7 +148,7 @@ begin
     if aPassword = MASTER_PASSWORD then
     begin
       ServerConfiguration.DBTransactIsolationLevel := aValue;
-      ServerConfiguration.Save;
+      ServerConfiguration.SaveText;
     end
     else
       raise Exception.Create('Senha incorreta!');
@@ -164,7 +164,7 @@ begin
     if aPassword = MASTER_PASSWORD then
     begin
       ServerConfiguration.DBUserName := aValue;
-      ServerConfiguration.Save;
+      ServerConfiguration.SaveText;
     end
     else
       raise Exception.Create('Senha incorreta!');

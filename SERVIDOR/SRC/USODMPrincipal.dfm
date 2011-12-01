@@ -20,12 +20,18 @@ object SODMPrincipal: TSODMPrincipal
   object DSPRUsuarios: TDataSetProvider
     DataSet = KRDMUsuarios.ZQRYUsuarios
     Constraints = False
+    ResolveToDataSet = True
+    Options = [poFetchBlobsOnDemand, poFetchDetailsOnDemand, poIncFieldProps, poCascadeDeletes, poCascadeUpdates]
+    UpdateMode = upWhereKeyOnly
     Left = 54
     Top = 60
   end
   object DSPREntidadesDoSistema: TDataSetProvider
     DataSet = KRDMEntidadesDoSistema.ZQRYEntidadesDoSistema
     Constraints = False
+    ResolveToDataSet = True
+    Options = [poFetchBlobsOnDemand, poFetchDetailsOnDemand, poIncFieldProps, poCascadeDeletes, poCascadeUpdates]
+    UpdateMode = upWhereKeyOnly
     Left = 54
     Top = 108
   end

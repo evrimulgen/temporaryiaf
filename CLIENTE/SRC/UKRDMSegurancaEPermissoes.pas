@@ -37,6 +37,8 @@ type
     CLDSGruposDosUsuariosgrupo: TWideStringField;
     procedure CLDSConsEntidadesDoSistemasm_tipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure CLDSUsuariosch_senhaGetText(Sender: TField; var Text: string; DisplayText: Boolean);
+    procedure CLDSUsuariosPostError(DataSet: TDataSet; E: EDatabaseError;
+      var Action: TDataAction);
   private
     { Declarações privadas }
   protected
@@ -91,6 +93,13 @@ begin
   { Senhas nunca são exibidas }
   if DisplayText then
     Text := '';
+end;
+
+procedure TKRDMSegurancaEPermissoes.CLDSUsuariosPostError(DataSet: TDataSet; E: EDatabaseError; var Action: TDataAction);
+begin
+  inherited;
+  Action := daAbort;
+  Application.MessageBox(PWideChar(e.Message),'xx',MB_ICONWARNING);
 end;
 
 procedure TKRDMSegurancaEPermissoes.FiltrarEntidadesDoSistema(aIN_ENTIDADESDOSISTEMA_ID: Integer; aVA_NOME: String; aSM_TIPO: SmallInt);

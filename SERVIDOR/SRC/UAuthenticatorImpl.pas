@@ -205,7 +205,7 @@ begin
         SessionData := SD.ToString;
         SessionLastModified := Now;
       end;
-      SessionsFile.Save;
+      SessionsFile.SaveBinary;
     end;
   finally
     SD.Free;
@@ -226,7 +226,7 @@ begin
     if Result then
     begin
       SessionsFile.Sessions.Delete(SessionItem.Index);
-      SessionsFile.Save;
+      SessionsFile.SaveBinary;
     end;
   finally
     CS.Leave;
@@ -257,7 +257,7 @@ begin
     begin
       SessionItem.SessionData := aData;
       SessionItem.SessionLastModified := Now;
-      SessionsFile.Save;
+      SessionsFile.SaveBinary;
     end;
   finally
     CS.Leave;

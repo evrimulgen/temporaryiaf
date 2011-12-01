@@ -96,7 +96,8 @@ begin
   erro pode aparecer para o usuario, mas pelo menos sempre tudo vai ser
   destruído corretamente }
   try
-    Logout(FSessionConnection.ID);
+    if FSessionConnection.ID <> '' then
+      Logout(FSessionConnection.ID);
   finally
     inherited;
   end;
@@ -104,7 +105,14 @@ end;
 
 procedure TDAMOPrincipal.SOCNPrincipalBeforeConnect(Sender: TObject);
 begin
-  TSoapConnection(Sender).URL := Configuracoes.Servidor + '/soap/ISODMPrincipal';
+  TSoapConnection(Sender).URL := Configuracoes.ModuloWeb;
+
+  if Configuracoes.EnderecoProxy <> '' then
+  begin
+    TSoapConnection(Sender).Proxy := Configuracoes.EnderecoProxy;
+    TSoapConnection(Sender).Username := Configuracoes.UsuarioProxy;
+    TSoapConnection(Sender).Password := Configuracoes.SenhaProxy;
+  end;
 end;
 
 end.

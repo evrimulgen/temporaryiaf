@@ -32,30 +32,35 @@ inherited KRDMUsuarios: TKRDMUsuarios
         DataType = ftSmallint
         Name = 'SM_USUARIOS_ID'
         ParamType = ptInput
+        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_NOME'
         ParamType = ptInput
         Size = 64
+        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_LOGIN'
         ParamType = ptInput
         Size = 16
+        Value = Null
       end
       item
         DataType = ftString
         Name = 'CH_SENHA'
         ParamType = ptInput
         Size = 128
+        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_EMAIL'
         ParamType = ptInput
         Size = 64
+        Value = Null
       end>
     Left = 24
     Top = 60
@@ -64,60 +69,76 @@ inherited KRDMUsuarios: TKRDMUsuarios
         DataType = ftSmallint
         Name = 'SM_USUARIOS_ID'
         ParamType = ptInput
+        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_NOME'
         ParamType = ptInput
         Size = 64
+        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_LOGIN'
         ParamType = ptInput
         Size = 16
+        Value = Null
       end
       item
         DataType = ftString
         Name = 'CH_SENHA'
         ParamType = ptInput
         Size = 128
+        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_EMAIL'
         ParamType = ptInput
         Size = 64
+        Value = Null
       end>
     object ZQRYUsuariossm_usuarios_id: TSmallintField
       DisplayLabel = 'ID'
       FieldName = 'sm_usuarios_id'
+      ProviderFlags = [pfInKey]
     end
     object ZQRYUsuariosva_nome: TWideStringField
+      CustomConstraint = 'va_nome <> '#39#39
+      ConstraintErrorMessage = 'O campo "Nome" tem de ser preenchido'
       DisplayLabel = 'Nome'
       FieldName = 'va_nome'
+      ProviderFlags = [pfInUpdate]
       Size = 64
     end
     object ZQRYUsuariosva_login: TWideStringField
+      CustomConstraint = 'va_login <> '#39#39
+      ConstraintErrorMessage = 'O campo "Login" tem de ser preenchido'
       DisplayLabel = 'Login'
       FieldName = 'va_login'
+      ProviderFlags = [pfInUpdate]
       Size = 16
     end
     object ZQRYUsuariosch_senha: TWideStringField
+      CustomConstraint = 'ch_senha <> '#39#39
+      ConstraintErrorMessage = 'O campo "Senha" tem de ser preenchido'
       DisplayLabel = 'Senha'
       FieldName = 'ch_senha'
+      ProviderFlags = [pfInUpdate]
       Size = 128
     end
     object ZQRYUsuariosva_email: TWideStringField
       DisplayLabel = 'E-mail'
       FieldName = 'va_email'
+      ProviderFlags = [pfInUpdate]
       Size = 64
     end
   end
   object ZUSQUsuarios: TZUpdateSQL
     DeleteSQL.Strings = (
       'SELECT IDU_USUARIOS('#39'D'#39
-      '                   ,:OLD_SM_USUARIOS_ID)')
+      '                   ,CAST(:OLD_SM_USUARIOS_ID AS SMALLINT)')
     InsertSQL.Strings = (
       'SELECT IDU_USUARIOS('#39'I'#39
       '                   ,NULL'
@@ -127,7 +148,7 @@ inherited KRDMUsuarios: TKRDMUsuarios
       '                   ,:VA_EMAIL)')
     ModifySQL.Strings = (
       'SELECT IDU_USUARIOS('#39'U'#39
-      '                   ,:OLD_SM_USUARIOS_ID'
+      '                   ,CAST(:OLD_SM_USUARIOS_ID AS SMALLINT)'
       '                   ,:VA_NOME'
       '                   ,:VA_LOGIN'
       '                   ,:CH_SENHA'
@@ -137,29 +158,33 @@ inherited KRDMUsuarios: TKRDMUsuarios
     Top = 108
     ParamData = <
       item
-        DataType = ftUnknown
+        DataType = ftSmallint
         Name = 'OLD_sm_usuarios_id'
-        ParamType = ptUnknown
+        ParamType = ptInput
       end
       item
-        DataType = ftUnknown
+        DataType = ftString
         Name = 'va_nome'
-        ParamType = ptUnknown
+        ParamType = ptInput
+        Size = 64
       end
       item
-        DataType = ftUnknown
+        DataType = ftString
         Name = 'va_login'
-        ParamType = ptUnknown
+        ParamType = ptInput
+        Size = 16
       end
       item
-        DataType = ftUnknown
+        DataType = ftString
         Name = 'ch_senha'
-        ParamType = ptUnknown
+        ParamType = ptInput
+        Size = 128
       end
       item
-        DataType = ftUnknown
+        DataType = ftString
         Name = 'va_email'
-        ParamType = ptUnknown
+        ParamType = ptInput
+        Size = 64
       end>
   end
   object ZQRYGruposDosUsuarios: TZQuery
@@ -175,6 +200,27 @@ inherited KRDMUsuarios: TKRDMUsuarios
     LinkedFields = 'sm_usuarios_id'
     Left = 126
     Top = 60
+    object ZQRYGruposDosUsuariosin_gruposdosusuarios_id: TIntegerField
+      FieldName = 'in_gruposdosusuarios_id'
+      ProviderFlags = [pfInKey]
+      ReadOnly = True
+    end
+    object ZQRYGruposDosUsuariossm_grupos_id: TSmallintField
+      FieldName = 'sm_grupos_id'
+      ProviderFlags = [pfInUpdate]
+      ReadOnly = True
+    end
+    object ZQRYGruposDosUsuariossm_usuarios_id: TSmallintField
+      FieldName = 'sm_usuarios_id'
+      ProviderFlags = [pfInUpdate]
+      ReadOnly = True
+    end
+    object ZQRYGruposDosUsuariosgrupo: TWideStringField
+      FieldName = 'grupo'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 64
+    end
   end
   object DTSRUsuarios: TDataSource
     DataSet = ZQRYUsuarios

@@ -920,7 +920,6 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
             Align = alTop
             Caption = ' Dados do usu'#225'rio '
             TabOrder = 1
-            ExplicitTop = 31
             DesignSize = (
               280
               139)
@@ -959,7 +958,6 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
               Anchors = [akTop, akRight]
               DataField = 'ch_senha'
               DataSource = KRDMSegurancaEPermissoes.DTSRUsuarios
-              Enabled = False
               PasswordChar = '*'
               TabOrder = 3
               EditLabel.Width = 30
@@ -1649,11 +1647,12 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
     ExplicitWidth = 784
     inherited LABLCaption: TLabel
       Height = 38
+      ExplicitHeight = 38
     end
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C0101020008006C0020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800740020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2190,7 +2189,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C0101020008007C0020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800840020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
