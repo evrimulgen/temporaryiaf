@@ -26,6 +26,9 @@ exports
   HttpExtensionProc,
   TerminateExtension;
 
+  nos constraints cheque se é null e se nao for, cheque se é branco
+  se nao der certo o lance das constraints, o jeito é enviar as validações por parametros extras getparam
+
 begin
   CoInitFlags := COINIT_MULTITHREADED;
   Application.Initialize;
