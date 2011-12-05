@@ -6,7 +6,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms,
-  DBClient, UKRDMBasico, DB, ImgList, ActnList;
+  DBClient, UKRDMBasico, DB, ImgList, ActnList, ZAbstractRODataset,
+  ZAbstractDataset, ZDataset;
 
 type
   TKRDMSegurancaEPermissoes = class(TKRDMBasico)
@@ -35,10 +36,20 @@ type
     CLDSGruposDosUsuariossm_grupos_id: TSmallintField;
     CLDSGruposDosUsuariossm_usuarios_id: TSmallintField;
     CLDSGruposDosUsuariosgrupo: TWideStringField;
+    CLDSPermissoesDosUsuarios: TClientDataSet;
+    CLDSPermissoesDosUsuariosentidade: TWideStringField;
+    CLDSPermissoesDosUsuariosin_permissoesdosusuarios_id: TIntegerField;
+    CLDSPermissoesDosUsuariosin_entidadesdosistema_id: TIntegerField;
+    CLDSPermissoesDosUsuariossm_usuarios_id: TSmallintField;
+    CLDSPermissoesDosUsuariossm_ler: TSmallintField;
+    CLDSPermissoesDosUsuariossm_inserir: TSmallintField;
+    CLDSPermissoesDosUsuariossm_alterar: TSmallintField;
+    CLDSPermissoesDosUsuariossm_excluir: TSmallintField;
+    DTSRPermissoesDosUsuarios: TDataSource;
+    CLDSConsUsuariosZQRYPermissoesDosUsuarios: TDataSetField;
     procedure CLDSConsEntidadesDoSistemasm_tipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure CLDSUsuariosch_senhaGetText(Sender: TField; var Text: string; DisplayText: Boolean);
-    procedure CLDSUsuariosPostError(DataSet: TDataSet; E: EDatabaseError;
-      var Action: TDataAction);
+    procedure CLDSUsuariosPostError(DataSet: TDataSet; E: EDatabaseError; var Action: TDataAction);
   private
     { Declarações privadas }
   protected

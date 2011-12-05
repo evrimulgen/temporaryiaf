@@ -105,24 +105,18 @@ inherited KRDMUsuarios: TKRDMUsuarios
       ProviderFlags = [pfInKey]
     end
     object ZQRYUsuariosva_nome: TWideStringField
-      CustomConstraint = 'va_nome <> '#39#39
-      ConstraintErrorMessage = 'O campo "Nome" tem de ser preenchido'
       DisplayLabel = 'Nome'
       FieldName = 'va_nome'
       ProviderFlags = [pfInUpdate]
       Size = 64
     end
     object ZQRYUsuariosva_login: TWideStringField
-      CustomConstraint = 'va_login <> '#39#39
-      ConstraintErrorMessage = 'O campo "Login" tem de ser preenchido'
       DisplayLabel = 'Login'
       FieldName = 'va_login'
       ProviderFlags = [pfInUpdate]
       Size = 16
     end
     object ZQRYUsuariosch_senha: TWideStringField
-      CustomConstraint = 'ch_senha <> '#39#39
-      ConstraintErrorMessage = 'O campo "Senha" tem de ser preenchido'
       DisplayLabel = 'Senha'
       FieldName = 'ch_senha'
       ProviderFlags = [pfInUpdate]
@@ -226,5 +220,82 @@ inherited KRDMUsuarios: TKRDMUsuarios
     DataSet = ZQRYUsuarios
     Left = 24
     Top = 156
+  end
+  object KRVCUsuarios: TKRKValidationChecks
+    DataSet = ZQRYUsuarios
+    TableName = 'USUARIOS'
+    CheckableFields = <
+      item
+        FieldName = 'sm_usuarios_id'
+        FieldDescription = 'ID'
+      end
+      item
+        FieldName = 'va_nome'
+        FieldDescription = 'Nome completo do usu'#225'rio'
+        CheckBlank.Active = True
+      end
+      item
+        FieldName = 'va_login'
+        FieldDescription = 'Login de acesso do usu'#225'rio'
+        CheckBlank.Active = True
+      end
+      item
+        FieldName = 'ch_senha'
+        FieldDescription = 'Senha de acesso do usu'#225'rio'
+        CheckBlank.Active = True
+      end
+      item
+        FieldName = 'va_email'
+        FieldDescription = 'E-mail do usu'#225'rio'
+      end>
+    Left = 24
+    Top = 204
+  end
+  object ZQRYPermissoesDosUsuarios: TZQuery
+    Connection = SODMPrincipal.ZCONIAF
+    SQL.Strings = (
+      'SELECT EDS.VA_NOME AS ENTIDADE'
+      '     , PDU.*'
+      '  FROM PERMISSOESDOSUSUARIOS PDU'
+      '  JOIN ENTIDADESDOSISTEMA EDS USING(IN_ENTIDADESDOSISTEMA_ID)')
+    Params = <>
+    MasterFields = 'sm_usuarios_id'
+    MasterSource = DTSRUsuarios
+    LinkedFields = 'sm_usuarios_id'
+    Left = 264
+    Top = 60
+    object ZQRYPermissoesDosUsuariosentidade: TWideStringField
+      FieldName = 'entidade'
+      ReadOnly = True
+      Size = 128
+    end
+    object ZQRYPermissoesDosUsuariosin_permissoesdosusuarios_id: TIntegerField
+      FieldName = 'in_permissoesdosusuarios_id'
+      ReadOnly = True
+    end
+    object ZQRYPermissoesDosUsuariosin_entidadesdosistema_id: TIntegerField
+      FieldName = 'in_entidadesdosistema_id'
+      ReadOnly = True
+    end
+    object ZQRYPermissoesDosUsuariossm_usuarios_id: TSmallintField
+      FieldName = 'sm_usuarios_id'
+      ReadOnly = True
+    end
+    object ZQRYPermissoesDosUsuariossm_ler: TSmallintField
+      FieldName = 'sm_ler'
+      ReadOnly = True
+    end
+    object ZQRYPermissoesDosUsuariossm_inserir: TSmallintField
+      FieldName = 'sm_inserir'
+      ReadOnly = True
+    end
+    object ZQRYPermissoesDosUsuariossm_alterar: TSmallintField
+      FieldName = 'sm_alterar'
+      ReadOnly = True
+    end
+    object ZQRYPermissoesDosUsuariossm_excluir: TSmallintField
+      FieldName = 'sm_excluir'
+      ReadOnly = True
+    end
   end
 end

@@ -65,7 +65,7 @@ begin
     { Se a sessão existir, continua }
     if Assigned(SessionItem) then
     begin
-      SessionData.LoadFromTextualRepresentation(SessionItem.SessionData);
+      SessionData.FromString(SessionItem.SessionData);
       { Compara a senha da sessão com a senha antiga, supostamente do usuário da
       sessão, se as senhas forem iguais, continua criando uma transação e
       atualizando o registro do usuário identificado pela sessão com a nova senha }

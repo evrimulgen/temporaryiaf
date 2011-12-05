@@ -45,6 +45,46 @@ object DAMOPrincipal: TDAMOPrincipal
           end>
       end
       item
+      end
+      item
+        Items = <
+          item
+            Items = <
+              item
+                Action = ACTNAlterarMinhasPreferencias
+                ImageIndex = 5
+              end>
+            Caption = '&Usu'#225'rio'
+          end
+          item
+            Items = <
+              item
+                Action = ACTNConfiguracoes
+                Caption = '&Configura'#231#245'es'
+                ImageIndex = 3
+              end
+              item
+                Action = ACTNSegurancaEPermissoes
+                Caption = '&Seguran'#231'a e permiss'#245'es'
+                ImageIndex = 4
+              end>
+            Caption = '&Ferramentas administrativas'
+          end
+          item
+            Items = <
+              item
+                Action = ACTNAjuda
+                Caption = '&Ajuda'
+                ImageIndex = 1
+              end
+              item
+                Action = ACTNSobre
+                Caption = '&Sobre o IAF'
+                ImageIndex = 0
+              end>
+            Caption = '&Ajuda'
+          end>
+        ActionBar = FORMPrincipal.ActionMainMenuBar1
       end>
     Images = IMLIPrincipal
     Left = 24
@@ -97,7 +137,7 @@ object DAMOPrincipal: TDAMOPrincipal
     Left = 90
     Top = 12
     Bitmap = {
-      494C010106000800A40010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010106000800A80010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       00000000000000000000000000000000000000000000000000030000000C0000
       00170000001F0000002400000025000000250000002600000027000000270000

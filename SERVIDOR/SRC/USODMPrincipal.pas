@@ -29,10 +29,6 @@ type
     DSPRUsuarios: TDataSetProvider;
     DSPREntidadesDoSistema: TDataSetProvider;
     procedure ZCONIAFBeforeConnect(Sender: TObject);
-  private
-    function SessionExists(const aSessionID: String): Boolean;
-    function CheckSessions: Boolean;
-    procedure CreateDataModules(const aProviderName: WideString);
   public
     function SAS_ApplyUpdates(const ProviderName: WideString; Delta: OleVariant; MaxErrors: Integer; out ErrorCount: Integer; var OwnerData: OleVariant): OleVariant; override; stdcall;
     procedure SAS_Execute(const ProviderName: WideString; const CommandText: WideString; var Params: OleVariant; var OwnerData: OleVariant); override; stdcall;
@@ -46,11 +42,7 @@ implementation
 
 {$R *.DFM}
 
-uses SyncObjs
-   , UServerConfiguration
-   , USessionsManager
-   , UKRDMUsuarios
-   , UKRDMEntidadesDoSistema;
+uses UExtraUtilities;
 
 procedure TSODMPrincipalCreateInstance(out obj: TObject);
 begin
@@ -59,31 +51,11 @@ end;
 
 { TSSDMIAF }
 
-function TSODMPrincipal.CheckSessions: Boolean;
-begin
-  CS.Enter;
-  try
-    Result := ServerConfiguration.CheckSessions;
-  finally
-    CS.Leave;
-  end;
-end;
-
-procedure TSODMPrincipal.CreateDataModules(const aProviderName: WideString);
-begin
-  { Não é necessário usar free para destruir, visto que usamos este datamodule
-  como dono dos datamodules criados }
-  if aProviderName = 'DSPRUsuarios' then
-    TKRDMUsuarios.Create(Self)
-  else if aProviderName = 'DSPREntidadesDoSistema' then
-    TKRDMEntidadesDoSistema.Create(Self)
-end;
-
 function TSODMPrincipal.SAS_ApplyUpdates(const ProviderName: WideString; Delta: OleVariant; MaxErrors: Integer; out ErrorCount: Integer; var OwnerData: OleVariant): OleVariant;
 begin
   if (not CheckSessions) or SessionExists(OwnerData) then
   begin
-    CreateDataModules(ProviderName);
+    CreateDataModule(ProviderName,Self);
     Result := inherited;
   end
   else
@@ -92,7 +64,7 @@ end;
 
 function TSODMPrincipal.SAS_DataRequest(const ProviderName: WideString; Data: OleVariant): OleVariant;
 begin
-  CreateDataModules(ProviderName);
+  CreateDataModule(ProviderName,Self);
   Result := inherited;
 end;
 
@@ -100,7 +72,7 @@ procedure TSODMPrincipal.SAS_Execute(const ProviderName, CommandText: WideString
 begin
   if (not CheckSessions) or SessionExists(OwnerData) then
   begin
-    CreateDataModules(ProviderName);
+    CreateDataModule(ProviderName,Self);
     inherited;
   end
   else
@@ -111,7 +83,7 @@ function TSODMPrincipal.SAS_GetParams(const ProviderName: WideString; var OwnerD
 begin
   if (not CheckSessions) or SessionExists(OwnerData) then
   begin
-    CreateDataModules(ProviderName);
+    CreateDataModule(ProviderName,Self);
     Result := inherited;
   end
   else
@@ -122,7 +94,7 @@ function TSODMPrincipal.SAS_GetRecords(const ProviderName: WideString; Count: In
 begin
   if (not CheckSessions) or SessionExists(OwnerData) then
   begin
-    CreateDataModules(ProviderName);
+    CreateDataModule(ProviderName,Self);
     Result := inherited;
   end
   else
@@ -133,35 +105,16 @@ function TSODMPrincipal.SAS_RowRequest(const ProviderName: WideString; Row: OleV
 begin
   if (not CheckSessions) or SessionExists(OwnerData) then
   begin
-    CreateDataModules(ProviderName);
+    CreateDataModule(ProviderName,Self);
     Result := inherited;
   end
   else
     raise Exception.Create('Para usar este método é necessário que você seja um usuário autenticado no sistema');
 end;
 
-function TSODMPrincipal.SessionExists(const aSessionID: String): Boolean;
-begin
-  CS.Enter;
-  try
-    Result := Assigned(SessionsFile.Sessions[aSessionID]);
-  finally
-    CS.Leave;
-  end;
-end;
-
 procedure TSODMPrincipal.ZCONIAFBeforeConnect(Sender: TObject);
 begin
-  with TZConnection(Sender) do
-  begin
-    HostName               := ServerConfiguration.DBHostName;
-    Port                   := ServerConfiguration.DBPortNumb;
-    Database               := ServerConfiguration.DBDatabase;
-    User                   := ServerConfiguration.DBUserName;
-    Password               := ServerConfiguration.DBPassword;
-    Protocol               := ServerConfiguration.DBProtocol;
-    TransactIsolationLevel := ServerConfiguration.DBTransactIsolationLevel;
-  end;
+  ConfigureConnection(TZConnection(Sender));
 end;
 
 initialization

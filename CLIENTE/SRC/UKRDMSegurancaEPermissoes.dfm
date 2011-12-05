@@ -70,6 +70,9 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
       FieldName = 'va_email'
       Size = 64
     end
+    object CLDSConsUsuariosZQRYPermissoesDosUsuarios: TDataSetField
+      FieldName = 'ZQRYPermissoesDosUsuarios'
+    end
   end
   object DTSRConsUsuarios: TDataSource
     DataSet = CLDSConsUsuarios
@@ -235,8 +238,55 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
     object CLDSGruposDosUsuariosgrupo: TWideStringField
       DisplayLabel = 'Grupo'
       FieldName = 'grupo'
+      ProviderFlags = []
       ReadOnly = True
       Size = 64
     end
+  end
+  object CLDSPermissoesDosUsuarios: TClientDataSet
+    Aggregates = <>
+    ConnectionBroker = DAMOPrincipal.CNBRPrincipal
+    DataSetField = CLDSConsUsuariosZQRYPermissoesDosUsuarios
+    Params = <>
+    Left = 306
+    Top = 150
+    object CLDSPermissoesDosUsuariosentidade: TWideStringField
+      FieldName = 'entidade'
+      ReadOnly = True
+      Size = 128
+    end
+    object CLDSPermissoesDosUsuariosin_permissoesdosusuarios_id: TIntegerField
+      FieldName = 'in_permissoesdosusuarios_id'
+      ReadOnly = True
+    end
+    object CLDSPermissoesDosUsuariosin_entidadesdosistema_id: TIntegerField
+      FieldName = 'in_entidadesdosistema_id'
+      ReadOnly = True
+    end
+    object CLDSPermissoesDosUsuariossm_usuarios_id: TSmallintField
+      FieldName = 'sm_usuarios_id'
+      ReadOnly = True
+    end
+    object CLDSPermissoesDosUsuariossm_ler: TSmallintField
+      FieldName = 'sm_ler'
+      ReadOnly = True
+    end
+    object CLDSPermissoesDosUsuariossm_inserir: TSmallintField
+      FieldName = 'sm_inserir'
+      ReadOnly = True
+    end
+    object CLDSPermissoesDosUsuariossm_alterar: TSmallintField
+      FieldName = 'sm_alterar'
+      ReadOnly = True
+    end
+    object CLDSPermissoesDosUsuariossm_excluir: TSmallintField
+      FieldName = 'sm_excluir'
+      ReadOnly = True
+    end
+  end
+  object DTSRPermissoesDosUsuarios: TDataSource
+    DataSet = CLDSPermissoesDosUsuarios
+    Left = 306
+    Top = 198
   end
 end

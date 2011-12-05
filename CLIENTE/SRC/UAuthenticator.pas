@@ -63,8 +63,6 @@ uses SysUtils
 
 function GetIAuthenticator(UseWSDL: Boolean; Addr: string; HTTPRIO: THTTPRIO): IAuthenticator;
 const
-//  defWSDL = 'http://127.0.0.1/iaf/IAFServer.dll/wsdl/IAuthenticator';
-//  defURL  = 'http://127.0.0.1/iaf/IAFServer.dll/soap/IAuthenticator';
   defSvc  = 'IAuthenticatorservice';
   defPrt  = 'IAuthenticatorPort';
 var

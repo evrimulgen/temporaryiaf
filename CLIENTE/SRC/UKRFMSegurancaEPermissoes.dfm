@@ -11,7 +11,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
     Top = 40
     Width = 784
     Height = 522
-    ActivePage = TabSheet_USU
+    ActivePage = TabSheet_Permissions
     Align = alClient
     TabOrder = 0
     object TabSheet_Permissions: TTabSheet
@@ -382,7 +382,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
           Top = 0
           Width = 770
           Height = 254
-          ActivePage = TBSHGRU
+          ActivePage = TBSHUSU
           Align = alClient
           MultiLine = True
           ParentShowHint = False
@@ -1647,12 +1647,11 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
     ExplicitWidth = 784
     inherited LABLCaption: TLabel
       Height = 38
-      ExplicitHeight = 38
     end
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C010102000800740020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800840020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2189,7 +2188,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C010102000800840020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800940020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

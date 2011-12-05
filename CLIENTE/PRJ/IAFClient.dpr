@@ -15,7 +15,8 @@ uses
   UKRFMDBAwareBasico in '..\SRC\UKRFMDBAwareBasico.pas' {KRFMDBAwareBasico: TKRKForm},
   UKRFMSegurancaEPermissoes in '..\SRC\UKRFMSegurancaEPermissoes.pas' {KRFMSegurancaEPermissoes: TKRKForm},
   UKRDMBasico in '..\SRC\UKRDMBasico.pas' {KRDMBasico: TKRKDataModule},
-  UConfiguracoes in '..\SRC\UConfiguracoes.pas';
+  UConfiguracoes in '..\SRC\UConfiguracoes.pas',
+  UExtraMethods in '..\SRC\UExtraMethods.pas';
 
 {$R *.res}
 

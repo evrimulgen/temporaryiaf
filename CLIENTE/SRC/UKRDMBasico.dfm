@@ -10,7 +10,11 @@ object KRDMBasico: TKRDMBasico
   object IMLI: TImageList
     ColorDepth = cd32Bit
     DrawingStyle = dsTransparent
-    Left = 66
+    Left = 54
+    Top = 6
+  end
+  object BAHI: TBalloonHint
+    Left = 90
     Top = 6
   end
 end

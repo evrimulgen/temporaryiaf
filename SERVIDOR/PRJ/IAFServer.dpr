@@ -17,7 +17,10 @@ uses
   UServerManagerImpl in '..\SRC\UServerManagerImpl.pas',
   UServerManagerIntf in '..\SRC\UServerManagerIntf.pas',
   UServerConfiguration in '..\SRC\UServerConfiguration.pas',
-  UKRDMEntidadesDoSistema in '..\SRC\UKRDMEntidadesDoSistema.pas' {KRDMEntidadesDoSistema: TKRKDataModule};
+  UKRDMEntidadesDoSistema in '..\SRC\UKRDMEntidadesDoSistema.pas' {KRDMEntidadesDoSistema: TKRKDataModule},
+  UExtraMethodsImpl in '..\SRC\UExtraMethodsImpl.pas',
+  UExtraMethodsIntf in '..\SRC\UExtraMethodsIntf.pas',
+  UExtraUtilities in '..\SRC\UExtraUtilities.pas';
 
 {$R *.res}
 
@@ -25,10 +28,6 @@ exports
   GetExtensionVersion,
   HttpExtensionProc,
   TerminateExtension;
-
-  nos constraints cheque se é null e se nao for, cheque se é branco
-  se nao der certo o lance das constraints, o jeito é enviar as validações por parametros extras getparam
-
 begin
   CoInitFlags := COINIT_MULTITHREADED;
   Application.Initialize;
