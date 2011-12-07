@@ -15,6 +15,9 @@ object FORMPrincipal: TFORMPrincipal
   FormStyle = fsMDIForm
   OldCreateOrder = False
   Position = poScreenCenter
+  DesignSize = (
+    784
+    562)
   PixelsPerInch = 96
   TextHeight = 13
   object ActionMainMenuBar1: TActionMainMenuBar
@@ -75,5 +78,13 @@ object FORMPrincipal: TFORMPrincipal
       item
         Width = 50
       end>
+  end
+  object PRBAAndamento: TProgressBar
+    Left = 1
+    Top = 545
+    Width = 196
+    Height = 16
+    Anchors = [akLeft, akBottom]
+    TabOrder = 3
   end
 end

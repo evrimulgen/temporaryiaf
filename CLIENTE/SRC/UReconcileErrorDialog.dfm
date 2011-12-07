@@ -132,8 +132,6 @@ object ReconcileErrorForm: TReconcileErrorForm
     TabOrder = 1
     OnSelectCell = UpdateDataSelectCell
     OnSetEditText = UpdateDataSetEditText
-    ExplicitWidth = 515
-    ExplicitHeight = 144
   end
   object ActionGroup: TRadioGroup
     Left = 525
@@ -144,7 +142,6 @@ object ReconcileErrorForm: TReconcileErrorForm
     Caption = ' Medida corretiva '
     TabOrder = 0
     OnClick = DisplayFieldValues
-    ExplicitLeft = 418
   end
   object CancelBtn: TButton
     Left = 553
@@ -156,8 +153,6 @@ object ReconcileErrorForm: TReconcileErrorForm
     Caption = 'Cancelar'
     ModalResult = 2
     TabOrder = 5
-    ExplicitLeft = 446
-    ExplicitTop = 275
   end
   object OKBtn: TButton
     Left = 472
@@ -169,8 +164,6 @@ object ReconcileErrorForm: TReconcileErrorForm
     Default = True
     ModalResult = 1
     TabOrder = 4
-    ExplicitLeft = 365
-    ExplicitTop = 275
   end
   object ConflictsOnly: TCheckBox
     Left = 6
@@ -181,7 +174,6 @@ object ReconcileErrorForm: TReconcileErrorForm
     Caption = 'Exibir apenas campos conflitantes'
     TabOrder = 2
     OnClick = DisplayFieldValues
-    ExplicitTop = 279
   end
   object ErrorMsg: TMemo
     Left = 44
@@ -193,7 +185,6 @@ object ReconcileErrorForm: TReconcileErrorForm
     Color = clBtnFace
     ReadOnly = True
     TabOrder = 6
-    ExplicitWidth = 368
   end
   object ChangedOnly: TCheckBox
     Left = 189
@@ -204,6 +195,5 @@ object ReconcileErrorForm: TReconcileErrorForm
     Caption = 'Exibir apenas campos alterados'
     TabOrder = 3
     OnClick = DisplayFieldValues
-    ExplicitTop = 279
   end
 end

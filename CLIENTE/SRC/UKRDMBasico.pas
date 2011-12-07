@@ -142,7 +142,7 @@ end;
 
 procedure TKRDMBasico.DoReconcileError(DataSet: TCustomClientDataSet; E: EReconcileError; UpdateKind: TUpdateKind; var Action: TReconcileAction);
 begin
-  HandleReconcileError(DataSet,UpdateKind,E);
+  Action := HandleReconcileError(DataSet,UpdateKind,E);
 end;
 
 end.

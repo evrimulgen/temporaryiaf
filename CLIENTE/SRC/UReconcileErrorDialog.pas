@@ -22,9 +22,8 @@ uses
   Dialogs, StdCtrls, Grids, DB, DBClient, Provider, ExtCtrls, DBConsts, pngimage;
 
 resourcestring
-
-  SCaption = 'Erro de atualização - %s';
-  SUnchanged = '<Não modificado>';
+  SCaption = 'Erro ao enviar os dados - %s';
+  SUnchanged = '<inalterado>';
   SBinary = '(Binário)';
   SAdt = '(ADT)';
   SArray = '(Array)';
@@ -32,12 +31,12 @@ resourcestring
   SOriginal = 'Valor original';
   SConflict = 'Valor conflitante';
   SValue = 'Valor ';
-  SNoData = '<Sem registros>';
+  SNoData = '<sem registros>';
   SNew = 'Novo';
 
 const
   ActionStr: array[TReconcileAction] of string = ('Ignorar', 'Abortar', 'Mesclar', 'Corrigir', 'Cancelar', 'Atualizar');
-  UpdateKindStr: array[TUpdateKind] of string = ('Modificado', 'Inserido', 'Excluído');
+  UpdateKindStr: array[TUpdateKind] of string = ('Alteração', 'Inserção', 'Exclusão');
 
 type
   TReconcileErrorForm = class(TForm)
@@ -68,9 +67,9 @@ type
     procedure InitUpdateData(HasCurValues: Boolean);
     procedure InitReconcileActions;
     procedure SetFieldValues(DataSet: TDataSet);
+    procedure TratarMensagemDeErro;
   public
-    constructor CreateForm(DataSet: TDataSet; UpdateKind: TUpdateKind;
-      Error: EReconcileError);
+    constructor CreateForm(DataSet: TDataSet; UpdateKind: TUpdateKind; Error: EReconcileError);
   end;
 
 function HandleReconcileError(DataSet: TDataSet;  UpdateKind: TUpdateKind; ReconcileError: EReconcileError): TReconcileAction;
@@ -311,18 +310,32 @@ begin
   end;
 end;
 
+procedure TReconcileErrorForm.TratarMensagemDeErro;
+begin
+  { ErrorMsg é o memo com a mensagem de erro }
+end;
+
 { Event handlers }
 
 procedure TReconcileErrorForm.FormCreate(Sender: TObject);
 begin
-  if FDataSet = nil then Exit;
+  if not Assigned(FDataSet) then
+    Exit;
+
   FDataFields := TList.Create;
   InitDataFields;
+
   Caption := Format(SCaption, [FDataSet.Name]);
+
   UpdateType.Caption := UpdateKindStr[FUpdateKind];
+
   ErrorMsg.Text := FError.Message;
+
   if FError.Context <> '' then
     ErrorMsg.Lines.Add(FError.Context);
+
+  TratarMensagemDeErro;
+
   ConflictsOnly.Enabled := FCurColIdx > 0;
   ConflictsOnly.Checked := ConflictsOnly.Enabled;
   ChangedOnly.Enabled := FNewColIdx > 0;

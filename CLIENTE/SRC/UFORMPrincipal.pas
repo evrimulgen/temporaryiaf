@@ -12,6 +12,7 @@ type
     ActionMainMenuBar1: TActionMainMenuBar;
     ActionToolBar1: TActionToolBar;
     StatusBar1: TStatusBar;
+    PRBAAndamento: TProgressBar;
     procedure ActionMainMenuBar1Paint(Sender: TObject);
   private
     { Private declarations }

@@ -24,11 +24,15 @@ type
     procedure ACTNAjudaExecute(Sender: TObject);
     procedure ACTNSobreExecute(Sender: TObject);
     procedure SOCNPrincipalBeforeConnect(Sender: TObject);
+    procedure SOCNPrincipalAfterConnect(Sender: TObject);
   private
     { Private declarations }
     FSessionConnection: TCurrentSession;
     FKRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes;
     FFORMPrincipal: TFORMPrincipal;
+    procedure DoReceivingData(Read, Total: Integer);
+    procedure DoBeforePost(const HTTPReqResp: THTTPReqResp; Data: Pointer);
+    procedure DoPostingData(Sent, Total: Integer);
   public
     { Public declarations }
     constructor Create(aOwner: TComponent); override;
@@ -84,7 +88,7 @@ begin
       Sleep(500);
       FORMSplash := TFORMSplash.ShowMe(0);
       { TODO -oCBFF : Neste ponto, obtenha o restante dos dados da sessão e aplique
-      as permissões }
+      as permissões. Use FORMSplash para exibir algum progresso }
       Application.CreateForm(TFORMPrincipal,FFORMPrincipal);
     finally
       FORMSplash.Close;
@@ -102,6 +106,31 @@ begin
   finally
     inherited;
   end;
+end;
+
+procedure TDAMOPrincipal.DoReceivingData(Read: Integer; Total: Integer);
+begin
+  FFORMPrincipal.PRBAAndamento.Max  := Total;
+  FFORMPrincipal.PRBAAndamento.Position := Read;
+end;
+
+procedure TDAMOPrincipal.DoPostingData (Sent: Integer; Total: Integer);
+begin
+  FFORMPrincipal.PRBAAndamento.Max  := Total;
+  FFORMPrincipal.PRBAAndamento.Position := Sent;
+end;
+
+procedure TDAMOPrincipal.DoBeforePost(const HTTPReqResp: THTTPReqResp; Data: Pointer);
+begin
+  FFORMPrincipal.PRBAAndamento.Position := 0;
+  FFORMPrincipal.PRBAAndamento.Step := 1;
+end;
+
+procedure TDAMOPrincipal.SOCNPrincipalAfterConnect(Sender: TObject);
+begin
+  TSoapConnection(Sender).RIO.HTTPWebNode.OnReceivingData := DoReceivingData;
+  TSoapConnection(Sender).RIO.HTTPWebNode.OnPostingData := DoPostingData;
+  TSoapConnection(Sender).RIO.HTTPWebNode.OnBeforePost := DoBeforePost;
 end;
 
 procedure TDAMOPrincipal.SOCNPrincipalBeforeConnect(Sender: TObject);
