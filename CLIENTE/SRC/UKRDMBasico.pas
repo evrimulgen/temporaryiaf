@@ -7,13 +7,13 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms,
   KRK.Wizards.DataModule, ActnList, ImgList, DBClient, UReconcileErrorDialog,
-  DB, KRK.Components.DataControls.ValidationChecks;
+  DB, KRK.Components.DataControls.ValidationChecks,
+  KRK.Components.AdditionalControls.BalloonHint;
 
 type
   TClientDataSet = class (DBClient.TClientDataSet)
   private
     FKRKValidationChecks: TKRKValidationChecks;
-//    function MeuValidador: TKRKValidationChecks;
   public
     constructor Create(aOwner: TComponent); override;
     destructor Destroy; override;
@@ -31,12 +31,13 @@ type
   TKRDMBasico = class(TKRKDataModule)
     ACLI: TActionList;
     IMLI: TImageList;
-    BAHI: TBalloonHint;
+    KRBH: TKRKBalloonHint;
   private
     { Declarações privadas }
     procedure DoReconcileError(DataSet: TCustomClientDataSet; E: EReconcileError; UpdateKind: TUpdateKind; var Action: TReconcileAction);
   protected
     { Declarações protegidas }
+    procedure ConfigureErrorHint(aTitle, aText: String; aWinControl: TWinControl; aShowHint: Boolean); virtual;
   public
     { Declarações públicas }
     constructor Create(aOwner: TComponent); override;
@@ -79,19 +80,20 @@ end;
 
 procedure TClientDataSet.DoBeforePost;
 begin
+  inherited;
   try
     FKRKValidationChecks.ValidateBeforePost;
   except
     on EIFV: EInvalidFieldValue do
     begin
-      TKRDMBasico(Owner).BAHI.Title := 'Campo incorreto';
-      TKRDMBasico(Owner).BAHI.Description := EIFV.Message;
       EIFV.CheckableField.Field.FocusControl;
-//      TKRDMBasico(Owner).MyForm.ActiveControl.CustomHint := TKRDMBasico(Owner).BAHI;
-      raise;
+      TKRDMBasico(Owner).ConfigureErrorHint('Campo incorreto'
+                                           ,EIFV.Message
+                                           ,TKRDMBasico(Owner).MyForm.ActiveControl
+                                           ,True);
+      Abort;
     end;
   end;
-  inherited;
 end;
 
 procedure TClientDataSet.DoBeforeExecute(var OwnerData: OleVariant);
@@ -143,6 +145,23 @@ end;
 procedure TKRDMBasico.DoReconcileError(DataSet: TCustomClientDataSet; E: EReconcileError; UpdateKind: TUpdateKind; var Action: TReconcileAction);
 begin
   Action := HandleReconcileError(DataSet,UpdateKind,E);
+end;
+
+procedure TKRDMBasico.ConfigureErrorHint(aTitle, aText: String; aWinControl: TWinControl; aShowHint: Boolean);
+begin
+  with KRBH do
+  begin
+    AssociatedWinControl := aWinControl;
+    TipTitle := aTitle;
+    TipText :=  aText;
+    MaxWidth := 320;
+    TipIcon := tiError;
+    Options := [kbhoActivateOnShow, kbhoSetFocusToAssociatedWinContronOnDeactivate, kbhoHideOnDeactivate, kbhoHideWithEnter, kbhoHideWithEsc, kbhoSelectAllOnFocus];
+//    ShowWhenRequested := True;
+
+    if aShowHint then
+      Show;
+  end;
 end;
 
 end.

@@ -13,7 +13,16 @@ object KRDMBasico: TKRDMBasico
     Left = 54
     Top = 6
   end
-  object BAHI: TBalloonHint
+  object KRBH: TKRKBalloonHint
+    TipTitle = 'Bal'#227'o sem t'#237'tulo'
+    TipText = 
+      'Voc'#234' esqueceu de por um texto. Configure a propriedade TipText c' +
+      'orretamente'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
     Left = 90
     Top = 6
   end

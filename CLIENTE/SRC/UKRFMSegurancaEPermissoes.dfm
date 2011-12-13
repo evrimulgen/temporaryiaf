@@ -11,7 +11,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
     Top = 40
     Width = 784
     Height = 522
-    ActivePage = TabSheet_Permissions
+    ActivePage = TabSheet_USU
     Align = alClient
     TabOrder = 0
     object TabSheet_Permissions: TTabSheet
@@ -1204,18 +1204,18 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
               BackgroundColor = clBtnFace
               ForegroundColor = clNone
             end>
-          VariableWidthColumns = '<va_nome>'
+          VariableWidthColumns = '<nome>'
           Columns = <
             item
               Expanded = False
-              FieldName = 'va_nome'
+              FieldName = 'nome'
               Width = 331
               Visible = True
             end
             item
               Alignment = taCenter
               Expanded = False
-              FieldName = 'va_login'
+              FieldName = 'login'
               Title.Alignment = taCenter
               Width = 110
               Visible = True
@@ -1647,11 +1647,12 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
     ExplicitWidth = 784
     inherited LABLCaption: TLabel
       Height = 38
+      ExplicitHeight = 38
     end
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C010102000800840020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800880020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2188,7 +2189,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C010102000800940020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800980020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

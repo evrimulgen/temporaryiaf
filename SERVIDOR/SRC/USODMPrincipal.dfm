@@ -19,7 +19,7 @@ object SODMPrincipal: TSODMPrincipal
   end
   object DSPRUsuarios: TDataSetProvider
     DataSet = KRDMUsuarios.ZQRYUsuarios
-    ResolveToDataSet = True
+    Constraints = False
     Options = [poFetchBlobsOnDemand, poFetchDetailsOnDemand, poIncFieldProps, poCascadeDeletes, poCascadeUpdates]
     UpdateMode = upWhereKeyOnly
     Left = 54
@@ -27,7 +27,7 @@ object SODMPrincipal: TSODMPrincipal
   end
   object DSPREntidadesDoSistema: TDataSetProvider
     DataSet = KRDMEntidadesDoSistema.ZQRYEntidadesDoSistema
-    ResolveToDataSet = True
+    Constraints = False
     Options = [poFetchBlobsOnDemand, poFetchDetailsOnDemand, poIncFieldProps, poCascadeDeletes, poCascadeUpdates]
     UpdateMode = upWhereKeyOnly
     Left = 54

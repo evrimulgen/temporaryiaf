@@ -168,7 +168,6 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
         Value = Null
       end>
     ProviderName = 'DSPRUsuarios'
-    OnPostError = CLDSUsuariosPostError
     Left = 36
     Top = 150
     object CLDSUsuariossm_usuarios_id: TSmallintField
@@ -200,6 +199,20 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
       FieldName = 'va_email'
       ProviderFlags = [pfInUpdate]
       Size = 64
+    end
+    object CLDSUsuariosnome: TWideStringField
+      DisplayLabel = 'Nome'
+      FieldName = 'nome'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 64
+    end
+    object CLDSUsuarioslogin: TWideStringField
+      DisplayLabel = 'Login'
+      FieldName = 'login'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 16
     end
     object CLDSUsuariosZQRYGruposDosUsuarios: TDataSetField
       FieldName = 'ZQRYGruposDosUsuarios'

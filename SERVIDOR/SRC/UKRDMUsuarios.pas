@@ -33,6 +33,8 @@ type
     ZQRYPermissoesDosUsuariossm_inserir: TSmallintField;
     ZQRYPermissoesDosUsuariossm_alterar: TSmallintField;
     ZQRYPermissoesDosUsuariossm_excluir: TSmallintField;
+    ZQRYUsuariosnome: TWideStringField;
+    ZQRYUsuarioslogin: TWideStringField;
   private
     { Private declarations }
   public

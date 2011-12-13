@@ -12,8 +12,10 @@ inherited KRDMUsuarios: TKRDMUsuarios
     Connection = SODMPrincipal.ZCONIAF
     UpdateObject = ZUSQUsuarios
     SQL.Strings = (
-      'SELECT *'
-      '  FROM USUARIOS'
+      'SELECT USU.*'
+      '     , USU.VA_NOME AS NOME'
+      '     , USU.VA_LOGIN AS LOGIN'
+      '  FROM USUARIOS USU'
       
         ' WHERE ((:SM_USUARIOS_ID IS NULL) OR (SM_USUARIOS_ID = :SM_USUAR' +
         'IOS_ID))'
@@ -32,35 +34,30 @@ inherited KRDMUsuarios: TKRDMUsuarios
         DataType = ftSmallint
         Name = 'SM_USUARIOS_ID'
         ParamType = ptInput
-        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_NOME'
         ParamType = ptInput
         Size = 64
-        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_LOGIN'
         ParamType = ptInput
         Size = 16
-        Value = Null
       end
       item
         DataType = ftString
         Name = 'CH_SENHA'
         ParamType = ptInput
         Size = 128
-        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_EMAIL'
         ParamType = ptInput
         Size = 64
-        Value = Null
       end>
     Left = 24
     Top = 60
@@ -69,35 +66,30 @@ inherited KRDMUsuarios: TKRDMUsuarios
         DataType = ftSmallint
         Name = 'SM_USUARIOS_ID'
         ParamType = ptInput
-        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_NOME'
         ParamType = ptInput
         Size = 64
-        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_LOGIN'
         ParamType = ptInput
         Size = 16
-        Value = Null
       end
       item
         DataType = ftString
         Name = 'CH_SENHA'
         ParamType = ptInput
         Size = 128
-        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_EMAIL'
         ParamType = ptInput
         Size = 64
-        Value = Null
       end>
     object ZQRYUsuariossm_usuarios_id: TSmallintField
       DisplayLabel = 'ID'
@@ -127,6 +119,20 @@ inherited KRDMUsuarios: TKRDMUsuarios
       FieldName = 'va_email'
       ProviderFlags = [pfInUpdate]
       Size = 64
+    end
+    object ZQRYUsuariosnome: TWideStringField
+      DisplayLabel = 'Nome'
+      FieldName = 'nome'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 64
+    end
+    object ZQRYUsuarioslogin: TWideStringField
+      DisplayLabel = 'Login'
+      FieldName = 'login'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 16
     end
   end
   object ZUSQUsuarios: TZUpdateSQL

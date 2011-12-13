@@ -19,7 +19,6 @@ type
     ACTNConfiguracoes: TAction;
     ACTNSegurancaEPermissoes: TAction;
     CNBRPrincipal: TConnectionBroker;
-    HTTPReqResp1: THTTPReqResp;
     procedure ACTNSegurancaEPermissoesExecute(Sender: TObject);
     procedure ACTNAjudaExecute(Sender: TObject);
     procedure ACTNSobreExecute(Sender: TObject);
