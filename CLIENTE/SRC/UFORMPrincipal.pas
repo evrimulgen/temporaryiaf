@@ -9,11 +9,11 @@ uses
 
 type
   TFORMPrincipal = class(TForm)
-    ActionMainMenuBar1: TActionMainMenuBar;
-    ActionToolBar1: TActionToolBar;
-    StatusBar1: TStatusBar;
+    ACMMPrincipal: TActionMainMenuBar;
+    ACTBPrincipal: TActionToolBar;
+    STTBPrincipal: TStatusBar;
     PRBAAndamento: TProgressBar;
-    procedure ActionMainMenuBar1Paint(Sender: TObject);
+    procedure ACMMPrincipalPaint(Sender: TObject);
   private
     { Private declarations }
   public
@@ -39,14 +39,14 @@ type
   end;
 {$HINTS ON}
 
-procedure TFORMPrincipal.ActionMainMenuBar1Paint(Sender: TObject);
+procedure TFORMPrincipal.ACMMPrincipalPaint(Sender: TObject);
 begin
   { Ocultando os botões MDI que não serão usados }
-  if Assigned(TActionMainMenuBarHack(ActionMainMenuBar1).FMinimizeBtn) and TActionMainMenuBarHack(ActionMainMenuBar1).FMinimizeBtn.Visible then
-    TActionMainMenuBarHack(ActionMainMenuBar1).FMinimizeBtn.Hide;
+  if Assigned(TActionMainMenuBarHack(ACMMPrincipal).FMinimizeBtn) and TActionMainMenuBarHack(ACMMPrincipal).FMinimizeBtn.Visible then
+    TActionMainMenuBarHack(ACMMPrincipal).FMinimizeBtn.Hide;
 
-  if Assigned(TActionMainMenuBarHack(ActionMainMenuBar1).FRestoreBtn) and TActionMainMenuBarHack(ActionMainMenuBar1).FRestoreBtn.Visible then
-    TActionMainMenuBarHack(ActionMainMenuBar1).FRestoreBtn.Hide;
+  if Assigned(TActionMainMenuBarHack(ACMMPrincipal).FRestoreBtn) and TActionMainMenuBarHack(ACMMPrincipal).FRestoreBtn.Visible then
+    TActionMainMenuBarHack(ACMMPrincipal).FRestoreBtn.Hide;
 end;
 
 end.

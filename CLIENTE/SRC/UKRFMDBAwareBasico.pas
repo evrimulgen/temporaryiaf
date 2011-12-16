@@ -16,9 +16,15 @@ uses Windows
    , StdCtrls
    , ComCtrls
    , ImgList
-   , ActnList;
+   , ActnList
+   , DBCtrls;
 
 type
+  TDBNavigator = class (DBCtrls.TDBNavigator)
+  public
+    procedure BtnClick(Index: TNavigateBtn); override;
+  end;
+
   TKRFMDBAwareBasico = class(TKRKForm)
     TLBRAcoes: TToolBar;
     ToolButton1: TToolButton;
@@ -121,6 +127,25 @@ begin
   for CI in TKRKDataModule(Owner).DataSets do
     if TDataSetItem(CI).DataSet.ClassNameIs('TClientDataset') and TDataSetItem(CI).DataSet.Active and (TClientDataset(TDataSetItem(CI).DataSet).ChangeCount > 0) then
       TClientDataset(TDataSetItem(CI).DataSet).CancelUpdates;
+end;
+
+{ TDBNavigator }
+
+procedure TDBNavigator.BtnClick(Index: TNavigateBtn);
+begin
+  if Index = nbRefresh then
+    if TClientDataSet(DataSource.DataSet).ChangeCount = 0 then
+    begin
+      if TClientDataSet(DataSource.DataSet).Params[0].AsInteger = -1 then
+        TClientDataSet(DataSource.DataSet).Params[0].Clear;
+    end
+    else
+    begin
+      Application.MessageBox('Não é possível atualizar até que as alterações sejam confirmadas ou revertidas. Utilize os botões no canto superior esquerdo da tela para confirmar ou reverter TODAS AS ALTERAÇÕES na mesma','Existem alterações não confirmadas',MB_ICONWARNING);
+      Abort
+    end;
+
+  inherited;
 end;
 
 end.

@@ -19,11 +19,13 @@ type
     ACTNConfiguracoes: TAction;
     ACTNSegurancaEPermissoes: TAction;
     CNBRPrincipal: TConnectionBroker;
+    IMLIPrincipalLarge: TImageList;
     procedure ACTNSegurancaEPermissoesExecute(Sender: TObject);
     procedure ACTNAjudaExecute(Sender: TObject);
     procedure ACTNSobreExecute(Sender: TObject);
     procedure SOCNPrincipalBeforeConnect(Sender: TObject);
     procedure SOCNPrincipalAfterConnect(Sender: TObject);
+    procedure ACTNSairExecute(Sender: TObject);
   private
     { Private declarations }
     FSessionConnection: TCurrentSession;
@@ -57,6 +59,11 @@ uses Forms
 procedure TDAMOPrincipal.ACTNAjudaExecute(Sender: TObject);
 begin
   //
+end;
+
+procedure TDAMOPrincipal.ACTNSairExecute(Sender: TObject);
+begin
+  FFORMPrincipal.Close;
 end;
 
 procedure TDAMOPrincipal.ACTNSegurancaEPermissoesExecute(Sender: TObject);

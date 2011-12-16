@@ -2,7 +2,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
   Caption = 'Seguran'#231'a e Permiss'#245'es'
   ClientHeight = 562
   ClientWidth = 784
-  ExplicitTop = -32
+  ExplicitTop = -147
   ExplicitWidth = 800
   ExplicitHeight = 600
   PixelsPerInch = 96
@@ -914,7 +914,6 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
             DataSource = KRDMSegurancaEPermissoes.DTSRUsuarios
             Align = alTop
             TabOrder = 0
-            BeforeAction = DBNAUsuariosBeforeAction
           end
           object GroupBoxUsuariosCadastrar: TGroupBox
             Left = 0
@@ -1195,9 +1194,6 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
           Align = alClient
           BevelOuter = bvNone
           TabOrder = 1
-          ExplicitLeft = 6
-          ExplicitTop = 12
-          ExplicitWidth = 485
           object KRDGUsuarios: TKRKDBGrid
             Left = 0
             Top = 0
@@ -1250,18 +1246,30 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
             Font.Style = []
             ParentFont = False
             TabOrder = 1
-            ExplicitTop = 380
-            object STTXFiltroIDUUsuarios: TStaticText
+            object LABLFiltroIDUUsuarios: TLabel
               AlignWithMargins = True
-              Left = 5
+              Left = 8
               Top = 15
-              Width = 472
-              Height = 30
+              Width = 466
+              Height = 26
+              Margins.Left = 6
               Margins.Top = 0
+              Margins.Right = 6
+              Margins.Bottom = 7
               Align = alClient
+              Alignment = taCenter
               AutoSize = False
-              BorderStyle = sbsSunken
-              TabOrder = 0
+              Caption = 
+                'Nenhum registro ser'#225' exibido at'#233' que um filtro seja definido ou ' +
+                'que o bot'#227'o atualizar seja pressionado'
+              Color = clGreen
+              ParentColor = False
+              Transparent = True
+              Layout = tlCenter
+              WordWrap = True
+              ExplicitLeft = 5
+              ExplicitWidth = 472
+              ExplicitHeight = 30
             end
           end
         end
@@ -1696,7 +1704,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C010102000800900020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800A40020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2233,7 +2241,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C010102000800A00020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800B40020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

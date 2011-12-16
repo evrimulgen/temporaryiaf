@@ -20,14 +20,14 @@ object FORMPrincipal: TFORMPrincipal
     562)
   PixelsPerInch = 96
   TextHeight = 13
-  object ActionMainMenuBar1: TActionMainMenuBar
+  object ACMMPrincipal: TActionMainMenuBar
     Left = 0
     Top = 0
     Width = 784
     Height = 25
     UseSystemFont = False
     ActionManager = DAMOPrincipal.ACMAPrincipal
-    Caption = 'ActionMainMenuBar1'
+    Caption = 'ACMMPrincipal'
     Color = clMenuBar
     ColorMap.HighlightColor = clWhite
     ColorMap.UnusedColor = clWhite
@@ -37,31 +37,34 @@ object FORMPrincipal: TFORMPrincipal
     Font.Name = 'Segoe UI'
     Font.Style = []
     Spacing = 0
-    OnPaint = ActionMainMenuBar1Paint
+    OnPaint = ACMMPrincipalPaint
   end
-  object ActionToolBar1: TActionToolBar
+  object ACTBPrincipal: TActionToolBar
     Left = 0
     Top = 25
     Width = 784
-    Height = 26
+    Height = 41
     ActionManager = DAMOPrincipal.ACMAPrincipal
-    BiDiMode = bdRightToLeft
-    Caption = 'ActionToolBar1'
+    BiDiMode = bdLeftToRight
+    Caption = 'ACTBPrincipal'
     Color = clMenuBar
     ColorMap.HighlightColor = clWhite
     ColorMap.UnusedColor = clWhite
-    EdgeOuter = esLowered
+    EdgeBorders = [ebTop]
+    EdgeInner = esLowered
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
-    Orientation = boRightToLeft
+    HorzMargin = 0
     ParentBiDiMode = False
     ParentFont = False
     Spacing = 0
+    VertMargin = 0
+    ExplicitHeight = 43
   end
-  object StatusBar1: TStatusBar
+  object STTBPrincipal: TStatusBar
     Left = 0
     Top = 543
     Width = 784

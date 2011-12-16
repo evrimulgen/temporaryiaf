@@ -4,6 +4,10 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
   MyFormClass = 'TKRFMSegurancaEPermissoes'
   Height = 246
   Width = 519
+  inherited KRBH: TKRKBalloonHint
+    TipAlignment = taBottomLeft
+    Options = [kbhoActivateOnShow, kbhoSetFocusToAssociatedWinContronOnDeactivate, kbhoHideOnDeactivate, kbhoHideWithEnter, kbhoHideWithEsc, kbhoSelectAllOnFocus]
+  end
   object CLDSConsUsuarios: TClientDataSet
     Aggregates = <>
     ConnectionBroker = DAMOPrincipal.CNBRPrincipal
@@ -168,6 +172,7 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
         Value = Null
       end>
     ProviderName = 'DSPRUsuarios'
+    AfterRefresh = CLDSUsuariosAfterRefresh
     OnCalcFields = CLDSUsuariosCalcFields
     Left = 36
     Top = 150

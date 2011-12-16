@@ -14,10 +14,12 @@ type
   TClientDataSet = class (DBClient.TClientDataSet)
   private
     FKRKValidationChecks: TKRKValidationChecks;
+    function GetMyParams: String;
   public
     constructor Create(aOwner: TComponent); override;
     destructor Destroy; override;
     property KRKValidationChecks: TKRKValidationChecks read FKRKValidationChecks;
+    property MyParams: String read GetMyParams;
   protected
     procedure DoBeforeApplyUpdates(var OwnerData: OleVariant); override;
     procedure DoBeforeGetParams(var OwnerData: OleVariant); override;
@@ -49,7 +51,8 @@ implementation
 
 uses UDAMOPrincipal
    , UExtraMethods
-   , KRK.Win32.Rtl.Common.FileUtils;
+   , KRK.Win32.Rtl.Common.FileUtils
+   , KRK.Win32.Db.Utils;
 
 { TClientDataSetHelper }
 
@@ -120,6 +123,11 @@ begin
   inherited;
 end;
 
+function TClientDataSet.GetMyParams: String;
+begin
+  Result := ClientDataSetParams(Self);
+end;
+
 constructor TKRDMBasico.Create(aOwner: TComponent);
 var
   CI: TCollectionItem;
@@ -137,7 +145,6 @@ begin
       begin
         TClientDataset(TDataSetItem(CI).DataSet).KRKValidationChecks.FromString(KRKValidationChecks);
         TClientDataset(TDataSetItem(CI).DataSet).KRKValidationChecks.DataSet := TDataSetItem(CI).DataSet;
-        TClientDataset(TDataSetItem(CI).DataSet).KRKValidationChecks.Form := MyForm;
       end;
     end;
 end;
@@ -156,8 +163,7 @@ begin
     TipText :=  aText;
     MaxWidth := 320;
     TipIcon := tiError;
-    Options := [kbhoActivateOnShow, kbhoSetFocusToAssociatedWinContronOnDeactivate, kbhoHideOnDeactivate, kbhoHideWithEnter, kbhoHideWithEsc, kbhoSelectAllOnFocus];
-//    ShowWhenRequested := True;
+//    Options := [kbhoActivateOnShow, kbhoSetFocusToAssociatedWinContronOnDeactivate, kbhoHideOnDeactivate, kbhoHideWithEnter, kbhoHideWithEsc, kbhoSelectAllOnFocus];
 
     if aShowHint then
       Show;
