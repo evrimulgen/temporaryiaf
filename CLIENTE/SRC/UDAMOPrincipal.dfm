@@ -52,6 +52,7 @@ object DAMOPrincipal: TDAMOPrincipal
             Items = <
               item
                 Action = ACTNAlterarMinhasPreferencias
+                Caption = '&Alterar minhas prefer'#234'ncias'
                 ImageIndex = 5
               end>
             Caption = '&Usu'#225'rio'
@@ -84,7 +85,6 @@ object DAMOPrincipal: TDAMOPrincipal
               end>
             Caption = '&Ajuda'
           end>
-        ActionBar = FORMPrincipal.ActionMainMenuBar1
       end>
     Images = IMLIPrincipal
     Left = 24
@@ -138,7 +138,7 @@ object DAMOPrincipal: TDAMOPrincipal
     Left = 90
     Top = 12
     Bitmap = {
-      494C010106000800B00010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010106000800B40010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       00000000000000000000000000000000000000000000000000030000000C0000
       00170000001F0000002400000025000000250000002600000027000000270000

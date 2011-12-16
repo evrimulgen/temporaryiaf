@@ -2,6 +2,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
   Caption = 'Seguran'#231'a e Permiss'#245'es'
   ClientHeight = 562
   ClientWidth = 784
+  ExplicitTop = -32
   ExplicitWidth = 800
   ExplicitHeight = 600
   PixelsPerInch = 96
@@ -865,6 +866,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
           EditLabel.Caption = 'Nome'
           LabelSpacing = 1
           TabOrder = 0
+          OnKeyPress = LabeledEdit_USU_VA_NOME2KeyPress
         end
         object LabeledEdit_USU_VA_LOGIN2: TLabeledEdit
           Left = 662
@@ -878,6 +880,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
           EditLabel.Caption = 'Login'
           LabelSpacing = 1
           TabOrder = 1
+          OnKeyPress = LabeledEdit_USU_VA_LOGIN2KeyPress
         end
       end
       object PANLGerenciamentoDeUsuarios: TPanel
@@ -911,6 +914,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
             DataSource = KRDMSegurancaEPermissoes.DTSRUsuarios
             Align = alTop
             TabOrder = 0
+            BeforeAction = DBNAUsuariosBeforeAction
           end
           object GroupBoxUsuariosCadastrar: TGroupBox
             Left = 0
@@ -1179,7 +1183,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
             end
           end
         end
-        object KRDGUsuarios: TKRKDBGrid
+        object PANLKRDGUsuarios: TPanel
           AlignWithMargins = True
           Left = 0
           Top = 0
@@ -1189,37 +1193,77 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
           Margins.Top = 0
           Margins.Bottom = 0
           Align = alClient
-          DataSource = KRDMSegurancaEPermissoes.DTSRUsuarios
-          Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
-          OptionsEx = [dgAutomaticColumSizes]
-          ReadOnly = True
+          BevelOuter = bvNone
           TabOrder = 1
-          TitleFont.Charset = DEFAULT_CHARSET
-          TitleFont.Color = clWindowText
-          TitleFont.Height = -11
-          TitleFont.Name = 'Tahoma'
-          TitleFont.Style = []
-          RowColors = <
-            item
-              BackgroundColor = clBtnFace
-              ForegroundColor = clNone
-            end>
-          VariableWidthColumns = '<nome>'
-          Columns = <
-            item
-              Expanded = False
-              FieldName = 'nome'
-              Width = 331
-              Visible = True
+          ExplicitLeft = 6
+          ExplicitTop = 12
+          ExplicitWidth = 485
+          object KRDGUsuarios: TKRKDBGrid
+            Left = 0
+            Top = 0
+            Width = 482
+            Height = 374
+            Align = alClient
+            DataSource = KRDMSegurancaEPermissoes.DTSRUsuarios
+            Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
+            OptionsEx = [dgAutomaticColumSizes]
+            ReadOnly = True
+            TabOrder = 0
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -11
+            TitleFont.Name = 'Tahoma'
+            TitleFont.Style = []
+            RowColors = <
+              item
+                BackgroundColor = clBtnFace
+                ForegroundColor = clNone
+              end>
+            VariableWidthColumns = '<nome>'
+            Columns = <
+              item
+                Expanded = False
+                FieldName = 'nome'
+                Width = 331
+                Visible = True
+              end
+              item
+                Alignment = taCenter
+                Expanded = False
+                FieldName = 'login'
+                Title.Alignment = taCenter
+                Width = 110
+                Visible = True
+              end>
+          end
+          object GRBXKRDGUsuarios: TGroupBox
+            Left = 0
+            Top = 374
+            Width = 482
+            Height = 50
+            Align = alBottom
+            Caption = ' Filtros definidos '
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clRed
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 1
+            ExplicitTop = 380
+            object STTXFiltroIDUUsuarios: TStaticText
+              AlignWithMargins = True
+              Left = 5
+              Top = 15
+              Width = 472
+              Height = 30
+              Margins.Top = 0
+              Align = alClient
+              AutoSize = False
+              BorderStyle = sbsSunken
+              TabOrder = 0
             end
-            item
-              Alignment = taCenter
-              Expanded = False
-              FieldName = 'login'
-              Title.Alignment = taCenter
-              Width = 110
-              Visible = True
-            end>
+          end
         end
       end
     end
@@ -1652,7 +1696,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C010102000800880020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800900020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2189,7 +2233,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C010102000800980020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800A00020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

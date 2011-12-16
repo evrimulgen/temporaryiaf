@@ -12,7 +12,7 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
         DataType = ftSmallint
         Name = 'SM_USUARIOS_ID'
         ParamType = ptInput
-        Value = Null
+        Value = -1
       end
       item
         DataType = ftString
@@ -87,7 +87,7 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
         DataType = ftInteger
         Name = 'IN_ENTIDADESDOSISTEMA_ID'
         ParamType = ptInput
-        Value = Null
+        Value = -1
       end
       item
         DataType = ftString
@@ -137,7 +137,7 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
         DataType = ftSmallint
         Name = 'SM_USUARIOS_ID'
         ParamType = ptInput
-        Value = Null
+        Value = -1
       end
       item
         DataType = ftString
@@ -168,6 +168,7 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
         Value = Null
       end>
     ProviderName = 'DSPRUsuarios'
+    OnCalcFields = CLDSUsuariosCalcFields
     Left = 36
     Top = 150
     object CLDSUsuariossm_usuarios_id: TSmallintField
@@ -202,17 +203,21 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
     end
     object CLDSUsuariosnome: TWideStringField
       DisplayLabel = 'Nome'
+      FieldKind = fkCalculated
       FieldName = 'nome'
       ProviderFlags = []
       ReadOnly = True
       Size = 64
+      Calculated = True
     end
     object CLDSUsuarioslogin: TWideStringField
       DisplayLabel = 'Login'
+      FieldKind = fkCalculated
       FieldName = 'login'
       ProviderFlags = []
       ReadOnly = True
       Size = 16
+      Calculated = True
     end
     object CLDSUsuariosZQRYGruposDosUsuarios: TDataSetField
       FieldName = 'ZQRYGruposDosUsuarios'

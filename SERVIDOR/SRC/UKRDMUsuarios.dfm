@@ -13,8 +13,6 @@ inherited KRDMUsuarios: TKRDMUsuarios
     UpdateObject = ZUSQUsuarios
     SQL.Strings = (
       'SELECT USU.*'
-      '     , USU.VA_NOME AS NOME'
-      '     , USU.VA_LOGIN AS LOGIN'
       '  FROM USUARIOS USU'
       
         ' WHERE ((:SM_USUARIOS_ID IS NULL) OR (SM_USUARIOS_ID = :SM_USUAR' +
@@ -119,20 +117,6 @@ inherited KRDMUsuarios: TKRDMUsuarios
       FieldName = 'va_email'
       ProviderFlags = [pfInUpdate]
       Size = 64
-    end
-    object ZQRYUsuariosnome: TWideStringField
-      DisplayLabel = 'Nome'
-      FieldName = 'nome'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 64
-    end
-    object ZQRYUsuarioslogin: TWideStringField
-      DisplayLabel = 'Login'
-      FieldName = 'login'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 16
     end
   end
   object ZUSQUsuarios: TZUpdateSQL
@@ -253,6 +237,14 @@ inherited KRDMUsuarios: TKRDMUsuarios
       item
         FieldName = 'va_email'
         FieldDescription = 'E-mail do usu'#225'rio'
+      end
+      item
+        FieldName = 'nome'
+        FieldDescription = 'Nome'
+      end
+      item
+        FieldName = 'login'
+        FieldDescription = 'Login'
       end>
     Left = 24
     Top = 204

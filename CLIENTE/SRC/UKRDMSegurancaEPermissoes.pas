@@ -7,7 +7,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms,
   DBClient, UKRDMBasico, DB, ImgList, ActnList, ZAbstractRODataset,
-  ZAbstractDataset, ZDataset;
+  ZAbstractDataset, ZDataset, KRK.Components.AdditionalControls.BalloonHint;
 
 type
   TKRDMSegurancaEPermissoes = class(TKRDMBasico)
@@ -51,6 +51,7 @@ type
     CLDSUsuarioslogin: TWideStringField;
     procedure CLDSConsEntidadesDoSistemasm_tipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure CLDSUsuariosch_senhaGetText(Sender: TField; var Text: string; DisplayText: Boolean);
+    procedure CLDSUsuariosCalcFields(DataSet: TDataSet);
   private
     { Declarações privadas }
   protected
@@ -58,6 +59,7 @@ type
   public
     { Declarações públicas }
     procedure FiltrarUsuarios(aSM_USUARIOS_ID: SmallInt; aVA_NOME, aVA_LOGIN, aCH_SENHA, aVA_EMAIL: String);
+    procedure FiltrarUsuariosIDU(aSM_USUARIOS_ID: SmallInt; aVA_NOME, aVA_LOGIN, aCH_SENHA, aVA_EMAIL: String);
     procedure FiltrarEntidadesDoSistema(aIN_ENTIDADESDOSISTEMA_ID: Integer; aVA_NOME: String; aSM_TIPO: SmallInt);
   end;
 
@@ -97,6 +99,45 @@ begin
     AssignParam(CLDSConsUsuarios.Params.ParamByName('VA_EMAIL'),aVA_EMAIL);
     CLDSConsUsuarios.Refresh;
   end;
+end;
+
+procedure TKRDMSegurancaEPermissoes.FiltrarUsuariosIDU(aSM_USUARIOS_ID: SmallInt; aVA_NOME, aVA_LOGIN, aCH_SENHA, aVA_EMAIL: String);
+var
+  Filtro: String;
+  Param: TCollectionItem;
+begin
+  if CLDSUsuarios.ChangeCount = 0 then
+  begin
+    AssignParam(CLDSUsuarios.Params.ParamByName('SM_USUARIOS_ID'),aSM_USUARIOS_ID);
+    AssignParam(CLDSUsuarios.Params.ParamByName('VA_NOME'),aVA_NOME);
+    AssignParam(CLDSUsuarios.Params.ParamByName('VA_LOGIN'),aVA_LOGIN);
+    AssignParam(CLDSUsuarios.Params.ParamByName('CH_SENHA'),aCH_SENHA);
+    AssignParam(CLDSUsuarios.Params.ParamByName('VA_EMAIL'),aVA_EMAIL);
+
+    Filtro := 'Exibindo todos os registros disponíveis';
+
+    for Param in CLDSUsuarios.Params do
+      if not TParam(Param).IsNull then
+        if Filtro = 'Exibindo todos os registros disponíveis' then
+          Filtro := CLDSUsuarios.FieldByName(TParam(Param).Name).DisplayName + ' = ' + TParam(Param).AsString
+        else
+          Filtro := Filtro + ', ' + CLDSUsuarios.FieldByName(TParam(Param).Name).DisplayName + ' = ' + TParam(Param).AsString;
+
+          continua amadurecendo isso, veja o refresh e veja como fazer aparecer o filtro de primeira
+    TKRFMSegurancaEPermissoes(MyForm).STTXFiltroIDUUsuarios.Caption := Filtro;
+
+    CLDSUsuarios.Refresh;
+  end;
+end;
+
+procedure TKRDMSegurancaEPermissoes.CLDSUsuariosCalcFields(DataSet: TDataSet);
+begin
+  inherited;
+  { Sempre use campos calculados em controles que não vão receber o foco. Isso
+  faz com que os controles que editam os campos reais sejam focados corretamente
+  em caso de uma validação falhar! }
+  CLDSUsuarioslogin.AsString := CLDSUsuariosva_login.AsString;
+  CLDSUsuariosnome.AsString := CLDSUsuariosva_nome.AsString;
 end;
 
 procedure TKRDMSegurancaEPermissoes.CLDSUsuariosch_senhaGetText(Sender: TField; var Text: string; DisplayText: Boolean);

@@ -94,15 +94,21 @@ type
     DBEdit_GRU_VA_NOME: TDBEdit;
     DBEdit_GRU_VA_DESCRICAO: TDBEdit;
     DBNAUsuarios: TDBNavigator;
-    KRDGUsuarios: TKRKDBGrid;
     PANLGerenciamentoDeUsuarios: TPanel;
     PANLUsariosEGrupos: TPanel;
     KRDE_USU_VA_NOME: TKRKLabeledDBEdit;
     KRDE_USU_VA_LOGIN: TKRKLabeledDBEdit;
+    PANLKRDGUsuarios: TPanel;
+    KRDGUsuarios: TKRKDBGrid;
+    GRBXKRDGUsuarios: TGroupBox;
+    STTXFiltroIDUUsuarios: TStaticText;
     procedure LAEDUSU_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
     procedure LAEDUSU_VA_LOGINKeyPress(Sender: TObject; var Key: Char);
     procedure LabeledEdit_EDS_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
     procedure ComboBox_EDS_TI_TIPOChange(Sender: TObject);
+    procedure LabeledEdit_USU_VA_NOME2KeyPress(Sender: TObject; var Key: Char);
+    procedure LabeledEdit_USU_VA_LOGIN2KeyPress(Sender: TObject; var Key: Char);
+    procedure DBNAUsuariosBeforeAction(Sender: TObject; Button: TNavigateBtn);
   private
     { Private declarations }
     procedure FiltrarEntidadesDoSistema;
@@ -120,6 +126,20 @@ procedure TKRFMSegurancaEPermissoes.ComboBox_EDS_TI_TIPOChange(Sender: TObject);
 begin
   inherited;
   FiltrarEntidadesDoSistema;
+end;
+
+procedure TKRFMSegurancaEPermissoes.DBNAUsuariosBeforeAction(Sender: TObject; Button: TNavigateBtn);
+begin
+  inherited;
+//  a regra é: se eu pressiono refresh e o parametro referente a chave contiver o
+//  valor -1, significa que esta é a primeira vez que pressiono o botão de
+//  refresh e que uma consulta não foi realizada e neste caso preciso limpar o
+//  valor deste parametro. e isso vai trazer todos os registros disponiveis.
+//  Caso o valor do parametro nao seja -1 então uma busca já foi feita e neste caso
+//  o refresh deve ser executado sem intervenções
+//
+//  Crie uma forma de exibir o valor dos parametros (filtros) próximo ao DBnavigator ou ao grid
+  if Button = nbRefresh then
 end;
 
 procedure TKRFMSegurancaEPermissoes.FiltrarEntidadesDoSistema;
@@ -141,6 +161,20 @@ begin
   inherited;
   if Key = #13 then
     FiltrarEntidadesDoSistema;
+end;
+
+procedure TKRFMSegurancaEPermissoes.LabeledEdit_USU_VA_LOGIN2KeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  if Key = #13 then
+    TKRDMSegurancaEPermissoes(Owner).FiltrarUsuariosIDU(0,'',TLabeledEdit(Sender).Text,'','');
+end;
+
+procedure TKRFMSegurancaEPermissoes.LabeledEdit_USU_VA_NOME2KeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  if Key = #13 then
+    TKRDMSegurancaEPermissoes(Owner).FiltrarUsuariosIDU(0,TLabeledEdit(Sender).Text,'','','');
 end;
 
 procedure TKRFMSegurancaEPermissoes.LAEDUSU_VA_LOGINKeyPress(Sender: TObject; var Key: Char);
