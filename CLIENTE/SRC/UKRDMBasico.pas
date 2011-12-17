@@ -85,7 +85,8 @@ procedure TClientDataSet.DoBeforePost;
 begin
   inherited;
   try
-    FKRKValidationChecks.ValidateBeforePost;
+    if Assigned(FKRKValidationChecks.DataSet) then
+      FKRKValidationChecks.ValidateBeforePost;
   except
     on EIFV: EInvalidFieldValue do
     begin

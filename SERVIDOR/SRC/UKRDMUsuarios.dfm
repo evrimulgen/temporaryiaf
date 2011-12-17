@@ -93,6 +93,7 @@ inherited KRDMUsuarios: TKRDMUsuarios
       DisplayLabel = 'ID'
       FieldName = 'sm_usuarios_id'
       ProviderFlags = [pfInKey]
+      ReadOnly = True
     end
     object ZQRYUsuariosva_nome: TWideStringField
       DisplayLabel = 'Nome'
@@ -192,12 +193,10 @@ inherited KRDMUsuarios: TKRDMUsuarios
     object ZQRYGruposDosUsuariossm_grupos_id: TSmallintField
       FieldName = 'sm_grupos_id'
       ProviderFlags = [pfInUpdate]
-      ReadOnly = True
     end
     object ZQRYGruposDosUsuariossm_usuarios_id: TSmallintField
       FieldName = 'sm_usuarios_id'
       ProviderFlags = [pfInUpdate]
-      ReadOnly = True
     end
     object ZQRYGruposDosUsuariosgrupo: TWideStringField
       FieldName = 'grupo'
@@ -223,16 +222,19 @@ inherited KRDMUsuarios: TKRDMUsuarios
         FieldName = 'va_nome'
         FieldDescription = 'Nome completo do usu'#225'rio'
         CheckBlank.Active = True
+        CheckBlank.FocusOnValidateFailure = True
       end
       item
         FieldName = 'va_login'
         FieldDescription = 'Login de acesso do usu'#225'rio'
         CheckBlank.Active = True
+        CheckBlank.FocusOnValidateFailure = True
       end
       item
         FieldName = 'ch_senha'
         FieldDescription = 'Senha de acesso do usu'#225'rio'
         CheckBlank.Active = True
+        CheckBlank.FocusOnValidateFailure = True
       end
       item
         FieldName = 'va_email'
@@ -251,8 +253,10 @@ inherited KRDMUsuarios: TKRDMUsuarios
   end
   object ZQRYPermissoesDosUsuarios: TZQuery
     Connection = SODMPrincipal.ZCONIAF
+    UpdateObject = ZUSQPermissoesDosUsuarios
     SQL.Strings = (
       'SELECT EDS.VA_NOME AS ENTIDADE'
+      '     , EDS.SM_TIPO AS TIPO'
       '     , PDU.*'
       '  FROM PERMISSOESDOSUSUARIOS PDU'
       '  JOIN ENTIDADESDOSISTEMA EDS USING(IN_ENTIDADESDOSISTEMA_ID)')
@@ -264,36 +268,173 @@ inherited KRDMUsuarios: TKRDMUsuarios
     Top = 60
     object ZQRYPermissoesDosUsuariosentidade: TWideStringField
       FieldName = 'entidade'
+      ProviderFlags = []
       ReadOnly = True
       Size = 128
     end
+    object ZQRYPermissoesDosUsuariostipo: TSmallintField
+      FieldName = 'tipo'
+      ProviderFlags = []
+      ReadOnly = True
+    end
     object ZQRYPermissoesDosUsuariosin_permissoesdosusuarios_id: TIntegerField
       FieldName = 'in_permissoesdosusuarios_id'
+      ProviderFlags = [pfInKey]
       ReadOnly = True
     end
     object ZQRYPermissoesDosUsuariosin_entidadesdosistema_id: TIntegerField
       FieldName = 'in_entidadesdosistema_id'
-      ReadOnly = True
+      ProviderFlags = [pfInUpdate]
     end
     object ZQRYPermissoesDosUsuariossm_usuarios_id: TSmallintField
       FieldName = 'sm_usuarios_id'
-      ReadOnly = True
+      ProviderFlags = [pfInUpdate]
     end
     object ZQRYPermissoesDosUsuariossm_ler: TSmallintField
       FieldName = 'sm_ler'
-      ReadOnly = True
+      ProviderFlags = [pfInUpdate]
     end
     object ZQRYPermissoesDosUsuariossm_inserir: TSmallintField
       FieldName = 'sm_inserir'
-      ReadOnly = True
+      ProviderFlags = [pfInUpdate]
     end
     object ZQRYPermissoesDosUsuariossm_alterar: TSmallintField
       FieldName = 'sm_alterar'
-      ReadOnly = True
+      ProviderFlags = [pfInUpdate]
     end
     object ZQRYPermissoesDosUsuariossm_excluir: TSmallintField
       FieldName = 'sm_excluir'
-      ReadOnly = True
+      ProviderFlags = [pfInUpdate]
     end
+  end
+  object ZUSQPermissoesDosUsuarios: TZUpdateSQL
+    DeleteSQL.Strings = (
+      'SELECT IDU_PERMISSOESDOSUSUARIOS('#39'D'#39
+      
+        '                                ,:OLD_IN_PERMISSOESDOSUSUARIOS_I' +
+        'D)')
+    InsertSQL.Strings = (
+      'SELECT IDU_PERMISSOESDOSUSUARIOS('#39'I'#39
+      '                                ,NULL'
+      '                                ,:IN_ENTIDADESDOSISTEMA_ID'
+      
+        '                                ,CAST(:SM_USUARIOS_ID AS SMALLIN' +
+        'T)'
+      '                                ,CAST(:SM_LER AS SMALLINT)'
+      '                                ,CAST(:SM_INSERIR AS SMALLINT)'
+      '                                ,CAST(:SM_ALTERAR AS SMALLINT)'
+      '                                ,CAST(:SM_EXCLUIR AS SMALLINT))')
+    ModifySQL.Strings = (
+      'SELECT IDU_PERMISSOESDOSUSUARIOS('#39'U'#39
+      
+        '                                ,:OLD_IN_PERMISSOESDOSUSUARIOS_I' +
+        'D'
+      '                                ,:IN_ENTIDADESDOSISTEMA_ID'
+      
+        '                                ,CAST(:SM_USUARIOS_ID AS SMALLIN' +
+        'T)'
+      '                                ,CAST(:SM_LER AS SMALLINT)'
+      '                                ,CAST(:SM_INSERIR AS SMALLINT)'
+      '                                ,CAST(:SM_ALTERAR AS SMALLINT)'
+      '                                ,CAST(:SM_EXCLUIR AS SMALLINT))')
+    UseSequenceFieldForRefreshSQL = False
+    Left = 264
+    Top = 108
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'OLD_in_permissoesdosusuarios_id'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'in_entidadesdosistema_id'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'sm_usuarios_id'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'sm_ler'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'sm_inserir'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'sm_alterar'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'sm_excluir'
+        ParamType = ptUnknown
+      end>
+  end
+  object KRVCPermissoesDosUsuarios: TKRKValidationChecks
+    DataSet = ZQRYPermissoesDosUsuarios
+    TableName = 'PERMISSOESDOSUSUARIOS'
+    CheckableFields = <
+      item
+        FieldName = 'entidade'
+        FieldDescription = 'entidade'
+      end
+      item
+        FieldName = 'in_permissoesdosusuarios_id'
+        FieldDescription = 'ID'
+      end
+      item
+        FieldName = 'in_entidadesdosistema_id'
+        FieldDescription = 'Entidade'
+        CheckBlank.Active = True
+      end
+      item
+        FieldName = 'sm_usuarios_id'
+        FieldDescription = 'Usu'#225'rio'
+        CheckBlank.Active = True
+      end
+      item
+        FieldName = 'sm_ler'
+        FieldDescription = 'sm_ler'
+        CheckBlank.Active = True
+        CheckNumber.Active = True
+        CheckNumber.MaximumValue = 1.000000000000000000
+        CheckNumber.CheckNumberMode = cnmRange
+      end
+      item
+        FieldName = 'sm_inserir'
+        FieldDescription = 'sm_inserir'
+        CheckBlank.Active = True
+        CheckNumber.Active = True
+        CheckNumber.MinimumValue = -1.000000000000000000
+        CheckNumber.MaximumValue = 1.000000000000000000
+        CheckNumber.CheckNumberMode = cnmRange
+      end
+      item
+        FieldName = 'sm_alterar'
+        FieldDescription = 'sm_alterar'
+        CheckBlank.Active = True
+        CheckNumber.Active = True
+        CheckNumber.MinimumValue = -1.000000000000000000
+        CheckNumber.MaximumValue = 1.000000000000000000
+        CheckNumber.CheckNumberMode = cnmRange
+      end
+      item
+        FieldName = 'sm_excluir'
+        FieldDescription = 'sm_excluir'
+        CheckBlank.Active = True
+        CheckNumber.Active = True
+        CheckNumber.MinimumValue = -1.000000000000000000
+        CheckNumber.MaximumValue = 1.000000000000000000
+        CheckNumber.CheckNumberMode = cnmRange
+      end>
+    Left = 264
+    Top = 156
   end
 end

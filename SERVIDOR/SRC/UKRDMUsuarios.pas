@@ -33,6 +33,9 @@ type
     ZQRYPermissoesDosUsuariossm_inserir: TSmallintField;
     ZQRYPermissoesDosUsuariossm_alterar: TSmallintField;
     ZQRYPermissoesDosUsuariossm_excluir: TSmallintField;
+    ZUSQPermissoesDosUsuarios: TZUpdateSQL;
+    KRVCPermissoesDosUsuarios: TKRKValidationChecks;
+    ZQRYPermissoesDosUsuariostipo: TSmallintField;
   private
     { Private declarations }
   public

@@ -2,13 +2,14 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
   OldCreateOrder = True
   Properties.OpenAllDataSets = True
   MyFormClass = 'TKRFMSegurancaEPermissoes'
-  Height = 246
-  Width = 519
+  Height = 372
+  Width = 557
   inherited KRBH: TKRKBalloonHint
     TipAlignment = taBottomLeft
     Options = [kbhoActivateOnShow, kbhoSetFocusToAssociatedWinContronOnDeactivate, kbhoHideOnDeactivate, kbhoHideWithEnter, kbhoHideWithEsc, kbhoSelectAllOnFocus]
   end
   object CLDSConsUsuarios: TClientDataSet
+    Active = True
     Aggregates = <>
     ConnectionBroker = DAMOPrincipal.CNBRPrincipal
     Params = <
@@ -47,35 +48,46 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
         Value = Null
       end>
     ProviderName = 'DSPRUsuarios'
-    ReadOnly = True
     Left = 36
     Top = 54
     object CLDSConsUsuariossm_usuarios_id: TSmallintField
       DisplayLabel = 'ID'
       FieldName = 'sm_usuarios_id'
+      ProviderFlags = [pfInKey]
+      ReadOnly = True
     end
     object CLDSConsUsuariosva_nome: TWideStringField
       DisplayLabel = 'Nome'
       FieldName = 'va_nome'
+      ProviderFlags = [pfInUpdate]
+      ReadOnly = True
       Size = 64
     end
     object CLDSConsUsuariosva_login: TWideStringField
       DisplayLabel = 'Login'
       FieldName = 'va_login'
+      ProviderFlags = [pfInUpdate]
+      ReadOnly = True
       Size = 16
     end
     object CLDSConsUsuariosch_senha: TWideStringField
       DisplayLabel = 'Senha'
       FieldName = 'ch_senha'
+      ProviderFlags = [pfInUpdate]
+      ReadOnly = True
       Size = 128
     end
     object CLDSConsUsuariosva_email: TWideStringField
       DisplayLabel = 'E-mail'
       FieldName = 'va_email'
+      ProviderFlags = [pfInUpdate]
+      ReadOnly = True
       Size = 64
     end
     object CLDSConsUsuariosZQRYPermissoesDosUsuarios: TDataSetField
       FieldName = 'ZQRYPermissoesDosUsuarios'
+      ProviderFlags = [pfInUpdate]
+      ReadOnly = True
     end
   end
   object DTSRConsUsuarios: TDataSource
@@ -108,7 +120,7 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
       end>
     ProviderName = 'DSPREntidadesDoSistema'
     ReadOnly = True
-    Left = 162
+    Left = 306
     Top = 54
     object CLDSConsEntidadesDoSistemain_entidadesdosistema_id: TIntegerField
       DisplayLabel = 'ID'
@@ -130,7 +142,7 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
   end
   object DTSRConsEntidadesDoSistema: TDataSource
     DataSet = CLDSConsEntidadesDoSistema
-    Left = 162
+    Left = 306
     Top = 102
   end
   object CLDSUsuarios: TClientDataSet
@@ -227,6 +239,9 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
     object CLDSUsuariosZQRYGruposDosUsuarios: TDataSetField
       FieldName = 'ZQRYGruposDosUsuarios'
     end
+    object CLDSUsuariosZQRYPermissoesDosUsuarios: TDataSetField
+      FieldName = 'ZQRYPermissoesDosUsuarios'
+    end
   end
   object DTSRUsuarios: TDataSource
     DataSet = CLDSUsuarios
@@ -238,7 +253,7 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
     ConnectionBroker = DAMOPrincipal.CNBRPrincipal
     DataSetField = CLDSUsuariosZQRYGruposDosUsuarios
     Params = <>
-    Left = 162
+    Left = 156
     Top = 150
     object CLDSGruposDosUsuariosin_gruposdosusuarios_id: TIntegerField
       DisplayLabel = 'ID'
@@ -271,45 +286,61 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
     ConnectionBroker = DAMOPrincipal.CNBRPrincipal
     DataSetField = CLDSConsUsuariosZQRYPermissoesDosUsuarios
     Params = <>
-    Left = 306
-    Top = 150
+    Left = 156
+    Top = 54
     object CLDSPermissoesDosUsuariosentidade: TWideStringField
+      DisplayLabel = 'Entidade'
       FieldName = 'entidade'
+      ProviderFlags = []
       ReadOnly = True
       Size = 128
     end
+    object CLDSPermissoesDosUsuariostipo: TSmallintField
+      FieldName = 'tipo'
+      ProviderFlags = []
+      ReadOnly = True
+    end
     object CLDSPermissoesDosUsuariosin_permissoesdosusuarios_id: TIntegerField
       FieldName = 'in_permissoesdosusuarios_id'
+      ProviderFlags = [pfInKey]
       ReadOnly = True
     end
     object CLDSPermissoesDosUsuariosin_entidadesdosistema_id: TIntegerField
       FieldName = 'in_entidadesdosistema_id'
-      ReadOnly = True
+      ProviderFlags = [pfInUpdate]
     end
     object CLDSPermissoesDosUsuariossm_usuarios_id: TSmallintField
       FieldName = 'sm_usuarios_id'
-      ReadOnly = True
+      ProviderFlags = [pfInUpdate]
     end
     object CLDSPermissoesDosUsuariossm_ler: TSmallintField
+      DisplayLabel = 'Acessar'
       FieldName = 'sm_ler'
-      ReadOnly = True
+      ProviderFlags = [pfInUpdate]
+      OnGetText = DoGetTextVazio
     end
     object CLDSPermissoesDosUsuariossm_inserir: TSmallintField
+      DisplayLabel = 'Inserir'
       FieldName = 'sm_inserir'
-      ReadOnly = True
+      ProviderFlags = [pfInUpdate]
+      OnGetText = DoGetTextVazio
     end
     object CLDSPermissoesDosUsuariossm_alterar: TSmallintField
+      DisplayLabel = 'Alterar'
       FieldName = 'sm_alterar'
-      ReadOnly = True
+      ProviderFlags = [pfInUpdate]
+      OnGetText = DoGetTextVazio
     end
     object CLDSPermissoesDosUsuariossm_excluir: TSmallintField
+      DisplayLabel = 'Excluir'
       FieldName = 'sm_excluir'
-      ReadOnly = True
+      ProviderFlags = [pfInUpdate]
+      OnGetText = DoGetTextVazio
     end
   end
   object DTSRPermissoesDosUsuarios: TDataSource
     DataSet = CLDSPermissoesDosUsuarios
-    Left = 306
-    Top = 198
+    Left = 156
+    Top = 102
   end
 end

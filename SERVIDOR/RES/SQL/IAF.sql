@@ -13,20 +13,20 @@ CREATE EXTENSION pgcrypto
           SCHEMA public
          VERSION "1.0";
 ---------------------------------------------------------------
-CREATE SEQUENCE SQ_USU_IN_ENTIDADESDOSISTEMA_ID
+CREATE SEQUENCE SQ_EDS_IN_ENTIDADESDOSISTEMA_ID
       INCREMENT 1
        MINVALUE 1
        MAXVALUE 2147483647
           START 1
           CACHE 1;
   
-CREATE TABLE ENTIDADESDOSISTEMA (IN_ENTIDADESDOSISTEMA_ID INTEGER NOT NULL DEFAULT NEXTVAL('SQ_USU_IN_ENTIDADESDOSISTEMA_ID')
+CREATE TABLE ENTIDADESDOSISTEMA (IN_ENTIDADESDOSISTEMA_ID INTEGER NOT NULL DEFAULT NEXTVAL('SQ_EDS_IN_ENTIDADESDOSISTEMA_ID')
                                 ,VA_NOME VARCHAR(128) NOT NULL
                                 ,SM_TIPO SMALLINT NOT NULL
                                 ,CONSTRAINT PK_EDS PRIMARY KEY (IN_ENTIDADESDOSISTEMA_ID)
                                 ,CONSTRAINT UC_EDS_VA_NOME UNIQUE (VA_NOME));
 
-ALTER SEQUENCE SQ_USU_IN_ENTIDADESDOSISTEMA_ID 
+ALTER SEQUENCE SQ_EDS_IN_ENTIDADESDOSISTEMA_ID 
       OWNED BY ENTIDADESDOSISTEMA.IN_ENTIDADESDOSISTEMA_ID;
 ---------------------------------------------------------------
 CREATE SEQUENCE SQ_USU_SM_USUARIOS_ID
@@ -190,7 +190,7 @@ BEGIN
                     VALUES (pVA_NOME
                            ,pSM_TIPO);
 
-    vRETURN := CURRVAL('SQ_USU_IN_ENTIDADESDOSISTEMA_ID');
+    vRETURN := CURRVAL('SQ_EDS_IN_ENTIDADESDOSISTEMA_ID');
     ---------------------------------------------------------------------------------------
     WHEN 'D' THEN ----------------------------------------------------------- [ DELETE ] --
       DELETE FROM ENTIDADESDOSISTEMA
@@ -203,6 +203,116 @@ BEGIN
          SET VA_NOME = pVA_NOME
            , SM_TIPO = pSM_TIPO
        WHERE IN_ENTIDADESDOSISTEMA_ID = pIN_ENTIDADESDOSISTEMA_ID;
+
+    GET DIAGNOSTICS vRETURN := ROW_COUNT;
+    ---------------------------------------------------------------------------------------
+  END CASE;
+  
+  RETURN vRETURN;
+END;
+$BODY$
+LANGUAGE PLPGSQL;
+---------------------------------------------------------------
+CREATE OR REPLACE FUNCTION IDU_PERMISSOESDOSUSUARIOS(IN pMODO                        CHAR
+                                                    ,IN pIN_PERMISSOESDOSUSUARIOS_ID PERMISSOESDOSUSUARIOS.IN_PERMISSOESDOSUSUARIOS_ID%TYPE = NULL
+                                                    ,IN pIN_ENTIDADESDOSISTEMA_ID    PERMISSOESDOSUSUARIOS.IN_ENTIDADESDOSISTEMA_ID%TYPE    = NULL
+                                                    ,IN pSM_USUARIOS_ID              PERMISSOESDOSUSUARIOS.SM_USUARIOS_ID%TYPE              = NULL
+                                                    ,IN pSM_LER                      PERMISSOESDOSUSUARIOS.SM_LER%TYPE                      = NULL
+                                                    ,IN pSM_INSERIR                  PERMISSOESDOSUSUARIOS.SM_INSERIR%TYPE                  = NULL
+                                                    ,IN pSM_ALTERAR                  PERMISSOESDOSUSUARIOS.SM_ALTERAR%TYPE                  = NULL
+                                                    ,IN pSM_EXCLUIR                  PERMISSOESDOSUSUARIOS.SM_EXCLUIR%TYPE                  = NULL)
+RETURNS BIGINT AS 
+$BODY$
+DECLARE
+	vRETURN BIGINT := 0;
+BEGIN
+  CASE pMODO
+    WHEN 'I' THEN ----------------------------------------------------------- [ INSERT ] --
+      INSERT INTO PERMISSOESDOSUSUARIOS (IN_ENTIDADESDOSISTEMA_ID
+                                        ,SM_USUARIOS_ID
+                                        ,SM_LER
+                                        ,SM_INSERIR
+                                        ,SM_ALTERAR
+                                        ,SM_EXCLUIR)
+                                 VALUES (pIN_ENTIDADESDOSISTEMA_ID
+                                        ,pSM_USUARIOS_ID
+                                        ,pSM_LER
+                                        ,pSM_INSERIR
+                                        ,pSM_ALTERAR
+                                        ,pSM_EXCLUIR);
+
+    vRETURN := CURRVAL('SQ_PDU_IN_PERMISSOESDOSUSUARIOS_ID');
+    ---------------------------------------------------------------------------------------
+    WHEN 'D' THEN ----------------------------------------------------------- [ DELETE ] --
+      DELETE FROM PERMISSOESDOSUSUARIOS
+            WHERE IN_PERMISSOESDOSUSUARIOS_ID = pIN_PERMISSOESDOSUSUARIOS_ID;
+            
+    GET DIAGNOSTICS vRETURN := ROW_COUNT;
+    ---------------------------------------------------------------------------------------
+    WHEN 'U' THEN ----------------------------------------------------------- [ UPDATE ] --
+      UPDATE PERMISSOESDOSUSUARIOS
+         SET IN_ENTIDADESDOSISTEMA_ID = pIN_ENTIDADESDOSISTEMA_ID
+           , SM_USUARIOS_ID           = pSM_USUARIOS_ID
+           , SM_LER                   = pSM_LER
+           , SM_INSERIR               = pSM_INSERIR
+           , SM_ALTERAR               = pSM_ALTERAR
+           , SM_EXCLUIR               = pSM_EXCLUIR
+       WHERE IN_PERMISSOESDOSUSUARIOS_ID = pIN_PERMISSOESDOSUSUARIOS_ID;
+
+    GET DIAGNOSTICS vRETURN := ROW_COUNT;
+    ---------------------------------------------------------------------------------------
+  END CASE;
+  
+  RETURN vRETURN;
+END;
+$BODY$
+LANGUAGE PLPGSQL;
+---------------------------------------------------------------
+CREATE OR REPLACE FUNCTION IDU_PERMISSOESDOSGRUPOS(IN pMODO                      CHAR
+                                                  ,IN pIN_PERMISSOESDOSGRUPOS_ID PERMISSOESDOSGRUPOS.IN_PERMISSOESDOSGRUPOS_ID%TYPE = NULL
+                                                  ,IN pIN_ENTIDADESDOSISTEMA_ID  PERMISSOESDOSGRUPOS.IN_ENTIDADESDOSISTEMA_ID%TYPE  = NULL
+                                                  ,IN pSM_GRUPOS_ID              PERMISSOESDOSGRUPOS.SM_GRUPOS_ID%TYPE              = NULL
+                                                  ,IN pSM_LER                    PERMISSOESDOSGRUPOS.SM_LER%TYPE                    = NULL
+                                                  ,IN pSM_INSERIR                PERMISSOESDOSGRUPOS.SM_INSERIR%TYPE                = NULL
+                                                  ,IN pSM_ALTERAR                PERMISSOESDOSGRUPOS.SM_ALTERAR%TYPE                = NULL
+                                                  ,IN pSM_EXCLUIR                PERMISSOESDOSGRUPOS.SM_EXCLUIR%TYPE                = NULL)
+RETURNS BIGINT AS 
+$BODY$
+DECLARE
+	vRETURN BIGINT := 0;
+BEGIN
+  CASE pMODO
+    WHEN 'I' THEN ----------------------------------------------------------- [ INSERT ] --
+      INSERT INTO PERMISSOESDOSGRUPOS (IN_ENTIDADESDOSISTEMA_ID
+                                      ,SM_GRUPOS_ID
+                                      ,SM_LER
+                                      ,SM_INSERIR
+                                      ,SM_ALTERAR
+                                      ,SM_EXCLUIR)
+                               VALUES (pIN_ENTIDADESDOSISTEMA_ID
+                                      ,pSM_GRUPOS_ID
+                                      ,pSM_LER
+                                      ,pSM_INSERIR
+                                      ,pSM_ALTERAR
+                                      ,pSM_EXCLUIR);
+
+    vRETURN := CURRVAL('SQ_PDG_IN_PERMISSOESDOSGRUPOS_ID');
+    ---------------------------------------------------------------------------------------
+    WHEN 'D' THEN ----------------------------------------------------------- [ DELETE ] --
+      DELETE FROM PERMISSOESDOSGRUPOS
+            WHERE IN_PERMISSOESDOSGRUPOS_ID = pIN_PERMISSOESDOSGRUPOS_ID;
+            
+    GET DIAGNOSTICS vRETURN := ROW_COUNT;
+    ---------------------------------------------------------------------------------------
+    WHEN 'U' THEN ----------------------------------------------------------- [ UPDATE ] --
+      UPDATE PERMISSOESDOSGRUPOS
+         SET IN_ENTIDADESDOSISTEMA_ID = pIN_ENTIDADESDOSISTEMA_ID
+           , SM_GRUPOS_ID             = pSM_GRUPOS_ID
+           , SM_LER                   = pSM_LER
+           , SM_INSERIR               = pSM_INSERIR
+           , SM_ALTERAR               = pSM_ALTERAR
+           , SM_EXCLUIR               = pSM_EXCLUIR
+       WHERE IN_PERMISSOESDOSGRUPOS_ID = pIN_PERMISSOESDOSGRUPOS_ID;
 
     GET DIAGNOSTICS vRETURN := ROW_COUNT;
     ---------------------------------------------------------------------------------------

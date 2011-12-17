@@ -14,13 +14,13 @@ type
     TabSheet_Permissions: TTabSheet;
     PANLLayerSuperior: TPanel;
     PGCTUSUGRUConsultar: TPageControl;
-    TabSheet_USU_Consultar: TTabSheet;
+    TBSHUSUConsultar: TTabSheet;
     GroupBoxUsuarioConsultaRapida: TGroupBox;
     Label3: TLabel;
     LAEDUSU_VA_NOME: TLabeledEdit;
     LAEDUSU_VA_LOGIN: TLabeledEdit;
     KRDGConsUsuarios: TKRKDBGrid;
-    TabSheet_GRU_Consultar: TTabSheet;
+    TBSHGRUConsultar: TTabSheet;
     GroupBoxGrupoConsultaRapida: TGroupBox;
     LabeledEdit_GRU_VA_NOME: TLabeledEdit;
     GroupBoxEntidadesDoSistema: TGroupBox;
@@ -33,7 +33,7 @@ type
     KRDGConsEntidadesDoSistema: TKRKDBGrid;
     PANLFooter: TPanel;
     PGCTPermissoes: TPageControl;
-    TBSHGRU: TTabSheet;
+    TBSHPDG: TTabSheet;
     PANLGRULayerTop: TPanel;
     GroupBoxGrupoConsultaRapida2: TGroupBox;
     LabelGrupoConsultarTipoDaEntidade: TLabel;
@@ -47,7 +47,7 @@ type
     LabelGrupoNao: TLabel;
     ImageGrupoNaoSeAplica: TImage;
     LabelGrupoNaoSeAplica: TLabel;
-    TBSHUSU: TTabSheet;
+    TBSHPDU: TTabSheet;
     PANLUSULayerTop: TPanel;
     GroupBoxUsuarioConsultaRapida2: TGroupBox;
     LabelTipo2: TLabel;
@@ -58,9 +58,9 @@ type
     LabelUsuarioAutorizado: TLabel;
     LabelUsuarioDesaltoriza: TLabel;
     LabelUsuarioNaoAplicavel: TLabel;
-    Image1: TImage;
-    Image2: TImage;
-    Image3: TImage;
+    IMAGConcedido: TImage;
+    IMAGNegado: TImage;
+    IMAGNaoAplica: TImage;
     TabSheet_USU: TTabSheet;
     GroupBoxUsuariosConsultar2: TGroupBox;
     LabelE3: TLabel;
@@ -102,12 +102,18 @@ type
     KRDGUsuarios: TKRKDBGrid;
     GRBXKRDGUsuarios: TGroupBox;
     LABLFiltroIDUUsuarios: TLabel;
+    KRDGPDU: TKRKDBGrid;
+    KRDGPDG: TKRKDBGrid;
     procedure LAEDUSU_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
     procedure LAEDUSU_VA_LOGINKeyPress(Sender: TObject; var Key: Char);
     procedure LabeledEdit_EDS_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
     procedure ComboBox_EDS_TI_TIPOChange(Sender: TObject);
     procedure LabeledEdit_USU_VA_NOME2KeyPress(Sender: TObject; var Key: Char);
     procedure LabeledEdit_USU_VA_LOGIN2KeyPress(Sender: TObject; var Key: Char);
+    procedure PGCTUSUGRUConsultarChange(Sender: TObject);
+    procedure KRKFormCreate(Sender: TObject);
+    procedure KRDGPDUDrawColumnCell(Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure KRDGPDUCellClick(Column: TColumn);
   private
     { Private declarations }
     procedure FiltrarEntidadesDoSistema;
@@ -132,13 +138,100 @@ var
   Tipo: ShortInt;
 begin
   case ComboBox_EDS_TI_TIPO.ItemIndex of
-    1: Tipo := 0;
-    2: Tipo := 1;
+    1: Tipo := 0; // TABELA
+    2: Tipo := 1; // AÇÃO
     else
       Tipo := -1;
   end;
 
   TKRDMSegurancaEPermissoes(Owner).FiltrarEntidadesDoSistema(0,LabeledEdit_EDS_VA_NOME.Text,Tipo);
+end;
+
+procedure TKRFMSegurancaEPermissoes.KRDGPDUCellClick(Column: TColumn);
+begin
+  inherited;
+  if Column.FieldName = 'sm_ler' then
+    TKRDMSegurancaEPermissoes(Owner).AlternarPermissao(pAcessar,odpUsuario)
+  else if Column.FieldName = 'sm_inserir' then
+//    TKRDMSegurancaEPermissoes(Owner).ToggleGroupModifyPermission(mmInsert)
+  else if Column.FieldName = 'sm_alterar' then
+//		TKRDMSegurancaEPermissoes(Owner).ToggleGroupModifyPermission(mmUpdate)
+  else if Column.FieldName = 'sm_excluir' then
+//		TKRDMSegurancaEPermissoes(Owner).ToggleGroupModifyPermission(mmDelete);
+
+
+end;
+
+procedure TKRFMSegurancaEPermissoes.KRDGPDUDrawColumnCell(Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+var
+	OffsetLeft: Byte;
+begin
+	inherited;
+  if (Column.FieldName = 'sm_ler') or (Column.FieldName = 'sm_inserir') or (Column.FieldName = 'sm_alterar') or (Column.FieldName = 'sm_excluir') then
+  begin
+    OffsetLeft := ((Rect.Right - Rect.Left) div 2) - 8;
+    case Column.Field.AsInteger of
+      -1: TKRKDBGrid(Sender).Canvas.Draw(Rect.Left + OffsetLeft,Rect.Top,IMAGNaoAplica.Picture.Graphic);
+      0 : TKRKDBGrid(Sender).Canvas.Draw(Rect.Left + OffsetLeft,Rect.Top,IMAGNegado.Picture.Graphic);
+      1 : TKRKDBGrid(Sender).Canvas.Draw(Rect.Left + OffsetLeft,Rect.Top,IMAGConcedido.Picture.Graphic);
+    end;
+  end;
+end;
+
+
+(*
+
+procedure TXXXDataModule_Administration.ToggleUserModifyPermission(aModifyMode: TModifyMode);
+const
+	SQL_UPDATE =
+    'UPDATE X[PDU.PERMISSOESDOSUSUARIOS]X PDU'#13#10 +
+    '  JOIN X[EDS.ENTIDADESDOSISTEMA]X EDS ON (PDU.X[PDU.IN_ENTIDADESDOSISTEMA_ID]X = EDS.X[EDS.IN_ENTIDADESDOSISTEMA_ID]X)'#13#10 +
+    '   SET PDU.X[TI_LER]X = IF(PDU.%s = 0,1,PDU.X[TI_LER]X)'#13#10 +
+    '     , PDU.%0:s = IF(EDS.X[EDS.TI_TIPO]X = 0,IF(PDU.%0:s = 0,1,0),-1)'#13#10 +
+    ' WHERE PDU.X[PDU.SM_USUARIOS_ID]X = %u'#13#10 +
+    '   AND PDU.X[PDU.IN_ENTIDADESDOSISTEMA_ID]X = %u';
+var
+	ModifyField: ShortString;
+	BS: TBookmark;
+begin
+  	inherited;
+	DoBeforeEdit(PERMISSOESDOSUSUARIOS);
+
+	if (PERMISSOESDOSUSUARIOS.RecordCount > 0)
+       and not ((Configurations.AuthenticatedUser.Id = Cardinal(USUARIOS.FieldByName(Configurations.UserTableKeyFieldName).AsInteger))
+                and ((PERMISSOESDOSUSUARIOS.FieldByName('NOME').AsString = Configurations.AdministrativeActionName)
+                     or (PERMISSOESDOSUSUARIOS.FieldByName('NOME').AsString = Configurations.UserPermissionTableTableName))) then
+    begin
+    	if PERMISSOESDOSUSUARIOS.FieldByName('TIPO').AsString = 'Tabela' then
+        begin
+            case aModifyMode of
+                mmInsert: ModifyField := Configurations.PermissionTableInsertFieldName;
+                mmUpdate: ModifyField := Configurations.PermissionTableUpdateFieldName;
+                mmDelete: ModifyField := Configurations.PermissionTableDeleteFieldName;
+            end;
+
+            ExecuteQuery(DataModuleMain.ZConnections[0].Connection
+                        ,Format(ReplaceSystemObjectNames(SQL_UPDATE)
+                               ,[ModifyField
+                                ,PERMISSOESDOSUSUARIOS.FieldByName(Configurations.UserPermissionTableUserFieldName).AsInteger
+                                ,PERMISSOESDOSUSUARIOS.FieldByName(Configurations.UserPermissionTableEntityFieldName).AsInteger]));
+            try
+                BS := PERMISSOESDOSUSUARIOS.Bookmark;
+                PERMISSOESDOSUSUARIOS.Refresh;
+            finally
+                PERMISSOESDOSUSUARIOS.Bookmark := BS;
+            end;
+        end;
+    end;
+end;
+
+*)
+
+procedure TKRFMSegurancaEPermissoes.KRKFormCreate(Sender: TObject);
+begin
+  inherited;
+  TBSHPDU.TabVisible := True;
+  TBSHPDG.TabVisible := False;
 end;
 
 procedure TKRFMSegurancaEPermissoes.LabeledEdit_EDS_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
@@ -174,6 +267,18 @@ begin
   inherited;
   if Key = #13 then
     TKRDMSegurancaEPermissoes(Owner).FiltrarUsuarios(0,TLabeledEdit(Sender).Text,'','','');
+end;
+
+procedure TKRFMSegurancaEPermissoes.PGCTUSUGRUConsultarChange(Sender: TObject);
+begin
+  inherited;
+  TBSHPDU.TabVisible := TPageControl(Sender).ActivePage = TBSHUSUConsultar;
+  TBSHPDG.TabVisible := TPageControl(Sender).ActivePage = TBSHGRUConsultar;
+
+  if TBSHPDU.TabVisible then
+    BitBtn_EDS_AdicionarA.Caption := 'Adic. p/ usuário'
+  else
+    BitBtn_EDS_AdicionarA.Caption := 'Adic. p/ grupo';
 end;
 
 initialization

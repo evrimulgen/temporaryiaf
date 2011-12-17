@@ -10,6 +10,9 @@ uses
   ZAbstractDataset, ZDataset, KRK.Components.AdditionalControls.BalloonHint;
 
 type
+  TPermissao = (pAcessar,pInserir,pAlterar,pExcluir);
+  TObjetoDePermissao = (odpUsuario,odpGrupo);
+
   TKRDMSegurancaEPermissoes = class(TKRDMBasico)
     CLDSConsUsuarios: TClientDataSet;
     DTSRConsUsuarios: TDataSource;
@@ -49,10 +52,14 @@ type
     CLDSConsUsuariosZQRYPermissoesDosUsuarios: TDataSetField;
     CLDSUsuariosnome: TWideStringField;
     CLDSUsuarioslogin: TWideStringField;
+    CLDSUsuariosZQRYPermissoesDosUsuarios: TDataSetField;
+    CLDSPermissoesDosUsuariostipo: TSmallintField;
     procedure CLDSConsEntidadesDoSistemasm_tipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure CLDSUsuariosch_senhaGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure CLDSUsuariosCalcFields(DataSet: TDataSet);
     procedure CLDSUsuariosAfterRefresh(DataSet: TDataSet);
+    procedure DoGetTextVazio(Sender: TField;
+      var Text: string; DisplayText: Boolean);
   private
     { Declarações privadas }
   protected
@@ -62,17 +69,70 @@ type
     procedure FiltrarUsuarios(aSM_USUARIOS_ID: SmallInt; aVA_NOME, aVA_LOGIN, aCH_SENHA, aVA_EMAIL: String);
     procedure FiltrarUsuariosIDU(aSM_USUARIOS_ID: SmallInt; aVA_NOME, aVA_LOGIN, aCH_SENHA, aVA_EMAIL: String);
     procedure FiltrarEntidadesDoSistema(aIN_ENTIDADESDOSISTEMA_ID: Integer; aVA_NOME: String; aSM_TIPO: SmallInt);
+    procedure AlternarPermissao(aPermissao: TPermissao; aObjetoDePermissao: TObjetoDePermissao);
   end;
 
 implementation
 
 {$R *.dfm}
 
-uses UKRFMSegurancaEPermissoes
+uses Math
+   , UKRFMSegurancaEPermissoes
    , UDAMOPrincipal
    , KRK.Win32.Db.Utils;
 
 { TKRDMSegurancaEPermissoes }
+
+procedure TKRDMSegurancaEPermissoes.AlternarPermissao(aPermissao: TPermissao; aObjetoDePermissao: TObjetoDePermissao);
+(*
+
+    'UPDATE X[PDU.PERMISSOESDOSUSUARIOS]X PDU'#13#10 +
+    '  JOIN X[EDS.ENTIDADESDOSISTEMA]X EDS ON (PDU.X[PDU.IN_ENTIDADESDOSISTEMA_ID]X = EDS.X[EDS.IN_ENTIDADESDOSISTEMA_ID]X)'#13#10 +
+    '   SET PDU.X[TI_LER]X = IF(PDU.%s = 0,1,PDU.X[TI_LER]X)'#13#10 +
+    '     , PDU.%0:s = IF(EDS.X[EDS.TI_TIPO]X = 0,IF(PDU.%0:s = 0,1,0),-1)'#13#10 +
+    ' WHERE PDU.X[PDU.SM_USUARIOS_ID]X = %u'#13#10 +
+    '   AND PDU.X[PDU.IN_ENTIDADESDOSISTEMA_ID]X = %u';
+
+
+    *)
+var
+  CLDS: TClientDataSet;
+begin
+  CLDS := nil;
+
+  case aObjetoDePermissao of
+    odpUsuario: CLDS := CLDSPermissoesDosUsuarios;
+    odpGrupo  : {CLDS := CLDSPermissoesDosGrupos;}
+  end;
+
+  case aPermissao of
+    pAcessar:
+    begin
+      CLDS.Edit;
+      CLDS.FieldByName('sm_ler').AsInteger := IfThen(CLDS.FieldByName('sm_ler').AsInteger = 1,0,1);
+
+      if (CLDS.FieldByName('tipo').AsInteger = 0) and (CLDS.FieldByName('sm_ler').AsInteger = 0) then
+      begin
+        CLDS.FieldByName('sm_inserir').AsInteger := 0;
+        CLDS.FieldByName('sm_alterar').AsInteger := 0;
+        CLDS.FieldByName('sm_excluir').AsInteger := 0;
+      end;
+      
+      CLDS.Post;
+    end;
+    pInserir:
+    begin
+    use o update acima
+    end;
+    pAlterar:
+    begin
+    end;
+    pExcluir:
+    begin
+    end;
+  end;
+
+end;
 
 procedure TKRDMSegurancaEPermissoes.CLDSConsEntidadesDoSistemasm_tipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
 begin
@@ -87,6 +147,12 @@ begin
     else
       Text := 'N/A';
   end;
+end;
+
+procedure TKRDMSegurancaEPermissoes.DoGetTextVazio(Sender: TField; var Text: string; DisplayText: Boolean);
+begin
+  inherited;
+  Text := '';
 end;
 
 procedure TKRDMSegurancaEPermissoes.FiltrarUsuarios(aSM_USUARIOS_ID: SmallInt; aVA_NOME, aVA_LOGIN, aCH_SENHA, aVA_EMAIL: String);
