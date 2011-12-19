@@ -34,7 +34,6 @@ type
     CLDSUsuariosch_senha: TWideStringField;
     CLDSUsuariosva_email: TWideStringField;
     CLDSGruposDosUsuarios: TClientDataSet;
-    CLDSUsuariosZQRYGruposDosUsuarios: TDataSetField;
     CLDSGruposDosUsuariosin_gruposdosusuarios_id: TIntegerField;
     CLDSGruposDosUsuariossm_grupos_id: TSmallintField;
     CLDSGruposDosUsuariossm_usuarios_id: TSmallintField;
@@ -49,19 +48,28 @@ type
     CLDSPermissoesDosUsuariossm_alterar: TSmallintField;
     CLDSPermissoesDosUsuariossm_excluir: TSmallintField;
     DTSRPermissoesDosUsuarios: TDataSource;
-    CLDSConsUsuariosZQRYPermissoesDosUsuarios: TDataSetField;
     CLDSUsuariosnome: TWideStringField;
     CLDSUsuarioslogin: TWideStringField;
-    CLDSUsuariosZQRYPermissoesDosUsuarios: TDataSetField;
     CLDSPermissoesDosUsuariostipo: TSmallintField;
+    ACTNAdicionarEntidade: TAction;
+    CLDSPermissoesDosUsuariosic_entidade: TStringField;
+    CLDSPermissoesDosUsuariosic_tipo: TIntegerField;
     procedure CLDSConsEntidadesDoSistemasm_tipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure CLDSUsuariosch_senhaGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure CLDSUsuariosCalcFields(DataSet: TDataSet);
     procedure CLDSUsuariosAfterRefresh(DataSet: TDataSet);
-    procedure DoGetTextVazio(Sender: TField;
+    procedure DoGetTextVazio(Sender: TField; var Text: string; DisplayText: Boolean);
+    procedure ACTNAdicionarEntidadeExecute(Sender: TObject);
+    procedure CLDSPermissoesDosUsuariosentidadeGetText(Sender: TField;
       var Text: string; DisplayText: Boolean);
+    procedure CLDSPermissoesDosUsuariostipoGetText(Sender: TField;
+      var Text: string; DisplayText: Boolean);
+    procedure KRKDataModuleCreate(Sender: TObject);
+    procedure CLDSUsuariosNewRecord(DataSet: TDataSet);
   private
     { Declarações privadas }
+    procedure AdicionarEntidadesParaUsuario;
+    procedure AdicionarEntidadesParaGrupo;
   protected
     { Declarações protegidas }
   public
@@ -76,14 +84,87 @@ implementation
 
 {$R *.dfm}
 
+
 uses Math
    , UKRFMSegurancaEPermissoes
    , UDAMOPrincipal
-   , KRK.Win32.Db.Utils;
+   , KRK.Win32.Db.Utils
+   , DBGrids;
 
 { TKRDMSegurancaEPermissoes }
+var
+  id: integer;
+procedure TKRDMSegurancaEPermissoes.ACTNAdicionarEntidadeExecute(Sender: TObject);
+begin
+  inherited;
+  case TKRFMSegurancaEPermissoes(MyForm).PGCTUSUGRUConsultar.ActivePageIndex of
+    0: AdicionarEntidadesParaUsuario;// Usuários
+    1: AdicionarEntidadesParaGrupo;// Grupos
+  end;
+end;
+
+procedure TKRDMSegurancaEPermissoes.AdicionarEntidadesParaGrupo;
+begin
+
+end;
+
+procedure TKRDMSegurancaEPermissoes.AdicionarEntidadesParaUsuario;
+var
+  i: Integer;
+  BookMarkList: TBookMarkList;
+begin
+  BookMarkList := TKRFMSegurancaEPermissoes(MyForm).KRDGConsEntidadesDoSistema.SelectedRows;
+
+  if BookMarkList.Count > 0 then
+    try
+      CLDSPermissoesDosUsuarios.DisableControls;
+      CLDSConsEntidadesDoSistema.DisableControls;
+      CLDSConsUsuarios.DisableControls;
+
+      for i := 0 to Pred(BookMarkList.Count) do
+      begin
+        CLDSConsEntidadesDoSistema.GotoBookmark(BookMarkList[i]);
+
+        if not CLDSPermissoesDosUsuarios.Locate('IN_ENTIDADESDOSISTEMA_ID',CLDSConsEntidadesDoSistemain_entidadesdosistema_id.AsInteger,[]) then
+        begin
+          CLDSPermissoesDosUsuarios.Append;
+          CLDSPermissoesDosUsuariosin_entidadesdosistema_id.AsInteger := CLDSConsEntidadesDoSistemain_entidadesdosistema_id.AsInteger;
+          CLDSPermissoesDosUsuariossm_usuarios_id.AsInteger           := CLDSConsUsuariossm_usuarios_id.AsInteger;
+
+          CLDSPermissoesDosUsuariosic_entidade.AsString               := CLDSConsEntidadesDoSistemava_nome.AsString;
+          CLDSPermissoesDosUsuariosic_tipo.AsInteger                  := CLDSConsEntidadesDoSistemasm_tipo.AsInteger;
+
+          CLDSPermissoesDosUsuariossm_ler.AsInteger := 0;
+
+          if CLDSConsEntidadesDoSistemasm_tipo.AsInteger = 0 then
+          begin
+            CLDSPermissoesDosUsuariossm_inserir.AsInteger := 0;
+            CLDSPermissoesDosUsuariossm_alterar.AsInteger := 0;
+            CLDSPermissoesDosUsuariossm_excluir.AsInteger := 0;
+          end
+          else
+          begin
+            CLDSPermissoesDosUsuariossm_inserir.AsInteger := -1;
+            CLDSPermissoesDosUsuariossm_alterar.AsInteger := -1;
+            CLDSPermissoesDosUsuariossm_excluir.AsInteger := -1;
+          end;
+
+          CLDSPermissoesDosUsuarios.Post;
+        end;
+      end;
+    finally
+      CLDSConsUsuarios.EnableControls;
+      CLDSConsEntidadesDoSistema.EnableControls;
+      CLDSPermissoesDosUsuarios.EnableControls;
+    end;
+// circula entre todas as entidades marcadas no grid
+// para cada uma delas perguntar se já consta na lista local do usuário
+// se não estiver insere os dados para o usuário e dá um post
+end;
 
 procedure TKRDMSegurancaEPermissoes.AlternarPermissao(aPermissao: TPermissao; aObjetoDePermissao: TObjetoDePermissao);
+const
+  Acoes: array [0..3] of String = ('sm_ler','sm_inserir','sm_alterar','sm_excluir');
 (*
 
     'UPDATE X[PDU.PERMISSOESDOSUSUARIOS]X PDU'#13#10 +
@@ -111,7 +192,10 @@ begin
       CLDS.Edit;
       CLDS.FieldByName('sm_ler').AsInteger := IfThen(CLDS.FieldByName('sm_ler').AsInteger = 1,0,1);
 
-      if (CLDS.FieldByName('tipo').AsInteger = 0) and (CLDS.FieldByName('sm_ler').AsInteger = 0) then
+      // Foi usado displaytext porque ao inserir antes de applyupdates o valor
+      // do campo tipo é nulo e o gettext do mesmo automaticamente preenche um
+      // valor válido que será exibido
+      if (CLDS.FieldByName('tipo').DisplayText = '0') and (CLDS.FieldByName('sm_ler').AsInteger = 0) then
       begin
         CLDS.FieldByName('sm_inserir').AsInteger := 0;
         CLDS.FieldByName('sm_alterar').AsInteger := 0;
@@ -120,18 +204,20 @@ begin
       
       CLDS.Post;
     end;
-    pInserir:
+    pInserir, pAlterar, pExcluir:
     begin
-    use o update acima
-    end;
-    pAlterar:
-    begin
-    end;
-    pExcluir:
-    begin
+      if CLDS.FieldByName('tipo').AsInteger = 0 then
+      begin
+        CLDS.Edit;
+        CLDS.FieldByName(Acoes[Ord(aPermissao)]).AsInteger := IfThen(CLDS.FieldByName(Acoes[Ord(aPermissao)]).AsInteger = 1,0,1);
+
+        if CLDS.FieldByName(Acoes[Ord(aPermissao)]).AsInteger = 1 then
+          CLDS.FieldByName('sm_ler').AsInteger := 1;
+
+        CLDS.Post;
+      end;
     end;
   end;
-
 end;
 
 procedure TKRDMSegurancaEPermissoes.CLDSConsEntidadesDoSistemasm_tipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
@@ -147,6 +233,24 @@ begin
     else
       Text := 'N/A';
   end;
+end;
+
+procedure TKRDMSegurancaEPermissoes.CLDSPermissoesDosUsuariosentidadeGetText(Sender: TField; var Text: string; DisplayText: Boolean);
+begin
+  inherited;
+  if Sender.IsNull then
+    Text := CLDSPermissoesDosUsuariosic_entidade.AsString
+  else
+    Text := Sender.AsString;
+end;
+
+procedure TKRDMSegurancaEPermissoes.CLDSPermissoesDosUsuariostipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
+begin
+  inherited;
+  if Sender.IsNull then
+    Text := CLDSPermissoesDosUsuariosic_tipo.AsString
+  else
+    Text := Sender.AsString;
 end;
 
 procedure TKRDMSegurancaEPermissoes.DoGetTextVazio(Sender: TField; var Text: string; DisplayText: Boolean);
@@ -181,6 +285,12 @@ begin
   end;
 end;
 
+procedure TKRDMSegurancaEPermissoes.KRKDataModuleCreate(Sender: TObject);
+begin
+  inherited;
+  id := 0;
+end;
+
 procedure TKRDMSegurancaEPermissoes.CLDSUsuariosAfterRefresh(DataSet: TDataSet);
 begin
   TKRFMSegurancaEPermissoes(MyForm).LABLFiltroIDUUsuarios.Caption := TClientDataSet(DataSet).MyParams;
@@ -203,6 +313,13 @@ begin
   { Senhas nunca são exibidas }
   if DisplayText then
     Text := '';
+end;
+
+procedure TKRDMSegurancaEPermissoes.CLDSUsuariosNewRecord(DataSet: TDataSet);
+begin
+  inherited;
+  Dec(Id);
+  CLDSUsuariossm_usuarios_id.AsInteger := ID;
 end;
 
 procedure TKRDMSegurancaEPermissoes.FiltrarEntidadesDoSistema(aIN_ENTIDADESDOSISTEMA_ID: Integer; aVA_NOME: String; aSM_TIPO: SmallInt);

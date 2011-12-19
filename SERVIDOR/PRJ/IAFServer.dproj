@@ -31,6 +31,7 @@
 			<DCC_ExeOutput>..\BIN\DLL\$(Config)</DCC_ExeOutput>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<DCC_DebugInfoInExe>true</DCC_DebugInfoInExe>
 			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
 			<DCC_Optimize>false</DCC_Optimize>
 			<DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
@@ -100,7 +101,7 @@
 						<VersionInfo Name="MajorVer">1</VersionInfo>
 						<VersionInfo Name="MinorVer">0</VersionInfo>
 						<VersionInfo Name="Release">0</VersionInfo>
-						<VersionInfo Name="Build">363</VersionInfo>
+						<VersionInfo Name="Build">467</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -112,7 +113,7 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName">Zetta-Ømnis Soluções Tecnológicas Ltda</VersionInfoKeys>
 						<VersionInfoKeys Name="FileDescription">Servidor do IAF</VersionInfoKeys>
-						<VersionInfoKeys Name="FileVersion">1.0.0.363</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">1.0.0.467</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName">IAF</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalCopyright"/>
 						<VersionInfoKeys Name="LegalTrademarks"/>
@@ -128,6 +129,7 @@
 					<Source>
 						<Source Name="MainSource">IAFServer.dpr</Source>
 					</Source>
+					<Parameters/>
 				</Delphi.Personality>
 				<Platforms>
 					<Platform value="Win32">True</Platform>

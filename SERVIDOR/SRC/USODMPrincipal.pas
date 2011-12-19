@@ -17,11 +17,17 @@ uses SysUtils
    , ZDataset
    , ZAbstractDataset
    , ZSqlUpdate
-   , UKRDMBasico;
+   , UKRDMBasico
+   , DBClient;
 
 type
   ISODMPrincipal = interface(IAppServerSOAP)
   ['{E3E8C375-D907-469E-B419-BC7AB6EB7F18}']
+  end;
+
+  TDataSetProvider = class(Provider.TDataSetProvider)
+  protected
+    procedure DoBeforeUpdateRecord(SourceDS: TDataSet; DeltaDS: TCustomClientDataSet; UpdateKind: TUpdateKind; var Applied: Boolean); override;
   end;
 
   TSODMPrincipal = class(TSoapDataModule, ISODMPrincipal, IAppServerSOAP, IAppServer)
@@ -115,6 +121,38 @@ end;
 procedure TSODMPrincipal.ZCONIAFBeforeConnect(Sender: TObject);
 begin
   ConfigureConnection(TZConnection(Sender));
+end;
+
+{ TDataSetProvider }
+
+procedure TDataSetProvider.DoBeforeUpdateRecord(SourceDS: TDataSet; DeltaDS: TCustomClientDataSet; UpdateKind: TUpdateKind; var Applied: Boolean);
+var
+  CampoChave: String;
+  i: Integer;
+begin
+  inherited;
+  if UpdateKind = ukInsert then
+  begin
+    for i := 0 to Pred(SourceDS.Fields.Count) do
+      if pfInKey in SourceDS.Fields[i].ProviderFlags then
+      begin
+        CampoChave := SourceDS.Fields[i].FieldName;
+        Break;
+      end;
+
+    if CampoChave <> '' then
+    begin
+      continua aqui
+    end;
+//      Append(IntToStr(SourceDS.FieldByName('sm_usuarios_id').AsInteger));
+//      SaveToFile('C:\antes.txt');
+//      SourceDS.Refresh;
+//      Clear;
+//      Append(IntToStr(SourceDS.FieldByName('sm_usuarios_id').AsInteger));
+//      SaveToFile('C:\depois.txt');
+//      DeltaDS.FieldByName('sm_usuarios_id').NewValue := SourceDS.FieldByName('sm_usuarios_id').AsInteger;
+
+  end;
 end;
 
 initialization

@@ -90,7 +90,6 @@ begin
   except
     on EIFV: EInvalidFieldValue do
     begin
-      EIFV.CheckableField.Field.FocusControl;
       TKRDMBasico(Owner).ConfigureErrorHint('Campo incorreto'
                                            ,EIFV.Message
                                            ,TKRDMBasico(Owner).MyForm.ActiveControl
@@ -164,8 +163,7 @@ begin
     TipText :=  aText;
     MaxWidth := 320;
     TipIcon := tiError;
-//    Options := [kbhoActivateOnShow, kbhoSetFocusToAssociatedWinContronOnDeactivate, kbhoHideOnDeactivate, kbhoHideWithEnter, kbhoHideWithEsc, kbhoSelectAllOnFocus];
-
+//
     if aShowHint then
       Show;
   end;

@@ -20,6 +20,7 @@ type
     ACTNSegurancaEPermissoes: TAction;
     CNBRPrincipal: TConnectionBroker;
     IMLIPrincipalLarge: TImageList;
+    ACTNAtualizarPrivilegios: TAction;
     procedure ACTNSegurancaEPermissoesExecute(Sender: TObject);
     procedure ACTNAjudaExecute(Sender: TObject);
     procedure ACTNSobreExecute(Sender: TObject);

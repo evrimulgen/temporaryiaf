@@ -8,6 +8,7 @@ object SODMPrincipal: TSODMPrincipal
       'client_encoding=UTF8')
     TransactIsolationLevel = tiReadCommitted
     Connected = True
+    DesignConnection = True
     BeforeConnect = ZCONIAFBeforeConnect
     Protocol = 'postgresql'
     HostName = '127.0.0.1'
@@ -20,7 +21,7 @@ object SODMPrincipal: TSODMPrincipal
   object DSPRUsuarios: TDataSetProvider
     DataSet = KRDMUsuarios.ZQRYUsuarios
     Constraints = False
-    Options = [poFetchBlobsOnDemand, poFetchDetailsOnDemand, poIncFieldProps, poCascadeDeletes, poCascadeUpdates]
+    Options = [poFetchBlobsOnDemand, poFetchDetailsOnDemand, poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poPropogateChanges]
     UpdateMode = upWhereKeyOnly
     Left = 54
     Top = 60
@@ -28,7 +29,7 @@ object SODMPrincipal: TSODMPrincipal
   object DSPREntidadesDoSistema: TDataSetProvider
     DataSet = KRDMEntidadesDoSistema.ZQRYEntidadesDoSistema
     Constraints = False
-    Options = [poFetchBlobsOnDemand, poFetchDetailsOnDemand, poIncFieldProps, poCascadeDeletes, poCascadeUpdates]
+    Options = [poFetchBlobsOnDemand, poFetchDetailsOnDemand, poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poPropogateChanges]
     UpdateMode = upWhereKeyOnly
     Left = 54
     Top = 108

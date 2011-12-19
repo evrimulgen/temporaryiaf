@@ -29,7 +29,7 @@ type
     Label2: TLabel;
     ComboBox_EDS_TI_TIPO: TComboBox;
     LabeledEdit_EDS_VA_NOME: TLabeledEdit;
-    BitBtn_EDS_AdicionarA: TBitBtn;
+    BBTNAdicionarEntidade: TBitBtn;
     KRDGConsEntidadesDoSistema: TKRKDBGrid;
     PANLFooter: TPanel;
     PGCTPermissoes: TPageControl;
@@ -114,6 +114,8 @@ type
     procedure KRKFormCreate(Sender: TObject);
     procedure KRDGPDUDrawColumnCell(Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure KRDGPDUCellClick(Column: TColumn);
+    procedure KRDGConsEntidadesDoSistemaAfterMultiselect(aSender: TObject; aMultiSelectEventTrigger: TMultiSelectEventTrigger);
+    procedure KRDGUsuariosDblClick(Sender: TObject);
   private
     { Private declarations }
     procedure FiltrarEntidadesDoSistema;
@@ -147,19 +149,23 @@ begin
   TKRDMSegurancaEPermissoes(Owner).FiltrarEntidadesDoSistema(0,LabeledEdit_EDS_VA_NOME.Text,Tipo);
 end;
 
+procedure TKRFMSegurancaEPermissoes.KRDGConsEntidadesDoSistemaAfterMultiselect(aSender: TObject; aMultiSelectEventTrigger: TMultiSelectEventTrigger);
+begin
+  inherited;
+  TKRDMSegurancaEPermissoes(Owner).ACTNAdicionarEntidade.Enabled := KRDGConsEntidadesDoSistema.SelectedRows.Count > 0;
+end;
+
 procedure TKRFMSegurancaEPermissoes.KRDGPDUCellClick(Column: TColumn);
 begin
   inherited;
   if Column.FieldName = 'sm_ler' then
     TKRDMSegurancaEPermissoes(Owner).AlternarPermissao(pAcessar,odpUsuario)
   else if Column.FieldName = 'sm_inserir' then
-//    TKRDMSegurancaEPermissoes(Owner).ToggleGroupModifyPermission(mmInsert)
+    TKRDMSegurancaEPermissoes(Owner).AlternarPermissao(pInserir,odpUsuario)
   else if Column.FieldName = 'sm_alterar' then
-//		TKRDMSegurancaEPermissoes(Owner).ToggleGroupModifyPermission(mmUpdate)
+		TKRDMSegurancaEPermissoes(Owner).AlternarPermissao(pAlterar,odpUsuario)
   else if Column.FieldName = 'sm_excluir' then
-//		TKRDMSegurancaEPermissoes(Owner).ToggleGroupModifyPermission(mmDelete);
-
-
+		TKRDMSegurancaEPermissoes(Owner).AlternarPermissao(pExcluir,odpUsuario);
 end;
 
 procedure TKRFMSegurancaEPermissoes.KRDGPDUDrawColumnCell(Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
@@ -178,6 +184,12 @@ begin
   end;
 end;
 
+procedure TKRFMSegurancaEPermissoes.KRDGUsuariosDblClick(Sender: TObject);
+begin
+  inherited;
+  ShowMessage(KRDGUsuarios.DataSource.DataSet.FieldByName('sm_usuarios_id').AsString);
+
+end;
 
 (*
 
@@ -274,11 +286,6 @@ begin
   inherited;
   TBSHPDU.TabVisible := TPageControl(Sender).ActivePage = TBSHUSUConsultar;
   TBSHPDG.TabVisible := TPageControl(Sender).ActivePage = TBSHGRUConsultar;
-
-  if TBSHPDU.TabVisible then
-    BitBtn_EDS_AdicionarA.Caption := 'Adic. p/ usuário'
-  else
-    BitBtn_EDS_AdicionarA.Caption := 'Adic. p/ grupo';
 end;
 
 initialization

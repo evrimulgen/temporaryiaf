@@ -62,7 +62,6 @@ object FORMPrincipal: TFORMPrincipal
     ParentFont = False
     Spacing = 0
     VertMargin = 0
-    ExplicitHeight = 43
   end
   object STTBPrincipal: TStatusBar
     Left = 0

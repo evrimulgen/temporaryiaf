@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, UKRDMBasico, ZSqlUpdate, Provider, DB, ZDataset, ZAbstractDataset,
   ZStoredProcedure, ZAbstractRODataset,
-  KRK.Components.DataControls.ValidationChecks;
+  KRK.Components.DataControls.ValidationChecks, ZSequence;
 
 type
   TKRDMUsuarios = class(TKRDMBasico)
