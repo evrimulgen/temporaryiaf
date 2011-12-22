@@ -1,7 +1,7 @@
 inherited KRDMUsuarios: TKRDMUsuarios
   OldCreateOrder = True
-  Height = 334
-  Width = 393
+  Height = 258
+  Width = 358
   inherited ZROQ: TZReadOnlyQuery
     Connection = SODMPrincipal.ZCONIAF
   end
@@ -13,54 +13,49 @@ inherited KRDMUsuarios: TKRDMUsuarios
     UpdateObject = ZUSQUsuarios
     SQL.Strings = (
       'SELECT USU.*'
-      '  FROM USUARIOS USU'
+      '  FROM usuarios USU'
       
-        ' WHERE ((:SM_USUARIOS_ID IS NULL) OR (SM_USUARIOS_ID = :SM_USUAR' +
-        'IOS_ID))'
+        ' WHERE ((:SM_USUARIOS_ID IS NULL) OR (USU.SM_USUARIOS_ID = :SM_U' +
+        'SUARIOS_ID))'
       
-        '   AND ((:VA_NOME IS NULL) OR (UPPER(VA_NOME) LIKE UPPER(:VA_NOM' +
-        'E)))'
+        '   AND ((:VA_NOME IS NULL) OR (UPPER(USU.VA_NOME) LIKE UPPER(:VA' +
+        '_NOME)))'
       
-        '   AND ((:VA_LOGIN IS NULL) OR (UPPER(VA_LOGIN) LIKE UPPER(:VA_L' +
-        'OGIN)))'
-      '   AND ((:CH_SENHA IS NULL) OR (CH_SENHA = :CH_SENHA))'
+        '   AND ((:VA_LOGIN IS NULL) OR (UPPER(USU.VA_LOGIN) LIKE UPPER(:' +
+        'VA_LOGIN)))'
+      '   AND ((:CH_SENHA IS NULL) OR (USU.CH_SENHA = :CH_SENHA))'
       
-        '   AND ((:VA_EMAIL IS NULL) OR (UPPER(VA_EMAIL) LIKE UPPER(:VA_E' +
-        'MAIL)))')
+        '   AND ((:VA_EMAIL IS NULL) OR (UPPER(USU.VA_EMAIL) LIKE UPPER(:' +
+        'VA_EMAIL)))')
     Params = <
       item
         DataType = ftSmallint
         Name = 'SM_USUARIOS_ID'
         ParamType = ptInput
-        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_NOME'
         ParamType = ptInput
         Size = 64
-        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_LOGIN'
         ParamType = ptInput
         Size = 16
-        Value = Null
       end
       item
         DataType = ftString
         Name = 'CH_SENHA'
         ParamType = ptInput
         Size = 128
-        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_EMAIL'
         ParamType = ptInput
         Size = 64
-        Value = Null
       end>
     Left = 24
     Top = 60
@@ -69,35 +64,30 @@ inherited KRDMUsuarios: TKRDMUsuarios
         DataType = ftSmallint
         Name = 'SM_USUARIOS_ID'
         ParamType = ptInput
-        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_NOME'
         ParamType = ptInput
         Size = 64
-        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_LOGIN'
         ParamType = ptInput
         Size = 16
-        Value = Null
       end
       item
         DataType = ftString
         Name = 'CH_SENHA'
         ParamType = ptInput
         Size = 128
-        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_EMAIL'
         ParamType = ptInput
         Size = 64
-        Value = Null
       end>
     object ZQRYUsuariossm_usuarios_id: TSmallintField
       DisplayLabel = 'ID'
@@ -147,10 +137,6 @@ inherited KRDMUsuarios: TKRDMUsuarios
       '                   ,:VA_LOGIN'
       '                   ,:CH_SENHA'
       '                   ,:VA_EMAIL)')
-    RefreshSQL.Strings = (
-      'SELECT SM_USUARIOS_ID'
-      '  FROM USUARIOS '
-      ' WHERE SM_USUARIOS_ID = CURRVAL('#39'SQ_USU_SM_USUARIOS_ID'#39')')
     UseSequenceFieldForRefreshSQL = False
     Left = 24
     Top = 108
@@ -190,17 +176,17 @@ inherited KRDMUsuarios: TKRDMUsuarios
     SQL.Strings = (
       'SELECT GDU.*'
       '     , GRU.VA_NOME AS GRUPO'
-      '  FROM GRUPOSDOSUSUARIOS GDU'
-      '  JOIN GRUPOS GRU USING (SM_GRUPOS_ID)')
+      '  FROM gruposdosusuarios GDU'
+      '  JOIN grupos GRU USING (SM_GRUPOS_ID)')
     Params = <>
     MasterFields = 'sm_usuarios_id'
+    MasterSource = DTSRUsuarios
     LinkedFields = 'sm_usuarios_id'
     Left = 126
     Top = 60
     object ZQRYGruposDosUsuariosin_gruposdosusuarios_id: TIntegerField
       FieldName = 'in_gruposdosusuarios_id'
-      ProviderFlags = [pfInKey]
-      ReadOnly = True
+      ProviderFlags = [pfInUpdate, pfInKey]
     end
     object ZQRYGruposDosUsuariossm_grupos_id: TSmallintField
       FieldName = 'sm_grupos_id'
@@ -270,65 +256,59 @@ inherited KRDMUsuarios: TKRDMUsuarios
       'SELECT EDS.VA_NOME AS ENTIDADE'
       '     , EDS.SM_TIPO AS TIPO'
       '     , PDU.*'
-      '  FROM PERMISSOESDOSUSUARIOS PDU'
-      '  JOIN ENTIDADESDOSISTEMA EDS USING(IN_ENTIDADESDOSISTEMA_ID)'
+      '  FROM permissoesdosusuarios PDU'
+      '  JOIN entidadesdosistema EDS USING(IN_ENTIDADESDOSISTEMA_ID)'
       
-        ' WHERE ((:IN_PERMISSOESDOSUSUARIOS_ID IS NULL) OR (IN_PERMISSOES' +
-        'DOSUSUARIOS_ID = :IN_PERMISSOESDOSUSUARIOS_ID))'
+        ' WHERE ((:IN_PERMISSOESDOSUSUARIOS_ID IS NULL) OR (PDU.IN_PERMIS' +
+        'SOESDOSUSUARIOS_ID = :IN_PERMISSOESDOSUSUARIOS_ID))'
       
-        '   AND ((:IN_ENTIDADESDOSISTEMA_ID IS NULL) OR (IN_ENTIDADESDOSI' +
-        'STEMA_ID = :IN_ENTIDADESDOSISTEMA_ID))'
+        '   AND ((:IN_ENTIDADESDOSISTEMA_ID IS NULL) OR (PDU.IN_ENTIDADES' +
+        'DOSISTEMA_ID = :IN_ENTIDADESDOSISTEMA_ID))'
       
-        '   AND ((:SM_USUARIOS_ID IS NULL) OR (SM_USUARIOS_ID = :SM_USUAR' +
-        'IOS_ID))'
-      '   AND ((:SM_LER IS NULL) OR (SM_LER = :SM_LER))'
-      '   AND ((:SM_INSERIR IS NULL) OR (SM_INSERIR = :SM_INSERIR))'
-      '   AND ((:SM_ALTERAR IS NULL) OR (SM_ALTERAR = :SM_ALTERAR))'
-      '   AND ((:SM_EXCLUIR IS NULL) OR (SM_EXCLUIR = :SM_EXCLUIR))')
+        '   AND ((:SM_USUARIOS_ID IS NULL) OR (PDU.SM_USUARIOS_ID = :SM_U' +
+        'SUARIOS_ID))'
+      '   AND ((:SM_LER IS NULL) OR (PDU.SM_LER = :SM_LER))'
+      '   AND ((:SM_INSERIR IS NULL) OR (PDU.SM_INSERIR = :SM_INSERIR))'
+      '   AND ((:SM_ALTERAR IS NULL) OR (PDU.SM_ALTERAR = :SM_ALTERAR))'
+      '   AND ((:SM_EXCLUIR IS NULL) OR (PDU.SM_EXCLUIR = :SM_EXCLUIR))')
     Params = <
       item
         DataType = ftInteger
         Name = 'IN_PERMISSOESDOSUSUARIOS_ID'
         ParamType = ptInput
-        Value = Null
       end
       item
         DataType = ftInteger
         Name = 'IN_ENTIDADESDOSISTEMA_ID'
         ParamType = ptInput
-        Value = Null
       end
       item
         DataType = ftSmallint
         Name = 'SM_USUARIOS_ID'
         ParamType = ptInput
-        Value = Null
       end
       item
         DataType = ftSmallint
         Name = 'SM_LER'
         ParamType = ptInput
-        Value = Null
       end
       item
         DataType = ftSmallint
         Name = 'SM_INSERIR'
         ParamType = ptInput
-        Value = Null
       end
       item
         DataType = ftSmallint
         Name = 'SM_ALTERAR'
         ParamType = ptInput
-        Value = Null
       end
       item
         DataType = ftSmallint
         Name = 'SM_EXCLUIR'
         ParamType = ptInput
-        Value = Null
       end>
     MasterFields = 'sm_usuarios_id'
+    MasterSource = DTSRUsuarios
     LinkedFields = 'sm_usuarios_id'
     Left = 264
     Top = 60
@@ -337,43 +317,36 @@ inherited KRDMUsuarios: TKRDMUsuarios
         DataType = ftInteger
         Name = 'IN_PERMISSOESDOSUSUARIOS_ID'
         ParamType = ptInput
-        Value = Null
       end
       item
         DataType = ftInteger
         Name = 'IN_ENTIDADESDOSISTEMA_ID'
         ParamType = ptInput
-        Value = Null
       end
       item
         DataType = ftSmallint
         Name = 'SM_USUARIOS_ID'
         ParamType = ptInput
-        Value = Null
       end
       item
         DataType = ftSmallint
         Name = 'SM_LER'
         ParamType = ptInput
-        Value = Null
       end
       item
         DataType = ftSmallint
         Name = 'SM_INSERIR'
         ParamType = ptInput
-        Value = Null
       end
       item
         DataType = ftSmallint
         Name = 'SM_ALTERAR'
         ParamType = ptInput
-        Value = Null
       end
       item
         DataType = ftSmallint
         Name = 'SM_EXCLUIR'
         ParamType = ptInput
-        Value = Null
       end>
     object ZQRYPermissoesDosUsuariosentidade: TWideStringField
       FieldName = 'entidade'
@@ -388,8 +361,7 @@ inherited KRDMUsuarios: TKRDMUsuarios
     end
     object ZQRYPermissoesDosUsuariosin_permissoesdosusuarios_id: TIntegerField
       FieldName = 'in_permissoesdosusuarios_id'
-      ProviderFlags = [pfInKey]
-      ReadOnly = True
+      ProviderFlags = [pfInUpdate, pfInKey]
     end
     object ZQRYPermissoesDosUsuariosin_entidadesdosistema_id: TIntegerField
       FieldName = 'in_entidadesdosistema_id'

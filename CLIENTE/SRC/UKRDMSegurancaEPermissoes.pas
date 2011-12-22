@@ -54,18 +54,17 @@ type
     ACTNAdicionarEntidade: TAction;
     CLDSPermissoesDosUsuariosic_entidade: TStringField;
     CLDSPermissoesDosUsuariosic_tipo: TIntegerField;
+    CLDSConsUsuariosZQRYPermissoesDosUsuarios: TDataSetField;
+    CLDSUsuariosZQRYGruposDosUsuarios: TDataSetField;
     procedure CLDSConsEntidadesDoSistemasm_tipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure CLDSUsuariosch_senhaGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure CLDSUsuariosCalcFields(DataSet: TDataSet);
     procedure CLDSUsuariosAfterRefresh(DataSet: TDataSet);
     procedure DoGetTextVazio(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure ACTNAdicionarEntidadeExecute(Sender: TObject);
-    procedure CLDSPermissoesDosUsuariosentidadeGetText(Sender: TField;
-      var Text: string; DisplayText: Boolean);
-    procedure CLDSPermissoesDosUsuariostipoGetText(Sender: TField;
-      var Text: string; DisplayText: Boolean);
+    procedure CLDSPermissoesDosUsuariosentidadeGetText(Sender: TField; var Text: string; DisplayText: Boolean);
+    procedure CLDSPermissoesDosUsuariostipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure KRKDataModuleCreate(Sender: TObject);
-    procedure CLDSUsuariosNewRecord(DataSet: TDataSet);
   private
     { Declarações privadas }
     procedure AdicionarEntidadesParaUsuario;
@@ -313,13 +312,6 @@ begin
   { Senhas nunca são exibidas }
   if DisplayText then
     Text := '';
-end;
-
-procedure TKRDMSegurancaEPermissoes.CLDSUsuariosNewRecord(DataSet: TDataSet);
-begin
-  inherited;
-  Dec(Id);
-  CLDSUsuariossm_usuarios_id.AsInteger := ID;
 end;
 
 procedure TKRDMSegurancaEPermissoes.FiltrarEntidadesDoSistema(aIN_ENTIDADESDOSISTEMA_ID: Integer; aVA_NOME: String; aSM_TIPO: SmallInt);

@@ -28,6 +28,7 @@ type
     procedure DoBeforeExecute(var OwnerData: OleVariant); override;
     procedure DoBeforePost; override;
     procedure DoBeforeDelete; override;
+    procedure DoOnNewRecord; override;
   end;
 
   TKRDMBasico = class(TKRKDataModule)
@@ -121,6 +122,22 @@ procedure TClientDataSet.DoBeforeRowRequest(var OwnerData: OleVariant);
 begin
   OwnerData := DAMOPrincipal.CurrentSession.ID;
   inherited;
+end;
+
+procedure TClientDataSet.DoOnNewRecord;
+var
+  i: Byte;
+begin
+  inherited;
+  for i := 0 to Pred(Fields.Count) do
+    if pfInKey in Fields[i].ProviderFlags then
+      Break;
+
+  if i < Fields.Count then
+  begin
+    Tag := Tag - 1;
+    Fields[i].AsInteger := Tag;
+  end;
 end;
 
 function TClientDataSet.GetMyParams: String;

@@ -27,7 +27,7 @@ type
 
   TDataSetProvider = class(Provider.TDataSetProvider)
   protected
-    procedure DoBeforeUpdateRecord(SourceDS: TDataSet; DeltaDS: TCustomClientDataSet; UpdateKind: TUpdateKind; var Applied: Boolean); override;
+    procedure DoAfterUpdateRecord(SourceDS: TDataSet; DeltaDS: TCustomClientDataSet; UpdateKind: TUpdateKind); override;
   end;
 
   TSODMPrincipal = class(TSoapDataModule, ISODMPrincipal, IAppServerSOAP, IAppServer)
@@ -48,7 +48,9 @@ implementation
 
 {$R *.DFM}
 
-uses UExtraUtilities;
+uses UExtraUtilities
+   , KRK.Win32.Db.Consts
+   , KRK.Win32.Rtl.Common.FileUtils;
 
 procedure TSODMPrincipalCreateInstance(out obj: TObject);
 begin
@@ -125,10 +127,17 @@ end;
 
 { TDataSetProvider }
 
-procedure TDataSetProvider.DoBeforeUpdateRecord(SourceDS: TDataSet; DeltaDS: TCustomClientDataSet; UpdateKind: TUpdateKind; var Applied: Boolean);
+{ TODO -oCBFF :
+Problema ao inserir filhos e logo em seguida atualizar eles
+Teste: insira permissoes para o usuario, confirme. Tudo vai ser OK. Agora altera o registro inserido e confirma. Dá pau porque provavelemente os IDS estão com numeros negativos. não foram atualizados porque não tem datasetproviders. sera que a tecnica do negativo serve para os filhos ou é dispensavel? ou é de outra forma?
+para debugar inclua um salvamento de texto no codigo abaix e faça o teste. se o texto for criado então o datasetprovider do pai é executado para os seus filhos tambem. coloque isso antes da checagem do tipo de atualização updatekind
+}
+
+procedure TDataSetProvider.DoAfterUpdateRecord(SourceDS: TDataSet; DeltaDS: TCustomClientDataSet; UpdateKind: TUpdateKind);
 var
-  CampoChave: String;
+  CampoChave, ValorPadrao: String;
   i: Integer;
+  ZROQ: TZReadOnlyQuery;
 begin
   inherited;
   if UpdateKind = ukInsert then
@@ -142,16 +151,34 @@ begin
 
     if CampoChave <> '' then
     begin
-      continua aqui
-    end;
-//      Append(IntToStr(SourceDS.FieldByName('sm_usuarios_id').AsInteger));
-//      SaveToFile('C:\antes.txt');
-//      SourceDS.Refresh;
-//      Clear;
-//      Append(IntToStr(SourceDS.FieldByName('sm_usuarios_id').AsInteger));
-//      SaveToFile('C:\depois.txt');
-//      DeltaDS.FieldByName('sm_usuarios_id').NewValue := SourceDS.FieldByName('sm_usuarios_id').AsInteger;
+      ZROQ := TZReadOnlyQuery.Create(Self);
+      try
+        ZROQ.Connection := TSODMPrincipal(Owner).ZCONIAF;
+        ZROQ.SQL.Text := PostGres_DefaultColumnValues;
 
+        with TStringList.Create do
+          try
+            Text := StringReplace(CampoChave,'_',#13#10,[rfReplaceAll]);
+            ZROQ.ParamByName('table').AsString := Strings[1];
+          finally
+            Free;
+          end;
+
+        ZROQ.ParamByName('column').AsString := CampoChave;
+
+        ZROQ.Open;
+        ValorPadrao := StringReplace(ZROQ.FieldByName('defaultvalue').AsString,'NEXTVAL','CURRVAL',[rfIgnoreCase]);
+        ZROQ.Close;
+
+        ZROQ.ParamCheck := False;
+        ZROQ.SQL.Text := 'SELECT ' + ValorPadrao;
+        ZROQ.Open;
+        DeltaDS.FieldByName(CampoChave).NewValue := ZROQ.Fields[0].AsInteger;
+      finally
+        ZROQ.Close;
+        ZROQ.Free;
+      end;
+    end;
   end;
 end;
 

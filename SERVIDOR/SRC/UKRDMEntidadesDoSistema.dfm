@@ -11,15 +11,15 @@ inherited KRDMEntidadesDoSistema: TKRDMEntidadesDoSistema
     Connection = SODMPrincipal.ZCONIAF
     UpdateObject = ZUSQEntidadesDoSistema
     SQL.Strings = (
-      'SELECT *'
-      '  FROM ENTIDADESDOSISTEMA'
+      'SELECT EDS.*'
+      '  FROM entidadesdosistema EDS'
       
-        ' WHERE ((:IN_ENTIDADESDOSISTEMA_ID IS NULL) OR (IN_ENTIDADESDOSI' +
-        'STEMA_ID = :IN_ENTIDADESDOSISTEMA_ID))'
+        ' WHERE ((:IN_ENTIDADESDOSISTEMA_ID IS NULL) OR (EDS.IN_ENTIDADES' +
+        'DOSISTEMA_ID = :IN_ENTIDADESDOSISTEMA_ID))'
       
-        '   AND ((:VA_NOME IS NULL) OR (UPPER(VA_NOME) LIKE UPPER(:VA_NOM' +
-        'E)))'
-      '   AND ((:SM_TIPO IS NULL) OR (SM_TIPO = :SM_TIPO))')
+        '   AND ((:VA_NOME IS NULL) OR (UPPER(EDS.VA_NOME) LIKE UPPER(:VA' +
+        '_NOME)))'
+      '   AND ((:SM_TIPO IS NULL) OR (EDS.SM_TIPO = :SM_TIPO))')
     Params = <
       item
         DataType = ftInteger

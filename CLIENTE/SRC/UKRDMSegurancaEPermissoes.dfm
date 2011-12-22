@@ -16,7 +16,7 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
   end
   inherited IMLI: TImageList
     Bitmap = {
-      494C010101000800780010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010101000800840010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -203,7 +203,6 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
     object CLDSConsUsuariossm_usuarios_id: TSmallintField
       DisplayLabel = 'ID'
       FieldName = 'sm_usuarios_id'
-      ProviderFlags = [pfInKey]
       ReadOnly = True
     end
     object CLDSConsUsuariosva_nome: TWideStringField
@@ -233,6 +232,9 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
       ProviderFlags = [pfInUpdate]
       ReadOnly = True
       Size = 64
+    end
+    object CLDSConsUsuariosZQRYPermissoesDosUsuarios: TDataSetField
+      FieldName = 'ZQRYPermissoesDosUsuarios'
     end
   end
   object DTSRConsUsuarios: TDataSource
@@ -331,7 +333,6 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
     ProviderName = 'DSPRUsuarios'
     AfterRefresh = CLDSUsuariosAfterRefresh
     OnCalcFields = CLDSUsuariosCalcFields
-    OnNewRecord = CLDSUsuariosNewRecord
     Left = 36
     Top = 150
     object CLDSUsuariossm_usuarios_id: TSmallintField
@@ -377,6 +378,9 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
       Size = 16
       Calculated = True
     end
+    object CLDSUsuariosZQRYGruposDosUsuarios: TDataSetField
+      FieldName = 'ZQRYGruposDosUsuarios'
+    end
   end
   object DTSRUsuarios: TDataSource
     DataSet = CLDSUsuarios
@@ -384,9 +388,9 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
     Top = 198
   end
   object CLDSGruposDosUsuarios: TClientDataSet
-    Active = True
     Aggregates = <>
     ConnectionBroker = DAMOPrincipal.CNBRPrincipal
+    DataSetField = CLDSUsuariosZQRYGruposDosUsuarios
     FieldDefs = <
       item
         Name = 'in_gruposdosusuarios_id'
@@ -414,28 +418,18 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
     StoreDefs = True
     Left = 156
     Top = 150
-    Data = {
-      800000009619E0BD010000001800000004000000000003000000800017696E5F
-      677275706F73646F737573756172696F735F696404000100020000000C736D5F
-      677275706F735F696402000100040000000E736D5F7573756172696F735F6964
-      020001000400000005677275706F01004A000200010005574944544802000200
-      80000000}
     object CLDSGruposDosUsuariosin_gruposdosusuarios_id: TIntegerField
       DisplayLabel = 'ID'
       FieldName = 'in_gruposdosusuarios_id'
-      ProviderFlags = [pfInKey]
-      ReadOnly = True
     end
     object CLDSGruposDosUsuariossm_grupos_id: TSmallintField
       DisplayLabel = 'ID do grupo'
       FieldName = 'sm_grupos_id'
-      ProviderFlags = [pfInUpdate]
       Required = True
     end
     object CLDSGruposDosUsuariossm_usuarios_id: TSmallintField
       DisplayLabel = 'ID do usu'#225'rio'
       FieldName = 'sm_usuarios_id'
-      ProviderFlags = [pfInUpdate]
       Required = True
     end
     object CLDSGruposDosUsuariosgrupo: TWideStringField
@@ -447,21 +441,12 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
     end
   end
   object CLDSPermissoesDosUsuarios: TClientDataSet
-    Active = True
     Aggregates = <>
     ConnectionBroker = DAMOPrincipal.CNBRPrincipal
+    DataSetField = CLDSConsUsuariosZQRYPermissoesDosUsuarios
     Params = <>
     Left = 156
     Top = 54
-    Data = {
-      E80000009619E0BD010000001800000009000000000003000000E80008656E74
-      696461646502004A0002000100055749445448020002000001047469706F0200
-      0100020000001B696E5F7065726D6973736F6573646F737573756172696F735F
-      6964040001000200000018696E5F656E74696461646573646F73697374656D61
-      5F696404000100000000000E736D5F7573756172696F735F6964020001000000
-      000006736D5F6C657202000100000000000A736D5F696E736572697202000100
-      000000000A736D5F616C746572617202000100000000000A736D5F6578636C75
-      697202000100000000000000}
     object CLDSPermissoesDosUsuariosentidade: TWideStringField
       DisplayLabel = 'Entidade'
       FieldName = 'entidade'
@@ -478,39 +463,31 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
     end
     object CLDSPermissoesDosUsuariosin_permissoesdosusuarios_id: TIntegerField
       FieldName = 'in_permissoesdosusuarios_id'
-      ProviderFlags = [pfInKey]
-      ReadOnly = True
     end
     object CLDSPermissoesDosUsuariosin_entidadesdosistema_id: TIntegerField
       FieldName = 'in_entidadesdosistema_id'
-      ProviderFlags = [pfInUpdate]
     end
     object CLDSPermissoesDosUsuariossm_usuarios_id: TSmallintField
       FieldName = 'sm_usuarios_id'
-      ProviderFlags = [pfInUpdate]
     end
     object CLDSPermissoesDosUsuariossm_ler: TSmallintField
       DisplayLabel = 'Acessar'
       FieldName = 'sm_ler'
-      ProviderFlags = [pfInUpdate]
       OnGetText = DoGetTextVazio
     end
     object CLDSPermissoesDosUsuariossm_inserir: TSmallintField
       DisplayLabel = 'Inserir'
       FieldName = 'sm_inserir'
-      ProviderFlags = [pfInUpdate]
       OnGetText = DoGetTextVazio
     end
     object CLDSPermissoesDosUsuariossm_alterar: TSmallintField
       DisplayLabel = 'Alterar'
       FieldName = 'sm_alterar'
-      ProviderFlags = [pfInUpdate]
       OnGetText = DoGetTextVazio
     end
     object CLDSPermissoesDosUsuariossm_excluir: TSmallintField
       DisplayLabel = 'Excluir'
       FieldName = 'sm_excluir'
-      ProviderFlags = [pfInUpdate]
       OnGetText = DoGetTextVazio
     end
     object CLDSPermissoesDosUsuariosic_entidade: TStringField
@@ -522,6 +499,7 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
     object CLDSPermissoesDosUsuariosic_tipo: TIntegerField
       FieldKind = fkInternalCalc
       FieldName = 'ic_tipo'
+      ProviderFlags = []
     end
   end
   object DTSRPermissoesDosUsuarios: TDataSource
