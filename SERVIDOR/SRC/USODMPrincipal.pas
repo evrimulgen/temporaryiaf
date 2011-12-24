@@ -28,6 +28,7 @@ type
   TDataSetProvider = class(Provider.TDataSetProvider)
   protected
     procedure DoAfterUpdateRecord(SourceDS: TDataSet; DeltaDS: TCustomClientDataSet; UpdateKind: TUpdateKind); override;
+    procedure DoGetTableName(DataSet: TDataSet; var TableName: WideString); override;
   end;
 
   TSODMPrincipal = class(TSoapDataModule, ISODMPrincipal, IAppServerSOAP, IAppServer)
@@ -129,8 +130,13 @@ end;
 
 { TODO -oCBFF :
 Problema ao inserir filhos e logo em seguida atualizar eles
-Teste: insira permissoes para o usuario, confirme. Tudo vai ser OK. Agora altera o registro inserido e confirma. Dá pau porque provavelemente os IDS estão com numeros negativos. não foram atualizados porque não tem datasetproviders. sera que a tecnica do negativo serve para os filhos ou é dispensavel? ou é de outra forma?
-para debugar inclua um salvamento de texto no codigo abaix e faça o teste. se o texto for criado então o datasetprovider do pai é executado para os seus filhos tambem. coloque isso antes da checagem do tipo de atualização updatekind
+Teste: insira permissoes para o usuario, confirme. Tudo vai ser OK. Agora altera
+o registro inserido e confirma. Dá pau porque provavelemente os IDS estão com
+numeros negativos. não foram atualizados porque não tem datasetproviders. sera
+que a tecnica do negativo serve para os filhos ou é dispensavel? ou é de outra
+forma? para debugar inclua um salvamento de texto no codigo abaix e faça o teste.
+se o texto for criado então o datasetprovider do pai é executado para os seus
+filhos tambem. coloque isso antes da checagem do tipo de atualização updatekind
 }
 
 procedure TDataSetProvider.DoAfterUpdateRecord(SourceDS: TDataSet; DeltaDS: TCustomClientDataSet; UpdateKind: TUpdateKind);
@@ -180,6 +186,21 @@ begin
       end;
     end;
   end;
+end;
+
+procedure TDataSetProvider.DoGetTableName(DataSet: TDataSet; var TableName: WideString);
+var
+  TmpTableName: String;
+begin
+  inherited;
+
+  TmpTableName := '';
+  { Todos os TZQuery têm nomes padronizados na forma ZQRY???? onde as ? são o
+  nome da tabela }
+  TmpTableName := LowerCase(Copy(DataSet.Name,5,Length(DataSet.Name)));
+
+  if TmpTableName <> '' then
+    TableName := TmpTableName;
 end;
 
 initialization

@@ -16,7 +16,7 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
   end
   inherited IMLI: TImageList
     Bitmap = {
-      494C010101000800840010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010101000800880010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -293,6 +293,7 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
     Top = 102
   end
   object CLDSUsuarios: TClientDataSet
+    Active = True
     Aggregates = <>
     ConnectionBroker = DAMOPrincipal.CNBRPrincipal
     Params = <
@@ -338,26 +339,31 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
     object CLDSUsuariossm_usuarios_id: TSmallintField
       DisplayLabel = 'ID'
       FieldName = 'sm_usuarios_id'
+      ProviderFlags = [pfInUpdate, pfInKey]
     end
     object CLDSUsuariosva_nome: TWideStringField
       DisplayLabel = 'Nome'
       FieldName = 'va_nome'
+      ProviderFlags = [pfInUpdate]
       Size = 64
     end
     object CLDSUsuariosva_login: TWideStringField
       DisplayLabel = 'Login'
       FieldName = 'va_login'
+      ProviderFlags = [pfInUpdate]
       Size = 16
     end
     object CLDSUsuariosch_senha: TWideStringField
       DisplayLabel = 'Senha'
       FieldName = 'ch_senha'
+      ProviderFlags = [pfInUpdate]
       OnGetText = CLDSUsuariosch_senhaGetText
       Size = 128
     end
     object CLDSUsuariosva_email: TWideStringField
       DisplayLabel = 'E-mail'
       FieldName = 'va_email'
+      ProviderFlags = [pfInUpdate]
       Size = 64
     end
     object CLDSUsuariosnome: TWideStringField
@@ -394,17 +400,14 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
     FieldDefs = <
       item
         Name = 'in_gruposdosusuarios_id'
-        Attributes = [faReadonly]
         DataType = ftInteger
       end
       item
         Name = 'sm_grupos_id'
-        Attributes = [faRequired]
         DataType = ftSmallint
       end
       item
         Name = 'sm_usuarios_id'
-        Attributes = [faRequired]
         DataType = ftSmallint
       end
       item
@@ -506,5 +509,10 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
     DataSet = CLDSPermissoesDosUsuarios
     Left = 156
     Top = 102
+  end
+  object DTSRGruposDosUsuarios: TDataSource
+    DataSet = CLDSGruposDosUsuarios
+    Left = 156
+    Top = 198
   end
 end

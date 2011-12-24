@@ -56,6 +56,7 @@ type
     CLDSPermissoesDosUsuariosic_tipo: TIntegerField;
     CLDSConsUsuariosZQRYPermissoesDosUsuarios: TDataSetField;
     CLDSUsuariosZQRYGruposDosUsuarios: TDataSetField;
+    DTSRGruposDosUsuarios: TDataSource;
     procedure CLDSConsEntidadesDoSistemasm_tipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure CLDSUsuariosch_senhaGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure CLDSUsuariosCalcFields(DataSet: TDataSet);

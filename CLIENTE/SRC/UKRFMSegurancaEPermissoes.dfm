@@ -2,6 +2,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
   Caption = 'Seguran'#231'a e Permiss'#245'es'
   ClientHeight = 562
   ClientWidth = 784
+  ExplicitTop = -32
   ExplicitWidth = 800
   ExplicitHeight = 600
   PixelsPerInch = 96
@@ -567,6 +568,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
               VariableWidthColumns = '<entidade>'
               OnCellClick = KRDGPDUCellClick
               OnDrawColumnCell = KRDGPDUDrawColumnCell
+              OnDblClick = KRDGPDUDblClick
               Columns = <
                 item
                   Expanded = False
@@ -1091,21 +1093,26 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
               Anchors = [akLeft, akTop, akRight, akBottom]
               BevelOuter = bvNone
               TabOrder = 0
-              object Label_GDU_Info: TLabel
+              object KRDGGruposDoUsuario: TKRKDBGrid
+                AlignWithMargins = True
                 Left = 0
                 Top = 0
                 Width = 264
-                Height = 237
+                Height = 208
+                Margins.Left = 0
+                Margins.Top = 0
+                Margins.Right = 0
+                Margins.Bottom = 29
                 Align = alClient
-                Alignment = taCenter
-                AutoSize = False
-                Caption = 
-                  'N'#227'o ser'#225' poss'#237'vel manipular os grupos do usu'#225'rio at'#233' que este us' +
-                  'u'#225'rio tenha sido completamente definido (inserido e salvo)'
-                Layout = tlCenter
-                WordWrap = True
-                ExplicitWidth = 263
-                ExplicitHeight = 107
+                DataSource = KRDMSegurancaEPermissoes.DTSRGruposDosUsuarios
+                Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+                TabOrder = 0
+                TitleFont.Charset = DEFAULT_CHARSET
+                TitleFont.Color = clWindowText
+                TitleFont.Height = -11
+                TitleFont.Name = 'Tahoma'
+                TitleFont.Style = []
+                RowColors = <>
               end
             end
             object BitBtn_GDU_Adicionar: TBitBtn
@@ -1305,7 +1312,6 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
                 ForegroundColor = clNone
               end>
             VariableWidthColumns = '<nome>'
-            OnDblClick = KRDGUsuariosDblClick
             Columns = <
               item
                 Expanded = False
@@ -1794,7 +1800,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C010102000800CC0020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800D80020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2331,7 +2337,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C010102000800DC0020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800E80020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

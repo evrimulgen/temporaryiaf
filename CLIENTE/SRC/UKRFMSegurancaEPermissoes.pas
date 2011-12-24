@@ -68,7 +68,6 @@ type
     LabeledEdit_USU_VA_LOGIN2: TLabeledEdit;
     GroupBox_GDU: TGroupBox;
     Panel_GDU_Info: TPanel;
-    Label_GDU_Info: TLabel;
     BitBtn_GDU_Adicionar: TBitBtn;
     BitBtn_GDU_Remover: TBitBtn;
     GroupBoxUsuariosCadastrar: TGroupBox;
@@ -104,6 +103,7 @@ type
     LABLFiltroIDUUsuarios: TLabel;
     KRDGPDU: TKRKDBGrid;
     KRDGPDG: TKRKDBGrid;
+    KRDGGruposDoUsuario: TKRKDBGrid;
     procedure LAEDUSU_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
     procedure LAEDUSU_VA_LOGINKeyPress(Sender: TObject; var Key: Char);
     procedure LabeledEdit_EDS_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
@@ -115,7 +115,7 @@ type
     procedure KRDGPDUDrawColumnCell(Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure KRDGPDUCellClick(Column: TColumn);
     procedure KRDGConsEntidadesDoSistemaAfterMultiselect(aSender: TObject; aMultiSelectEventTrigger: TMultiSelectEventTrigger);
-    procedure KRDGUsuariosDblClick(Sender: TObject);
+    procedure KRDGPDUDblClick(Sender: TObject);
   private
     { Private declarations }
     procedure FiltrarEntidadesDoSistema;
@@ -168,6 +168,12 @@ begin
 		TKRDMSegurancaEPermissoes(Owner).AlternarPermissao(pExcluir,odpUsuario);
 end;
 
+procedure TKRFMSegurancaEPermissoes.KRDGPDUDblClick(Sender: TObject);
+begin
+  inherited;
+//  ShowMessage(TKRKDBGrid(Sender).DataSource.DataSet.FieldByName('in_permissoesdosusuarios_id').AsString);
+end;
+
 procedure TKRFMSegurancaEPermissoes.KRDGPDUDrawColumnCell(Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
 var
 	OffsetLeft: Byte;
@@ -182,13 +188,6 @@ begin
       1 : TKRKDBGrid(Sender).Canvas.Draw(Rect.Left + OffsetLeft,Rect.Top,IMAGConcedido.Picture.Graphic);
     end;
   end;
-end;
-
-procedure TKRFMSegurancaEPermissoes.KRDGUsuariosDblClick(Sender: TObject);
-begin
-  inherited;
-  ShowMessage(KRDGUsuarios.DataSource.DataSet.FieldByName('sm_usuarios_id').AsString);
-
 end;
 
 (*
