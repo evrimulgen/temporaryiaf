@@ -17,7 +17,6 @@ uses SysUtils
    , ZDataset
    , ZAbstractDataset
    , ZSqlUpdate
-   , UKRDMBasico
    , DBClient;
 
 type
@@ -35,6 +34,7 @@ type
     ZCONIAF: TZConnection;
     DSPRUsuarios: TDataSetProvider;
     DSPREntidadesDoSistema: TDataSetProvider;
+    DSPRGrupos: TDataSetProvider;
     procedure ZCONIAFBeforeConnect(Sender: TObject);
   public
     function SAS_ApplyUpdates(const ProviderName: WideString; Delta: OleVariant; MaxErrors: Integer; out ErrorCount: Integer; var OwnerData: OleVariant): OleVariant; override; stdcall;

@@ -16,7 +16,7 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
   end
   inherited IMLI: TImageList
     Bitmap = {
-      494C010101000800880010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010101000800AC0010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -293,7 +293,6 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
     Top = 102
   end
   object CLDSUsuarios: TClientDataSet
-    Active = True
     Aggregates = <>
     ConnectionBroker = DAMOPrincipal.CNBRPrincipal
     Params = <
@@ -415,6 +414,11 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
         Attributes = [faReadonly]
         DataType = ftWideString
         Size = 64
+      end
+      item
+        Name = 'ic_grupo'
+        DataType = ftString
+        Size = 64
       end>
     IndexDefs = <>
     Params = <>
@@ -424,22 +428,33 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
     object CLDSGruposDosUsuariosin_gruposdosusuarios_id: TIntegerField
       DisplayLabel = 'ID'
       FieldName = 'in_gruposdosusuarios_id'
+      ProviderFlags = [pfInUpdate, pfInKey]
     end
     object CLDSGruposDosUsuariossm_grupos_id: TSmallintField
       DisplayLabel = 'ID do grupo'
       FieldName = 'sm_grupos_id'
+      ProviderFlags = [pfInUpdate]
       Required = True
     end
     object CLDSGruposDosUsuariossm_usuarios_id: TSmallintField
       DisplayLabel = 'ID do usu'#225'rio'
       FieldName = 'sm_usuarios_id'
+      ProviderFlags = [pfInUpdate]
       Required = True
     end
     object CLDSGruposDosUsuariosgrupo: TWideStringField
+      Alignment = taCenter
       DisplayLabel = 'Grupo'
       FieldName = 'grupo'
       ProviderFlags = []
       ReadOnly = True
+      OnGetText = CLDSGruposDosUsuariosgrupoGetText
+      Size = 64
+    end
+    object CLDSGruposDosUsuariosic_grupo: TStringField
+      FieldKind = fkInternalCalc
+      FieldName = 'ic_grupo'
+      ProviderFlags = []
       Size = 64
     end
   end
@@ -514,5 +529,52 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
     DataSet = CLDSGruposDosUsuarios
     Left = 156
     Top = 198
+  end
+  object DTSRGrupos: TDataSource
+    DataSet = CLDSGrupos
+    Left = 36
+    Top = 294
+  end
+  object CLDSGrupos: TClientDataSet
+    Aggregates = <>
+    ConnectionBroker = DAMOPrincipal.CNBRPrincipal
+    Params = <
+      item
+        DataType = ftSmallint
+        Name = 'SM_GRUPOS_ID'
+        ParamType = ptInput
+        Value = -1
+      end
+      item
+        DataType = ftString
+        Name = 'VA_NOME'
+        ParamType = ptInput
+        Size = 64
+        Value = Null
+      end
+      item
+        DataType = ftString
+        Name = 'VA_DESCRICAO'
+        ParamType = ptInput
+        Size = 128
+        Value = Null
+      end>
+    ProviderName = 'DSPRGrupos'
+    Left = 36
+    Top = 246
+    object CLDSGrupossm_grupos_id: TSmallintField
+      DisplayLabel = 'ID'
+      FieldName = 'sm_grupos_id'
+    end
+    object CLDSGruposva_nome: TWideStringField
+      DisplayLabel = 'Nome do grupo'
+      FieldName = 'va_nome'
+      Size = 64
+    end
+    object CLDSGruposva_descricao: TWideStringField
+      DisplayLabel = 'Descri'#231#227'o do grupo'
+      FieldName = 'va_descricao'
+      Size = 128
+    end
   end
 end

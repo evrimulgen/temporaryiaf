@@ -32,30 +32,35 @@ inherited KRDMUsuarios: TKRDMUsuarios
         DataType = ftSmallint
         Name = 'SM_USUARIOS_ID'
         ParamType = ptInput
+        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_NOME'
         ParamType = ptInput
         Size = 64
+        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_LOGIN'
         ParamType = ptInput
         Size = 16
+        Value = Null
       end
       item
         DataType = ftString
         Name = 'CH_SENHA'
         ParamType = ptInput
         Size = 128
+        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_EMAIL'
         ParamType = ptInput
         Size = 64
+        Value = Null
       end>
     Left = 24
     Top = 60
@@ -64,30 +69,35 @@ inherited KRDMUsuarios: TKRDMUsuarios
         DataType = ftSmallint
         Name = 'SM_USUARIOS_ID'
         ParamType = ptInput
+        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_NOME'
         ParamType = ptInput
         Size = 64
+        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_LOGIN'
         ParamType = ptInput
         Size = 16
+        Value = Null
       end
       item
         DataType = ftString
         Name = 'CH_SENHA'
         ParamType = ptInput
         Size = 128
+        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_EMAIL'
         ParamType = ptInput
         Size = 64
+        Value = Null
       end>
     object ZQRYUsuariossm_usuarios_id: TSmallintField
       DisplayLabel = 'ID'
@@ -122,7 +132,7 @@ inherited KRDMUsuarios: TKRDMUsuarios
   object ZUSQUsuarios: TZUpdateSQL
     DeleteSQL.Strings = (
       'SELECT IDU_USUARIOS('#39'D'#39
-      '                   ,CAST(:OLD_SM_USUARIOS_ID AS SMALLINT)')
+      '                   ,CAST(:SM_USUARIOS_ID AS SMALLINT)')
     InsertSQL.Strings = (
       'SELECT IDU_USUARIOS('#39'I'#39
       '                   ,NULL'
@@ -132,7 +142,7 @@ inherited KRDMUsuarios: TKRDMUsuarios
       '                   ,:VA_EMAIL)')
     ModifySQL.Strings = (
       'SELECT IDU_USUARIOS('#39'U'#39
-      '                   ,CAST(:OLD_SM_USUARIOS_ID AS SMALLINT)'
+      '                   ,CAST(:SM_USUARIOS_ID AS SMALLINT)'
       '                   ,:VA_NOME'
       '                   ,:VA_LOGIN'
       '                   ,:CH_SENHA'
@@ -143,7 +153,7 @@ inherited KRDMUsuarios: TKRDMUsuarios
     ParamData = <
       item
         DataType = ftUnknown
-        Name = 'OLD_SM_USUARIOS_ID'
+        Name = 'SM_USUARIOS_ID'
         ParamType = ptUnknown
       end
       item
@@ -276,36 +286,43 @@ inherited KRDMUsuarios: TKRDMUsuarios
         DataType = ftInteger
         Name = 'IN_PERMISSOESDOSUSUARIOS_ID'
         ParamType = ptInput
+        Value = Null
       end
       item
         DataType = ftInteger
         Name = 'IN_ENTIDADESDOSISTEMA_ID'
         ParamType = ptInput
+        Value = Null
       end
       item
         DataType = ftSmallint
         Name = 'SM_USUARIOS_ID'
         ParamType = ptInput
+        Value = Null
       end
       item
         DataType = ftSmallint
         Name = 'SM_LER'
         ParamType = ptInput
+        Value = Null
       end
       item
         DataType = ftSmallint
         Name = 'SM_INSERIR'
         ParamType = ptInput
+        Value = Null
       end
       item
         DataType = ftSmallint
         Name = 'SM_ALTERAR'
         ParamType = ptInput
+        Value = Null
       end
       item
         DataType = ftSmallint
         Name = 'SM_EXCLUIR'
         ParamType = ptInput
+        Value = Null
       end>
     MasterFields = 'sm_usuarios_id'
     MasterSource = DTSRUsuarios
@@ -317,36 +334,43 @@ inherited KRDMUsuarios: TKRDMUsuarios
         DataType = ftInteger
         Name = 'IN_PERMISSOESDOSUSUARIOS_ID'
         ParamType = ptInput
+        Value = Null
       end
       item
         DataType = ftInteger
         Name = 'IN_ENTIDADESDOSISTEMA_ID'
         ParamType = ptInput
+        Value = Null
       end
       item
         DataType = ftSmallint
         Name = 'SM_USUARIOS_ID'
         ParamType = ptInput
+        Value = Null
       end
       item
         DataType = ftSmallint
         Name = 'SM_LER'
         ParamType = ptInput
+        Value = Null
       end
       item
         DataType = ftSmallint
         Name = 'SM_INSERIR'
         ParamType = ptInput
+        Value = Null
       end
       item
         DataType = ftSmallint
         Name = 'SM_ALTERAR'
         ParamType = ptInput
+        Value = Null
       end
       item
         DataType = ftSmallint
         Name = 'SM_EXCLUIR'
         ParamType = ptInput
+        Value = Null
       end>
     object ZQRYPermissoesDosUsuariosentidade: TWideStringField
       FieldName = 'entidade'

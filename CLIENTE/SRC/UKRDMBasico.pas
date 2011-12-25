@@ -146,23 +146,59 @@ begin
 end;
 
 constructor TKRDMBasico.Create(aOwner: TComponent);
+{ ---------------------------------------------------------------------------- }
+procedure GetProviderName(var aProviderName: String; const aDataSetField: TDataSetField);
+begin
+  if (aProviderName = '') and Assigned(aDataSetField) then
+  begin
+    { É seguro fazer este Cast aqui, visto que, no cliente, deve haver apenas
+    CLDS, logo, todo DataSet no cliente deve ser um CLDS }
+    aProviderName := TClientDataSet(aDataSetField.DataSet).ProviderName;
+    { No momento em que ProviderName for diferente de vazio a recursividade pára.
+    No pior dos casos aProviderName vai terminar vazio o que significa que o
+    CLDS sendo testado é 100% local }
+    GetProviderName(aProviderName,TClientDataSet(aDataSetField.DataSet).DataSetField);
+  end;
+end;
+{ ---------------------------------------------------------------------------- }
 var
   CI: TCollectionItem;
-  KRKValidationChecks: String;
+  KRKValidationChecks, ProviderName: String;
+  DataSetField: TDataSetField;
 begin
   inherited;
   for CI in DataSets do
     if TDataSetItem(CI).DataSet.ClassNameIs('TClientDataset') then
     begin
-      TClientDataset(TDataSetItem(CI).DataSet).OnReconcileError := DoReconcileError;
+      ProviderName := TClientDataset(TDataSetItem(CI).DataSet).ProviderName;
+      DataSetField := TClientDataset(TDataSetItem(CI).DataSet).DataSetField;
+      { provider para identificar o remote datamodule datasource para indicar o dataset }
 
-      KRKValidationChecks := GetConstraintsFor(TClientDataset(TDataSetItem(CI).DataSet).ProviderName,DAMOPrincipal.CurrentSession.ID);
+      { Ao passar deste ponto, a variável ProviderName vai conter o nome do
+      Provider do CLDS atual ou do primeiro CLDS mestre com um ProviderName
+      definido. Caso ele esteja vazio ao final significa que é um CLDS 100%
+      local e nada precisa ser feito aqui }
+      GetProviderName(ProviderName,DataSetField);
 
-      if KRKValidationChecks <> '' then
+      { Se houver um ProviderName, podemos tentar obter seus constraints }
+      if ProviderName <> '' then
       begin
-        TClientDataset(TDataSetItem(CI).DataSet).KRKValidationChecks.FromString(KRKValidationChecks);
-        TClientDataset(TDataSetItem(CI).DataSet).KRKValidationChecks.DataSet := TDataSetItem(CI).DataSet;
+        { Todo CLDS que tem um ProviderName definido ou está em um
+        relacionamento mestre/detalhe com um mestre que contém um ProviderName
+        definido precisa manipular o evento OnReconcileError }
+        TClientDataset(TDataSetItem(CI).DataSet).OnReconcileError := DoReconcileError;
+
+        alterar GetConstraintsFor para que seja enviado o nome do clds ou dataset para seleção correta dos constraints
+
+        KRKValidationChecks := GetConstraintsFor(ProviderName,DAMOPrincipal.CurrentSession.ID);
+
+        if KRKValidationChecks <> '' then
+        begin
+          TClientDataset(TDataSetItem(CI).DataSet).KRKValidationChecks.FromString(KRKValidationChecks);
+          TClientDataset(TDataSetItem(CI).DataSet).KRKValidationChecks.DataSet := TDataSetItem(CI).DataSet;
+        end;
       end;
+
     end;
 end;
 

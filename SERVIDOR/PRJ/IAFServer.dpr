@@ -20,7 +20,8 @@ uses
   UKRDMEntidadesDoSistema in '..\SRC\UKRDMEntidadesDoSistema.pas' {KRDMEntidadesDoSistema: TKRKDataModule},
   UExtraMethodsImpl in '..\SRC\UExtraMethodsImpl.pas',
   UExtraMethodsIntf in '..\SRC\UExtraMethodsIntf.pas',
-  UExtraUtilities in '..\SRC\UExtraUtilities.pas';
+  UExtraUtilities in '..\SRC\UExtraUtilities.pas',
+  UKRDMGrupos in '..\SRC\UKRDMGrupos.pas' {KRDMGrupos: TKRKDataModule};
 
 {$R *.res}
 

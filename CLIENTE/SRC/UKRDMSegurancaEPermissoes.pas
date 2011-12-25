@@ -57,6 +57,12 @@ type
     CLDSConsUsuariosZQRYPermissoesDosUsuarios: TDataSetField;
     CLDSUsuariosZQRYGruposDosUsuarios: TDataSetField;
     DTSRGruposDosUsuarios: TDataSource;
+    CLDSGruposDosUsuariosic_grupo: TStringField;
+    DTSRGrupos: TDataSource;
+    CLDSGrupos: TClientDataSet;
+    CLDSGrupossm_grupos_id: TSmallintField;
+    CLDSGruposva_nome: TWideStringField;
+    CLDSGruposva_descricao: TWideStringField;
     procedure CLDSConsEntidadesDoSistemasm_tipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure CLDSUsuariosch_senhaGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure CLDSUsuariosCalcFields(DataSet: TDataSet);
@@ -66,6 +72,8 @@ type
     procedure CLDSPermissoesDosUsuariosentidadeGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure CLDSPermissoesDosUsuariostipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure KRKDataModuleCreate(Sender: TObject);
+    procedure CLDSGruposDosUsuariosgrupoGetText(Sender: TField;
+      var Text: string; DisplayText: Boolean);
   private
     { Declarações privadas }
     procedure AdicionarEntidadesParaUsuario;
@@ -183,7 +191,7 @@ begin
 
   case aObjetoDePermissao of
     odpUsuario: CLDS := CLDSPermissoesDosUsuarios;
-    odpGrupo  : {CLDS := CLDSPermissoesDosGrupos;}
+    odpGrupo  : {CLDS := CLDSPermissoesDosGrupos};
   end;
 
   case aPermissao of
@@ -233,6 +241,15 @@ begin
     else
       Text := 'N/A';
   end;
+end;
+
+procedure TKRDMSegurancaEPermissoes.CLDSGruposDosUsuariosgrupoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
+begin
+  inherited;
+  if Sender.IsNull then
+    Text := CLDSGruposDosUsuariosic_grupo.AsString
+  else
+    Text := Sender.AsString;
 end;
 
 procedure TKRDMSegurancaEPermissoes.CLDSPermissoesDosUsuariosentidadeGetText(Sender: TField; var Text: string; DisplayText: Boolean);

@@ -323,6 +323,45 @@ END;
 $BODY$
 LANGUAGE PLPGSQL;
 ---------------------------------------------------------------
+CREATE OR REPLACE FUNCTION IDU_GRUPOS(IN pMODO           CHAR
+                                     ,IN pSM_GRUPOS_ID GRUPOS.SM_GRUPOS_ID%TYPE = NULL
+                                     ,IN pVA_NOME      GRUPOS.VA_NOME%TYPE      = NULL
+                                     ,IN pVA_DESCRICAO GRUPOS.VA_DESCRICAO%TYPE = NULL)
+RETURNS BIGINT AS 
+$BODY$
+DECLARE
+	vRETURN BIGINT := 0;
+BEGIN
+  CASE pMODO
+    WHEN 'I' THEN ----------------------------------------------------------- [ INSERT ] --
+      INSERT INTO GRUPOS (VA_NOME
+                         ,VA_DESCRICAO)
+                  VALUES (pVA_NOME
+                         ,pVA_DESCRICAO);
+
+    vRETURN := CURRVAL('SQ_GRU_SM_GRUPOS_ID');
+    ---------------------------------------------------------------------------------------
+    WHEN 'D' THEN ----------------------------------------------------------- [ DELETE ] --
+      DELETE FROM GRUPOS
+            WHERE SM_GRUPOS_ID = pSM_GRUPOS_ID;
+            
+    GET DIAGNOSTICS vRETURN := ROW_COUNT;
+    ---------------------------------------------------------------------------------------
+    WHEN 'U' THEN ----------------------------------------------------------- [ UPDATE ] --
+      UPDATE GRUPOS
+         SET VA_NOME      = pVA_NOME
+           , VA_DESCRICAO = pVA_DESCRICAO
+       WHERE SM_GRUPOS_ID = pSM_GRUPOS_ID;
+
+    GET DIAGNOSTICS vRETURN := ROW_COUNT;
+    ---------------------------------------------------------------------------------------
+  END CASE;
+  
+  RETURN vRETURN;
+END;
+$BODY$
+LANGUAGE PLPGSQL;
+---------------------------------------------------------------
 CREATE OR REPLACE FUNCTION SHA512(VARCHAR) 
 RETURNS CHAR AS
 $BODY$
@@ -331,7 +370,15 @@ $BODY$
 LANGUAGE SQL;
 ---------------------------------------------------------------
 ---------------------------------------------------------------
+SELECT IDU_USUARIOS('I'::CHAR,NULL::SMALLINT,'Administrador do sistema'::VARCHAR,'admin'::VARCHAR,SHA512('123')::CHAR,'admin@zettaomnis.com.br'::VARCHAR);
+SELECT IDU_USUARIOS('I'::CHAR,NULL::SMALLINT,'Funcionário 1'::VARCHAR,'func1'::VARCHAR,SHA512('123')::CHAR,'func1@zettaomnis.com.br'::VARCHAR);
+SELECT IDU_USUARIOS('I'::CHAR,NULL::SMALLINT,'Funcionário 2'::VARCHAR,'func2'::VARCHAR,SHA512('123')::CHAR,'func2@zettaomnis.com.br'::VARCHAR);
+SELECT IDU_USUARIOS('I'::CHAR,NULL::SMALLINT,'Funcionário 3'::VARCHAR,'func3'::VARCHAR,SHA512('123')::CHAR,'func3@zettaomnis.com.br'::VARCHAR);
 ---------------------------------------------------------------
+SELECT IDU_GRUPOS('I'::CHAR,NULL::SMALLINT,'Administradores'::VARCHAR,'Grupo de administradores do sistema, com permissão irrestrita'::VARCHAR);
+SELECT IDU_GRUPOS('I'::CHAR,NULL::SMALLINT,'Funcionários Nível 1'::VARCHAR,'Grupo de funcionários de nível 1'::VARCHAR);
+SELECT IDU_GRUPOS('I'::CHAR,NULL::SMALLINT,'Funcionários Nível 2'::VARCHAR,'Grupo de funcionários de nível 2'::VARCHAR);
+SELECT IDU_GRUPOS('I'::CHAR,NULL::SMALLINT,'Funcionários Nível 3'::VARCHAR,'Grupo de funcionários de nível 3'::VARCHAR);
 ---------------------------------------------------------------
 SELECT IDU_ENTIDADESDOSISTEMA('I'::CHAR,NULL::INTEGER,'DAMOPrincipal.ACTNConfiguracoes'::VARCHAR,1::SMALLINT);
 SELECT IDU_ENTIDADESDOSISTEMA('I'::CHAR,NULL::INTEGER,'DAMOPrincipal.ACTNSegurancaEPermissoes'::VARCHAR,1::SMALLINT);

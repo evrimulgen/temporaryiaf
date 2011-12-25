@@ -1,6 +1,6 @@
 object SODMPrincipal: TSODMPrincipal
   OldCreateOrder = False
-  Height = 165
+  Height = 243
   Width = 321
   object ZCONIAF: TZConnection
     Properties.Strings = (
@@ -33,5 +33,13 @@ object SODMPrincipal: TSODMPrincipal
     UpdateMode = upWhereKeyOnly
     Left = 54
     Top = 108
+  end
+  object DSPRGrupos: TDataSetProvider
+    DataSet = KRDMGrupos.ZQRYGrupos
+    Constraints = False
+    Options = [poFetchBlobsOnDemand, poFetchDetailsOnDemand, poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poPropogateChanges]
+    UpdateMode = upWhereKeyOnly
+    Left = 54
+    Top = 156
   end
 end

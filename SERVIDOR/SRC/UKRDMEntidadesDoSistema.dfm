@@ -25,17 +25,20 @@ inherited KRDMEntidadesDoSistema: TKRDMEntidadesDoSistema
         DataType = ftInteger
         Name = 'IN_ENTIDADESDOSISTEMA_ID'
         ParamType = ptInput
+        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_NOME'
         ParamType = ptInput
         Size = 128
+        Value = Null
       end
       item
         DataType = ftSmallint
         Name = 'SM_TIPO'
         ParamType = ptInput
+        Value = Null
       end>
     Left = 54
     Top = 60
@@ -44,17 +47,20 @@ inherited KRDMEntidadesDoSistema: TKRDMEntidadesDoSistema
         DataType = ftInteger
         Name = 'IN_ENTIDADESDOSISTEMA_ID'
         ParamType = ptInput
+        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_NOME'
         ParamType = ptInput
         Size = 128
+        Value = Null
       end
       item
         DataType = ftSmallint
         Name = 'SM_TIPO'
         ParamType = ptInput
+        Value = Null
       end>
     object ZQRYEntidadesDoSistemain_entidadesdosistema_id: TIntegerField
       FieldName = 'in_entidadesdosistema_id'

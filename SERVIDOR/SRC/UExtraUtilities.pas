@@ -13,23 +13,25 @@ procedure ConfigureConnection(const aZConnection: TZConnection);
 
 implementation
 
-uses UKRDMUsuarios
+uses SysUtils
+   , UServerConfiguration
+   , USessionsManager
+   , UKRDMUsuarios
    , UKRDMEntidadesDoSistema
-   , UServerConfiguration, USessionsManager;
+   , UKRDMGrupos;
 
 function CreateDataModule(const aProviderName: WideString; const aOwner: TComponent = nil): TKRDMBasico;
 begin
-  Result := nil;
   { Não é necessário usar free para destruir, visto que usamos este datamodule
   como dono dos datamodules criados }
   if aProviderName = 'DSPRUsuarios' then
-  begin
     Result := TKRDMUsuarios.Create(aOwner)
-  end
   else if aProviderName = 'DSPREntidadesDoSistema' then
-  begin
     Result := TKRDMEntidadesDoSistema.Create(aOwner)
-  end;
+  else if aProviderName = 'DSPRGrupos' then
+    Result := TKRDMGrupos.Create(aOwner)
+  else
+    raise Exception.Create('Não há nenhum módulo de dados remoto para o provedor "' + aProviderName + '"');
 end;
 
 function CheckSessions: Boolean;
