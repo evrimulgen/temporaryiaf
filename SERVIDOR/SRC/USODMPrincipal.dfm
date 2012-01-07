@@ -3,9 +3,6 @@ object SODMPrincipal: TSODMPrincipal
   Height = 243
   Width = 321
   object ZCONIAF: TZConnection
-    Properties.Strings = (
-      'codepage=UTF8'
-      'client_encoding=UTF8')
     TransactIsolationLevel = tiReadCommitted
     Connected = True
     DesignConnection = True

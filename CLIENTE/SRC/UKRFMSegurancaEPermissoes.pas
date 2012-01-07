@@ -85,7 +85,7 @@ type
     PANLKRDGUsuarios: TPanel;
     KRDGUsuarios: TKRKDBGrid;
     GRBXKRDGUsuarios: TGroupBox;
-    LABLFiltroIDUUsuarios: TLabel;
+    LABLUSUFiltros: TLabel;
     KRDGPDU: TKRKDBGrid;
     KRDGPDG: TKRKDBGrid;
     KRDGGruposDoUsuario: TKRKDBGrid;
@@ -93,6 +93,9 @@ type
     KLDE_GRU_VA_DESCRICAO: TKRKLabeledDBEdit;
     DBNAGrupos: TDBNavigator;
     KRDGGrupos: TKRKDBGrid;
+    GRBXGRUFiltros: TGroupBox;
+    LABLGRUFiltros: TLabel;
+    KRDGGruposCON: TKRKDBGrid;
     procedure LAEDUSU_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
     procedure LAEDUSU_VA_LOGINKeyPress(Sender: TObject; var Key: Char);
     procedure LabeledEdit_EDS_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
@@ -101,10 +104,14 @@ type
     procedure LabeledEdit_USU_VA_LOGIN2KeyPress(Sender: TObject; var Key: Char);
     procedure PGCTUSUGRUConsultarChange(Sender: TObject);
     procedure KRKFormCreate(Sender: TObject);
-    procedure KRDGPDUDrawColumnCell(Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure DoDrawColumnCell(Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure KRDGPDUCellClick(Column: TColumn);
     procedure KRDGConsEntidadesDoSistemaAfterMultiselect(aSender: TObject; aMultiSelectEventTrigger: TMultiSelectEventTrigger);
     procedure KRDGPDUDblClick(Sender: TObject);
+    procedure LabeledEdit_GRU_VA_NOME2KeyPress(Sender: TObject; var Key: Char);
+    procedure LabeledEdit_GRU_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
+    procedure KRDGPDGCellClick(Column: TColumn);
+    procedure KRDGPDGDblClick(Sender: TObject);
   private
     { Private declarations }
     procedure FiltrarEntidadesDoSistema;
@@ -135,13 +142,35 @@ begin
       Tipo := -1;
   end;
 
-  TKRDMSegurancaEPermissoes(Owner).FiltrarEntidadesDoSistema(0,LabeledEdit_EDS_VA_NOME.Text,Tipo);
+  TKRDMSegurancaEPermissoes(Owner).FiltrarEntidadesDoSistema(TKRDMSegurancaEPermissoes(Owner).CLDSEntidadesDoSistemaCON
+                                                            ,0
+                                                            ,LabeledEdit_EDS_VA_NOME.Text
+                                                            ,Tipo);
 end;
 
 procedure TKRFMSegurancaEPermissoes.KRDGConsEntidadesDoSistemaAfterMultiselect(aSender: TObject; aMultiSelectEventTrigger: TMultiSelectEventTrigger);
 begin
   inherited;
   TKRDMSegurancaEPermissoes(Owner).ACTNAdicionarEntidade.Enabled := KRDGConsEntidadesDoSistema.SelectedRows.Count > 0;
+end;
+
+procedure TKRFMSegurancaEPermissoes.KRDGPDGCellClick(Column: TColumn);
+begin
+  inherited;
+  if Column.FieldName = 'sm_ler' then
+    TKRDMSegurancaEPermissoes(Owner).AlternarPermissao(pAcessar,odpGrupo)
+  else if Column.FieldName = 'sm_inserir' then
+    TKRDMSegurancaEPermissoes(Owner).AlternarPermissao(pInserir,odpGrupo)
+  else if Column.FieldName = 'sm_alterar' then
+		TKRDMSegurancaEPermissoes(Owner).AlternarPermissao(pAlterar,odpGrupo)
+  else if Column.FieldName = 'sm_excluir' then
+		TKRDMSegurancaEPermissoes(Owner).AlternarPermissao(pExcluir,odpGrupo);
+end;
+
+procedure TKRFMSegurancaEPermissoes.KRDGPDGDblClick(Sender: TObject);
+begin
+  inherited;
+  ShowMessage(TKRKDBGrid(Sender).DataSource.DataSet.FieldByName('in_permissoesdosgrupos_id').AsString);
 end;
 
 procedure TKRFMSegurancaEPermissoes.KRDGPDUCellClick(Column: TColumn);
@@ -163,7 +192,7 @@ begin
 //  ShowMessage(TKRKDBGrid(Sender).DataSource.DataSet.FieldByName('in_permissoesdosusuarios_id').AsString);
 end;
 
-procedure TKRFMSegurancaEPermissoes.KRDGPDUDrawColumnCell(Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+procedure TKRFMSegurancaEPermissoes.DoDrawColumnCell(Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
 var
 	OffsetLeft: Byte;
 begin
@@ -241,32 +270,72 @@ begin
     FiltrarEntidadesDoSistema;
 end;
 
+procedure TKRFMSegurancaEPermissoes.LabeledEdit_GRU_VA_NOME2KeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  if Key = #13 then
+    TKRDMSegurancaEPermissoes(Owner).FiltrarGrupos(TKRDMSegurancaEPermissoes(Owner).CLDSGrupos
+                                                  ,0
+                                                  ,TLabeledEdit(Sender).Text
+                                                  ,'');
+end;
+
+procedure TKRFMSegurancaEPermissoes.LabeledEdit_GRU_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  if Key = #13 then
+    TKRDMSegurancaEPermissoes(Owner).FiltrarGrupos(TKRDMSegurancaEPermissoes(Owner).CLDSGruposCON
+                                                  ,0
+                                                  ,TLabeledEdit(Sender).Text
+                                                  ,'');
+end;
+
 procedure TKRFMSegurancaEPermissoes.LabeledEdit_USU_VA_LOGIN2KeyPress(Sender: TObject; var Key: Char);
 begin
   inherited;
   if Key = #13 then
-    TKRDMSegurancaEPermissoes(Owner).FiltrarUsuariosIDU(0,'',TLabeledEdit(Sender).Text,'','');
+    TKRDMSegurancaEPermissoes(Owner).FiltrarUsuarios(TKRDMSegurancaEPermissoes(Owner).CLDSUsuarios
+                                                    ,0
+                                                    ,''
+                                                    ,TLabeledEdit(Sender).Text
+                                                    ,''
+                                                    ,'');
 end;
 
 procedure TKRFMSegurancaEPermissoes.LabeledEdit_USU_VA_NOME2KeyPress(Sender: TObject; var Key: Char);
 begin
   inherited;
   if Key = #13 then
-    TKRDMSegurancaEPermissoes(Owner).FiltrarUsuariosIDU(0,TLabeledEdit(Sender).Text,'','','');
+    TKRDMSegurancaEPermissoes(Owner).FiltrarUsuarios(TKRDMSegurancaEPermissoes(Owner).CLDSUsuarios
+                                                    ,0
+                                                    ,TLabeledEdit(Sender).Text
+                                                    ,''
+                                                    ,''
+                                                    ,'');
 end;
 
 procedure TKRFMSegurancaEPermissoes.LAEDUSU_VA_LOGINKeyPress(Sender: TObject; var Key: Char);
 begin
   inherited;
   if Key = #13 then
-    TKRDMSegurancaEPermissoes(Owner).FiltrarUsuarios(0,'',TLabeledEdit(Sender).Text,'','');
+    TKRDMSegurancaEPermissoes(Owner).FiltrarUsuarios(TKRDMSegurancaEPermissoes(Owner).CLDSUsuariosCON
+                                                    ,0
+                                                    ,''
+                                                    ,TLabeledEdit(Sender).Text
+                                                    ,''
+                                                    ,'');
 end;
 
 procedure TKRFMSegurancaEPermissoes.LAEDUSU_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
 begin
   inherited;
   if Key = #13 then
-    TKRDMSegurancaEPermissoes(Owner).FiltrarUsuarios(0,TLabeledEdit(Sender).Text,'','','');
+    TKRDMSegurancaEPermissoes(Owner).FiltrarUsuarios(TKRDMSegurancaEPermissoes(Owner).CLDSUsuariosCON
+                                                    ,0
+                                                    ,TLabeledEdit(Sender).Text
+                                                    ,''
+                                                    ,''
+                                                    ,'');
 end;
 
 procedure TKRFMSegurancaEPermissoes.PGCTUSUGRUConsultarChange(Sender: TObject);

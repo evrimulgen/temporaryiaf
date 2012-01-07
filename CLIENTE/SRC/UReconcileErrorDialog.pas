@@ -19,7 +19,8 @@ interface
                           
 uses
   SysUtils, Windows, Variants, Messages, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Grids, DB, DBClient, Provider, ExtCtrls, DBConsts, pngimage;
+  Dialogs, StdCtrls, Grids, DB, DBClient, Provider, ExtCtrls, DBConsts, pngimage,
+  Tabs, DockTabSet;
 
 resourcestring
   SCaption = 'Erro ao enviar os dados - %s';
@@ -30,7 +31,7 @@ resourcestring
   SFieldName = 'Nome do campo';
   SOriginal = 'Valor original';
   SConflict = 'Valor conflitante';
-  SValue = 'Valor ';
+  SValue = 'Valor de ';
   SNoData = '<sem registros>';
   SNew = 'Novo';
 
@@ -49,11 +50,14 @@ type
     IconImage: TImage;
     ErrorMsg: TMemo;
     ChangedOnly: TCheckBox;
+    DKTSMensagens: TDockTabSet;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure UpdateDataSetEditText(Sender: TObject; ACol, ARow: Integer; const Value: string);
     procedure DisplayFieldValues(Sender: TObject);
     procedure UpdateDataSelectCell(Sender: TObject; Col, Row: Integer; var CanSelect: Boolean);
+    procedure DKTSMensagensChange(Sender: TObject; NewTab: Integer;
+      var AllowChange: Boolean);
   private
     FDataSet: TDataSet;
     FError: EReconcileError;
@@ -62,12 +66,15 @@ type
     FCurColIdx: Integer;
     FNewColIdx: Integer;
     FOldColIdx: Integer;
+    FErro: String;
+    FDetalhes: String;
+    FContexto: String;
     procedure AdjustColumnWidths;
     procedure InitDataFields;
     procedure InitUpdateData(HasCurValues: Boolean);
     procedure InitReconcileActions;
     procedure SetFieldValues(DataSet: TDataSet);
-    procedure TratarMensagemDeErro;
+    procedure TratarMensagemDeErro(aEReconcileError: EReconcileError);
   public
     constructor CreateForm(DataSet: TDataSet; UpdateKind: TUpdateKind; Error: EReconcileError);
   end;
@@ -286,6 +293,15 @@ begin
   AdjustColumnWidths;
 end;
 
+procedure TReconcileErrorForm.DKTSMensagensChange(Sender: TObject; NewTab: Integer; var AllowChange: Boolean);
+begin
+  case NewTab of
+    0: ErrorMsg.Text := FErro;
+    1: ErrorMsg.Text := FDetalhes;
+    2: ErrorMsg.Text := FContexto;
+  end;
+end;
+
 { For fields that the user has edited, copy the changes back into the
   NewValue property of the associated field }
 
@@ -310,9 +326,44 @@ begin
   end;
 end;
 
-procedure TReconcileErrorForm.TratarMensagemDeErro;
+procedure TReconcileErrorForm.TratarMensagemDeErro(aEReconcileError: EReconcileError);
+const
+  TagErro     = 'ERRO:  ';
+  TagDetalhe  = 'DETAIL:  ';
+  TagContexto = 'CONTEXT:  ';
 begin
-  { ErrorMsg é o memo com a mensagem de erro }
+  FErro  := Trim(Copy(aEReconcileError.Message
+                     ,Pos(TagErro,aEReconcileError.Message) + Length(TagErro)
+                     ,Pos(TagDetalhe,aEReconcileError.Message) - Pos(TagErro,aEReconcileError.Message) - Length(TagErro)));
+
+  FDetalhes := Trim(Copy(aEReconcileError.Message
+                        ,Pos(TagDetalhe,aEReconcileError.Message) + Length(TagDetalhe)
+                        ,Pos(TagContexto,aEReconcileError.Message) - Pos(TagDetalhe,aEReconcileError.Message) - Length(TagDetalhe)));
+
+  FContexto := Trim(Copy(aEReconcileError.Message
+                        ,Pos(TagContexto,aEReconcileError.Message) + Length(TagContexto)
+                        ,Length(aEReconcileError.Message)));
+
+//  ShowMessage(aEReconcileError.Context);
+
+//Erro SQL: ERRO:  duplicar valor da chave viola a restrição de unicidade "uc_usu_va_login"
+//DETAIL:  Chave (va_login)=(admin) já existe.
+//CONTEXT:  comando SQL "INSERT INTO USUARIOS (VA_NOME
+//                           ,VA_LOGIN
+//                           ,CH
+
+//ERRO:  duplicar valor da chave viola a restrição de unicidade "uc_usu_va_login"
+//DETALHE:  Chave (va_login)=(admin) já existe.
+//CONTEXTO:  comando SQL "INSERT INTO USUARIOS (VA_NOME
+//	                           ,VA_LOGIN
+//	                           ,CH_SENHA
+//	                           ,VA_EMAIL)
+//	                    VALUES (pVA_NOME
+//	                           ,pVA_LOGIN
+//	                           ,pCH_SENHA
+//	                           ,pVA_EMAIL)"
+//	PL/pgSQL function "idu_usuarios" line 7 at comando SQL
+
 end;
 
 { Event handlers }
@@ -329,12 +380,9 @@ begin
 
   UpdateType.Caption := UpdateKindStr[FUpdateKind];
 
-  ErrorMsg.Text := FError.Message;
+  TratarMensagemDeErro(FError);
 
-  if FError.Context <> '' then
-    ErrorMsg.Lines.Add(FError.Context);
-
-  TratarMensagemDeErro;
+  ErrorMsg.Text := FErro;
 
   ConflictsOnly.Enabled := FCurColIdx > 0;
   ConflictsOnly.Checked := ConflictsOnly.Enabled;

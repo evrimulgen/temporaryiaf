@@ -45,6 +45,7 @@
 			<DelphiCompile Include="IAFClient.dpr">
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
+			<DCCReference Include="..\..\COMUM\SRC\MidasLib.pas"/>
 			<DCCReference Include="..\SRC\UFORMPrincipal.pas">
 				<Form>FORMPrincipal</Form>
 			</DCCReference>
@@ -107,7 +108,7 @@
 						<VersionInfo Name="MajorVer">1</VersionInfo>
 						<VersionInfo Name="MinorVer">0</VersionInfo>
 						<VersionInfo Name="Release">0</VersionInfo>
-						<VersionInfo Name="Build">569</VersionInfo>
+						<VersionInfo Name="Build">646</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -119,7 +120,7 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName"/>
 						<VersionInfoKeys Name="FileDescription"/>
-						<VersionInfoKeys Name="FileVersion">1.0.0.569</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">1.0.0.646</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName"/>
 						<VersionInfoKeys Name="LegalCopyright"/>
 						<VersionInfoKeys Name="LegalTrademarks"/>

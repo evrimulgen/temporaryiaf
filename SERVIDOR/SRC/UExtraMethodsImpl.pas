@@ -7,7 +7,7 @@ uses InvokeRegistry, Types, XSBuiltIns, UExtraMethodsIntf;
 type
   TExtraMethods = class(TInvokableClass, IExtraMethods)
   public
-    function GetConstraintsFor(const aProviderName: WideString; const aSessionID: String): String; stdcall;
+    function GetConstraintsFor(const aProviderName: WideString; aDataSetName: WideString; const aSessionID: String): String; stdcall;
   end;
 
 implementation
@@ -22,17 +22,19 @@ uses SysUtils
 
 { TExtraMethods }
 
-function TExtraMethods.GetConstraintsFor(const aProviderName: WideString; const aSessionID: String): String;
+function TExtraMethods.GetConstraintsFor(const aProviderName: WideString; aDataSetName: WideString; const aSessionID: String): String;
 var
   KRDMBasico: TKRDMBasico;
   i: Word;
-  DataSetName: String;
 begin
   if (not CheckSessions) or SessionExists(aSessionID) then
   begin
     Result := '';
 
-    DataSetName := UpperCase(StringReplace(aProviderName,'DSPR','ZQRY',[rfIgnoreCase]));
+    if aDataSetName = '' then
+      aDataSetName := UpperCase(StringReplace(aProviderName,'DSPR','ZQRY',[rfIgnoreCase]))
+    else
+      aDataSetName := UpperCase(StringReplace(aDataSetName,'CLDS','ZQRY',[rfIgnoreCase]));
 
     KRDMBasico := CreateDataModule(aProviderName);
 
@@ -40,7 +42,7 @@ begin
       with KRDMBasico do
         try
           for i := 0 to Pred(ComponentCount) do
-            if Components[i].ClassNameIs(TKRKValidationChecks.ClassName) and (UpperCase(TKRKValidationChecks(Components[i]).DataSet.Name) = DataSetName) then
+            if Components[i].ClassNameIs(TKRKValidationChecks.ClassName) and (UpperCase(TKRKValidationChecks(Components[i]).DataSet.Name) = aDataSetName) then
             begin
               Result := TKRKValidationChecks(Components[i]).ToString;
               Break;

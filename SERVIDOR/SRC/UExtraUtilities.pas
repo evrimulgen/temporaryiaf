@@ -65,6 +65,8 @@ begin
     Password               := ServerConfiguration.DBPassword;
     Protocol               := ServerConfiguration.DBProtocol;
     TransactIsolationLevel := ServerConfiguration.DBTransactIsolationLevel;
+    Properties.Add('codepage=UTF8');
+    Properties.Add('client_encoding=UTF8');
   end;
 end;
 

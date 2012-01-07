@@ -172,7 +172,6 @@ begin
     begin
       ProviderName := TClientDataset(TDataSetItem(CI).DataSet).ProviderName;
       DataSetField := TClientDataset(TDataSetItem(CI).DataSet).DataSetField;
-      { provider para identificar o remote datamodule datasource para indicar o dataset }
 
       { Ao passar deste ponto, a variável ProviderName vai conter o nome do
       Provider do CLDS atual ou do primeiro CLDS mestre com um ProviderName
@@ -188,9 +187,7 @@ begin
         definido precisa manipular o evento OnReconcileError }
         TClientDataset(TDataSetItem(CI).DataSet).OnReconcileError := DoReconcileError;
 
-        alterar GetConstraintsFor para que seja enviado o nome do clds ou dataset para seleção correta dos constraints
-
-        KRKValidationChecks := GetConstraintsFor(ProviderName,DAMOPrincipal.CurrentSession.ID);
+        KRKValidationChecks := GetConstraintsFor(ProviderName,TDataSetItem(CI).DataSet.Name,DAMOPrincipal.CurrentSession.ID);
 
         if KRKValidationChecks <> '' then
         begin

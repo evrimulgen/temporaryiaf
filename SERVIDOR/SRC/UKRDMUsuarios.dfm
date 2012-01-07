@@ -390,26 +390,32 @@ inherited KRDMUsuarios: TKRDMUsuarios
     object ZQRYPermissoesDosUsuariosin_entidadesdosistema_id: TIntegerField
       FieldName = 'in_entidadesdosistema_id'
       ProviderFlags = [pfInUpdate]
+      Required = True
     end
     object ZQRYPermissoesDosUsuariossm_usuarios_id: TSmallintField
       FieldName = 'sm_usuarios_id'
       ProviderFlags = [pfInUpdate]
+      Required = True
     end
     object ZQRYPermissoesDosUsuariossm_ler: TSmallintField
       FieldName = 'sm_ler'
       ProviderFlags = [pfInUpdate]
+      Required = True
     end
     object ZQRYPermissoesDosUsuariossm_inserir: TSmallintField
       FieldName = 'sm_inserir'
       ProviderFlags = [pfInUpdate]
+      Required = True
     end
     object ZQRYPermissoesDosUsuariossm_alterar: TSmallintField
       FieldName = 'sm_alterar'
       ProviderFlags = [pfInUpdate]
+      Required = True
     end
     object ZQRYPermissoesDosUsuariossm_excluir: TSmallintField
       FieldName = 'sm_excluir'
       ProviderFlags = [pfInUpdate]
+      Required = True
     end
   end
   object ZUSQPermissoesDosUsuarios: TZUpdateSQL

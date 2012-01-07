@@ -37,10 +37,10 @@ type
   // ************************************************************************ //
   IExtraMethods = interface(IInvokable)
   ['{C6037FCA-3DC8-4F09-EC59-87ADF44E2873}']
-    function GetConstraintsFor(const aProviderName: string; const aSessionID: string): string; stdcall;
+    function GetConstraintsFor(const aProviderName: String; aDataSetName: String; const aSessionID: String): string; stdcall;
   end;
 
-function GetConstraintsFor(const aProviderName: String; const aSessionID: String): String;
+function GetConstraintsFor(const aProviderName: String; aDataSetName: String; const aSessionID: String): String;
 
 implementation
 
@@ -92,9 +92,9 @@ begin
   end;
 end;
 
-function GetConstraintsFor(const aProviderName: String; const aSessionID: String): String;
+function GetConstraintsFor(const aProviderName: String; aDataSetName: String; const aSessionID: String): String;
 begin
-  Result := GetIExtraMethods.GetConstraintsFor(aProviderName,aSessionID);
+  Result := GetIExtraMethods.GetConstraintsFor(aProviderName,aDataSetName,aSessionID);
 end;
 
 initialization

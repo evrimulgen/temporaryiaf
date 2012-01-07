@@ -1,6 +1,7 @@
 library IAFServer;
 
 uses
+  MidasLib in '..\..\COMUM\SRC\MidasLib.pas',
   ActiveX,
   ComObj,
   WebBroker,

@@ -37,13 +37,6 @@ object ReconcileErrorForm: TReconcileErrorForm
     Font.Style = [fsBold]
     ParentFont = False
   end
-  object Label3: TLabel
-    Left = 44
-    Top = 25
-    Width = 93
-    Height = 13
-    Caption = 'Mensagem de erro:'
-  end
   object IconImage: TImage
     Left = 6
     Top = 6
@@ -177,12 +170,18 @@ object ReconcileErrorForm: TReconcileErrorForm
   end
   object ErrorMsg: TMemo
     Left = 44
-    Top = 41
+    Top = 22
     Width = 475
     Height = 78
     TabStop = False
     Anchors = [akLeft, akTop, akRight]
     Color = clBtnFace
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Courier New'
+    Font.Style = []
+    ParentFont = False
     ReadOnly = True
     TabOrder = 6
   end
@@ -195,5 +194,25 @@ object ReconcileErrorForm: TReconcileErrorForm
     Caption = 'Exibir apenas campos alterados'
     TabOrder = 3
     OnClick = DisplayFieldValues
+  end
+  object DKTSMensagens: TDockTabSet
+    Left = 44
+    Top = 99
+    Width = 475
+    Height = 20
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    SoftTop = True
+    Style = tsSoftTabs
+    Tabs.Strings = (
+      'Erro'
+      'Detalhes'
+      'Contexto')
+    TabIndex = 0
+    OnChange = DKTSMensagensChange
+    DestinationDockSite = ErrorMsg
   end
 end

@@ -2,7 +2,6 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
   Caption = 'Seguran'#231'a e Permiss'#245'es'
   ClientHeight = 562
   ClientWidth = 784
-  ExplicitTop = -32
   ExplicitWidth = 800
   ExplicitHeight = 600
   PixelsPerInch = 96
@@ -12,7 +11,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
     Top = 40
     Width = 784
     Height = 522
-    ActivePage = TabSheet_GRU
+    ActivePage = TabSheet_Permissions
     Align = alClient
     TabOrder = 0
     object TabSheet_Permissions: TTabSheet
@@ -103,7 +102,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
               Width = 331
               Height = 132
               Anchors = [akLeft, akTop, akRight, akBottom]
-              DataSource = KRDMSegurancaEPermissoes.DTSRConsUsuarios
+              DataSource = KRDMSegurancaEPermissoes.DTSRUsuariosCON
               Options = [dgTitles, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
               OptionsEx = [dgAutomaticColumSizes]
               ReadOnly = True
@@ -136,6 +135,9 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
           object TBSHGRUConsultar: TTabSheet
             Caption = 'Grupos'
             ImageIndex = 1
+            DesignSize = (
+              341
+              200)
             object GroupBoxGrupoConsultaRapida: TGroupBox
               AlignWithMargins = True
               Left = 4
@@ -163,7 +165,38 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
                 EditLabel.Caption = 'Nome'
                 LabelSpacing = 1
                 TabOrder = 0
+                OnKeyPress = LabeledEdit_GRU_VA_NOMEKeyPress
               end
+            end
+            object KRDGGruposCON: TKRKDBGrid
+              Left = 4
+              Top = 63
+              Width = 331
+              Height = 132
+              Anchors = [akLeft, akTop, akRight, akBottom]
+              DataSource = KRDMSegurancaEPermissoes.DTSRGruposCON
+              Options = [dgTitles, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+              OptionsEx = [dgAutomaticColumSizes]
+              ReadOnly = True
+              TabOrder = 1
+              TitleFont.Charset = DEFAULT_CHARSET
+              TitleFont.Color = clWindowText
+              TitleFont.Height = -11
+              TitleFont.Name = 'Tahoma'
+              TitleFont.Style = []
+              RowColors = <
+                item
+                  BackgroundColor = clBtnFace
+                  ForegroundColor = clNone
+                end>
+              VariableWidthColumns = '<va_nome>'
+              Columns = <
+                item
+                  Expanded = False
+                  FieldName = 'va_nome'
+                  Width = 309
+                  Visible = True
+                end>
             end
           end
         end
@@ -316,7 +349,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
           Top = 0
           Width = 770
           Height = 254
-          ActivePage = TBSHPDU
+          ActivePage = TBSHPDG
           Align = alClient
           MultiLine = True
           ParentShowHint = False
@@ -567,7 +600,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
                 end>
               VariableWidthColumns = '<entidade>'
               OnCellClick = KRDGPDUCellClick
-              OnDrawColumnCell = KRDGPDUDrawColumnCell
+              OnDrawColumnCell = DoDrawColumnCell
               OnDblClick = KRDGPDUDblClick
               Columns = <
                 item
@@ -860,7 +893,8 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
               Margins.Right = 6
               Margins.Bottom = 5
               Align = alClient
-              Options = [dgTitles, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleHotTrack]
+              DataSource = KRDMSegurancaEPermissoes.DTSRPermissoesDosGrupos
+              Options = [dgTitles, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleHotTrack]
               OptionsEx = [dgAutomaticColumSizes]
               TabOrder = 1
               TitleFont.Charset = DEFAULT_CHARSET
@@ -873,11 +907,14 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
                   BackgroundColor = clBtnFace
                   ForegroundColor = clNone
                 end>
-              VariableWidthColumns = '<entidade>'
+              VariableWidthColumns = '<Entidade>'
+              OnCellClick = KRDGPDGCellClick
+              OnDrawColumnCell = DoDrawColumnCell
+              OnDblClick = KRDGPDGDblClick
               Columns = <
                 item
                   Expanded = False
-                  FieldName = 'entidade'
+                  FieldName = 'Entidade'
                   Width = 526
                   Visible = True
                 end
@@ -886,6 +923,11 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
                   Color = clInfoBk
                   Expanded = False
                   FieldName = 'sm_ler'
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clInfoBk
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
                   Title.Alignment = taCenter
                   Width = 50
                   Visible = True
@@ -894,6 +936,11 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
                   Alignment = taCenter
                   Expanded = False
                   FieldName = 'sm_inserir'
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWhite
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
                   Title.Alignment = taCenter
                   Width = 50
                   Visible = True
@@ -903,6 +950,11 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
                   Color = clInfoBk
                   Expanded = False
                   FieldName = 'sm_alterar'
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clInfoBk
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
                   Title.Alignment = taCenter
                   Width = 50
                   Visible = True
@@ -911,6 +963,11 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
                   Alignment = taCenter
                   Expanded = False
                   FieldName = 'sm_excluir'
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWhite
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
                   Title.Alignment = taCenter
                   Width = 50
                   Visible = True
@@ -1351,7 +1408,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
             Font.Style = []
             ParentFont = False
             TabOrder = 1
-            object LABLFiltroIDUUsuarios: TLabel
+            object LABLUSUFiltros: TLabel
               AlignWithMargins = True
               Left = 8
               Top = 15
@@ -1408,6 +1465,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
           EditLabel.Caption = 'Nome'
           LabelSpacing = 1
           TabOrder = 0
+          OnKeyPress = LabeledEdit_GRU_VA_NOME2KeyPress
         end
       end
       object GroupBoxGruposCadastrar: TGroupBox
@@ -1463,16 +1521,13 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
         DataSource = KRDMSegurancaEPermissoes.DTSRGrupos
         Align = alBottom
         TabOrder = 2
-        ExplicitLeft = 330
-        ExplicitTop = 270
-        ExplicitWidth = 240
       end
       object KRDGGrupos: TKRKDBGrid
         AlignWithMargins = True
         Left = 3
         Top = 66
         Width = 768
-        Height = 338
+        Height = 288
         Margins.Right = 5
         Align = alClient
         DataSource = KRDMSegurancaEPermissoes.DTSRGrupos
@@ -1484,7 +1539,11 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
         TitleFont.Height = -11
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
-        RowColors = <>
+        RowColors = <
+          item
+            BackgroundColor = clBtnFace
+            ForegroundColor = clNone
+          end>
         VariableWidthColumns = '<va_descricao>'
         Columns = <
           item
@@ -1500,6 +1559,46 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
             Visible = True
           end>
       end
+      object GRBXGRUFiltros: TGroupBox
+        Left = 0
+        Top = 357
+        Width = 776
+        Height = 50
+        Align = alBottom
+        Caption = ' Filtros definidos '
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clRed
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 4
+        object LABLGRUFiltros: TLabel
+          AlignWithMargins = True
+          Left = 8
+          Top = 15
+          Width = 760
+          Height = 26
+          Margins.Left = 6
+          Margins.Top = 0
+          Margins.Right = 6
+          Margins.Bottom = 7
+          Align = alClient
+          Alignment = taCenter
+          AutoSize = False
+          Caption = 
+            'Nenhum registro ser'#225' exibido at'#233' que um filtro seja definido ou ' +
+            'que o bot'#227'o atualizar seja pressionado'
+          Color = clGreen
+          ParentColor = False
+          Transparent = True
+          Layout = tlCenter
+          WordWrap = True
+          ExplicitLeft = 5
+          ExplicitWidth = 472
+          ExplicitHeight = 30
+        end
+      end
     end
   end
   inherited TLBRAcoes: TToolBar
@@ -1508,12 +1607,11 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
     ExplicitWidth = 784
     inherited LABLCaption: TLabel
       Height = 38
-      ExplicitHeight = 38
     end
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C010102000800E40020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800F00020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2050,7 +2148,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C010102000800F40020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800000120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

@@ -51,7 +51,7 @@ implementation
 
 uses UExtraUtilities
    , KRK.Win32.Db.Consts
-   , KRK.Win32.Rtl.Common.FileUtils;
+   , KRK.Win32.Rtl.Common.FileUtils, Variants;
 
 procedure TSODMPrincipalCreateInstance(out obj: TObject);
 begin
