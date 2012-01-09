@@ -183,6 +183,7 @@ object ReconcileErrorForm: TReconcileErrorForm
     Font.Style = []
     ParentFont = False
     ReadOnly = True
+    ScrollBars = ssVertical
     TabOrder = 6
   end
   object ChangedOnly: TCheckBox

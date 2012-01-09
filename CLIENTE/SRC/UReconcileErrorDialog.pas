@@ -344,17 +344,16 @@ begin
                         ,Pos(TagContexto,aEReconcileError.Message) + Length(TagContexto)
                         ,Length(aEReconcileError.Message)));
 
-//  ShowMessage(aEReconcileError.Context);
-
-//Erro SQL: ERRO:  duplicar valor da chave viola a restrição de unicidade "uc_usu_va_login"
-//DETAIL:  Chave (va_login)=(admin) já existe.
-//CONTEXT:  comando SQL "INSERT INTO USUARIOS (VA_NOME
-//                           ,VA_LOGIN
-//                           ,CH
+  { Substituindo pelo estilo de fim de linha do windows }
+  FErro := StringReplace(FErro,#$0A,#$0D#$0A,[rfReplaceAll]);
+  FDetalhes := StringReplace(FDetalhes,#$0A,#$0D#$0A,[rfReplaceAll]);
+  FContexto := StringReplace(FContexto,#$0A,#$0D#$0A,[rfReplaceAll]);
+  { Ajustando o cabeçalho do contexto }
+  FContexto := StringReplace(FContexto,'comando SQL','comando SQL'#$0D#$0A'    ',[rfIgnoreCase]);
 
 //ERRO:  duplicar valor da chave viola a restrição de unicidade "uc_usu_va_login"
-//DETALHE:  Chave (va_login)=(admin) já existe.
-//CONTEXTO:  comando SQL "INSERT INTO USUARIOS (VA_NOME
+//DETAIL:  Chave (va_login)=(admin) já existe.
+//CONTEXT:  comando SQL "INSERT INTO USUARIOS (VA_NOME
 //	                           ,VA_LOGIN
 //	                           ,CH_SENHA
 //	                           ,VA_EMAIL)
