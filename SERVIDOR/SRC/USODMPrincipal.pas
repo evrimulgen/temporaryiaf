@@ -50,8 +50,8 @@ implementation
 {$R *.DFM}
 
 uses UExtraUtilities
-   , KRK.Win32.Db.Consts
-   , KRK.Win32.Rtl.Common.FileUtils, Variants;
+   , KRK.Lib.Db.Consts
+   , KRK.Lib.Rtl.Common.FileUtils, Variants;
 
 procedure TSODMPrincipalCreateInstance(out obj: TObject);
 begin

@@ -3,7 +3,7 @@ unit USessionsManager;
 interface
 
 uses Classes
-   , KRK.Win32.Rtl.Common.Classes;
+   , KRK.Lib.Rtl.Common.Classes;
 
 type
   TSessionItem = class(TCollectionItem)

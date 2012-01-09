@@ -35,7 +35,7 @@ implementation
 uses SysUtils
    , ZDataset
    , ZDbcIntfs
-   , KRK.Win32.Rtl.Common.StringUtils
+   , KRK.Lib.Rtl.Common.StringUtils
    , UServerConfiguration
    , UTiposComuns;
 

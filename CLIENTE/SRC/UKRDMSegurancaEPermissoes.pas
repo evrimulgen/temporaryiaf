@@ -118,7 +118,7 @@ implementation
 uses Math
    , UKRFMSegurancaEPermissoes
    , UDAMOPrincipal
-   , KRK.Win32.Db.Utils
+   , KRK.Lib.Db.Utils
    , DBGrids;
 
 { TKRDMSegurancaEPermissoes }

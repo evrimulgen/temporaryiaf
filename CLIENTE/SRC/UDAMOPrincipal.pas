@@ -51,7 +51,7 @@ implementation
 
 uses Forms
    , Windows
-   , KRK.Win32.Rtl.Common.Classes
+   , KRK.Lib.Rtl.Common.Classes
    , UConfiguracoes
    , UAuthenticator
    , UFORMLogin

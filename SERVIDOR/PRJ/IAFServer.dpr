@@ -1,12 +1,12 @@
 library IAFServer;
 
 uses
-  MidasLib in '..\..\COMUM\SRC\MidasLib.pas',
   ActiveX,
   ComObj,
   WebBroker,
   ISAPIApp,
   ISAPIThreadPool,
+  KRK.Lib.Db.Midas.MidasLib,
   UWEBMWebService in '..\SRC\UWEBMWebService.pas' {WEBMWebService: TWebModule},
   USODMPrincipal in '..\SRC\USODMPrincipal.pas' {SODMPrincipal: TSoapDataModule},
   USessionsManager in '..\SRC\USessionsManager.pas',

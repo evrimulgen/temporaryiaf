@@ -52,8 +52,8 @@ implementation
 
 uses UDAMOPrincipal
    , UExtraMethods
-   , KRK.Win32.Rtl.Common.FileUtils
-   , KRK.Win32.Db.Utils;
+   , KRK.Lib.Rtl.Common.FileUtils
+   , KRK.Lib.Db.Utils;
 
 { TClientDataSetHelper }
 

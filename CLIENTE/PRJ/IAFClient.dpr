@@ -2,7 +2,7 @@ program IAFClient;
 
 uses
   Forms,
-  MidasLib in '..\..\COMUM\SRC\MidasLib.pas',
+  KRK.Lib.Db.Midas.MidasLib,
   UFORMPrincipal in '..\SRC\UFORMPrincipal.pas' {FORMPrincipal},
   UDAMOPrincipal in '..\SRC\UDAMOPrincipal.pas' {DAMOPrincipal: TDataModule},
   UFORMLogin in '..\SRC\UFORMLogin.pas' {FORMLogin},

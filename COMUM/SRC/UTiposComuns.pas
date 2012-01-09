@@ -3,7 +3,7 @@ unit UTiposComuns;
 interface
 
 uses
-  KRK.Win32.Rtl.Common.Classes;
+  KRK.Lib.Rtl.Common.Classes;
 
 type
   { TSessionData precisa ser do tipo TObjectFile de forma a poder usar o método

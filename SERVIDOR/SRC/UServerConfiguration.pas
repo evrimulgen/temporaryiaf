@@ -5,7 +5,7 @@ interface
 
 uses Classes
    , SyncObjs
-   , KRK.Win32.Rtl.Common.Classes
+   , KRK.Lib.Rtl.Common.Classes
    , ZDbcIntfs;
 
 type

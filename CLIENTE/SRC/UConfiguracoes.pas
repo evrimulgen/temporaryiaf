@@ -2,7 +2,7 @@ unit UConfiguracoes;
 
 interface
 
-uses KRK.Win32.Rtl.Common.Classes
+uses KRK.Lib.Rtl.Common.Classes
    , Classes;
 
 type
