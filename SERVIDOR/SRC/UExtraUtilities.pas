@@ -11,7 +11,7 @@ function CheckSessions: Boolean;
 function UseCompression: Boolean;
 function SessionExists(const aSessionID: String): Boolean;
 procedure ConfigureConnection(const aZConnection: TZConnection);
-procedure RemoveDefaultInterfaces(var aContent: String);
+procedure HideInterfaces(var aContent: String; aInterfaces: array of string);
 procedure AddDefaultFooter(var aContent: String);
 
 implementation
@@ -23,9 +23,31 @@ uses SysUtils
    , UKRDMEntidadesDoSistema
    , UKRDMGrupos;
 
-procedure RemoveDefaultInterfaces(var aContent: String);
+procedure HideInterfaces(var aContent: String; aInterfaces: array of string);
+var
+  Intf: String;
+  PosInterface, DelStart, DelEnd: Integer;
 begin
-  aContent := aContent + 'carlos';
+  { Circula por cada interface que precisa ser ocultada }
+  for Intf in aInterfaces do
+  begin
+    { Procura a interface dentro do conteúdo }
+    PosInterface := Pos(Intf,aContent);
+
+    { Se existir a interface continua }
+    if PosInterface > 0 then
+    begin
+      DelEnd := PosEx('</tr>',aContent,PosInterface) + Length('</tr>');
+      DelStart := PosEx()
+    end;
+
+    salve em um string list
+    remova todos os enters
+    substituua tudo que é </tr> e <tr> por enter
+    cada linha vai ser aquilo que existir entre TR e /TR grosso modo
+    varre a lista e busca a interface
+    quando achar, remova alinha completa
+  end;
 end;
 
 procedure AddDefaultFooter(var aContent: String);
