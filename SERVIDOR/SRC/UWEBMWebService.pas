@@ -28,6 +28,8 @@ implementation
 
 {$R *.dfm}
 
+uses UExtraUtilities;
+
 procedure TWEBMWebService.PAPRSobreHTMLTag(Sender: TObject; Tag: TTag; const TagString: string; TagParams: TStrings; var ReplaceText: string);
 begin
   if TagString = 'versao' then
@@ -35,8 +37,18 @@ begin
 end;
 
 procedure TWEBMWebService.WebModule2DefaultHandlerAction(Sender: TObject; Request: TWebRequest; Response: TWebResponse; var Handled: Boolean);
+var
+  Conteudo: String;
 begin
   WSHPWebService.ServiceInfo(Sender, Request, Response, Handled);
+
+  Conteudo := Response.Content;
+  try
+    RemoveDefaultInterfaces(Conteudo);
+    AddDefaultFooter(Conteudo);
+  finally
+    Response.Content := Conteudo;
+  end;
 end;
 
 end.

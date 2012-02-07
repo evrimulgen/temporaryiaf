@@ -21,6 +21,6 @@ type
 implementation
 
 initialization
-  InvRegistry.RegisterInterface(TypeInfo(IAuthenticator));
+  InvRegistry.RegisterInterface(TypeInfo(IAuthenticator),'','','Descrição de IAuthenticator');
 
 end.

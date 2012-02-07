@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="ISODMPrincipal" soapui-version="4.0.1" abortOnError="false" runType="SEQUENTIAL" resourceRoot="" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="ISODMPrincipalbinding" type="wsdl" bindingName="{http://www.zettaomnis.com.br/}ISODMPrincipalbinding" soapVersion="1_1" anonymous="optional" definition="http://127.0.0.1/iaf/IAFServer.dll/wsdl/ISODMPrincipal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://127.0.0.1/iaf/IAFServer.dll/wsdl/ISODMPrincipal"><con:part><con:url>http://127.0.0.1/iaf/IAFServer.dll/wsdl/ISODMPrincipal</con:url><con:content><![CDATA[<definitions name="ISODMPrincipalservice" targetNamespace="http://www.zettaomnis.com.br/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.zettaomnis.com.br/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="http://www.borland.com/namespaces/Types">
+  <types>
+    <xs:schema targetNamespace="http://www.borland.com/namespaces/Types" xmlns="http://www.borland.com/namespaces/Types">
+      <xs:complexType name="TWideStringDynArray">
+        <xs:complexContent>
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence/>
+            <xs:attribute ref="soapenc:arrayType" n1:arrayType="xs:string[]" xmlns:n1="http://schemas.xmlsoap.org/wsdl/"/>
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="SAS_ApplyUpdates0Request">
+    <part name="ProviderName" type="xs:string"/>
+    <part name="Delta" type="xs:anyType"/>
+    <part name="MaxErrors" type="xs:int"/>
+    <part name="OwnerData" type="xs:anyType"/>
+  </message>
+  <message name="SAS_ApplyUpdates0Response">
+    <part name="ErrorCount" type="xs:int"/>
+    <part name="OwnerData" type="xs:anyType"/>
+    <part name="return" type="xs:anyType"/>
+  </message>
+  <message name="SAS_GetRecords1Request">
+    <part name="ProviderName" type="xs:string"/>
+    <part name="Count" type="xs:int"/>
+    <part name="Options" type="xs:int"/>
+    <part name="CommandText" type="xs:string"/>
+    <part name="Params" type="xs:anyType"/>
+    <part name="OwnerData" type="xs:anyType"/>
+  </message>
+  <message name="SAS_GetRecords1Response">
+    <part name="RecsOut" type="xs:int"/>
+    <part name="Params" type="xs:anyType"/>
+    <part name="OwnerData" type="xs:anyType"/>
+    <part name="return" type="xs:anyType"/>
+  </message>
+  <message name="SAS_DataRequest2Request">
+    <part name="ProviderName" type="xs:string"/>
+    <part name="Data" type="xs:anyType"/>
+  </message>
+  <message name="SAS_DataRequest2Response">
+    <part name="return" type="xs:anyType"/>
+  </message>
+  <message name="SAS_GetProviderNames3Request"/>
+  <message name="SAS_GetProviderNames3Response">
+    <part name="return" type="ns1:TWideStringDynArray"/>
+  </message>
+  <message name="SAS_GetParams4Request">
+    <part name="ProviderName" type="xs:string"/>
+    <part name="OwnerData" type="xs:anyType"/>
+  </message>
+  <message name="SAS_GetParams4Response">
+    <part name="OwnerData" type="xs:anyType"/>
+    <part name="return" type="xs:anyType"/>
+  </message>
+  <message name="SAS_RowRequest5Request">
+    <part name="ProviderName" type="xs:string"/>
+    <part name="Row" type="xs:anyType"/>
+    <part name="RequestType" type="xs:int"/>
+    <part name="OwnerData" type="xs:anyType"/>
+  </message>
+  <message name="SAS_RowRequest5Response">
+    <part name="OwnerData" type="xs:anyType"/>
+    <part name="return" type="xs:anyType"/>
+  </message>
+  <message name="SAS_Execute6Request">
+    <part name="ProviderName" type="xs:string"/>
+    <part name="CommandText" type="xs:string"/>
+    <part name="Params" type="xs:anyType"/>
+    <part name="OwnerData" type="xs:anyType"/>
+  </message>
+  <message name="SAS_Execute6Response">
+    <part name="Params" type="xs:anyType"/>
+    <part name="OwnerData" type="xs:anyType"/>
+  </message>
+  <portType name="ISODMPrincipal">
+    <operation name="SAS_ApplyUpdates">
+      <input message="tns:SAS_ApplyUpdates0Request"/>
+      <output message="tns:SAS_ApplyUpdates0Response"/>
+    </operation>
+    <operation name="SAS_GetRecords">
+      <input message="tns:SAS_GetRecords1Request"/>
+      <output message="tns:SAS_GetRecords1Response"/>
+    </operation>
+    <operation name="SAS_DataRequest">
+      <input message="tns:SAS_DataRequest2Request"/>
+      <output message="tns:SAS_DataRequest2Response"/>
+    </operation>
+    <operation name="SAS_GetProviderNames">
+      <input message="tns:SAS_GetProviderNames3Request"/>
+      <output message="tns:SAS_GetProviderNames3Response"/>
+    </operation>
+    <operation name="SAS_GetParams">
+      <input message="tns:SAS_GetParams4Request"/>
+      <output message="tns:SAS_GetParams4Response"/>
+    </operation>
+    <operation name="SAS_RowRequest">
+      <input message="tns:SAS_RowRequest5Request"/>
+      <output message="tns:SAS_RowRequest5Response"/>
+    </operation>
+    <operation name="SAS_Execute">
+      <input message="tns:SAS_Execute6Request"/>
+      <output message="tns:SAS_Execute6Response"/>
+    </operation>
+  </portType>
+  <binding name="ISODMPrincipalbinding" type="tns:ISODMPrincipal">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="SAS_ApplyUpdates">
+      <soap:operation soapAction="urn:USODMPrincipal-ISODMPrincipal#SAS_ApplyUpdates" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:USODMPrincipal-ISODMPrincipal"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:USODMPrincipal-ISODMPrincipal"/>
+      </output>
+    </operation>
+    <operation name="SAS_GetRecords">
+      <soap:operation soapAction="urn:USODMPrincipal-ISODMPrincipal#SAS_GetRecords" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:USODMPrincipal-ISODMPrincipal"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:USODMPrincipal-ISODMPrincipal"/>
+      </output>
+    </operation>
+    <operation name="SAS_DataRequest">
+      <soap:operation soapAction="urn:USODMPrincipal-ISODMPrincipal#SAS_DataRequest" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:USODMPrincipal-ISODMPrincipal"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:USODMPrincipal-ISODMPrincipal"/>
+      </output>
+    </operation>
+    <operation name="SAS_GetProviderNames">
+      <soap:operation soapAction="urn:USODMPrincipal-ISODMPrincipal#SAS_GetProviderNames" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:USODMPrincipal-ISODMPrincipal"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:USODMPrincipal-ISODMPrincipal"/>
+      </output>
+    </operation>
+    <operation name="SAS_GetParams">
+      <soap:operation soapAction="urn:USODMPrincipal-ISODMPrincipal#SAS_GetParams" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:USODMPrincipal-ISODMPrincipal"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:USODMPrincipal-ISODMPrincipal"/>
+      </output>
+    </operation>
+    <operation name="SAS_RowRequest">
+      <soap:operation soapAction="urn:USODMPrincipal-ISODMPrincipal#SAS_RowRequest" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:USODMPrincipal-ISODMPrincipal"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:USODMPrincipal-ISODMPrincipal"/>
+      </output>
+    </operation>
+    <operation name="SAS_Execute">
+      <soap:operation soapAction="urn:USODMPrincipal-ISODMPrincipal#SAS_Execute" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:USODMPrincipal-ISODMPrincipal"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:USODMPrincipal-ISODMPrincipal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="ISODMPrincipalservice">
+    <port name="ISODMPrincipalPort" binding="tns:ISODMPrincipalbinding">
+      <soap:address location="http://127.0.0.1/iaf/IAFServer.dll/soap/ISODMPrincipal"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/ISODMPrincipal</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:USODMPrincipal-ISODMPrincipal#SAS_ApplyUpdates" name="SAS_ApplyUpdates" bindingOperationName="SAS_ApplyUpdates" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/ISODMPrincipal</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:USODMPrincipal-ISODMPrincipal">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:SAS_ApplyUpdates soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <ProviderName xsi:type="xsd:string">?</ProviderName>
+         <Delta xsi:type="xsd:anyType">?</Delta>
+         <MaxErrors xsi:type="xsd:int">?</MaxErrors>
+         <OwnerData xsi:type="xsd:anyType">?</OwnerData>
+      </urn:SAS_ApplyUpdates>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:USODMPrincipal-ISODMPrincipal#SAS_ApplyUpdates"/></con:call></con:operation><con:operation isOneWay="false" action="urn:USODMPrincipal-ISODMPrincipal#SAS_DataRequest" name="SAS_DataRequest" bindingOperationName="SAS_DataRequest" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/ISODMPrincipal</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:USODMPrincipal-ISODMPrincipal">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:SAS_DataRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <ProviderName xsi:type="xsd:string">?</ProviderName>
+         <Data xsi:type="xsd:anyType">?</Data>
+      </urn:SAS_DataRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:USODMPrincipal-ISODMPrincipal#SAS_DataRequest"/></con:call></con:operation><con:operation isOneWay="false" action="urn:USODMPrincipal-ISODMPrincipal#SAS_Execute" name="SAS_Execute" bindingOperationName="SAS_Execute" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/ISODMPrincipal</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:USODMPrincipal-ISODMPrincipal">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:SAS_Execute soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <ProviderName xsi:type="xsd:string">?</ProviderName>
+         <CommandText xsi:type="xsd:string">?</CommandText>
+         <Params xsi:type="xsd:anyType">?</Params>
+         <OwnerData xsi:type="xsd:anyType">?</OwnerData>
+      </urn:SAS_Execute>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:USODMPrincipal-ISODMPrincipal#SAS_Execute"/></con:call></con:operation><con:operation isOneWay="false" action="urn:USODMPrincipal-ISODMPrincipal#SAS_GetParams" name="SAS_GetParams" bindingOperationName="SAS_GetParams" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/ISODMPrincipal</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:USODMPrincipal-ISODMPrincipal">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:SAS_GetParams soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <ProviderName xsi:type="xsd:string">?</ProviderName>
+         <OwnerData xsi:type="xsd:anyType">?</OwnerData>
+      </urn:SAS_GetParams>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:USODMPrincipal-ISODMPrincipal#SAS_GetParams"/></con:call></con:operation><con:operation isOneWay="false" action="urn:USODMPrincipal-ISODMPrincipal#SAS_GetProviderNames" name="SAS_GetProviderNames" bindingOperationName="SAS_GetProviderNames" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/ISODMPrincipal</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:USODMPrincipal-ISODMPrincipal">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:SAS_GetProviderNames soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:USODMPrincipal-ISODMPrincipal#SAS_GetProviderNames"/></con:call></con:operation><con:operation isOneWay="false" action="urn:USODMPrincipal-ISODMPrincipal#SAS_GetRecords" name="SAS_GetRecords" bindingOperationName="SAS_GetRecords" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/ISODMPrincipal</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:USODMPrincipal-ISODMPrincipal">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:SAS_GetRecords soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <ProviderName xsi:type="xsd:string">DSPRUsuarios</ProviderName>
+         <Count xsi:type="xsd:int">-1</Count>
+         <Options xsi:type="xsd:int">4</Options>
+         <CommandText xsi:type="xsd:null"/>
+         <Params xsi:type="xsd:null"/>
+         <OwnerData xsi:type="xsd:null"/>
+      </urn:SAS_GetRecords>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:USODMPrincipal-ISODMPrincipal#SAS_GetRecords"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:USODMPrincipal-ISODMPrincipal#SAS_RowRequest" name="SAS_RowRequest" bindingOperationName="SAS_RowRequest" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/ISODMPrincipal</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:USODMPrincipal-ISODMPrincipal">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:SAS_RowRequest soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <ProviderName xsi:type="xsd:string">?</ProviderName>
+         <Row xsi:type="xsd:anyType">?</Row>
+         <RequestType xsi:type="xsd:int">?</RequestType>
+         <OwnerData xsi:type="xsd:anyType">?</OwnerData>
+      </urn:SAS_RowRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:USODMPrincipal-ISODMPrincipal#SAS_RowRequest"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:sensitiveInformation/></con:soapui-project>

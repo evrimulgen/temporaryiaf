@@ -8,8 +8,11 @@ uses Classes
 
 function CreateDataModule(const aProviderName: WideString; const aOwner: TComponent = nil): TKRDMBasico;
 function CheckSessions: Boolean;
+function UseCompression: Boolean;
 function SessionExists(const aSessionID: String): Boolean;
 procedure ConfigureConnection(const aZConnection: TZConnection);
+procedure RemoveDefaultInterfaces(var aContent: String);
+procedure AddDefaultFooter(var aContent: String);
 
 implementation
 
@@ -19,6 +22,17 @@ uses SysUtils
    , UKRDMUsuarios
    , UKRDMEntidadesDoSistema
    , UKRDMGrupos;
+
+procedure RemoveDefaultInterfaces(var aContent: String);
+begin
+  aContent := aContent + 'carlos';
+end;
+
+procedure AddDefaultFooter(var aContent: String);
+begin
+  aContent := aContent + 'carlos';
+end;
+
 
 function CreateDataModule(const aProviderName: WideString; const aOwner: TComponent = nil): TKRDMBasico;
 begin
@@ -44,6 +58,16 @@ begin
   end;
 end;
 
+function UseCompression: Boolean;
+begin
+  CS.Enter;
+  try
+    Result := ServerConfiguration.UseCompression;
+  finally
+    CS.Leave;
+  end;
+end;
+
 function SessionExists(const aSessionID: String): Boolean;
 begin
   CS.Enter;
@@ -58,13 +82,19 @@ procedure ConfigureConnection(const aZConnection: TZConnection);
 begin
   with aZConnection do
   begin
-    HostName               := ServerConfiguration.DBHostName;
-    Port                   := ServerConfiguration.DBPortNumb;
-    Database               := ServerConfiguration.DBDatabase;
-    User                   := ServerConfiguration.DBUserName;
-    Password               := ServerConfiguration.DBPassword;
-    Protocol               := ServerConfiguration.DBProtocol;
-    TransactIsolationLevel := ServerConfiguration.DBTransactIsolationLevel;
+    CS.Enter;
+    try
+      HostName               := ServerConfiguration.DBHostName;
+      Port                   := ServerConfiguration.DBPortNumb;
+      Database               := ServerConfiguration.DBDatabase;
+      User                   := ServerConfiguration.DBUserName;
+      Password               := ServerConfiguration.DBPassword;
+      Protocol               := ServerConfiguration.DBProtocol;
+      TransactIsolationLevel := ServerConfiguration.DBTransactIsolationLevel;
+    finally
+      CS.Leave;
+    end;
+
     Properties.Add('codepage=UTF8');
     Properties.Add('client_encoding=UTF8');
   end;

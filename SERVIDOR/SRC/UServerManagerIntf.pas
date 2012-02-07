@@ -13,6 +13,9 @@ type
     procedure SetCheckSessions(const aPassword: String; const aValue: Boolean); stdcall;
     function GetCheckSessions: Boolean; stdcall;
 
+    procedure SetUseCompression(const aPassword: string; const aValue: Boolean); stdcall;
+    function GetUseCompression: Boolean; stdcall;
+
     procedure SetDBHostName(const aPassword: string; const aValue: String); stdcall;
     procedure SetDBPortNumb(const aPassword: string; const aValue: Word); stdcall;
     procedure SetDBDatabase(const aPassword: string; const aValue: String); stdcall;
@@ -25,6 +28,6 @@ type
 implementation
 
 initialization
-  InvRegistry.RegisterInterface(TypeInfo(IServerManager));
+  InvRegistry.RegisterInterface(TypeInfo(IServerManager),'','','Descrição de IServerManager');
 
 end.

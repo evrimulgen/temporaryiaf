@@ -13,6 +13,7 @@ type
   private
     FFileName: String;
     FCheckSessions: Boolean;
+    FUseCompression: Boolean;
 
     FDBDatabase: String;
     FDBHostName: String;
@@ -26,6 +27,7 @@ type
     destructor Destroy; override;
   published
     property CheckSessions: Boolean read FCheckSessions write FCheckSessions;
+    property UseCompression: Boolean read FUseCompression write FUseCompression default False;
     property DBDatabase: String read FDBDatabase write FDBDatabase;
     property DBHostName: String read FDBHostName write FDBHostName;
     property DBPassword: String read FDBPassword write FDBPassword;
@@ -62,6 +64,7 @@ begin
   end;
 
   FCheckSessions  := True;
+  FUseCompression := False;
 
   FDBDatabase               := '';
   FDBHostName               := '';

@@ -49,9 +49,8 @@ implementation
 
 {$R *.DFM}
 
-uses UExtraUtilities
-   , KRK.Lib.Db.Consts
-   , KRK.Lib.Rtl.Common.FileUtils, Variants;
+uses UExtraUtilities, KRK.Lib.Db.Consts, KRK.Lib.Rtl.Common.FileUtils, Variants
+   , KRK.Lib.DCpcrypt.Base64, KRK.Lib.Rtl.Common.VariantUtils;
 
 procedure TSODMPrincipalCreateInstance(out obj: TObject);
 begin
@@ -66,6 +65,9 @@ begin
   begin
     CreateDataModule(ProviderName,Self);
     Result := inherited;
+
+    if UseCompression then
+      OleVariantByteArrayCompress(Result);
   end
   else
     raise Exception.Create('Para usar este método é necessário que você seja um usuário autenticado no sistema');
@@ -75,6 +77,9 @@ function TSODMPrincipal.SAS_DataRequest(const ProviderName: WideString; Data: Ol
 begin
   CreateDataModule(ProviderName,Self);
   Result := inherited;
+
+  if UseCompression then
+    OleVariantByteArrayCompress(Result);
 end;
 
 procedure TSODMPrincipal.SAS_Execute(const ProviderName, CommandText: WideString; var Params, OwnerData: OleVariant);
@@ -94,6 +99,9 @@ begin
   begin
     CreateDataModule(ProviderName,Self);
     Result := inherited;
+
+    if UseCompression then
+      OleVariantByteArrayCompress(Result);
   end
   else
     raise Exception.Create('Para usar este método é necessário que você seja um usuário autenticado no sistema');
@@ -105,6 +113,9 @@ begin
   begin
     CreateDataModule(ProviderName,Self);
     Result := inherited;
+
+    if UseCompression then
+      OleVariantByteArrayCompress(Result);
   end
   else
     raise Exception.Create('Para usar este método é necessário que você seja um usuário autenticado no sistema');
@@ -116,6 +127,9 @@ begin
   begin
     CreateDataModule(ProviderName,Self);
     Result := inherited;
+
+    if UseCompression then
+      OleVariantByteArrayCompress(Result);
   end
   else
     raise Exception.Create('Para usar este método é necessário que você seja um usuário autenticado no sistema');
@@ -205,6 +219,6 @@ end;
 
 initialization
   InvRegistry.RegisterInvokableClass(TSODMPrincipal, TSODMPrincipalCreateInstance);
-  InvRegistry.RegisterInterface(TypeInfo(ISODMPrincipal));
+  InvRegistry.RegisterInterface(TypeInfo(ISODMPrincipal),'','','Descrição de ISODMPrincipal');
 
 end.

@@ -15,6 +15,9 @@ type
     procedure SetCheckSessions(const aPassword: string; const aValue: Boolean); stdcall;
     function GetCheckSessions: Boolean; stdcall;
 
+    procedure SetUseCompression(const aPassword: string; const aValue: Boolean); stdcall;
+    function GetUseCompression: Boolean; stdcall;
+
     procedure SetDBHostName(const aPassword: string; const aValue: String); stdcall;
     procedure SetDBPortNumb(const aPassword: string; const aValue: Word); stdcall;
     procedure SetDBDatabase(const aPassword: string; const aValue: String); stdcall;
@@ -44,6 +47,16 @@ begin
   end;
 end;
 
+function TServerManager.GetUseCompression: Boolean;
+begin
+  CS.Enter;
+  try
+    Result := ServerConfiguration.UseCompression;
+  finally
+    CS.Leave;
+  end;
+end;
+
 procedure TServerManager.SetCheckSessions(const aPassword: string; const aValue: Boolean);
 begin
   CS.Enter;
@@ -51,6 +64,22 @@ begin
     if aPassword = MASTER_PASSWORD then
     begin
       ServerConfiguration.CheckSessions := aValue;
+      ServerConfiguration.SaveText;
+    end
+    else
+      raise Exception.Create('Senha incorreta!');
+  finally
+    CS.Leave;
+  end;
+end;
+
+procedure TServerManager.SetUseCompression(const aPassword: string; const aValue: Boolean);
+begin
+  CS.Enter;
+  try
+    if aPassword = MASTER_PASSWORD then
+    begin
+      ServerConfiguration.UseCompression := aValue;
       ServerConfiguration.SaveText;
     end
     else
