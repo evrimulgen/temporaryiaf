@@ -219,6 +219,6 @@ end;
 
 initialization
   InvRegistry.RegisterInvokableClass(TSODMPrincipal, TSODMPrincipalCreateInstance);
-  InvRegistry.RegisterInterface(TypeInfo(ISODMPrincipal),'','','Descrição de ISODMPrincipal');
+  InvRegistry.RegisterInterface(TypeInfo(ISODMPrincipal),'','','Interface SOAP principal de entrada no sistema usada pelo DataSnap. Contém todos os provedores do sistema');
 
 end.

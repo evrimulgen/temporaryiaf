@@ -44,7 +44,7 @@ begin
 
   Conteudo := Response.Content;
   try
-    RemoveDefaultInterfaces(Conteudo);
+    HideInterfaces(Conteudo,['IAppServer','IAppServerSOAP']);
     AddDefaultFooter(Conteudo);
   finally
     Response.Content := Conteudo;

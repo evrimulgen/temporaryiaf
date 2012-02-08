@@ -28,6 +28,6 @@ type
 implementation
 
 initialization
-  InvRegistry.RegisterInterface(TypeInfo(IServerManager),'','','Descrição de IServerManager');
+  InvRegistry.RegisterInterface(TypeInfo(IServerManager),'','','Interface que expõe métodos para gerenciamento remoto do Middleware');
 
 end.

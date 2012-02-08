@@ -26,28 +26,43 @@ uses SysUtils
 procedure HideInterfaces(var aContent: String; aInterfaces: array of string);
 var
   Intf: String;
-  PosInterface, DelStart, DelEnd: Integer;
+  i: Integer;
 begin
-  { Circula por cada interface que precisa ser ocultada }
-  for Intf in aInterfaces do
-  begin
-    { Procura a interface dentro do conteúdo }
-    PosInterface := Pos(Intf,aContent);
+  if Length(aInterfaces) = 0 then
+    Exit;
 
-    { Se existir a interface continua }
-    if PosInterface > 0 then
-    begin
-      DelEnd := PosEx('</tr>',aContent,PosInterface) + Length('</tr>');
-      DelStart := PosEx()
+  with TStringList.Create do
+    try
+      { Remove todos os enters }
+      aContent := StringReplace(aContent,#13#10,' ',[rfreplaceAll]);
+
+      { Separa tudo baseando-se nos TR }
+      Text := StringReplace(aContent,'<tr>',#13#10'<tr>'#13#10,[rfreplaceAll,rfIgnoreCase]);
+      Text := StringReplace(Text,'</tr>',#13#10'</tr>'#13#10,[rfreplaceAll,rfIgnoreCase]);
+
+      { Neste ponto, cada linha do StringList contém ou <TR>, ou </TR>, ou o que
+      houver entre os dois, então circulamos por cada interface que precisa ser
+      ocultada }
+      for Intf in aInterfaces do
+      begin
+        for i := 0 to Pred(Count) do
+          if Pos(LowerCase(Intf),LowerCase(Strings[i])) > 0 then
+            Break;
+
+        { Se achou a interface, oculta a linha inteira de tabela, removendo do
+        StringList i, i-1 e i+1 }
+        if i < Count then
+        begin
+          Delete(i+1);
+          Delete(i);
+          Delete(i-1);
+        end;
+      end;
+
+      aContent := Text;
+    finally
+      Free;
     end;
-
-    salve em um string list
-    remova todos os enters
-    substituua tudo que é </tr> e <tr> por enter
-    cada linha vai ser aquilo que existir entre TR e /TR grosso modo
-    varre a lista e busca a interface
-    quando achar, remova alinha completa
-  end;
 end;
 
 procedure AddDefaultFooter(var aContent: String);

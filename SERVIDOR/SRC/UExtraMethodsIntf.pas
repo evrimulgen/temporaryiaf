@@ -13,6 +13,6 @@ type
 implementation
 
 initialization
-  InvRegistry.RegisterInterface(TypeInfo(IExtraMethods),'','','Descrição de IExtraMethods');
+  InvRegistry.RegisterInterface(TypeInfo(IExtraMethods),'','','Interface que expõe métodos adicionais que podem ser usados por clientes autenticados');
 
 end.

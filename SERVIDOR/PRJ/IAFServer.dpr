@@ -36,12 +36,3 @@ begin
   Application.WebModuleClass := WebModuleClass;
   Application.Run;
 end.
-
-//    with TStringList.Create do
-//    try
-//      Text := FFileName;
-//      SaveToFile('C:\carlos.txt');
-//    finally
-//      Free;
-//    end;
-
