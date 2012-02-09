@@ -29,6 +29,8 @@ type
     procedure DoBeforePost; override;
     procedure DoBeforeDelete; override;
     procedure DoOnNewRecord; override;
+    function DoApplyUpdates(Delta: OleVariant; MaxErrors: Integer; out ErrorCount: Integer): OleVariant; override;
+    function DoGetRecords(Count: Integer; out RecsOut: Integer; Options: Integer; const CommandText: WideString; Params: OleVariant): OleVariant; override;
   end;
 
   TKRDMBasico = class(TKRKDataModule)
@@ -50,10 +52,8 @@ implementation
 
 {$R *.dfm}
 
-uses UDAMOPrincipal
-   , UExtraMethods
-   , KRK.Lib.Rtl.Common.FileUtils
-   , KRK.Lib.Db.Utils;
+uses UDAMOPrincipal, UExtraMethods, KRK.Lib.Rtl.Common.FileUtils
+   , KRK.Lib.Db.Utils, UConfiguracoes, KRK.Lib.Rtl.Common.VariantUtils;
 
 { TClientDataSetHelper }
 
@@ -73,6 +73,26 @@ procedure TClientDataSet.DoBeforeApplyUpdates(var OwnerData: OleVariant);
 begin
   OwnerData := DAMOPrincipal.CurrentSession.ID;
   inherited;
+end;
+
+function TClientDataSet.DoApplyUpdates(Delta: OleVariant; MaxErrors: Integer; out ErrorCount: Integer): OleVariant;
+begin
+  if Configuracoes.UsarCompressao then
+    OleVariantByteArrayCompress(Delta);
+
+  Result := inherited;
+ no cliente e no servidor, so comprimir se houver algo para isso. altera as funções olevariant
+
+  if Configuracoes.UsarCompressao then
+    OleVariantByteArrayDecompress(Result);
+end;
+
+function TClientDataSet.DoGetRecords(Count: Integer; out RecsOut: Integer; Options: Integer; const CommandText: WideString; Params: OleVariant): OleVariant;
+begin
+  Result := inherited;
+
+  if Configuracoes.UsarCompressao then
+    OleVariantByteArrayDecompress(Result);
 end;
 
 procedure TClientDataSet.DoBeforeDelete;
@@ -213,7 +233,7 @@ begin
     TipText :=  aText;
     MaxWidth := 320;
     TipIcon := tiError;
-//
+
     if aShowHint then
       Show;
   end;

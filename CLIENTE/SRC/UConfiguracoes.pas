@@ -14,6 +14,7 @@ type
     FUsuarioProxy: String;
     FSenhaProxy: String;
     FModulo: String;
+    FUsarCompressao: Boolean;
     function GetServicoWeb: String;
     function GetModuloWeb: String;
   public
@@ -27,6 +28,7 @@ type
     property EnderecoProxy: String read FEnderecoProxy write FEnderecoProxy;
     property UsuarioProxy: String read FUsuarioProxy write FUsuarioProxy;
     property SenhaProxy: String read FSenhaProxy write FSenhaProxy;
+    property UsarCompressao: Boolean read FUsarCompressao write FUsarCompressao default True;
   end;
 
 var
@@ -47,12 +49,13 @@ const
 constructor TConfiguracoes.Create(aOwner: TComponent; aAutoSaveMode: TAutoSaveMode = asmNone);
 begin
   inherited;
-  FServidor      := SERVIDOR_PADRAO;
-  FEnderecoProxy := '';
-  FUsuarioProxy  := '';
-  FSenhaProxy    := '';
-  FServico       := SERVICO_PADRAO;
-  FModulo        := MODULO_PADRAO;
+  FServidor       := SERVIDOR_PADRAO;
+  FEnderecoProxy  := '';
+  FUsuarioProxy   := '';
+  FSenhaProxy     := '';
+  FServico        := SERVICO_PADRAO;
+  FModulo         := MODULO_PADRAO;
+  FUsarCompressao := True;
 end;
 
 function TConfiguracoes.GetModuloWeb: String;

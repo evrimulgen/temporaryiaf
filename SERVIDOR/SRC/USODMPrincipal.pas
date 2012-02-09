@@ -64,10 +64,16 @@ begin
   if (not CheckSessions) or SessionExists(OwnerData) then
   begin
     CreateDataModule(ProviderName,Self);
-    Result := inherited;
 
     if UseCompression then
+      OleVariantByteArrayDecompress(Delta);
+
+    Result := inherited;
+
+ no cliente e no servidor, so comprimir se houver algo para isso. altera as funções olevariant
+    if UseCompression then
       OleVariantByteArrayCompress(Result);
+
   end
   else
     raise Exception.Create('Para usar este método é necessário que você seja um usuário autenticado no sistema');
@@ -76,10 +82,8 @@ end;
 function TSODMPrincipal.SAS_DataRequest(const ProviderName: WideString; Data: OleVariant): OleVariant;
 begin
   CreateDataModule(ProviderName,Self);
-  Result := inherited;
 
-  if UseCompression then
-    OleVariantByteArrayCompress(Result);
+  Result := inherited;
 end;
 
 procedure TSODMPrincipal.SAS_Execute(const ProviderName, CommandText: WideString; var Params, OwnerData: OleVariant);
@@ -98,10 +102,8 @@ begin
   if (not CheckSessions) or SessionExists(OwnerData) then
   begin
     CreateDataModule(ProviderName,Self);
-    Result := inherited;
 
-    if UseCompression then
-      OleVariantByteArrayCompress(Result);
+    Result := inherited;
   end
   else
     raise Exception.Create('Para usar este método é necessário que você seja um usuário autenticado no sistema');
@@ -112,6 +114,7 @@ begin
   if (not CheckSessions) or SessionExists(OwnerData) then
   begin
     CreateDataModule(ProviderName,Self);
+
     Result := inherited;
 
     if UseCompression then
@@ -126,10 +129,8 @@ begin
   if (not CheckSessions) or SessionExists(OwnerData) then
   begin
     CreateDataModule(ProviderName,Self);
-    Result := inherited;
 
-    if UseCompression then
-      OleVariantByteArrayCompress(Result);
+    Result := inherited;
   end
   else
     raise Exception.Create('Para usar este método é necessário que você seja um usuário autenticado no sistema');
