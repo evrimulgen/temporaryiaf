@@ -42,12 +42,15 @@ var
 begin
   WSHPWebService.ServiceInfo(Sender, Request, Response, Handled);
 
-  Conteudo := Response.Content;
-  try
-    HideInterfaces(Conteudo,['IAppServer','IAppServerSOAP']);
-    AddDefaultFooter(Conteudo);
-  finally
-    Response.Content := Conteudo;
+  if Pos(LowerCase('/inspection.wsil'),LowerCase(String(Request.URL))) = 0 then
+  begin
+    Conteudo := Response.Content;
+    try
+      HideInterfaces(Conteudo,['IAppServer','IAppServerSOAP']);
+      AddDefaultFooter(Conteudo);
+    finally
+      Response.Content := Conteudo;
+    end;
   end;
 end;
 

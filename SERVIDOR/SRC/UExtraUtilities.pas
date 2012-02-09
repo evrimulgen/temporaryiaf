@@ -66,8 +66,14 @@ begin
 end;
 
 procedure AddDefaultFooter(var aContent: String);
+const
+  FOOTER =
+#13#10 +
+'  <table class="MainBkgnd" border=0 cellpadding=0 cellspacing=0 width="100%">'#13#10 +
+'    <tr><td class="h1Style" align="right">Copyright 2012 R&C Desenvolvedores&nbsp;</td></tr>'#13#10 +
+'  </table></body>';
 begin
-  aContent := aContent + 'carlos';
+  aContent := StringReplace(aContent,'</body>',FOOTER,[rfIgnoreCase]);
 end;
 
 
