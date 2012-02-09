@@ -70,7 +70,6 @@ begin
 
     Result := inherited;
 
- no cliente e no servidor, so comprimir se houver algo para isso. altera as funções olevariant
     if UseCompression then
       OleVariantByteArrayCompress(Result);
 

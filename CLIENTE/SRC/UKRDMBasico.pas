@@ -81,8 +81,7 @@ begin
     OleVariantByteArrayCompress(Delta);
 
   Result := inherited;
- no cliente e no servidor, so comprimir se houver algo para isso. altera as funções olevariant
-
+ 
   if Configuracoes.UsarCompressao then
     OleVariantByteArrayDecompress(Result);
 end;
