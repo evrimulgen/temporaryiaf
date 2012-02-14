@@ -78,6 +78,7 @@ begin
 
               ParamByName('SM_USUARIOS_ID').AsInteger := SessionData.sm_usuarios_id;
               ParamByName('CH_SENHA').AsString := aNewPassword;
+              Connection := FZConnection;
 
               ExecSQL;
 

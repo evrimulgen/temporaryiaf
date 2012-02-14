@@ -71,7 +71,6 @@ type
     BitBtn_GDU_Adicionar: TBitBtn;
     BitBtn_GDU_Remover: TBitBtn;
     GroupBoxUsuariosCadastrar: TGroupBox;
-    KLDE_USU_CH_SENHA: TKRKLabeledDBEdit;
     KLDE_USU_VA_EMAIL: TKRKLabeledDBEdit;
     TabSheet_GRU: TTabSheet;
     GroupBoxGruposConsultar: TGroupBox;
@@ -96,6 +95,7 @@ type
     GRBXGRUFiltros: TGroupBox;
     LABLGRUFiltros: TLabel;
     KRDGGruposCON: TKRKDBGrid;
+    BUTNRessetarSenhas: TButton;
     procedure LAEDUSU_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
     procedure LAEDUSU_VA_LOGINKeyPress(Sender: TObject; var Key: Char);
     procedure LabeledEdit_EDS_VA_NOMEKeyPress(Sender: TObject; var Key: Char);

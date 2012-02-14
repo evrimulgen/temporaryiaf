@@ -82,8 +82,8 @@ type
     CLDSPermissoesDosGrupossm_excluir: TSmallintField;
     CLDSPermissoesDosGruposic_entidade: TStringField;
     CLDSPermissoesDosGruposic_tipo: TStringField;
+    ACTNRessetarSenhas: TAction;
     procedure CLDSEntidadesDoSistemaCONsm_tipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
-    procedure CLDSUsuariosch_senhaGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure CLDSUsuariosCalcFields(DataSet: TDataSet);
     procedure CLDSUsuariosAfterRefresh(DataSet: TDataSet);
     procedure DoGetTextVazio(Sender: TField; var Text: string; DisplayText: Boolean);
@@ -96,6 +96,7 @@ type
       var Text: string; DisplayText: Boolean);
     procedure CLDSPermissoesDosGrupostipoGetText(Sender: TField;
       var Text: string; DisplayText: Boolean);
+    procedure ACTNRessetarSenhasExecute(Sender: TObject);
   private
     { Declarações privadas }
     procedure AdicionarEntidadesParaUsuario;
@@ -115,11 +116,8 @@ implementation
 {$R *.dfm}
 
 
-uses Math
-   , UKRFMSegurancaEPermissoes
-   , UDAMOPrincipal
-   , KRK.Lib.Db.Utils
-   , DBGrids;
+uses Math, UKRFMSegurancaEPermissoes, UDAMOPrincipal, KRK.Lib.Db.Utils, DBGrids
+   , KRK.Lib.DCPcrypt.Utilities, KRK.Lib.DCPcrypt.Types;
 
 { TKRDMSegurancaEPermissoes }
 
@@ -130,6 +128,36 @@ begin
     0: AdicionarEntidadesParaUsuario;// Usuários
     1: AdicionarEntidadesParaGrupo;// Grupos
   end;
+end;
+
+procedure TKRDMSegurancaEPermissoes.ACTNRessetarSenhasExecute(Sender: TObject);
+var
+  i: Integer;
+  BookMarkList: TBookMarkList;
+  BlankPassword: String;
+begin
+  inherited;
+  BookMarkList := TKRFMSegurancaEPermissoes(MyForm).KRDGUsuarios.SelectedRows;
+
+  if BookMarkList.Count > 0 then
+    try
+      CLDSUsuarios.DisableControls;
+      BlankPassword := GetStringCheckSum('',[haSha512]);
+
+      for i := 0 to Pred(BookMarkList.Count) do
+      begin
+        CLDSUsuarios.GotoBookmark(BookMarkList[i]);
+        CLDSUsuarios.Edit;
+        CLDSUsuariosch_senha.AsString := BlankPassword;
+        CLDSUsuarios.Post;
+      end;
+      TKRFMSegurancaEPermissoes(MyForm).KRDGUsuarios.SelectedRows.Clear;
+      Application.MessageBox('As senhas de todos os usuários selecionados foram ressetadas. Confirme as alterações para que elas sejam salvas. Após a confirmação, os usuários terão de cadastrar uma nova senha da próxima vez que entrarem no sistema.','Senhas ressetadas',MB_ICONINFORMATION);
+    finally
+      CLDSUsuarios.EnableControls;
+    end
+  else
+    raise Exception.Create('É preciso selecionar ao menos um registro para que este procedimento funcione');
 end;
 
 procedure TKRDMSegurancaEPermissoes.AdicionarEntidadesParaGrupo;
@@ -397,17 +425,9 @@ begin
   inherited;
   { Sempre use campos calculados em controles que não vão receber o foco. Isso
   faz com que os controles que editam os campos reais sejam focados corretamente
-  em caso de uma validação falhar! }
+  no caso de uma validação falhar! }
   CLDSUsuarioslogin.AsString := CLDSUsuariosva_login.AsString;
   CLDSUsuariosnome.AsString := CLDSUsuariosva_nome.AsString;
-end;
-
-procedure TKRDMSegurancaEPermissoes.CLDSUsuariosch_senhaGetText(Sender: TField; var Text: string; DisplayText: Boolean);
-begin
-  inherited;
-  { Senhas nunca são exibidas }
-  if DisplayText then
-    Text := '';
 end;
 
 procedure TKRDMSegurancaEPermissoes.FiltrarEntidadesDoSistema(aCLDSEntidadesDoSistema: TClientDataSet; aIN_ENTIDADESDOSISTEMA_ID: Integer; aVA_NOME: String; aSM_TIPO: SmallInt);

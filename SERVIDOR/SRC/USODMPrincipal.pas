@@ -158,7 +158,6 @@ var
   i: Integer;
   ZROQ: TZReadOnlyQuery;
 begin
-  inherited;
   if UpdateKind = ukInsert then
   begin
     for i := 0 to Pred(SourceDS.Fields.Count) do
@@ -199,6 +198,8 @@ begin
       end;
     end;
   end;
+  { Chama o evento OnAfterUpdateRecord }
+  inherited;
 end;
 
 procedure TDataSetProvider.DoGetTableName(DataSet: TDataSet; var TableName: WideString);

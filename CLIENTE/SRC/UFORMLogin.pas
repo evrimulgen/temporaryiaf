@@ -25,7 +25,7 @@ type
 
 implementation
 
-uses UAuthenticator;
+uses UAuthenticator, UFORMTrocarSenha;
 
 {$R *.dfm}
 
@@ -34,7 +34,15 @@ uses UAuthenticator;
 procedure TFORMLogin.BUTNLogarClick(Sender: TObject);
 begin
   if Login(LAEDLogin.Text,LAEDSenha.Text,FSessionID) then
-    ModalResult := mrOk
+  begin
+    if LAEDSenha.Text = '' then
+    begin
+      Application.MessageBox('Sua senha foi ressetada ou esta é a primeira vez que você entra no sistema, por isso, (re)defina agora sua senha. Clique OK para continuar','Alteração de senha necessária',MB_ICONINFORMATION);
+      ModalResult := TFORMTrocarSenha.ShowMe1(FSessionID);
+    end
+    else
+      ModalResult := mrOk;
+  end
   else
     Application.MessageBox('A autenticação falhou. Verifique seu login e sua senha e tente outra vez','A Autenticação falhou',MB_ICONERROR);
 end;

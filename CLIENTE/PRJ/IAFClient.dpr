@@ -16,7 +16,8 @@ uses
   UKRFMSegurancaEPermissoes in '..\SRC\UKRFMSegurancaEPermissoes.pas' {KRFMSegurancaEPermissoes: TKRKForm},
   UKRDMBasico in '..\SRC\UKRDMBasico.pas' {KRDMBasico: TKRKDataModule},
   UConfiguracoes in '..\SRC\UConfiguracoes.pas',
-  UExtraMethods in '..\SRC\UExtraMethods.pas';
+  UExtraMethods in '..\SRC\UExtraMethods.pas',
+  UFORMTrocarSenha in '..\SRC\UFORMTrocarSenha.pas' {FORMTrocarSenha};
 
 {$R *.res}
 

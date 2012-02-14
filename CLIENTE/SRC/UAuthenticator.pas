@@ -58,8 +58,7 @@ function GetIAuthenticator(UseWSDL: Boolean=System.False; Addr: string=''; HTTPR
 
 implementation
 
-uses SysUtils
-   , UConfiguracoes;
+uses SysUtils, UConfiguracoes, KRK.Lib.DCPcrypt.Utilities, KRK.Lib.DCPcrypt.Types;
 
 function GetIAuthenticator(UseWSDL: Boolean; Addr: string; HTTPRIO: THTTPRIO): IAuthenticator;
 const
@@ -111,7 +110,7 @@ end;
 
 function Login(const aUser, aPassword: string; out aSessionID: string): Boolean;
 begin
-  Result := GetIAuthenticator.Login(aUser,aPassword,aSessionID);
+  Result := GetIAuthenticator.Login(aUser,GetStringCheckSum(aPassword,[haSha512]),aSessionID);
 end;
 
 function Logout(const aSessionID: string): Boolean;
@@ -131,7 +130,7 @@ end;
 
 function ChangePassword(const aSessionID: string; const aOldPassword: string; const aNewPassword: string): Byte;
 begin
-  Result := GetIAuthenticator.ChangePassword(aSessionID, aOldPassword, aNewPassword);
+  Result := GetIAuthenticator.ChangePassword(aSessionID, GetStringCheckSum(aOldPassword,[haSha512]),GetStringCheckSum(aNewPassword,[haSha512]));
 end;
 
 initialization

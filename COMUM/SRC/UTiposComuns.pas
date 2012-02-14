@@ -28,7 +28,6 @@ type
   atualmente logado}
   TCurrentSession = record
     ID: String;
-    Data: TSessionData;
   end;
 
 implementation

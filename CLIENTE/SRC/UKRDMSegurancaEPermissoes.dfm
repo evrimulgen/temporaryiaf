@@ -12,10 +12,14 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
       ImageIndex = 0
       OnExecute = ACTNAdicionarEntidadeExecute
     end
+    object ACTNRessetarSenhas: TAction
+      Caption = 'Ressetar Senhas'
+      OnExecute = ACTNRessetarSenhasExecute
+    end
   end
   inherited IMLI: TImageList
     Bitmap = {
-      494C010101000800C40010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010101000800D00010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -355,7 +359,6 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
       DisplayLabel = 'Senha'
       FieldName = 'ch_senha'
       ProviderFlags = [pfInUpdate]
-      OnGetText = CLDSUsuariosch_senhaGetText
       Size = 128
     end
     object CLDSUsuariosva_email: TWideStringField

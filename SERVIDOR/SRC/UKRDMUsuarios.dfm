@@ -241,7 +241,6 @@ inherited KRDMUsuarios: TKRDMUsuarios
       item
         FieldName = 'ch_senha'
         FieldDescription = 'Senha de acesso do usu'#225'rio'
-        CheckBlank.Active = True
         CheckBlank.FocusOnValidateFailure = True
       end
       item

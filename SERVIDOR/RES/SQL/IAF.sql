@@ -146,7 +146,7 @@ BEGIN
                            ,VA_EMAIL)
                     VALUES (pVA_NOME
                            ,pVA_LOGIN
-                           ,pCH_SENHA
+                           ,sha512('') -- todo novo usuário tem de criar sua própria senha.
                            ,pVA_EMAIL);
 
     vRETURN := CURRVAL('SQ_USU_SM_USUARIOS_ID');
