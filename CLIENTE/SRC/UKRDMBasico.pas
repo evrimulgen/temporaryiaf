@@ -78,12 +78,12 @@ end;
 function TClientDataSet.DoApplyUpdates(Delta: OleVariant; MaxErrors: Integer; out ErrorCount: Integer): OleVariant;
 begin
   if Configuracoes.UsarCompressao then
-    OleVariantByteArrayCompress(Delta);
+    OleVariantByteArrayUCLCompress(Delta);
 
   Result := inherited;
- 
+
   if Configuracoes.UsarCompressao then
-    OleVariantByteArrayDecompress(Result);
+    OleVariantByteArrayUCLDecompress(Result);
 end;
 
 function TClientDataSet.DoGetRecords(Count: Integer; out RecsOut: Integer; Options: Integer; const CommandText: WideString; Params: OleVariant): OleVariant;
@@ -91,7 +91,7 @@ begin
   Result := inherited;
 
   if Configuracoes.UsarCompressao then
-    OleVariantByteArrayDecompress(Result);
+    OleVariantByteArrayUCLDecompress(Result);
 end;
 
 procedure TClientDataSet.DoBeforeDelete;

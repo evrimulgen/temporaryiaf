@@ -66,13 +66,12 @@ begin
     CreateDataModule(ProviderName,Self);
 
     if UseCompression then
-      OleVariantByteArrayDecompress(Delta);
+      OleVariantByteArrayUCLDecompress(Delta);
 
     Result := inherited;
 
     if UseCompression then
-      OleVariantByteArrayCompress(Result);
-
+      OleVariantByteArrayUCLCompress(Result);
   end
   else
     raise Exception.Create('Para usar este método é necessário que você seja um usuário autenticado no sistema');
@@ -117,7 +116,7 @@ begin
     Result := inherited;
 
     if UseCompression then
-      OleVariantByteArrayCompress(Result);
+      OleVariantByteArrayUCLCompress(Result);
   end
   else
     raise Exception.Create('Para usar este método é necessário que você seja um usuário autenticado no sistema');
@@ -220,5 +219,4 @@ end;
 initialization
   InvRegistry.RegisterInvokableClass(TSODMPrincipal, TSODMPrincipalCreateInstance);
   InvRegistry.RegisterInterface(TypeInfo(ISODMPrincipal),'','','Interface SOAP principal de entrada no sistema usada pelo DataSnap. Contém todos os provedores do sistema');
-
 end.
