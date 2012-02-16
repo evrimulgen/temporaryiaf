@@ -2,10 +2,9 @@ unit UDAMOPrincipal;
 
 interface
 
-uses
-  SysUtils, Classes, PlatformDefaultStyleActnCtrls, ActnList, ActnMan, DB,
-  DBClient, SOAPConn, ImgList, Controls, UTiposComuns,
-  UFORMPrincipal, UKRDMSegurancaEPermissoes, SOAPHTTPTrans;
+uses SysUtils, Classes, PlatformDefaultStyleActnCtrls, ActnList, ActnMan, DB
+   , DBClient, SOAPConn, ImgList, Controls, UCommonTypes, UFORMPrincipal
+   , UKRDMSegurancaEPermissoes, SOAPHTTPTrans;
 
 type
   TDAMOPrincipal = class(TDataModule)
@@ -21,6 +20,7 @@ type
     CNBRPrincipal: TConnectionBroker;
     IMLIPrincipalLarge: TImageList;
     ACTNAtualizarPrivilegios: TAction;
+    CLDSPermissoes: TClientDataSet;
     procedure ACTNSegurancaEPermissoesExecute(Sender: TObject);
     procedure ACTNAjudaExecute(Sender: TObject);
     procedure ACTNSobreExecute(Sender: TObject);
@@ -49,13 +49,8 @@ implementation
 
 {$R *.dfm}
 
-uses Forms
-   , Windows
-   , KRK.Lib.Rtl.Common.Classes
-   , UConfiguracoes
-   , UAuthenticator
-   , UFORMLogin
-   , UFORMSplash;
+uses Forms, Windows, KRK.Lib.Rtl.Common.Classes, UConfiguracoes, UAuthenticator
+   , UFORMLogin, UFORMSplash;
 
 procedure TDAMOPrincipal.ACTNAjudaExecute(Sender: TObject);
 begin
@@ -94,8 +89,13 @@ begin
     try
       Sleep(500);
       FORMSplash := TFORMSplash.ShowMe(0);
+      FORMSplash.PRBRSplash.Position := 0;
+      FORMSplash.PRBRSplash.Max := 2;
+
       { TODO -oCBFF : Neste ponto, obtenha o restante dos dados da sessão e aplique
       as permissões. Use FORMSplash para exibir algum progresso }
+      { 1. carregue CLDSPermissoes com as Permissões efetivas }
+      { 2. Aplique localmente as permissões nos menus do form principal }
       Application.CreateForm(TFORMPrincipal,FFORMPrincipal);
     finally
       FORMSplash.Close;

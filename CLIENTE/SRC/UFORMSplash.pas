@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ExtCtrls, StdCtrls;
+  Dialogs, ExtCtrls, StdCtrls, ComCtrls;
 
 type
   TFORMSplash = class(TForm)
@@ -13,6 +13,7 @@ type
     Image1: TImage;
     Shape1: TShape;
     StaticText1: TStaticText;
+    PRBRSplash: TProgressBar;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure IMAGCloseClick(Sender: TObject);
@@ -21,6 +22,7 @@ type
     FCloseDelay: SmallInt;
     procedure DelayedClose(const aSeconds: Byte);
     procedure DoCloseDelayed(var Msg: TMessage);
+    procedure ConfigureSplashScreen;
   public
     { Public declarations }
     class function ShowMe(aCloseDelay: SmallInt = -1): TFORMSplash;
@@ -40,6 +42,12 @@ begin
   Action := caFree;
 end;
 
+procedure TFORMSplash.ConfigureSplashScreen;
+begin
+  Height := Constraints.MaxHeight;
+  Update;
+end;
+
 procedure TFORMSplash.DelayedClose(const aSeconds: Byte);
 begin
   SetTimer(Handle,IDT_DELAYEDCLOSE,aSeconds * 1000,Classes.MakeObjectInstance(DoCloseDelayed));
@@ -57,7 +65,7 @@ begin
     { Qualquer número maior que zero, fecha automaticamente }
     1..32767: DelayedClose(FCloseDelay);
     { Zero não faz nada, nem mesmo mostra o botão de fechar }
-    0: Update;
+    0: ConfigureSplashScreen;
     { Valores negativos mostram um botão de fechar }
     else
       IMAGClose.Show;

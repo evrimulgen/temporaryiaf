@@ -62,7 +62,7 @@
 				<Form>ReconcileErrorForm</Form>
 			</DCCReference>
 			<DCCReference Include="..\SRC\UAuthenticator.pas"/>
-			<DCCReference Include="..\..\COMUM\SRC\UTiposComuns.pas"/>
+			<DCCReference Include="..\..\COMUM\SRC\UCommonTypes.pas"/>
 			<DCCReference Include="..\SRC\UServerManager.pas"/>
 			<DCCReference Include="..\SRC\UKRDMSegurancaEPermissoes.pas">
 				<Form>KRDMSegurancaEPermissoes</Form>
@@ -110,7 +110,7 @@
 						<VersionInfo Name="MajorVer">1</VersionInfo>
 						<VersionInfo Name="MinorVer">0</VersionInfo>
 						<VersionInfo Name="Release">0</VersionInfo>
-						<VersionInfo Name="Build">729</VersionInfo>
+						<VersionInfo Name="Build">734</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -122,7 +122,7 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName"/>
 						<VersionInfoKeys Name="FileDescription"/>
-						<VersionInfoKeys Name="FileVersion">1.0.0.729</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">1.0.0.734</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName"/>
 						<VersionInfoKeys Name="LegalCopyright"/>
 						<VersionInfoKeys Name="LegalTrademarks"/>

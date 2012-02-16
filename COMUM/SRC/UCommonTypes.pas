@@ -1,4 +1,4 @@
-unit UTiposComuns;
+unit UCommonTypes;
 
 interface
 
@@ -24,10 +24,11 @@ type
     property va_email: String read Fva_email write Fva_email;
   end;
 
-  { Usado no cliente, este record, guarda os dados da sessão do usuário
+  { Usado apenas no cliente, este record, guarda os dados da sessão do usuário
   atualmente logado}
   TCurrentSession = record
     ID: String;
+    SessionData: TSessionData;
   end;
 
 implementation

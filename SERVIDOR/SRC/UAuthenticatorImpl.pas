@@ -37,7 +37,7 @@ uses SysUtils
    , ZDbcIntfs
    , KRK.Lib.Rtl.Common.StringUtils
    , UServerConfiguration
-   , UTiposComuns;
+   , UCommonTypes;
 
 { TAuthenticator }
 
@@ -75,7 +75,6 @@ begin
             FZConnection.StartTransaction;
             try
               SQL.Text := SQLText;
-
               ParamByName('SM_USUARIOS_ID').AsInteger := SessionData.sm_usuarios_id;
               ParamByName('CH_SENHA').AsString := aNewPassword;
               Connection := FZConnection;
@@ -175,6 +174,7 @@ begin
         ParamByName('VA_LOGIN').AsString := aUserName;
         ParamByName('CH_SENHA').AsString := aPassword;
         Connection := FZConnection;
+
         Open;
 
         Result := RecordCount = 1;
@@ -194,10 +194,11 @@ begin
     { Se o usuário/senha for válido, continua }
     if Result then
     begin
+      { TODO -oCBFF : Ao ativar o IF abaixo, seria interessante remover a sessão do outro usuário impedindo-o de realizar qualquer operação subsequente }
 //      if Assigned(SessionsFile.Sessions.ItemByUser[aUser]) then
 //        raise Exception.Create('O usuário "' + aUser + '" já está logado no sistema. Logins múltiplos para o mesmo usuário não são permitidos');
 
-      { Caso cheque neste ponto o login é permitido e já foi realizado. Devemos
+      { Caso chegue neste ponto o login é permitido e já foi realizado. Devemos
       criar a sessão }
       aSessionID := CreateSessionID;
       with SessionsFile.Sessions.Add do

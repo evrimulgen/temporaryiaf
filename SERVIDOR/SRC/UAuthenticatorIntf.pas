@@ -5,7 +5,8 @@ interface
 uses InvokeRegistry
    , Types
    , XSBuiltIns
-   , USessionsManager;
+   , USessionsManager
+   , UCommonTypes;
 
 type
   IAuthenticator = interface(IInvokable)

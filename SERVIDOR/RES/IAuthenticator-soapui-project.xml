@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="IAuthenticator" resourceRoot="" soapui-version="4.0.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="IAuthenticatorbinding" type="wsdl" bindingName="{http://www.zettaomnis.com.br/}IAuthenticatorbinding" soapVersion="1_1" anonymous="optional" definition="http://127.0.0.1/iaf/IAFServer.dll/wsdl/IAuthenticator" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://127.0.0.1/iaf/IAFServer.dll/wsdl/IAuthenticator"><con:part><con:url>http://127.0.0.1/iaf/IAFServer.dll/wsdl/IAuthenticator</con:url><con:content><![CDATA[<definitions name="IAuthenticatorservice" targetNamespace="http://www.zettaomnis.com.br/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.zettaomnis.com.br/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/">
+  <message name="Login0Request">
+    <part name="aUser" type="xs:string"/>
+    <part name="aPassword" type="xs:string"/>
+  </message>
+  <message name="Login0Response">
+    <part name="aSessionID" type="xs:string"/>
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="SetSessionData1Request">
+    <part name="aSessionID" type="xs:string"/>
+    <part name="aData" type="xs:string"/>
+  </message>
+  <message name="SetSessionData1Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="GetSessionData2Request">
+    <part name="aSessionID" type="xs:string"/>
+  </message>
+  <message name="GetSessionData2Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="SessionExists3Request">
+    <part name="aSessionID" type="xs:string"/>
+  </message>
+  <message name="SessionExists3Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="Logout4Request">
+    <part name="aSessionID" type="xs:string"/>
+  </message>
+  <message name="Logout4Response">
+    <part name="return" type="xs:boolean"/>
+  </message>
+  <message name="ChangePassword5Request">
+    <part name="aSessionID" type="xs:string"/>
+    <part name="aOldPassword" type="xs:string"/>
+    <part name="aNewPassword" type="xs:string"/>
+  </message>
+  <message name="ChangePassword5Response">
+    <part name="return" type="xs:unsignedByte"/>
+  </message>
+  <portType name="IAuthenticator">
+    <operation name="Login">
+      <input message="tns:Login0Request"/>
+      <output message="tns:Login0Response"/>
+    </operation>
+    <operation name="SetSessionData">
+      <input message="tns:SetSessionData1Request"/>
+      <output message="tns:SetSessionData1Response"/>
+    </operation>
+    <operation name="GetSessionData">
+      <input message="tns:GetSessionData2Request"/>
+      <output message="tns:GetSessionData2Response"/>
+    </operation>
+    <operation name="SessionExists">
+      <input message="tns:SessionExists3Request"/>
+      <output message="tns:SessionExists3Response"/>
+    </operation>
+    <operation name="Logout">
+      <input message="tns:Logout4Request"/>
+      <output message="tns:Logout4Response"/>
+    </operation>
+    <operation name="ChangePassword">
+      <input message="tns:ChangePassword5Request"/>
+      <output message="tns:ChangePassword5Response"/>
+    </operation>
+  </portType>
+  <binding name="IAuthenticatorbinding" type="tns:IAuthenticator">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="Login">
+      <soap:operation soapAction="urn:UAuthenticatorIntf-IAuthenticator#Login" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UAuthenticatorIntf-IAuthenticator"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UAuthenticatorIntf-IAuthenticator"/>
+      </output>
+    </operation>
+    <operation name="SetSessionData">
+      <soap:operation soapAction="urn:UAuthenticatorIntf-IAuthenticator#SetSessionData" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UAuthenticatorIntf-IAuthenticator"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UAuthenticatorIntf-IAuthenticator"/>
+      </output>
+    </operation>
+    <operation name="GetSessionData">
+      <soap:operation soapAction="urn:UAuthenticatorIntf-IAuthenticator#GetSessionData" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UAuthenticatorIntf-IAuthenticator"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UAuthenticatorIntf-IAuthenticator"/>
+      </output>
+    </operation>
+    <operation name="SessionExists">
+      <soap:operation soapAction="urn:UAuthenticatorIntf-IAuthenticator#SessionExists" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UAuthenticatorIntf-IAuthenticator"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UAuthenticatorIntf-IAuthenticator"/>
+      </output>
+    </operation>
+    <operation name="Logout">
+      <soap:operation soapAction="urn:UAuthenticatorIntf-IAuthenticator#Logout" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UAuthenticatorIntf-IAuthenticator"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UAuthenticatorIntf-IAuthenticator"/>
+      </output>
+    </operation>
+    <operation name="ChangePassword">
+      <soap:operation soapAction="urn:UAuthenticatorIntf-IAuthenticator#ChangePassword" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UAuthenticatorIntf-IAuthenticator"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UAuthenticatorIntf-IAuthenticator"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IAuthenticatorservice">
+    <port name="IAuthenticatorPort" binding="tns:IAuthenticatorbinding">
+      <soap:address location="http://127.0.0.1/iaf/IAFServer.dll/soap/IAuthenticator"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/IAuthenticator</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:UAuthenticatorIntf-IAuthenticator#ChangePassword" name="ChangePassword" bindingOperationName="ChangePassword" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/IAuthenticator</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UAuthenticatorIntf-IAuthenticator">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:ChangePassword soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <aSessionID xsi:type="xsd:string">?</aSessionID>
+         <aOldPassword xsi:type="xsd:string">?</aOldPassword>
+         <aNewPassword xsi:type="xsd:string">?</aNewPassword>
+      </urn:ChangePassword>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UAuthenticatorIntf-IAuthenticator#ChangePassword"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UAuthenticatorIntf-IAuthenticator#GetSessionData" name="GetSessionData" bindingOperationName="GetSessionData" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/IAuthenticator</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UAuthenticatorIntf-IAuthenticator">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetSessionData soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <aSessionID xsi:type="xsd:string">{2BDFA47E-A3A3-407E-A4D0-BA3A03579137}</aSessionID>
+      </urn:GetSessionData>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UAuthenticatorIntf-IAuthenticator#GetSessionData"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UAuthenticatorIntf-IAuthenticator#Login" name="Login" bindingOperationName="Login" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/IAuthenticator</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UAuthenticatorIntf-IAuthenticator">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:Login soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <aUser xsi:type="xsd:string">?</aUser>
+         <aPassword xsi:type="xsd:string">?</aPassword>
+      </urn:Login>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UAuthenticatorIntf-IAuthenticator#Login"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UAuthenticatorIntf-IAuthenticator#Logout" name="Logout" bindingOperationName="Logout" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/IAuthenticator</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UAuthenticatorIntf-IAuthenticator">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:Logout soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <aSessionID xsi:type="xsd:string">?</aSessionID>
+      </urn:Logout>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UAuthenticatorIntf-IAuthenticator#Logout"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UAuthenticatorIntf-IAuthenticator#SessionExists" name="SessionExists" bindingOperationName="SessionExists" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/IAuthenticator</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UAuthenticatorIntf-IAuthenticator">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:SessionExists soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <aSessionID xsi:type="xsd:string">?</aSessionID>
+      </urn:SessionExists>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UAuthenticatorIntf-IAuthenticator#SessionExists"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UAuthenticatorIntf-IAuthenticator#SetSessionData" name="SetSessionData" bindingOperationName="SetSessionData" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/IAuthenticator</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UAuthenticatorIntf-IAuthenticator">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:SetSessionData soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <aSessionID xsi:type="xsd:string">?</aSessionID>
+         <aData xsi:type="xsd:string">?</aData>
+      </urn:SetSessionData>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UAuthenticatorIntf-IAuthenticator#SetSessionData"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/></con:soapui-project>

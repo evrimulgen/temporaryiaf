@@ -9,7 +9,7 @@ uses
   UFORMSplash in '..\SRC\UFORMSplash.pas' {FORMSplash},
   UReconcileErrorDialog in '..\SRC\UReconcileErrorDialog.pas' {ReconcileErrorForm},
   UAuthenticator in '..\SRC\UAuthenticator.pas',
-  UTiposComuns in '..\..\COMUM\SRC\UTiposComuns.pas',
+  UCommonTypes in '..\..\COMUM\SRC\UCommonTypes.pas',
   UServerManager in '..\SRC\UServerManager.pas',
   UKRDMSegurancaEPermissoes in '..\SRC\UKRDMSegurancaEPermissoes.pas' {KRDMSegurancaEPermissoes: TKRKDataModule},
   UKRFMDBAwareBasico in '..\SRC\UKRFMDBAwareBasico.pas' {KRFMDBAwareBasico: TKRKForm},

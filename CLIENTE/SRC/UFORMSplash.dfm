@@ -4,9 +4,13 @@ object FORMSplash: TFORMSplash
   BorderIcons = []
   BorderStyle = bsNone
   Caption = 'FORMSplash'
-  ClientHeight = 203
+  ClientHeight = 201
   ClientWidth = 320
   Color = clBlack
+  Constraints.MaxHeight = 224
+  Constraints.MaxWidth = 320
+  Constraints.MinHeight = 201
+  Constraints.MinWidth = 320
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -16,13 +20,16 @@ object FORMSplash: TFORMSplash
   Position = poScreenCenter
   OnClose = FormClose
   OnShow = FormShow
+  DesignSize = (
+    320
+    201)
   PixelsPerInch = 96
   TextHeight = 13
   object Shape1: TShape
     Left = 0
-    Top = 203
+    Top = 0
     Width = 320
-    Height = 0
+    Height = 201
     Align = alClient
     Brush.Color = clYellow
     Brush.Style = bsBDiagonal
@@ -32,29 +39,27 @@ object FORMSplash: TFORMSplash
     ExplicitHeight = 65
   end
   object Panel1: TPanel
-    AlignWithMargins = True
     Left = 6
     Top = 6
     Width = 308
-    Height = 191
+    Height = 188
     Margins.Left = 6
     Margins.Top = 6
     Margins.Right = 6
     Margins.Bottom = 6
-    Align = alTop
+    Anchors = [akLeft, akTop, akRight]
     BevelOuter = bvNone
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    ExplicitHeight = 168
     DesignSize = (
       308
-      191)
+      188)
     object Image1: TImage
       Left = 0
       Top = 0
       Width = 308
-      Height = 166
+      Height = 161
       Align = alClient
       Center = True
       Picture.Data = {
@@ -640,9 +645,9 @@ object FORMSplash: TFORMSplash
     end
     object StaticText1: TStaticText
       Left = 0
-      Top = 166
+      Top = 161
       Width = 308
-      Height = 25
+      Height = 27
       Align = alBottom
       Alignment = taCenter
       AutoSize = False
@@ -654,7 +659,14 @@ object FORMSplash: TFORMSplash
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
-      ExplicitTop = 143
+      ExplicitTop = 162
     end
+  end
+  object PRBRSplash: TProgressBar
+    Left = 6
+    Top = 201
+    Width = 308
+    Height = 17
+    TabOrder = 1
   end
 end

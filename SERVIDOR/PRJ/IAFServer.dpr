@@ -14,7 +14,7 @@ uses
   UAuthenticatorIntf in '..\SRC\UAuthenticatorIntf.pas',
   UKRDMBasico in '..\SRC\UKRDMBasico.pas' {KRDMBasico: TKRKDataModule},
   UKRDMUsuarios in '..\SRC\UKRDMUsuarios.pas' {KRDMUsuarios: TKRKDataModule},
-  UTiposComuns in '..\..\COMUM\SRC\UTiposComuns.pas',
+  UCommonTypes in '..\..\COMUM\SRC\UCommonTypes.pas',
   UServerManagerImpl in '..\SRC\UServerManagerImpl.pas',
   UServerManagerIntf in '..\SRC\UServerManagerIntf.pas',
   UServerConfiguration in '..\SRC\UServerConfiguration.pas',
