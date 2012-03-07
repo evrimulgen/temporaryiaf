@@ -198,7 +198,6 @@ object DAMOPrincipal: TDAMOPrincipal
               end>
             Caption = '&Ajuda'
           end>
-        ActionBar = FORMPrincipal.ACMMPrincipal
       end
       item
         Items.CaptionOptions = coNone
@@ -214,6 +213,67 @@ object DAMOPrincipal: TDAMOPrincipal
             Caption = 'A&lterar minhas prefer'#234'ncias'
             ImageIndex = 5
           end>
+      end
+      item
+        Items = <
+          item
+            Items = <
+              item
+                Action = ACTNAlterarMinhasPreferencias
+                Caption = '&Alterar minhas prefer'#234'ncias'
+                ImageIndex = 5
+              end
+              item
+                Action = ACTNAtualizarPrivilegios
+                Caption = 'A&tualizar privil'#233'gios'
+                ImageIndex = 6
+              end>
+            Caption = '&Usu'#225'rio'
+          end
+          item
+            Items = <
+              item
+                Action = ACTNConfiguracoes
+                Caption = '&Configura'#231#245'es'
+                ImageIndex = 3
+              end
+              item
+                Action = ACTNSegurancaEPermissoes
+                Caption = '&Seguran'#231'a e permiss'#245'es'
+                ImageIndex = 4
+              end>
+            Caption = '&Ferramentas administrativas'
+          end
+          item
+            Items = <
+              item
+                Action = ACTNAjuda
+                Caption = '&Ajuda'
+                ImageIndex = 1
+              end
+              item
+                Action = ACTNSobre
+                Caption = '&Sobre o IAF'
+                ImageIndex = 0
+              end>
+            Caption = '&Ajuda'
+          end>
+        ActionBar = FORMPrincipal.ACMMPrincipal
+      end
+      item
+        Items.CaptionOptions = coNone
+        Items.SmallIcons = False
+        Items = <
+          item
+            Action = ACTNAlterarMinhasPreferencias
+            Caption = '&Alterar minhas prefer'#234'ncias'
+            ImageIndex = 5
+          end
+          item
+            Action = ACTNAtualizarPrivilegios
+            Caption = 'A&tualizar privil'#233'gios'
+            ImageIndex = 6
+          end>
         ActionBar = FORMPrincipal.ACTBPrincipal
       end>
     LargeImages = IMLIPrincipalLarge
@@ -225,6 +285,7 @@ object DAMOPrincipal: TDAMOPrincipal
       Category = 'Usu'#225'rio'
       Caption = 'Alterar minhas prefer'#234'ncias'
       ImageIndex = 5
+      OnExecute = ACTNAlterarMinhasPreferenciasExecute
     end
     object ACTNAjuda: TAction
       Category = 'Ajuda'
@@ -257,6 +318,7 @@ object DAMOPrincipal: TDAMOPrincipal
       Category = 'Usu'#225'rio'
       Caption = 'Atualizar privil'#233'gios'
       ImageIndex = 6
+      OnExecute = ACTNAtualizarPrivilegiosExecute
     end
   end
   object SOCNPrincipal: TSoapConnection
@@ -276,7 +338,7 @@ object DAMOPrincipal: TDAMOPrincipal
     Left = 90
     Top = 12
     Bitmap = {
-      494C010107000800DC0010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010107000800EC0010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       00000000000000000000000000000000000000000000000000030000000C0000
       00170000001F0000002400000025000000250000002600000027000000270000
@@ -561,7 +623,7 @@ object DAMOPrincipal: TDAMOPrincipal
     Left = 168
     Top = 12
     Bitmap = {
-      494C01010700D400000118001800FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C01010700D400100118001800FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000600000003000000001002000000000000048
       0000000000000000000000000000000000000000000000000000000000000000
       000000000001000000050000000F000000170000001D00000021000000220000

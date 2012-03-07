@@ -27,19 +27,23 @@ type
     procedure SOCNPrincipalBeforeConnect(Sender: TObject);
     procedure SOCNPrincipalAfterConnect(Sender: TObject);
     procedure ACTNSairExecute(Sender: TObject);
+    procedure ACTNAlterarMinhasPreferenciasExecute(Sender: TObject);
+    procedure ACTNAtualizarPrivilegiosExecute(Sender: TObject);
   private
     { Private declarations }
-    FSessionConnection: TCurrentSession;
+    FCurrentSession: TCurrentSession;
     FKRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes;
     FFORMPrincipal: TFORMPrincipal;
     procedure DoReceivingData(Read, Total: Integer);
     procedure DoBeforePost(const HTTPReqResp: THTTPReqResp; Data: Pointer);
     procedure DoPostingData(Sent, Total: Integer);
+    procedure ConfigureCurrentSession(aSessionID: String);
+    procedure InicializarVariaveis;
   public
     { Public declarations }
     constructor Create(aOwner: TComponent); override;
     destructor Destroy; override;
-    property CurrentSession: TCurrentSession read FSessionConnection;
+    property CurrentSession: TCurrentSession read FCurrentSession;
   end;
 
 var
@@ -53,6 +57,16 @@ uses Forms, Windows, KRK.Lib.Rtl.Common.Classes, UConfiguracoes, UAuthenticator
    , UFORMLogin, UFORMSplash;
 
 procedure TDAMOPrincipal.ACTNAjudaExecute(Sender: TObject);
+begin
+  //
+end;
+
+procedure TDAMOPrincipal.ACTNAlterarMinhasPreferenciasExecute(Sender: TObject);
+begin
+  //
+end;
+
+procedure TDAMOPrincipal.ACTNAtualizarPrivilegiosExecute(Sender: TObject);
 begin
   //
 end;
@@ -73,30 +87,50 @@ begin
   TFORMSplash.ShowMe;
 end;
 
+procedure TDAMOPrincipal.ConfigureCurrentSession(aSessionID: String);
+begin
+  FCurrentSession.Data.FromString(GetSessionData(aSessionID));
+  FCurrentSession.ID := aSessionID;
+end;
+
+procedure TDAMOPrincipal.InicializarVariaveis;
+begin
+  FFORMPrincipal := nil;
+
+  FKRDMSegurancaEPermissoes := nil;
+end;
+
 constructor TDAMOPrincipal.Create(aOwner: TComponent);
 var
   FORMSplash: TFORMSplash;
+  SessionID: String;
 begin
   inherited;
-  ZeroMemory(@FSessionConnection,SizeOf(TCurrentSession));
-  FFORMPrincipal := nil;
-  FORMSplash     := nil;
+  FCurrentSession := TCurrentSession.Create;
 
-  { DataModules criados por demanda }
-  FKRDMSegurancaEPermissoes := nil;
+  InicializarVariaveis;
 
-  if (TFORMLogin.ShowMe(FSessionConnection.ID) = mrOk) then
+  if (TFORMLogin.ShowMe(SessionID) = mrOk) then
     try
-      Sleep(500);
       FORMSplash := TFORMSplash.ShowMe(0);
       FORMSplash.PRBRSplash.Position := 0;
       FORMSplash.PRBRSplash.Max := 2;
 
-      { TODO -oCBFF : Neste ponto, obtenha o restante dos dados da sessão e aplique
-      as permissões. Use FORMSplash para exibir algum progresso }
+      ConfigureCurrentSession(SessionID);
+      FORMSplash.PRBRSplash.StepIt;
+
+//      obter a lista de permissoes
+//      carregar clds
+//      aplicar a partir do clds
+
+
+      { TODO -oCBFF : Neste ponto, aplique as permissões. Use FORMSplash para
+      exibir algum progresso }
       { 1. carregue CLDSPermissoes com as Permissões efetivas }
       { 2. Aplique localmente as permissões nos menus do form principal }
       Application.CreateForm(TFORMPrincipal,FFORMPrincipal);
+
+      FFORMPrincipal.STTBPrincipal.Panels[1].Text := FCurrentSession.Data.va_login + ' (' + FCurrentSession.Data.va_nome + ')';
     finally
       FORMSplash.Close;
     end;
@@ -108,9 +142,10 @@ begin
   erro pode aparecer para o usuario, mas pelo menos sempre tudo vai ser
   destruído corretamente }
   try
-    if FSessionConnection.ID <> '' then
-      Logout(FSessionConnection.ID);
+    if FCurrentSession.ID <> '' then
+      Logout(FCurrentSession.ID);
   finally
+    FCurrentSession.Free;
     inherited;
   end;
 end;

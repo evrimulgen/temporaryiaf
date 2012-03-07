@@ -2,9 +2,7 @@ unit UExtraUtilities;
 
 interface
 
-uses Classes
-   , UKRDMBasico
-   , ZConnection;
+uses Classes, UKRDMBasico, ZConnection;
 
 function CreateDataModule(const aProviderName: WideString; const aOwner: TComponent = nil): TKRDMBasico;
 function CheckSessions: Boolean;
@@ -13,15 +11,12 @@ function SessionExists(const aSessionID: String): Boolean;
 procedure ConfigureConnection(const aZConnection: TZConnection);
 procedure HideInterfaces(var aContent: String; aInterfaces: array of string);
 procedure AddDefaultFooter(var aContent: String);
+function SessionDataFromSessionID(const aSessionID: String): String;
 
 implementation
 
-uses SysUtils
-   , UServerConfiguration
-   , USessionsManager
-   , UKRDMUsuarios
-   , UKRDMEntidadesDoSistema
-   , UKRDMGrupos;
+uses SysUtils, UServerConfiguration, USessionsManager, UKRDMUsuarios
+   , UKRDMEntidadesDoSistema, UKRDMGrupos;
 
 procedure HideInterfaces(var aContent: String; aInterfaces: array of string);
 var
@@ -119,6 +114,21 @@ begin
   finally
     CS.Leave;
   end;
+end;
+
+function SessionDataFromSessionID(const aSessionID: String): String;
+begin
+  if SessionExists(aSessionID) then
+  begin
+    CS.Enter;
+    try
+      Result := SessionsFile.Sessions[aSessionID].SessionData;
+    finally
+      CS.Leave;
+    end;
+  end
+  else
+    raise Exception.Create('Não existe usuário autenticado na sessão especificada');
 end;
 
 procedure ConfigureConnection(const aZConnection: TZConnection);

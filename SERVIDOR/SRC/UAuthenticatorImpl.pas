@@ -36,6 +36,8 @@ uses SysUtils
    , ZDataset
    , ZDbcIntfs
    , KRK.Lib.Rtl.Common.StringUtils
+   , KRK.Lib.DCPcrypt.Utilities
+   , KRK.Lib.DCPcrypt.Types
    , UServerConfiguration
    , UCommonTypes;
 
@@ -49,8 +51,9 @@ const
             '   SET CH_SENHA = :CH_SENHA' +
             ' WHERE SM_USUARIOS_ID = :SM_USUARIOS_ID';
 var
-  SessionItem: TSessionItem;
   SessionData: TSessionData;
+  SessDataStr: String;
+  NewPassword: String;
 begin
   Result := 0;
   SessionData := nil;
@@ -59,27 +62,33 @@ begin
   try
     SessionData := TSessionData.Create(nil);
 
-    { Obtém a sessão do arquivo de sessões }
-    GetSessionByID(aSessionID,SessionItem);
+    { Obtém os dados da sessão do usuário }
+    SessDataStr := GetSessionData(aSessionID);
 
-    { Se a sessão existir, continua }
-    if Assigned(SessionItem) then
+    { Se a sessão existir, ou melhor, se os dados da sessão existirem, continua }
+    if SessDataStr <> '' then
     begin
-      SessionData.FromString(SessionItem.SessionData);
+      SessionData.FromString(SessDataStr);
+
       { Compara a senha da sessão com a senha antiga, supostamente do usuário da
       sessão, se as senhas forem iguais, continua criando uma transação e
       atualizando o registro do usuário identificado pela sessão com a nova senha }
-      if SessionData.ch_senha = aOldPassword then
+      if SessionData.ch_senha = GetStringCheckSum(aOldPassword,[haSha512]) then
         with TZReadOnlyQuery.Create(nil) do
           try
             FZConnection.StartTransaction;
             try
               SQL.Text := SQLText;
               ParamByName('SM_USUARIOS_ID').AsInteger := SessionData.sm_usuarios_id;
-              ParamByName('CH_SENHA').AsString := aNewPassword;
+              NewPassword := GetStringCheckSum(aNewPassword,[haSha512]);
+              ParamByName('CH_SENHA').AsString := NewPassword;
               Connection := FZConnection;
 
               ExecSQL;
+
+              { Atualizando a senha na sessão do usuário e salvando a sessão }
+              SessionData.ch_senha := NewPassword;
+              SetSessionData(aSessionID,SessionData.ToString);
 
               FZConnection.Commit;
             except
@@ -90,7 +99,6 @@ begin
           end
       else
         Result := 2;
-
     end
     else
       Result := 1
@@ -139,7 +147,7 @@ var
 begin
   CS.Enter;
   try
-    ZeroMemory(@Result,SizeOf(TSessionData));
+    Result := '';
 
     { Obtém uma sessão a partir de seu ID e se esta sessão existir, retorna seus
     dados. O formato dos dados pode ser qualquer um. Até mesmo um objeto DFM em
@@ -166,13 +174,13 @@ begin
   CS.Enter;
   try
     SD := TSessionData.Create(nil);
-    { Faz uma busca dentro do banco de dados para saber se o para usuário/senha
+    { Faz uma busca dentro do banco de dados para saber se o par usuário/senha
     existe }
     with TZReadOnlyQuery.Create(nil) do
       try
         SQL.Text := SQLText;
         ParamByName('VA_LOGIN').AsString := aUserName;
-        ParamByName('CH_SENHA').AsString := aPassword;
+        ParamByName('CH_SENHA').AsString := GetStringCheckSum(aPassword,[haSha512]);
         Connection := FZConnection;
 
         Open;

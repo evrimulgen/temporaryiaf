@@ -22,6 +22,8 @@ type
 
 implementation
 
+uses UDAMOPrincipal;
+
 {$R *.dfm}
 
 {$HINTS OFF}

@@ -24,13 +24,32 @@ type
     property va_email: String read Fva_email write Fva_email;
   end;
 
-  { Usado apenas no cliente, este record, guarda os dados da sessão do usuário
+  { Usado apenas no cliente, esta classe, guarda os dados da sessão do usuário
   atualmente logado}
-  TCurrentSession = record
-    ID: String;
-    SessionData: TSessionData;
+  TCurrentSession = class
+  private
+    FID: String;
+    FData: TSessionData;
+  public
+    constructor Create;
+    destructor Destroy; override;
+    property Data: TSessionData read FData;
+    property ID: String read FID write FID;
   end;
 
 implementation
+
+{ TCurrentSession }
+
+constructor TCurrentSession.Create;
+begin
+  FData := TSessionData.Create(nil);
+end;
+
+destructor TCurrentSession.Destroy;
+begin
+  FData.Free;
+  inherited;
+end;
 
 end.
