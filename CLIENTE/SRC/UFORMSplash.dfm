@@ -4,10 +4,10 @@ object FORMSplash: TFORMSplash
   BorderIcons = []
   BorderStyle = bsNone
   Caption = 'FORMSplash'
-  ClientHeight = 201
+  ClientHeight = 251
   ClientWidth = 320
   Color = clBlack
-  Constraints.MaxHeight = 224
+  Constraints.MaxHeight = 251
   Constraints.MaxWidth = 320
   Constraints.MinHeight = 201
   Constraints.MinWidth = 320
@@ -22,14 +22,14 @@ object FORMSplash: TFORMSplash
   OnShow = FormShow
   DesignSize = (
     320
-    201)
+    251)
   PixelsPerInch = 96
   TextHeight = 13
   object Shape1: TShape
     Left = 0
     Top = 0
     Width = 320
-    Height = 201
+    Height = 251
     Align = alClient
     Brush.Color = clYellow
     Brush.Style = bsBDiagonal
@@ -37,6 +37,15 @@ object FORMSplash: TFORMSplash
     ExplicitTop = 48
     ExplicitWidth = 65
     ExplicitHeight = 65
+  end
+  object GAGESplash: TGauge
+    Left = 6
+    Top = 201
+    Width = 308
+    Height = 18
+    Anchors = [akLeft, akTop, akRight]
+    ForeColor = clYellow
+    Progress = 50
   end
   object Panel1: TPanel
     Left = 6
@@ -659,14 +668,16 @@ object FORMSplash: TFORMSplash
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
-      ExplicitTop = 162
     end
   end
-  object PRBRSplash: TProgressBar
+  object PANLProgresso: TPanel
     Left = 6
-    Top = 201
+    Top = 226
     Width = 308
-    Height = 17
+    Height = 18
+    Anchors = [akLeft, akTop, akRight]
+    Caption = 'Wg'
+    ParentBackground = False
     TabOrder = 1
   end
 end

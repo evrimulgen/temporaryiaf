@@ -4,7 +4,7 @@ interface
 
 uses SysUtils, Classes, PlatformDefaultStyleActnCtrls, ActnList, ActnMan, DB
    , DBClient, SOAPConn, ImgList, Controls, UCommonTypes, UFORMPrincipal
-   , UKRDMSegurancaEPermissoes, SOAPHTTPTrans;
+   , UKRDMSegurancaEPermissoes, SOAPHTTPTrans, UFORMSplash;
 
 type
   TDAMOPrincipal = class(TDataModule)
@@ -21,6 +21,10 @@ type
     IMLIPrincipalLarge: TImageList;
     ACTNAtualizarPrivilegios: TAction;
     CLDSPermissoes: TClientDataSet;
+    ACTNRelatorio1: TAction;
+    ACTNRelatorio2: TAction;
+    ACTNRelatorio3: TAction;
+    ACTNRelatorio4: TAction;
     procedure ACTNSegurancaEPermissoesExecute(Sender: TObject);
     procedure ACTNAjudaExecute(Sender: TObject);
     procedure ACTNSobreExecute(Sender: TObject);
@@ -39,6 +43,7 @@ type
     procedure DoPostingData(Sent, Total: Integer);
     procedure ConfigureCurrentSession(aSessionID: String);
     procedure InicializarVariaveis;
+    procedure ApplyPermissions(aFORMSplash: TFormSplash);
   public
     { Public declarations }
     constructor Create(aOwner: TComponent); override;
@@ -54,7 +59,7 @@ implementation
 {$R *.dfm}
 
 uses Forms, Windows, KRK.Lib.Rtl.Common.Classes, UConfiguracoes, UAuthenticator
-   , UFORMLogin, UFORMSplash;
+   , UFORMLogin, UExtraMethods;
 
 procedure TDAMOPrincipal.ACTNAjudaExecute(Sender: TObject);
 begin
@@ -87,6 +92,49 @@ begin
   TFORMSplash.ShowMe;
 end;
 
+procedure TDAMOPrincipal.ApplyPermissions(aFORMSplash: TFormSplash);
+{ ---------------------------------------------------------------------------- }
+procedure CascadeCleaning(aFrom: TActionClientItem);
+var
+  CI: TCollectionItem;
+begin
+  if TActionClientItem(aFrom).HasItems and (TActionClientItem(aFrom).Items.VisibleCount > 0) then
+    for CI in aFrom.Items do
+      if TActionClientItem(CI).HasItems then
+        CascadeCleaning(TActionClientItem(CI));
+
+    TActionClientItem(aFrom).Visible := TActionClientItem(aFrom).HasItems and (TActionClientItem(aFrom).Items.VisibleCount > 0);
+end;
+{ ---------------------------------------------------------------------------- }
+var
+  i: Word;
+begin
+  { Oculta todas as ações disponíveis }
+  for i := 0 to Pred(ACMAPrincipal.ActionCount) do
+    TAction(ACMAPrincipal.Actions[i]).Visible := False;
+
+  { Exibe apenas as que forem permitidas }
+  CLDSPermissoes.First;
+  while not CLDSPermissoes.Eof do
+  begin
+    if (CLDSPermissoes.Fields[1].AsInteger = 1) and (Pos(Self.Name + '.',CLDSPermissoes.Fields[0].AsString) = 1) then
+      for i := 0 to Pred(ACMAPrincipal.ActionCount) do
+        if Copy(CLDSPermissoes.Fields[0].AsString,Succ(Pos('.',CLDSPermissoes.Fields[0].AsString)),Length(CLDSPermissoes.Fields[0].AsString)) = ACMAPrincipal.Actions[i].Name then
+        begin
+          TAction(ACMAPrincipal.Actions[i]).Visible := CLDSPermissoes.Fields[2].AsBoolean;
+          Break;
+        end;
+
+    CLDSPermissoes.Next;
+    aFORMSplash.GAGESplash.AddProgress(1);
+    aFORMSplash.Update;
+  end;
+
+  { Remove categorias que não tem ações visíveis }
+  for i := 0 to Pred(ACMAPrincipal.ActionBars[0].Items.Count) do
+      CascadeCleaning(ACMAPrincipal.ActionBars[0].Items[i]);
+end;
+
 procedure TDAMOPrincipal.ConfigureCurrentSession(aSessionID: String);
 begin
   FCurrentSession.Data.FromString(GetSessionData(aSessionID));
@@ -107,32 +155,52 @@ var
 begin
   inherited;
   FCurrentSession := TCurrentSession.Create;
+  FORMSplash := nil;
 
   InicializarVariaveis;
 
   if (TFORMLogin.ShowMe(SessionID) = mrOk) then
     try
       FORMSplash := TFORMSplash.ShowMe(0);
-      FORMSplash.PRBRSplash.Position := 0;
-      FORMSplash.PRBRSplash.Max := 2;
+      FORMSplash.GAGESplash.Progress := 0;
+      FORMSplash.GAGESplash.MinValue := 0;
+      FORMSplash.GAGESplash.MaxValue := 2;
+      FORMSplash.Update;
 
+      { 1 }
+      FORMSplash.PANLProgresso.Caption := 'Obtendo dados da sessão...';
       ConfigureCurrentSession(SessionID);
-      FORMSplash.PRBRSplash.StepIt;
+      FORMSplash.GAGESplash.AddProgress(1);
+      FORMSplash.Update;
 
-//      obter a lista de permissoes
-//      carregar clds
-//      aplicar a partir do clds
+      { 2 }
+      FORMSplash.PANLProgresso.Caption := 'Obtendo lista de permissões...';
+      CLDSPermissoes.Data := GetPermissions(SessionID);
+{ Os campos de CLDSPermissoes são os de baixo }
+// CLDSPermissoes.FieldDefs.Add('ENTIDADE', ftString,128,True);
+// CLDSPermissoes.FieldDefs.Add('TIPO', ftSmallint);
+// CLDSPermissoes.FieldDefs.Add('LER', ftBoolean);
+// CLDSPermissoes.FieldDefs.Add('INSERIR', ftBoolean);
+// CLDSPermissoes.FieldDefs.Add('ALTERAR', ftBoolean);
+// CLDSPermissoes.FieldDefs.Add('EXCLUIR', ftBoolean);
 
 
-      { TODO -oCBFF : Neste ponto, aplique as permissões. Use FORMSplash para
-      exibir algum progresso }
-      { 1. carregue CLDSPermissoes com as Permissões efetivas }
-      { 2. Aplique localmente as permissões nos menus do form principal }
+      FORMSplash.GAGESplash.AddProgress(1);
+      FORMSplash.Update;
+
+      { 3 }
+      FORMSplash.GAGESplash.Progress := 0;
+      FORMSplash.GAGESplash.MaxValue := CLDSPermissoes.RecordCount;
+      FORMSplash.PANLProgresso.Caption := 'Aplicando permissões principais...';
+      FORMSplash.Update;
+
+      ApplyPermissions(FORMSplash);
+
       Application.CreateForm(TFORMPrincipal,FFORMPrincipal);
 
       FFORMPrincipal.STTBPrincipal.Panels[1].Text := FCurrentSession.Data.va_login + ' (' + FCurrentSession.Data.va_nome + ')';
     finally
-      FORMSplash.Close;
+      FORMSplash.DelayedClose(2);
     end;
 end;
 

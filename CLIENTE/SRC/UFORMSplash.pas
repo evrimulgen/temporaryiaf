@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ExtCtrls, StdCtrls, ComCtrls;
+  Dialogs, ExtCtrls, StdCtrls, ComCtrls, Gauges;
 
 type
   TFORMSplash = class(TForm)
@@ -13,19 +13,20 @@ type
     Image1: TImage;
     Shape1: TShape;
     StaticText1: TStaticText;
-    PRBRSplash: TProgressBar;
+    PANLProgresso: TPanel;
+    GAGESplash: TGauge;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure IMAGCloseClick(Sender: TObject);
   private
     { Private declarations }
     FCloseDelay: SmallInt;
-    procedure DelayedClose(const aSeconds: Byte);
     procedure DoCloseDelayed(var Msg: TMessage);
     procedure ConfigureSplashScreen;
   public
     { Public declarations }
     class function ShowMe(aCloseDelay: SmallInt = -1): TFORMSplash;
+    procedure DelayedClose(const aSeconds: Byte);
   end;
 
 implementation

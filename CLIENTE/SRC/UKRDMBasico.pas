@@ -40,6 +40,7 @@ type
   private
     { Declarações privadas }
     procedure DoReconcileError(DataSet: TCustomClientDataSet; E: EReconcileError; UpdateKind: TUpdateKind; var Action: TReconcileAction);
+    procedure ApplyPermissions;
   protected
     { Declarações protegidas }
     procedure ConfigureErrorHint(aTitle, aText: String; aWinControl: TWinControl; aShowHint: Boolean); virtual;
@@ -221,6 +222,11 @@ end;
 procedure TKRDMBasico.DoReconcileError(DataSet: TCustomClientDataSet; E: EReconcileError; UpdateKind: TUpdateKind; var Action: TReconcileAction);
 begin
   Action := HandleReconcileError(DataSet,UpdateKind,E);
+end;
+
+procedure TKRDMBasico.ApplyPermissions;
+begin
+  { Isso deve usar o CLDS com as permiss~~oes e aplica-las localmente neste datamodule }
 end;
 
 procedure TKRDMBasico.ConfigureErrorHint(aTitle, aText: String; aWinControl: TWinControl; aShowHint: Boolean);
