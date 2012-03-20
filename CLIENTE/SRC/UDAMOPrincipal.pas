@@ -4,7 +4,8 @@ interface
 
 uses SysUtils, Classes, PlatformDefaultStyleActnCtrls, ActnList, ActnMan, DB
    , DBClient, SOAPConn, ImgList, Controls, UCommonTypes, UFORMPrincipal
-   , UKRDMSegurancaEPermissoes, SOAPHTTPTrans, UFORMSplash;
+   , UKRDMSegurancaEPermissoes, SOAPHTTPTrans, UFORMSplash, UKRDMConfiguracoes
+   , UKRDMRelatorio;
 
 type
   TDAMOPrincipal = class(TDataModule)
@@ -33,11 +34,15 @@ type
     procedure ACTNSairExecute(Sender: TObject);
     procedure ACTNAlterarMinhasPreferenciasExecute(Sender: TObject);
     procedure ACTNAtualizarPrivilegiosExecute(Sender: TObject);
+    procedure ACTNConfiguracoesExecute(Sender: TObject);
+    procedure ACTNRelatorio4Execute(Sender: TObject);
   private
     { Private declarations }
     FCurrentSession: TCurrentSession;
     FKRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes;
     FFORMPrincipal: TFORMPrincipal;
+    FKRDMConfiguracoes: TKRDMConfiguracoes;
+    FKRDMRelatorio: TKRDMRelatorio;
     procedure DoReceivingData(Read, Total: Integer);
     procedure DoBeforePost(const HTTPReqResp: THTTPReqResp; Data: Pointer);
     procedure DoPostingData(Sent, Total: Integer);
@@ -49,6 +54,7 @@ type
     constructor Create(aOwner: TComponent); override;
     destructor Destroy; override;
     property CurrentSession: TCurrentSession read FCurrentSession;
+    property FORMPrincipal: TFORMPrincipal read FFORMPrincipal;
   end;
 
 var
@@ -76,6 +82,23 @@ begin
   //
 end;
 
+procedure TDAMOPrincipal.ACTNConfiguracoesExecute(Sender: TObject);
+begin
+  if not Assigned(FKRDMConfiguracoes) then
+  begin
+    TKRDMConfiguracoes.CreateMe(Self,FKRDMConfiguracoes,TKRDMConfiguracoes);
+    FKRDMConfiguracoes.MyForm.ShowModal;
+  end;
+end;
+
+procedure TDAMOPrincipal.ACTNRelatorio4Execute(Sender: TObject);
+begin
+  if not Assigned(FKRDMRelatorio) then
+    TKRDMRelatorio.CreateMe(Self,FKRDMRelatorio,TKRDMRelatorio)
+  else
+    FKRDMRelatorio.MyForm.BringToFront;
+end;
+
 procedure TDAMOPrincipal.ACTNSairExecute(Sender: TObject);
 begin
   FFORMPrincipal.Close;
@@ -84,7 +107,9 @@ end;
 procedure TDAMOPrincipal.ACTNSegurancaEPermissoesExecute(Sender: TObject);
 begin
   if not Assigned(FKRDMSegurancaEPermissoes) then
-    TKRDMSegurancaEPermissoes.CreateMe(Self,FKRDMSegurancaEPermissoes,TKRDMSegurancaEPermissoes);
+    TKRDMSegurancaEPermissoes.CreateMe(Self,FKRDMSegurancaEPermissoes,TKRDMSegurancaEPermissoes)
+  else
+    FKRDMSegurancaEPermissoes.MyForm.BringToFront;
 end;
 
 procedure TDAMOPrincipal.ACTNSobreExecute(Sender: TObject);
@@ -94,26 +119,30 @@ end;
 
 procedure TDAMOPrincipal.ApplyPermissions(aFORMSplash: TFormSplash);
 { ---------------------------------------------------------------------------- }
-procedure CascadeCleaning(aFrom: TActionClientItem);
+procedure CascadeHiding(aActionClients: TActionClients);
 var
-  CI: TCollectionItem;
+  ACI: TCollectionItem;
 begin
-  if TActionClientItem(aFrom).HasItems and (TActionClientItem(aFrom).Items.VisibleCount > 0) then
-    for CI in aFrom.Items do
-      if TActionClientItem(CI).HasItems then
-        CascadeCleaning(TActionClientItem(CI));
+  for ACI in aActionClients do
+    if TActionClientItem(ACI).Visible then
+    begin
+      if TActionClientItem(ACI).HasItems and (TActionClientItem(ACI).Items.VisibleCount > 0) then
+        CascadeHiding(TActionClientItem(ACI).Items);
 
-    TActionClientItem(aFrom).Visible := TActionClientItem(aFrom).HasItems and (TActionClientItem(aFrom).Items.VisibleCount > 0);
+      TActionClientItem(ACI).Visible := (TActionClientItem(ACI).HasItems and (TActionClientItem(ACI).Items.VisibleCount > 0))
+                                     or (not TActionClientItem(ACI).HasItems);
+    end;
 end;
 { ---------------------------------------------------------------------------- }
 var
   i: Word;
 begin
-  { Oculta todas as ações disponíveis }
+  { Oculta todas as ações disponíveis. Isso não oculta as categorias de ações,
+  apenas as ações propriamente ditas }
   for i := 0 to Pred(ACMAPrincipal.ActionCount) do
     TAction(ACMAPrincipal.Actions[i]).Visible := False;
 
-  { Exibe apenas as que forem permitidas }
+  { Torna visíveis apenas as ações que forem permitidas }
   CLDSPermissoes.First;
   while not CLDSPermissoes.Eof do
   begin
@@ -130,9 +159,20 @@ begin
     aFORMSplash.Update;
   end;
 
-  { Remove categorias que não tem ações visíveis }
-  for i := 0 to Pred(ACMAPrincipal.ActionBars[0].Items.Count) do
-      CascadeCleaning(ACMAPrincipal.ActionBars[0].Items[i]);
+  { Oculta categorias que não tem itens visíveis. Explicando: os
+  TActionClientItem são os itens do menu principal. Estes ítens não são ações,
+  mas podem ser associados a ações. Ao criar um menu TActionMainMenuBar e
+  arrastar ações e/ou categorias de ações para ele, vários TActionClientItem são
+  criados e cada um deles representa um ítem do menu. Alguns desses ítens são
+  automaticamente associados a ações reais, é por isso que alguns
+  TActionClientItem quando clicados em tempo de execução executam uma ação,
+  enquanto outros são apenas menus com submenus! Ao tentar entender o procedure
+  recursivo "CascadeHiding", esqueça as ações e lembre-se apenas de itens de
+  menu hierarquicos }
+//  for ABI in  do
+
+// ACMA.ActionBars.IterateClients(ACMA.ActionBars[0].Items,DoActionProc);
+  CascadeHiding(ACMAPrincipal.ActionBars[0].Items);
 end;
 
 procedure TDAMOPrincipal.ConfigureCurrentSession(aSessionID: String);
@@ -195,6 +235,9 @@ begin
       FORMSplash.Update;
 
       ApplyPermissions(FORMSplash);
+
+      FORMSplash.PANLProgresso.Caption := 'Inicializando...';
+      FORMSplash.Update;
 
       Application.CreateForm(TFORMPrincipal,FFORMPrincipal);
 

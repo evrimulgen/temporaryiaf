@@ -4,7 +4,7 @@ object FORMSplash: TFORMSplash
   BorderIcons = []
   BorderStyle = bsNone
   Caption = 'FORMSplash'
-  ClientHeight = 251
+  ClientHeight = 201
   ClientWidth = 320
   Color = clBlack
   Constraints.MaxHeight = 251
@@ -22,14 +22,14 @@ object FORMSplash: TFORMSplash
   OnShow = FormShow
   DesignSize = (
     320
-    251)
+    201)
   PixelsPerInch = 96
   TextHeight = 13
   object Shape1: TShape
     Left = 0
     Top = 0
     Width = 320
-    Height = 251
+    Height = 201
     Align = alClient
     Brush.Color = clYellow
     Brush.Style = bsBDiagonal

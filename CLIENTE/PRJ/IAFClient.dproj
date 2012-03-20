@@ -85,6 +85,22 @@
 			<DCCReference Include="..\SRC\UFORMTrocarSenha.pas">
 				<Form>FORMTrocarSenha</Form>
 			</DCCReference>
+			<DCCReference Include="..\SRC\UKRFMConfiguracoes.pas">
+				<Form>KRFMConfiguracoes</Form>
+				<DesignClass>TKRKForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="..\SRC\UKRDMConfiguracoes.pas">
+				<Form>KRDMConfiguracoes</Form>
+				<DesignClass>TKRKDataModule</DesignClass>
+			</DCCReference>
+			<DCCReference Include="..\SRC\UKRDMRelatorio.pas">
+				<Form>KRDMRelatorio</Form>
+				<DesignClass>TKRKDataModule</DesignClass>
+			</DCCReference>
+			<DCCReference Include="..\SRC\UKRFMRelatorio.pas">
+				<Form>KRFMRelatorio</Form>
+				<DesignClass>TKRKForm</DesignClass>
+			</DCCReference>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>
@@ -110,7 +126,7 @@
 						<VersionInfo Name="MajorVer">1</VersionInfo>
 						<VersionInfo Name="MinorVer">0</VersionInfo>
 						<VersionInfo Name="Release">0</VersionInfo>
-						<VersionInfo Name="Build">772</VersionInfo>
+						<VersionInfo Name="Build">821</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -122,7 +138,7 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName"/>
 						<VersionInfoKeys Name="FileDescription"/>
-						<VersionInfoKeys Name="FileVersion">1.0.0.772</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">1.0.0.821</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName"/>
 						<VersionInfoKeys Name="LegalCopyright"/>
 						<VersionInfoKeys Name="LegalTrademarks"/>

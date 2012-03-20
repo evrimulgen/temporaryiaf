@@ -17,7 +17,11 @@ uses
   UKRDMBasico in '..\SRC\UKRDMBasico.pas' {KRDMBasico: TKRKDataModule},
   UConfiguracoes in '..\SRC\UConfiguracoes.pas',
   UExtraMethods in '..\SRC\UExtraMethods.pas',
-  UFORMTrocarSenha in '..\SRC\UFORMTrocarSenha.pas' {FORMTrocarSenha};
+  UFORMTrocarSenha in '..\SRC\UFORMTrocarSenha.pas' {FORMTrocarSenha},
+  UKRFMConfiguracoes in '..\SRC\UKRFMConfiguracoes.pas' {KRFMConfiguracoes: TKRKForm},
+  UKRDMConfiguracoes in '..\SRC\UKRDMConfiguracoes.pas' {KRDMConfiguracoes: TKRKDataModule},
+  UKRDMRelatorio in '..\SRC\UKRDMRelatorio.pas' {KRDMRelatorio: TKRKDataModule},
+  UKRFMRelatorio in '..\SRC\UKRFMRelatorio.pas' {KRFMRelatorio: TKRKForm};
 
 {$R *.res}
 

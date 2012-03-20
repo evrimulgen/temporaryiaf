@@ -1,77 +1,36 @@
-object KRFMDBAwareBasico: TKRFMDBAwareBasico
-  Left = 0
-  Top = 0
-  Caption = 'KRFMDBAwareBasico'
-  ClientHeight = 442
-  ClientWidth = 624
-  Color = clBtnFace
-  Font.Charset = DEFAULT_CHARSET
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'Tahoma'
-  Font.Style = []
-  FormStyle = fsMDIChild
-  OldCreateOrder = False
-  Visible = True
-  WindowState = wsMaximized
-  OnClose = KRKFormClose
-  OnCloseQuery = KRKFormCloseQuery
-  OnCreate = KRKFormCreate
+inherited KRFMRelatorio: TKRFMRelatorio
+  Caption = 'KRFMRelatorio'
+  ClientHeight = 270
+  ClientWidth = 533
+  ExplicitWidth = 549
+  ExplicitHeight = 308
   PixelsPerInch = 96
   TextHeight = 13
-  object TLBRAcoes: TToolBar
-    Left = 0
-    Top = 0
-    Width = 624
-    Height = 40
-    AutoSize = True
-    ButtonHeight = 38
-    ButtonWidth = 39
-    DisabledImages = IMLIToolBarInativo
-    DoubleBuffered = False
-    DrawingStyle = dsGradient
-    EdgeBorders = [ebTop, ebBottom]
-    EdgeOuter = esNone
-    GradientEndColor = clActiveCaption
-    GradientStartColor = clGradientInactiveCaption
-    Images = IMLIToolBarAtivo
-    ParentDoubleBuffered = False
-    TabOrder = 0
-    Transparent = True
-    object ToolButton1: TToolButton
-      Left = 0
-      Top = 0
-      Action = ACTNConfirmar
-    end
-    object ToolButton2: TToolButton
-      Left = 39
-      Top = 0
-      Action = ACTNReverter
-    end
-    object LABLCaption: TLabel
-      Left = 78
-      Top = 0
-      Width = 255
-      Height = 38
-      Align = alClient
-      Caption = ' ISSO FICA IGUAL AO CAPTION'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clCaptionText
-      Font.Height = -16
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-      Layout = tlCenter
-    end
+  inherited TLBRAcoes: TToolBar
+    Width = 533
+    ExplicitWidth = 533
   end
-  object IMLIToolBarAtivo: TImageList
-    ColorDepth = cd32Bit
-    DrawingStyle = dsTransparent
-    Height = 32
-    Width = 32
-    Left = 126
+  object ACMB: TActionMainMenuBar [1]
+    Left = 0
+    Top = 40
+    Width = 533
+    Height = 25
+    UseSystemFont = False
+    ActionManager = KRDMRelatorio.ACMA
+    Caption = 'ACMB'
+    Color = clMenuBar
+    ColorMap.HighlightColor = clWhite
+    ColorMap.UnusedColor = clWhite
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -12
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    Spacing = 0
+  end
+  inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C0101020008004C0020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800540020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -606,37 +565,9 @@ object KRFMDBAwareBasico: TKRFMDBAwareBasico
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000}
   end
-  object ACLIToolbar: TActionList
-    Images = IMLIToolBarAtivo
-    OnUpdate = ACLIToolbarUpdate
-    Left = 96
-    object ACTNConfirmar: TAction
-      Category = 'DataSnap'
-      Caption = 'ACTNConfirmar'
-      Enabled = False
-      Hint = 'Clique neste bot'#227'o para confirmar todas as altera'#231#245'es desta tela'
-      ImageIndex = 0
-      OnExecute = ACTNConfirmarExecute
-    end
-    object ACTNReverter: TAction
-      Category = 'DataSnap'
-      Caption = 'ACTNReverter'
-      Enabled = False
-      Hint = 
-        'Clique neste bot'#227'o para reverter todas as altera'#231#245'es feitas nest' +
-        'a tela'
-      ImageIndex = 1
-      OnExecute = ACTNReverterExecute
-    end
-  end
-  object IMLIToolBarInativo: TImageList
-    ColorDepth = cd32Bit
-    DrawingStyle = dsTransparent
-    Height = 32
-    Width = 32
-    Left = 156
+  inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C0101020008005C0020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800640020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

@@ -5,6 +5,22 @@ object DAMOPrincipal: TDAMOPrincipal
   object ACMAPrincipal: TActionManager
     ActionBars = <
       item
+        Items.CaptionOptions = coNone
+        Items.SmallIcons = False
+        Items = <
+          item
+            Action = ACTNAlterarMinhasPreferencias
+            Caption = '&Alterar minhas prefer'#234'ncias'
+            ImageIndex = 5
+          end
+          item
+            Action = ACTNAtualizarPrivilegios
+            Caption = 'A&tualizar privil'#233'gios'
+            ImageIndex = 6
+          end>
+        ActionBar = FORMPrincipal.ACTBPrincipal
+      end
+      item
         Items = <
           item
             Items = <
@@ -46,6 +62,7 @@ object DAMOPrincipal: TDAMOPrincipal
               end
               item
                 Action = ACTNRelatorio4
+                Caption = '&ACTNRelatorio4'
               end>
             Caption = '&Relat'#243'rios'
           end
@@ -78,22 +95,6 @@ object DAMOPrincipal: TDAMOPrincipal
             Caption = '&Ajuda'
           end>
         ActionBar = FORMPrincipal.ACMMPrincipal
-      end
-      item
-        Items.CaptionOptions = coNone
-        Items.SmallIcons = False
-        Items = <
-          item
-            Action = ACTNAlterarMinhasPreferencias
-            Caption = '&Alterar minhas prefer'#234'ncias'
-            ImageIndex = 5
-          end
-          item
-            Action = ACTNAtualizarPrivilegios
-            Caption = 'A&tualizar privil'#233'gios'
-            ImageIndex = 6
-          end>
-        ActionBar = FORMPrincipal.ACTBPrincipal
       end>
     LargeImages = IMLIPrincipalLarge
     Images = IMLIPrincipal
@@ -126,6 +127,7 @@ object DAMOPrincipal: TDAMOPrincipal
       Category = 'Ferramentas administrativas'
       Caption = 'Configura'#231#245'es'
       ImageIndex = 3
+      OnExecute = ACTNConfiguracoesExecute
     end
     object ACTNSegurancaEPermissoes: TAction
       Category = 'Ferramentas administrativas'
@@ -154,6 +156,7 @@ object DAMOPrincipal: TDAMOPrincipal
     object ACTNRelatorio4: TAction
       Category = 'Relat'#243'rios'
       Caption = 'ACTNRelatorio4'
+      OnExecute = ACTNRelatorio4Execute
     end
   end
   object SOCNPrincipal: TSoapConnection
@@ -173,7 +176,7 @@ object DAMOPrincipal: TDAMOPrincipal
     Left = 90
     Top = 12
     Bitmap = {
-      494C010107000800FC0010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010107000800300110001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       00000000000000000000000000000000000000000000000000030000000C0000
       00170000001F0000002400000025000000250000002600000027000000270000
@@ -458,7 +461,7 @@ object DAMOPrincipal: TDAMOPrincipal
     Left = 168
     Top = 12
     Bitmap = {
-      494C01010700D400200118001800FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C01010700D400540118001800FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000600000003000000001002000000000000048
       0000000000000000000000000000000000000000000000000000000000000000
       000000000001000000050000000F000000170000001D00000021000000220000

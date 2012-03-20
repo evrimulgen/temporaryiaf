@@ -4,20 +4,9 @@ unit UKRFMDBAwareBasico;
 
 interface
 
-uses Windows
-   , Messages
-   , SysUtils
-   , Classes
-   , Graphics
-   , Controls
-   , Forms
-   , KRK.Wizards.Form
-   , ToolWin
-   , StdCtrls
-   , ComCtrls
-   , ImgList
-   , ActnList
-   , DBCtrls;
+uses Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms
+   , KRK.Wizards.Form, ToolWin, StdCtrls, ComCtrls, ImgList, ActnList, DBCtrls
+   , ActnMenus, KRK.Lib.Rtl.Common.Classes.Interposer;
 
 type
   TDBNavigator = class (DBCtrls.TDBNavigator)
@@ -40,13 +29,17 @@ type
     procedure ACTNConfirmarExecute(Sender: TObject);
     procedure KRKFormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure ACTNReverterExecute(Sender: TObject);
+    procedure KRKFormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Declarações privadas }
+    FActionMainMenuBar: TActionMainMenuBar;
     function AtualizacoesPendentes: Boolean;
     procedure Confirmar;
     procedure Reverter;
   protected
     { Declarações protegidas }
+    procedure Activate; override;
+    procedure Deactivate; override;
   public
     { Declarações públicas }
   end;
@@ -55,8 +48,7 @@ implementation
 
 {$R *.dfm}
 
-uses KRK.Wizards.DataModule
-   , DBCLient;
+uses KRK.Wizards.DataModule, DBClient, UDAMOPrincipal, Dialogs;
 
 procedure TKRFMDBAwareBasico.ACLIToolbarUpdate(Action: TBasicAction; var Handled: Boolean);
 var
@@ -74,6 +66,16 @@ begin
   begin
     ACTNConfirmar.Enabled := False;
     ACTNReverter.Enabled := False;
+  end;
+end;
+
+procedure TKRFMDBAwareBasico.Activate;
+begin
+  inherited;
+  if Assigned(FActionMainMenuBar) then
+  begin
+    TDAMOPrincipal(Owner.Owner).FORMPrincipal.ACMMPrincipal.MergeMenu(FActionMainMenuBar);
+    FActionMainMenuBar.Hide;
   end;
 end;
 
@@ -97,6 +99,13 @@ begin
       TClientDataset(TDataSetItem(CI).DataSet).ApplyUpdates(0);
 end;
 
+procedure TKRFMDBAwareBasico.Deactivate;
+begin
+  inherited;
+  if Assigned(Owner) then
+    TDAMOPrincipal(Owner.Owner).FORMPrincipal.ACMMPrincipal.RemoveMergedMenus;
+end;
+
 function TKRFMDBAwareBasico.AtualizacoesPendentes: Boolean;
 var
   CI: TCollectionItem;
@@ -110,14 +119,30 @@ begin
     end;
 end;
 
+procedure TKRFMDBAwareBasico.KRKFormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  TDAMOPrincipal(Owner.Owner).FORMPrincipal.ACMMPrincipal.RemoveMergedMenus;
+end;
+
 procedure TKRFMDBAwareBasico.KRKFormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
   CanClose := (not AtualizacoesPendentes) or (Application.MessageBox('Existem alterações não salvas. Tem certeza de que quer fechar e perder todas as informações não salvas?','Atualizações pendentes',MB_ICONQUESTION or MB_YESNO) = IDYES)
 end;
 
 procedure TKRFMDBAwareBasico.KRKFormCreate(Sender: TObject);
+var
+  i: Word;
 begin
   LABLCaption.Caption := '  ' + Caption;
+
+  { Todo TActionMainMenuBar é ocultável }
+  for i := 0 to Pred(ComponentCount) do
+    if Components[i] is ActnMenus.TActionMainMenuBar then
+    begin
+      FActionMainMenuBar := TActionMainMenuBar(Components[i]);
+      FActionMainMenuBar.AllowHiding := True;
+      Break; { Apenas o primeiro ActionMainMenuBar é afetado! }
+    end;
 end;
 
 procedure TKRFMDBAwareBasico.Reverter;

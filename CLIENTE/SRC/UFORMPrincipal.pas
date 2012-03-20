@@ -2,10 +2,9 @@ unit UFORMPrincipal;
 
 interface
 
-uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ToolWin, ActnMan, ActnCtrls, ActnMenus, Menus, ComCtrls, ActnList,
-  StdCtrls;
+uses Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms
+   , Dialogs, ToolWin, ActnMan, ActnCtrls, ActnMenus, Menus, ComCtrls, ActnList
+   , StdCtrls, KRK.Lib.Rtl.Common.Classes.Interposer;
 
 type
   TFORMPrincipal = class(TForm)

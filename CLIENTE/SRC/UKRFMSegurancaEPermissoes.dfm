@@ -990,7 +990,6 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
         Align = alTop
         Caption = ' Localiza'#231#227'o r'#225'pida '
         TabOrder = 0
-        ExplicitTop = 34
         DesignSize = (
           768
           57)
@@ -1135,8 +1134,6 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
             Align = alClient
             Caption = ' Grupos aos quais o usu'#225'rio selecionado pertence '
             TabOrder = 2
-            ExplicitTop = 164
-            ExplicitHeight = 260
             DesignSize = (
               280
               229)
@@ -1606,14 +1603,10 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
     Width = 784
     TabOrder = 1
     ExplicitWidth = 784
-    inherited LABLCaption: TLabel
-      Height = 38
-      ExplicitHeight = 38
-    end
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C010102000800FC0020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800040120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2150,7 +2143,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C0101020008000C0120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800140120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
