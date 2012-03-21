@@ -169,9 +169,7 @@ begin
   enquanto outros são apenas menus com submenus! Ao tentar entender o procedure
   recursivo "CascadeHiding", esqueça as ações e lembre-se apenas de itens de
   menu hierarquicos }
-//  for ABI in  do
 
-// ACMA.ActionBars.IterateClients(ACMA.ActionBars[0].Items,DoActionProc);
   CascadeHiding(ACMAPrincipal.ActionBars[0].Items);
 end;
 
