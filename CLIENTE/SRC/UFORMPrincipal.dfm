@@ -15,6 +15,7 @@ object FORMPrincipal: TFORMPrincipal
   FormStyle = fsMDIForm
   OldCreateOrder = False
   Position = poScreenCenter
+  OnCreate = FormCreate
   DesignSize = (
     784
     562)

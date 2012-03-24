@@ -4,11 +4,11 @@ unit UKRDMBasico;
 
 interface
 
-uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms,
-  KRK.Wizards.DataModule, ActnList, ImgList, DBClient, UReconcileErrorDialog,
-  DB, KRK.Components.DataControls.ValidationChecks,
-  KRK.Components.AdditionalControls.BalloonHint;
+uses Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms
+   , KRK.Wizards.DataModule, ActnList, ImgList, DBClient, UReconcileErrorDialog
+   , DB, KRK.Components.DataControls.ValidationChecks
+   , KRK.Components.AdditionalControls.BalloonHint, ActnMenus
+   , ActnMan, KRK.Lib.Rtl.Common.Classes.Interposer;
 
 type
   TClientDataSet = class (DBClient.TClientDataSet)
@@ -37,8 +37,10 @@ type
     ACLI: TActionList;
     IMLI: TImageList;
     KRBH: TKRKBalloonHint;
+    procedure KRKDataModuleBeforeCreateMyForm(const aMyFormClass: string);
   private
     { Declarações privadas }
+    FActionManager: TActionManager;
     procedure DoReconcileError(DataSet: TCustomClientDataSet; E: EReconcileError; UpdateKind: TUpdateKind; var Action: TReconcileAction);
     procedure ApplyPermissions;
   protected
@@ -187,6 +189,7 @@ var
   DataSetField: TDataSetField;
 begin
   inherited;
+
   for CI in DataSets do
     if TDataSetItem(CI).DataSet.ClassNameIs('TClientDataset') then
     begin
@@ -215,7 +218,6 @@ begin
           TClientDataset(TDataSetItem(CI).DataSet).KRKValidationChecks.DataSet := TDataSetItem(CI).DataSet;
         end;
       end;
-
     end;
 end;
 
@@ -224,9 +226,55 @@ begin
   Action := HandleReconcileError(DataSet,UpdateKind,E);
 end;
 
-procedure TKRDMBasico.ApplyPermissions;
+procedure TKRDMBasico.KRKDataModuleBeforeCreateMyForm(const aMyFormClass: string);
+var
+  i: Word;
+  ABI: TCollectionItem;
 begin
-  { Isso deve usar o CLDS com as permiss~~oes e aplica-las localmente neste datamodule }
+  FActionManager := nil;
+
+  { Buscando o TActionManager. Apenas o primeiro encontrado é considerado, pois
+  não é permitido ou necessário mais que um TActionManager por tela }
+  for i := 0 to Pred(ComponentCount) do
+    if Components[i] is TActionManager then
+    begin
+      FActionManager := TActionManager(Components[i]);
+      Break;
+    end;
+
+  ApplyPermissions;
+end;
+
+procedure TKRDMBasico.ApplyPermissions;
+var
+  i: Word;
+begin
+  { Primeiramente aplicamos a segurança em um possível menu principal da janela
+  associada. Como para os menus principais é necessário um Action Manager,
+  verificamos apenas a presença deste último }
+  if Assigned(FActionManager) then
+  begin
+    { Oculta todas as ações disponíveis. Isso não oculta as categorias de ações,
+    apenas as ações propriamente ditas }
+    for i := 0 to Pred(FActionManager.ActionCount) do
+      TAction(FActionManager.Actions[i]).Visible := False;
+
+    { Torna visíveis apenas as ações que forem permitidas }
+    TDAMOPrincipal(Owner).CLDSPermissoes.First;
+    while not TDAMOPrincipal(Owner).CLDSPermissoes.Eof do
+    begin
+      if (TDAMOPrincipal(Owner).CLDSPermissoes.Fields[1].AsInteger = 1) and (Pos(Self.Name + '.',TDAMOPrincipal(Owner).CLDSPermissoes.Fields[0].AsString) = 1) then
+        for i := 0 to Pred(FActionManager.ActionCount) do
+          if Copy(TDAMOPrincipal(Owner).CLDSPermissoes.Fields[0].AsString,Succ(Pos('.',TDAMOPrincipal(Owner).CLDSPermissoes.Fields[0].AsString)),Length(TDAMOPrincipal(Owner).CLDSPermissoes.Fields[0].AsString)) = FActionManager.Actions[i].Name then
+          begin
+            TAction(FActionManager.Actions[i]).Visible := TDAMOPrincipal(Owner).CLDSPermissoes.Fields[2].AsBoolean;
+            Break;
+          end;
+
+      TDAMOPrincipal(Owner).CLDSPermissoes.Next;
+    end;
+  end;
+  { Em seguida aplicamos as permissões ao componente ACLI (TActionList) }
 end;
 
 procedure TKRDMBasico.ConfigureErrorHint(aTitle, aText: String; aWinControl: TWinControl; aShowHint: Boolean);

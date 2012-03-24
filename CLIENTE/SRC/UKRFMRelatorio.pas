@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, UKRFMDBAwareBasico, ActnList, ImgList, StdCtrls, ComCtrls, ToolWin,
-  ActnMan, ActnCtrls, ActnMenus;
+  ActnMan, ActnCtrls, ActnMenus, ExtCtrls;
 
 type
   TKRFMRelatorio = class(TKRFMDBAwareBasico)

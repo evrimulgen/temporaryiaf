@@ -63,7 +63,7 @@
    <soapenv:Header/>
    <soapenv:Body>
       <urn:GetPermissions soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
-         <aSessionID xsi:type="xsd:string">{771D69C5-69D3-4BAD-B16B-455EFF4AC779}</aSessionID>
+         <aSessionID xsi:type="xsd:string">{C32C43DA-1D9F-4DE8-85CD-52FAB281F83E}</aSessionID>
       </urn:GetPermissions>
    </soapenv:Body>
 </soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UExtraMethodsIntf-IExtraMethods#GetPermissions"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/></con:soapui-project>

@@ -1,6 +1,7 @@
 object KRDMBasico: TKRDMBasico
   OldCreateOrder = False
   SQLs = <>
+  OnBeforeCreateMyForm = KRKDataModuleBeforeCreateMyForm
   Height = 150
   Width = 215
   object ACLI: TActionList

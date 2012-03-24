@@ -65,7 +65,7 @@ implementation
 {$R *.dfm}
 
 uses Forms, Windows, KRK.Lib.Rtl.Common.Classes, UConfiguracoes, UAuthenticator
-   , UFORMLogin, UExtraMethods;
+   , UFORMLogin, UExtraMethods, ActnMenus;
 
 procedure TDAMOPrincipal.ACTNAjudaExecute(Sender: TObject);
 begin
@@ -118,22 +118,6 @@ begin
 end;
 
 procedure TDAMOPrincipal.ApplyPermissions(aFORMSplash: TFormSplash);
-{ ---------------------------------------------------------------------------- }
-procedure CascadeHiding(aActionClients: TActionClients);
-var
-  ACI: TCollectionItem;
-begin
-  for ACI in aActionClients do
-    if TActionClientItem(ACI).Visible then
-    begin
-      if TActionClientItem(ACI).HasItems and (TActionClientItem(ACI).Items.VisibleCount > 0) then
-        CascadeHiding(TActionClientItem(ACI).Items);
-
-      TActionClientItem(ACI).Visible := (TActionClientItem(ACI).HasItems and (TActionClientItem(ACI).Items.VisibleCount > 0))
-                                     or (not TActionClientItem(ACI).HasItems);
-    end;
-end;
-{ ---------------------------------------------------------------------------- }
 var
   i: Word;
 begin
@@ -158,19 +142,6 @@ begin
     aFORMSplash.GAGESplash.AddProgress(1);
     aFORMSplash.Update;
   end;
-
-  { Oculta categorias que não tem itens visíveis. Explicando: os
-  TActionClientItem são os itens do menu principal. Estes ítens não são ações,
-  mas podem ser associados a ações. Ao criar um menu TActionMainMenuBar e
-  arrastar ações e/ou categorias de ações para ele, vários TActionClientItem são
-  criados e cada um deles representa um ítem do menu. Alguns desses ítens são
-  automaticamente associados a ações reais, é por isso que alguns
-  TActionClientItem quando clicados em tempo de execução executam uma ação,
-  enquanto outros são apenas menus com submenus! Ao tentar entender o procedure
-  recursivo "CascadeHiding", esqueça as ações e lembre-se apenas de itens de
-  menu hierarquicos }
-
-  CascadeHiding(ACMAPrincipal.ActionBars[0].Items);
 end;
 
 procedure TDAMOPrincipal.ConfigureCurrentSession(aSessionID: String);

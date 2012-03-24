@@ -24,12 +24,12 @@ type
     ACTNReverter: TAction;
     LABLCaption: TLabel;
     IMLIToolBarInativo: TImageList;
-    procedure KRKFormCreate(Sender: TObject);
     procedure ACLIToolbarUpdate(Action: TBasicAction; var Handled: Boolean);
     procedure ACTNConfirmarExecute(Sender: TObject);
-    procedure KRKFormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure KRKFormDBAwareBasicoCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure ACTNReverterExecute(Sender: TObject);
-    procedure KRKFormClose(Sender: TObject; var Action: TCloseAction);
+    procedure KRKFormDBAwareBasicoClose(Sender: TObject; var Action: TCloseAction);
+    procedure KRKFormCreate(Sender: TObject);
   private
     { Declarações privadas }
     FActionMainMenuBar: TActionMainMenuBar;
@@ -74,7 +74,7 @@ begin
   inherited;
   if Assigned(FActionMainMenuBar) then
   begin
-    TDAMOPrincipal(Owner.Owner).FORMPrincipal.ACMMPrincipal.MergeMenu(FActionMainMenuBar);
+    DAMOPrincipal.FORMPrincipal.ACMMPrincipal.MergeMenu(FActionMainMenuBar);
     FActionMainMenuBar.Hide;
   end;
 end;
@@ -103,7 +103,7 @@ procedure TKRFMDBAwareBasico.Deactivate;
 begin
   inherited;
   if Assigned(Owner) then
-    TDAMOPrincipal(Owner.Owner).FORMPrincipal.ACMMPrincipal.RemoveMergedMenus;
+    DAMOPrincipal.FORMPrincipal.ACMMPrincipal.RemoveMergedMenus;
 end;
 
 function TKRFMDBAwareBasico.AtualizacoesPendentes: Boolean;
@@ -119,16 +119,6 @@ begin
     end;
 end;
 
-procedure TKRFMDBAwareBasico.KRKFormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  TDAMOPrincipal(Owner.Owner).FORMPrincipal.ACMMPrincipal.RemoveMergedMenus;
-end;
-
-procedure TKRFMDBAwareBasico.KRKFormCloseQuery(Sender: TObject; var CanClose: Boolean);
-begin
-  CanClose := (not AtualizacoesPendentes) or (Application.MessageBox('Existem alterações não salvas. Tem certeza de que quer fechar e perder todas as informações não salvas?','Atualizações pendentes',MB_ICONQUESTION or MB_YESNO) = IDYES)
-end;
-
 procedure TKRFMDBAwareBasico.KRKFormCreate(Sender: TObject);
 var
   i: Word;
@@ -141,8 +131,19 @@ begin
     begin
       FActionMainMenuBar := TActionMainMenuBar(Components[i]);
       FActionMainMenuBar.AllowHiding := True;
+      FActionMainMenuBar.ClearNullMenus;
       Break; { Apenas o primeiro ActionMainMenuBar é afetado! }
     end;
+end;
+
+procedure TKRFMDBAwareBasico.KRKFormDBAwareBasicoClose(Sender: TObject; var Action: TCloseAction);
+begin
+  DAMOPrincipal.FORMPrincipal.ACMMPrincipal.RemoveMergedMenus;
+end;
+
+procedure TKRFMDBAwareBasico.KRKFormDBAwareBasicoCloseQuery(Sender: TObject; var CanClose: Boolean);
+begin
+  CanClose := (not AtualizacoesPendentes) or (Application.MessageBox('Existem alterações não salvas. Tem certeza de que quer fechar e perder todas as informações não salvas?','Atualizações pendentes',MB_ICONQUESTION or MB_YESNO) = IDYES)
 end;
 
 procedure TKRFMDBAwareBasico.Reverter;
