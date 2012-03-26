@@ -96,6 +96,8 @@ type
     LABLGRUFiltros: TLabel;
     KRDGGruposCON: TKRKDBGrid;
     BUTNRessetarSenhas: TButton;
+    BBTNRegistrarEntidades: TBitBtn;
+    DBCBSuperUsuario: TDBCheckBox;
     procedure LAEDUSU_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
     procedure LAEDUSU_VA_LOGINKeyPress(Sender: TObject; var Key: Char);
     procedure LabeledEdit_EDS_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
@@ -107,11 +109,9 @@ type
     procedure DoDrawColumnCell(Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure KRDGPDUCellClick(Column: TColumn);
     procedure KRDGConsEntidadesDoSistemaAfterMultiselect(aSender: TObject; aMultiSelectEventTrigger: TMultiSelectEventTrigger);
-    procedure KRDGPDUDblClick(Sender: TObject);
     procedure LabeledEdit_GRU_VA_NOME2KeyPress(Sender: TObject; var Key: Char);
     procedure LabeledEdit_GRU_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
     procedure KRDGPDGCellClick(Column: TColumn);
-    procedure KRDGPDGDblClick(Sender: TObject);
   private
     { Private declarations }
     procedure FiltrarEntidadesDoSistema;
@@ -167,12 +167,6 @@ begin
 		TKRDMSegurancaEPermissoes(Owner).AlternarPermissao(pExcluir,odpGrupo);
 end;
 
-procedure TKRFMSegurancaEPermissoes.KRDGPDGDblClick(Sender: TObject);
-begin
-  inherited;
-  ShowMessage(TKRKDBGrid(Sender).DataSource.DataSet.FieldByName('in_permissoesdosgrupos_id').AsString);
-end;
-
 procedure TKRFMSegurancaEPermissoes.KRDGPDUCellClick(Column: TColumn);
 begin
   inherited;
@@ -184,12 +178,6 @@ begin
 		TKRDMSegurancaEPermissoes(Owner).AlternarPermissao(pAlterar,odpUsuario)
   else if Column.FieldName = 'sm_excluir' then
 		TKRDMSegurancaEPermissoes(Owner).AlternarPermissao(pExcluir,odpUsuario);
-end;
-
-procedure TKRFMSegurancaEPermissoes.KRDGPDUDblClick(Sender: TObject);
-begin
-  inherited;
-//  ShowMessage(TKRKDBGrid(Sender).DataSource.DataSet.FieldByName('in_permissoesdosusuarios_id').AsString);
 end;
 
 procedure TKRFMSegurancaEPermissoes.DoDrawColumnCell(Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
@@ -299,7 +287,8 @@ begin
                                                     ,''
                                                     ,TLabeledEdit(Sender).Text
                                                     ,''
-                                                    ,'');
+                                                    ,''
+                                                    ,-1);
 end;
 
 procedure TKRFMSegurancaEPermissoes.LabeledEdit_USU_VA_NOME2KeyPress(Sender: TObject; var Key: Char);
@@ -311,7 +300,8 @@ begin
                                                     ,TLabeledEdit(Sender).Text
                                                     ,''
                                                     ,''
-                                                    ,'');
+                                                    ,''
+                                                    ,-1);
 end;
 
 procedure TKRFMSegurancaEPermissoes.LAEDUSU_VA_LOGINKeyPress(Sender: TObject; var Key: Char);
@@ -323,7 +313,8 @@ begin
                                                     ,''
                                                     ,TLabeledEdit(Sender).Text
                                                     ,''
-                                                    ,'');
+                                                    ,''
+                                                    ,-1);
 end;
 
 procedure TKRFMSegurancaEPermissoes.LAEDUSU_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
@@ -335,7 +326,8 @@ begin
                                                     ,TLabeledEdit(Sender).Text
                                                     ,''
                                                     ,''
-                                                    ,'');
+                                                    ,''
+                                                    ,-1);
 end;
 
 procedure TKRFMSegurancaEPermissoes.PGCTUSUGRUConsultarChange(Sender: TObject);

@@ -36,6 +36,7 @@ type
     ZUSQPermissoesDosUsuarios: TZUpdateSQL;
     KRVCPermissoesDosUsuarios: TKRKValidationChecks;
     ZQRYPermissoesDosUsuariostipo: TSmallintField;
+    ZQRYUsuariosbo_superusuario: TBooleanField;
   private
     { Private declarations }
   public

@@ -17,6 +17,10 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
     object TabSheet_Permissions: TTabSheet
       AlignWithMargins = True
       Caption = 'Permiss'#245'es'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object PANLLayerSuperior: TPanel
         AlignWithMargins = True
         Left = 0
@@ -41,6 +45,10 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
           OnChange = PGCTUSUGRUConsultarChange
           object TBSHUSUConsultar: TTabSheet
             Caption = 'Usu'#225'rios'
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             DesignSize = (
               341
               200)
@@ -135,6 +143,10 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
           object TBSHGRUConsultar: TTabSheet
             Caption = 'Grupos'
             ImageIndex = 1
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             DesignSize = (
               341
               200)
@@ -330,6 +342,17 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
                 Visible = True
               end>
           end
+          object BBTNRegistrarEntidades: TBitBtn
+            Left = 281
+            Top = 195
+            Width = 127
+            Height = 25
+            Action = KRDMSegurancaEPermissoes.ACTNRegistrarEntidades
+            Caption = 'Registrar Entidades'
+            DoubleBuffered = False
+            ParentDoubleBuffered = False
+            TabOrder = 3
+          end
         end
       end
       object PANLFooter: TPanel
@@ -358,6 +381,10 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
           object TBSHPDU: TTabSheet
             Caption = 'Entidades e permiss'#245'es do usu'#225'rio selecionado'
             ImageIndex = 1
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object PANLUSULayerTop: TPanel
               Left = 0
               Top = 0
@@ -601,7 +628,6 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
               VariableWidthColumns = '<entidade>'
               OnCellClick = KRDGPDUCellClick
               OnDrawColumnCell = DoDrawColumnCell
-              OnDblClick = KRDGPDUDblClick
               Columns = <
                 item
                   Expanded = False
@@ -667,6 +693,10 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
           end
           object TBSHPDG: TTabSheet
             Caption = 'Entidades e permiss'#245'es do grupo selecionado'
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object PANLGRULayerTop: TPanel
               Left = 0
               Top = 0
@@ -910,7 +940,6 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
               VariableWidthColumns = '<Entidade>'
               OnCellClick = KRDGPDGCellClick
               OnDrawColumnCell = DoDrawColumnCell
-              OnDblClick = KRDGPDGDblClick
               Columns = <
                 item
                   Expanded = False
@@ -980,6 +1009,10 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
     object TabSheet_USU: TTabSheet
       Caption = 'Gerenciamento de usu'#225'rios'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object GroupBoxUsuariosConsultar2: TGroupBox
         AlignWithMargins = True
         Left = 3
@@ -1067,13 +1100,13 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
             Left = 0
             Top = 25
             Width = 280
-            Height = 170
+            Height = 160
             Align = alTop
             Caption = ' Dados do usu'#225'rio '
             TabOrder = 1
             DesignSize = (
               280
-              170)
+              160)
             object KLDE_USU_VA_NOME: TKRKLabeledDBEdit
               Left = 8
               Top = 27
@@ -1116,42 +1149,49 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
               EditLabel.Caption = 'E-mail'
               LabelSpacing = 1
             end
-            object BUTNRessetarSenhas: TButton
+            object DBCBSuperUsuario: TDBCheckBox
               Left = 8
               Top = 136
-              Width = 264
-              Height = 25
-              Action = KRDMSegurancaEPermissoes.ACTNRessetarSenhas
-              Anchors = [akLeft, akTop, akRight, akBottom]
+              Width = 79
+              Height = 17
+              Hint = 
+                'Um superusu'#225'rio tem permiss'#227'o completa e irrestrita em todo o si' +
+                'stema independentemente das permiss'#245'es do seu usu'#225'rio ou de seus' +
+                ' grupos'
+              AllowGrayed = True
+              Caption = 'Superusu'#225'rio'
+              DataField = 'bo_superusuario'
+              DataSource = KRDMSegurancaEPermissoes.DTSRUsuarios
               TabOrder = 3
+              ValueChecked = 'TRUE'
+              ValueUnchecked = 'FALSE'
             end
           end
           object GroupBox_GDU: TGroupBox
             Left = 0
-            Top = 195
+            Top = 185
             Width = 280
-            Height = 229
+            Height = 208
             Align = alClient
             Caption = ' Grupos aos quais o usu'#225'rio selecionado pertence '
             TabOrder = 2
             DesignSize = (
               280
-              229)
+              208)
             object Panel_GDU_Info: TPanel
               Left = 8
               Top = 15
               Width = 264
-              Height = 206
+              Height = 185
               Anchors = [akLeft, akTop, akRight, akBottom]
               BevelOuter = bvNone
               TabOrder = 0
-              ExplicitHeight = 237
               object KRDGGruposDoUsuario: TKRKDBGrid
                 AlignWithMargins = True
                 Left = 0
                 Top = 0
                 Width = 264
-                Height = 177
+                Height = 156
                 Margins.Left = 0
                 Margins.Top = 0
                 Margins.Right = 0
@@ -1179,7 +1219,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
             end
             object BitBtn_GDU_Adicionar: TBitBtn
               Left = 24
-              Top = 196
+              Top = 175
               Width = 112
               Height = 25
               Anchors = [akBottom]
@@ -1256,11 +1296,10 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
               NumGlyphs = 2
               ParentDoubleBuffered = False
               TabOrder = 2
-              ExplicitTop = 227
             end
             object BitBtn_GDU_Remover: TBitBtn
               Left = 142
-              Top = 196
+              Top = 175
               Width = 112
               Height = 25
               Anchors = [akBottom]
@@ -1338,8 +1377,21 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
               ParentDoubleBuffered = False
               Spacing = 5
               TabOrder = 1
-              ExplicitTop = 227
             end
+          end
+          object BUTNRessetarSenhas: TButton
+            AlignWithMargins = True
+            Left = 0
+            Top = 399
+            Width = 280
+            Height = 25
+            Margins.Left = 0
+            Margins.Top = 6
+            Margins.Right = 0
+            Margins.Bottom = 0
+            Action = KRDMSegurancaEPermissoes.ACTNRessetarSenhas
+            Align = alBottom
+            TabOrder = 3
           end
         end
         object PANLKRDGUsuarios: TPanel
@@ -1438,6 +1490,10 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
     object TabSheet_GRU: TTabSheet
       Caption = 'Gerenciamento de grupos'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object GroupBoxGruposConsultar: TGroupBox
         AlignWithMargins = True
         Left = 3
@@ -1606,7 +1662,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C010102000800040120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C0101020008001C0120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2143,7 +2199,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C010102000800140120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C0101020008002C0120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

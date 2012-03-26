@@ -26,41 +26,44 @@ inherited KRDMUsuarios: TKRDMUsuarios
       '   AND ((:CH_SENHA IS NULL) OR (USU.CH_SENHA = :CH_SENHA))'
       
         '   AND ((:VA_EMAIL IS NULL) OR (UPPER(USU.VA_EMAIL) LIKE UPPER(:' +
-        'VA_EMAIL)))')
+        'VA_EMAIL)))'
+      
+        '   AND ((:BO_SUPERUSUARIO IS NULL) OR (USU.BO_SUPERUSUARIO = :BO' +
+        '_SUPERUSUARIO))')
     Params = <
       item
         DataType = ftSmallint
         Name = 'SM_USUARIOS_ID'
         ParamType = ptInput
-        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_NOME'
         ParamType = ptInput
         Size = 64
-        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_LOGIN'
         ParamType = ptInput
         Size = 16
-        Value = Null
       end
       item
         DataType = ftString
         Name = 'CH_SENHA'
         ParamType = ptInput
         Size = 128
-        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_EMAIL'
         ParamType = ptInput
         Size = 64
-        Value = Null
+      end
+      item
+        DataType = ftBoolean
+        Name = 'BO_SUPERUSUARIO'
+        ParamType = ptInput
       end>
     Left = 24
     Top = 60
@@ -69,35 +72,35 @@ inherited KRDMUsuarios: TKRDMUsuarios
         DataType = ftSmallint
         Name = 'SM_USUARIOS_ID'
         ParamType = ptInput
-        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_NOME'
         ParamType = ptInput
         Size = 64
-        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_LOGIN'
         ParamType = ptInput
         Size = 16
-        Value = Null
       end
       item
         DataType = ftString
         Name = 'CH_SENHA'
         ParamType = ptInput
         Size = 128
-        Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_EMAIL'
         ParamType = ptInput
         Size = 64
-        Value = Null
+      end
+      item
+        DataType = ftBoolean
+        Name = 'BO_SUPERUSUARIO'
+        ParamType = ptInput
       end>
     object ZQRYUsuariossm_usuarios_id: TSmallintField
       DisplayLabel = 'ID'
@@ -128,6 +131,10 @@ inherited KRDMUsuarios: TKRDMUsuarios
       ProviderFlags = [pfInUpdate]
       Size = 64
     end
+    object ZQRYUsuariosbo_superusuario: TBooleanField
+      FieldName = 'bo_superusuario'
+      ProviderFlags = [pfInUpdate]
+    end
   end
   object ZUSQUsuarios: TZUpdateSQL
     DeleteSQL.Strings = (
@@ -139,22 +146,24 @@ inherited KRDMUsuarios: TKRDMUsuarios
       '                   ,:VA_NOME'
       '                   ,:VA_LOGIN'
       '                   ,:CH_SENHA'
-      '                   ,:VA_EMAIL)')
+      '                   ,:VA_EMAIL'
+      '                   ,:BO_SUPERUSUARIO)')
     ModifySQL.Strings = (
       'SELECT IDU_USUARIOS('#39'U'#39
       '                   ,CAST(:SM_USUARIOS_ID AS SMALLINT)'
       '                   ,:VA_NOME'
       '                   ,:VA_LOGIN'
       '                   ,:CH_SENHA'
-      '                   ,:VA_EMAIL)')
+      '                   ,:VA_EMAIL'
+      '                   ,:BO_SUPERUSUARIO)')
     UseSequenceFieldForRefreshSQL = False
     Left = 24
     Top = 108
     ParamData = <
       item
-        DataType = ftUnknown
+        DataType = ftSmallint
         Name = 'SM_USUARIOS_ID'
-        ParamType = ptUnknown
+        ParamType = ptInput
       end
       item
         DataType = ftString
@@ -179,6 +188,11 @@ inherited KRDMUsuarios: TKRDMUsuarios
         Name = 'va_email'
         ParamType = ptInput
         Size = 64
+      end
+      item
+        DataType = ftBoolean
+        Name = 'BO_SUPERUSUARIO'
+        ParamType = ptInput
       end>
   end
   object ZQRYGruposDosUsuarios: TZQuery
@@ -248,12 +262,8 @@ inherited KRDMUsuarios: TKRDMUsuarios
         FieldDescription = 'E-mail do usu'#225'rio'
       end
       item
-        FieldName = 'nome'
-        FieldDescription = 'Nome'
-      end
-      item
-        FieldName = 'login'
-        FieldDescription = 'Login'
+        FieldName = 'bo_superusuario'
+        FieldDescription = 'Superusu'#225'rio'
       end>
     Left = 24
     Top = 204

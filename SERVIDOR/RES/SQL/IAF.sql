@@ -41,6 +41,7 @@ CREATE TABLE USUARIOS (SM_USUARIOS_ID SMALLINT NOT NULL DEFAULT NEXTVAL('SQ_USU_
                       ,VA_LOGIN VARCHAR(16) NOT NULL
                       ,CH_SENHA CHAR(128) NOT NULL
                       ,VA_EMAIL VARCHAR(64)
+                      ,BO_SUPERUSUARIO boolean NOT NULL DEFAULT FALSE
                       ,CONSTRAINT PK_USU PRIMARY KEY (SM_USUARIOS_ID)
                       ,CONSTRAINT UC_USU_VA_EMAIL UNIQUE (VA_EMAIL)
                       ,CONSTRAINT UC_USU_VA_LOGIN UNIQUE (VA_LOGIN));
@@ -128,11 +129,12 @@ ALTER SEQUENCE SQ_PDU_IN_PERMISSOESDOSUSUARIOS_ID
       OWNED BY PERMISSOESDOSUSUARIOS.IN_PERMISSOESDOSUSUARIOS_ID;
 ---------------------------------------------------------------
 CREATE OR REPLACE FUNCTION IDU_USUARIOS(IN pMODO           CHAR
-                                       ,IN pSM_USUARIOS_ID USUARIOS.SM_USUARIOS_ID%TYPE = NULL
-                                       ,IN pVA_NOME        USUARIOS.VA_NOME%TYPE        = NULL
-                                       ,IN pVA_LOGIN       USUARIOS.VA_LOGIN%TYPE       = NULL
-                                       ,IN pCH_SENHA       USUARIOS.CH_SENHA%TYPE       = NULL
-                                       ,IN pVA_EMAIL       USUARIOS.VA_EMAIL%TYPE       = NULL)
+                                       ,IN pSM_USUARIOS_ID  USUARIOS.SM_USUARIOS_ID%TYPE  = NULL
+                                       ,IN pVA_NOME         USUARIOS.VA_NOME%TYPE         = NULL
+                                       ,IN pVA_LOGIN        USUARIOS.VA_LOGIN%TYPE        = NULL
+                                       ,IN pCH_SENHA        USUARIOS.CH_SENHA%TYPE        = NULL
+                                       ,IN pVA_EMAIL        USUARIOS.VA_EMAIL%TYPE        = NULL
+                                       ,IN pBO_SUPERUSUARIO USUARIOS.BO_SUPERUSUARIO%TYPE = NULL)
 RETURNS BIGINT AS 
 $BODY$
 DECLARE
@@ -147,7 +149,8 @@ BEGIN
                     VALUES (pVA_NOME
                            ,pVA_LOGIN
                            ,sha512('') -- todo novo usuário tem de criar sua própria senha.
-                           ,pVA_EMAIL);
+                           ,pVA_EMAIL
+                           ,pBO_SUPERUSUARIO);
 
     vRETURN := CURRVAL('SQ_USU_SM_USUARIOS_ID');
     ---------------------------------------------------------------------------------------
@@ -159,10 +162,11 @@ BEGIN
     ---------------------------------------------------------------------------------------
     WHEN 'U' THEN ----------------------------------------------------------- [ UPDATE ] --
       UPDATE USUARIOS
-         SET VA_NOME = pVA_NOME
-           , VA_LOGIN = pVA_LOGIN
-           , CH_SENHA = pCH_SENHA
-           , VA_EMAIL = pVA_EMAIL
+         SET VA_NOME         = pVA_NOME
+           , VA_LOGIN        = pVA_LOGIN
+           , CH_SENHA        = pCH_SENHA
+           , VA_EMAIL        = pVA_EMAIL
+           , BO_SUPERUSUARIO = pBO_SUPERUSUARIO
        WHERE SM_USUARIOS_ID = pSM_USUARIOS_ID;
 
     GET DIAGNOSTICS vRETURN := ROW_COUNT;
@@ -370,10 +374,10 @@ $BODY$
 LANGUAGE SQL;
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-SELECT IDU_USUARIOS('I'::CHAR,NULL::SMALLINT,'Administrador do sistema'::VARCHAR,'admin'::VARCHAR,SHA512('123')::CHAR,'admin@zettaomnis.com.br'::VARCHAR);
-SELECT IDU_USUARIOS('I'::CHAR,NULL::SMALLINT,'Funcionário 1'::VARCHAR,'func1'::VARCHAR,SHA512('123')::CHAR,'func1@zettaomnis.com.br'::VARCHAR);
-SELECT IDU_USUARIOS('I'::CHAR,NULL::SMALLINT,'Funcionário 2'::VARCHAR,'func2'::VARCHAR,SHA512('123')::CHAR,'func2@zettaomnis.com.br'::VARCHAR);
-SELECT IDU_USUARIOS('I'::CHAR,NULL::SMALLINT,'Funcionário 3'::VARCHAR,'func3'::VARCHAR,SHA512('123')::CHAR,'func3@zettaomnis.com.br'::VARCHAR);
+SELECT IDU_USUARIOS('I'::CHAR,NULL::SMALLINT,'Administrador do sistema'::VARCHAR,'admin'::VARCHAR,SHA512('123')::CHAR,'admin@zettaomnis.com.br'::VARCHAR,TRUE::BOOLEAN);
+SELECT IDU_USUARIOS('I'::CHAR,NULL::SMALLINT,'Funcionário 1'::VARCHAR,'func1'::VARCHAR,SHA512('123')::CHAR,'func1@zettaomnis.com.br'::VARCHAR,FALSE::BOOLEAN);
+SELECT IDU_USUARIOS('I'::CHAR,NULL::SMALLINT,'Funcionário 2'::VARCHAR,'func2'::VARCHAR,SHA512('123')::CHAR,'func2@zettaomnis.com.br'::VARCHAR,FALSE::BOOLEAN);
+SELECT IDU_USUARIOS('I'::CHAR,NULL::SMALLINT,'Funcionário 3'::VARCHAR,'func3'::VARCHAR,SHA512('123')::CHAR,'func3@zettaomnis.com.br'::VARCHAR,FALSE::BOOLEAN);
 ---------------------------------------------------------------
 SELECT IDU_GRUPOS('I'::CHAR,NULL::SMALLINT,'Administradores'::VARCHAR,'Grupo de administradores do sistema, com permissão irrestrita'::VARCHAR);
 SELECT IDU_GRUPOS('I'::CHAR,NULL::SMALLINT,'Funcionários Nível 1'::VARCHAR,'Grupo de funcionários de nível 1'::VARCHAR);

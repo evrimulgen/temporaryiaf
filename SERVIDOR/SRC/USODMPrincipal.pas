@@ -111,9 +111,13 @@ function TSODMPrincipal.SAS_GetRecords(const ProviderName: WideString; Count: In
 begin
   if (not CheckSessions) or SessionExists(OwnerData) then
   begin
+    SaveTextFile('antes de criar dm','c:\_testes\before1.txt');
     CreateDataModule(ProviderName,Self);
+    SaveTextFile('apos criar dm','c:\_testes\after1.txt');
 
+    SaveTextFile('antes de inherited','c:\_testes\before2.txt');
     Result := inherited;
+    SaveTextFile('apos inherited','c:\_testes\after2.txt');
 
     if UseCompression then
       OleVariantByteArrayUCLCompress(Result);

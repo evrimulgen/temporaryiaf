@@ -83,6 +83,9 @@ type
     CLDSPermissoesDosGruposic_entidade: TStringField;
     CLDSPermissoesDosGruposic_tipo: TStringField;
     ACTNRessetarSenhas: TAction;
+    ACTNRegistrarEntidades: TAction;
+    CLDSUsuariosbo_superusuario: TBooleanField;
+    CLDSUsuariosCONbo_superusuario: TBooleanField;
     procedure CLDSEntidadesDoSistemaCONsm_tipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure CLDSUsuariosCalcFields(DataSet: TDataSet);
     procedure CLDSUsuariosAfterRefresh(DataSet: TDataSet);
@@ -92,10 +95,8 @@ type
     procedure CLDSPermissoesDosUsuariostipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure CLDSGruposDosUsuariosgrupoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure CLDSGruposAfterRefresh(DataSet: TDataSet);
-    procedure CLDSPermissoesDosGruposentidadeGetText(Sender: TField;
-      var Text: string; DisplayText: Boolean);
-    procedure CLDSPermissoesDosGrupostipoGetText(Sender: TField;
-      var Text: string; DisplayText: Boolean);
+    procedure CLDSPermissoesDosGruposentidadeGetText(Sender: TField; var Text: string; DisplayText: Boolean);
+    procedure CLDSPermissoesDosGrupostipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure ACTNRessetarSenhasExecute(Sender: TObject);
   private
     { Declarações privadas }
@@ -105,7 +106,7 @@ type
     { Declarações protegidas }
   public
     { Declarações públicas }
-    procedure FiltrarUsuarios(aCLDSUsuarios: TClientDataSet; aSM_USUARIOS_ID: SmallInt; aVA_NOME, aVA_LOGIN, aCH_SENHA, aVA_EMAIL: String);
+    procedure FiltrarUsuarios(aCLDSUsuarios: TClientDataSet; aSM_USUARIOS_ID: SmallInt; aVA_NOME, aVA_LOGIN, aCH_SENHA, aVA_EMAIL: String; aBO_SUPERUSUARIO: ShortInt);
     procedure FiltrarGrupos(aCLDSGrupos: TClientDataSet; aSM_GRUPOS_ID: SmallInt; aVA_NOME, aVA_DESCRICAO: String);
     procedure FiltrarEntidadesDoSistema(aCLDSEntidadesDoSistema: TClientDataSet; aIN_ENTIDADESDOSISTEMA_ID: Integer; aVA_NOME: String; aSM_TIPO: SmallInt);
     procedure AlternarPermissao(aPermissao: TPermissao; aObjetoDePermissao: TObjetoDePermissao);
@@ -387,10 +388,11 @@ end;
 procedure TKRDMSegurancaEPermissoes.DoGetTextVazio(Sender: TField; var Text: string; DisplayText: Boolean);
 begin
   inherited;
-  Text := '';
+  if DisplayText then
+    Text := '';
 end;
 
-procedure TKRDMSegurancaEPermissoes.FiltrarUsuarios(aCLDSUsuarios: TClientDataSet; aSM_USUARIOS_ID: SmallInt; aVA_NOME, aVA_LOGIN, aCH_SENHA, aVA_EMAIL: String);
+procedure TKRDMSegurancaEPermissoes.FiltrarUsuarios(aCLDSUsuarios: TClientDataSet; aSM_USUARIOS_ID: SmallInt; aVA_NOME, aVA_LOGIN, aCH_SENHA, aVA_EMAIL: String; aBO_SUPERUSUARIO: ShortInt);
 begin
   if aCLDSUsuarios.ChangeCount = 0 then
   begin
@@ -399,6 +401,7 @@ begin
     AssignParam(aCLDSUsuarios.Params.ParamByName('VA_LOGIN'),aVA_LOGIN);
     AssignParam(aCLDSUsuarios.Params.ParamByName('CH_SENHA'),aCH_SENHA);
     AssignParam(aCLDSUsuarios.Params.ParamByName('VA_EMAIL'),aVA_EMAIL);
+    AssignParam(aCLDSUsuarios.Params.ParamByName('BO_SUPERUSUARIO'),aBO_SUPERUSUARIO);
     aCLDSUsuarios.Refresh;
   end;
 end;

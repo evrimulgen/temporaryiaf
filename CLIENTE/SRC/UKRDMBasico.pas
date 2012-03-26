@@ -229,7 +229,6 @@ end;
 procedure TKRDMBasico.KRKDataModuleBeforeCreateMyForm(const aMyFormClass: string);
 var
   i: Word;
-  ABI: TCollectionItem;
 begin
   FActionManager := nil;
 
