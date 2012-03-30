@@ -33,6 +33,23 @@ type
     function DoGetRecords(Count: Integer; out RecsOut: Integer; Options: Integer; const CommandText: WideString; Params: OleVariant): OleVariant; override;
   end;
 
+  TActionList = class(ActnList.TActionList)
+  public
+    procedure SyncActionsWithPermissions;
+  end;
+
+  TAction = class(ActnList.TAction)
+  private
+    FPermitida: Boolean;
+    procedure SetPermitida(const Value: Boolean);
+    function GetEnabled: Boolean;
+    procedure SetEnabled(const Value: Boolean);
+  public
+    constructor Create(aOwner: TComponent); override;
+    property Permitida: Boolean read FPermitida write SetPermitida default True;
+    property Enabled: Boolean read GetEnabled write SetEnabled;
+  end;
+
   TKRDMBasico = class(TKRKDataModule)
     ACLI: TActionList;
     IMLI: TImageList;
@@ -250,20 +267,24 @@ procedure TKRDMBasico.ApplyPermissions;
 var
   i: Word;
 begin
-  { Primeiramente aplicamos a segurança em um possível menu principal da janela
-  associada. Como para os menus principais é necessário um Action Manager,
-  verificamos apenas a presença deste último }
+  { Oculta todas as ações disponíveis em um possível TActionManager. Isso não
+  oculta as categorias de ações, apenas as ações propriamente ditas }
   if Assigned(FActionManager) then
-  begin
-    { Oculta todas as ações disponíveis. Isso não oculta as categorias de ações,
-    apenas as ações propriamente ditas }
     for i := 0 to Pred(FActionManager.ActionCount) do
       TAction(FActionManager.Actions[i]).Visible := False;
 
-    { Torna visíveis apenas as ações que forem permitidas }
-    TDAMOPrincipal(Owner).CLDSPermissoes.First;
-    while not TDAMOPrincipal(Owner).CLDSPermissoes.Eof do
-    begin
+  { Instrui todas as ações disponíveis em ACLI a serem não permitidas }
+  for i := 0 to Pred(ACLI.ActionCount) do
+    TAction(ACLI.Actions[i]).Permitida := False;
+
+  { Torna visíveis ou habilitadas apenas as ações que forem permitidas }
+  TDAMOPrincipal(Owner).CLDSPermissoes.First;
+  while not TDAMOPrincipal(Owner).CLDSPermissoes.Eof do
+  begin
+    { Primeiramente aplicamos a segurança em um possível menu principal da janela
+    associada. Como para os menus principais é necessário um Action Manager,
+    verificamos apenas a presença deste último }
+    if Assigned(FActionManager) then
       if (TDAMOPrincipal(Owner).CLDSPermissoes.Fields[1].AsInteger = 1) and (Pos(Self.Name + '.',TDAMOPrincipal(Owner).CLDSPermissoes.Fields[0].AsString) = 1) then
         for i := 0 to Pred(FActionManager.ActionCount) do
           if Copy(TDAMOPrincipal(Owner).CLDSPermissoes.Fields[0].AsString,Succ(Pos('.',TDAMOPrincipal(Owner).CLDSPermissoes.Fields[0].AsString)),Length(TDAMOPrincipal(Owner).CLDSPermissoes.Fields[0].AsString)) = FActionManager.Actions[i].Name then
@@ -272,9 +293,50 @@ begin
             Break;
           end;
 
-      TDAMOPrincipal(Owner).CLDSPermissoes.Next;
-    end;
+    { Em seguida aplicamos as permissões ao componente ACLI (TActionList) }
+    if (TDAMOPrincipal(Owner).CLDSPermissoes.Fields[1].AsInteger = 1) and (Pos(Self.Name + '.',TDAMOPrincipal(Owner).CLDSPermissoes.Fields[0].AsString) = 1) then
+      for i := 0 to Pred(ACLI.ActionCount) do
+        if Copy(TDAMOPrincipal(Owner).CLDSPermissoes.Fields[0].AsString,Succ(Pos('.',TDAMOPrincipal(Owner).CLDSPermissoes.Fields[0].AsString)),Length(TDAMOPrincipal(Owner).CLDSPermissoes.Fields[0].AsString)) = ACLI.Actions[i].Name then
+        begin
+          TAction(ACLI.Actions[i]).Permitida := TDAMOPrincipal(Owner).CLDSPermissoes.Fields[2].AsBoolean;
+          Break;
+        end;
+
+    TDAMOPrincipal(Owner).CLDSPermissoes.Next;
   end;
+
+  { Ao final fazemos uma espécie de sincronização entre as propriedades
+  "Permitida" e "Enabled" de ACLI de forma que fiquem desabilitadas apenas as
+  ações não permitidas }
+  ACLI.SyncActionsWithPermissions;
+
+
+
+//  { Primeiramente aplicamos a segurança em um possível menu principal da janela
+//  associada. Como para os menus principais é necessário um Action Manager,
+//  verificamos apenas a presença deste último }
+//  if Assigned(FActionManager) then
+//  begin
+//    { Oculta todas as ações disponíveis. Isso não oculta as categorias de ações,
+//    apenas as ações propriamente ditas }
+//    for i := 0 to Pred(FActionManager.ActionCount) do
+//      TAction(FActionManager.Actions[i]).Visible := False;
+//
+//    { Torna visíveis apenas as ações que forem permitidas }
+//    TDAMOPrincipal(Owner).CLDSPermissoes.First;
+//    while not TDAMOPrincipal(Owner).CLDSPermissoes.Eof do
+//    begin
+//      if (TDAMOPrincipal(Owner).CLDSPermissoes.Fields[1].AsInteger = 1) and (Pos(Self.Name + '.',TDAMOPrincipal(Owner).CLDSPermissoes.Fields[0].AsString) = 1) then
+//        for i := 0 to Pred(FActionManager.ActionCount) do
+//          if Copy(TDAMOPrincipal(Owner).CLDSPermissoes.Fields[0].AsString,Succ(Pos('.',TDAMOPrincipal(Owner).CLDSPermissoes.Fields[0].AsString)),Length(TDAMOPrincipal(Owner).CLDSPermissoes.Fields[0].AsString)) = FActionManager.Actions[i].Name then
+//          begin
+//            TAction(FActionManager.Actions[i]).Visible := TDAMOPrincipal(Owner).CLDSPermissoes.Fields[2].AsBoolean;
+//            Break;
+//          end;
+//
+//      TDAMOPrincipal(Owner).CLDSPermissoes.Next;
+//    end;
+//  end;
   { Em seguida aplicamos as permissões ao componente ACLI (TActionList) }
 end;
 
@@ -291,6 +353,39 @@ begin
     if aShowHint then
       Show;
   end;
+end;
+
+{ TAction }
+
+constructor TAction.Create(aOwner: TComponent);
+begin
+  inherited;
+  FPermitida := True;
+end;
+
+function TAction.GetEnabled: Boolean;
+begin
+  Result := inherited Enabled;
+end;
+
+procedure TAction.SetEnabled(const Value: Boolean);
+begin
+  inherited Enabled := FPermitida and Value;
+end;
+
+procedure TAction.SetPermitida(const Value: Boolean);
+begin
+  FPermitida := Value;
+end;
+
+{ TActionList }
+
+procedure TActionList.SyncActionsWithPermissions;
+var
+  i: Word;
+begin
+  for i := 0 to Pred(ActionCount) do
+    TAction(Actions[i]).Enabled := TAction(Actions[i]).Enabled;
 end;
 
 end.

@@ -1,6 +1,32 @@
 inherited KRDMRelatorio: TKRDMRelatorio
   OldCreateOrder = True
   MyFormClass = 'TKRFMRelatorio'
+  inherited ACLI: TActionList
+    object ACTN_1: TAction
+      Caption = 'ACTN_1'
+      OnExecute = ACTN_1Execute
+    end
+    object ACTN_2: TAction
+      Caption = 'ACTN_2'
+      OnExecute = ACTN_2Execute
+    end
+    object ACTN_3: TAction
+      Caption = 'ACTN_3'
+      OnExecute = ACTN_3Execute
+    end
+    object ACTN_4: TAction
+      Caption = 'ACTN_4'
+      OnExecute = ACTN_4Execute
+    end
+    object ACTN_5: TAction
+      Caption = 'ACTN_5'
+      OnExecute = ACTN_5Execute
+    end
+    object ACTN_6: TAction
+      Caption = 'ACTN_6'
+      OnExecute = ACTN_6Execute
+    end
+  end
   object ACMA: TActionManager
     ActionBars = <
       item
