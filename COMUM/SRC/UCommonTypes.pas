@@ -16,12 +16,14 @@ type
     Fva_login: String;
     Fch_senha: String;
     Fva_email: String;
+    Fbo_superusuario: Boolean;
   published
     property sm_usuarios_id: SmallInt read Fsm_usuarios_id write Fsm_usuarios_id;
     property va_nome: String read Fva_nome write Fva_nome;
     property va_login: String read Fva_login write Fva_login;
     property ch_senha: String read Fch_senha write Fch_senha;
     property va_email: String read Fva_email write Fva_email;
+    property bo_superusuario: Boolean read Fbo_superusuario write Fbo_superusuario;
   end;
 
   { Usado apenas no cliente, esta classe, guarda os dados da sessão do usuário

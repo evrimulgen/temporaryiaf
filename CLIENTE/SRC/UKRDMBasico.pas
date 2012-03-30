@@ -42,13 +42,14 @@ type
     { Declarações privadas }
     FActionManager: TActionManager;
     procedure DoReconcileError(DataSet: TCustomClientDataSet; E: EReconcileError; UpdateKind: TUpdateKind; var Action: TReconcileAction);
-    procedure ApplyPermissions;
   protected
     { Declarações protegidas }
+    procedure ApplyPermissions; virtual;
     procedure ConfigureErrorHint(aTitle, aText: String; aWinControl: TWinControl; aShowHint: Boolean); virtual;
   public
     { Declarações públicas }
     constructor Create(aOwner: TComponent); override;
+    property ActionManager: TActionManager read FActionManager;
   end;
 
 implementation
@@ -241,7 +242,8 @@ begin
       Break;
     end;
 
-  ApplyPermissions;
+  if not TDAMOPrincipal(Owner).CurrentSession.Data.bo_superusuario then
+    ApplyPermissions;
 end;
 
 procedure TKRDMBasico.ApplyPermissions;

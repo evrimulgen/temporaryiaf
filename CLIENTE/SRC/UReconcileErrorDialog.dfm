@@ -210,7 +210,7 @@ object ReconcileErrorForm: TReconcileErrorForm
     Style = tsSoftTabs
     Tabs.Strings = (
       'Erro'
-      'Detalhes'
+      'Detalhes / Dica'
       'Contexto')
     TabIndex = 0
     OnChange = DKTSMensagensChange

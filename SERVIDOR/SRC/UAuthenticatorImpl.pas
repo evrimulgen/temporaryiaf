@@ -189,11 +189,12 @@ begin
 
         if Result then
         begin
-          SD.sm_usuarios_id := FieldByName('sm_usuarios_id').AsInteger;
-          SD.va_nome        := FieldByName('va_nome').AsString;
-          SD.va_login       := FieldByName('va_login').AsString;
-          SD.ch_senha       := FieldByName('ch_senha').AsString;
-          SD.va_email       := FieldByName('va_email').AsString;
+          SD.sm_usuarios_id  := FieldByName('sm_usuarios_id').AsInteger;
+          SD.va_nome         := FieldByName('va_nome').AsString;
+          SD.va_login        := FieldByName('va_login').AsString;
+          SD.ch_senha        := FieldByName('ch_senha').AsString;
+          SD.va_email        := FieldByName('va_email').AsString;
+          SD.bo_superusuario := FieldByName('bo_superusuario').AsBoolean;
         end;
       finally
         Free;

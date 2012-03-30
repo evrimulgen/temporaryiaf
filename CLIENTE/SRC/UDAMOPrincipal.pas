@@ -183,27 +183,32 @@ begin
       FORMSplash.Update;
 
       { 2 }
-      FORMSplash.PANLProgresso.Caption := 'Obtendo lista de permissões...';
-      CLDSPermissoes.Data := GetPermissions(SessionID);
-{ Os campos de CLDSPermissoes são os de baixo }
-// CLDSPermissoes.FieldDefs.Add('ENTIDADE', ftString,128,True);
-// CLDSPermissoes.FieldDefs.Add('TIPO', ftSmallint);
-// CLDSPermissoes.FieldDefs.Add('LER', ftBoolean);
-// CLDSPermissoes.FieldDefs.Add('INSERIR', ftBoolean);
-// CLDSPermissoes.FieldDefs.Add('ALTERAR', ftBoolean);
-// CLDSPermissoes.FieldDefs.Add('EXCLUIR', ftBoolean);
+      { Apenas se não for um superusuário é que precisamos aplicar permissões.
+      Caso seja um superusuário, mantém todas as ações deste DM como elas
+      estiverem, isto é, visíveis }
+      if not FCurrentSession.Data.bo_superusuario then
+      begin
+        FORMSplash.PANLProgresso.Caption := 'Obtendo lista de permissões...';
+        FORMSplash.Update;
+        CLDSPermissoes.Data := GetPermissions(SessionID);
+        { Os campos de CLDSPermissoes são os de baixo }
+        // ENTIDADE, ftString  , 128
+        // TIPO    , ftSmallint
+        // LER     , ftBoolean
+        // INSERIR , ftBoolean
+        // ALTERAR , ftBoolean
+        // EXCLUIR , ftBoolean
 
+        { 3 }
+        FORMSplash.GAGESplash.Progress := 0;
+        FORMSplash.GAGESplash.MaxValue := CLDSPermissoes.RecordCount;
+        FORMSplash.PANLProgresso.Caption := 'Aplicando permissões principais...';
+        FORMSplash.Update;
 
-      FORMSplash.GAGESplash.AddProgress(1);
-      FORMSplash.Update;
-
-      { 3 }
-      FORMSplash.GAGESplash.Progress := 0;
-      FORMSplash.GAGESplash.MaxValue := CLDSPermissoes.RecordCount;
-      FORMSplash.PANLProgresso.Caption := 'Aplicando permissões principais...';
-      FORMSplash.Update;
-
-      ApplyPermissions(FORMSplash);
+        ApplyPermissions(FORMSplash);
+      end
+      else
+        FORMSplash.GAGESplash.AddProgress(1);
 
       FORMSplash.PANLProgresso.Caption := 'Inicializando...';
       FORMSplash.Update;

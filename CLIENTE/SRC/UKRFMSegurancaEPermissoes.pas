@@ -142,7 +142,7 @@ begin
       Tipo := -1;
   end;
 
-  TKRDMSegurancaEPermissoes(Owner).FiltrarEntidadesDoSistema(TKRDMSegurancaEPermissoes(Owner).CLDSEntidadesDoSistemaCON
+  TKRDMSegurancaEPermissoes(Owner).FiltrarEntidadesDoSistema(TKRDMSegurancaEPermissoes(Owner).CLDSEntidadesDoSistema
                                                             ,0
                                                             ,LabeledEdit_EDS_VA_NOME.Text
                                                             ,Tipo);

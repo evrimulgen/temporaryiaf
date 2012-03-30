@@ -21,11 +21,11 @@ type
     CLDSUsuariosCONva_login: TWideStringField;
     CLDSUsuariosCONch_senha: TWideStringField;
     CLDSUsuariosCONva_email: TWideStringField;
-    CLDSEntidadesDoSistemaCON: TClientDataSet;
-    DTSRConsEntidadesDoSistema: TDataSource;
-    CLDSEntidadesDoSistemaCONin_entidadesdosistema_id: TIntegerField;
-    CLDSEntidadesDoSistemaCONva_nome: TWideStringField;
-    CLDSEntidadesDoSistemaCONsm_tipo: TSmallintField;
+    CLDSEntidadesDoSistema: TClientDataSet;
+    DTSREntidadesDoSistema: TDataSource;
+    CLDSEntidadesDoSistemain_entidadesdosistema_id: TIntegerField;
+    CLDSEntidadesDoSistemava_nome: TWideStringField;
+    CLDSEntidadesDoSistemasm_tipo: TSmallintField;
     CLDSUsuarios: TClientDataSet;
     DTSRUsuarios: TDataSource;
     CLDSUsuariossm_usuarios_id: TSmallintField;
@@ -86,7 +86,7 @@ type
     ACTNRegistrarEntidades: TAction;
     CLDSUsuariosbo_superusuario: TBooleanField;
     CLDSUsuariosCONbo_superusuario: TBooleanField;
-    procedure CLDSEntidadesDoSistemaCONsm_tipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
+    procedure CLDSEntidadesDoSistemasm_tipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure CLDSUsuariosCalcFields(DataSet: TDataSet);
     procedure CLDSUsuariosAfterRefresh(DataSet: TDataSet);
     procedure DoGetTextVazio(Sender: TField; var Text: string; DisplayText: Boolean);
@@ -98,6 +98,7 @@ type
     procedure CLDSPermissoesDosGruposentidadeGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure CLDSPermissoesDosGrupostipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure ACTNRessetarSenhasExecute(Sender: TObject);
+    procedure ACTNRegistrarEntidadesExecute(Sender: TObject);
   private
     { Declarações privadas }
     procedure AdicionarEntidadesParaUsuario;
@@ -129,6 +130,63 @@ begin
     0: AdicionarEntidadesParaUsuario;// Usuários
     1: AdicionarEntidadesParaGrupo;// Grupos
   end;
+end;
+
+procedure TKRDMSegurancaEPermissoes.ACTNRegistrarEntidadesExecute(Sender: TObject);
+var
+  i, NovasEntidades: Word;
+  ContainedAction: TContainedAction;
+begin
+  inherited;
+  NovasEntidades := 0;
+
+  if not TDAMOPrincipal(Owner).CurrentSession.Data.bo_superusuario then
+    Application.MessageBox('Para usar esta funcionalidade você precisa ser um superusuário','Privilégio insuficiente!',MB_ICONWARNING)
+  else if Application.MessageBox('Certifique-se de que todas as janelas das quais você deseja registrar as entidades estejam abertas. Deseja continuar?','Buscar e registrar entidades?',MB_ICONQUESTION or MB_YESNO) = IDYES then
+    try
+      CLDSEntidadesDoSistema.DisableControls;
+      for i := 0 to Pred(TDAMOPrincipal(owner).FORMPrincipal.MDIChildCount) do
+      begin
+        { Se estiver tentando obter as ações deste DM
+        (TKRDMSegurancaEPermissoes), então não faz nada e passa para a próxima
+        janela filha }
+        if TKRDMBasico(TDAMOPrincipal(owner).FORMPrincipal.MDIChildren[i].Owner).Name = Self.Name then
+          Continue;
+
+        { Registra todas as ações do primeiro TActionManager, se houver um }
+        if Assigned(TKRDMBasico(TDAMOPrincipal(owner).FORMPrincipal.MDIChildren[i].Owner).ActionManager) then
+        begin
+          for ContainedAction in TKRDMBasico(TDAMOPrincipal(owner).FORMPrincipal.MDIChildren[i].Owner).ActionManager do
+          begin
+            CLDSEntidadesDoSistema.Append;
+
+            CLDSEntidadesDoSistemava_nome.AsString := ContainedAction.Owner.Name + '.' + ContainedAction.Name;
+            CLDSEntidadesDoSistemasm_tipo.AsInteger := 1;
+
+            CLDSEntidadesDoSistema.Post;
+            Inc(NovasEntidades);
+          end;
+        end;
+
+        { Registra todas as ações do TActionList }
+        for ContainedAction in TKRDMBasico(TDAMOPrincipal(owner).FORMPrincipal.MDIChildren[i].Owner).ACLI do
+        begin
+          CLDSEntidadesDoSistema.Append;
+
+          CLDSEntidadesDoSistemava_nome.AsString := ContainedAction.Owner.Name + '.' + ContainedAction.Name;
+          CLDSEntidadesDoSistemasm_tipo.AsInteger := 1;
+
+          CLDSEntidadesDoSistema.Post;
+          Inc(NovasEntidades);
+        end;
+      end;
+    finally
+      CLDSEntidadesDoSistema.EnableControls;
+      if NovasEntidades > 0 then
+        Application.MessageBox(PWideChar(IntToStr(NovasEntidades) + ' novas entidades foram adicionadas. Por favor, confirme estas adições para torná-las permanentes'),'Entidades adicionadas!',MB_ICONINFORMATION)
+      else
+        Application.MessageBox('Nenhuma nova entidade foi adicionada. Tem certeza de que abriu as janelas com as entidades que precisavam ser registradas? Se sim, talvez as entidades já tenham sido registradas anteriormente','Nenhuma nova entidade encontrada!',MB_ICONINFORMATION)
+    end;
 end;
 
 procedure TKRDMSegurancaEPermissoes.ACTNRessetarSenhasExecute(Sender: TObject);
@@ -166,29 +224,30 @@ var
   i: Integer;
   BookMarkList: TBookMarkList;
 begin
+  application.MessageBox('apenas entidades já persistidas no servidor podem ser copiadas. verifica isso','verifica',MB_ICONWARNING);
   BookMarkList := TKRFMSegurancaEPermissoes(MyForm).KRDGConsEntidadesDoSistema.SelectedRows;
 
   if BookMarkList.Count > 0 then
     try
       CLDSPermissoesDosGrupos.DisableControls;
-      CLDSEntidadesDoSistemaCON.DisableControls;
+      CLDSEntidadesDoSistema.DisableControls;
       CLDSGruposCON.DisableControls;
 
       for i := 0 to Pred(BookMarkList.Count) do
       begin
-        CLDSEntidadesDoSistemaCON.GotoBookmark(BookMarkList[i]);
+        CLDSEntidadesDoSistema.GotoBookmark(BookMarkList[i]);
 
-        if not CLDSPermissoesDosGrupos.Locate('IN_ENTIDADESDOSISTEMA_ID',CLDSEntidadesDoSistemaCONin_entidadesdosistema_id.AsInteger,[]) then
+        if not CLDSPermissoesDosGrupos.Locate('IN_ENTIDADESDOSISTEMA_ID',CLDSEntidadesDoSistemain_entidadesdosistema_id.AsInteger,[]) then
         begin
           CLDSPermissoesDosGrupos.Append;
-          CLDSPermissoesDosGruposin_entidadesdosistema_id.AsInteger := CLDSEntidadesDoSistemaCONin_entidadesdosistema_id.AsInteger;
+          CLDSPermissoesDosGruposin_entidadesdosistema_id.AsInteger := CLDSEntidadesDoSistemain_entidadesdosistema_id.AsInteger;
           CLDSPermissoesDosGrupossm_grupos_id.AsInteger             := CLDSGruposCONsm_grupos_id.AsInteger;
-          CLDSPermissoesDosGruposic_entidade.AsString               := CLDSEntidadesDoSistemaCONva_nome.AsString;
-          CLDSPermissoesDosGruposic_tipo.AsInteger                  := CLDSEntidadesDoSistemaCONsm_tipo.AsInteger;
+          CLDSPermissoesDosGruposic_entidade.AsString               := CLDSEntidadesDoSistemava_nome.AsString;
+          CLDSPermissoesDosGruposic_tipo.AsInteger                  := CLDSEntidadesDoSistemasm_tipo.AsInteger;
 
           CLDSPermissoesDosGrupossm_ler.AsInteger := 0;
 
-          if CLDSEntidadesDoSistemaCONsm_tipo.AsInteger = 0 then
+          if CLDSEntidadesDoSistemasm_tipo.AsInteger = 0 then
           begin
             CLDSPermissoesDosGrupossm_inserir.AsInteger := 0;
             CLDSPermissoesDosGrupossm_alterar.AsInteger := 0;
@@ -206,7 +265,7 @@ begin
       end;
     finally
       CLDSGruposCON.EnableControls;
-      CLDSEntidadesDoSistemaCON.EnableControls;
+      CLDSEntidadesDoSistema.EnableControls;
       CLDSPermissoesDosGrupos.EnableControls;
     end;
 end;
@@ -216,29 +275,30 @@ var
   i: Integer;
   BookMarkList: TBookMarkList;
 begin
+  application.MessageBox('apenas entidades já persistidas no servidor podem ser copiadas. verifica isso','verifica',MB_ICONWARNING);
   BookMarkList := TKRFMSegurancaEPermissoes(MyForm).KRDGConsEntidadesDoSistema.SelectedRows;
 
   if BookMarkList.Count > 0 then
     try
       CLDSPermissoesDosUsuarios.DisableControls;
-      CLDSEntidadesDoSistemaCON.DisableControls;
+      CLDSEntidadesDoSistema.DisableControls;
       CLDSUsuariosCON.DisableControls;
 
       for i := 0 to Pred(BookMarkList.Count) do
       begin
-        CLDSEntidadesDoSistemaCON.GotoBookmark(BookMarkList[i]);
+        CLDSEntidadesDoSistema.GotoBookmark(BookMarkList[i]);
 
-        if not CLDSPermissoesDosUsuarios.Locate('IN_ENTIDADESDOSISTEMA_ID',CLDSEntidadesDoSistemaCONin_entidadesdosistema_id.AsInteger,[]) then
+        if not CLDSPermissoesDosUsuarios.Locate('IN_ENTIDADESDOSISTEMA_ID',CLDSEntidadesDoSistemain_entidadesdosistema_id.AsInteger,[]) then
         begin
           CLDSPermissoesDosUsuarios.Append;
-          CLDSPermissoesDosUsuariosin_entidadesdosistema_id.AsInteger := CLDSEntidadesDoSistemaCONin_entidadesdosistema_id.AsInteger;
+          CLDSPermissoesDosUsuariosin_entidadesdosistema_id.AsInteger := CLDSEntidadesDoSistemain_entidadesdosistema_id.AsInteger;
           CLDSPermissoesDosUsuariossm_usuarios_id.AsInteger           := CLDSUsuariosCONsm_usuarios_id.AsInteger;
-          CLDSPermissoesDosUsuariosic_entidade.AsString               := CLDSEntidadesDoSistemaCONva_nome.AsString;
-          CLDSPermissoesDosUsuariosic_tipo.AsInteger                  := CLDSEntidadesDoSistemaCONsm_tipo.AsInteger;
+          CLDSPermissoesDosUsuariosic_entidade.AsString               := CLDSEntidadesDoSistemava_nome.AsString;
+          CLDSPermissoesDosUsuariosic_tipo.AsInteger                  := CLDSEntidadesDoSistemasm_tipo.AsInteger;
 
           CLDSPermissoesDosUsuariossm_ler.AsInteger := 0;
 
-          if CLDSEntidadesDoSistemaCONsm_tipo.AsInteger = 0 then
+          if CLDSEntidadesDoSistemasm_tipo.AsInteger = 0 then
           begin
             CLDSPermissoesDosUsuariossm_inserir.AsInteger := 0;
             CLDSPermissoesDosUsuariossm_alterar.AsInteger := 0;
@@ -256,7 +316,7 @@ begin
       end;
     finally
       CLDSUsuariosCON.EnableControls;
-      CLDSEntidadesDoSistemaCON.EnableControls;
+      CLDSEntidadesDoSistema.EnableControls;
       CLDSPermissoesDosUsuarios.EnableControls;
     end;
 end;
@@ -319,7 +379,7 @@ begin
   end;
 end;
 
-procedure TKRDMSegurancaEPermissoes.CLDSEntidadesDoSistemaCONsm_tipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
+procedure TKRDMSegurancaEPermissoes.CLDSEntidadesDoSistemasm_tipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
 begin
   inherited;
   if DisplayText then

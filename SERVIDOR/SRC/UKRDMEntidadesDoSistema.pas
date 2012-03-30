@@ -5,7 +5,8 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, UKRDMBasico, ZAbstractDataset, ZStoredProcedure, DB,
-  ZAbstractRODataset, ZDataset, ZSqlUpdate;
+  ZAbstractRODataset, ZDataset, ZSqlUpdate,
+  KRK.Components.DataControls.ValidationChecks;
 
 type
   TKRDMEntidadesDoSistema = class(TKRDMBasico)
@@ -14,6 +15,7 @@ type
     ZQRYEntidadesDoSistemain_entidadesdosistema_id: TIntegerField;
     ZQRYEntidadesDoSistemava_nome: TWideStringField;
     ZQRYEntidadesDoSistemasm_tipo: TSmallintField;
+    KRVCEntidadesDoSistema: TKRKValidationChecks;
   private
     { Private declarations }
   public

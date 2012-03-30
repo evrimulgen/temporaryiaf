@@ -92,6 +92,7 @@ var
   CLDSPermissoes: TClientDataSet;
   UserID: SmallInt;
   Ler, Inserir, Alterar, Excluir: SmallInt;
+  SuperUser: Boolean;
 begin
   if (not CheckSessions) or SessionExists(aSessionID) then
   begin
@@ -101,6 +102,7 @@ begin
       try
         FromString(SessionDataFromSessionID(aSessionID));
         UserID := sm_usuarios_id;
+        SuperUser := bo_superusuario;
       finally
         Free;
       end;
@@ -133,29 +135,21 @@ begin
 
       { Obtém todas as entidades do sistema e circula por cada uma destas }
       ZROQEDS.Open;
-      while not ZROQEDS.Eof do
-        try
-          { Verifica se existem permissões para o usuário em PERMISSOESDOSUSUARIOS
-          para a entidade em questão, se houver então usa, senão verifica se há
-          permissão para a entidade em algum grupo do usuário. Se houver, usa,
-          senão, não tem nenhuma permissão para a entidade }
-          ZROQPDU.ParamByName('SM_USUARIOS_ID').AsInteger := UserID;
-          ZROQPDU.ParamByName('IN_ENTIDADESDOSISTEMA_ID').AsInteger := ZROQEDS.FieldByName('IN_ENTIDADESDOSISTEMA_ID').AsInteger;
-          ZROQPDU.Open;
 
-          if ZROQPDU.RecordCount = 1 then
-          begin
+      if SuperUser then
+        while not ZROQEDS.Eof do
+          try
             CLDSPermissoes.Append;
 
             CLDSPermissoes.FieldByName('ENTIDADE').AsString := ZROQPDU.FieldByName('VA_NOME').AsString;
             CLDSPermissoes.FieldByName('TIPO').AsInteger    := ZROQPDU.FieldByName('SM_TIPO').AsInteger;
-            CLDSPermissoes.FieldByName('LER').AsBoolean     := Boolean(ZROQPDU.FieldByName('SM_LER').AsInteger);
+            CLDSPermissoes.FieldByName('LER').AsBoolean     := True;
 
             if ZROQPDU.FieldByName('SM_TIPO').AsInteger = 0 then
             begin
-              CLDSPermissoes.FieldByName('INSERIR').AsBoolean := Boolean(ZROQPDU.FieldByName('SM_INSERIR').AsInteger);
-              CLDSPermissoes.FieldByName('ALTERAR').AsBoolean := Boolean(ZROQPDU.FieldByName('SM_ALTERAR').AsInteger);
-              CLDSPermissoes.FieldByName('EXCLUIR').AsBoolean := Boolean(ZROQPDU.FieldByName('SM_EXCLUIR').AsInteger);
+              CLDSPermissoes.FieldByName('INSERIR').AsBoolean := True;
+              CLDSPermissoes.FieldByName('ALTERAR').AsBoolean := True;
+              CLDSPermissoes.FieldByName('EXCLUIR').AsBoolean := True;
             end
             else
             begin
@@ -165,69 +159,105 @@ begin
             end;
 
             CLDSPermissoes.Post;
+          finally
+            ZROQEDS.Next;
           end
-          { Caso não existam permissões para o usuário, verifica se existem
-          permissões para um dos grupos do usuários }
-          else
-          begin
-            { Inicialmente as permissões são todas negadas }
-            Ler := 0;
-            Inserir := 0;
-            Alterar := 0;
-            Excluir := 0;
+      else
+        while not ZROQEDS.Eof do
+          try
+            { Verifica se existem permissões para o usuário em PERMISSOESDOSUSUARIOS
+            para a entidade em questão, se houver então usa, senão verifica se há
+            permissão para a entidade em algum grupo do usuário. Se houver, usa,
+            senão, não tem nenhuma permissão para a entidade }
+            ZROQPDU.ParamByName('SM_USUARIOS_ID').AsInteger := UserID;
+            ZROQPDU.ParamByName('IN_ENTIDADESDOSISTEMA_ID').AsInteger := ZROQEDS.FieldByName('IN_ENTIDADESDOSISTEMA_ID').AsInteger;
+            ZROQPDU.Open;
 
-            { Um usuário pode estar inserido em vários grupos com permissões
-            para uma determinada entidade. Abaixo, circulamos por cada uma das
-            permissões para a entidade em cada um dos grupos a fim de montar ao
-            final a permissão que é a soma booleana das permissões }
-            ZROQPDG.ParamByName('SM_USUARIOS_ID').AsInteger := UserID;
-            ZROQPDG.ParamByName('IN_ENTIDADESDOSISTEMA_ID').AsInteger := ZROQEDS.FieldByName('IN_ENTIDADESDOSISTEMA_ID').AsInteger;
-            ZROQPDG.Open;
+            if ZROQPDU.RecordCount = 1 then
+            begin
+              CLDSPermissoes.Append;
 
-            if ZROQPDG.RecordCount > 0 then
-              while not ZROQPDG.Eof do
+              CLDSPermissoes.FieldByName('ENTIDADE').AsString := ZROQPDU.FieldByName('VA_NOME').AsString;
+              CLDSPermissoes.FieldByName('TIPO').AsInteger    := ZROQPDU.FieldByName('SM_TIPO').AsInteger;
+              CLDSPermissoes.FieldByName('LER').AsBoolean     := Boolean(ZROQPDU.FieldByName('SM_LER').AsInteger);
+
+              if ZROQPDU.FieldByName('SM_TIPO').AsInteger = 0 then
               begin
-                Ler := Ler or ZROQPDG.FieldByName('SM_LER').AsInteger;
-
-                { se for uma tabela, verifica permissões específicas, se não for,
-                não precisa fazer mais nada pois o restante das permissões já está
-                como "não se aplica" }
-                if ZROQPDG.FieldByName('SM_TIPO').AsInteger = 0 then
-                begin
-                  Inserir := Inserir or ZROQPDG.FieldByName('SM_INSERIR').AsInteger;
-                  Alterar := Alterar or ZROQPDG.FieldByName('SM_ALTERAR').AsInteger;
-                  Excluir := Excluir or ZROQPDG.FieldByName('SM_EXCLUIR').AsInteger;
-                end;
-
-                ZROQPDG.Next;
+                CLDSPermissoes.FieldByName('INSERIR').AsBoolean := Boolean(ZROQPDU.FieldByName('SM_INSERIR').AsInteger);
+                CLDSPermissoes.FieldByName('ALTERAR').AsBoolean := Boolean(ZROQPDU.FieldByName('SM_ALTERAR').AsInteger);
+                CLDSPermissoes.FieldByName('EXCLUIR').AsBoolean := Boolean(ZROQPDU.FieldByName('SM_EXCLUIR').AsInteger);
+              end
+              else
+              begin
+                CLDSPermissoes.FieldByName('INSERIR').AsBoolean := False;
+                CLDSPermissoes.FieldByName('ALTERAR').AsBoolean := False;
+                CLDSPermissoes.FieldByName('EXCLUIR').AsBoolean := False;
               end;
 
-            CLDSPermissoes.Append;
-
-            CLDSPermissoes.FieldByName('ENTIDADE').AsString  := ZROQEDS.FieldByName('VA_NOME').AsString;
-            CLDSPermissoes.FieldByName('TIPO').AsInteger     := ZROQEDS.FieldByName('SM_TIPO').AsInteger;
-            CLDSPermissoes.FieldByName('LER').AsBoolean      := Boolean(Ler);
-
-            if ZROQEDS.FieldByName('SM_TIPO').AsInteger = 0 then
-            begin
-              CLDSPermissoes.FieldByName('INSERIR').AsBoolean  := Boolean(Inserir);
-              CLDSPermissoes.FieldByName('ALTERAR').AsBoolean  := Boolean(Alterar);
-              CLDSPermissoes.FieldByName('EXCLUIR').AsBoolean  := Boolean(Excluir);
+              CLDSPermissoes.Post;
             end
+            { Caso não existam permissões para o usuário, verifica se existem
+            permissões para um dos grupos do usuários }
             else
             begin
-              CLDSPermissoes.FieldByName('INSERIR').AsBoolean  := False;
-              CLDSPermissoes.FieldByName('ALTERAR').AsBoolean  := False;
-              CLDSPermissoes.FieldByName('EXCLUIR').AsBoolean  := False;
-            end;
+              { Inicialmente as permissões são todas negadas }
+              Ler := 0;
+              Inserir := 0;
+              Alterar := 0;
+              Excluir := 0;
 
-            CLDSPermissoes.Post;
+              { Um usuário pode estar inserido em vários grupos com permissões
+              para uma determinada entidade. Abaixo, circulamos por cada uma das
+              permissões para a entidade em cada um dos grupos a fim de montar ao
+              final a permissão que é a soma booleana das permissões }
+              ZROQPDG.ParamByName('SM_USUARIOS_ID').AsInteger := UserID;
+              ZROQPDG.ParamByName('IN_ENTIDADESDOSISTEMA_ID').AsInteger := ZROQEDS.FieldByName('IN_ENTIDADESDOSISTEMA_ID').AsInteger;
+              ZROQPDG.Open;
+
+              if ZROQPDG.RecordCount > 0 then
+                while not ZROQPDG.Eof do
+                begin
+                  Ler := Ler or ZROQPDG.FieldByName('SM_LER').AsInteger;
+
+                  { se for uma tabela, verifica permissões específicas, se não for,
+                  não precisa fazer mais nada pois o restante das permissões já está
+                  como "não se aplica" }
+                  if ZROQPDG.FieldByName('SM_TIPO').AsInteger = 0 then
+                  begin
+                    Inserir := Inserir or ZROQPDG.FieldByName('SM_INSERIR').AsInteger;
+                    Alterar := Alterar or ZROQPDG.FieldByName('SM_ALTERAR').AsInteger;
+                    Excluir := Excluir or ZROQPDG.FieldByName('SM_EXCLUIR').AsInteger;
+                  end;
+
+                  ZROQPDG.Next;
+                end;
+
+              CLDSPermissoes.Append;
+
+              CLDSPermissoes.FieldByName('ENTIDADE').AsString  := ZROQEDS.FieldByName('VA_NOME').AsString;
+              CLDSPermissoes.FieldByName('TIPO').AsInteger     := ZROQEDS.FieldByName('SM_TIPO').AsInteger;
+              CLDSPermissoes.FieldByName('LER').AsBoolean      := Boolean(Ler);
+
+              if ZROQEDS.FieldByName('SM_TIPO').AsInteger = 0 then
+              begin
+                CLDSPermissoes.FieldByName('INSERIR').AsBoolean  := Boolean(Inserir);
+                CLDSPermissoes.FieldByName('ALTERAR').AsBoolean  := Boolean(Alterar);
+                CLDSPermissoes.FieldByName('EXCLUIR').AsBoolean  := Boolean(Excluir);
+              end
+              else
+              begin
+                CLDSPermissoes.FieldByName('INSERIR').AsBoolean  := False;
+                CLDSPermissoes.FieldByName('ALTERAR').AsBoolean  := False;
+                CLDSPermissoes.FieldByName('EXCLUIR').AsBoolean  := False;
+              end;
+
+              CLDSPermissoes.Post;
+            end;
+          finally
+            ZROQPDG.Close;
+            ZROQPDU.Close;
+            ZROQEDS.Next;
           end;
-        finally
-          ZROQPDG.Close;
-          ZROQPDU.Close;
-          ZROQEDS.Next;
-        end;
 
       { As permissões dos usuários são sempre mais importantes do que as
       permissões de grupo. Por exemplo, se meus grupos me dão permissão mas meu

@@ -7,7 +7,7 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
   inherited ACLI: TActionList
     Images = IMLI
     object ACTNAdicionarEntidade: TAction
-      Caption = 'Adicionar entidade'
+      Caption = 'Adicionar entidade(s)'
       Enabled = False
       ImageIndex = 0
       OnExecute = ACTNAdicionarEntidadeExecute
@@ -19,11 +19,12 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
     object ACTNRegistrarEntidades: TAction
       Caption = 'Registrar Entidades'
       ImageIndex = 1
+      OnExecute = ACTNRegistrarEntidadesExecute
     end
   end
   inherited IMLI: TImageList
     Bitmap = {
-      494C0101020008002C0010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C0101020008003C0010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -260,7 +261,7 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
     Left = 192
     Top = 108
   end
-  object CLDSEntidadesDoSistemaCON: TClientDataSet
+  object CLDSEntidadesDoSistema: TClientDataSet
     Aggregates = <>
     ConnectionBroker = DAMOPrincipal.CNBRPrincipal
     Params = <
@@ -284,31 +285,30 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
         Value = Null
       end>
     ProviderName = 'DSPREntidadesDoSistema'
-    ReadOnly = True
-    Left = 564
-    Top = 120
-    object CLDSEntidadesDoSistemaCONin_entidadesdosistema_id: TIntegerField
+    Left = 473
+    Top = 60
+    object CLDSEntidadesDoSistemain_entidadesdosistema_id: TIntegerField
       DisplayLabel = 'ID'
       FieldName = 'in_entidadesdosistema_id'
-      ReadOnly = True
+      ProviderFlags = [pfInUpdate, pfInKey]
     end
-    object CLDSEntidadesDoSistemaCONva_nome: TWideStringField
+    object CLDSEntidadesDoSistemava_nome: TWideStringField
       DisplayLabel = 'Entidade'
       FieldName = 'va_nome'
-      ReadOnly = True
+      ProviderFlags = [pfInUpdate]
       Size = 128
     end
-    object CLDSEntidadesDoSistemaCONsm_tipo: TSmallintField
+    object CLDSEntidadesDoSistemasm_tipo: TSmallintField
       DisplayLabel = 'Tipo'
       FieldName = 'sm_tipo'
-      ReadOnly = True
-      OnGetText = CLDSEntidadesDoSistemaCONsm_tipoGetText
+      ProviderFlags = [pfInUpdate]
+      OnGetText = CLDSEntidadesDoSistemasm_tipoGetText
     end
   end
-  object DTSRConsEntidadesDoSistema: TDataSource
-    DataSet = CLDSEntidadesDoSistemaCON
-    Left = 564
-    Top = 168
+  object DTSREntidadesDoSistema: TDataSource
+    DataSet = CLDSEntidadesDoSistema
+    Left = 473
+    Top = 108
   end
   object CLDSUsuarios: TClientDataSet
     Aggregates = <>

@@ -85,6 +85,9 @@ implementation
 
 {$R *.dfm}
 
+uses
+  StrUtils;
+
 type
   PFieldData = ^TFieldData;
   TFieldData = record
@@ -328,21 +331,104 @@ end;
 
 procedure TReconcileErrorForm.TratarMensagemDeErro(aEReconcileError: EReconcileError);
 const
-  TagErro     = 'ERRO:  ';
-  TagDetalhe  = 'DETAIL:  ';
-  TagContexto = 'CONTEXT:  ';
+  TagErro     = 'ERRO:  ';    { 1 }
+  TagDetalhe  = 'DETAIL:  ';  { 2 }
+  TagDica     = 'HINT:  ';    { 3 }
+  TagContexto = 'CONTEXT:  '; { 4 }
+var
+  PosTagErro, PosTagDetalhe, PosTagContexto, PosTagDica, LenTagErro,
+  LenTagDetalhe, LenTagContexto, LenTagDica: Word;
+  Tags: TStringList;
+{ ---------------------------------------------------------------------------- }
+function NextTagPos(aTagID: Word): Word;
+var
+  TagIndex: Word;
 begin
-  FErro  := Trim(Copy(aEReconcileError.Message
-                     ,Pos(TagErro,aEReconcileError.Message) + Length(TagErro)
-                     ,Pos(TagDetalhe,aEReconcileError.Message) - Pos(TagErro,aEReconcileError.Message) - Length(TagErro)));
+  case aTagId of
+    1: Result := Length(aEReconcileError.Message) + PosTagErro + LenTagErro;
+    2: Result := Length(aEReconcileError.Message) + PosTagDetalhe + LenTagDetalhe;
+    3: Result := Length(aEReconcileError.Message) + PosTagDica + LenTagDica;
+    else
+      Result := Length(aEReconcileError.Message) + PosTagContexto + LenTagContexto;
+  end;
 
-  FDetalhes := Trim(Copy(aEReconcileError.Message
-                        ,Pos(TagDetalhe,aEReconcileError.Message) + Length(TagDetalhe)
-                        ,Pos(TagContexto,aEReconcileError.Message) - Pos(TagDetalhe,aEReconcileError.Message) - Length(TagDetalhe)));
+  TagIndex := Tags.IndexOfObject(TObject(aTagID));
+  Inc(TagIndex);
+  if TagIndex < Tags.Count then
+    Result := StrToInt(Copy(Tags[TagIndex],2,Length(Tags[TagIndex])));
+end;
+{ ---------------------------------------------------------------------------- }
+begin
+  Tags := TStringList.Create;
+  Tags.Sorted := True;
+  try
+    { Adiciona na lista a posição de cada um dos Tags. Como a lista é ordenada,
+    ao final a ordem de itens na mesma será igual a ordem de aparecimento do tag
+    na string de erro }
+    PosTagErro := Pos(TagErro,aEReconcileError.Message);
+    if PosTagErro > 0 then
+    begin
+      Tags.AddObject(Format('T%.5u',[PosTagErro]),TObject(1));
+      LenTagErro := Length(TagErro);
+    end;
 
-  FContexto := Trim(Copy(aEReconcileError.Message
-                        ,Pos(TagContexto,aEReconcileError.Message) + Length(TagContexto)
-                        ,Length(aEReconcileError.Message)));
+    PosTagDetalhe := Pos(TagDetalhe,aEReconcileError.Message);
+    if PosTagDetalhe > 0 then
+    begin
+      Tags.AddObject(Format('T%.5u',[PosTagDetalhe]),TObject(2));
+      LenTagDetalhe := Length(TagDetalhe);
+    end;
+
+    PosTagDica := Pos(TagDica,aEReconcileError.Message);
+    if PosTagDica > 0 then
+    begin
+      Tags.AddObject(Format('T%.5u',[PosTagDica]),TObject(3));
+      LenTagDica := Length(TagDica);
+    end;
+
+    PosTagContexto := Pos(TagContexto,aEReconcileError.Message);
+    if PosTagContexto > 0 then
+    begin
+      Tags.AddObject(Format('T%.5u',[PosTagContexto]),TObject(4));
+      LenTagContexto := Length(TagContexto);
+    end;
+
+    { Para cada tag encontrado, obtém a mensagem correspondente }
+    FErro := 'N/A';
+    if PosTagErro > 0 then
+    begin
+      FErro  := Trim(Copy(aEReconcileError.Message
+                         ,PosTagErro + LenTagErro
+                         ,NextTagPos(1) - PosTagErro - LenTagErro));
+
+    end;
+
+    FDetalhes := 'N/A';
+    if PosTagDetalhe > 0 then
+    begin
+      FDetalhes := Trim(Copy(aEReconcileError.Message
+                            ,PosTagDetalhe + LenTagDetalhe
+                            ,NextTagPos(2) - PosTagDetalhe - LenTagDetalhe));
+    end;
+
+    if PosTagDica > 0 then
+    begin
+      FDetalhes := IfThen(FDetalhes = 'N/A','',FDetalhes)
+                 + Trim(Copy(aEReconcileError.Message
+                            ,PosTagDica + LenTagDica
+                            ,NextTagPos(3) - PosTagDica - LenTagDica));
+    end;
+
+    FContexto := 'N/A';
+    if PosTagContexto > 0 then
+    begin
+      FContexto := Trim(Copy(aEReconcileError.Message
+                            ,PosTagContexto + LenTagContexto
+                            ,NextTagPos(4) - PosTagContexto - LenTagContexto));
+    end;
+  finally
+    Tags.Free;
+  end;
 
   { Substituindo pelo estilo de fim de linha do windows }
   FErro := StringReplace(FErro,#$0A,#$0D#$0A,[rfReplaceAll]);
