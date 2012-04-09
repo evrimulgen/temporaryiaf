@@ -2,13 +2,15 @@ unit UExtraUtilities;
 
 interface
 
-uses Classes, UKRDMBasico, ZConnection;
+uses Classes, UKRDMBasico, Uni, UniSQLMonitor;
 
 function CreateDataModule(const aProviderName: WideString; const aOwner: TComponent = nil): TKRDMBasico;
 function CheckSessions: Boolean;
 function UseCompression: Boolean;
+function UseDBMonitor: Boolean;
 function SessionExists(const aSessionID: String): Boolean;
-procedure ConfigureConnection(const aZConnection: TZConnection);
+procedure ConfigureConnection(const aConnection: TUniConnection; const aTransaction: TUniTransaction);
+procedure ConfigureDBMonitor(const aSQLMonitor: TUniSQLMonitor);
 procedure HideInterfaces(var aContent: String; aInterfaces: array of string);
 procedure AddDefaultFooter(var aContent: String);
 function SessionDataFromSessionID(const aSessionID: String): String;
@@ -74,8 +76,8 @@ end;
 
 function CreateDataModule(const aProviderName: WideString; const aOwner: TComponent = nil): TKRDMBasico;
 begin
-  { Não é necessário usar free para destruir, visto que usamos este datamodule
-  como dono dos datamodules criados }
+  { Não é necessário usar free para destruir, visto que usamos aOwner como dono
+  dos datamodules criados }
   if aProviderName = 'DSPRUsuarios' then
     Result := TKRDMUsuarios.Create(aOwner)
   else if aProviderName = 'DSPREntidadesDoSistema' then
@@ -106,6 +108,16 @@ begin
   end;
 end;
 
+function UseDBMonitor: Boolean;
+begin
+  CS.Enter;
+  try
+    Result := ServerConfiguration.UseDBMonitor;
+  finally
+    CS.Leave;
+  end;
+end;
+
 function SessionExists(const aSessionID: String): Boolean;
 begin
   CS.Enter;
@@ -131,25 +143,45 @@ begin
     raise Exception.Create('Não existe usuário autenticado na sessão especificada');
 end;
 
-procedure ConfigureConnection(const aZConnection: TZConnection);
+procedure ConfigureConnection(const aConnection: TUniConnection; const aTransaction: TUniTransaction);
 begin
-  with aZConnection do
-  begin
-    CS.Enter;
-    try
-      HostName               := ServerConfiguration.DBHostName;
-      Port                   := ServerConfiguration.DBPortNumb;
-      Database               := ServerConfiguration.DBDatabase;
-      User                   := ServerConfiguration.DBUserName;
-      Password               := ServerConfiguration.DBPassword;
-      Protocol               := ServerConfiguration.DBProtocol;
-      TransactIsolationLevel := ServerConfiguration.DBTransactIsolationLevel;
-    finally
-      CS.Leave;
+  CS.Enter;
+  try
+    with aConnection do
+    begin
+      ProviderName := ServerConfiguration.DBProvider;
+      Server       := ServerConfiguration.DBHostName;
+      Port         := ServerConfiguration.DBPortNumb;
+      Database     := ServerConfiguration.DBDatabase;
+      UserName     := ServerConfiguration.DBUserName;
+      Password     := ServerConfiguration.DBPassword;
+      SpecificOptions.Add('UseUnicode=True');
     end;
+    aTransaction.DefaultConnection := aConnection;
+    aTransaction.IsolationLevel := ServerConfiguration.DBTransactIsolationLevel;
+  finally
+    CS.Leave;
+  end;
+end;
 
-    Properties.Add('codepage=UTF8');
-    Properties.Add('client_encoding=UTF8');
+procedure ConfigureDBMonitor(const aSQLMonitor: TUniSQLMonitor);
+begin
+  CS.Enter;
+  try
+    with aSQLMonitor do
+    begin
+      with DBMonitorOptions do
+      begin
+        Host             := ServerConfiguration.DBMonitorHost;
+        Port             := ServerConfiguration.DBMonitorPort;
+        ReconnectTimeout := ServerConfiguration.DBMonitorReconnectTimeout;
+        SendTimeout      := ServerConfiguration.DBMonitorSendTimeout;
+      end;
+
+      TraceFlags := ServerConfiguration.DBMonitorTraceFlags;
+    end;
+  finally
+    CS.Leave;
   end;
 end;
 

@@ -24,7 +24,7 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
   end
   inherited IMLI: TImageList
     Bitmap = {
-      494C0101020008003C0010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C0101020008004C0010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -252,8 +252,8 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
       ProviderFlags = [pfInUpdate]
       ReadOnly = True
     end
-    object CLDSUsuariosCONZQRYPermissoesDosUsuarios: TDataSetField
-      FieldName = 'ZQRYPermissoesDosUsuarios'
+    object CLDSUsuariosCONUNQYPermissoesDosUsuarios: TDataSetField
+      FieldName = 'UNQYPermissoesDosUsuarios'
     end
   end
   object DTSRUsuariosCON: TDataSource
@@ -410,8 +410,8 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
       Size = 16
       Calculated = True
     end
-    object CLDSUsuariosZQRYGruposDosUsuarios: TDataSetField
-      FieldName = 'ZQRYGruposDosUsuarios'
+    object CLDSUsuariosUNQYGruposDosUsuarios: TDataSetField
+      FieldName = 'UNQYGruposDosUsuarios'
     end
   end
   object DTSRUsuarios: TDataSource
@@ -422,7 +422,7 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
   object CLDSGruposDosUsuarios: TClientDataSet
     Aggregates = <>
     ConnectionBroker = DAMOPrincipal.CNBRPrincipal
-    DataSetField = CLDSUsuariosZQRYGruposDosUsuarios
+    DataSetField = CLDSUsuariosUNQYGruposDosUsuarios
     FieldDefs = <
       item
         Name = 'in_gruposdosusuarios_id'
@@ -461,13 +461,11 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
       DisplayLabel = 'ID do grupo'
       FieldName = 'sm_grupos_id'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object CLDSGruposDosUsuariossm_usuarios_id: TSmallintField
       DisplayLabel = 'ID do usu'#225'rio'
       FieldName = 'sm_usuarios_id'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object CLDSGruposDosUsuariosgrupo: TWideStringField
       Alignment = taCenter
@@ -488,7 +486,7 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
   object CLDSPermissoesDosUsuarios: TClientDataSet
     Aggregates = <>
     ConnectionBroker = DAMOPrincipal.CNBRPrincipal
-    DataSetField = CLDSUsuariosCONZQRYPermissoesDosUsuarios
+    DataSetField = CLDSUsuariosCONUNQYPermissoesDosUsuarios
     Params = <>
     Left = 192
     Top = 156
@@ -607,7 +605,7 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
   end
   object CLDSPermissoesDosGrupos: TClientDataSet
     Aggregates = <>
-    DataSetField = CLDSGruposCONZQRYPermissoesDosGrupos
+    DataSetField = CLDSGruposCONUNQYPermissoesDosGrupos
     Params = <>
     Left = 336
     Top = 156
@@ -722,8 +720,8 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
       ProviderFlags = [pfInUpdate]
       Size = 128
     end
-    object CLDSGruposCONZQRYPermissoesDosGrupos: TDataSetField
-      FieldName = 'ZQRYPermissoesDosGrupos'
+    object CLDSGruposCONUNQYPermissoesDosGrupos: TDataSetField
+      FieldName = 'UNQYPermissoesDosGrupos'
     end
   end
   object DTSRGruposCON: TDataSource

@@ -1,0 +1,5 @@
+O arquivo de configuração só é lido quando o servidor é carregado. Alterações manuais neste arquivo não tem efeito algum até que o servidor seja desligado e religado. Contudo há uma ressalva para que a alteração manual neste arquivo seja efetiva: ela deve ser feita com o servidor desligado. Se uma alteração for feita com o servidor ligado, as configurações serão sobrescritas pelas configurações do servidor no momento de seu desligamento, portanto a ordem de alteração deste arquivo é:
+
+1. desliga o serviço do apache
+2. carrega e edita o arquivo de configuração
+3. liga o serviço do apache

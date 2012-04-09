@@ -4,31 +4,28 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, UKRDMBasico, ZAbstractDataset, ZStoredProcedure, DB,
-  ZAbstractRODataset, ZDataset, KRK.Components.DataControls.ValidationChecks,
-  ZSqlUpdate;
+  Dialogs, DB, KRK.Components.DataControls.ValidationChecks, Uni,
+  MemDS, DBAccess, UKRDMBasico;
 
 type
   TKRDMGrupos = class(TKRDMBasico)
-    ZQRYGrupos: TZQuery;
-    ZUSQGrupos: TZUpdateSQL;
     KRVCGrupos: TKRKValidationChecks;
-    ZQRYGrupossm_grupos_id: TSmallintField;
-    ZQRYGruposva_nome: TWideStringField;
-    ZQRYGruposva_descricao: TWideStringField;
-    ZQRYPermissoesDosGrupos: TZQuery;
-    ZQRYPermissoesDosGruposentidade: TWideStringField;
-    ZQRYPermissoesDosGrupostipo: TSmallintField;
-    ZQRYPermissoesDosGruposin_permissoesdosgrupos_id: TIntegerField;
-    ZQRYPermissoesDosGruposin_entidadesdosistema_id: TIntegerField;
-    ZQRYPermissoesDosGrupossm_grupos_id: TSmallintField;
-    ZQRYPermissoesDosGrupossm_ler: TSmallintField;
-    ZQRYPermissoesDosGrupossm_inserir: TSmallintField;
-    ZQRYPermissoesDosGrupossm_alterar: TSmallintField;
-    ZQRYPermissoesDosGrupossm_excluir: TSmallintField;
     DTSRGrupos: TDataSource;
-    ZUSQPermissoesDosGrupos: TZUpdateSQL;
     KRVCPermissoesDosGrupos: TKRKValidationChecks;
+    UNQYGrupos: TUniQuery;
+    UNQYGrupossm_grupos_id: TSmallintField;
+    UNQYGruposva_nome: TWideStringField;
+    UNQYGruposva_descricao: TWideStringField;
+    UNQYPermissoesDosGrupos: TUniQuery;
+    UNQYPermissoesDosGruposentidade: TWideStringField;
+    UNQYPermissoesDosGrupostipo: TSmallintField;
+    UNQYPermissoesDosGruposin_permissoesdosgrupos_id: TIntegerField;
+    UNQYPermissoesDosGruposin_entidadesdosistema_id: TIntegerField;
+    UNQYPermissoesDosGrupossm_grupos_id: TSmallintField;
+    UNQYPermissoesDosGrupossm_ler: TSmallintField;
+    UNQYPermissoesDosGrupossm_inserir: TSmallintField;
+    UNQYPermissoesDosGrupossm_alterar: TSmallintField;
+    UNQYPermissoesDosGrupossm_excluir: TSmallintField;
   private
     { Private declarations }
   public
@@ -37,8 +34,8 @@ type
 
 implementation
 
-{$R *.dfm}
-
 uses USODMPrincipal;
+
+{$R *.dfm}
 
 end.

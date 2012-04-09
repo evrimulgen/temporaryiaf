@@ -3,10 +3,7 @@ unit UServerConfiguration;
 
 interface
 
-uses Classes
-   , SyncObjs
-   , KRK.Lib.Rtl.Common.Classes
-   , ZDbcIntfs;
+uses Classes, SyncObjs, KRK.Lib.Rtl.Common.Classes, CRAccess, DASQLMonitor;
 
 type
   TServerConfiguration = class(TObjectFile)
@@ -14,27 +11,41 @@ type
     FFileName: String;
     FCheckSessions: Boolean;
     FUseCompression: Boolean;
+    FUseDBMonitor: Boolean;
+    FDBMonitorSendTimeout: Word;
+    FDBMonitorPort: Word;
+    FDBMonitorHost: String;
+    FDBMonitorReconnectTimeout: Word;
+    FDBMonitorTraceFlags: TDATraceFlags;
 
     FDBDatabase: String;
     FDBHostName: String;
     FDBPassword: String;
     FDBUserName: String;
     FDBPortNumb: Word;
-    FDBProtocol: String;
-    FDBTransactIsolationLevel: TZTransactIsolationLevel;
+    FDBProvider: String;
+    FDBTransactIsolationLevel: TCRIsolationLevel;
   public
     constructor Create(aOwner: TComponent; aAutoSaveMode: TAutoSaveMode = asmNone); override;
     destructor Destroy; override;
   published
-    property CheckSessions: Boolean read FCheckSessions write FCheckSessions;
-    property UseCompression: Boolean read FUseCompression write FUseCompression default False;
+    property CheckSessions: Boolean read FCheckSessions write FCheckSessions default True;
+    property UseCompression: Boolean read FUseCompression write FUseCompression default True;
+
+    property UseDBMonitor: Boolean read FUseDBMonitor write FUseDBMonitor default False;
+    property DBMonitorHost: String read FDBMonitorHost write FDBMonitorHost;
+    property DBMonitorPort: Word read FDBMonitorPort write FDBMonitorPort default 1000;
+    property DBMonitorReconnectTimeout: Word read FDBMonitorReconnectTimeout write FDBMonitorReconnectTimeout default 5000;
+    property DBMonitorSendTimeout: Word read FDBMonitorSendTimeout write FDBMonitorSendTimeout default 1000;
+    property DBMonitorTraceFlags: TDATraceFlags read FDBMonitorTraceFlags write FDBMonitorTraceFlags default [tfQPrepare, tfQExecute, tfError, tfConnect, tfTransact, tfParams, tfMisc];
+
     property DBDatabase: String read FDBDatabase write FDBDatabase;
     property DBHostName: String read FDBHostName write FDBHostName;
     property DBPassword: String read FDBPassword write FDBPassword;
     property DBUserName: String read FDBUserName write FDBUserName;
     property DBPortNumb: Word read FDBPortNumb write FDBPortNumb;
-    property DBProtocol: String read FDBProtocol write FDBProtocol;
-    property DBTransactIsolationLevel: TZTransactIsolationLevel read FDBTransactIsolationLevel write FDBTransactIsolationLevel;
+    property DBProvider: String read FDBProvider write FDBProvider;
+    property DBTransactIsolationLevel: TCRIsolationLevel read FDBTransactIsolationLevel write FDBTransactIsolationLevel;
   end;
 
 var
@@ -43,8 +54,7 @@ var
 
 implementation
 
-uses Windows
-   , SysUtils;
+uses Windows, SysUtils, KRK.Lib.Rtl.Common.FileUtils;
 
 { TServerConfiguration }
 
@@ -64,14 +74,22 @@ begin
   end;
 
   FCheckSessions  := True;
-  FUseCompression := False;
+  FUseCompression := True;
+
+  FUseDBMonitor              := False;
+  FDBMonitorSendTimeout      := 1000;
+  FDBMonitorPort             := 1000;
+  FDBMonitorHost             := '';
+  FDBMonitorReconnectTimeout := 5000;
+  FDBMonitorTraceFlags       := [tfQPrepare, tfQExecute, tfError, tfConnect, tfTransact, tfParams, tfMisc];
 
   FDBDatabase               := '';
   FDBHostName               := '';
   FDBPassword               := '';
   FDBUserName               := '';
   FDBPortNumb               := 0;
-  FDBTransactIsolationLevel := tiReadCommitted;
+  FDBProvider               := '';
+  FDBTransactIsolationLevel := ilReadCommitted;
 
   { Carrega o arquivo, caso ele exista }
   LoadFromTextFile(FFileName);

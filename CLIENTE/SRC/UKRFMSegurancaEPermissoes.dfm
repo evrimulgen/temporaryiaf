@@ -1184,7 +1184,11 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
                 TitleFont.Height = -11
                 TitleFont.Name = 'Tahoma'
                 TitleFont.Style = []
-                RowColors = <>
+                RowColors = <
+                  item
+                    BackgroundColor = clBtnFace
+                    ForegroundColor = clNone
+                  end>
                 VariableWidthColumns = '<grupo>'
                 Columns = <
                   item
@@ -1640,7 +1644,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C010102000800280120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C0101020008002C0120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2177,7 +2181,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C010102000800380120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C0101020008003C0120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

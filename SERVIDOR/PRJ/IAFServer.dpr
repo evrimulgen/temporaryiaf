@@ -7,6 +7,7 @@ uses
   ISAPIApp,
   ISAPIThreadPool,
   KRK.Lib.Db.Midas.MidasLib,
+  UServerConfiguration in '..\SRC\UServerConfiguration.pas',
   UWEBMWebService in '..\SRC\UWEBMWebService.pas' {WEBMWebService: TWebModule},
   USODMPrincipal in '..\SRC\USODMPrincipal.pas' {SODMPrincipal: TSoapDataModule},
   USessionsManager in '..\SRC\USessionsManager.pas',
@@ -17,7 +18,6 @@ uses
   UCommonTypes in '..\..\COMUM\SRC\UCommonTypes.pas',
   UServerManagerImpl in '..\SRC\UServerManagerImpl.pas',
   UServerManagerIntf in '..\SRC\UServerManagerIntf.pas',
-  UServerConfiguration in '..\SRC\UServerConfiguration.pas',
   UKRDMEntidadesDoSistema in '..\SRC\UKRDMEntidadesDoSistema.pas' {KRDMEntidadesDoSistema: TKRKDataModule},
   UExtraMethodsImpl in '..\SRC\UExtraMethodsImpl.pas',
   UExtraMethodsIntf in '..\SRC\UExtraMethodsIntf.pas',
@@ -30,6 +30,7 @@ exports
   GetExtensionVersion,
   HttpExtensionProc,
   TerminateExtension;
+
 begin
   CoInitFlags := COINIT_MULTITHREADED;
   Application.Initialize;

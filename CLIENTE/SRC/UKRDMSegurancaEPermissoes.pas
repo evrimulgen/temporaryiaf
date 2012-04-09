@@ -54,8 +54,8 @@ type
     ACTNAdicionarEntidade: TAction;
     CLDSPermissoesDosUsuariosic_entidade: TStringField;
     CLDSPermissoesDosUsuariosic_tipo: TIntegerField;
-    CLDSUsuariosCONZQRYPermissoesDosUsuarios: TDataSetField;
-    CLDSUsuariosZQRYGruposDosUsuarios: TDataSetField;
+    CLDSUsuariosCONUNQYPermissoesDosUsuarios: TDataSetField;
+    CLDSUsuariosUNQYGruposDosUsuarios: TDataSetField;
     DTSRGruposDosUsuarios: TDataSource;
     CLDSGruposDosUsuariosic_grupo: TStringField;
     DTSRGrupos: TDataSource;
@@ -70,7 +70,7 @@ type
     CLDSGruposCONsm_grupos_id: TSmallintField;
     CLDSGruposCONva_nome: TWideStringField;
     CLDSGruposCONva_descricao: TWideStringField;
-    CLDSGruposCONZQRYPermissoesDosGrupos: TDataSetField;
+    CLDSGruposCONUNQYPermissoesDosGrupos: TDataSetField;
     CLDSPermissoesDosGruposentidade: TWideStringField;
     CLDSPermissoesDosGrupostipo: TSmallintField;
     CLDSPermissoesDosGruposin_permissoesdosgrupos_id: TIntegerField;

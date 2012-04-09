@@ -7,7 +7,7 @@ uses InvokeRegistry
    , XSBuiltIns
    , Classes
    , UServerManagerIntf
-   , ZDbcIntfs;
+   , CRAccess;
 
 type
   TServerManager = class(TInvokableClass, IServerManager)
@@ -18,13 +18,16 @@ type
     procedure SetUseCompression(const aPassword: string; const aValue: Boolean); stdcall;
     function GetUseCompression: Boolean; stdcall;
 
+    procedure SetUseDBMonitor(const aPassword: string; const aValue: Boolean); stdcall;
+    function GetUseDBMonitor: Boolean; stdcall;
+
     procedure SetDBHostName(const aPassword: string; const aValue: String); stdcall;
     procedure SetDBPortNumb(const aPassword: string; const aValue: Word); stdcall;
     procedure SetDBDatabase(const aPassword: string; const aValue: String); stdcall;
     procedure SetDBUser(const aPassword: string; const aValue: String); stdcall;
     procedure SetDBPassword(const aPassword: string; const aValue: String); stdcall;
     procedure SetDBProtocol(const aPassword: string; const aValue: String); stdcall;
-    procedure SetDBTransactIsolationLevel(const aPassword: string; const aValue: TZTransactIsolationLevel); stdcall;
+    procedure SetDBTransactIsolationLevel(const aPassword: string; const aValue: TCRIsolationLevel); stdcall;
   end;
 
 implementation
@@ -57,6 +60,16 @@ begin
   end;
 end;
 
+function TServerManager.GetUseDBMonitor: Boolean;
+begin
+  CS.Enter;
+  try
+    Result := ServerConfiguration.UseDBMonitor;
+  finally
+    CS.Leave;
+  end;
+end;
+
 procedure TServerManager.SetCheckSessions(const aPassword: string; const aValue: Boolean);
 begin
   CS.Enter;
@@ -80,6 +93,22 @@ begin
     if aPassword = MASTER_PASSWORD then
     begin
       ServerConfiguration.UseCompression := aValue;
+      ServerConfiguration.SaveText;
+    end
+    else
+      raise Exception.Create('Senha incorreta!');
+  finally
+    CS.Leave;
+  end;
+end;
+
+procedure TServerManager.SetUseDBMonitor(const aPassword: string; const aValue: Boolean);
+begin
+  CS.Enter;
+  try
+    if aPassword = MASTER_PASSWORD then
+    begin
+      ServerConfiguration.UseDBMonitor := aValue;
       ServerConfiguration.SaveText;
     end
     else
@@ -159,7 +188,7 @@ begin
   try
     if aPassword = MASTER_PASSWORD then
     begin
-      ServerConfiguration.DBProtocol := aValue;
+      ServerConfiguration.DBProvider := aValue;
       ServerConfiguration.SaveText;
     end
     else
@@ -170,7 +199,7 @@ begin
 
 end;
 
-procedure TServerManager.SetDBTransactIsolationLevel(const aPassword: string; const aValue: TZTransactIsolationLevel);
+procedure TServerManager.SetDBTransactIsolationLevel(const aPassword: string; const aValue: TCRIsolationLevel);
 begin
   CS.Enter;
   try

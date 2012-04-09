@@ -211,7 +211,8 @@ object ReconcileErrorForm: TReconcileErrorForm
     Tabs.Strings = (
       'Erro'
       'Detalhes / Dica'
-      'Contexto')
+      'Contexto'
+      'Mensagem n'#227'o tratada')
     TabIndex = 0
     OnChange = DKTSMensagensChange
     DestinationDockSite = ErrorMsg

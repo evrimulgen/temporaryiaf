@@ -2,22 +2,9 @@ Unit USODMPrincipal;
 
 interface
 
-uses SysUtils
-   , Classes
-   , InvokeRegistry
-   , Midas
-   , SOAPMidas
-   , SOAPDm
-   , Types
-   , DB
-   , Provider
-   , ZAbstractConnection
-   , ZConnection
-   , ZAbstractRODataset
-   , ZDataset
-   , ZAbstractDataset
-   , ZSqlUpdate
-   , DBClient;
+uses SysUtils, Classes, InvokeRegistry, Midas, SOAPMidas, SOAPDm, Types, DB
+   , DBClient, Uni, DBAccess, UniProvider, PostgreSQLUniProvider
+   , DASQLMonitor, UniSQLMonitor, Provider;
 
 type
   ISODMPrincipal = interface(IAppServerSOAP)
@@ -28,14 +15,20 @@ type
   protected
     procedure DoAfterUpdateRecord(SourceDS: TDataSet; DeltaDS: TCustomClientDataSet; UpdateKind: TUpdateKind); override;
     procedure DoGetTableName(DataSet: TDataSet; var TableName: WideString); override;
+  public
+    constructor Create(aOwner: TComponent); override;
   end;
 
   TSODMPrincipal = class(TSoapDataModule, ISODMPrincipal, IAppServerSOAP, IAppServer)
-    ZCONIAF: TZConnection;
     DSPRUsuarios: TDataSetProvider;
     DSPREntidadesDoSistema: TDataSetProvider;
     DSPRGrupos: TDataSetProvider;
-    procedure ZCONIAFBeforeConnect(Sender: TObject);
+    UNCN: TUniConnection;
+    UNTR: TUniTransaction;
+    UPPG: TPostgreSQLUniProvider;
+    UNSM: TUniSQLMonitor;
+    procedure UNCNBeforeConnect(Sender: TObject);
+    procedure SoapDataModuleCreate(Sender: TObject);
   public
     function SAS_ApplyUpdates(const ProviderName: WideString; Delta: OleVariant; MaxErrors: Integer; out ErrorCount: Integer; var OwnerData: OleVariant): OleVariant; override; stdcall;
     procedure SAS_Execute(const ProviderName: WideString; const CommandText: WideString; var Params: OleVariant; var OwnerData: OleVariant); override; stdcall;
@@ -49,8 +42,9 @@ implementation
 
 {$R *.DFM}
 
-uses UExtraUtilities, KRK.Lib.Db.Consts, KRK.Lib.Rtl.Common.FileUtils, Variants
-   , KRK.Lib.DCpcrypt.Base64, KRK.Lib.Rtl.Common.VariantUtils;
+uses UExtraUtilities, KRK.Lib.Rtl.Common.FileUtils, Variants
+   , KRK.Lib.DCpcrypt.Base64, KRK.Lib.Rtl.Common.VariantUtils
+   , UKRDMEntidadesDoSistema, UKRDMGrupos, UKRDMUsuarios, KRK.Lib.Db.Consts;
 
 procedure TSODMPrincipalCreateInstance(out obj: TObject);
 begin
@@ -89,6 +83,7 @@ begin
   if (not CheckSessions) or SessionExists(OwnerData) then
   begin
     CreateDataModule(ProviderName,Self);
+
     inherited;
   end
   else
@@ -111,13 +106,9 @@ function TSODMPrincipal.SAS_GetRecords(const ProviderName: WideString; Count: In
 begin
   if (not CheckSessions) or SessionExists(OwnerData) then
   begin
-    SaveTextFile('antes de criar dm','c:\_testes\before1.txt');
     CreateDataModule(ProviderName,Self);
-    SaveTextFile('apos criar dm','c:\_testes\after1.txt');
 
-    SaveTextFile('antes de inherited','c:\_testes\before2.txt');
     Result := inherited;
-    SaveTextFile('apos inherited','c:\_testes\after2.txt');
 
     if UseCompression then
       OleVariantByteArrayUCLCompress(Result);
@@ -138,12 +129,32 @@ begin
     raise Exception.Create('Para usar este método é necessário que você seja um usuário autenticado no sistema');
 end;
 
-procedure TSODMPrincipal.ZCONIAFBeforeConnect(Sender: TObject);
+procedure TSODMPrincipal.SoapDataModuleCreate(Sender: TObject);
 begin
-  ConfigureConnection(TZConnection(Sender));
+  if UseDBMonitor then
+  begin
+    ConfigureDBMonitor(UNSM);
+    UNSM.Active := True;
+  end;
+
+  { Sempre que este DataModule for criado, a conexão com o banco tem de ser feita }
+  UNCN.Connect;
+end;
+
+procedure TSODMPrincipal.UNCNBeforeConnect(Sender: TObject);
+begin
+  ConfigureConnection(UNCN,UNTR);
 end;
 
 { TDataSetProvider }
+
+constructor TDataSetProvider.Create(aOwner: TComponent);
+begin
+  inherited;
+  Constraints := False;
+  Options := [poFetchBlobsOnDemand, poFetchDetailsOnDemand, poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poPropogateChanges];
+  UpdateMode := upWhereKeyOnly;
+end;
 
 { TODO -oCBFF :
 Problema ao inserir filhos e logo em seguida atualizar eles
@@ -153,14 +164,12 @@ numeros negativos. não foram atualizados porque não tem datasetproviders. sera
 que a tecnica do negativo serve para os filhos ou é dispensavel? ou é de outra
 forma? para debugar inclua um salvamento de texto no codigo abaix e faça o teste.
 se o texto for criado então o datasetprovider do pai é executado para os seus
-filhos tambem. coloque isso antes da checagem do tipo de atualização updatekind
-}
-
+filhos tambem. coloque isso antes da checagem do tipo de atualização updatekind}
 procedure TDataSetProvider.DoAfterUpdateRecord(SourceDS: TDataSet; DeltaDS: TCustomClientDataSet; UpdateKind: TUpdateKind);
 var
   CampoChave, ValorPadrao: String;
   i: Integer;
-  ZROQ: TZReadOnlyQuery;
+  UNQY: TUniQuery;
 begin
   if UpdateKind = ukInsert then
   begin
@@ -173,32 +182,40 @@ begin
 
     if CampoChave <> '' then
     begin
-      ZROQ := TZReadOnlyQuery.Create(Self);
+      UNQY := TUniQuery.Create(Self);
       try
-        ZROQ.Connection := TSODMPrincipal(Owner).ZCONIAF;
-        ZROQ.SQL.Text := PostGres_DefaultColumnValues;
+        UNQY.Connection := TSODMPrincipal(Owner).UNCN;
+
+        UNQY.ReadOnly := True;
+        UNQY.UniDirectional := True;
+        UNQY.SpecificOptions.Clear;
+        UNQY.SpecificOptions.Add('PostgreSQL.OIDAsInt=True');
+        UNQY.SpecificOptions.Add('PostgreSQL.UseParamTypes=True');
+        UNQY.SpecificOptions.Add('PostgreSQL.FetchAll=False');
+
+        UNQY.SQL.Text := PostGres_DefaultColumnValues;
 
         with TStringList.Create do
           try
             Text := StringReplace(CampoChave,'_',#13#10,[rfReplaceAll]);
-            ZROQ.ParamByName('table').AsString := Strings[1];
+            UNQY.ParamByName('table').AsString := Strings[1];
           finally
             Free;
           end;
 
-        ZROQ.ParamByName('column').AsString := CampoChave;
+        UNQY.ParamByName('column').AsString := CampoChave;
 
-        ZROQ.Open;
-        ValorPadrao := StringReplace(ZROQ.FieldByName('defaultvalue').AsString,'NEXTVAL','CURRVAL',[rfIgnoreCase]);
-        ZROQ.Close;
+        UNQY.Open;
+        ValorPadrao := StringReplace(UNQY.FieldByName('defaultvalue').AsString,'NEXTVAL','CURRVAL',[rfIgnoreCase]);
+        UNQY.Close;
 
-        ZROQ.ParamCheck := False;
-        ZROQ.SQL.Text := 'SELECT ' + ValorPadrao;
-        ZROQ.Open;
-        DeltaDS.FieldByName(CampoChave).NewValue := ZROQ.Fields[0].AsInteger;
+        UNQY.ParamCheck := False;
+        UNQY.SQL.Text := 'SELECT ' + ValorPadrao;
+        UNQY.Open;
+        DeltaDS.FieldByName(CampoChave).NewValue := UNQY.Fields[0].AsInteger;
       finally
-        ZROQ.Close;
-        ZROQ.Free;
+        UNQY.Close;
+        UNQY.Free;
       end;
     end;
   end;
@@ -211,11 +228,7 @@ var
   TmpTableName: String;
 begin
   inherited;
-
-  TmpTableName := '';
-  { Todos os TZQuery têm nomes padronizados na forma ZQRY???? onde as ? são o
-  nome da tabela }
-  TmpTableName := LowerCase(Copy(DataSet.Name,5,Length(DataSet.Name)));
+  TmpTableName := UpperCase(TUniQuery(DataSet).UpdatingTable);
 
   if TmpTableName <> '' then
     TableName := TmpTableName;

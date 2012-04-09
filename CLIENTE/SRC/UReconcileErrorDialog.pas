@@ -56,8 +56,7 @@ type
     procedure UpdateDataSetEditText(Sender: TObject; ACol, ARow: Integer; const Value: string);
     procedure DisplayFieldValues(Sender: TObject);
     procedure UpdateDataSelectCell(Sender: TObject; Col, Row: Integer; var CanSelect: Boolean);
-    procedure DKTSMensagensChange(Sender: TObject; NewTab: Integer;
-      var AllowChange: Boolean);
+    procedure DKTSMensagensChange(Sender: TObject; NewTab: Integer; var AllowChange: Boolean);
   private
     FDataSet: TDataSet;
     FError: EReconcileError;
@@ -69,6 +68,7 @@ type
     FErro: String;
     FDetalhes: String;
     FContexto: String;
+    FMensagemNaoTratada: String;
     procedure AdjustColumnWidths;
     procedure InitDataFields;
     procedure InitUpdateData(HasCurValues: Boolean);
@@ -302,6 +302,7 @@ begin
     0: ErrorMsg.Text := FErro;
     1: ErrorMsg.Text := FDetalhes;
     2: ErrorMsg.Text := FContexto;
+    3: ErrorMsg.Text := FMensagemNaoTratada;
   end;
 end;
 
@@ -359,6 +360,7 @@ begin
 end;
 { ---------------------------------------------------------------------------- }
 begin
+  FMensagemNaoTratada := aEReconcileError.Message;
   Tags := TStringList.Create;
   Tags.Sorted := True;
   try
@@ -426,6 +428,11 @@ begin
                             ,PosTagContexto + LenTagContexto
                             ,NextTagPos(4) - PosTagContexto - LenTagContexto));
     end;
+
+    { Se ao final, nenhuma mensagem separada tiver sido encontrada, então coloca
+    toda mensagem de erro na aba de erro (geral) }
+    if (FErro = 'N/A') and (FDetalhes = 'N/A') and (FContexto = 'N/A') then
+      FErro := aEReconcileError.Message;
   finally
     Tags.Free;
   end;

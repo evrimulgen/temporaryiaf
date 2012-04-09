@@ -8,12 +8,13 @@ uses InvokeRegistry
    , UAuthenticatorIntf
    , USessionsManager
    , Windows
-   , ZConnection;
+   , Uni;
 
 type
   TAuthenticator = class(TInvokableClass, IAuthenticator)
   private
-    FZConnection: TZConnection;
+    FUniConnection: TUniConnection;
+    FUniTransaction: TUniTransaction;
     { métodos privados não precisam ser protegidos dentro de seções críticas
     porque eles sempre são usados por outros métodos que obrigatoriamente usam
     seções críticas }
@@ -33,8 +34,6 @@ type
 implementation
 
 uses SysUtils
-   , ZDataset
-   , ZDbcIntfs
    , KRK.Lib.Rtl.Common.StringUtils
    , KRK.Lib.DCPcrypt.Utilities
    , KRK.Lib.DCPcrypt.Types
@@ -74,25 +73,25 @@ begin
       sessão, se as senhas forem iguais, continua criando uma transação e
       atualizando o registro do usuário identificado pela sessão com a nova senha }
       if SessionData.ch_senha = GetStringCheckSum(aOldPassword,[haSha512]) then
-        with TZReadOnlyQuery.Create(nil) do
+        with TUniSQL.Create(nil) do
           try
-            FZConnection.StartTransaction;
+            FUniConnection.StartTransaction;
             try
               SQL.Text := SQLText;
               ParamByName('SM_USUARIOS_ID').AsInteger := SessionData.sm_usuarios_id;
               NewPassword := GetStringCheckSum(aNewPassword,[haSha512]);
               ParamByName('CH_SENHA').AsString := NewPassword;
-              Connection := FZConnection;
+              Connection := FUniConnection;
 
-              ExecSQL;
+              Execute;
 
               { Atualizando a senha na sessão do usuário e salvando a sessão }
               SessionData.ch_senha := NewPassword;
               SetSessionData(aSessionID,SessionData.ToString);
 
-              FZConnection.Commit;
+              FUniConnection.Commit;
             except
-              FZConnection.Rollback;
+              FUniConnection.Rollback;
             end;
           finally
             Free;
@@ -111,21 +110,27 @@ end;
 constructor TAuthenticator.Create;
 begin
   inherited;
-  FZConnection := TZConnection.Create(nil);
+  FUniConnection := TUniConnection.Create(nil);
 
   { Configura a conexão aqui }
-  FZConnection.Database := ServerConfiguration.DBDatabase;
-  FZConnection.HostName := ServerConfiguration.DBHostName;
-  FZConnection.Password := ServerConfiguration.DBPassword;
-  FZConnection.Protocol := ServerConfiguration.DBProtocol;
-  FZConnection.User     := ServerConfiguration.DBUserName;
-  FZConnection.Port     := ServerConfiguration.DBPortNumb;
-  FZConnection.TransactIsolationLevel := ServerConfiguration.DBTransactIsolationLevel;
+  FUniConnection.ProviderName := ServerConfiguration.DBProvider;
+  FUniConnection.Database     := ServerConfiguration.DBDatabase;
+  FUniConnection.Server       := ServerConfiguration.DBHostName;
+  FUniConnection.Password     := ServerConfiguration.DBPassword;
+  FUniConnection.UserName     := ServerConfiguration.DBUserName;
+  FUniConnection.Port         := ServerConfiguration.DBPortNumb;
+
+  FUniConnection.SpecificOptions.Add('UseUnicode=True');
+
+  FUniTransaction := TUniTransaction.Create(nil);
+  FUniTransaction.DefaultConnection := FUniConnection;
+  FUniTransaction.IsolationLevel := ServerConfiguration.DBTransactIsolationLevel;
 end;
 
 destructor TAuthenticator.Destroy;
 begin
-  FZConnection.Free;
+  FUniTransaction.Free;
+  FUniConnection.Free;
   inherited;
 end;
 
@@ -176,12 +181,13 @@ begin
     SD := TSessionData.Create(nil);
     { Faz uma busca dentro do banco de dados para saber se o par usuário/senha
     existe }
-    with TZReadOnlyQuery.Create(nil) do
+    with TUniQuery.Create(nil) do
       try
+        Connection := FUniConnection;
+        ReadOnly := True;
         SQL.Text := SQLText;
         ParamByName('VA_LOGIN').AsString := aUserName;
         ParamByName('CH_SENHA').AsString := GetStringCheckSum(aPassword,[haSha512]);
-        Connection := FZConnection;
 
         Open;
 

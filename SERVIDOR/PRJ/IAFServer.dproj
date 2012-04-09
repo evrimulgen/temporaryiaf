@@ -37,15 +37,15 @@
 			<DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_2)'!=''">
-			<DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+			<DCC_MapFile>3</DCC_MapFile>
 			<DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
 			<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
-			<DCC_DebugInformation>false</DCC_DebugInformation>
 		</PropertyGroup>
 		<ItemGroup>
 			<DelphiCompile Include="IAFServer.dpr">
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
+			<DCCReference Include="..\SRC\UServerConfiguration.pas"/>
 			<DCCReference Include="..\SRC\UWEBMWebService.pas">
 				<Form>WEBMWebService</Form>
 				<DesignClass>TWebModule</DesignClass>
@@ -68,7 +68,6 @@
 			<DCCReference Include="..\..\COMUM\SRC\UCommonTypes.pas"/>
 			<DCCReference Include="..\SRC\UServerManagerImpl.pas"/>
 			<DCCReference Include="..\SRC\UServerManagerIntf.pas"/>
-			<DCCReference Include="..\SRC\UServerConfiguration.pas"/>
 			<DCCReference Include="..\SRC\UKRDMEntidadesDoSistema.pas">
 				<Form>KRDMEntidadesDoSistema</Form>
 				<DesignClass>TKRKDataModule</DesignClass>
@@ -102,10 +101,10 @@
 					<VersionInfo>
 						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
 						<VersionInfo Name="AutoIncBuild">True</VersionInfo>
-						<VersionInfo Name="MajorVer">1</VersionInfo>
+						<VersionInfo Name="MajorVer">2</VersionInfo>
 						<VersionInfo Name="MinorVer">0</VersionInfo>
 						<VersionInfo Name="Release">0</VersionInfo>
-						<VersionInfo Name="Build">833</VersionInfo>
+						<VersionInfo Name="Build">0</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -117,7 +116,7 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName">Zetta-Ømnis Soluções Tecnológicas Ltda</VersionInfoKeys>
 						<VersionInfoKeys Name="FileDescription">Servidor do IAF</VersionInfoKeys>
-						<VersionInfoKeys Name="FileVersion">1.0.0.833</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">2.0.0.0</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName">IAF</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalCopyright"/>
 						<VersionInfoKeys Name="LegalTrademarks"/>

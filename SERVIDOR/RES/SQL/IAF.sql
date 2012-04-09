@@ -145,7 +145,8 @@ BEGIN
       INSERT INTO USUARIOS (VA_NOME
                            ,VA_LOGIN
                            ,CH_SENHA
-                           ,VA_EMAIL)
+                           ,VA_EMAIL
+                           ,BO_SUPERUSUARIO)
                     VALUES (pVA_NOME
                            ,pVA_LOGIN
                            ,sha512('') -- todo novo usuário tem de criar sua própria senha.

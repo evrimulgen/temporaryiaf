@@ -2,117 +2,8 @@ inherited KRDMGrupos: TKRDMGrupos
   OldCreateOrder = True
   Height = 260
   Width = 389
-  object ZQRYGrupos: TZQuery
-    Connection = SODMPrincipal.ZCONIAF
-    UpdateObject = ZUSQGrupos
-    SQL.Strings = (
-      'SELECT GRU.*'
-      '  FROM grupos GRU'
-      
-        ' WHERE ((:SM_GRUPOS_ID IS NULL) OR (GRU.SM_GRUPOS_ID = :SM_GRUPO' +
-        'S_ID))'
-      
-        '   AND ((:VA_NOME IS NULL) OR (UPPER(GRU.VA_NOME) LIKE UPPER(:VA' +
-        '_NOME)))'
-      
-        '   AND ((:VA_DESCRICAO IS NULL) OR (UPPER(GRU.VA_DESCRICAO) LIKE' +
-        ' UPPER(:VA_DESCRICAO)))')
-    Params = <
-      item
-        DataType = ftSmallint
-        Name = 'SM_GRUPOS_ID'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftString
-        Name = 'VA_NOME'
-        ParamType = ptInput
-        Size = 64
-      end
-      item
-        DataType = ftString
-        Name = 'VA_DESCRICAO'
-        ParamType = ptInput
-        Size = 128
-      end>
-    Left = 24
-    Top = 60
-    ParamData = <
-      item
-        DataType = ftSmallint
-        Name = 'SM_GRUPOS_ID'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftString
-        Name = 'VA_NOME'
-        ParamType = ptInput
-        Size = 64
-      end
-      item
-        DataType = ftString
-        Name = 'VA_DESCRICAO'
-        ParamType = ptInput
-        Size = 128
-      end>
-    object ZQRYGrupossm_grupos_id: TSmallintField
-      DisplayLabel = 'ID'
-      FieldName = 'sm_grupos_id'
-      ProviderFlags = [pfInUpdate, pfInKey]
-    end
-    object ZQRYGruposva_nome: TWideStringField
-      DisplayLabel = 'Nome do grupo'
-      FieldName = 'va_nome'
-      ProviderFlags = [pfInUpdate]
-      Size = 64
-    end
-    object ZQRYGruposva_descricao: TWideStringField
-      DisplayLabel = 'Descri'#231#227'o do grupo'
-      FieldName = 'va_descricao'
-      ProviderFlags = [pfInUpdate]
-      Size = 128
-    end
-  end
-  object ZUSQGrupos: TZUpdateSQL
-    DeleteSQL.Strings = (
-      'SELECT IDU_GRUPOS('#39'D'#39
-      '                 ,CAST(:sm_grupos_id AS SMALLINT)'
-      '                 ,:va_nome'
-      '                 ,:va_descricao)')
-    InsertSQL.Strings = (
-      'SELECT IDU_GRUPOS('#39'I'#39
-      '                 ,NULL'
-      '                 ,:va_nome'
-      '                 ,:va_descricao)')
-    ModifySQL.Strings = (
-      'SELECT IDU_GRUPOS('#39'U'#39
-      '                 ,CAST(:sm_grupos_id AS SMALLINT)'
-      '                 ,:va_nome'
-      '                 ,:va_descricao)')
-    UseSequenceFieldForRefreshSQL = False
-    Left = 24
-    Top = 108
-    ParamData = <
-      item
-        DataType = ftSmallint
-        Name = 'sm_grupos_id'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftString
-        Name = 'va_nome'
-        ParamType = ptInput
-        Size = 64
-      end
-      item
-        DataType = ftString
-        Name = 'va_descricao'
-        ParamType = ptInput
-        Size = 128
-      end>
-  end
   object KRVCGrupos: TKRKValidationChecks
-    DataSet = ZQRYGrupos
+    DataSet = UNQYGrupos
     TableName = 'GRUPOS'
     CheckableFields = <
       item
@@ -130,236 +21,15 @@ inherited KRDMGrupos: TKRDMGrupos
         CheckBlank.Active = True
       end>
     Left = 24
-    Top = 204
-  end
-  object ZQRYPermissoesDosGrupos: TZQuery
-    Connection = SODMPrincipal.ZCONIAF
-    UpdateObject = ZUSQPermissoesDosGrupos
-    SQL.Strings = (
-      'SELECT EDS.VA_NOME AS ENTIDADE'
-      '     , EDS.SM_TIPO AS TIPO'
-      '     , PDG.*'
-      '  FROM permissoesdosgrupos PDG'
-      '  JOIN entidadesdosistema EDS USING(IN_ENTIDADESDOSISTEMA_ID)'
-      
-        ' WHERE ((:IN_PERMISSOESDOSGRUPOS_ID IS NULL) OR (PDG.IN_PERMISSO' +
-        'ESDOSGRUPOS_ID = :IN_PERMISSOESDOSGRUPOS_ID))'
-      
-        '   AND ((:IN_ENTIDADESDOSISTEMA_ID IS NULL) OR (PDG.IN_ENTIDADES' +
-        'DOSISTEMA_ID = :IN_ENTIDADESDOSISTEMA_ID))'
-      
-        '   AND ((:SM_GRUPOS_ID IS NULL) OR (PDG.SM_GRUPOS_ID = :SM_GRUPO' +
-        'S_ID))'
-      '   AND ((:SM_LER IS NULL) OR (PDG.SM_LER = :SM_LER))'
-      '   AND ((:SM_INSERIR IS NULL) OR (PDG.SM_INSERIR = :SM_INSERIR))'
-      '   AND ((:SM_ALTERAR IS NULL) OR (PDG.SM_ALTERAR = :SM_ALTERAR))'
-      '   AND ((:SM_EXCLUIR IS NULL) OR (PDG.SM_EXCLUIR = :SM_EXCLUIR))')
-    Params = <
-      item
-        DataType = ftInteger
-        Name = 'IN_PERMISSOESDOSGRUPOS_ID'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftInteger
-        Name = 'IN_ENTIDADESDOSISTEMA_ID'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftSmallint
-        Name = 'SM_GRUPOS_ID'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftSmallint
-        Name = 'SM_LER'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftSmallint
-        Name = 'SM_INSERIR'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftSmallint
-        Name = 'SM_ALTERAR'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftSmallint
-        Name = 'SM_EXCLUIR'
-        ParamType = ptInput
-      end>
-    MasterFields = 'sm_grupos_id'
-    MasterSource = DTSRGrupos
-    LinkedFields = 'sm_grupos_id'
-    Left = 132
-    Top = 60
-    ParamData = <
-      item
-        DataType = ftInteger
-        Name = 'IN_PERMISSOESDOSGRUPOS_ID'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftInteger
-        Name = 'IN_ENTIDADESDOSISTEMA_ID'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftSmallint
-        Name = 'SM_GRUPOS_ID'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftSmallint
-        Name = 'SM_LER'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftSmallint
-        Name = 'SM_INSERIR'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftSmallint
-        Name = 'SM_ALTERAR'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftSmallint
-        Name = 'SM_EXCLUIR'
-        ParamType = ptInput
-      end>
-    object ZQRYPermissoesDosGruposentidade: TWideStringField
-      FieldName = 'entidade'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 128
-    end
-    object ZQRYPermissoesDosGrupostipo: TSmallintField
-      FieldName = 'tipo'
-      ProviderFlags = []
-      ReadOnly = True
-    end
-    object ZQRYPermissoesDosGruposin_permissoesdosgrupos_id: TIntegerField
-      DisplayLabel = 'ID'
-      FieldName = 'in_permissoesdosgrupos_id'
-      ProviderFlags = [pfInUpdate, pfInKey]
-    end
-    object ZQRYPermissoesDosGruposin_entidadesdosistema_id: TIntegerField
-      DisplayLabel = 'Entidade'
-      FieldName = 'in_entidadesdosistema_id'
-      ProviderFlags = [pfInUpdate]
-      Required = True
-    end
-    object ZQRYPermissoesDosGrupossm_grupos_id: TSmallintField
-      DisplayLabel = 'Grupo'
-      FieldName = 'sm_grupos_id'
-      ProviderFlags = [pfInUpdate]
-      Required = True
-    end
-    object ZQRYPermissoesDosGrupossm_ler: TSmallintField
-      DisplayLabel = 'Acessar'
-      FieldName = 'sm_ler'
-      ProviderFlags = [pfInUpdate]
-      Required = True
-    end
-    object ZQRYPermissoesDosGrupossm_inserir: TSmallintField
-      DisplayLabel = 'Inserir'
-      FieldName = 'sm_inserir'
-      ProviderFlags = [pfInUpdate]
-      Required = True
-    end
-    object ZQRYPermissoesDosGrupossm_alterar: TSmallintField
-      DisplayLabel = 'Alterar'
-      FieldName = 'sm_alterar'
-      ProviderFlags = [pfInUpdate]
-      Required = True
-    end
-    object ZQRYPermissoesDosGrupossm_excluir: TSmallintField
-      DisplayLabel = 'Excluir'
-      FieldName = 'sm_excluir'
-      ProviderFlags = [pfInUpdate]
-      Required = True
-    end
-  end
-  object DTSRGrupos: TDataSource
-    DataSet = ZQRYGrupos
-    Left = 24
     Top = 156
   end
-  object ZUSQPermissoesDosGrupos: TZUpdateSQL
-    DeleteSQL.Strings = (
-      'SELECT IDU_PERMISSOESDOSGRUPOS('#39'D'#39
-      '                              ,:IN_PERMISSOESDOSGRUPOS_ID)')
-    InsertSQL.Strings = (
-      'SELECT IDU_PERMISSOESDOSGRUPOS('#39'I'#39
-      '                              ,NULL'
-      '                              ,:IN_ENTIDADESDOSISTEMA_ID'
-      '                              ,CAST(:SM_GRUPOS_ID AS SMALLINT)'
-      '                              ,CAST(:SM_LER AS SMALLINT)'
-      '                              ,CAST(:SM_INSERIR AS SMALLINT)'
-      '                              ,CAST(:SM_ALTERAR AS SMALLINT)'
-      '                              ,CAST(:SM_EXCLUIR AS SMALLINT))')
-    ModifySQL.Strings = (
-      'SELECT IDU_PERMISSOESDOSGRUPOS('#39'U'#39
-      '                              ,:IN_PERMISSOESDOSGRUPOS_ID'
-      '                              ,:IN_ENTIDADESDOSISTEMA_ID'
-      '                              ,CAST(:SM_GRUPOS_ID AS SMALLINT)'
-      '                              ,CAST(:SM_LER AS SMALLINT)'
-      '                              ,CAST(:SM_INSERIR AS SMALLINT)'
-      '                              ,CAST(:SM_ALTERAR AS SMALLINT)'
-      '                              ,CAST(:SM_EXCLUIR AS SMALLINT))')
-    UseSequenceFieldForRefreshSQL = False
-    Left = 132
+  object DTSRGrupos: TDataSource
+    DataSet = UNQYGrupos
+    Left = 24
     Top = 108
-    ParamData = <
-      item
-        DataType = ftInteger
-        Name = 'IN_PERMISSOESDOSGRUPOS_ID'
-        ParamType = ptInput
-        Value = Null
-      end
-      item
-        DataType = ftInteger
-        Name = 'in_entidadesdosistema_id'
-        ParamType = ptInput
-        Value = Null
-      end
-      item
-        DataType = ftSmallint
-        Name = 'sm_grupos_id'
-        ParamType = ptInput
-        Value = Null
-      end
-      item
-        DataType = ftSmallint
-        Name = 'sm_ler'
-        ParamType = ptInput
-        Value = Null
-      end
-      item
-        DataType = ftSmallint
-        Name = 'sm_inserir'
-        ParamType = ptInput
-        Value = Null
-      end
-      item
-        DataType = ftSmallint
-        Name = 'sm_alterar'
-        ParamType = ptInput
-        Value = Null
-      end
-      item
-        DataType = ftSmallint
-        Name = 'sm_excluir'
-        ParamType = ptInput
-        Value = Null
-      end>
   end
   object KRVCPermissoesDosGrupos: TKRKValidationChecks
-    DataSet = ZQRYPermissoesDosGrupos
+    DataSet = UNQYPermissoesDosGrupos
     TableName = 'PERMISSOESDOSGRUPOS'
     CheckableFields = <
       item
@@ -421,5 +91,185 @@ inherited KRDMGrupos: TKRDMGrupos
       end>
     Left = 132
     Top = 156
+  end
+  object UNQYGrupos: TUniQuery
+    SQLInsert.Strings = (
+      'SELECT IDU_GRUPOS('#39'I'#39
+      '                 ,NULL'
+      '                 ,:va_nome'
+      '                 ,:va_descricao)')
+    SQLDelete.Strings = (
+      'SELECT IDU_GRUPOS('#39'D'#39
+      '                 ,:sm_grupos_id)')
+    SQLUpdate.Strings = (
+      'SELECT IDU_GRUPOS('#39'U'#39
+      '                 ,:sm_grupos_id'
+      '                 ,:va_nome'
+      '                 ,:va_descricao)')
+    Connection = SODMPrincipal.UNCN
+    SQL.Strings = (
+      'SELECT GRU.*'
+      '  FROM GRUPOS GRU'
+      
+        ' WHERE ((:SM_GRUPOS_ID IS NULL) OR (GRU.SM_GRUPOS_ID = :SM_GRUPO' +
+        'S_ID))'
+      
+        '   AND ((:VA_NOME IS NULL) OR (UPPER(GRU.VA_NOME) LIKE UPPER(:VA' +
+        '_NOME)))'
+      
+        '   AND ((:VA_DESCRICAO IS NULL) OR (UPPER(GRU.VA_DESCRICAO) LIKE' +
+        ' UPPER(:VA_DESCRICAO)))')
+    UniDirectional = True
+    SpecificOptions.Strings = (
+      'PostgreSQL.FetchAll=False'
+      'PostgreSQL.UseParamTypes=True')
+    Left = 24
+    Top = 60
+    ParamData = <
+      item
+        DataType = ftSmallint
+        Name = 'SM_GRUPOS_ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'VA_NOME'
+        ParamType = ptInput
+        Size = 64
+      end
+      item
+        DataType = ftString
+        Name = 'VA_DESCRICAO'
+        ParamType = ptInput
+        Size = 128
+      end>
+    object UNQYGrupossm_grupos_id: TSmallintField
+      DisplayLabel = 'ID'
+      DisplayWidth = 10
+      FieldName = 'sm_grupos_id'
+      ProviderFlags = [pfInUpdate, pfInKey]
+    end
+    object UNQYGruposva_nome: TWideStringField
+      DisplayLabel = 'Nome do grupo'
+      DisplayWidth = 64
+      FieldName = 'va_nome'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+      Size = 64
+    end
+    object UNQYGruposva_descricao: TWideStringField
+      DisplayLabel = 'Descri'#231#227'o do grupo'
+      DisplayWidth = 128
+      FieldName = 'va_descricao'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+      Size = 128
+    end
+  end
+  object UNQYPermissoesDosGrupos: TUniQuery
+    SQLInsert.Strings = (
+      'SELECT IDU_PERMISSOESDOSGRUPOS('#39'I'#39
+      '                              ,NULL'
+      '                              ,:IN_ENTIDADESDOSISTEMA_ID'
+      '                              ,:SM_GRUPOS_ID'
+      '                              ,:SM_LER'
+      '                              ,:SM_INSERIR'
+      '                              ,:SM_ALTERAR'
+      '                              ,:SM_EXCLUIR)')
+    SQLDelete.Strings = (
+      'SELECT IDU_PERMISSOESDOSGRUPOS('#39'D'#39
+      '                              ,:IN_PERMISSOESDOSGRUPOS_ID)')
+    SQLUpdate.Strings = (
+      'SELECT IDU_PERMISSOESDOSGRUPOS('#39'U'#39
+      '                              ,:IN_PERMISSOESDOSGRUPOS_ID'
+      '                              ,:IN_ENTIDADESDOSISTEMA_ID'
+      '                              ,:SM_GRUPOS_ID'
+      '                              ,:SM_LER'
+      '                              ,:SM_INSERIR'
+      '                              ,:SM_ALTERAR'
+      '                              ,:SM_EXCLUIR)')
+    Connection = SODMPrincipal.UNCN
+    SQL.Strings = (
+      'SELECT EDS.VA_NOME AS ENTIDADE'
+      '     , EDS.SM_TIPO AS TIPO'
+      '     , PDG.*'
+      '  FROM PERMISSOESDOSGRUPOS PDG'
+      '  JOIN ENTIDADESDOSISTEMA EDS USING(IN_ENTIDADESDOSISTEMA_ID)')
+    MasterSource = DTSRGrupos
+    MasterFields = 'sm_grupos_id'
+    DetailFields = 'sm_grupos_id'
+    UniDirectional = True
+    SpecificOptions.Strings = (
+      'PostgreSQL.FetchAll=False'
+      'PostgreSQL.UseParamTypes=True')
+    Left = 132
+    Top = 108
+    ParamData = <
+      item
+        DataType = ftSmallint
+        Name = 'SM_GRUPOS_ID'
+        ParamType = ptInput
+      end>
+    object UNQYPermissoesDosGruposentidade: TWideStringField
+      DisplayWidth = 128
+      FieldName = 'entidade'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 128
+    end
+    object UNQYPermissoesDosGrupostipo: TSmallintField
+      DisplayWidth = 10
+      FieldName = 'tipo'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+    object UNQYPermissoesDosGruposin_permissoesdosgrupos_id: TIntegerField
+      DisplayLabel = 'ID'
+      DisplayWidth = 10
+      FieldName = 'in_permissoesdosgrupos_id'
+      ProviderFlags = [pfInUpdate, pfInKey]
+    end
+    object UNQYPermissoesDosGruposin_entidadesdosistema_id: TIntegerField
+      DisplayLabel = 'Entidade'
+      DisplayWidth = 10
+      FieldName = 'in_entidadesdosistema_id'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYPermissoesDosGrupossm_grupos_id: TSmallintField
+      DisplayLabel = 'Grupo'
+      DisplayWidth = 10
+      FieldName = 'sm_grupos_id'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYPermissoesDosGrupossm_ler: TSmallintField
+      DisplayLabel = 'Acessar'
+      DisplayWidth = 10
+      FieldName = 'sm_ler'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYPermissoesDosGrupossm_inserir: TSmallintField
+      DisplayLabel = 'Inserir'
+      DisplayWidth = 10
+      FieldName = 'sm_inserir'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYPermissoesDosGrupossm_alterar: TSmallintField
+      DisplayLabel = 'Alterar'
+      DisplayWidth = 10
+      FieldName = 'sm_alterar'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYPermissoesDosGrupossm_excluir: TSmallintField
+      DisplayLabel = 'Excluir'
+      DisplayWidth = 10
+      FieldName = 'sm_excluir'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
   end
 end

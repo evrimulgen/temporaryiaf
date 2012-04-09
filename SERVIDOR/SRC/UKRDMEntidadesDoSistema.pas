@@ -2,20 +2,17 @@ unit UKRDMEntidadesDoSistema;
 
 interface
 
-uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, UKRDMBasico, ZAbstractDataset, ZStoredProcedure, DB,
-  ZAbstractRODataset, ZDataset, ZSqlUpdate,
-  KRK.Components.DataControls.ValidationChecks;
+uses Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms
+   , Dialogs, DB, KRK.Components.DataControls.ValidationChecks, Uni, MemDS
+   , DBAccess, UKRDMBasico;
 
 type
   TKRDMEntidadesDoSistema = class(TKRDMBasico)
-    ZQRYEntidadesDoSistema: TZQuery;
-    ZUSQEntidadesDoSistema: TZUpdateSQL;
-    ZQRYEntidadesDoSistemain_entidadesdosistema_id: TIntegerField;
-    ZQRYEntidadesDoSistemava_nome: TWideStringField;
-    ZQRYEntidadesDoSistemasm_tipo: TSmallintField;
     KRVCEntidadesDoSistema: TKRKValidationChecks;
+    UNQYEntidadesDoSistema: TUniQuery;
+    UNQYEntidadesDoSistemain_entidadesdosistema_id: TIntegerField;
+    UNQYEntidadesDoSistemava_nome: TWideStringField;
+    UNQYEntidadesDoSistemasm_tipo: TSmallintField;
   private
     { Private declarations }
   public
