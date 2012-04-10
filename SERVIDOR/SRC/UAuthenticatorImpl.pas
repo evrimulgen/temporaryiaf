@@ -38,7 +38,7 @@ uses SysUtils
    , KRK.Lib.DCPcrypt.Utilities
    , KRK.Lib.DCPcrypt.Types
    , UServerConfiguration
-   , UCommonTypes;
+   , UCommonTypes, UExtraUtilities;
 
 { TAuthenticator }
 
@@ -111,20 +111,9 @@ constructor TAuthenticator.Create;
 begin
   inherited;
   FUniConnection := TUniConnection.Create(nil);
-
-  { Configura a conexão aqui }
-  FUniConnection.ProviderName := ServerConfiguration.DBProvider;
-  FUniConnection.Database     := ServerConfiguration.DBDatabase;
-  FUniConnection.Server       := ServerConfiguration.DBHostName;
-  FUniConnection.Password     := ServerConfiguration.DBPassword;
-  FUniConnection.UserName     := ServerConfiguration.DBUserName;
-  FUniConnection.Port         := ServerConfiguration.DBPortNumb;
-
-  FUniConnection.SpecificOptions.Add('UseUnicode=True');
-
   FUniTransaction := TUniTransaction.Create(nil);
-  FUniTransaction.DefaultConnection := FUniConnection;
-  FUniTransaction.IsolationLevel := ServerConfiguration.DBTransactIsolationLevel;
+  ConfigureConnection(FUniConnection,FUniTransaction);
+  FUniConnection.Connect;
 end;
 
 destructor TAuthenticator.Destroy;

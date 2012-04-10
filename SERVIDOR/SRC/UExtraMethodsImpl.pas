@@ -137,6 +137,7 @@ begin
       CLDSPermissoes.CreateDataSet;
 
       ConfigureConnection(UNCN,UNTR);
+      UNCN.Connect;
 
       { Obtém todas as entidades do sistema e circula por cada uma destas }
       UNQYEDS.Open;
