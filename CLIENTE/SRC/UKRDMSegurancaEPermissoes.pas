@@ -86,6 +86,8 @@ type
     ACTNRegistrarEntidades: TAction;
     CLDSUsuariosbo_superusuario: TBooleanField;
     CLDSUsuariosCONbo_superusuario: TBooleanField;
+    ACTNAdicionarGruposAoUsuario: TAction;
+    ACTNRemoverGruposDoUsuario: TAction;
     procedure CLDSEntidadesDoSistemasm_tipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure CLDSUsuariosCalcFields(DataSet: TDataSet);
     procedure CLDSUsuariosAfterRefresh(DataSet: TDataSet);

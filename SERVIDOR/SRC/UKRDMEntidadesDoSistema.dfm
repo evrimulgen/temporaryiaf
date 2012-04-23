@@ -13,12 +13,12 @@ inherited KRDMEntidadesDoSistema: TKRDMEntidadesDoSistema
       end
       item
         FieldName = 'va_nome'
-        FieldDescription = 'Nome da entidade'
+        FieldDescription = 'Nome'
         CheckBlank.Active = True
       end
       item
         FieldName = 'sm_tipo'
-        FieldDescription = 'Tipo de entidade'
+        FieldDescription = 'Tipo'
         CheckBlank.Active = True
         CheckNumber.Active = True
         CheckNumber.MaximumValue = 1.000000000000000000
@@ -77,17 +77,20 @@ inherited KRDMEntidadesDoSistema: TKRDMEntidadesDoSistema
       end>
     object UNQYEntidadesDoSistemain_entidadesdosistema_id: TIntegerField
       AutoGenerateValue = arAutoInc
+      DisplayLabel = 'ID'
       DisplayWidth = 10
       FieldName = 'in_entidadesdosistema_id'
       ProviderFlags = [pfInUpdate, pfInKey]
     end
     object UNQYEntidadesDoSistemava_nome: TWideStringField
+      DisplayLabel = 'Nome'
       DisplayWidth = 128
       FieldName = 'va_nome'
       ProviderFlags = [pfInUpdate]
       Size = 128
     end
     object UNQYEntidadesDoSistemasm_tipo: TSmallintField
+      DisplayLabel = 'Tipo'
       DisplayWidth = 10
       FieldName = 'sm_tipo'
       ProviderFlags = [pfInUpdate]

@@ -21,7 +21,9 @@ uses
   UKRFMConfiguracoes in '..\SRC\UKRFMConfiguracoes.pas' {KRFMConfiguracoes: TKRKForm},
   UKRDMConfiguracoes in '..\SRC\UKRDMConfiguracoes.pas' {KRDMConfiguracoes: TKRKDataModule},
   UKRDMRelatorio in '..\SRC\UKRDMRelatorio.pas' {KRDMRelatorio: TKRKDataModule},
-  UKRFMRelatorio in '..\SRC\UKRFMRelatorio.pas' {KRFMRelatorio: TKRKForm};
+  UKRFMRelatorio in '..\SRC\UKRFMRelatorio.pas' {KRFMRelatorio: TKRKForm},
+  UKRFMDialogBasico in '..\SRC\UKRFMDialogBasico.pas' {KRFMDialogBasico: TKRKForm},
+  UKRFMDialogSelecao in '..\SRC\UKRFMDialogSelecao.pas' {KRFMDialogSelecao: TKRKForm};
 
 {$R *.res}
 

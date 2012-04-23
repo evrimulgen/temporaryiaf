@@ -1,7 +1,7 @@
 inherited KRDMGrupos: TKRDMGrupos
   OldCreateOrder = True
-  Height = 260
-  Width = 389
+  Height = 213
+  Width = 224
   object KRVCGrupos: TKRKValidationChecks
     DataSet = UNQYGrupos
     TableName = 'GRUPOS'
@@ -12,12 +12,12 @@ inherited KRDMGrupos: TKRDMGrupos
       end
       item
         FieldName = 'va_nome'
-        FieldDescription = 'Nome do grupo'
+        FieldDescription = 'Nome'
         CheckBlank.Active = True
       end
       item
         FieldName = 'va_descricao'
-        FieldDescription = 'Descri'#231#227'o do grupo'
+        FieldDescription = 'Descri'#231#227'o'
         CheckBlank.Active = True
       end>
     Left = 24
@@ -34,11 +34,11 @@ inherited KRDMGrupos: TKRDMGrupos
     CheckableFields = <
       item
         FieldName = 'entidade'
-        FieldDescription = 'entidade'
+        FieldDescription = 'Entidade'
       end
       item
         FieldName = 'tipo'
-        FieldDescription = 'tipo'
+        FieldDescription = 'Tipo de entidade'
       end
       item
         FieldName = 'in_permissoesdosgrupos_id'
@@ -46,17 +46,17 @@ inherited KRDMGrupos: TKRDMGrupos
       end
       item
         FieldName = 'in_entidadesdosistema_id'
-        FieldDescription = 'Entidade'
+        FieldDescription = 'ID da entidade do sistema'
         CheckBlank.Active = True
       end
       item
         FieldName = 'sm_grupos_id'
-        FieldDescription = 'Grupo'
+        FieldDescription = 'ID do grupo'
         CheckBlank.Active = True
       end
       item
         FieldName = 'sm_ler'
-        FieldDescription = 'Acessar'
+        FieldDescription = 'Permitir leitura/acesso'
         CheckBlank.Active = True
         CheckNumber.Active = True
         CheckNumber.MaximumValue = 1.000000000000000000
@@ -64,7 +64,7 @@ inherited KRDMGrupos: TKRDMGrupos
       end
       item
         FieldName = 'sm_inserir'
-        FieldDescription = 'Inserir'
+        FieldDescription = 'Permitir inser'#231#227'o'
         CheckBlank.Active = True
         CheckNumber.Active = True
         CheckNumber.MinimumValue = -1.000000000000000000
@@ -73,7 +73,7 @@ inherited KRDMGrupos: TKRDMGrupos
       end
       item
         FieldName = 'sm_alterar'
-        FieldDescription = 'Alterar'
+        FieldDescription = 'Permitir altera'#231#227'o'
         CheckBlank.Active = True
         CheckNumber.Active = True
         CheckNumber.MinimumValue = -1.000000000000000000
@@ -82,7 +82,7 @@ inherited KRDMGrupos: TKRDMGrupos
       end
       item
         FieldName = 'sm_excluir'
-        FieldDescription = 'Excluir'
+        FieldDescription = 'Permitir exclus'#227'o'
         CheckBlank.Active = True
         CheckNumber.Active = True
         CheckNumber.MinimumValue = -1.000000000000000000
@@ -150,7 +150,7 @@ inherited KRDMGrupos: TKRDMGrupos
       ProviderFlags = [pfInUpdate, pfInKey]
     end
     object UNQYGruposva_nome: TWideStringField
-      DisplayLabel = 'Nome do grupo'
+      DisplayLabel = 'Nome'
       DisplayWidth = 64
       FieldName = 'va_nome'
       ProviderFlags = [pfInUpdate]
@@ -158,7 +158,7 @@ inherited KRDMGrupos: TKRDMGrupos
       Size = 64
     end
     object UNQYGruposva_descricao: TWideStringField
-      DisplayLabel = 'Descri'#231#227'o do grupo'
+      DisplayLabel = 'Descri'#231#227'o'
       DisplayWidth = 128
       FieldName = 'va_descricao'
       ProviderFlags = [pfInUpdate]
@@ -211,6 +211,7 @@ inherited KRDMGrupos: TKRDMGrupos
         ParamType = ptInput
       end>
     object UNQYPermissoesDosGruposentidade: TWideStringField
+      DisplayLabel = 'Entidade'
       DisplayWidth = 128
       FieldName = 'entidade'
       ProviderFlags = []
@@ -218,6 +219,7 @@ inherited KRDMGrupos: TKRDMGrupos
       Size = 128
     end
     object UNQYPermissoesDosGrupostipo: TSmallintField
+      DisplayLabel = 'Tipo de entidade'
       DisplayWidth = 10
       FieldName = 'tipo'
       ProviderFlags = []
@@ -230,42 +232,42 @@ inherited KRDMGrupos: TKRDMGrupos
       ProviderFlags = [pfInUpdate, pfInKey]
     end
     object UNQYPermissoesDosGruposin_entidadesdosistema_id: TIntegerField
-      DisplayLabel = 'Entidade'
+      DisplayLabel = 'ID da entidade do sistema'
       DisplayWidth = 10
       FieldName = 'in_entidadesdosistema_id'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object UNQYPermissoesDosGrupossm_grupos_id: TSmallintField
-      DisplayLabel = 'Grupo'
+      DisplayLabel = 'ID do grupo'
       DisplayWidth = 10
       FieldName = 'sm_grupos_id'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object UNQYPermissoesDosGrupossm_ler: TSmallintField
-      DisplayLabel = 'Acessar'
+      DisplayLabel = 'Permitir leitura/acesso'
       DisplayWidth = 10
       FieldName = 'sm_ler'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object UNQYPermissoesDosGrupossm_inserir: TSmallintField
-      DisplayLabel = 'Inserir'
+      DisplayLabel = 'Permitir inser'#231#227'o'
       DisplayWidth = 10
       FieldName = 'sm_inserir'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object UNQYPermissoesDosGrupossm_alterar: TSmallintField
-      DisplayLabel = 'Alterar'
+      DisplayLabel = 'Permitir altera'#231#227'o'
       DisplayWidth = 10
       FieldName = 'sm_alterar'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object UNQYPermissoesDosGrupossm_excluir: TSmallintField
-      DisplayLabel = 'Excluir'
+      DisplayLabel = 'Permitir exclus'#227'o'
       DisplayWidth = 10
       FieldName = 'sm_excluir'
       ProviderFlags = [pfInUpdate]

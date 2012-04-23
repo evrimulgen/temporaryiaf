@@ -17,23 +17,23 @@ inherited KRDMUsuarios: TKRDMUsuarios
       end
       item
         FieldName = 'va_nome'
-        FieldDescription = 'Nome completo do usu'#225'rio'
+        FieldDescription = 'Nome'
         CheckBlank.Active = True
         CheckBlank.FocusOnValidateFailure = True
       end
       item
         FieldName = 'va_login'
-        FieldDescription = 'Login de acesso do usu'#225'rio'
+        FieldDescription = 'Login'
         CheckBlank.Active = True
         CheckBlank.FocusOnValidateFailure = True
       end
       item
         FieldName = 'ch_senha'
-        FieldDescription = 'Senha de acesso do usu'#225'rio'
+        FieldDescription = 'Senha'
       end
       item
         FieldName = 'va_email'
-        FieldDescription = 'E-mail do usu'#225'rio'
+        FieldDescription = 'E-mail'
       end
       item
         FieldName = 'bo_superusuario'
@@ -50,7 +50,7 @@ inherited KRDMUsuarios: TKRDMUsuarios
     CheckableFields = <
       item
         FieldName = 'entidade'
-        FieldDescription = 'entidade'
+        FieldDescription = 'Entidade'
       end
       item
         FieldName = 'in_permissoesdosusuarios_id'
@@ -58,17 +58,17 @@ inherited KRDMUsuarios: TKRDMUsuarios
       end
       item
         FieldName = 'in_entidadesdosistema_id'
-        FieldDescription = 'Entidade'
+        FieldDescription = 'ID da entidade do sistema'
         CheckBlank.Active = True
       end
       item
         FieldName = 'sm_usuarios_id'
-        FieldDescription = 'Usu'#225'rio'
+        FieldDescription = 'ID do usu'#225'rio'
         CheckBlank.Active = True
       end
       item
         FieldName = 'sm_ler'
-        FieldDescription = 'sm_ler'
+        FieldDescription = 'Permitir leitura/acesso'
         CheckBlank.Active = True
         CheckNumber.Active = True
         CheckNumber.MaximumValue = 1.000000000000000000
@@ -76,7 +76,7 @@ inherited KRDMUsuarios: TKRDMUsuarios
       end
       item
         FieldName = 'sm_inserir'
-        FieldDescription = 'sm_inserir'
+        FieldDescription = 'Permitir inser'#231#227'o'
         CheckBlank.Active = True
         CheckNumber.Active = True
         CheckNumber.MinimumValue = -1.000000000000000000
@@ -85,7 +85,7 @@ inherited KRDMUsuarios: TKRDMUsuarios
       end
       item
         FieldName = 'sm_alterar'
-        FieldDescription = 'sm_alterar'
+        FieldDescription = 'Permitir altera'#231#227'o'
         CheckBlank.Active = True
         CheckNumber.Active = True
         CheckNumber.MinimumValue = -1.000000000000000000
@@ -94,7 +94,7 @@ inherited KRDMUsuarios: TKRDMUsuarios
       end
       item
         FieldName = 'sm_excluir'
-        FieldDescription = 'sm_excluir'
+        FieldDescription = 'Permitir exclus'#227'o'
         CheckBlank.Active = True
         CheckNumber.Active = True
         CheckNumber.MinimumValue = -1.000000000000000000
@@ -103,7 +103,7 @@ inherited KRDMUsuarios: TKRDMUsuarios
       end
       item
         FieldName = 'tipo'
-        FieldDescription = 'tipo'
+        FieldDescription = 'Tipo de entidade'
       end>
     Left = 264
     Top = 108
@@ -227,6 +227,7 @@ inherited KRDMUsuarios: TKRDMUsuarios
       Size = 64
     end
     object UNQYUsuariosbo_superusuario: TBooleanField
+      DisplayLabel = 'Superusu'#225'rio'
       DisplayWidth = 5
       FieldName = 'bo_superusuario'
       ProviderFlags = [pfInUpdate]
@@ -234,6 +235,19 @@ inherited KRDMUsuarios: TKRDMUsuarios
     end
   end
   object UNQYGruposDosUsuarios: TUniQuery
+    SQLInsert.Strings = (
+      'SELECT IDU_GRUPOSDOSUSUARIOS('#39'I'#39
+      '                            ,NULL'
+      '                            ,:SM_GRUPOS_ID'
+      '                            ,:SM_USUARIOS_ID)')
+    SQLDelete.Strings = (
+      'SELECT IDU_GRUPOSDOSUSUARIOS('#39'D'#39
+      '                            ,:IN_GRUPOSDOSUSUARIOS_ID)')
+    SQLUpdate.Strings = (
+      'SELECT IDU_GRUPOSDOSUSUARIOS('#39'U'#39
+      '                            ,:IN_GRUPOSDOSUSUARIOS_ID'
+      '                            ,:SM_GRUPOS_ID'
+      '                            ,:SM_USUARIOS_ID)')
     Connection = SODMPrincipal.UNCN
     SQL.Strings = (
       'SELECT GDU.*'
@@ -257,23 +271,27 @@ inherited KRDMUsuarios: TKRDMUsuarios
       end>
     object UNQYGruposDosUsuariosin_gruposdosusuarios_id: TIntegerField
       AutoGenerateValue = arAutoInc
+      DisplayLabel = 'ID'
       DisplayWidth = 10
       FieldName = 'in_gruposdosusuarios_id'
       ProviderFlags = [pfInUpdate, pfInKey]
     end
     object UNQYGruposDosUsuariossm_grupos_id: TSmallintField
+      DisplayLabel = 'ID do grupo'
       DisplayWidth = 10
       FieldName = 'sm_grupos_id'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object UNQYGruposDosUsuariossm_usuarios_id: TSmallintField
+      DisplayLabel = 'ID do usu'#225'rio'
       DisplayWidth = 10
       FieldName = 'sm_usuarios_id'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object UNQYGruposDosUsuariosgrupo: TWideStringField
+      DisplayLabel = 'Grupo'
       DisplayWidth = 64
       FieldName = 'grupo'
       ProviderFlags = []
@@ -286,11 +304,11 @@ inherited KRDMUsuarios: TKRDMUsuarios
       'SELECT IDU_PERMISSOESDOSUSUARIOS('#39'I'#39
       '                                ,NULL'
       '                                ,:IN_ENTIDADESDOSISTEMA_ID'
-      '                                ,:SM_USUARIOS_ID AS SMALLINT'
-      '                                ,:SM_LER AS SMALLINT'
-      '                                ,:SM_INSERIR AS SMALLINT'
-      '                                ,:SM_ALTERAR AS SMALLINT'
-      '                                ,:SM_EXCLUIR AS SMALLINT)')
+      '                                ,:SM_USUARIOS_ID'
+      '                                ,:SM_LER'
+      '                                ,:SM_INSERIR'
+      '                                ,:SM_ALTERAR'
+      '                                ,:SM_EXCLUIR)')
     SQLDelete.Strings = (
       'SELECT IDU_PERMISSOESDOSUSUARIOS('#39'D'#39
       '                                ,:IN_PERMISSOESDOSUSUARIOS_ID)')
@@ -298,11 +316,11 @@ inherited KRDMUsuarios: TKRDMUsuarios
       'SELECT IDU_PERMISSOESDOSUSUARIOS('#39'U'#39
       '                                ,:IN_PERMISSOESDOSUSUARIOS_ID'
       '                                ,:IN_ENTIDADESDOSISTEMA_ID'
-      '                                ,:SM_USUARIOS_ID AS SMALLINT'
-      '                                ,:SM_LER AS SMALLINT'
-      '                                ,:SM_INSERIR AS SMALLINT'
-      '                                ,:SM_ALTERAR AS SMALLINT'
-      '                                ,:SM_EXCLUIR AS SMALLINT)')
+      '                                ,:SM_USUARIOS_ID'
+      '                                ,:SM_LER'
+      '                                ,:SM_INSERIR'
+      '                                ,:SM_ALTERAR'
+      '                                ,:SM_EXCLUIR)')
     Connection = SODMPrincipal.UNCN
     SQL.Strings = (
       'SELECT EDS.VA_NOME AS ENTIDADE'
@@ -326,6 +344,7 @@ inherited KRDMUsuarios: TKRDMUsuarios
         ParamType = ptInput
       end>
     object UNQYPermissoesDosUsuariosentidade: TWideStringField
+      DisplayLabel = 'Entidade'
       DisplayWidth = 128
       FieldName = 'entidade'
       ProviderFlags = []
@@ -333,6 +352,7 @@ inherited KRDMUsuarios: TKRDMUsuarios
       Size = 128
     end
     object UNQYPermissoesDosUsuariostipo: TSmallintField
+      DisplayLabel = 'Tipo de entidade'
       DisplayWidth = 10
       FieldName = 'tipo'
       ProviderFlags = []
@@ -340,45 +360,79 @@ inherited KRDMUsuarios: TKRDMUsuarios
     end
     object UNQYPermissoesDosUsuariosin_permissoesdosusuarios_id: TIntegerField
       AutoGenerateValue = arAutoInc
+      DisplayLabel = 'ID'
       DisplayWidth = 10
       FieldName = 'in_permissoesdosusuarios_id'
       ProviderFlags = [pfInUpdate, pfInKey]
     end
     object UNQYPermissoesDosUsuariosin_entidadesdosistema_id: TIntegerField
+      DisplayLabel = 'ID da entidade do sistema'
       DisplayWidth = 10
       FieldName = 'in_entidadesdosistema_id'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object UNQYPermissoesDosUsuariossm_usuarios_id: TSmallintField
+      DisplayLabel = 'ID do usu'#225'rio'
       DisplayWidth = 10
       FieldName = 'sm_usuarios_id'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object UNQYPermissoesDosUsuariossm_ler: TSmallintField
+      DisplayLabel = 'Permitir leitura/acesso'
       DisplayWidth = 10
       FieldName = 'sm_ler'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object UNQYPermissoesDosUsuariossm_inserir: TSmallintField
+      DisplayLabel = 'Permitir inser'#231#227'o'
       DisplayWidth = 10
       FieldName = 'sm_inserir'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object UNQYPermissoesDosUsuariossm_alterar: TSmallintField
+      DisplayLabel = 'Permitir altera'#231#227'o'
       DisplayWidth = 10
       FieldName = 'sm_alterar'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object UNQYPermissoesDosUsuariossm_excluir: TSmallintField
+      DisplayLabel = 'Permitir exclus'#227'o'
       DisplayWidth = 10
       FieldName = 'sm_excluir'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
+  end
+  object KRVCGruposDosUsuarios: TKRKValidationChecks
+    DataSet = UNQYGruposDosUsuarios
+    TableName = 'GRUPOSDOSUSUARIOS'
+    CheckableFields = <
+      item
+        FieldName = 'in_gruposdosusuarios_id'
+        FieldDescription = 'ID'
+      end
+      item
+        FieldName = 'sm_grupos_id'
+        FieldDescription = 'ID do grupo'
+        CheckBlank.Active = True
+        CheckBlank.FocusOnValidateFailure = True
+      end
+      item
+        FieldName = 'sm_usuarios_id'
+        FieldDescription = 'ID do usu'#225'rio'
+        CheckBlank.Active = True
+        CheckBlank.FocusOnValidateFailure = True
+      end
+      item
+        FieldName = 'grupo'
+        FieldDescription = 'Grupo'
+      end>
+    Left = 126
+    Top = 108
   end
 end

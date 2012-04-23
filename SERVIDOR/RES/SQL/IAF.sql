@@ -328,7 +328,7 @@ END;
 $BODY$
 LANGUAGE PLPGSQL;
 ---------------------------------------------------------------
-CREATE OR REPLACE FUNCTION IDU_GRUPOS(IN pMODO           CHAR
+CREATE OR REPLACE FUNCTION IDU_GRUPOS(IN pMODO         CHAR
                                      ,IN pSM_GRUPOS_ID GRUPOS.SM_GRUPOS_ID%TYPE = NULL
                                      ,IN pVA_NOME      GRUPOS.VA_NOME%TYPE      = NULL
                                      ,IN pVA_DESCRICAO GRUPOS.VA_DESCRICAO%TYPE = NULL)
@@ -357,6 +357,45 @@ BEGIN
          SET VA_NOME      = pVA_NOME
            , VA_DESCRICAO = pVA_DESCRICAO
        WHERE SM_GRUPOS_ID = pSM_GRUPOS_ID;
+
+    GET DIAGNOSTICS vRETURN := ROW_COUNT;
+    ---------------------------------------------------------------------------------------
+  END CASE;
+  
+  RETURN vRETURN;
+END;
+$BODY$
+LANGUAGE PLPGSQL;
+---------------------------------------------------------------
+CREATE OR REPLACE FUNCTION IDU_GRUPOSDOSUSUARIOS(IN pMODO                    CHAR
+                                                ,IN pIN_GRUPOSDOSUSUARIOS_ID GRUPOSDOSUSUARIOS.IN_GRUPOSDOSUSUARIOS_ID%TYPE = NULL
+                                                ,IN pSM_GRUPOS_ID            GRUPOSDOSUSUARIOS.SM_GRUPOS_ID%TYPE = NULL
+                                                ,IN pSM_USUARIOS_ID          GRUPOSDOSUSUARIOS.SM_USUARIOS_ID%TYPE = NULL)
+RETURNS BIGINT AS 
+$BODY$
+DECLARE
+	vRETURN BIGINT := 0;
+BEGIN
+  CASE pMODO
+    WHEN 'I' THEN ----------------------------------------------------------- [ INSERT ] --
+      INSERT INTO GRUPOSDOSUSUARIOS (SM_GRUPOS_ID
+                                    ,SM_USUARIOS_ID)
+                             VALUES (pSM_GRUPOS_ID
+                                    ,pSM_USUARIOS_ID);
+
+    vRETURN := CURRVAL('SQ_GDU_IN_GRUPOSDOSUSUARIOS_ID');
+    ---------------------------------------------------------------------------------------
+    WHEN 'D' THEN ----------------------------------------------------------- [ DELETE ] --
+      DELETE FROM GRUPOSDOSUSUARIOS
+            WHERE IN_GRUPOSDOSUSUARIOS_ID = pIN_GRUPOSDOSUSUARIOS_ID;
+            
+    GET DIAGNOSTICS vRETURN := ROW_COUNT;
+    ---------------------------------------------------------------------------------------
+    WHEN 'U' THEN ----------------------------------------------------------- [ UPDATE ] --
+      UPDATE GRUPOSDOSUSUARIOS
+         SET SM_GRUPOS_ID            = pSM_GRUPOS_ID
+           , SM_USUARIOS_ID          = pSM_USUARIOS_ID
+       WHERE IN_GRUPOSDOSUSUARIOS_ID = pIN_GRUPOSDOSUSUARIOS_ID;
 
     GET DIAGNOSTICS vRETURN := ROW_COUNT;
     ---------------------------------------------------------------------------------------

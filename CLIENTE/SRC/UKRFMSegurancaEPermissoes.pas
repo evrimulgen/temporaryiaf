@@ -95,9 +95,9 @@ type
     GRBXGRUFiltros: TGroupBox;
     LABLGRUFiltros: TLabel;
     KRDGGruposCON: TKRKDBGrid;
-    BUTNRessetarSenhas: TButton;
     BBTNRegistrarEntidades: TBitBtn;
     DBCBSuperUsuario: TDBCheckBox;
+    BBTNRessetarSenhas: TBitBtn;
     procedure LAEDUSU_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
     procedure LAEDUSU_VA_LOGINKeyPress(Sender: TObject; var Key: Char);
     procedure LabeledEdit_EDS_VA_NOMEKeyPress(Sender: TObject; var Key: Char);

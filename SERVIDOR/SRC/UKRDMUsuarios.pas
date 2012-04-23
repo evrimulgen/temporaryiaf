@@ -33,6 +33,7 @@ type
     UNQYPermissoesDosUsuariossm_inserir: TSmallintField;
     UNQYPermissoesDosUsuariossm_alterar: TSmallintField;
     UNQYPermissoesDosUsuariossm_excluir: TSmallintField;
+    KRVCGruposDosUsuarios: TKRKValidationChecks;
   private
     { Private declarations }
   public
