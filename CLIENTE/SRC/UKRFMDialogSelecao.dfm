@@ -10,6 +10,7 @@ inherited KRFMDialogSelecao: TKRFMDialogSelecao
     Width = 314
     Height = 173
     Align = alClient
+    DataSource = DTSR
     Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     TabOrder = 1
     TitleFont.Charset = DEFAULT_CHARSET
@@ -18,5 +19,9 @@ inherited KRFMDialogSelecao: TKRFMDialogSelecao
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
     RowColors = <>
+  end
+  object DTSR: TDataSource
+    Left = 6
+    Top = 6
   end
 end
