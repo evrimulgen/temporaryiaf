@@ -101,6 +101,7 @@ type
     procedure CLDSPermissoesDosGrupostipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure ACTNRessetarSenhasExecute(Sender: TObject);
     procedure ACTNRegistrarEntidadesExecute(Sender: TObject);
+    procedure ACTNAdicionarGruposAoUsuarioExecute(Sender: TObject);
   private
     { Declarações privadas }
     procedure AdicionarEntidadesParaUsuario;
@@ -121,7 +122,8 @@ implementation
 
 
 uses Math, UKRFMSegurancaEPermissoes, UDAMOPrincipal, KRK.Lib.Db.Utils, DBGrids
-   , KRK.Lib.DCPcrypt.Utilities, KRK.Lib.DCPcrypt.Types;
+   , KRK.Lib.DCPcrypt.Utilities, KRK.Lib.DCPcrypt.Types, UKRFMConfiguracoes
+   , UKRFMSelecionarGrupo;
 
 { TKRDMSegurancaEPermissoes }
 
@@ -132,6 +134,23 @@ begin
     0: AdicionarEntidadesParaUsuario;// Usuários
     1: AdicionarEntidadesParaGrupo;// Grupos
   end;
+end;
+
+procedure TKRDMSegurancaEPermissoes.ACTNAdicionarGruposAoUsuarioExecute(Sender: TObject);
+begin
+  inherited;
+  with TKRFMSelecionarGrupo.Create(nil) do
+    try
+      CLDS.ConnectionBroker := CLDSGrupos.ConnectionBroker;
+      CLDS.ProviderName := CLDSGrupos.ProviderName;
+      CLDS.Open;
+      if ShowModal = mrOk then
+      begin
+
+      end;
+    finally
+      Free;
+    end;
 end;
 
 procedure TKRDMSegurancaEPermissoes.ACTNRegistrarEntidadesExecute(Sender: TObject);

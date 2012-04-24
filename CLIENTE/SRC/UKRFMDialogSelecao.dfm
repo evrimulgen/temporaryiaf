@@ -2,6 +2,8 @@ inherited KRFMDialogSelecao: TKRFMDialogSelecao
   Caption = 'KRFMDialogSelecao'
   KRKFormProperties.ButtonsPanel.Visible = True
   KRKFormProperties.ButtonsPanel.VisibleButtons = [vbOk, vbCancel]
+  OnOkButtonClick = KRKFormOkButtonClick
+  OnCancelButtonClick = KRKFormCancelButtonClick
   PixelsPerInch = 96
   TextHeight = 13
   object KRDGSelecao: TKRKDBGrid
@@ -21,7 +23,13 @@ inherited KRFMDialogSelecao: TKRFMDialogSelecao
     RowColors = <>
   end
   object DTSR: TDataSource
+    Left = 36
+    Top = 42
+  end
+  object CLDS: TClientDataSet
+    Aggregates = <>
+    Params = <>
     Left = 6
-    Top = 6
+    Top = 42
   end
 end

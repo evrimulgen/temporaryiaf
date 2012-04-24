@@ -1,6 +1,8 @@
 program IAFClient;
 
 uses
+  FastMM4 in '..\..\COMUM\SRC\FastMM4.pas',
+  FastMM4Messages in '..\..\COMUM\SRC\FastMM4Messages.pas',
   Forms,
   KRK.Lib.Db.Midas.MidasLib,
   UFORMPrincipal in '..\SRC\UFORMPrincipal.pas' {FORMPrincipal},

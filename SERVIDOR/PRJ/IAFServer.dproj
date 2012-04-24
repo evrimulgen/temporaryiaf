@@ -45,6 +45,8 @@
 			<DelphiCompile Include="IAFServer.dpr">
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
+			<DCCReference Include="..\..\COMUM\SRC\FastMM4.pas"/>
+			<DCCReference Include="..\..\COMUM\SRC\FastMM4Messages.pas"/>
 			<DCCReference Include="..\SRC\UServerConfiguration.pas"/>
 			<DCCReference Include="..\SRC\UWEBMWebService.pas">
 				<Form>WEBMWebService</Form>
@@ -104,7 +106,7 @@
 						<VersionInfo Name="MajorVer">2</VersionInfo>
 						<VersionInfo Name="MinorVer">0</VersionInfo>
 						<VersionInfo Name="Release">0</VersionInfo>
-						<VersionInfo Name="Build">8</VersionInfo>
+						<VersionInfo Name="Build">13</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -116,7 +118,7 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName">Zetta-Ømnis Soluções Tecnológicas Ltda</VersionInfoKeys>
 						<VersionInfoKeys Name="FileDescription">Servidor do IAF</VersionInfoKeys>
-						<VersionInfoKeys Name="FileVersion">2.0.0.8</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">2.0.0.13</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName">IAF</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalCopyright"/>
 						<VersionInfoKeys Name="LegalTrademarks"/>

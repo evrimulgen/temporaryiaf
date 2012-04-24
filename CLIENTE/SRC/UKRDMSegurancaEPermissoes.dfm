@@ -25,6 +25,7 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
     object ACTNAdicionarGruposAoUsuario: TAction
       Caption = 'Adicionar grupos'
       ImageIndex = 2
+      OnExecute = ACTNAdicionarGruposAoUsuarioExecute
     end
     object ACTNRemoverGruposDoUsuario: TAction
       Caption = 'Remover grupos'
@@ -33,7 +34,7 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
   end
   inherited IMLI: TImageList
     Bitmap = {
-      494C010105000800740010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C0101050008007C0010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

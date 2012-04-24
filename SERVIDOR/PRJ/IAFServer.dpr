@@ -1,6 +1,8 @@
 library IAFServer;
 
 uses
+  FastMM4 in '..\..\COMUM\SRC\FastMM4.pas',
+  FastMM4Messages in '..\..\COMUM\SRC\FastMM4Messages.pas',
   ActiveX,
   ComObj,
   WebBroker,
