@@ -8,7 +8,8 @@ uses Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms
    , KRK.Wizards.DataModule, ActnList, ImgList, DBClient, UReconcileErrorDialog
    , DB, KRK.Components.DataControls.ValidationChecks
    , KRK.Components.AdditionalControls.BalloonHint, ActnMenus
-   , ActnMan, KRK.Lib.Rtl.Common.Classes.Interposer;
+   , ActnMan, KRK.Lib.Rtl.Common.Classes.Interposer,
+  KRK.Components.AdditionalControls.PngImageList;
 
 type
   TClientDataSet = class (DBClient.TClientDataSet)
@@ -52,8 +53,8 @@ type
 
   TKRDMBasico = class(TKRKDataModule)
     ACLI: TActionList;
-    IMLI: TImageList;
     KRBH: TKRKBalloonHint;
+    KPIM: TKRKPngImageList;
     procedure KRKDataModuleBeforeCreateMyForm(const aMyFormClass: string);
   private
     { Declarações privadas }

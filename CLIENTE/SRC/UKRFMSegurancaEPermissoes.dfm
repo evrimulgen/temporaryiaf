@@ -11,7 +11,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
     Top = 40
     Width = 784
     Height = 522
-    ActivePage = TabSheet_USU
+    ActivePage = TabSheet_Permissions
     Align = alClient
     TabOrder = 0
     object TabSheet_Permissions: TTabSheet
@@ -280,18 +280,6 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
               OnKeyPress = LabeledEdit_EDS_VA_NOMEKeyPress
             end
           end
-          object BBTNAdicionarEntidade: TBitBtn
-            Left = 6
-            Top = 195
-            Width = 145
-            Height = 25
-            Action = KRDMSegurancaEPermissoes.ACTNAdicionarEntidade
-            Caption = 'Adicionar entidade(s)'
-            DoubleBuffered = True
-            ParentDoubleBuffered = False
-            Spacing = 8
-            TabOrder = 1
-          end
           object KRDGConsEntidadesDoSistema: TKRKDBGrid
             Left = 6
             Top = 78
@@ -330,7 +318,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
                 Visible = True
               end>
           end
-          object BBTNRegistrarEntidades: TBitBtn
+          object KPBBRegistrarEntidades: TKRKPngBitBtn
             Left = 281
             Top = 195
             Width = 127
@@ -341,6 +329,18 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
             DoubleBuffered = False
             ParentDoubleBuffered = False
             TabOrder = 3
+          end
+          object KPBBAdicionarEntidade: TKRKPngBitBtn
+            Left = 6
+            Top = 195
+            Width = 145
+            Height = 25
+            Action = KRDMSegurancaEPermissoes.ACTNAdicionarEntidade
+            Caption = 'Adicionar entidade(s)'
+            DoubleBuffered = True
+            ParentDoubleBuffered = False
+            Spacing = 8
+            TabOrder = 1
           end
         end
       end
@@ -631,6 +631,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
                   Font.Name = 'Tahoma'
                   Font.Style = []
                   Title.Alignment = taCenter
+                  Title.Caption = 'Acessar'
                   Width = 50
                   Visible = True
                 end
@@ -644,6 +645,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
                   Font.Name = 'Tahoma'
                   Font.Style = []
                   Title.Alignment = taCenter
+                  Title.Caption = 'Inserir'
                   Width = 50
                   Visible = True
                 end
@@ -658,6 +660,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
                   Font.Name = 'Tahoma'
                   Font.Style = []
                   Title.Alignment = taCenter
+                  Title.Caption = 'Alterar'
                   Width = 50
                   Visible = True
                 end
@@ -671,6 +674,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
                   Font.Name = 'Tahoma'
                   Font.Style = []
                   Title.Alignment = taCenter
+                  Title.Caption = 'Excluir'
                   Width = 50
                   Visible = True
                 end>
@@ -939,6 +943,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
                   Font.Name = 'Tahoma'
                   Font.Style = []
                   Title.Alignment = taCenter
+                  Title.Caption = 'Acessar'
                   Width = 50
                   Visible = True
                 end
@@ -952,6 +957,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
                   Font.Name = 'Tahoma'
                   Font.Style = []
                   Title.Alignment = taCenter
+                  Title.Caption = 'Inserir'
                   Width = 50
                   Visible = True
                 end
@@ -966,6 +972,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
                   Font.Name = 'Tahoma'
                   Font.Style = []
                   Title.Alignment = taCenter
+                  Title.Caption = 'Alterar'
                   Width = 50
                   Visible = True
                 end
@@ -979,6 +986,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
                   Font.Name = 'Tahoma'
                   Font.Style = []
                   Title.Alignment = taCenter
+                  Title.Caption = 'Excluir'
                   Width = 50
                   Visible = True
                 end>
@@ -1176,8 +1184,8 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
                 Margins.Bottom = 29
                 Align = alClient
                 DataSource = KRDMSegurancaEPermissoes.DTSRGruposDosUsuarios
-                Options = [dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
-                OptionsEx = [dgAutomaticColumSizes]
+                Options = [dgIndicator, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiSelect]
+                OptionsEx = [dgPersistentSelection, dgAutomaticColumSizes]
                 TabOrder = 0
                 TitleFont.Charset = DEFAULT_CHARSET
                 TitleFont.Color = clWindowText
@@ -1190,16 +1198,17 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
                     ForegroundColor = clNone
                   end>
                 VariableWidthColumns = '<grupo>'
+                OnAfterMultiselect = KRDGGruposDoUsuarioAfterMultiselect
                 Columns = <
                   item
                     Expanded = False
                     FieldName = 'grupo'
-                    Width = 242
+                    Width = 210
                     Visible = True
                   end>
               end
             end
-            object BitBtn_GDU_Adicionar: TBitBtn
+            object KPBBAdicionarGruposUsuarios: TKRKPngBitBtn
               Left = 24
               Top = 175
               Width = 112
@@ -1212,7 +1221,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
               ParentDoubleBuffered = False
               TabOrder = 2
             end
-            object BitBtn_GDU_Remover: TBitBtn
+            object KPBBRemoverGruposUsuario: TKRKPngBitBtn
               Left = 142
               Top = 175
               Width = 112
@@ -1227,7 +1236,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
               TabOrder = 1
             end
           end
-          object BBTNRessetarSenhas: TBitBtn
+          object KPBBRessetarSenhas: TKRKPngBitBtn
             AlignWithMargins = True
             Left = 0
             Top = 399
@@ -1240,7 +1249,9 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
             Action = KRDMSegurancaEPermissoes.ACTNRessetarSenhas
             Align = alBottom
             Caption = 'Ressetar Senhas'
+            DoubleBuffered = True
             Layout = blGlyphRight
+            ParentDoubleBuffered = False
             TabOrder = 3
           end
         end
@@ -1507,12 +1518,11 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
     ExplicitWidth = 784
     inherited LABLCaption: TLabel
       Height = 38
-      ExplicitHeight = 38
     end
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C010102000800340120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800500120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2049,7 +2059,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C010102000800440120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800600120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

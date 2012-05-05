@@ -7,7 +7,8 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms,
   DBClient, DB, ImgList, ActnList, ZAbstractRODataset, UKRDMBasico,
-  ZAbstractDataset, ZDataset, KRK.Components.AdditionalControls.BalloonHint;
+  ZAbstractDataset, ZDataset, KRK.Components.AdditionalControls.BalloonHint,
+  KRK.Components.AdditionalControls.PngImageList;
 
 type
   TPermissao = (pAcessar,pInserir,pAlterar,pExcluir);
@@ -102,6 +103,7 @@ type
     procedure ACTNRessetarSenhasExecute(Sender: TObject);
     procedure ACTNRegistrarEntidadesExecute(Sender: TObject);
     procedure ACTNAdicionarGruposAoUsuarioExecute(Sender: TObject);
+    procedure ACTNRemoverGruposDoUsuarioExecute(Sender: TObject);
   private
     { Declarações privadas }
     procedure AdicionarEntidadesParaUsuario;
@@ -137,6 +139,9 @@ begin
 end;
 
 procedure TKRDMSegurancaEPermissoes.ACTNAdicionarGruposAoUsuarioExecute(Sender: TObject);
+var
+  BookMarkList: TBookMarkList;
+  i: Word;
 begin
   inherited;
   with TKRFMSelecionarGrupo.Create(nil) do
@@ -144,9 +149,34 @@ begin
       CLDS.ConnectionBroker := CLDSGrupos.ConnectionBroker;
       CLDS.ProviderName := CLDSGrupos.ProviderName;
       CLDS.Open;
+
       if ShowModal = mrOk then
       begin
+        BookMarkList := KRDGSelecao.SelectedRows;
 
+        if BookMarkList.Count > 0 then
+          try
+            CLDSGruposDosUsuarios.DisableControls;
+
+            for i := 0 to Pred(BookMarkList.Count) do
+            begin
+              CLDS.GotoBookmark(BookMarkList[i]);
+              if not CLDSGruposDosUsuarios.Locate('SM_GRUPOS_ID',CLDSsm_grupos_id.AsInteger,[]) then
+              begin
+                CLDSGruposDosUsuarios.Append;
+                CLDSGruposDosUsuariossm_grupos_id.AsInteger := CLDSsm_grupos_id.AsInteger;
+                CLDSGruposDosUsuariossm_usuarios_id.AsInteger := CLDSUsuariossm_usuarios_id.AsInteger;
+                CLDSGruposDosUsuariosic_grupo.AsString := CLDSva_nome.AsString;
+                CLDSGruposDosUsuarios.Post;
+              end;
+            end;
+
+            if CLDSUsuarios.State = dsEdit then
+              CLDSUsuarios.Post;
+
+          finally
+            CLDSGruposDosUsuarios.EnableControls;
+          end
       end;
     finally
       Free;
@@ -208,6 +238,12 @@ begin
       else
         Application.MessageBox('Nenhuma nova entidade foi adicionada. Tem certeza de que abriu as janelas com as entidades que precisavam ser registradas? Se sim, talvez as entidades já tenham sido registradas anteriormente','Nenhuma nova entidade encontrada!',MB_ICONINFORMATION)
     end;
+end;
+
+procedure TKRDMSegurancaEPermissoes.ACTNRemoverGruposDoUsuarioExecute(Sender: TObject);
+begin
+  inherited;
+//
 end;
 
 procedure TKRDMSegurancaEPermissoes.ACTNRessetarSenhasExecute(Sender: TObject);
@@ -284,6 +320,10 @@ begin
           CLDSPermissoesDosGrupos.Post;
         end;
       end;
+
+      if CLDSGruposCON.State = dsEdit then
+        CLDSGruposCON.Post;
+
     finally
       CLDSGruposCON.EnableControls;
       CLDSEntidadesDoSistema.EnableControls;
@@ -335,6 +375,10 @@ begin
           CLDSPermissoesDosUsuarios.Post;
         end;
       end;
+
+      if CLDSUsuariosCON.State = dsEdit then
+        CLDSUsuariosCON.Post;
+
     finally
       CLDSUsuariosCON.EnableControls;
       CLDSEntidadesDoSistema.EnableControls;

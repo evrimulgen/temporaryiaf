@@ -6,7 +6,9 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, DBCtrls, UKRFMDBAwareBasico, Mask, Buttons, pngimage, ExtCtrls,
   StdCtrls, Grids, DBGrids, KRK.Components.DataControls.DBGrid, ComCtrls,
-  ActnList, ImgList, ToolWin, KRK.Components.DataControls.LabeledDBEdit;
+  ActnList, ImgList, ToolWin, KRK.Components.DataControls.LabeledDBEdit,
+  KRK.Components.AdditionalControls.PngBitBtn,
+  KRK.Components.AdditionalControls.PngSpeedButton;
 
 type
   TKRFMSegurancaEPermissoes = class(TKRFMDBAwareBasico)
@@ -29,7 +31,6 @@ type
     Label2: TLabel;
     ComboBox_EDS_TI_TIPO: TComboBox;
     LabeledEdit_EDS_VA_NOME: TLabeledEdit;
-    BBTNAdicionarEntidade: TBitBtn;
     KRDGConsEntidadesDoSistema: TKRKDBGrid;
     PANLFooter: TPanel;
     PGCTPermissoes: TPageControl;
@@ -68,8 +69,6 @@ type
     LabeledEdit_USU_VA_LOGIN2: TLabeledEdit;
     GroupBox_GDU: TGroupBox;
     Panel_GDU_Info: TPanel;
-    BitBtn_GDU_Adicionar: TBitBtn;
-    BitBtn_GDU_Remover: TBitBtn;
     GroupBoxUsuariosCadastrar: TGroupBox;
     KLDE_USU_VA_EMAIL: TKRKLabeledDBEdit;
     TabSheet_GRU: TTabSheet;
@@ -95,9 +94,12 @@ type
     GRBXGRUFiltros: TGroupBox;
     LABLGRUFiltros: TLabel;
     KRDGGruposCON: TKRKDBGrid;
-    BBTNRegistrarEntidades: TBitBtn;
     DBCBSuperUsuario: TDBCheckBox;
-    BBTNRessetarSenhas: TBitBtn;
+    KPBBRegistrarEntidades: TKRKPngBitBtn;
+    KPBBAdicionarEntidade: TKRKPngBitBtn;
+    KPBBAdicionarGruposUsuarios: TKRKPngBitBtn;
+    KPBBRemoverGruposUsuario: TKRKPngBitBtn;
+    KPBBRessetarSenhas: TKRKPngBitBtn;
     procedure LAEDUSU_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
     procedure LAEDUSU_VA_LOGINKeyPress(Sender: TObject; var Key: Char);
     procedure LabeledEdit_EDS_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
@@ -112,6 +114,8 @@ type
     procedure LabeledEdit_GRU_VA_NOME2KeyPress(Sender: TObject; var Key: Char);
     procedure LabeledEdit_GRU_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
     procedure KRDGPDGCellClick(Column: TColumn);
+    procedure KRDGGruposDoUsuarioAfterMultiselect(aSender: TObject;
+      aMultiSelectEventTrigger: TMultiSelectEventTrigger);
   private
     { Private declarations }
     procedure FiltrarEntidadesDoSistema;
@@ -152,6 +156,12 @@ procedure TKRFMSegurancaEPermissoes.KRDGConsEntidadesDoSistemaAfterMultiselect(a
 begin
   inherited;
   TKRDMSegurancaEPermissoes(Owner).ACTNAdicionarEntidade.Enabled := KRDGConsEntidadesDoSistema.SelectedRows.Count > 0;
+end;
+
+procedure TKRFMSegurancaEPermissoes.KRDGGruposDoUsuarioAfterMultiselect(aSender: TObject; aMultiSelectEventTrigger: TMultiSelectEventTrigger);
+begin
+  inherited;
+  TKRDMSegurancaEPermissoes(Owner).ACTNRemoverGruposDoUsuario.Enabled := KRDGGruposDoUsuario.SelectedRows.Count > 0;
 end;
 
 procedure TKRFMSegurancaEPermissoes.KRDGPDGCellClick(Column: TColumn);

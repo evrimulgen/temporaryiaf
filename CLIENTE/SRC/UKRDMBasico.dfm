@@ -5,13 +5,8 @@ object KRDMBasico: TKRDMBasico
   Height = 150
   Width = 215
   object ACLI: TActionList
+    Images = KPIM
     Left = 18
-    Top = 6
-  end
-  object IMLI: TImageList
-    ColorDepth = cd32Bit
-    DrawingStyle = dsTransparent
-    Left = 54
     Top = 6
   end
   object KRBH: TKRKBalloonHint
@@ -25,6 +20,11 @@ object KRDMBasico: TKRDMBasico
     Font.Name = 'Tahoma'
     Font.Style = []
     Left = 90
+    Top = 6
+  end
+  object KPIM: TKRKPngImageList
+    PngImages = <>
+    Left = 54
     Top = 6
   end
 end
