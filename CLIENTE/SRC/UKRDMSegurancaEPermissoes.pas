@@ -4,11 +4,10 @@ unit UKRDMSegurancaEPermissoes;
 
 interface
 
-uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms,
-  DBClient, DB, ImgList, ActnList, ZAbstractRODataset, UKRDMBasico,
-  ZAbstractDataset, ZDataset, KRK.Components.AdditionalControls.BalloonHint,
-  KRK.Components.AdditionalControls.PngImageList;
+uses Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, DBClient
+   , DB, ImgList, ActnList, UKRDMBasico
+   , KRK.Components.AdditionalControls.BalloonHint
+   , KRK.Components.AdditionalControls.PngImageList;
 
 type
   TPermissao = (pAcessar,pInserir,pAlterar,pExcluir);
