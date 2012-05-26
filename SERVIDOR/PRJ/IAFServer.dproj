@@ -24,6 +24,7 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
+			<DCC_UsePackage>vclx;vcl;VclSmp;rtl;vclimg;svnui;svn;bdertl;TeeUI;TeeDB;Tee;vclactnband;vcldb;dbrtl;vcldbx;vcltouch;xmlrtl;dsnap;dsnapcon;vclib;ibxpress;adortl;IndyCore;IndySystem;IndyProtocols;inet;intrawebdb_110_150;Intraweb_110_150;vclie;websnap;webdsnap;inetdb;inetdbbde;inetdbxpress;soaprtl;vclribbon;dbexpress;DbxCommonDriver;DataSnapIndy10ServerTransport;DataSnapProviderClient;DbxClientDriver;DataSnapClient;dbxcds;DataSnapServer;AzureCloud;DBXInterBaseDriver;DBXMySQLDriver;DBXFirebirdDriver;DBXSybaseASEDriver;DBXSybaseASADriver;DBXOracleDriver;DBXMSSQLDriver;DBXInformixDriver;DBXDb2Driver;OverbyteIcsDXeRun;ZComponent;ZDbc;ZPlain;ZCore;ZParseSql;OIPackage;WDPackage;SOAPCLDS;SOAPProvider;dacvcl150;dac150;unidacvcl150;unidac150;oraprovider150;msprovider150;ibprovider150;myprovider150;pgprovider150;liteprovider150;accessprovider150;odbcprovider150;adsprovider150;aseprovider150;db2provider150;dbfprovider150;crcontrols150</DCC_UsePackage>
 			<GenDll>true</GenDll>
 			<DCC_ImageBase>00400000</DCC_ImageBase>
 			<DCC_DcuOutput>..\BIN\DCU\$(Config)</DCC_DcuOutput>
@@ -106,7 +107,7 @@
 						<VersionInfo Name="MajorVer">2</VersionInfo>
 						<VersionInfo Name="MinorVer">0</VersionInfo>
 						<VersionInfo Name="Release">0</VersionInfo>
-						<VersionInfo Name="Build">13</VersionInfo>
+						<VersionInfo Name="Build">18</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -118,7 +119,7 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName">Zetta-Ømnis Soluções Tecnológicas Ltda</VersionInfoKeys>
 						<VersionInfoKeys Name="FileDescription">Servidor do IAF</VersionInfoKeys>
-						<VersionInfoKeys Name="FileVersion">2.0.0.13</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">2.0.0.18</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName">IAF</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalCopyright"/>
 						<VersionInfoKeys Name="LegalTrademarks"/>
@@ -127,10 +128,7 @@
 						<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
 						<VersionInfoKeys Name="Comments">Desenvolvido por Carlos Barreto Feitoza Filho e Rodrigo César Pimentel Raulino de Souza</VersionInfoKeys>
 					</VersionInfoKeys>
-					<Excluded_Packages>
-						<Excluded_Packages Name="$(BDSBIN)\dcloffice2k150.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-						<Excluded_Packages Name="$(BDSBIN)\dclofficexp150.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
-					</Excluded_Packages>
+					<Excluded_Packages/>
 					<Source>
 						<Source Name="MainSource">IAFServer.dpr</Source>
 					</Source>

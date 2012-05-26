@@ -241,9 +241,30 @@ begin
 end;
 
 procedure TKRDMSegurancaEPermissoes.ACTNRemoverGruposDoUsuarioExecute(Sender: TObject);
+var
+  BookMarkList: TBookMarkList;
+  i: Word;
 begin
   inherited;
-//
+  if Application.MessageBox('Isso vai remover os grupos selecionados da lista de grupos do usuário. Tem certeza?','Tem certeza?',MB_ICONQUESTION or MB_YESNO) = IDNO then
+    Exit;
+
+  BookMarkList := TKRFMSegurancaEPermissoes(MyForm).KRDGGruposDoUsuario.SelectedRows;
+
+  if BookMarkList.Count > 0 then
+    try
+      CLDSGruposDosUsuarios.DisableControls;
+
+      for i := 0 to Pred(BookMarkList.Count) do
+      begin
+        CLDSGruposDosUsuarios.GotoBookmark(BookMarkList[i]);
+        CLDSGruposDosUsuarios.Delete;
+      end;
+
+      BookMarkList.Clear;
+    finally
+      CLDSGruposDosUsuarios.EnableControls;
+    end
 end;
 
 procedure TKRDMSegurancaEPermissoes.ACTNRessetarSenhasExecute(Sender: TObject);

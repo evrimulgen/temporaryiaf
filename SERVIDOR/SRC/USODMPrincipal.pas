@@ -24,9 +24,9 @@ type
     DSPREntidadesDoSistema: TDataSetProvider;
     DSPRGrupos: TDataSetProvider;
     UNCN: TUniConnection;
-    UNTR: TUniTransaction;
     UPPG: TPostgreSQLUniProvider;
     UNSM: TUniSQLMonitor;
+    UNTR: TUniTransaction;
     procedure UNCNBeforeConnect(Sender: TObject);
     procedure SoapDataModuleCreate(Sender: TObject);
   public

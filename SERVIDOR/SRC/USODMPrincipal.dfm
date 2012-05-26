@@ -45,15 +45,15 @@ object SODMPrincipal: TSODMPrincipal
     Left = 6
     Top = 6
   end
-  object UNTR: TUniTransaction
-    DefaultConnection = UNCN
-    Left = 42
-    Top = 6
-  end
   object UNSM: TUniSQLMonitor
     Active = False
     Options = [moDBMonitor]
     Left = 114
+    Top = 6
+  end
+  object UNTR: TUniTransaction
+    DefaultConnection = UNCN
+    Left = 42
     Top = 6
   end
 end
