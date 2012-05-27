@@ -38,9 +38,9 @@ type
     procedure ACTNRelatorio4Execute(Sender: TObject);
   private
     { Private declarations }
+    FFORMPrincipal: TFORMPrincipal;
     FCurrentSession: TCurrentSession;
     FKRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes;
-    FFORMPrincipal: TFORMPrincipal;
     FKRDMConfiguracoes: TKRDMConfiguracoes;
     FKRDMRelatorio: TKRDMRelatorio;
     procedure DoReceivingData(Read, Total: Integer);
@@ -48,6 +48,7 @@ type
     procedure DoPostingData(Sent, Total: Integer);
     procedure ConfigureCurrentSession(aSessionID: String);
     procedure InicializarVariaveis;
+    procedure CarregarConfiguracoesDinamicas;
     procedure ApplyPermissions(aFORMSplash: TFormSplash);
   public
     { Public declarations }
@@ -65,7 +66,7 @@ implementation
 {$R *.dfm}
 
 uses Forms, Windows, KRK.Lib.Rtl.Common.Classes, UConfiguracoes, UAuthenticator
-   , UFORMLogin, UExtraMethods, ActnMenus;
+   , UServerManager, UFORMLogin, UExtraMethods, ActnMenus;
 
 procedure TDAMOPrincipal.ACTNAjudaExecute(Sender: TObject);
 begin
@@ -152,9 +153,19 @@ end;
 
 procedure TDAMOPrincipal.InicializarVariaveis;
 begin
-  FFORMPrincipal := nil;
+  FCurrentSession := TCurrentSession.Create;
 
+  FFORMPrincipal := nil;
+  FKRDMRelatorio := nil;
   FKRDMSegurancaEPermissoes := nil;
+  FKRDMConfiguracoes := nil;
+end;
+
+{ O método abaixo carrega nas configurações locais algumas configurações que
+precisam estar de acordo com configurações do servidor }
+procedure TDAMOPrincipal.CarregarConfiguracoesDinamicas;
+begin
+  Configuracoes.UsarCompressao := GetUseCompression;
 end;
 
 constructor TDAMOPrincipal.Create(aOwner: TComponent);
@@ -163,10 +174,10 @@ var
   SessionID: String;
 begin
   inherited;
-  FCurrentSession := TCurrentSession.Create;
   FORMSplash := nil;
 
   InicializarVariaveis;
+  CarregarConfiguracoesDinamicas;
 
   if (TFORMLogin.ShowMe(SessionID) = mrOk) then
     try
