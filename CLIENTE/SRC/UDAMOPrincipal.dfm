@@ -69,7 +69,7 @@ object DAMOPrincipal: TDAMOPrincipal
           item
             Items = <
               item
-                Action = ACTNConfiguracoes
+                Action = ACTNConfiguracoesGlobais
                 Caption = '&Configura'#231#245'es'
                 ImageIndex = 3
               end
@@ -123,11 +123,11 @@ object DAMOPrincipal: TDAMOPrincipal
       Caption = 'Sair'
       OnExecute = ACTNSairExecute
     end
-    object ACTNConfiguracoes: TAction
+    object ACTNConfiguracoesGlobais: TAction
       Category = 'Ferramentas administrativas'
       Caption = 'Configura'#231#245'es'
       ImageIndex = 3
-      OnExecute = ACTNConfiguracoesExecute
+      OnExecute = ACTNConfiguracoesGlobaisExecute
     end
     object ACTNSegurancaEPermissoes: TAction
       Category = 'Ferramentas administrativas'

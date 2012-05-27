@@ -277,8 +277,9 @@ begin
       TAction(FActionManager.Actions[i]).Visible := False;
 
   { Instrui todas as ações disponíveis em ACLI a serem não permitidas }
-  for i := 0 to Pred(ACLI.ActionCount) do
-    TAction(ACLI.Actions[i]).Permitida := False;
+  if ACLI.ActionCount > 0 then
+    for i := 0 to Pred(ACLI.ActionCount) do
+      TAction(ACLI.Actions[i]).Permitida := False;
 
   { Torna visíveis ou habilitadas apenas as ações que forem permitidas }
   TDAMOPrincipal(Owner).CLDSPermissoes.First;

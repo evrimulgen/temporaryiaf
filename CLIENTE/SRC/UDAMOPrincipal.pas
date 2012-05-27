@@ -16,7 +16,7 @@ type
     ACTNSair: TAction;
     SOCNPrincipal: TSoapConnection;
     IMLIPrincipal: TImageList;
-    ACTNConfiguracoes: TAction;
+    ACTNConfiguracoesGlobais: TAction;
     ACTNSegurancaEPermissoes: TAction;
     CNBRPrincipal: TConnectionBroker;
     IMLIPrincipalLarge: TImageList;
@@ -34,7 +34,7 @@ type
     procedure ACTNSairExecute(Sender: TObject);
     procedure ACTNAlterarMinhasPreferenciasExecute(Sender: TObject);
     procedure ACTNAtualizarPrivilegiosExecute(Sender: TObject);
-    procedure ACTNConfiguracoesExecute(Sender: TObject);
+    procedure ACTNConfiguracoesGlobaisExecute(Sender: TObject);
     procedure ACTNRelatorio4Execute(Sender: TObject);
   private
     { Private declarations }
@@ -83,7 +83,7 @@ begin
   //
 end;
 
-procedure TDAMOPrincipal.ACTNConfiguracoesExecute(Sender: TObject);
+procedure TDAMOPrincipal.ACTNConfiguracoesGlobaisExecute(Sender: TObject);
 begin
   if not Assigned(FKRDMConfiguracoes) then
   begin
@@ -143,6 +143,9 @@ begin
     aFORMSplash.GAGESplash.AddProgress(1);
     aFORMSplash.Update;
   end;
+
+  { Oculta as ações exclusivas de super usuários }
+  ACTNConfiguracoesGlobais.Visible := False;
 end;
 
 procedure TDAMOPrincipal.ConfigureCurrentSession(aSessionID: String);
