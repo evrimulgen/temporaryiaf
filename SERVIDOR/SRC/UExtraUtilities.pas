@@ -18,7 +18,7 @@ function SessionDataFromSessionID(const aSessionID: String): String;
 implementation
 
 uses SysUtils, UServerConfiguration, USessionsManager, UKRDMUsuarios
-   , UKRDMEntidadesDoSistema, UKRDMGrupos;
+   , UKRDMEntidadesDoSistema, UKRDMGrupos, DASQLMonitor;
 
 procedure HideInterfaces(var aContent: String; aInterfaces: array of string);
 var
@@ -178,7 +178,7 @@ begin
         SendTimeout      := ServerConfiguration.DBMonitorSendTimeout;
       end;
 
-      TraceFlags := ServerConfiguration.DBMonitorTraceFlags;
+      TraceFlags := TDATraceFlags(ServerConfiguration.DBMonitorTraceFlags);
     end;
   finally
     CS.Leave;

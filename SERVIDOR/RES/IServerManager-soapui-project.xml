@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project name="IServerManager" soapui-version="4.5.0-Beta 1" abortOnError="false" runType="SEQUENTIAL" resourceRoot="" activeEnvironment="Default" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="IServerManagerbinding" type="wsdl" bindingName="{http://www.zettaomnis.com.br/}IServerManagerbinding" soapVersion="1_1" anonymous="optional" definition="http://127.0.0.1/iaf/IAFServer.dll/wsdl/IServerManager" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://127.0.0.1/iaf/IAFServer.dll/wsdl/IServerManager"><con:part><con:url>http://127.0.0.1/iaf/IAFServer.dll/wsdl/IServerManager</con:url><con:content><![CDATA[<definitions name="IServerManagerservice" targetNamespace="http://www.zettaomnis.com.br/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.zettaomnis.com.br/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:CRAccess">
+<con:soapui-project activeEnvironment="Default" name="IServerManager" resourceRoot="" soapui-version="4.5.0-Beta 1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="IServerManagerbinding" type="wsdl" bindingName="{http://www.zettaomnis.com.br/}IServerManagerbinding" soapVersion="1_1" anonymous="optional" definition="http://localhost/iaf/iafserver.dll/wsdl/IServerManager" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost/iaf/iafserver.dll/wsdl/IServerManager"><con:part><con:url>http://localhost/iaf/iafserver.dll/wsdl/IServerManager</con:url><con:content><![CDATA[<definitions name="IServerManagerservice" targetNamespace="http://www.zettaomnis.com.br/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.zettaomnis.com.br/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="urn:CRAccess">
   <types>
     <xs:schema targetNamespace="urn:CRAccess" xmlns="urn:CRAccess">
       <xs:simpleType name="TCRIsolationLevel">
@@ -41,41 +41,106 @@
   <message name="GetUseDBMonitor5Response">
     <part name="return" type="xs:boolean"/>
   </message>
-  <message name="SetDBHostName6Request">
+  <message name="SetDBMonitorHost6Request">
     <part name="aPassword" type="xs:string"/>
     <part name="aValue" type="xs:string"/>
   </message>
-  <message name="SetDBHostName6Response"/>
-  <message name="SetDBPortNumb7Request">
+  <message name="SetDBMonitorHost6Response"/>
+  <message name="GetDBMonitorHost7Request"/>
+  <message name="GetDBMonitorHost7Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="SetDBMonitorPort8Request">
     <part name="aPassword" type="xs:string"/>
     <part name="aValue" type="xs:unsignedShort"/>
   </message>
-  <message name="SetDBPortNumb7Response"/>
-  <message name="SetDBDatabase8Request">
+  <message name="SetDBMonitorPort8Response"/>
+  <message name="GetDBMonitorPort9Request"/>
+  <message name="GetDBMonitorPort9Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="SetDBMonitorReconnectTimeout10Request">
+    <part name="aPassword" type="xs:string"/>
+    <part name="aValue" type="xs:unsignedShort"/>
+  </message>
+  <message name="SetDBMonitorReconnectTimeout10Response"/>
+  <message name="GetDBMonitorReconnectTimeout11Request"/>
+  <message name="GetDBMonitorReconnectTimeout11Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="SetDBMonitorSendTimeout12Request">
+    <part name="aPassword" type="xs:string"/>
+    <part name="aValue" type="xs:unsignedShort"/>
+  </message>
+  <message name="SetDBMonitorSendTimeout12Response"/>
+  <message name="GetDBMonitorSendTimeout13Request"/>
+  <message name="GetDBMonitorSendTimeout13Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="SetDBMonitorTraceFlags14Request">
+    <part name="aPassword" type="xs:string"/>
+    <part name="aValue" type="xs:unsignedShort"/>
+  </message>
+  <message name="SetDBMonitorTraceFlags14Response"/>
+  <message name="GetDBMonitorTraceFlags15Request"/>
+  <message name="GetDBMonitorTraceFlags15Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="SetDBHostName16Request">
     <part name="aPassword" type="xs:string"/>
     <part name="aValue" type="xs:string"/>
   </message>
-  <message name="SetDBDatabase8Response"/>
-  <message name="SetDBUser9Request">
+  <message name="SetDBHostName16Response"/>
+  <message name="GetDBHostName17Request"/>
+  <message name="GetDBHostName17Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="SetDBPortNumb18Request">
+    <part name="aPassword" type="xs:string"/>
+    <part name="aValue" type="xs:unsignedShort"/>
+  </message>
+  <message name="SetDBPortNumb18Response"/>
+  <message name="GetDBPortNumb19Request"/>
+  <message name="GetDBPortNumb19Response">
+    <part name="return" type="xs:unsignedShort"/>
+  </message>
+  <message name="SetDBDatabase20Request">
     <part name="aPassword" type="xs:string"/>
     <part name="aValue" type="xs:string"/>
   </message>
-  <message name="SetDBUser9Response"/>
-  <message name="SetDBPassword10Request">
+  <message name="SetDBDatabase20Response"/>
+  <message name="GetDBDatabase21Request"/>
+  <message name="GetDBDatabase21Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="SetDBUser22Request">
     <part name="aPassword" type="xs:string"/>
     <part name="aValue" type="xs:string"/>
   </message>
-  <message name="SetDBPassword10Response"/>
-  <message name="SetDBProtocol11Request">
+  <message name="SetDBUser22Response"/>
+  <message name="SetDBPassword23Request">
     <part name="aPassword" type="xs:string"/>
     <part name="aValue" type="xs:string"/>
   </message>
-  <message name="SetDBProtocol11Response"/>
-  <message name="SetDBTransactIsolationLevel12Request">
+  <message name="SetDBPassword23Response"/>
+  <message name="SetDBProvider24Request">
+    <part name="aPassword" type="xs:string"/>
+    <part name="aValue" type="xs:string"/>
+  </message>
+  <message name="SetDBProvider24Response"/>
+  <message name="GetDBProvider25Request"/>
+  <message name="GetDBProvider25Response">
+    <part name="return" type="xs:string"/>
+  </message>
+  <message name="SetDBTransactIsolationLevel26Request">
     <part name="aPassword" type="xs:string"/>
     <part name="aValue" type="ns1:TCRIsolationLevel"/>
   </message>
-  <message name="SetDBTransactIsolationLevel12Response"/>
+  <message name="SetDBTransactIsolationLevel26Response"/>
+  <message name="GetDBTransactIsolationLevel27Request"/>
+  <message name="GetDBTransactIsolationLevel27Response">
+    <part name="return" type="ns1:TCRIsolationLevel"/>
+  </message>
   <portType name="IServerManager">
     <operation name="SetCheckSessions">
       <input message="tns:SetCheckSessions0Request"/>
@@ -101,33 +166,93 @@
       <input message="tns:GetUseDBMonitor5Request"/>
       <output message="tns:GetUseDBMonitor5Response"/>
     </operation>
+    <operation name="SetDBMonitorHost">
+      <input message="tns:SetDBMonitorHost6Request"/>
+      <output message="tns:SetDBMonitorHost6Response"/>
+    </operation>
+    <operation name="GetDBMonitorHost">
+      <input message="tns:GetDBMonitorHost7Request"/>
+      <output message="tns:GetDBMonitorHost7Response"/>
+    </operation>
+    <operation name="SetDBMonitorPort">
+      <input message="tns:SetDBMonitorPort8Request"/>
+      <output message="tns:SetDBMonitorPort8Response"/>
+    </operation>
+    <operation name="GetDBMonitorPort">
+      <input message="tns:GetDBMonitorPort9Request"/>
+      <output message="tns:GetDBMonitorPort9Response"/>
+    </operation>
+    <operation name="SetDBMonitorReconnectTimeout">
+      <input message="tns:SetDBMonitorReconnectTimeout10Request"/>
+      <output message="tns:SetDBMonitorReconnectTimeout10Response"/>
+    </operation>
+    <operation name="GetDBMonitorReconnectTimeout">
+      <input message="tns:GetDBMonitorReconnectTimeout11Request"/>
+      <output message="tns:GetDBMonitorReconnectTimeout11Response"/>
+    </operation>
+    <operation name="SetDBMonitorSendTimeout">
+      <input message="tns:SetDBMonitorSendTimeout12Request"/>
+      <output message="tns:SetDBMonitorSendTimeout12Response"/>
+    </operation>
+    <operation name="GetDBMonitorSendTimeout">
+      <input message="tns:GetDBMonitorSendTimeout13Request"/>
+      <output message="tns:GetDBMonitorSendTimeout13Response"/>
+    </operation>
+    <operation name="SetDBMonitorTraceFlags">
+      <input message="tns:SetDBMonitorTraceFlags14Request"/>
+      <output message="tns:SetDBMonitorTraceFlags14Response"/>
+    </operation>
+    <operation name="GetDBMonitorTraceFlags">
+      <input message="tns:GetDBMonitorTraceFlags15Request"/>
+      <output message="tns:GetDBMonitorTraceFlags15Response"/>
+    </operation>
     <operation name="SetDBHostName">
-      <input message="tns:SetDBHostName6Request"/>
-      <output message="tns:SetDBHostName6Response"/>
+      <input message="tns:SetDBHostName16Request"/>
+      <output message="tns:SetDBHostName16Response"/>
+    </operation>
+    <operation name="GetDBHostName">
+      <input message="tns:GetDBHostName17Request"/>
+      <output message="tns:GetDBHostName17Response"/>
     </operation>
     <operation name="SetDBPortNumb">
-      <input message="tns:SetDBPortNumb7Request"/>
-      <output message="tns:SetDBPortNumb7Response"/>
+      <input message="tns:SetDBPortNumb18Request"/>
+      <output message="tns:SetDBPortNumb18Response"/>
+    </operation>
+    <operation name="GetDBPortNumb">
+      <input message="tns:GetDBPortNumb19Request"/>
+      <output message="tns:GetDBPortNumb19Response"/>
     </operation>
     <operation name="SetDBDatabase">
-      <input message="tns:SetDBDatabase8Request"/>
-      <output message="tns:SetDBDatabase8Response"/>
+      <input message="tns:SetDBDatabase20Request"/>
+      <output message="tns:SetDBDatabase20Response"/>
+    </operation>
+    <operation name="GetDBDatabase">
+      <input message="tns:GetDBDatabase21Request"/>
+      <output message="tns:GetDBDatabase21Response"/>
     </operation>
     <operation name="SetDBUser">
-      <input message="tns:SetDBUser9Request"/>
-      <output message="tns:SetDBUser9Response"/>
+      <input message="tns:SetDBUser22Request"/>
+      <output message="tns:SetDBUser22Response"/>
     </operation>
     <operation name="SetDBPassword">
-      <input message="tns:SetDBPassword10Request"/>
-      <output message="tns:SetDBPassword10Response"/>
+      <input message="tns:SetDBPassword23Request"/>
+      <output message="tns:SetDBPassword23Response"/>
     </operation>
-    <operation name="SetDBProtocol">
-      <input message="tns:SetDBProtocol11Request"/>
-      <output message="tns:SetDBProtocol11Response"/>
+    <operation name="SetDBProvider">
+      <input message="tns:SetDBProvider24Request"/>
+      <output message="tns:SetDBProvider24Response"/>
+    </operation>
+    <operation name="GetDBProvider">
+      <input message="tns:GetDBProvider25Request"/>
+      <output message="tns:GetDBProvider25Response"/>
     </operation>
     <operation name="SetDBTransactIsolationLevel">
-      <input message="tns:SetDBTransactIsolationLevel12Request"/>
-      <output message="tns:SetDBTransactIsolationLevel12Response"/>
+      <input message="tns:SetDBTransactIsolationLevel26Request"/>
+      <output message="tns:SetDBTransactIsolationLevel26Response"/>
+    </operation>
+    <operation name="GetDBTransactIsolationLevel">
+      <input message="tns:GetDBTransactIsolationLevel27Request"/>
+      <output message="tns:GetDBTransactIsolationLevel27Response"/>
     </operation>
   </portType>
   <binding name="IServerManagerbinding" type="tns:IServerManager">
@@ -186,8 +311,107 @@
         <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
       </output>
     </operation>
+    <operation name="SetDBMonitorHost">
+      <soap:operation soapAction="urn:UServerManagerIntf-IServerManager#SetDBMonitorHost" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </output>
+    </operation>
+    <operation name="GetDBMonitorHost">
+      <soap:operation soapAction="urn:UServerManagerIntf-IServerManager#GetDBMonitorHost" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </output>
+    </operation>
+    <operation name="SetDBMonitorPort">
+      <soap:operation soapAction="urn:UServerManagerIntf-IServerManager#SetDBMonitorPort" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </output>
+    </operation>
+    <operation name="GetDBMonitorPort">
+      <soap:operation soapAction="urn:UServerManagerIntf-IServerManager#GetDBMonitorPort" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </output>
+    </operation>
+    <operation name="SetDBMonitorReconnectTimeout">
+      <soap:operation soapAction="urn:UServerManagerIntf-IServerManager#SetDBMonitorReconnectTimeout" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </output>
+    </operation>
+    <operation name="GetDBMonitorReconnectTimeout">
+      <soap:operation soapAction="urn:UServerManagerIntf-IServerManager#GetDBMonitorReconnectTimeout" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </output>
+    </operation>
+    <operation name="SetDBMonitorSendTimeout">
+      <soap:operation soapAction="urn:UServerManagerIntf-IServerManager#SetDBMonitorSendTimeout" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </output>
+    </operation>
+    <operation name="GetDBMonitorSendTimeout">
+      <soap:operation soapAction="urn:UServerManagerIntf-IServerManager#GetDBMonitorSendTimeout" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </output>
+    </operation>
+    <operation name="SetDBMonitorTraceFlags">
+      <soap:operation soapAction="urn:UServerManagerIntf-IServerManager#SetDBMonitorTraceFlags" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </output>
+    </operation>
+    <operation name="GetDBMonitorTraceFlags">
+      <soap:operation soapAction="urn:UServerManagerIntf-IServerManager#GetDBMonitorTraceFlags" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </output>
+    </operation>
     <operation name="SetDBHostName">
       <soap:operation soapAction="urn:UServerManagerIntf-IServerManager#SetDBHostName" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </output>
+    </operation>
+    <operation name="GetDBHostName">
+      <soap:operation soapAction="urn:UServerManagerIntf-IServerManager#GetDBHostName" style="rpc"/>
       <input>
         <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
       </input>
@@ -204,8 +428,26 @@
         <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
       </output>
     </operation>
+    <operation name="GetDBPortNumb">
+      <soap:operation soapAction="urn:UServerManagerIntf-IServerManager#GetDBPortNumb" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </output>
+    </operation>
     <operation name="SetDBDatabase">
       <soap:operation soapAction="urn:UServerManagerIntf-IServerManager#SetDBDatabase" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </output>
+    </operation>
+    <operation name="GetDBDatabase">
+      <soap:operation soapAction="urn:UServerManagerIntf-IServerManager#GetDBDatabase" style="rpc"/>
       <input>
         <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
       </input>
@@ -231,8 +473,17 @@
         <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
       </output>
     </operation>
-    <operation name="SetDBProtocol">
-      <soap:operation soapAction="urn:UServerManagerIntf-IServerManager#SetDBProtocol" style="rpc"/>
+    <operation name="SetDBProvider">
+      <soap:operation soapAction="urn:UServerManagerIntf-IServerManager#SetDBProvider" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </output>
+    </operation>
+    <operation name="GetDBProvider">
+      <soap:operation soapAction="urn:UServerManagerIntf-IServerManager#GetDBProvider" style="rpc"/>
       <input>
         <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
       </input>
@@ -249,105 +500,204 @@
         <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
       </output>
     </operation>
+    <operation name="GetDBTransactIsolationLevel">
+      <soap:operation soapAction="urn:UServerManagerIntf-IServerManager#GetDBTransactIsolationLevel" style="rpc"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:UServerManagerIntf-IServerManager"/>
+      </output>
+    </operation>
   </binding>
   <service name="IServerManagerservice">
     <port name="IServerManagerPort" binding="tns:IServerManagerbinding">
-      <soap:address location="http://127.0.0.1/iaf/IAFServer.dll/soap/IServerManager"/>
+      <soap:address location="http://localhost/iaf/iafserver.dll/soap/IServerManager"/>
     </port>
   </service>
-</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/IServerManager</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#GetCheckSessions" name="GetCheckSessions" bindingOperationName="GetCheckSessions" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#GetCheckSessions" name="GetCheckSessions" bindingOperationName="GetCheckSessions" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
    <soapenv:Header/>
    <soapenv:Body>
       <urn:GetCheckSessions soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#GetCheckSessions"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#GetUseCompression" name="GetUseCompression" bindingOperationName="GetUseCompression" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#GetCheckSessions"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#GetDBDatabase" name="GetDBDatabase" bindingOperationName="GetDBDatabase" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetDBDatabase soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#GetDBDatabase"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#GetDBHostName" name="GetDBHostName" bindingOperationName="GetDBHostName" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetDBHostName soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#GetDBHostName"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#GetDBMonitorHost" name="GetDBMonitorHost" bindingOperationName="GetDBMonitorHost" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetDBMonitorHost soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#GetDBMonitorHost"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#GetDBMonitorPort" name="GetDBMonitorPort" bindingOperationName="GetDBMonitorPort" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetDBMonitorPort soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#GetDBMonitorPort"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#GetDBMonitorReconnectTimeout" name="GetDBMonitorReconnectTimeout" bindingOperationName="GetDBMonitorReconnectTimeout" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetDBMonitorReconnectTimeout soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#GetDBMonitorReconnectTimeout"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#GetDBMonitorSendTimeout" name="GetDBMonitorSendTimeout" bindingOperationName="GetDBMonitorSendTimeout" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetDBMonitorSendTimeout soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#GetDBMonitorSendTimeout"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#GetDBMonitorTraceFlags" name="GetDBMonitorTraceFlags" bindingOperationName="GetDBMonitorTraceFlags" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetDBMonitorTraceFlags soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#GetDBMonitorTraceFlags"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#GetDBPortNumb" name="GetDBPortNumb" bindingOperationName="GetDBPortNumb" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetDBPortNumb soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#GetDBPortNumb"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#GetDBProvider" name="GetDBProvider" bindingOperationName="GetDBProvider" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetDBProvider soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#GetDBProvider"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#GetDBTransactIsolationLevel" name="GetDBTransactIsolationLevel" bindingOperationName="GetDBTransactIsolationLevel" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetDBTransactIsolationLevel soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#GetDBTransactIsolationLevel"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#GetUseCompression" name="GetUseCompression" bindingOperationName="GetUseCompression" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
    <soapenv:Header/>
    <soapenv:Body>
       <urn:GetUseCompression soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#GetUseCompression"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#SetCheckSessions" name="SetCheckSessions" bindingOperationName="SetCheckSessions" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <urn:SetCheckSessions soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
-         <aPassword xsi:type="xsd:string">sarcopenia</aPassword>
-         <aValue xsi:type="xsd:boolean">false</aValue>
-      </urn:SetCheckSessions>
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#SetCheckSessions"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#SetDBDatabase" name="SetDBDatabase" bindingOperationName="SetDBDatabase" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <urn:SetDBDatabase soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
-         <aPassword xsi:type="xsd:string">sarcopenia</aPassword>
-         <aValue xsi:type="xsd:string">iaf</aValue>
-      </urn:SetDBDatabase>
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#SetDBDatabase"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#SetDBHostName" name="SetDBHostName" bindingOperationName="SetDBHostName" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <urn:SetDBHostName soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
-         <aPassword xsi:type="xsd:string">sarcopenia</aPassword>
-         <aValue xsi:type="xsd:string">127.0.0.1</aValue>
-      </urn:SetDBHostName>
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#SetDBHostName"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#SetDBPassword" name="SetDBPassword" bindingOperationName="SetDBPassword" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <urn:SetDBPassword soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
-         <aPassword xsi:type="xsd:string">sarcopenia</aPassword>
-         <aValue xsi:type="xsd:string">sarcopenia</aValue>
-      </urn:SetDBPassword>
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#SetDBPassword"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#SetDBPortNumb" name="SetDBPortNumb" bindingOperationName="SetDBPortNumb" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <urn:SetDBPortNumb soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
-         <aPassword xsi:type="xsd:string">sarcopenia</aPassword>
-         <aValue xsi:type="xsd:unsignedShort">0</aValue>
-      </urn:SetDBPortNumb>
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#SetDBPortNumb"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#SetDBProtocol" name="SetDBProtocol" bindingOperationName="SetDBProtocol" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <urn:SetDBProtocol soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
-         <aPassword xsi:type="xsd:string">sarcopenia</aPassword>
-         <aValue xsi:type="xsd:string">PostgreSQL</aValue>
-      </urn:SetDBProtocol>
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#SetDBProtocol"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#SetDBTransactIsolationLevel" name="SetDBTransactIsolationLevel" bindingOperationName="SetDBTransactIsolationLevel" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <urn:SetDBTransactIsolationLevel soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
-         <aPassword xsi:type="xsd:string">sarcopenia</aPassword>
-         <aValue xsi:type="urn:TZTransactIsolationLevel" xmlns:urn="urn:ZDbcIntfs">ilReadCommited</aValue>
-      </urn:SetDBTransactIsolationLevel>
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#SetDBTransactIsolationLevel"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#SetDBUser" name="SetDBUser" bindingOperationName="SetDBUser" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <urn:SetDBUser soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
-         <aPassword xsi:type="xsd:string">sarcopenia</aPassword>
-         <aValue xsi:type="xsd:string">postgres</aValue>
-      </urn:SetDBUser>
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#SetDBUser"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#SetUseCompression" name="SetUseCompression" bindingOperationName="SetUseCompression" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <urn:SetUseCompression soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
-         <aPassword xsi:type="xsd:string">sarcopenia</aPassword>
-         <aValue xsi:type="xsd:boolean">False</aValue>
-      </urn:SetUseCompression>
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#SetUseCompression"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#SetUseDBMonitor" name="SetUseDBMonitor" bindingOperationName="SetUseDBMonitor" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <urn:SetUseDBMonitor soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
-         <aPassword xsi:type="xsd:string">sarcopenia</aPassword>
-         <aValue xsi:type="xsd:boolean">True</aValue>
-      </urn:SetUseDBMonitor>
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#SetUseDBMonitor"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#GetUseDBMonitor" name="GetUseDBMonitor" bindingOperationName="GetUseDBMonitor" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#GetUseCompression"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#GetUseDBMonitor" name="GetUseDBMonitor" bindingOperationName="GetUseDBMonitor" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
    <soapenv:Header/>
    <soapenv:Body>
       <urn:GetUseDBMonitor soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#GetUseDBMonitor"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:sensitiveInformation/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#GetUseDBMonitor"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#SetCheckSessions" name="SetCheckSessions" bindingOperationName="SetCheckSessions" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:SetCheckSessions soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <aPassword xsi:type="xsd:string">?</aPassword>
+         <aValue xsi:type="xsd:boolean">?</aValue>
+      </urn:SetCheckSessions>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#SetCheckSessions"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#SetDBDatabase" name="SetDBDatabase" bindingOperationName="SetDBDatabase" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:SetDBDatabase soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <aPassword xsi:type="xsd:string">?</aPassword>
+         <aValue xsi:type="xsd:string">?</aValue>
+      </urn:SetDBDatabase>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#SetDBDatabase"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#SetDBHostName" name="SetDBHostName" bindingOperationName="SetDBHostName" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:SetDBHostName soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <aPassword xsi:type="xsd:string">?</aPassword>
+         <aValue xsi:type="xsd:string">?</aValue>
+      </urn:SetDBHostName>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#SetDBHostName"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#SetDBMonitorHost" name="SetDBMonitorHost" bindingOperationName="SetDBMonitorHost" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:SetDBMonitorHost soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <aPassword xsi:type="xsd:string">?</aPassword>
+         <aValue xsi:type="xsd:string">?</aValue>
+      </urn:SetDBMonitorHost>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#SetDBMonitorHost"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#SetDBMonitorPort" name="SetDBMonitorPort" bindingOperationName="SetDBMonitorPort" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:SetDBMonitorPort soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <aPassword xsi:type="xsd:string">?</aPassword>
+         <aValue xsi:type="xsd:unsignedShort">?</aValue>
+      </urn:SetDBMonitorPort>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#SetDBMonitorPort"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#SetDBMonitorReconnectTimeout" name="SetDBMonitorReconnectTimeout" bindingOperationName="SetDBMonitorReconnectTimeout" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:SetDBMonitorReconnectTimeout soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <aPassword xsi:type="xsd:string">?</aPassword>
+         <aValue xsi:type="xsd:unsignedShort">?</aValue>
+      </urn:SetDBMonitorReconnectTimeout>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#SetDBMonitorReconnectTimeout"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#SetDBMonitorSendTimeout" name="SetDBMonitorSendTimeout" bindingOperationName="SetDBMonitorSendTimeout" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:SetDBMonitorSendTimeout soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <aPassword xsi:type="xsd:string">?</aPassword>
+         <aValue xsi:type="xsd:unsignedShort">?</aValue>
+      </urn:SetDBMonitorSendTimeout>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#SetDBMonitorSendTimeout"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#SetDBMonitorTraceFlags" name="SetDBMonitorTraceFlags" bindingOperationName="SetDBMonitorTraceFlags" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:SetDBMonitorTraceFlags soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <aPassword xsi:type="xsd:string">?</aPassword>
+         <aValue xsi:type="xsd:unsignedShort">?</aValue>
+      </urn:SetDBMonitorTraceFlags>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#SetDBMonitorTraceFlags"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#SetDBPassword" name="SetDBPassword" bindingOperationName="SetDBPassword" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:SetDBPassword soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <aPassword xsi:type="xsd:string">?</aPassword>
+         <aValue xsi:type="xsd:string">?</aValue>
+      </urn:SetDBPassword>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#SetDBPassword"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#SetDBPortNumb" name="SetDBPortNumb" bindingOperationName="SetDBPortNumb" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:SetDBPortNumb soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <aPassword xsi:type="xsd:string">?</aPassword>
+         <aValue xsi:type="xsd:unsignedShort">?</aValue>
+      </urn:SetDBPortNumb>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#SetDBPortNumb"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#SetDBProvider" name="SetDBProvider" bindingOperationName="SetDBProvider" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:SetDBProvider soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <aPassword xsi:type="xsd:string">?</aPassword>
+         <aValue xsi:type="xsd:string">?</aValue>
+      </urn:SetDBProvider>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#SetDBProvider"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#SetDBTransactIsolationLevel" name="SetDBTransactIsolationLevel" bindingOperationName="SetDBTransactIsolationLevel" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:SetDBTransactIsolationLevel soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <aPassword xsi:type="xsd:string">?</aPassword>
+         <aValue xsi:type="urn:TCRIsolationLevel" xmlns:urn="urn:CRAccess">?</aValue>
+      </urn:SetDBTransactIsolationLevel>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#SetDBTransactIsolationLevel"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#SetDBUser" name="SetDBUser" bindingOperationName="SetDBUser" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:SetDBUser soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <aPassword xsi:type="xsd:string">?</aPassword>
+         <aValue xsi:type="xsd:string">?</aValue>
+      </urn:SetDBUser>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#SetDBUser"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#SetUseCompression" name="SetUseCompression" bindingOperationName="SetUseCompression" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:SetUseCompression soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <aPassword xsi:type="xsd:string">?</aPassword>
+         <aValue xsi:type="xsd:boolean">?</aValue>
+      </urn:SetUseCompression>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#SetUseCompression"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UServerManagerIntf-IServerManager#SetUseDBMonitor" name="SetUseDBMonitor" bindingOperationName="SetUseDBMonitor" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/iaf/iafserver.dll/soap/IServerManager</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UServerManagerIntf-IServerManager">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:SetUseDBMonitor soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <aPassword xsi:type="xsd:string">?</aPassword>
+         <aValue xsi:type="xsd:boolean">?</aValue>
+      </urn:SetUseDBMonitor>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UServerManagerIntf-IServerManager#SetUseDBMonitor"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/></con:soapui-project>

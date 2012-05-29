@@ -16,7 +16,7 @@ type
     FDBMonitorPort: Word;
     FDBMonitorHost: String;
     FDBMonitorReconnectTimeout: Word;
-    FDBMonitorTraceFlags: TDATraceFlags;
+    FDBMonitorTraceFlags: Word;
 
     FDBDatabase: String;
     FDBHostName: String;
@@ -37,7 +37,7 @@ type
     property DBMonitorPort: Word read FDBMonitorPort write FDBMonitorPort default 1000;
     property DBMonitorReconnectTimeout: Word read FDBMonitorReconnectTimeout write FDBMonitorReconnectTimeout default 5000;
     property DBMonitorSendTimeout: Word read FDBMonitorSendTimeout write FDBMonitorSendTimeout default 1000;
-    property DBMonitorTraceFlags: TDATraceFlags read FDBMonitorTraceFlags write FDBMonitorTraceFlags default [tfQPrepare, tfQExecute, tfError, tfConnect, tfTransact, tfParams, tfMisc];
+    property DBMonitorTraceFlags: Word read FDBMonitorTraceFlags write FDBMonitorTraceFlags default 1643;
 
     property DBDatabase: String read FDBDatabase write FDBDatabase;
     property DBHostName: String read FDBHostName write FDBHostName;
@@ -57,6 +57,19 @@ implementation
 uses Windows, SysUtils, KRK.Lib.Rtl.Common.FileUtils;
 
 { TServerConfiguration }
+
+//var
+//  States : TUpdateStatusSet; // Can be any set, I took this one from DB.pas unit
+//  SetAsAInteger: Integer;
+//  dbs: Pointer; // Here's the trick
+//begin
+//  States := [usModified, usInserted]; // Putting some content in that set
+//  dbs := @States;
+//  SetAsAInteger := PByte(dbs)^;
+//  //Once you got it, SetAsAInteger is just another ordinary integer variable.
+//  //Use it the way you like.
+//end;
+
 
 constructor TServerConfiguration.Create(aOwner: TComponent; aAutoSaveMode: TAutoSaveMode = asmNone);
 var
@@ -81,15 +94,16 @@ begin
   FDBMonitorPort             := 1000;
   FDBMonitorHost             := '';
   FDBMonitorReconnectTimeout := 5000;
-  FDBMonitorTraceFlags       := [tfQPrepare, tfQExecute, tfError, tfConnect, tfTransact, tfParams, tfMisc];
-
-  FDBDatabase               := '';
-  FDBHostName               := '';
-  FDBPassword               := '';
-  FDBUserName               := '';
-  FDBPortNumb               := 0;
-  FDBProvider               := '';
-  FDBTransactIsolationLevel := ilReadCommitted;
+//      1           2           4        8       16       32          64        128      256       512     1024       2048        4096
+// (tfQPrepare, tfQExecute, tfQFetch, tfError, tfStmt, tfConnect, tfTransact, tfBlob, tfService, tfMisc, tfParams, tfObjDestroy, tfPool)
+  FDBMonitorTraceFlags       := 1643; // [tfQPrepare, tfQExecute, tfError, tfConnect, tfTransact, tfMisc, tfParams]
+  FDBDatabase                := '';
+  FDBHostName                := '';
+  FDBPassword                := '';
+  FDBUserName                := '';
+  FDBPortNumb                := 0;
+  FDBProvider                := '';
+  FDBTransactIsolationLevel  := ilReadCommitted;
 
   { Carrega o arquivo, caso ele exista }
   LoadFromTextFile(FFileName);
