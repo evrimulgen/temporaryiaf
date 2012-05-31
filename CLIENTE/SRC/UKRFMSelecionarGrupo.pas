@@ -3,8 +3,8 @@ unit UKRFMSelecionarGrupo;
 interface
 
 uses Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms
-   , Dialogs, UKRFMDialogSelecao, DB, Grids, DBGrids
-   , KRK.Components.DataControls.DBGrid, DBClient;
+   , Dialogs, Grids, DBGrids, DB, KRK.Components.DataControls.DBGrid, DBClient
+   , UKRFMDialogSelecao;
 
 type
   TKRFMSelecionarGrupo = class(TKRFMDialogSelecao)

@@ -8,48 +8,15 @@ uses Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms
    , KRK.Wizards.DataModule, ActnList, ImgList, DBClient, UReconcileErrorDialog
    , DB, KRK.Components.DataControls.ValidationChecks
    , KRK.Components.AdditionalControls.BalloonHint, ActnMenus
-   , ActnMan, KRK.Lib.Rtl.Common.Classes.Interposer,
-  KRK.Components.AdditionalControls.PngImageList;
+   , ActnMan, KRK.Lib.Rtl.Common.Classes.Interposer
+   , KRK.Components.AdditionalControls.PngImageList;
 
 type
-  TClientDataSet = class (DBClient.TClientDataSet)
-  private
-    FKRKValidationChecks: TKRKValidationChecks;
-    function GetMyParams: String;
-  public
-    constructor Create(aOwner: TComponent); override;
-    destructor Destroy; override;
-    property KRKValidationChecks: TKRKValidationChecks read FKRKValidationChecks;
-    property MyParams: String read GetMyParams;
-  protected
-    procedure DoBeforeApplyUpdates(var OwnerData: OleVariant); override;
-    procedure DoBeforeGetParams(var OwnerData: OleVariant); override;
-    procedure DoBeforeGetRecords(var OwnerData: OleVariant); override;
-    procedure DoBeforeRowRequest(var OwnerData: OleVariant); override;
-    procedure DoBeforeExecute(var OwnerData: OleVariant); override;
-    procedure DoBeforePost; override;
-    procedure DoBeforeDelete; override;
-    procedure DoOnNewRecord; override;
-    function DoApplyUpdates(Delta: OleVariant; MaxErrors: Integer; out ErrorCount: Integer): OleVariant; override;
-    function DoGetRecords(Count: Integer; out RecsOut: Integer; Options: Integer; const CommandText: WideString; Params: OleVariant): OleVariant; override;
-  end;
+{$I INC\Interposer.TClientDataSet.Intf.inc}
 
-  TActionList = class(ActnList.TActionList)
-  public
-    procedure SyncActionsWithPermissions;
-  end;
+{$I INC\Interposer.TActionList.Intf.inc}
 
-  TAction = class(ActnList.TAction)
-  private
-    FPermitida: Boolean;
-    procedure SetPermitida(const Value: Boolean);
-    function GetEnabled: Boolean;
-    procedure SetEnabled(const Value: Boolean);
-  public
-    constructor Create(aOwner: TComponent); override;
-    property Permitida: Boolean read FPermitida write SetPermitida default True;
-    property Enabled: Boolean read GetEnabled write SetEnabled;
-  end;
+{$I INC\Interposer.TAction.Intf.inc}
 
   TKRDMBasico = class(TKRKDataModule)
     ACLI: TActionList;
@@ -63,10 +30,10 @@ type
   protected
     { Declarações protegidas }
     procedure ApplyPermissions; virtual;
-    procedure ConfigureErrorHint(aTitle, aText: String; aWinControl: TWinControl; aShowHint: Boolean); virtual;
   public
     { Declarações públicas }
     constructor Create(aOwner: TComponent); override;
+    procedure ConfigureErrorHint(aTitle, aText: String; aWinControl: TWinControl; aShowHint: Boolean); virtual;
     property ActionManager: TActionManager read FActionManager;
   end;
 
@@ -77,116 +44,11 @@ implementation
 uses UDAMOPrincipal, UExtraMethods, KRK.Lib.Rtl.Common.FileUtils
    , KRK.Lib.Db.Utils, UConfiguracoes, KRK.Lib.Rtl.Common.VariantUtils;
 
-{ TClientDataSetHelper }
+{$I INC\Interposer.TClientDataSet.Impl.inc}
 
-constructor TClientDataSet.Create(aOwner: TComponent);
-begin
-  inherited;
-  FKRKValidationChecks := TKRKValidationChecks.Create(Self);
-end;
+{$I INC\Interposer.TActionList.Impl.inc}
 
-destructor TClientDataSet.Destroy;
-begin
-  FKRKValidationChecks.Free;
-  inherited;
-end;
-
-procedure TClientDataSet.DoBeforeApplyUpdates(var OwnerData: OleVariant);
-begin
-  OwnerData := DAMOPrincipal.CurrentSession.ID;
-  inherited;
-end;
-
-function TClientDataSet.DoApplyUpdates(Delta: OleVariant; MaxErrors: Integer; out ErrorCount: Integer): OleVariant;
-begin
-  if Configuracoes.UsarCompressao then
-    OleVariantByteArrayUCLCompress(Delta);
-
-  Result := inherited;
-
-  if Configuracoes.UsarCompressao then
-    OleVariantByteArrayUCLDecompress(Result);
-end;
-
-function TClientDataSet.DoGetRecords(Count: Integer; out RecsOut: Integer; Options: Integer; const CommandText: WideString; Params: OleVariant): OleVariant;
-begin
-  Result := inherited;
-
-  SaveTextFile(OleVariantByteArrayToString(Result),'c:\_testes\reset.txt');
-
-  if Configuracoes.UsarCompressao then
-    OleVariantByteArrayUCLDecompress(Result);
-end;
-
-procedure TClientDataSet.DoBeforeDelete;
-begin
-  { Atualmente esta validação não faz nada! }
-  FKRKValidationChecks.ValidateBeforeDelete;
-  inherited;
-end;
-
-procedure TClientDataSet.DoBeforePost;
-begin
-  inherited;
-  try
-    if Assigned(FKRKValidationChecks.DataSet) then
-      FKRKValidationChecks.ValidateBeforePost;
-  except
-    on EIFV: EInvalidFieldValue do
-    begin
-      TKRDMBasico(Owner).ConfigureErrorHint('Campo incorreto'
-                                           ,EIFV.Message
-                                           ,TKRDMBasico(Owner).MyForm.ActiveControl
-                                           ,True);
-      Abort;
-    end;
-  end;
-end;
-
-procedure TClientDataSet.DoBeforeExecute(var OwnerData: OleVariant);
-begin
-  OwnerData := DAMOPrincipal.CurrentSession.ID;
-  inherited;
-end;
-
-procedure TClientDataSet.DoBeforeGetParams(var OwnerData: OleVariant);
-begin
-  OwnerData := DAMOPrincipal.CurrentSession.ID;
-  inherited;
-end;
-
-procedure TClientDataSet.DoBeforeGetRecords(var OwnerData: OleVariant);
-begin
-  OwnerData := DAMOPrincipal.CurrentSession.ID;
-  inherited;
-end;
-
-procedure TClientDataSet.DoBeforeRowRequest(var OwnerData: OleVariant);
-begin
-  OwnerData := DAMOPrincipal.CurrentSession.ID;
-  inherited;
-end;
-
-procedure TClientDataSet.DoOnNewRecord;
-var
-  i: Byte;
-begin
-  inherited;
-  for i := 0 to Pred(Fields.Count) do
-    if pfInKey in Fields[i].ProviderFlags then
-      Break;
-
-  if i < Fields.Count then
-  begin
-    Tag := Tag - 1;
-    Fields[i].AsInteger := Tag;
-  end;
-end;
-
-function TClientDataSet.GetMyParams: String;
-begin
-  Result := ClientDataSetParams(Self);
-end;
+{$I INC\Interposer.TAction.Impl.inc}
 
 constructor TKRDMBasico.Create(aOwner: TComponent);
 { ---------------------------------------------------------------------------- }
@@ -357,39 +219,6 @@ begin
     if aShowHint then
       Show;
   end;
-end;
-
-{ TAction }
-
-constructor TAction.Create(aOwner: TComponent);
-begin
-  inherited;
-  FPermitida := True;
-end;
-
-function TAction.GetEnabled: Boolean;
-begin
-  Result := inherited Enabled;
-end;
-
-procedure TAction.SetEnabled(const Value: Boolean);
-begin
-  inherited Enabled := FPermitida and Value;
-end;
-
-procedure TAction.SetPermitida(const Value: Boolean);
-begin
-  FPermitida := Value;
-end;
-
-{ TActionList }
-
-procedure TActionList.SyncActionsWithPermissions;
-var
-  i: Word;
-begin
-  for i := 0 to Pred(ActionCount) do
-    TAction(Actions[i]).Enabled := TAction(Actions[i]).Enabled;
 end;
 
 end.

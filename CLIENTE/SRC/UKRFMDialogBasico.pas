@@ -5,9 +5,12 @@ unit UKRFMDialogBasico;
 interface
 
 uses Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms
-   , KRK.Wizards.Form, StdCtrls, ExtCtrls, ToolWin, ComCtrls, Buttons;
+   , KRK.Wizards.Form, StdCtrls, ExtCtrls, ToolWin, ComCtrls, Buttons, DBClient
+   , KRK.Components.DataControls.ValidationChecks;
 
 type
+{$I INC\Interposer.TClientDataSet.Intf.inc}
+
   TKRFMDialogBasico = class(TKRKForm)
   private
     { Declarações privadas }
@@ -20,6 +23,11 @@ type
 implementation
 
 {$R *.dfm}
+
+uses UDAMOPrincipal, UConfiguracoes, KRK.Lib.Rtl.Common.VariantUtils
+   , KRK.Lib.Rtl.Common.FileUtils, UKRDMBasico, DB, KRK.Lib.Db.Utils;
+
+{$I INC\Interposer.TClientDataSet.Impl.inc}
 
 initialization
   RegisterClass(TKRFMDialogBasico)

@@ -206,8 +206,13 @@ begin
         { Registra todas as ações do primeiro TActionManager, se houver um }
         if Assigned(TKRDMBasico(TDAMOPrincipal(owner).FORMPrincipal.MDIChildren[i].Owner).ActionManager) then
         begin
+
           for ContainedAction in TKRDMBasico(TDAMOPrincipal(owner).FORMPrincipal.MDIChildren[i].Owner).ActionManager do
           begin
+            { Se a entidade já existir na lista, pula }
+            if CLDSEntidadesDoSistema.Locate('VA_NOME',ContainedAction.Owner.Name + '.' + ContainedAction.Name,[]) then
+              Continue;
+
             CLDSEntidadesDoSistema.Append;
 
             CLDSEntidadesDoSistemava_nome.AsString := ContainedAction.Owner.Name + '.' + ContainedAction.Name;
@@ -221,6 +226,10 @@ begin
         { Registra todas as ações do TActionList }
         for ContainedAction in TKRDMBasico(TDAMOPrincipal(owner).FORMPrincipal.MDIChildren[i].Owner).ACLI do
         begin
+          { Se a entidade já existir na lista, pula }
+          if CLDSEntidadesDoSistema.Locate('VA_NOME',ContainedAction.Owner.Name + '.' + ContainedAction.Name,[]) then
+            Continue;
+
           CLDSEntidadesDoSistema.Append;
 
           CLDSEntidadesDoSistemava_nome.AsString := ContainedAction.Owner.Name + '.' + ContainedAction.Name;
@@ -233,7 +242,7 @@ begin
     finally
       CLDSEntidadesDoSistema.EnableControls;
       if NovasEntidades > 0 then
-        Application.MessageBox(PWideChar(IntToStr(NovasEntidades) + ' novas entidades foram adicionadas. Por favor, confirme estas adições para torná-las permanentes'),'Entidades adicionadas!',MB_ICONINFORMATION)
+        Application.MessageBox(PWideChar(IntToStr(NovasEntidades) + ' novas entidades foram adicionadas. Por favor, confirme estas adições para torná-las permanentes ANTES de tentar atribuir tais entidades a quaisquer tabelas de permissão (usuário ou grupo)'),'Entidades adicionadas!',MB_ICONINFORMATION)
       else
         Application.MessageBox('Nenhuma nova entidade foi adicionada. Tem certeza de que abriu as janelas com as entidades que precisavam ser registradas? Se sim, talvez as entidades já tenham sido registradas anteriormente','Nenhuma nova entidade encontrada!',MB_ICONINFORMATION)
     end;
@@ -300,11 +309,13 @@ procedure TKRDMSegurancaEPermissoes.AdicionarEntidadesParaGrupo;
 var
   i: Integer;
   BookMarkList: TBookMarkList;
+  EntidadesNaoPersistidas: TStringList;
 begin
-  application.MessageBox('apenas entidades já persistidas no servidor podem ser copiadas. verifica isso','verifica',MB_ICONWARNING);
   BookMarkList := TKRFMSegurancaEPermissoes(MyForm).KRDGConsEntidadesDoSistema.SelectedRows;
 
   if BookMarkList.Count > 0 then
+  begin
+    EntidadesNaoPersistidas := TStringList.Create;
     try
       CLDSPermissoesDosGrupos.DisableControls;
       CLDSEntidadesDoSistema.DisableControls;
@@ -313,6 +324,14 @@ begin
       for i := 0 to Pred(BookMarkList.Count) do
       begin
         CLDSEntidadesDoSistema.GotoBookmark(BookMarkList[i]);
+
+        { Caso a entidade em questão não tenha sido persistida, faz exibir ao
+        final uma mensagem}
+        if CLDSEntidadesDoSistemain_entidadesdosistema_id.AsInteger < 0 then
+        begin
+          EntidadesNaoPersistidas.Add(CLDSEntidadesDoSistemava_nome.AsString);
+          Continue;
+        end;
 
         if not CLDSPermissoesDosGrupos.Locate('IN_ENTIDADESDOSISTEMA_ID',CLDSEntidadesDoSistemain_entidadesdosistema_id.AsInteger,[]) then
         begin
@@ -338,28 +357,34 @@ begin
           end;
 
           CLDSPermissoesDosGrupos.Post;
-        end;
+        end
       end;
 
       if CLDSGruposCON.State = dsEdit then
         CLDSGruposCON.Post;
 
+      if EntidadesNaoPersistidas.Count > 0 then
+        Application.MessageBox(PWideChar('As entidades a seguir não foram adicionadas à lista de permissões do grupo porque são entidades novas, não confirmadas:'#13#10#13#10 + Trim(EntidadesNaoPersistidas.Text) + #13#10#13#10'Apenas entidades devidamente confirmadas podem ser adicionadas à lista de permissões. Por favor, confirme as alterações agora e tente adicionar estas entidades novamente'),'Entidades não persistidas',MB_ICONWARNING);
     finally
       CLDSGruposCON.EnableControls;
       CLDSEntidadesDoSistema.EnableControls;
       CLDSPermissoesDosGrupos.EnableControls;
+      EntidadesNaoPersistidas.Free;
     end;
+  end;
 end;
 
 procedure TKRDMSegurancaEPermissoes.AdicionarEntidadesParaUsuario;
 var
   i: Integer;
   BookMarkList: TBookMarkList;
+  EntidadesNaoPersistidas: TStringList;
 begin
-  application.MessageBox('apenas entidades já persistidas no servidor podem ser copiadas. verifica isso','verifica',MB_ICONWARNING);
   BookMarkList := TKRFMSegurancaEPermissoes(MyForm).KRDGConsEntidadesDoSistema.SelectedRows;
 
   if BookMarkList.Count > 0 then
+  begin
+    EntidadesNaoPersistidas := TStringList.Create;
     try
       CLDSPermissoesDosUsuarios.DisableControls;
       CLDSEntidadesDoSistema.DisableControls;
@@ -368,6 +393,14 @@ begin
       for i := 0 to Pred(BookMarkList.Count) do
       begin
         CLDSEntidadesDoSistema.GotoBookmark(BookMarkList[i]);
+
+        { Caso a entidade em questão não tenha sido persistida, faz exibir ao
+        final uma mensagem}
+        if CLDSEntidadesDoSistemain_entidadesdosistema_id.AsInteger < 0 then
+        begin
+          EntidadesNaoPersistidas.Add(CLDSEntidadesDoSistemava_nome.AsString);
+          Continue;
+        end;
 
         if not CLDSPermissoesDosUsuarios.Locate('IN_ENTIDADESDOSISTEMA_ID',CLDSEntidadesDoSistemain_entidadesdosistema_id.AsInteger,[]) then
         begin
@@ -399,11 +432,14 @@ begin
       if CLDSUsuariosCON.State = dsEdit then
         CLDSUsuariosCON.Post;
 
+      if EntidadesNaoPersistidas.Count > 0 then
+        Application.MessageBox(PWideChar('As entidades a seguir não foram adicionadas à lista de permissões do usuário porque são entidades novas, não confirmadas:'#13#10#13#10 + Trim(EntidadesNaoPersistidas.Text) + #13#10#13#10'Apenas entidades devidamente confirmadas podem ser adicionadas à lista de permissões. Por favor, confirme as alterações agora e tente adicionar estas entidades novamente'),'Entidades não persistidas',MB_ICONWARNING);
     finally
       CLDSUsuariosCON.EnableControls;
       CLDSEntidadesDoSistema.EnableControls;
       CLDSPermissoesDosUsuarios.EnableControls;
     end;
+  end;
 end;
 
 procedure TKRDMSegurancaEPermissoes.AlternarPermissao(aPermissao: TPermissao; aObjetoDePermissao: TObjetoDePermissao);
@@ -450,7 +486,7 @@ begin
     end;
     pInserir, pAlterar, pExcluir:
     begin
-      if CLDS.FieldByName('tipo').AsInteger = 0 then
+      if CLDS.FieldByName('tipo').DisplayText = '0' then
       begin
         CLDS.Edit;
         CLDS.FieldByName(Acoes[Ord(aPermissao)]).AsInteger := IfThen(CLDS.FieldByName(Acoes[Ord(aPermissao)]).AsInteger = 1,0,1);

@@ -3,8 +3,8 @@ unit UKRFMDialogSelecao;
 interface
 
 uses Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms
-   , Dialogs, UKRFMDialogBasico, Grids, DBGrids, DB
-   , KRK.Components.DataControls.DBGrid, DBClient;
+   , Dialogs, Grids, DBGrids, DB, KRK.Components.DataControls.DBGrid, DBClient
+   , UKRFMDialogBasico;
 
 type
   TKRFMDialogSelecao = class(TKRFMDialogBasico)
