@@ -185,8 +185,8 @@ BEGIN
     WHEN 'I' THEN ----------------------------------------------------------- [ INSERT ] --
       INSERT INTO ENTIDADESDOSISTEMA (VA_NOME
                                      ,SM_TIPO)
-                    VALUES (pVA_NOME
-                           ,pSM_TIPO);
+                              VALUES (pVA_NOME
+                                     ,pSM_TIPO);
 
     vRETURN := CURRVAL('SQ_EDS_IN_ENTIDADESDOSISTEMA_ID');
     ---------------------------------------------------------------------------------------
@@ -249,12 +249,12 @@ BEGIN
     ---------------------------------------------------------------------------------------
     WHEN 'U' THEN ----------------------------------------------------------- [ UPDATE ] --
       UPDATE PERMISSOESDOSUSUARIOS
-         SET IN_ENTIDADESDOSISTEMA_ID = pIN_ENTIDADESDOSISTEMA_ID
-           , SM_USUARIOS_ID           = pSM_USUARIOS_ID
-           , SM_LER                   = pSM_LER
-           , SM_INSERIR               = pSM_INSERIR
-           , SM_ALTERAR               = pSM_ALTERAR
-           , SM_EXCLUIR               = pSM_EXCLUIR
+         SET IN_ENTIDADESDOSISTEMA_ID    = pIN_ENTIDADESDOSISTEMA_ID
+           , SM_USUARIOS_ID              = pSM_USUARIOS_ID
+           , SM_LER                      = pSM_LER
+           , SM_INSERIR                  = pSM_INSERIR
+           , SM_ALTERAR                  = pSM_ALTERAR
+           , SM_EXCLUIR                  = pSM_EXCLUIR
        WHERE IN_PERMISSOESDOSUSUARIOS_ID = pIN_PERMISSOESDOSUSUARIOS_ID;
 
     GET DIAGNOSTICS vRETURN := ROW_COUNT;
@@ -304,12 +304,12 @@ BEGIN
     ---------------------------------------------------------------------------------------
     WHEN 'U' THEN ----------------------------------------------------------- [ UPDATE ] --
       UPDATE PERMISSOESDOSGRUPOS
-         SET IN_ENTIDADESDOSISTEMA_ID = pIN_ENTIDADESDOSISTEMA_ID
-           , SM_GRUPOS_ID             = pSM_GRUPOS_ID
-           , SM_LER                   = pSM_LER
-           , SM_INSERIR               = pSM_INSERIR
-           , SM_ALTERAR               = pSM_ALTERAR
-           , SM_EXCLUIR               = pSM_EXCLUIR
+         SET IN_ENTIDADESDOSISTEMA_ID  = pIN_ENTIDADESDOSISTEMA_ID
+           , SM_GRUPOS_ID              = pSM_GRUPOS_ID
+           , SM_LER                    = pSM_LER
+           , SM_INSERIR                = pSM_INSERIR
+           , SM_ALTERAR                = pSM_ALTERAR
+           , SM_EXCLUIR                = pSM_EXCLUIR
        WHERE IN_PERMISSOESDOSGRUPOS_ID = pIN_PERMISSOESDOSGRUPOS_ID;
 
     GET DIAGNOSTICS vRETURN := ROW_COUNT;
