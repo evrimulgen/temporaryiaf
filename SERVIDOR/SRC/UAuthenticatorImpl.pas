@@ -33,12 +33,9 @@ type
 
 implementation
 
-uses SysUtils
-   , KRK.Lib.Rtl.Common.StringUtils
-   , KRK.Lib.DCPcrypt.Utilities
-   , KRK.Lib.DCPcrypt.Types
-   , UServerConfiguration
-   , UCommonTypes, UExtraUtilities;
+uses SysUtils, KRK.Lib.Rtl.Common.StringUtils, KRK.Lib.DCPcrypt.Utilities
+   , KRK.Lib.DCPcrypt.Types, UServerConfiguration, UCommonTypes
+   , UExtraUtilities;
 
 { TAuthenticator }
 

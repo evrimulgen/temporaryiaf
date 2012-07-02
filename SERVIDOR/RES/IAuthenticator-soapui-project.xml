@@ -149,8 +149,8 @@
    <soapenv:Header/>
    <soapenv:Body>
       <urn:Login soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
-         <aUser xsi:type="xsd:string">admin</aUser>
-         <aPassword xsi:type="xsd:string">123</aPassword>
+         <aUser xsi:type="xsd:string">teste</aUser>
+         <aPassword xsi:type="xsd:string"></aPassword>
       </urn:Login>
    </soapenv:Body>
 </soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:UAuthenticatorIntf-IAuthenticator#Login"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:UAuthenticatorIntf-IAuthenticator#Logout" name="Logout" bindingOperationName="Logout" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1/iaf/IAFServer.dll/soap/IAuthenticator</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:UAuthenticatorIntf-IAuthenticator">
