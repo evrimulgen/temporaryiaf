@@ -6,6 +6,8 @@ CREATE EXTENSION pgcrypto
           SCHEMA public
          VERSION "1.0";
 ---------------------------------------------------------------
+---------------------------------------------------------------
+---------------------------------------------------------------
 CREATE SEQUENCE SQ_EDS_IN_ENTIDADESDOSISTEMA_ID
       INCREMENT 1
        MINVALUE 1
@@ -153,6 +155,30 @@ CREATE TABLE PACIENTES (IN_PACIENTES_ID INTEGER NOT NULL DEFAULT NEXTVAL('SQ_PAC
 
 ALTER SEQUENCE SQ_PAC_IN_PACIENTES_ID 
       OWNED BY PACIENTES.IN_PACIENTES_ID;
+---------------------------------------------------------------
+CREATE SEQUENCE SQ_CBO_IN_CBO_ID
+      INCREMENT 1
+       MINVALUE 1
+       MAXVALUE 2147483647
+          START 1
+          CACHE 1;
+          
+CREATE TYPE TIPOCBO AS ENUM ('Ocupação','Sinônimo');
+
+CREATE TABLE CBO (IN_CBO_ID INTEGER NOT NULL DEFAULT NEXTVAL('SQ_CBO_IN_CBO_ID')
+                 ,CH_CODIGO CHAR(7) NOT NULL
+                 ,VA_TITULO VARCHAR(128) NOT NULL
+                 ,EN_TIPO TIPOCBO NOT NULL
+                 ,CONSTRAINT PK_CBO PRIMARY KEY (IN_CBO_ID));
+
+COMMENT ON COLUMN CBO.CH_CODIGO IS 'CÓDIGO DO CBO';
+COMMENT ON COLUMN CBO.VA_TITULO IS 'NOME DA OCUPAÇÃO';
+COMMENT ON COLUMN CBO.EN_TIPO IS 'TIPO DO TÍTULO. PODE SER "OCUPAÇÃO" OU "SINÔNIMO"';
+COMMENT ON TABLE CBO IS 'Classificação Brasileira de Ocupações. Versão 2002';
+
+ALTER SEQUENCE SQ_CBO_IN_CBO_ID 
+      OWNED BY CBO.IN_CBO_ID;
+---------------------------------------------------------------
 ---------------------------------------------------------------
 ---------------------------------------------------------------
 CREATE OR REPLACE FUNCTION IDU_USUARIOS(IN pMODO           CHAR
@@ -524,29 +550,52 @@ END;
 $BODY$
 LANGUAGE PLPGSQL;
 ---------------------------------------------------------------
+CREATE OR REPLACE FUNCTION IDU_CBO(IN pMODO      CHAR
+                                  ,IN pIN_CBO_ID CBO.IN_CBO_ID%TYPE = NULL
+                                  ,IN pCH_CODIGO CBO.CH_CODIGO%TYPE = NULL
+                                  ,IN pVA_TITULO CBO.VA_TITULO%TYPE = NULL
+                                  ,IN pEN_TIPO   CBO.EN_TIPO%TYPE   = NULL)
+RETURNS BIGINT AS
+$BODY$
+DECLARE
+  vRETURN BIGINT := 0;
+BEGIN
+  CASE pMODO
+    WHEN 'I' THEN ----------------------------------------------------------- [ INSERT ] --
+      INSERT INTO CBO (CH_CODIGO
+                      ,VA_TITULO
+                      ,EN_TIPO)
+               VALUES (pCH_CODIGO
+                      ,pVA_TITULO
+                      ,pEN_TIPO);
+
+      vRETURN := CURRVAL('SQ_CBO_IN_CBO_ID');
+    ---------------------------------------------------------------------------------------
+    WHEN 'D' THEN ----------------------------------------------------------- [ DELETE ] --
+      DELETE FROM CBO
+            WHERE IN_CBO_ID = pIN_CBO_ID;
+
+      GET DIAGNOSTICS vRETURN := ROW_COUNT;
+    ---------------------------------------------------------------------------------------
+    WHEN 'U' THEN ----------------------------------------------------------- [ UPDATE ] --
+      UPDATE CBO
+         SET CH_CODIGO = pCH_CODIGO
+           , VA_TITULO = pVA_TITULO
+           , EN_TIPO   = pEN_TIPO
+       WHERE IN_CBO_ID = pIN_CBO_ID;
+
+    GET DIAGNOSTICS vRETURN := ROW_COUNT;
+    ---------------------------------------------------------------------------------------
+  END CASE;
+
+  RETURN vRETURN;
+END;
+$BODY$
+LANGUAGE PLPGSQL;
+---------------------------------------------------------------
 CREATE OR REPLACE FUNCTION SHA512(VARCHAR) 
 RETURNS CHAR AS
 $BODY$
 	SELECT UPPER(ENCODE(DIGEST($1, 'sha512'), 'hex'))
 $BODY$
 LANGUAGE SQL;
----------------------------------------------------------------
----------------------------------------------------------------
-SELECT IDU_USUARIOS('I'::CHAR,NULL::SMALLINT,'Administrador do sistema'::VARCHAR,'admin'::VARCHAR,SHA512('123')::CHAR,'admin@zettaomnis.com.br'::VARCHAR,TRUE::BOOLEAN);
-SELECT IDU_USUARIOS('I'::CHAR,NULL::SMALLINT,'Funcionário 1'::VARCHAR,'func1'::VARCHAR,SHA512('123')::CHAR,'func1@zettaomnis.com.br'::VARCHAR,FALSE::BOOLEAN);
-SELECT IDU_USUARIOS('I'::CHAR,NULL::SMALLINT,'Funcionário 2'::VARCHAR,'func2'::VARCHAR,SHA512('123')::CHAR,'func2@zettaomnis.com.br'::VARCHAR,FALSE::BOOLEAN);
-SELECT IDU_USUARIOS('I'::CHAR,NULL::SMALLINT,'Funcionário 3'::VARCHAR,'func3'::VARCHAR,SHA512('123')::CHAR,'func3@zettaomnis.com.br'::VARCHAR,FALSE::BOOLEAN);
----------------------------------------------------------------
-SELECT IDU_GRUPOS('I'::CHAR,NULL::SMALLINT,'Administradores'::VARCHAR,'Grupo de administradores do sistema, com permissão irrestrita'::VARCHAR);
-SELECT IDU_GRUPOS('I'::CHAR,NULL::SMALLINT,'Funcionários Nível 1'::VARCHAR,'Grupo de funcionários de nível 1'::VARCHAR);
-SELECT IDU_GRUPOS('I'::CHAR,NULL::SMALLINT,'Funcionários Nível 2'::VARCHAR,'Grupo de funcionários de nível 2'::VARCHAR);
-SELECT IDU_GRUPOS('I'::CHAR,NULL::SMALLINT,'Funcionários Nível 3'::VARCHAR,'Grupo de funcionários de nível 3'::VARCHAR);
----------------------------------------------------------------
-SELECT IDU_ENTIDADESDOSISTEMA('I'::CHAR,NULL::INTEGER,'DAMOPrincipal.ACTNConfiguracoes'::VARCHAR,1::SMALLINT);
-SELECT IDU_ENTIDADESDOSISTEMA('I'::CHAR,NULL::INTEGER,'DAMOPrincipal.ACTNSegurancaEPermissoes'::VARCHAR,1::SMALLINT);
-SELECT IDU_ENTIDADESDOSISTEMA('I'::CHAR,NULL::INTEGER,'USUARIOS'::VARCHAR,0::SMALLINT);
-SELECT IDU_ENTIDADESDOSISTEMA('I'::CHAR,NULL::INTEGER,'GRUPOS'::VARCHAR,0::SMALLINT);
-SELECT IDU_ENTIDADESDOSISTEMA('I'::CHAR,NULL::INTEGER,'PERMISSOESDOSUSUARIOS'::VARCHAR,0::SMALLINT);
-SELECT IDU_ENTIDADESDOSISTEMA('I'::CHAR,NULL::INTEGER,'PERMISSOESDOSGRUPOS'::VARCHAR,0::SMALLINT);
-SELECT IDU_ENTIDADESDOSISTEMA('I'::CHAR,NULL::INTEGER,'ENTIDADESDOSISTEMA'::VARCHAR,0::SMALLINT);
-SELECT IDU_ENTIDADESDOSISTEMA('I'::CHAR,NULL::INTEGER,'GRUPOSDOSUSUARIOS'::VARCHAR,0::SMALLINT);
