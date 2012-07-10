@@ -113,13 +113,47 @@ CREATE TABLE PERMISSOESDOSUSUARIOS (IN_PERMISSOESDOSUSUARIOS_ID INTEGER NOT NULL
                                    ,SM_INSERIR SMALLINT NOT NULL DEFAULT 0
                                    ,SM_ALTERAR SMALLINT NOT NULL DEFAULT 0
                                    ,SM_EXCLUIR SMALLINT NOT NULL DEFAULT 0
-                                   ,CONSTRAINT PK_PDU PRIMARY KEY (IN_PERMISSOESDOSUSUARIOS_ID )
+                                   ,CONSTRAINT PK_PDU PRIMARY KEY (IN_PERMISSOESDOSUSUARIOS_ID)
                                    ,CONSTRAINT FK_PDU_EDS FOREIGN KEY (IN_ENTIDADESDOSISTEMA_ID) REFERENCES ENTIDADESDOSISTEMA (IN_ENTIDADESDOSISTEMA_ID) ON UPDATE CASCADE ON DELETE CASCADE
                                    ,CONSTRAINT FK_PDU_USU FOREIGN KEY (SM_USUARIOS_ID) REFERENCES USUARIOS (SM_USUARIOS_ID) ON UPDATE CASCADE ON DELETE CASCADE
                                    ,CONSTRAINT UC_PDU_IN_ENTIDADESDOSISTEMA_ID_SM_USUARIOS_ID UNIQUE (IN_ENTIDADESDOSISTEMA_ID , SM_USUARIOS_ID ));
 
 ALTER SEQUENCE SQ_PDU_IN_PERMISSOESDOSUSUARIOS_ID 
       OWNED BY PERMISSOESDOSUSUARIOS.IN_PERMISSOESDOSUSUARIOS_ID;
+---------------------------------------------------------------
+CREATE SEQUENCE SQ_PAC_IN_PACIENTES_ID
+      INCREMENT 1
+       MINVALUE 1
+       MAXVALUE 2147483647
+          START 1
+          CACHE 1;
+
+CREATE TYPE ORGAOEMISSOR AS ENUM ('ABNC','CGPI/DUREX/DPF','CGPI','CGPMAF','CNIG','CNT','COREN','CRA','CRAS','CRB','CRC','CRE','CREA','CRECI','CREFIT','CRF','CRM','CRN','CRO','CRP','CRPRE','CRQ','CRRC','CRMV','CSC','CTPS','DIC','DIREX','DPMAF','DPT','DST','FGTS','FIPE','FLS','GOVGO','I CLA','IFP','IGP','IICCECF/RO','IIMG','IML','IPC','IPF','MAE','MEX','MMA','OAB','OMB','PCMG','PMMG','POF','DPF','POM','SDS','SNJ','SECC','SEJUSP','SES','EST','SESP','SJS','SJTC','SJTS','SPTC','SSP','ZZZ');
+CREATE TYPE UF AS ENUM ('AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO');
+CREATE TYPE TIPOLOGRADOURO AS ENUM ('Outros','Aeroporto','Alameda','Área','Avenida','Campo','Chácara','Colônia','Condomínio','Conjunto','Distrito','Esplanada','Estação','Estrada','Favela','Fazenda','Feira','Jardim','Ladeira','Lago','Lagoa','Largo','Loteamento','Morro','Núcleo','Parque','Passarela','Pátio','Praça','Quadra','Recanto','Residencial','Rodovia','Rua','Setor','Sítio','Travessa','Trecho','Trevo','Vale','Vereda','Via','Viaduto','Viela','Vila');
+  
+CREATE TABLE PACIENTES (IN_PACIENTES_ID INTEGER NOT NULL DEFAULT NEXTVAL('SQ_PAC_IN_PACIENTES_ID')
+                       ,VA_NOME VARCHAR(128) NOT NULL
+                       ,DA_DATANASCIMENTO DATE NOT NULL
+                       ,VA_RG VARCHAR(10) NOT NULL
+                       ,EN_ORGAOEMISSORRG ORGAOEMISSOR NOT NULL
+                       ,EN_UFEMISSAORG UF NOT NULL
+                       ,EN_TIPOLOGRADOURO TIPOLOGRADOURO NOT NULL
+                       ,VA_NOMELOGRADOURO VARCHAR(128) NOT NULL
+                       ,VA_IDLOGRADOURO VARCHAR(10) NOT NULL DEFAULT 'S/N'
+                       ,VA_COMPLEMENTOLOGRADOURO VARCHAR(20)
+                       ,VA_BAIRROLOGRADOURO VARCHAR(20) NOT NULL
+                       ,VA_CIDADE VARCHAR(30) NOT NULL
+                       ,VA_UF UF NOT NULL
+                       ,CH_FONERESIDENCIAL CHAR(10)
+                       ,CH_FONECELULAR CHAR(10)
+                       ,TX_OBSERVACOES TEXT
+                       ,CONSTRAINT PK_PAC PRIMARY KEY (IN_PACIENTES_ID)
+                       ,CONSTRAINT UC_PAC_RG_ORGAOEMISSORRG_UFEMISSAORG UNIQUE (VA_RG, EN_ORGAOEMISSORRG, EN_UFEMISSAORG));                       
+
+ALTER SEQUENCE SQ_PAC_IN_PACIENTES_ID 
+      OWNED BY PACIENTES.IN_PACIENTES_ID;
+---------------------------------------------------------------
 ---------------------------------------------------------------
 CREATE OR REPLACE FUNCTION IDU_USUARIOS(IN pMODO           CHAR
                                        ,IN pSM_USUARIOS_ID  USUARIOS.SM_USUARIOS_ID%TYPE  = NULL
@@ -394,6 +428,97 @@ BEGIN
     ---------------------------------------------------------------------------------------
   END CASE;
   
+  RETURN vRETURN;
+END;
+$BODY$
+LANGUAGE PLPGSQL;
+---------------------------------------------------------------
+CREATE OR REPLACE FUNCTION IDU_PACIENTES(IN pMODO                     CHAR
+                                        ,IN pIN_PACIENTES_ID          PACIENTES.IN_PACIENTES_ID%TYPE          = NULL
+                                        ,IN pVA_NOME                  PACIENTES.VA_NOME%TYPE                  = NULL
+                                        ,IN pDA_DATANASCIMENTO        PACIENTES.DA_DATANASCIMENTO%TYPE        = NULL
+                                        ,IN pVA_RG                    PACIENTES.VA_RG%TYPE                    = NULL
+                                        ,IN pEN_ORGAOEMISSORRG        PACIENTES.EN_ORGAOEMISSORRG%TYPE        = NULL
+                                        ,IN pEN_UFEMISSAORG           PACIENTES.EN_UFEMISSAORG%TYPE           = NULL
+                                        ,IN pEN_TIPOLOGRADOURO        PACIENTES.EN_TIPOLOGRADOURO%TYPE        = NULL
+                                        ,IN pVA_NOMELOGRADOURO        PACIENTES.VA_NOMELOGRADOURO%TYPE        = NULL
+                                        ,IN pVA_IDLOGRADOURO          PACIENTES.VA_IDLOGRADOURO%TYPE          = NULL
+                                        ,IN pVA_COMPLEMENTOLOGRADOURO PACIENTES.VA_COMPLEMENTOLOGRADOURO%TYPE = NULL
+                                        ,IN pVA_BAIRROLOGRADOURO      PACIENTES.VA_BAIRROLOGRADOURO%TYPE      = NULL
+                                        ,IN pVA_CIDADE                PACIENTES.VA_CIDADE%TYPE                = NULL
+                                        ,IN pVA_UF                    PACIENTES.VA_UF%TYPE                    = NULL
+                                        ,IN pCH_FONERESIDENCIAL       PACIENTES.CH_FONERESIDENCIAL%TYPE       = NULL
+                                        ,IN pCH_FONECELULAR           PACIENTES.CH_FONECELULAR%TYPE           = NULL
+                                        ,IN pTX_OBSERVACOES           PACIENTES.TX_OBSERVACOES%TYPE           = NULL)
+RETURNS BIGINT AS
+$BODY$
+DECLARE
+  vRETURN BIGINT := 0;
+BEGIN
+  CASE pMODO
+    WHEN 'I' THEN ----------------------------------------------------------- [ INSERT ] --
+      INSERT INTO PACIENTES (VA_NOME
+                            ,DA_DATANASCIMENTO
+                            ,VA_RG
+                            ,EN_ORGAOEMISSORRG
+                            ,EN_UFEMISSAORG
+                            ,EN_TIPOLOGRADOURO
+                            ,VA_NOMELOGRADOURO
+                            ,VA_IDLOGRADOURO
+                            ,VA_COMPLEMENTOLOGRADOURO
+                            ,VA_BAIRROLOGRADOURO
+                            ,VA_CIDADE
+                            ,VA_UF
+                            ,CH_FONERESIDENCIAL
+                            ,CH_FONECELULAR
+                            ,TX_OBSERVACOES)
+                     VALUES (pVA_NOME
+                            ,pDA_DATANASCIMENTO
+                            ,pVA_RG
+                            ,pEN_ORGAOEMISSORRG
+                            ,pEN_UFEMISSAORG
+                            ,pEN_TIPOLOGRADOURO
+                            ,pVA_NOMELOGRADOURO
+                            ,pVA_IDLOGRADOURO
+                            ,pVA_COMPLEMENTOLOGRADOURO
+                            ,pVA_BAIRROLOGRADOURO
+                            ,pVA_CIDADE
+                            ,pVA_UF
+                            ,pCH_FONERESIDENCIAL
+                            ,pCH_FONECELULAR
+                            ,pTX_OBSERVACOES);
+
+      vRETURN := CURRVAL('SQ_PAC_IN_PACIENTES_ID');
+    ---------------------------------------------------------------------------------------
+    WHEN 'D' THEN ----------------------------------------------------------- [ DELETE ] --
+      DELETE FROM PACIENTES
+            WHERE IN_PACIENTES_ID = pIN_PACIENTES_ID;
+
+      GET DIAGNOSTICS vRETURN := ROW_COUNT;
+    ---------------------------------------------------------------------------------------
+    WHEN 'U' THEN ----------------------------------------------------------- [ UPDATE ] --
+      UPDATE PACIENTES
+         SET VA_NOME                  = pVA_NOME
+           , DA_DATANASCIMENTO        = pDA_DATANASCIMENTO
+           , VA_RG                    = pVA_RG
+           , EN_ORGAOEMISSORRG        = pEN_ORGAOEMISSORRG
+           , EN_UFEMISSAORG           = pEN_UFEMISSAORG
+           , EN_TIPOLOGRADOURO        = pEN_TIPOLOGRADOURO
+           , VA_NOMELOGRADOURO        = pVA_NOMELOGRADOURO
+           , VA_IDLOGRADOURO          = pVA_IDLOGRADOURO
+           , VA_COMPLEMENTOLOGRADOURO = pVA_COMPLEMENTOLOGRADOURO
+           , VA_BAIRROLOGRADOURO      = pVA_BAIRROLOGRADOURO
+           , VA_CIDADE                = pVA_CIDADE
+           , VA_UF                    = pVA_UF
+           , CH_FONERESIDENCIAL       = pCH_FONERESIDENCIAL
+           , CH_FONECELULAR           = pCH_FONECELULAR
+           , TX_OBSERVACOES           = pTX_OBSERVACOES
+       WHERE IN_PACIENTES_ID = pIN_PACIENTES_ID;
+
+    GET DIAGNOSTICS vRETURN := ROW_COUNT;
+    ---------------------------------------------------------------------------------------
+  END CASE;
+
   RETURN vRETURN;
 END;
 $BODY$
