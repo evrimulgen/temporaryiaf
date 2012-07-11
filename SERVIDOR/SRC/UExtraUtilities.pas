@@ -18,7 +18,8 @@ function SessionDataFromSessionID(const aSessionID: String): String;
 implementation
 
 uses SysUtils, UServerConfiguration, USessionsManager, UKRDMUsuarios
-   , UKRDMEntidadesDoSistema, UKRDMGrupos, DASQLMonitor;
+   , UKRDMEntidadesDoSistema, UKRDMGrupos, DASQLMonitor, UKRDMCBO,
+  UKRDMPacientes;
 
 procedure HideInterfaces(var aContent: String; aInterfaces: array of string);
 var
@@ -84,6 +85,10 @@ begin
     Result := TKRDMEntidadesDoSistema.Create(aOwner)
   else if aProviderName = 'DSPRGrupos' then
     Result := TKRDMGrupos.Create(aOwner)
+  else if aProviderName = 'DSPRCBO' then
+    Result := TKRDMCBO.Create(aOwner)
+  else if aProviderName = 'DSPRPacientes' then
+    Result := TKRDMPacientes.Create(aOwner)
   else
     raise Exception.Create('Não há nenhum módulo de dados remoto para o provedor "' + aProviderName + '"');
 end;

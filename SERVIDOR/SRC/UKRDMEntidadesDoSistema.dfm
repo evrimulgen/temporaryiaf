@@ -1,5 +1,4 @@
 inherited KRDMEntidadesDoSistema: TKRDMEntidadesDoSistema
-  OldCreateOrder = True
   Height = 165
   Width = 141
   object KRVCEntidadesDoSistema: TKRKValidationChecks

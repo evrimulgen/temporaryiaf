@@ -1,5 +1,4 @@
 inherited KRDMGrupos: TKRDMGrupos
-  OldCreateOrder = True
   Height = 213
   Width = 224
   object KRVCGrupos: TKRKValidationChecks

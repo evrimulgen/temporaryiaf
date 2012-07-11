@@ -24,7 +24,9 @@ uses
   UExtraMethodsImpl in '..\SRC\UExtraMethodsImpl.pas',
   UExtraMethodsIntf in '..\SRC\UExtraMethodsIntf.pas',
   UExtraUtilities in '..\SRC\UExtraUtilities.pas',
-  UKRDMGrupos in '..\SRC\UKRDMGrupos.pas' {KRDMGrupos: TKRKDataModule};
+  UKRDMGrupos in '..\SRC\UKRDMGrupos.pas' {KRDMGrupos: TKRKDataModule},
+  UKRDMCBO in '..\SRC\UKRDMCBO.pas' {KRDMCBO: TKRKDataModule},
+  UKRDMPacientes in '..\SRC\UKRDMPacientes.pas' {KRDMPacientes: TKRKDataModule};
 
 {$R *.res}
 

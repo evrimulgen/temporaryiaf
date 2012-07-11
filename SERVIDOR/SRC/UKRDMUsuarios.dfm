@@ -1,5 +1,4 @@
 inherited KRDMUsuarios: TKRDMUsuarios
-  OldCreateOrder = True
   Height = 206
   Width = 358
   object DTSRUsuarios: TDataSource

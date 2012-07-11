@@ -222,9 +222,9 @@
    <soapenv:Header/>
    <soapenv:Body>
       <urn:SAS_GetRecords soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
-         <ProviderName xsi:type="xsd:string">DSPRUsuarios</ProviderName>
+         <ProviderName xsi:type="xsd:string">DSPRCBO</ProviderName>
          <Count xsi:type="xsd:int">-1</Count>
-         <Options xsi:type="xsd:int">0</Options>
+         <Options xsi:type="xsd:int">4</Options>
          <CommandText xsi:type="xsd:null"/>
          <Params xsi:type="xsd:null"/>
          <OwnerData xsi:type="xsd:null"/>

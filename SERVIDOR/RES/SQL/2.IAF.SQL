@@ -146,7 +146,7 @@ CREATE TABLE PACIENTES (IN_PACIENTES_ID INTEGER NOT NULL DEFAULT NEXTVAL('SQ_PAC
                        ,VA_COMPLEMENTOLOGRADOURO VARCHAR(20)
                        ,VA_BAIRROLOGRADOURO VARCHAR(20) NOT NULL
                        ,VA_CIDADE VARCHAR(30) NOT NULL
-                       ,VA_UF UF NOT NULL
+                       ,EN_UF UF NOT NULL
                        ,CH_FONERESIDENCIAL CHAR(10)
                        ,CH_FONECELULAR CHAR(10)
                        ,TX_OBSERVACOES TEXT
@@ -472,7 +472,7 @@ CREATE OR REPLACE FUNCTION IDU_PACIENTES(IN pMODO                     CHAR
                                         ,IN pVA_COMPLEMENTOLOGRADOURO PACIENTES.VA_COMPLEMENTOLOGRADOURO%TYPE = NULL
                                         ,IN pVA_BAIRROLOGRADOURO      PACIENTES.VA_BAIRROLOGRADOURO%TYPE      = NULL
                                         ,IN pVA_CIDADE                PACIENTES.VA_CIDADE%TYPE                = NULL
-                                        ,IN pVA_UF                    PACIENTES.VA_UF%TYPE                    = NULL
+                                        ,IN pEN_UF                    PACIENTES.EN_UF%TYPE                    = NULL
                                         ,IN pCH_FONERESIDENCIAL       PACIENTES.CH_FONERESIDENCIAL%TYPE       = NULL
                                         ,IN pCH_FONECELULAR           PACIENTES.CH_FONECELULAR%TYPE           = NULL
                                         ,IN pTX_OBSERVACOES           PACIENTES.TX_OBSERVACOES%TYPE           = NULL)
@@ -494,7 +494,7 @@ BEGIN
                             ,VA_COMPLEMENTOLOGRADOURO
                             ,VA_BAIRROLOGRADOURO
                             ,VA_CIDADE
-                            ,VA_UF
+                            ,EN_UF
                             ,CH_FONERESIDENCIAL
                             ,CH_FONECELULAR
                             ,TX_OBSERVACOES)
@@ -509,7 +509,7 @@ BEGIN
                             ,pVA_COMPLEMENTOLOGRADOURO
                             ,pVA_BAIRROLOGRADOURO
                             ,pVA_CIDADE
-                            ,pVA_UF
+                            ,pEN_UF
                             ,pCH_FONERESIDENCIAL
                             ,pCH_FONECELULAR
                             ,pTX_OBSERVACOES);
@@ -535,7 +535,7 @@ BEGIN
            , VA_COMPLEMENTOLOGRADOURO = pVA_COMPLEMENTOLOGRADOURO
            , VA_BAIRROLOGRADOURO      = pVA_BAIRROLOGRADOURO
            , VA_CIDADE                = pVA_CIDADE
-           , VA_UF                    = pVA_UF
+           , EN_UF                    = pEN_UF
            , CH_FONERESIDENCIAL       = pCH_FONERESIDENCIAL
            , CH_FONECELULAR           = pCH_FONECELULAR
            , TX_OBSERVACOES           = pTX_OBSERVACOES

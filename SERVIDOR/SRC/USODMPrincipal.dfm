@@ -1,7 +1,7 @@
 object SODMPrincipal: TSODMPrincipal
   OldCreateOrder = False
   OnCreate = SoapDataModuleCreate
-  Height = 243
+  Height = 331
   Width = 321
   object DSPRUsuarios: TDataSetProvider
     DataSet = KRDMUsuarios.UNQYUsuarios
@@ -40,6 +40,7 @@ object SODMPrincipal: TSODMPrincipal
     Username = 'postgres'
     Password = 'sarcopenia'
     Server = '127.0.0.1'
+    Connected = True
     LoginPrompt = False
     BeforeConnect = UNCNBeforeConnect
     Left = 6
@@ -55,5 +56,21 @@ object SODMPrincipal: TSODMPrincipal
     DefaultConnection = UNCN
     Left = 42
     Top = 6
+  end
+  object DSPRCBO: TDataSetProvider
+    DataSet = KRDMCBO.UNQYCBO
+    Constraints = False
+    Options = [poFetchBlobsOnDemand, poFetchDetailsOnDemand, poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poPropogateChanges]
+    UpdateMode = upWhereKeyOnly
+    Left = 54
+    Top = 210
+  end
+  object DSPRPacientes: TDataSetProvider
+    DataSet = KRDMPacientes.UNQYPacientes
+    Constraints = False
+    Options = [poFetchBlobsOnDemand, poFetchDetailsOnDemand, poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poPropogateChanges]
+    UpdateMode = upWhereKeyOnly
+    Left = 54
+    Top = 258
   end
 end
