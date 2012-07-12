@@ -33,10 +33,6 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
       OnExecute = ACTNRemoverGruposDoUsuarioExecute
     end
   end
-  inherited KRBH: TKRKBalloonHint
-    TipAlignment = taBottomLeft
-    Options = [kbhoActivateOnShow, kbhoSetFocusToAssociatedWinContronOnDeactivate, kbhoHideOnDeactivate, kbhoHideWithEnter, kbhoHideWithEsc, kbhoSelectAllOnFocus]
-  end
   inherited KPIM: TKRKPngImageList
     PngImages = <
       item

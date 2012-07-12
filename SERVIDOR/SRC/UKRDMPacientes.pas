@@ -27,6 +27,7 @@ type
     UNQYPacientesch_fonecelular: TWideStringField;
     UNQYPacientestx_observacoes: TWideMemoField;
     KRVCPacientes: TKRKValidationChecks;
+    UNQYPacientesen_genero: TWideMemoField;
   private
     { Private declarations }
   public

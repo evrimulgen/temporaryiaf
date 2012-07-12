@@ -1,5 +1,6 @@
 inherited KRDMRelatorio: TKRDMRelatorio
   OldCreateOrder = True
+  Properties.OpenAllDataSets = True
   MyFormClass = 'TKRFMRelatorio'
   inherited ACLI: TActionList
     object ACTN_1: TAction
@@ -92,6 +93,62 @@ inherited KRDMRelatorio: TKRDMRelatorio
     object ACTN6: TAction
       Category = 'Submenu de relat'#243'rio 2'
       Caption = 'ACTN6'
+    end
+  end
+  object DTSR: TDataSource
+    DataSet = CLDSCBO
+    Left = 132
+    Top = 66
+  end
+  object CLDSCBO: TClientDataSet
+    Aggregates = <>
+    ConnectionBroker = DAMOPrincipal.CNBRPrincipal
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'IN_CBO_ID'
+        ParamType = ptInput
+        Value = '-1'
+      end
+      item
+        DataType = ftString
+        Name = 'CH_CODIGO'
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        DataType = ftString
+        Name = 'VA_TITULO'
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        DataType = ftString
+        Name = 'EN_TIPO'
+        ParamType = ptInput
+        Value = Null
+      end>
+    ProviderName = 'DSPRCBO'
+    Left = 78
+    Top = 66
+    object CLDSCBOin_cbo_id: TIntegerField
+      FieldName = 'in_cbo_id'
+    end
+    object CLDSCBOch_codigo: TWideStringField
+      FieldName = 'ch_codigo'
+      Required = True
+      FixedChar = True
+      Size = 7
+    end
+    object CLDSCBOva_titulo: TWideStringField
+      FieldName = 'va_titulo'
+      Required = True
+      Size = 128
+    end
+    object CLDSCBOen_tipo: TWideMemoField
+      FieldName = 'en_tipo'
+      Required = True
+      BlobType = ftWideMemo
     end
   end
 end

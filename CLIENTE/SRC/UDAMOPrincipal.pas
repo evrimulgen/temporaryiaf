@@ -5,7 +5,7 @@ interface
 uses SysUtils, Classes, PlatformDefaultStyleActnCtrls, ActnList, ActnMan, DB
    , DBClient, SOAPConn, ImgList, Controls, UCommonTypes, UFORMPrincipal
    , UKRDMSegurancaEPermissoes, SOAPHTTPTrans, UFORMSplash, UKRDMConfiguracoes
-   , UKRDMRelatorio;
+   , UKRDMRelatorio, UKRDMGerenciarPacientes;
 
 type
   TDAMOPrincipal = class(TDataModule)
@@ -26,6 +26,9 @@ type
     ACTNRelatorio2: TAction;
     ACTNRelatorio3: TAction;
     ACTNRelatorio4: TAction;
+    ACTNIniciarAtendimentoPaciente: TAction;
+    ACTNFinalizarAtendimentoPaciente: TAction;
+    ACTNGerenciarPacientes: TAction;
     procedure ACTNSegurancaEPermissoesExecute(Sender: TObject);
     procedure ACTNAjudaExecute(Sender: TObject);
     procedure ACTNSobreExecute(Sender: TObject);
@@ -36,6 +39,7 @@ type
     procedure ACTNAtualizarPrivilegiosExecute(Sender: TObject);
     procedure ACTNConfiguracoesGlobaisExecute(Sender: TObject);
     procedure ACTNRelatorio4Execute(Sender: TObject);
+    procedure ACTNGerenciarPacientesExecute(Sender: TObject);
   private
     { Private declarations }
     FFORMPrincipal: TFORMPrincipal;
@@ -43,6 +47,7 @@ type
     FKRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes;
     FKRDMConfiguracoes: TKRDMConfiguracoes;
     FKRDMRelatorio: TKRDMRelatorio;
+    FKRDMGerenciarPacientes: TKRDMGerenciarPacientes;
     procedure DoReceivingData(Read, Total: Integer);
     procedure DoBeforePost(const HTTPReqResp: THTTPReqResp; Data: Pointer);
     procedure DoPostingData(Sent, Total: Integer);
@@ -90,6 +95,14 @@ begin
     TKRDMConfiguracoes.CreateMe(Self,FKRDMConfiguracoes,TKRDMConfiguracoes);
     FKRDMConfiguracoes.MyForm.ShowModal;
   end;
+end;
+
+procedure TDAMOPrincipal.ACTNGerenciarPacientesExecute(Sender: TObject);
+begin
+  if not Assigned(FKRDMGerenciarPacientes) then
+    TKRDMGerenciarPacientes.CreateMe(Self,FKRDMGerenciarPacientes,TKRDMGerenciarPacientes)
+  else
+    FKRDMGerenciarPacientes.MyForm.BringToFront;
 end;
 
 procedure TDAMOPrincipal.ACTNRelatorio4Execute(Sender: TObject);

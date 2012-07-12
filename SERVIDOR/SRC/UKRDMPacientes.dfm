@@ -6,6 +6,7 @@ inherited KRDMPacientes: TKRDMPacientes
       'SELECT IDU_PACIENTES('#39'I'#39
       '                    ,NULL'
       '                    ,:VA_NOME'
+      '                    ,CAST(:EN_GENERO AS GENERO)'
       '                    ,:DA_DATANASCIMENTO'
       '                    ,:VA_RG'
       '                    ,CAST(:EN_ORGAOEMISSORRG AS ORGAOEMISSOR)'
@@ -27,6 +28,7 @@ inherited KRDMPacientes: TKRDMPacientes
       'SELECT IDU_PACIENTES('#39'U'#39
       '                    ,:IN_PACIENTES_ID'
       '                    ,:VA_NOME'
+      '                    ,CAST(:EN_GENERO AS GENERO)'
       '                    ,:DA_DATANASCIMENTO'
       '                    ,:VA_RG'
       '                    ,CAST(:EN_ORGAOEMISSORRG AS ORGAOEMISSOR)'
@@ -51,6 +53,9 @@ inherited KRDMPacientes: TKRDMPacientes
       
         '   AND ((:VA_NOME IS NULL) OR UPPER(PAC.VA_NOME) LIKE UPPER(:VA_' +
         'NOME))'
+      
+        '   AND ((:EN_GENERO IS NULL) OR CAST(PAC.EN_GENERO AS VARCHAR) =' +
+        ' :EN_GENERO)'
       
         '   AND ((:DA_DATANASCIMENTO IS NULL) OR PAC.DA_DATANASCIMENTO = ' +
         ':DA_DATANASCIMENTO)'
@@ -103,75 +108,96 @@ inherited KRDMPacientes: TKRDMPacientes
       item
         DataType = ftString
         Name = 'VA_NOME'
+        ParamType = ptInput
         Size = 128
+      end
+      item
+        DataType = ftString
+        Name = 'EN_GENERO'
+        ParamType = ptInput
+        Size = 9
       end
       item
         DataType = ftDateTime
         Name = 'DA_DATANASCIMENTO'
+        ParamType = ptInput
       end
       item
         DataType = ftString
         Name = 'VA_RG'
+        ParamType = ptInput
         Size = 10
       end
       item
         DataType = ftString
         Name = 'EN_ORGAOEMISSORRG'
+        ParamType = ptInput
         Size = 15
       end
       item
         DataType = ftString
         Name = 'EN_UFEMISSAORG'
+        ParamType = ptInput
         Size = 2
       end
       item
         DataType = ftString
         Name = 'EN_TIPOLOGRADOURO'
+        ParamType = ptInput
         Size = 15
       end
       item
         DataType = ftString
         Name = 'VA_NOMELOGRADOURO'
+        ParamType = ptInput
         Size = 128
       end
       item
         DataType = ftString
         Name = 'VA_IDLOGRADOURO'
+        ParamType = ptInput
         Size = 10
       end
       item
         DataType = ftString
         Name = 'VA_COMPLEMENTOLOGRADOURO'
+        ParamType = ptInput
         Size = 20
       end
       item
         DataType = ftString
         Name = 'VA_BAIRROLOGRADOURO'
+        ParamType = ptInput
         Size = 20
       end
       item
         DataType = ftString
         Name = 'VA_CIDADE'
+        ParamType = ptInput
         Size = 30
       end
       item
         DataType = ftString
         Name = 'EN_UF'
+        ParamType = ptInput
         Size = 2
       end
       item
         DataType = ftString
         Name = 'CH_FONERESIDENCIAL'
+        ParamType = ptInput
         Size = 10
       end
       item
         DataType = ftString
         Name = 'CH_FONECELULAR'
+        ParamType = ptInput
         Size = 10
       end
       item
         DataType = ftMemo
         Name = 'TX_OBSERVACOES'
+        ParamType = ptInput
         Value = ''
       end>
     object UNQYPacientesin_pacientes_id: TIntegerField
@@ -184,6 +210,14 @@ inherited KRDMPacientes: TKRDMPacientes
       ProviderFlags = [pfInUpdate]
       Required = True
       Size = 128
+    end
+    object UNQYPacientesen_genero: TWideMemoField
+      DisplayLabel = 'G'#234'nero'
+      DisplayWidth = 9
+      FieldName = 'en_genero'
+      Required = True
+      BlobType = ftWideMemo
+      Size = 9
     end
     object UNQYPacientesda_datanascimento: TDateField
       DisplayLabel = 'Data de nascimento'
@@ -200,24 +234,30 @@ inherited KRDMPacientes: TKRDMPacientes
     end
     object UNQYPacientesen_orgaoemissorrg: TWideMemoField
       DisplayLabel = #211'rg'#227'o emissor do RG'
+      DisplayWidth = 14
       FieldName = 'en_orgaoemissorrg'
       ProviderFlags = [pfInUpdate]
       Required = True
       BlobType = ftWideMemo
+      Size = 14
     end
     object UNQYPacientesen_ufemissaorg: TWideMemoField
       DisplayLabel = 'UF de emiss'#227'o do RG'
+      DisplayWidth = 2
       FieldName = 'en_ufemissaorg'
       ProviderFlags = [pfInUpdate]
       Required = True
       BlobType = ftWideMemo
+      Size = 2
     end
     object UNQYPacientesen_tipologradouro: TWideMemoField
       DisplayLabel = 'Tipo de logradouro'
+      DisplayWidth = 15
       FieldName = 'en_tipologradouro'
       ProviderFlags = [pfInUpdate]
       Required = True
       BlobType = ftWideMemo
+      Size = 15
     end
     object UNQYPacientesva_nomelogradouro: TWideStringField
       DisplayLabel = 'Logradouro'
@@ -253,10 +293,12 @@ inherited KRDMPacientes: TKRDMPacientes
     end
     object UNQYPacientesen_uf: TWideMemoField
       DisplayLabel = 'UF'
+      DisplayWidth = 2
       FieldName = 'en_uf'
       ProviderFlags = [pfInUpdate]
       Required = True
       BlobType = ftWideMemo
+      Size = 2
     end
     object UNQYPacientesch_foneresidencial: TWideStringField
       DisplayLabel = 'Telefone residencial'
@@ -292,6 +334,17 @@ inherited KRDMPacientes: TKRDMPacientes
         FieldDescription = 'Nome'
         CheckBlank.Active = True
         CheckBlank.FocusOnValidateFailure = True
+      end
+      item
+        FieldName = 'en_genero'
+        FieldDescription = 'G'#234'nero'
+        CheckBlank.Active = True
+        CheckBlank.FocusOnValidateFailure = True
+        CheckTextSet.FocusOnValidateFailure = True
+        CheckTextSet.CustomValidationMessage = 'O g'#234'nero escolhido n'#227'o existe'
+        CheckTextSet.Strings.Strings = (
+          'Masculino'
+          'Feminino')
       end
       item
         FieldName = 'da_datanascimento'
@@ -426,6 +479,52 @@ inherited KRDMPacientes: TKRDMPacientes
         CheckTextSet.Active = True
         CheckTextSet.FocusOnValidateFailure = True
         CheckTextSet.CustomValidationMessage = 'O tipo de logradouro escolhido n'#227'o existe'
+        CheckTextSet.Strings.Strings = (
+          'Outros'
+          'Aeroporto'
+          'Alameda'
+          #193'rea'
+          'Avenida'
+          'Campo'
+          'Ch'#225'cara'
+          'Col'#244'nia'
+          'Condom'#237'nio'
+          'Conjunto'
+          'Distrito'
+          'Esplanada'
+          'Esta'#231#227'o'
+          'Estrada'
+          'Favela'
+          'Fazenda'
+          'Feira'
+          'Jardim'
+          'Ladeira'
+          'Lago'
+          'Lagoa'
+          'Largo'
+          'Loteamento'
+          'Morro'
+          'N'#250'cleo'
+          'Parque'
+          'Passarela'
+          'P'#225'tio'
+          'Pra'#231'a'
+          'Quadra'
+          'Recanto'
+          'Residencial'
+          'Rodovia'
+          'Rua'
+          'Setor'
+          'S'#237'tio'
+          'Travessa'
+          'Trecho'
+          'Trevo'
+          'Vale'
+          'Vereda'
+          'Via'
+          'Viaduto'
+          'Viela'
+          'Vila')
       end
       item
         FieldName = 'va_nomelogradouro'

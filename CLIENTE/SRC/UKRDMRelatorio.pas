@@ -4,7 +4,8 @@ interface
 
 uses Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms
    , Dialogs, KRK.Components.AdditionalControls.BalloonHint, ImgList, ActnList
-   , PlatformDefaultStyleActnCtrls, ActnMan, UKRDMBasico;
+   , PlatformDefaultStyleActnCtrls, ActnMan, DB, DBClient, UKRDMBasico,
+  KRK.Components.AdditionalControls.PngImageList;
 
 type
   TKRDMRelatorio = class(TKRDMBasico)
@@ -21,6 +22,12 @@ type
     ACTN_4: TAction;
     ACTN_5: TAction;
     ACTN_6: TAction;
+    DTSR: TDataSource;
+    CLDSCBO: TClientDataSet;
+    CLDSCBOin_cbo_id: TIntegerField;
+    CLDSCBOch_codigo: TWideStringField;
+    CLDSCBOva_titulo: TWideStringField;
+    CLDSCBOen_tipo: TWideMemoField;
     procedure ACTN1Execute(Sender: TObject);
     procedure ACTN_1Execute(Sender: TObject);
     procedure ACTN_2Execute(Sender: TObject);
@@ -35,6 +42,8 @@ type
   end;
 
 implementation
+
+uses UDAMOPrincipal;
 
 {$R *.dfm}
 

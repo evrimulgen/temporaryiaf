@@ -133,9 +133,11 @@ CREATE SEQUENCE SQ_PAC_IN_PACIENTES_ID
 CREATE TYPE ORGAOEMISSOR AS ENUM ('ABNC','CGPI/DUREX/DPF','CGPI','CGPMAF','CNIG','CNT','COREN','CRA','CRAS','CRB','CRC','CRE','CREA','CRECI','CREFIT','CRF','CRM','CRN','CRO','CRP','CRPRE','CRQ','CRRC','CRMV','CSC','CTPS','DIC','DIREX','DPMAF','DPT','DST','FGTS','FIPE','FLS','GOVGO','I CLA','IFP','IGP','IICCECF/RO','IIMG','IML','IPC','IPF','MAE','MEX','MMA','OAB','OMB','PCMG','PMMG','POF','DPF','POM','SDS','SNJ','SECC','SEJUSP','SES','EST','SESP','SJS','SJTC','SJTS','SPTC','SSP','ZZZ');
 CREATE TYPE UF AS ENUM ('AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO');
 CREATE TYPE TIPOLOGRADOURO AS ENUM ('Outros','Aeroporto','Alameda','Área','Avenida','Campo','Chácara','Colônia','Condomínio','Conjunto','Distrito','Esplanada','Estação','Estrada','Favela','Fazenda','Feira','Jardim','Ladeira','Lago','Lagoa','Largo','Loteamento','Morro','Núcleo','Parque','Passarela','Pátio','Praça','Quadra','Recanto','Residencial','Rodovia','Rua','Setor','Sítio','Travessa','Trecho','Trevo','Vale','Vereda','Via','Viaduto','Viela','Vila');
+CREATE TYPE GENERO AS ENUM ('Masculino','Feminino');
   
 CREATE TABLE PACIENTES (IN_PACIENTES_ID INTEGER NOT NULL DEFAULT NEXTVAL('SQ_PAC_IN_PACIENTES_ID')
                        ,VA_NOME VARCHAR(128) NOT NULL
+                       ,EN_GENERO GENERO NOT NULL
                        ,DA_DATANASCIMENTO DATE NOT NULL
                        ,VA_RG VARCHAR(10) NOT NULL
                        ,EN_ORGAOEMISSORRG ORGAOEMISSOR NOT NULL
@@ -462,6 +464,7 @@ LANGUAGE PLPGSQL;
 CREATE OR REPLACE FUNCTION IDU_PACIENTES(IN pMODO                     CHAR
                                         ,IN pIN_PACIENTES_ID          PACIENTES.IN_PACIENTES_ID%TYPE          = NULL
                                         ,IN pVA_NOME                  PACIENTES.VA_NOME%TYPE                  = NULL
+                                        ,IN pEN_GENERO                PACIENTES.EN_GENERO%TYPE                = NULL
                                         ,IN pDA_DATANASCIMENTO        PACIENTES.DA_DATANASCIMENTO%TYPE        = NULL
                                         ,IN pVA_RG                    PACIENTES.VA_RG%TYPE                    = NULL
                                         ,IN pEN_ORGAOEMISSORRG        PACIENTES.EN_ORGAOEMISSORRG%TYPE        = NULL
@@ -484,6 +487,7 @@ BEGIN
   CASE pMODO
     WHEN 'I' THEN ----------------------------------------------------------- [ INSERT ] --
       INSERT INTO PACIENTES (VA_NOME
+                            ,EN_GENERO
                             ,DA_DATANASCIMENTO
                             ,VA_RG
                             ,EN_ORGAOEMISSORRG
@@ -499,6 +503,7 @@ BEGIN
                             ,CH_FONECELULAR
                             ,TX_OBSERVACOES)
                      VALUES (pVA_NOME
+                            ,pEN_GENERO
                             ,pDA_DATANASCIMENTO
                             ,pVA_RG
                             ,pEN_ORGAOEMISSORRG
@@ -525,6 +530,7 @@ BEGIN
     WHEN 'U' THEN ----------------------------------------------------------- [ UPDATE ] --
       UPDATE PACIENTES
          SET VA_NOME                  = pVA_NOME
+           , EN_GENERO                = pEN_GENERO
            , DA_DATANASCIMENTO        = pDA_DATANASCIMENTO
            , VA_RG                    = pVA_RG
            , EN_ORGAOEMISSORRG        = pEN_ORGAOEMISSORRG

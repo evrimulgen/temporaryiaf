@@ -71,12 +71,12 @@ object FORMPrincipal: TFORMPrincipal
     Height = 19
     Panels = <
       item
-        Width = 153
+        Width = 100
       end
       item
         Alignment = taCenter
         Text = 'usuario'
-        Width = 255
+        Width = 300
       end
       item
         Width = 50
@@ -85,9 +85,29 @@ object FORMPrincipal: TFORMPrincipal
   object PRBAAndamento: TProgressBar
     Left = 1
     Top = 545
-    Width = 150
+    Width = 97
     Height = 16
     Anchors = [akLeft, akBottom]
     TabOrder = 3
+  end
+  object PANLPaciente: TPanel
+    Left = 474
+    Top = 26
+    Width = 310
+    Height = 40
+    Anchors = [akTop, akRight]
+    BevelEdges = [beLeft]
+    BevelKind = bkFlat
+    BevelOuter = bvNone
+    Caption = 'Paciente: Rodrigo C'#233'sar Pimentel Raulino de Souza'
+    Color = clInfoBk
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 4
   end
 end

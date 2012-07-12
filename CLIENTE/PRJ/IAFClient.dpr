@@ -26,7 +26,9 @@ uses
   UKRFMRelatorio in '..\SRC\UKRFMRelatorio.pas' {KRFMRelatorio: TKRKForm},
   UKRFMDialogBasico in '..\SRC\UKRFMDialogBasico.pas' {KRFMDialogBasico: TKRKForm},
   UKRFMDialogSelecao in '..\SRC\UKRFMDialogSelecao.pas' {KRFMDialogSelecao: TKRKForm},
-  UKRFMSelecionarGrupo in '..\SRC\UKRFMSelecionarGrupo.pas' {KRFMSelecionarGrupo: TKRKForm};
+  UKRFMSelecionarGrupo in '..\SRC\UKRFMSelecionarGrupo.pas' {KRFMSelecionarGrupo: TKRKForm},
+  UKRDMGerenciarPacientes in '..\SRC\UKRDMGerenciarPacientes.pas' {KRDMGerenciarPacientes: TKRKDataModule},
+  UKRFMGerenciarPacientes in '..\SRC\UKRFMGerenciarPacientes.pas' {KRFMGerenciarPacientes: TKRKForm};
 
 {$R *.res}
 

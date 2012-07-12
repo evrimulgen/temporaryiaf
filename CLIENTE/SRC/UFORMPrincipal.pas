@@ -4,7 +4,7 @@ interface
 
 uses Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms
    , Dialogs, ToolWin, ActnMan, ActnCtrls, ActnMenus, Menus, ComCtrls, ActnList
-   , StdCtrls, KRK.Lib.Rtl.Common.Classes.Interposer;
+   , StdCtrls, KRK.Lib.Rtl.Common.Classes.Interposer, ExtCtrls;
 
 type
   TFORMPrincipal = class(TForm)
@@ -12,6 +12,7 @@ type
     ACTBPrincipal: TActionToolBar;
     STTBPrincipal: TStatusBar;
     PRBAAndamento: TProgressBar;
+    PANLPaciente: TPanel;
     procedure ACMMPrincipalPaint(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private

@@ -31,8 +31,6 @@ function TClientDataSet.DoGetRecords(Count: Integer; out RecsOut: Integer; Optio
 begin
   Result := inherited;
 
-  SaveTextFile(OleVariantByteArrayToString(Result),'c:\_testes\reset.txt');
-
   if Configuracoes.UsarCompressao then
     OleVariantByteArrayUCLDecompress(Result);
 end;

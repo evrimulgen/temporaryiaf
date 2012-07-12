@@ -1,107 +1,639 @@
-inherited KRFMRelatorio: TKRFMRelatorio
-  Caption = 'KRFMRelatorio'
-  ClientHeight = 270
-  ClientWidth = 533
-  ExplicitWidth = 549
-  ExplicitHeight = 308
+inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
+  Caption = 'Gerenciar Pacientes'
+  ClientHeight = 476
+  ClientWidth = 625
+  ExplicitWidth = 641
+  ExplicitHeight = 514
   PixelsPerInch = 96
   TextHeight = 13
-  object ACMB: TActionMainMenuBar [0]
+  object PGCTPacientes: TPageControl [0]
     Left = 0
     Top = 40
-    Width = 533
-    Height = 25
-    UseSystemFont = False
-    ActionManager = KRDMRelatorio.ACMA
-    Caption = 'ACMB'
-    Color = clMenuBar
-    ColorMap.HighlightColor = clWhite
-    ColorMap.UnusedColor = clWhite
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
-    Font.Height = -12
-    Font.Name = 'Segoe UI'
-    Font.Style = []
-    Spacing = 0
-  end
-  object BUTN1: TButton [1]
-    Left = 8
-    Top = 71
-    Width = 75
-    Height = 25
-    Action = KRDMRelatorio.ACTN_1
+    Width = 625
+    Height = 436
+    ActivePage = TBSHGerenciar
+    Align = alClient
     TabOrder = 2
-  end
-  object BUTN2: TButton [2]
-    Left = 8
-    Top = 102
-    Width = 75
-    Height = 25
-    Action = KRDMRelatorio.ACTN_2
-    TabOrder = 3
-  end
-  object BUTN3: TButton [3]
-    Left = 8
-    Top = 133
-    Width = 75
-    Height = 25
-    Action = KRDMRelatorio.ACTN_3
-    TabOrder = 4
-  end
-  object BUTN4: TButton [4]
-    Left = 8
-    Top = 164
-    Width = 75
-    Height = 25
-    Action = KRDMRelatorio.ACTN_4
-    TabOrder = 5
-  end
-  object BUTN5: TButton [5]
-    Left = 8
-    Top = 195
-    Width = 75
-    Height = 25
-    Action = KRDMRelatorio.ACTN_5
-    TabOrder = 6
-  end
-  object BUTN6: TButton [6]
-    Left = 8
-    Top = 226
-    Width = 75
-    Height = 25
-    Action = KRDMRelatorio.ACTN_6
-    TabOrder = 7
-  end
-  object BUTN7: TButton [7]
-    Left = 89
-    Top = 71
-    Width = 75
-    Height = 25
-    Caption = 'BUTN7'
-    TabOrder = 8
-    OnClick = BUTN7Click
-  end
-  object DBGrid: TDBGrid [8]
-    Left = 89
-    Top = 102
-    Width = 436
-    Height = 149
-    Anchors = [akLeft, akTop, akRight, akBottom]
-    DataSource = KRDMRelatorio.DTSR
-    TabOrder = 10
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
+    object TBSHConsultar: TTabSheet
+      AlignWithMargins = True
+      Caption = 'Consultar'
+      object KRDGPacientes: TKRKDBGrid
+        AlignWithMargins = True
+        Left = 0
+        Top = 197
+        Width = 611
+        Height = 205
+        Margins.Left = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alBottom
+        DataSource = KRDMGerenciarPacientes.DTSRPacientes
+        Options = [dgTitles, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+        OptionsEx = [dgAutomaticColumSizes]
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+        RowColors = <
+          item
+            BackgroundColor = clBtnFace
+            ForegroundColor = clNone
+          end>
+        VariableWidthColumns = '<va_nome>'
+        Columns = <
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'in_pacientes_id'
+            Title.Alignment = taCenter
+            Title.Caption = 'C'#243'digo'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'va_nome'
+            Width = 246
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'da_datanascimento'
+            Title.Alignment = taCenter
+            Title.Caption = 'Nascimento'
+            Width = 75
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'ch_foneresidencial'
+            Title.Alignment = taCenter
+            Width = 100
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'ch_fonecelular'
+            Title.Alignment = taCenter
+            Width = 100
+            Visible = True
+          end>
+      end
+      object DBNAConsultarPacientes: TDBNavigator
+        AlignWithMargins = True
+        Left = 0
+        Top = 166
+        Width = 611
+        Height = 25
+        Margins.Left = 0
+        Margins.Right = 0
+        DataSource = KRDMGerenciarPacientes.DTSRPacientes
+        VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbRefresh]
+        Align = alBottom
+        TabOrder = 1
+      end
+      object PANLConsultarPacientes: TPanel
+        AlignWithMargins = True
+        Left = 0
+        Top = 0
+        Width = 611
+        Height = 160
+        Margins.Left = 0
+        Margins.Top = 0
+        Margins.Right = 0
+        Align = alClient
+        BevelOuter = bvNone
+        TabOrder = 2
+      end
+    end
+    object TBSHGerenciar: TTabSheet
+      AlignWithMargins = True
+      Caption = 'Gerenciar'
+      ImageIndex = 1
+      DesignSize = (
+        611
+        402)
+      object DBNAGerenciarPacientes: TDBNavigator
+        Left = 0
+        Top = 377
+        Width = 611
+        Height = 25
+        DataSource = KRDMGerenciarPacientes.DTSRPacientes
+        VisibleButtons = [nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh]
+        Align = alBottom
+        TabOrder = 5
+      end
+      object GRBXContato: TGroupBox
+        Left = 289
+        Top = 55
+        Width = 228
+        Height = 55
+        Caption = ' Contato '
+        TabOrder = 2
+        object KLDEFoneCelular: TKRKLabeledDBEdit
+          Left = 117
+          Top = 27
+          Width = 105
+          Height = 21
+          DataField = 'ch_fonecelular'
+          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          EditFormat.FinalMask = '(##) ####-####'
+          EditFormat.Format = foCustom
+          EditFormat.FormatScript.Strings = (
+            '\D'#170
+            '^(\d\d)(\d)'#170'($1) $2'
+            '(\d{4})(\d)'#186'$1-$2')
+          EditLabel.Width = 58
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Fone celular'
+          LabelSpacing = 1
+          MaxLength = 14
+          TabOrder = 1
+        end
+        object KLDEFoneResidencial: TKRKLabeledDBEdit
+          Left = 6
+          Top = 27
+          Width = 105
+          Height = 21
+          DataField = 'ch_foneresidencial'
+          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          EditFormat.FinalMask = '(##) ####-####'
+          EditFormat.Format = foCustom
+          EditFormat.FormatScript.Strings = (
+            '\D'#170
+            '^(\d\d)(\d)'#170'($1) $2'
+            '(\d{4})(\d)'#186'$1-$2')
+          EditLabel.Width = 77
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Fone residencial'
+          LabelSpacing = 1
+          MaxLength = 14
+          TabOrder = 0
+        end
+      end
+      object GRBXDocumentos: TGroupBox
+        Left = 0
+        Top = 55
+        Width = 283
+        Height = 55
+        Caption = ' Documentos '
+        TabOrder = 1
+        object LABLOrgaoEmissor: TLabel
+          Left = 117
+          Top = 13
+          Width = 69
+          Height = 13
+          Caption = #211'rg'#227'o Emissor'
+          FocusControl = DBCXOrgaoEmissorRg
+        end
+        object LABLUFEmissaoRG: TLabel
+          Left = 232
+          Top = 13
+          Width = 21
+          Height = 13
+          Caption = 'U.F.'
+          FocusControl = DBCXUFEmissaoRg
+        end
+        object KLDERg: TKRKLabeledDBEdit
+          Left = 6
+          Top = 27
+          Width = 105
+          Height = 21
+          DataField = 'va_rg'
+          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          EditFormat.FinalMask = '#.###.###.###'
+          EditFormat.Format = foCustom
+          EditFormat.FormatScript.Strings = (
+            '\D'#170
+            '(\d)(\d{3})$'#186'$1.$2'
+            '(\d)(\d{3}\.)'#186'$1.$2'
+            '(\d)(\d{3}\.)'#186'$1.$2')
+          EditLabel.Width = 52
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Identidade'
+          LabelSpacing = 1
+          MaxLength = 13
+          TabOrder = 0
+        end
+        object DBCXOrgaoEmissorRg: TDBComboBox
+          Left = 117
+          Top = 27
+          Width = 109
+          Height = 21
+          Style = csDropDownList
+          DataField = 'en_orgaoemissorrg'
+          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          Items.Strings = (
+            'ABNC'
+            'CGPI/DUREX/DPF'
+            'CGPI'
+            'CGPMAF'
+            'CNIG'
+            'CNT'
+            'COREN'
+            'CRA'
+            'CRAS'
+            'CRB'
+            'CRC'
+            'CRE'
+            'CREA'
+            'CRECI'
+            'CREFIT'
+            'CRF'
+            'CRM'
+            'CRN'
+            'CRO'
+            'CRP'
+            'CRPRE'
+            'CRQ'
+            'CRRC'
+            'CRMV'
+            'CSC'
+            'CTPS'
+            'DIC'
+            'DIREX'
+            'DPMAF'
+            'DPT'
+            'DST'
+            'FGTS'
+            'FIPE'
+            'FLS'
+            'GOVGO'
+            'I CLA'
+            'IFP'
+            'IGP'
+            'IICCECF/RO'
+            'IIMG'
+            'IML'
+            'IPC'
+            'IPF'
+            'MAE'
+            'MEX'
+            'MMA'
+            'OAB'
+            'OMB'
+            'PCMG'
+            'PMMG'
+            'POF'
+            'DPF'
+            'POM'
+            'SDS'
+            'SNJ'
+            'SECC'
+            'SEJUSP'
+            'SES'
+            'EST'
+            'SESP'
+            'SJS'
+            'SJTC'
+            'SJTS'
+            'SPTC'
+            'SSP'
+            'ZZZ')
+          TabOrder = 1
+        end
+        object DBCXUFEmissaoRg: TDBComboBox
+          Left = 232
+          Top = 27
+          Width = 46
+          Height = 21
+          Style = csDropDownList
+          DataField = 'en_ufemissaorg'
+          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          Items.Strings = (
+            'AC'
+            'AL'
+            'AP'
+            'AM'
+            'BA'
+            'CE'
+            'DF'
+            'ES'
+            'GO'
+            'MA'
+            'MT'
+            'MS'
+            'MG'
+            'PA'
+            'PB'
+            'PR'
+            'PE'
+            'PI'
+            'RJ'
+            'RN'
+            'RS'
+            'RO'
+            'RR'
+            'SC'
+            'SP'
+            'SE'
+            'TO')
+          TabOrder = 2
+        end
+      end
+      object GRBXDadosPessoais: TGroupBox
+        Left = 0
+        Top = -3
+        Width = 611
+        Height = 55
+        Anchors = [akLeft, akTop, akRight]
+        Caption = ' Dados pessoais '
+        TabOrder = 0
+        DesignSize = (
+          611
+          55)
+        object LABLGenero: TLabel
+          Left = 447
+          Top = 13
+          Width = 35
+          Height = 13
+          Anchors = [akTop, akRight]
+          Caption = 'G'#234'nero'
+        end
+        object DBCXGenero: TDBComboBox
+          Left = 447
+          Top = 27
+          Width = 70
+          Height = 21
+          Style = csDropDownList
+          Anchors = [akTop, akRight]
+          DataField = 'en_genero'
+          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          Items.Strings = (
+            'Masculino'
+            'Feminino')
+          TabOrder = 1
+        end
+        object KLDEDataNascimento: TKRKLabeledDBEdit
+          Left = 523
+          Top = 27
+          Width = 82
+          Height = 21
+          Anchors = [akTop, akRight]
+          DataField = 'da_datanascimento'
+          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          EditFormat.FinalMask = '##/##/####'
+          EditFormat.KeepMask = True
+          EditFormat.Format = foDate
+          EditLabel.Width = 55
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Nascimento'
+          LabelSpacing = 1
+          MaxLength = 10
+          TabOrder = 2
+        end
+        object KLDENome: TKRKLabeledDBEdit
+          Left = 6
+          Top = 27
+          Width = 435
+          Height = 21
+          Anchors = [akLeft, akTop, akRight]
+          DataField = 'va_nome'
+          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          EditLabel.Width = 73
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Nome completo'
+          LabelSpacing = 1
+          TabOrder = 0
+        end
+      end
+      object GRBXEndereco: TGroupBox
+        Left = 0
+        Top = 113
+        Width = 611
+        Height = 91
+        Anchors = [akLeft, akTop, akRight]
+        Caption = ' Endere'#231'o '
+        TabOrder = 3
+        DesignSize = (
+          611
+          91)
+        object LABLTipoDeLogradouro: TLabel
+          Left = 6
+          Top = 13
+          Width = 90
+          Height = 13
+          Caption = 'Tipo de logradouro'
+          FocusControl = DBCXTipoLogradouro
+        end
+        object LABLUF: TLabel
+          Left = 559
+          Top = 49
+          Width = 21
+          Height = 13
+          Anchors = [akTop, akRight]
+          Caption = 'U.F.'
+          FocusControl = DBCXUF
+        end
+        object DBCXTipoLogradouro: TDBComboBox
+          Left = 6
+          Top = 27
+          Width = 90
+          Height = 21
+          Style = csDropDownList
+          DataField = 'en_tipologradouro'
+          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          Items.Strings = (
+            'Outros'
+            'Aeroporto'
+            'Alameda'
+            #193'rea'
+            'Avenida'
+            'Campo'
+            'Ch'#225'cara'
+            'Col'#244'nia'
+            'Condom'#237'nio'
+            'Conjunto'
+            'Distrito'
+            'Esplanada'
+            'Esta'#231#227'o'
+            'Estrada'
+            'Favela'
+            'Fazenda'
+            'Feira'
+            'Jardim'
+            'Ladeira'
+            'Lago'
+            'Lagoa'
+            'Largo'
+            'Loteamento'
+            'Morro'
+            'N'#250'cleo'
+            'Parque'
+            'Passarela'
+            'P'#225'tio'
+            'Pra'#231'a'
+            'Quadra'
+            'Recanto'
+            'Residencial'
+            'Rodovia'
+            'Rua'
+            'Setor'
+            'S'#237'tio'
+            'Travessa'
+            'Trecho'
+            'Trevo'
+            'Vale'
+            'Vereda'
+            'Via'
+            'Viaduto'
+            'Viela'
+            'Vila')
+          TabOrder = 0
+        end
+        object KLDEComplemento: TKRKLabeledDBEdit
+          Left = 6
+          Top = 63
+          Width = 155
+          Height = 21
+          DataField = 'va_complementologradouro'
+          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          EditLabel.Width = 65
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Complemento'
+          EditLabel.Color = clRed
+          EditLabel.ParentColor = False
+          EditLabel.Transparent = True
+          LabelSpacing = 1
+          TabOrder = 3
+        end
+        object KLDEIdLogradouro: TKRKLabeledDBEdit
+          Left = 477
+          Top = 27
+          Width = 128
+          Height = 21
+          Anchors = [akTop, akRight]
+          DataField = 'va_idlogradouro'
+          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          EditLabel.Width = 37
+          EditLabel.Height = 13
+          EditLabel.Caption = 'N'#250'mero'
+          LabelSpacing = 1
+          TabOrder = 2
+        end
+        object KLDELogradouro: TKRKLabeledDBEdit
+          Left = 102
+          Top = 27
+          Width = 369
+          Height = 21
+          Anchors = [akLeft, akTop, akRight]
+          DataField = 'va_nomelogradouro'
+          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          EditLabel.Width = 55
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Logradouro'
+          LabelSpacing = 1
+          TabOrder = 1
+        end
+        object DBCXUF: TDBComboBox
+          Left = 559
+          Top = 63
+          Width = 46
+          Height = 21
+          Style = csDropDownList
+          Anchors = [akTop, akRight]
+          DataField = 'en_uf'
+          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          Items.Strings = (
+            'AC'
+            'AL'
+            'AP'
+            'AM'
+            'BA'
+            'CE'
+            'DF'
+            'ES'
+            'GO'
+            'MA'
+            'MT'
+            'MS'
+            'MG'
+            'PA'
+            'PB'
+            'PR'
+            'PE'
+            'PI'
+            'RJ'
+            'RN'
+            'RS'
+            'RO'
+            'RR'
+            'SC'
+            'SP'
+            'SE'
+            'TO')
+          TabOrder = 6
+        end
+        object KLDEBairro: TKRKLabeledDBEdit
+          Left = 167
+          Top = 63
+          Width = 155
+          Height = 21
+          DataField = 'va_bairrologradouro'
+          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          EditLabel.Width = 28
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Bairro'
+          LabelSpacing = 1
+          TabOrder = 4
+        end
+        object KLDECidade: TKRKLabeledDBEdit
+          Left = 328
+          Top = 63
+          Width = 225
+          Height = 21
+          Anchors = [akLeft, akTop, akRight]
+          DataField = 'va_cidade'
+          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          EditLabel.Width = 33
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Cidade'
+          LabelSpacing = 1
+          TabOrder = 5
+        end
+      end
+      object GRBXObservacoes: TGroupBox
+        AlignWithMargins = True
+        Left = 0
+        Top = 204
+        Width = 611
+        Height = 170
+        Margins.Left = 0
+        Margins.Top = 0
+        Margins.Right = 0
+        Align = alBottom
+        Caption = ' Observa'#231#245'es '
+        TabOrder = 4
+        object DBMOObservacoes: TDBMemo
+          AlignWithMargins = True
+          Left = 6
+          Top = 15
+          Width = 599
+          Height = 148
+          Margins.Left = 4
+          Margins.Top = 0
+          Margins.Right = 4
+          Margins.Bottom = 5
+          Align = alClient
+          DataField = 'tx_observacoes'
+          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          TabOrder = 0
+        end
+      end
+    end
   end
   inherited TLBRAcoes: TToolBar
-    Width = 533
-    ExplicitWidth = 533
+    Width = 625
+    ExplicitWidth = 625
+    inherited LABLCaption: TLabel
+      Height = 38
+      ExplicitHeight = 38
+    end
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C010102000800740020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C0101020008009C0020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -638,7 +1170,7 @@ inherited KRFMRelatorio: TKRFMRelatorio
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C010102000800840020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800AC0020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

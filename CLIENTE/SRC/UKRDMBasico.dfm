@@ -14,11 +14,13 @@ object KRDMBasico: TKRDMBasico
     TipText = 
       'Voc'#234' esqueceu de por um texto. Configure a propriedade TipText c' +
       'orretamente'
+    TipAlignment = taBottomLeft
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
+    Options = [kbhoActivateOnShow, kbhoSetFocusToAssociatedWinContronOnDeactivate, kbhoHideOnDeactivate, kbhoHideWithEnter, kbhoHideWithEsc, kbhoSelectAllOnFocus]
     Left = 90
     Top = 6
   end
