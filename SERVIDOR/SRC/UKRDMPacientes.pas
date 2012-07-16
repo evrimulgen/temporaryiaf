@@ -28,6 +28,29 @@ type
     UNQYPacientestx_observacoes: TWideMemoField;
     KRVCPacientes: TKRKValidationChecks;
     UNQYPacientesen_genero: TWideMemoField;
+    UNQYDadosSocioDemograficos: TUniQuery;
+    KRVCDadosSocioDemograficos: TKRKValidationChecks;
+    DTSRPacientes: TDataSource;
+    UNQYDadosSocioDemograficosin_dadossociodemograficos_id: TIntegerField;
+    UNQYDadosSocioDemograficosin_pacientes_id: TIntegerField;
+    UNQYDadosSocioDemograficossm_corraca: TSmallintField;
+    UNQYDadosSocioDemograficossm_estadocivil: TSmallintField;
+    UNQYDadosSocioDemograficossm_graudeinstrucao: TSmallintField;
+    UNQYDadosSocioDemograficosin_cbo_id: TIntegerField;
+    UNQYDadosSocioDemograficosbo_aposentado: TBooleanField;
+    UNQYDadosSocioDemograficossm_televisor: TSmallintField;
+    UNQYDadosSocioDemograficossm_radio: TSmallintField;
+    UNQYDadosSocioDemograficossm_banheiro: TSmallintField;
+    UNQYDadosSocioDemograficossm_automovel: TSmallintField;
+    UNQYDadosSocioDemograficossm_mensalista: TSmallintField;
+    UNQYDadosSocioDemograficossm_maquinalavar: TSmallintField;
+    UNQYDadosSocioDemograficossm_vcrdvd: TSmallintField;
+    UNQYDadosSocioDemograficossm_geladeira: TSmallintField;
+    UNQYDadosSocioDemograficossm_freezer: TSmallintField;
+    UNQYDadosSocioDemograficosbo_chefedefamilia: TBooleanField;
+    UNQYDadosSocioDemograficossm_grauinstrchefedefamilia: TSmallintField;
+    UNQYDadosSocioDemograficosprofissao: TWideStringField;
+    UNQYDadosSocioDemograficoscbo: TWideStringField;
   private
     { Private declarations }
   public

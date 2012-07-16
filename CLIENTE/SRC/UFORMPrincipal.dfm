@@ -90,24 +90,4 @@ object FORMPrincipal: TFORMPrincipal
     Anchors = [akLeft, akBottom]
     TabOrder = 3
   end
-  object PANLPaciente: TPanel
-    Left = 474
-    Top = 26
-    Width = 310
-    Height = 40
-    Anchors = [akTop, akRight]
-    BevelEdges = [beLeft]
-    BevelKind = bkFlat
-    BevelOuter = bvNone
-    Caption = 'Paciente: Rodrigo C'#233'sar Pimentel Raulino de Souza'
-    Color = clInfoBk
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentBackground = False
-    ParentFont = False
-    TabOrder = 4
-  end
 end

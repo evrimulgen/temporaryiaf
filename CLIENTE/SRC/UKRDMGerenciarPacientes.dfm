@@ -3,6 +3,7 @@ inherited KRDMGerenciarPacientes: TKRDMGerenciarPacientes
   Properties.OpenAllDataSets = True
   MyFormClass = 'TKRFMGerenciarPacientes'
   Height = 162
+  Width = 252
   object DTSRPacientes: TDataSource
     DataSet = CLDSPacientes
     Left = 30
@@ -21,94 +22,95 @@ inherited KRDMGerenciarPacientes: TKRDMGerenciarPacientes
       item
         DataType = ftString
         Name = 'VA_NOME'
-        ParamType = ptUnknown
+        ParamType = ptInput
         Value = Null
       end
       item
         DataType = ftDateTime
         Name = 'DA_DATANASCIMENTO'
-        ParamType = ptUnknown
+        ParamType = ptInput
         Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_RG'
-        ParamType = ptUnknown
+        ParamType = ptInput
         Value = Null
       end
       item
         DataType = ftString
         Name = 'EN_ORGAOEMISSORRG'
-        ParamType = ptUnknown
+        ParamType = ptInput
         Value = Null
       end
       item
         DataType = ftString
         Name = 'EN_UFEMISSAORG'
-        ParamType = ptUnknown
+        ParamType = ptInput
         Value = Null
       end
       item
         DataType = ftString
         Name = 'EN_TIPOLOGRADOURO'
-        ParamType = ptUnknown
+        ParamType = ptInput
         Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_NOMELOGRADOURO'
-        ParamType = ptUnknown
+        ParamType = ptInput
         Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_IDLOGRADOURO'
-        ParamType = ptUnknown
+        ParamType = ptInput
         Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_COMPLEMENTOLOGRADOURO'
-        ParamType = ptUnknown
+        ParamType = ptInput
         Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_BAIRROLOGRADOURO'
-        ParamType = ptUnknown
+        ParamType = ptInput
         Value = Null
       end
       item
         DataType = ftString
         Name = 'VA_CIDADE'
-        ParamType = ptUnknown
+        ParamType = ptInput
         Value = Null
       end
       item
         DataType = ftString
         Name = 'EN_UF'
-        ParamType = ptUnknown
+        ParamType = ptInput
         Value = Null
       end
       item
         DataType = ftString
         Name = 'CH_FONERESIDENCIAL'
-        ParamType = ptUnknown
+        ParamType = ptInput
         Value = Null
       end
       item
         DataType = ftString
         Name = 'CH_FONECELULAR'
-        ParamType = ptUnknown
+        ParamType = ptInput
         Value = Null
       end
       item
         DataType = ftMemo
         Name = 'TX_OBSERVACOES'
-        ParamType = ptUnknown
+        ParamType = ptInput
         Value = Null
       end>
     ProviderName = 'DSPRPacientes'
+    AfterRefresh = CLDSPacientesAfterRefresh
     Left = 30
     Top = 60
     object CLDSPacientesin_pacientes_id: TIntegerField
@@ -123,6 +125,8 @@ inherited KRDMGerenciarPacientes: TKRDMGerenciarPacientes
       Size = 128
     end
     object CLDSPacientesen_genero: TWideMemoField
+      DisplayLabel = 'G'#234'nero'
+      DisplayWidth = 9
       FieldName = 'en_genero'
       Required = True
       BlobType = ftWideMemo
@@ -144,6 +148,7 @@ inherited KRDMGerenciarPacientes: TKRDMGerenciarPacientes
     end
     object CLDSPacientesen_orgaoemissorrg: TWideMemoField
       DisplayLabel = #211'rg'#227'o emissor do RG'
+      DisplayWidth = 14
       FieldName = 'en_orgaoemissorrg'
       ProviderFlags = [pfInUpdate]
       Required = True
@@ -151,6 +156,7 @@ inherited KRDMGerenciarPacientes: TKRDMGerenciarPacientes
     end
     object CLDSPacientesen_ufemissaorg: TWideMemoField
       DisplayLabel = 'UF de emiss'#227'o do RG'
+      DisplayWidth = 2
       FieldName = 'en_ufemissaorg'
       ProviderFlags = [pfInUpdate]
       Required = True
@@ -158,6 +164,7 @@ inherited KRDMGerenciarPacientes: TKRDMGerenciarPacientes
     end
     object CLDSPacientesen_tipologradouro: TWideMemoField
       DisplayLabel = 'Tipo de logradouro'
+      DisplayWidth = 15
       FieldName = 'en_tipologradouro'
       ProviderFlags = [pfInUpdate]
       Required = True
@@ -197,6 +204,7 @@ inherited KRDMGerenciarPacientes: TKRDMGerenciarPacientes
     end
     object CLDSPacientesen_uf: TWideMemoField
       DisplayLabel = 'UF'
+      DisplayWidth = 2
       FieldName = 'en_uf'
       ProviderFlags = [pfInUpdate]
       Required = True
@@ -226,5 +234,103 @@ inherited KRDMGerenciarPacientes: TKRDMGerenciarPacientes
       ProviderFlags = [pfInUpdate]
       BlobType = ftWideMemo
     end
+    object CLDSPacientesUNQYDadosSocioDemograficos: TDataSetField
+      FieldName = 'UNQYDadosSocioDemograficos'
+    end
+  end
+  object CLDSDadosSocioDemograficos: TClientDataSet
+    Aggregates = <>
+    ConnectionBroker = DAMOPrincipal.CNBRPrincipal
+    DataSetField = CLDSPacientesUNQYDadosSocioDemograficos
+    Params = <>
+    Left = 150
+    Top = 60
+    object CLDSDadosSocioDemograficosin_dadossociodemograficos_id: TIntegerField
+      FieldName = 'in_dadossociodemograficos_id'
+    end
+    object CLDSDadosSocioDemograficosin_pacientes_id: TIntegerField
+      FieldName = 'in_pacientes_id'
+      Required = True
+    end
+    object CLDSDadosSocioDemograficossm_corraca: TSmallintField
+      FieldName = 'sm_corraca'
+      Required = True
+    end
+    object CLDSDadosSocioDemograficossm_estadocivil: TSmallintField
+      FieldName = 'sm_estadocivil'
+      Required = True
+    end
+    object CLDSDadosSocioDemograficossm_graudeinstrucao: TSmallintField
+      FieldName = 'sm_graudeinstrucao'
+      Required = True
+    end
+    object CLDSDadosSocioDemograficosin_cbo_id: TIntegerField
+      FieldName = 'in_cbo_id'
+      Required = True
+    end
+    object CLDSDadosSocioDemograficosbo_aposentado: TBooleanField
+      FieldName = 'bo_aposentado'
+      Required = True
+    end
+    object CLDSDadosSocioDemograficossm_televisor: TSmallintField
+      FieldName = 'sm_televisor'
+      Required = True
+    end
+    object CLDSDadosSocioDemograficossm_radio: TSmallintField
+      FieldName = 'sm_radio'
+      Required = True
+    end
+    object CLDSDadosSocioDemograficossm_banheiro: TSmallintField
+      FieldName = 'sm_banheiro'
+      Required = True
+    end
+    object CLDSDadosSocioDemograficossm_automovel: TSmallintField
+      FieldName = 'sm_automovel'
+      Required = True
+    end
+    object CLDSDadosSocioDemograficossm_mensalista: TSmallintField
+      FieldName = 'sm_mensalista'
+      Required = True
+    end
+    object CLDSDadosSocioDemograficossm_maquinalavar: TSmallintField
+      FieldName = 'sm_maquinalavar'
+      Required = True
+    end
+    object CLDSDadosSocioDemograficossm_vcrdvd: TSmallintField
+      FieldName = 'sm_vcrdvd'
+      Required = True
+    end
+    object CLDSDadosSocioDemograficossm_geladeira: TSmallintField
+      FieldName = 'sm_geladeira'
+      Required = True
+    end
+    object CLDSDadosSocioDemograficossm_freezer: TSmallintField
+      FieldName = 'sm_freezer'
+      Required = True
+    end
+    object CLDSDadosSocioDemograficosbo_chefedefamilia: TBooleanField
+      FieldName = 'bo_chefedefamilia'
+      Required = True
+    end
+    object CLDSDadosSocioDemograficossm_grauinstrchefedefamilia: TSmallintField
+      FieldName = 'sm_grauinstrchefedefamilia'
+      Required = True
+    end
+    object CLDSDadosSocioDemograficosprofissao: TWideStringField
+      FieldName = 'profissao'
+      ReadOnly = True
+      Size = 128
+    end
+    object CLDSDadosSocioDemograficoscbo: TWideStringField
+      FieldName = 'cbo'
+      ReadOnly = True
+      FixedChar = True
+      Size = 7
+    end
+  end
+  object DTSRDadosSocioDemograficos: TDataSource
+    DataSet = CLDSDadosSocioDemograficos
+    Left = 150
+    Top = 108
   end
 end

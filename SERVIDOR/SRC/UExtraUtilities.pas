@@ -18,8 +18,8 @@ function SessionDataFromSessionID(const aSessionID: String): String;
 implementation
 
 uses SysUtils, UServerConfiguration, USessionsManager, UKRDMUsuarios
-   , UKRDMEntidadesDoSistema, UKRDMGrupos, DASQLMonitor, UKRDMCBO,
-  UKRDMPacientes;
+   , UKRDMEntidadesDoSistema, UKRDMGrupos, DASQLMonitor, UKRDMCBO
+   , UKRDMPacientes;
 
 procedure HideInterfaces(var aContent: String; aInterfaces: array of string);
 var

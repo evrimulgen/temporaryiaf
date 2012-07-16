@@ -12,7 +12,6 @@ type
     ACTBPrincipal: TActionToolBar;
     STTBPrincipal: TStatusBar;
     PRBAAndamento: TProgressBar;
-    PANLPaciente: TPanel;
     procedure ACMMPrincipalPaint(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private

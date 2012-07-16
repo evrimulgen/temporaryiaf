@@ -43,6 +43,31 @@ type
     GRBXDadosPessoais: TGroupBox;
     GRBXEndereco: TGroupBox;
     GRBXObservacoes: TGroupBox;
+    TBSHDadosSocioDemograficos: TTabSheet;
+    SCBXDadosSocioDemograficos: TScrollBox;
+    DBRGCorRaca: TDBRadioGroup;
+    DBRGEstadoCivil: TDBRadioGroup;
+    DBNADadosSocioDemograficos: TDBNavigator;
+    DBRGGrauInstrucao: TDBRadioGroup;
+    PANLCBO: TPanel;
+    BUTNPesqisarCBO: TButton;
+    GRBXPatrimonio: TGroupBox;
+    DBRGTelevisor: TDBRadioGroup;
+    DBRGRadio: TDBRadioGroup;
+    DBRGBanheiro: TDBRadioGroup;
+    DBRGAutomovel: TDBRadioGroup;
+    DBRGMaquinaDeLavar: TDBRadioGroup;
+    DBRGVCRDVD: TDBRadioGroup;
+    DBRGGeladeira: TDBRadioGroup;
+    DBRGFreezer: TDBRadioGroup;
+    DBRGProfissao: TDBRadioGroup;
+    GRBXProfissao: TGroupBox;
+    LAEDTituloCBO: TLabeledEdit;
+    DBRGChefeDaFamilia: TDBRadioGroup;
+    DBRGGrauChefeFamilia: TDBRadioGroup;
+    PANLPaddingBottom: TPanel;
+    GRBXFiltroPacientes: TGroupBox;
+    LABLFiltroPacientes: TLabel;
   private
     { Private declarations }
   public

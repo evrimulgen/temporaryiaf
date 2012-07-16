@@ -1,8 +1,8 @@
 object SODMPrincipal: TSODMPrincipal
   OldCreateOrder = False
   OnCreate = SoapDataModuleCreate
-  Height = 331
-  Width = 321
+  Height = 313
+  Width = 153
   object DSPRUsuarios: TDataSetProvider
     DataSet = KRDMUsuarios.UNQYUsuarios
     Constraints = False

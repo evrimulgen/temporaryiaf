@@ -1,6 +1,7 @@
 inherited KRDMPacientes: TKRDMPacientes
   OldCreateOrder = True
-  Height = 155
+  Height = 292
+  Width = 262
   object UNQYPacientes: TUniQuery
     SQLInsert.Strings = (
       'SELECT IDU_PACIENTES('#39'I'#39
@@ -605,5 +606,290 @@ inherited KRDMPacientes: TKRDMPacientes
       end>
     Left = 30
     Top = 102
+  end
+  object UNQYDadosSocioDemograficos: TUniQuery
+    SQLInsert.Strings = (
+      'SELECT IDU_DADOSSOCIODEMOGRAFICOS('#39'I'#39
+      '                                 ,NULL'
+      '                                 ,:IN_PACIENTES_ID'
+      '                                 ,:SM_CORRACA'
+      '                                 ,:SM_ESTADOCIVIL'
+      '                                 ,:SM_GRAUDEINSTRUCAO'
+      '                                 ,:IN_CBO_ID'
+      '                                 ,:BO_APOSENTADO'
+      '                                 ,:SM_TELEVISOR'
+      '                                 ,:SM_RADIO'
+      '                                 ,:SM_BANHEIRO'
+      '                                 ,:SM_AUTOMOVEL'
+      '                                 ,:SM_MENSALISTA'
+      '                                 ,:SM_MAQUINALAVAR'
+      '                                 ,:SM_VCRDVD'
+      '                                 ,:SM_GELADEIRA'
+      '                                 ,:SM_FREEZER'
+      '                                 ,:BO_CHEFEDEFAMILIA'
+      '                                 ,:SM_GRAUINSTRCHEFEDEFAMILIA)')
+    SQLDelete.Strings = (
+      'SELECT IDU_DADOSSOCIODEMOGRAFICOS('#39'D'#39
+      '                                 ,:IN_DADOSSOCIODEMOGRAFICOS_ID)')
+    SQLUpdate.Strings = (
+      'SELECT IDU_DADOSSOCIODEMOGRAFICOS('#39'U'#39
+      '                                 ,:IN_DADOSSOCIODEMOGRAFICOS_ID'
+      '                                 ,:IN_PACIENTES_ID'
+      '                                 ,:SM_CORRACA'
+      '                                 ,:SM_ESTADOCIVIL'
+      '                                 ,:SM_GRAUDEINSTRUCAO'
+      '                                 ,:IN_CBO_ID'
+      '                                 ,:BO_APOSENTADO'
+      '                                 ,:SM_TELEVISOR'
+      '                                 ,:SM_RADIO'
+      '                                 ,:SM_BANHEIRO'
+      '                                 ,:SM_AUTOMOVEL'
+      '                                 ,:SM_MENSALISTA'
+      '                                 ,:SM_MAQUINALAVAR'
+      '                                 ,:SM_VCRDVD'
+      '                                 ,:SM_GELADEIRA'
+      '                                 ,:SM_FREEZER'
+      '                                 ,:BO_CHEFEDEFAMILIA'
+      '                                 ,:SM_GRAUINSTRCHEFEDEFAMILIA)')
+    Connection = SODMPrincipal.UNCN
+    SQL.Strings = (
+      'SELECT DSD.*'
+      '     , CBO.VA_TITULO AS PROFISSAO'
+      '     , CBO.CH_CODIGO AS CBO'
+      '  FROM DADOSSOCIODEMOGRAFICOS DSD'
+      '  JOIN CBO CBO USING (IN_CBO_ID)')
+    MasterSource = DTSRPacientes
+    MasterFields = 'in_pacientes_id'
+    DetailFields = 'in_pacientes_id'
+    SpecificOptions.Strings = (
+      'PostgreSQL.FetchAll=False'
+      'PostgreSQL.UseParamTypes=True')
+    Left = 150
+    Top = 54
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'in_pacientes_id'
+        ParamType = ptInput
+      end>
+    object UNQYDadosSocioDemograficosin_dadossociodemograficos_id: TIntegerField
+      FieldName = 'in_dadossociodemograficos_id'
+      ProviderFlags = [pfInUpdate, pfInKey]
+    end
+    object UNQYDadosSocioDemograficosin_pacientes_id: TIntegerField
+      FieldName = 'in_pacientes_id'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYDadosSocioDemograficossm_corraca: TSmallintField
+      DisplayLabel = 'Como voc'#234' auto-define a sua cor ou ra'#231'a?'
+      FieldName = 'sm_corraca'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYDadosSocioDemograficossm_estadocivil: TSmallintField
+      DisplayLabel = 'Qual o seu estado civil?'
+      FieldName = 'sm_estadocivil'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYDadosSocioDemograficossm_graudeinstrucao: TSmallintField
+      DisplayLabel = 'Qual seu grau de instru'#231#227'o?'
+      FieldName = 'sm_graudeinstrucao'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYDadosSocioDemograficosin_cbo_id: TIntegerField
+      DisplayLabel = 'Qual sua profiss'#227'o?'
+      FieldName = 'in_cbo_id'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYDadosSocioDemograficosbo_aposentado: TBooleanField
+      DisplayLabel = 'Qual seu status ocupacional?'
+      FieldName = 'bo_aposentado'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYDadosSocioDemograficossm_televisor: TSmallintField
+      DisplayLabel = 'Quantos televisores em cores?'
+      FieldName = 'sm_televisor'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYDadosSocioDemograficossm_radio: TSmallintField
+      DisplayLabel = 'Quantos r'#225'dios?'
+      FieldName = 'sm_radio'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYDadosSocioDemograficossm_banheiro: TSmallintField
+      DisplayLabel = 'Quantos banheiros?'
+      FieldName = 'sm_banheiro'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYDadosSocioDemograficossm_automovel: TSmallintField
+      DisplayLabel = 'Quantos autom'#243'veis?'
+      FieldName = 'sm_automovel'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYDadosSocioDemograficossm_mensalista: TSmallintField
+      DisplayLabel = 'Quantas empregadas mensalistas?'
+      FieldName = 'sm_mensalista'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYDadosSocioDemograficossm_maquinalavar: TSmallintField
+      DisplayLabel = 'Quantas m'#225'quinas de lavar?'
+      FieldName = 'sm_maquinalavar'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYDadosSocioDemograficossm_vcrdvd: TSmallintField
+      DisplayLabel = 'Quandos videocassetes/DVDs?'
+      FieldName = 'sm_vcrdvd'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYDadosSocioDemograficossm_geladeira: TSmallintField
+      DisplayLabel = 'Quantas geladeiras?'
+      FieldName = 'sm_geladeira'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYDadosSocioDemograficossm_freezer: TSmallintField
+      DisplayLabel = 'Quantos freezeres?'
+      FieldName = 'sm_freezer'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYDadosSocioDemograficosbo_chefedefamilia: TBooleanField
+      DisplayLabel = 'Voc'#234' '#233' o chefe da fam'#237'lia?'
+      FieldName = 'bo_chefedefamilia'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYDadosSocioDemograficossm_grauinstrchefedefamilia: TSmallintField
+      DisplayLabel = 'Qual o grau de instru'#231#227'o do chefe da fam'#237'lia?'
+      FieldName = 'sm_grauinstrchefedefamilia'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYDadosSocioDemograficosprofissao: TWideStringField
+      FieldName = 'profissao'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 128
+    end
+    object UNQYDadosSocioDemograficoscbo: TWideStringField
+      FieldName = 'cbo'
+      ProviderFlags = []
+      ReadOnly = True
+      FixedChar = True
+      Size = 7
+    end
+  end
+  object KRVCDadosSocioDemograficos: TKRKValidationChecks
+    DataSet = UNQYDadosSocioDemograficos
+    TableName = 'DADOSSOCIODEMOGRAFICOS'
+    CheckableFields = <
+      item
+        FieldName = 'in_dadossociodemograficos_id'
+        FieldDescription = 'in_dadossociodemograficos_id'
+      end
+      item
+        FieldName = 'in_pacientes_id'
+        FieldDescription = 'in_pacientes_id'
+        CheckBlank.Active = True
+      end
+      item
+        FieldName = 'sm_corraca'
+        FieldDescription = 'Como voc'#234' auto-define a sua cor ou ra'#231'a?'
+        CheckBlank.Active = True
+      end
+      item
+        FieldName = 'sm_estadocivil'
+        FieldDescription = 'Qual o seu estado civil?'
+        CheckBlank.Active = True
+      end
+      item
+        FieldName = 'sm_graudeinstrucao'
+        FieldDescription = 'Qual seu grau de instru'#231#227'o?'
+        CheckBlank.Active = True
+      end
+      item
+        FieldName = 'in_cbo_id'
+        FieldDescription = 'Qual sua profiss'#227'o?'
+        CheckBlank.Active = True
+      end
+      item
+        FieldName = 'bo_aposentado'
+        FieldDescription = 'Qual seu status ocupacional?'
+        CheckBlank.Active = True
+      end
+      item
+        FieldName = 'sm_televisor'
+        FieldDescription = 'Quantos televisores em cores?'
+        CheckBlank.Active = True
+      end
+      item
+        FieldName = 'sm_radio'
+        FieldDescription = 'Quantos r'#225'dios?'
+        CheckBlank.Active = True
+      end
+      item
+        FieldName = 'sm_banheiro'
+        FieldDescription = 'Quantos banheiros?'
+        CheckBlank.Active = True
+      end
+      item
+        FieldName = 'sm_automovel'
+        FieldDescription = 'Quantos autom'#243'veis?'
+        CheckBlank.Active = True
+      end
+      item
+        FieldName = 'sm_mensalista'
+        FieldDescription = 'Quantas empregadas mensalistas?'
+        CheckBlank.Active = True
+      end
+      item
+        FieldName = 'sm_maquinalavar'
+        FieldDescription = 'Quantas m'#225'quinas de lavar?'
+        CheckBlank.Active = True
+      end
+      item
+        FieldName = 'sm_vcrdvd'
+        FieldDescription = 'Quandos videocassetes/DVDs?'
+        CheckBlank.Active = True
+      end
+      item
+        FieldName = 'sm_geladeira'
+        FieldDescription = 'Quantas geladeiras?'
+        CheckBlank.Active = True
+      end
+      item
+        FieldName = 'sm_freezer'
+        FieldDescription = 'Quantos freezeres?'
+        CheckBlank.Active = True
+      end
+      item
+        FieldName = 'bo_chefedefamilia'
+        FieldDescription = 'Voc'#234' '#233' o chefe da fam'#237'lia?'
+        CheckBlank.Active = True
+      end
+      item
+        FieldName = 'sm_grauinstrchefedefamilia'
+        FieldDescription = 'Qual o grau de instru'#231#227'o do chefe da fam'#237'lia?'
+        CheckBlank.Active = True
+      end>
+    Left = 150
+    Top = 102
+  end
+  object DTSRPacientes: TDataSource
+    DataSet = UNQYPacientes
+    Left = 30
+    Top = 150
   end
 end

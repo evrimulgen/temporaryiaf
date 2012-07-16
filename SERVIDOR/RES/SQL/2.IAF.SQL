@@ -181,6 +181,40 @@ COMMENT ON TABLE CBO IS 'Classificação Brasileira de Ocupações. Versão 2002
 ALTER SEQUENCE SQ_CBO_IN_CBO_ID 
       OWNED BY CBO.IN_CBO_ID;
 ---------------------------------------------------------------
+CREATE SEQUENCE SQ_DSD_IN_DADOSSOCIODEMOGRAFICOS_ID
+      INCREMENT 1
+       MINVALUE 1
+       MAXVALUE 2147483647
+          START 1
+          CACHE 1;
+
+CREATE TABLE DADOSSOCIODEMOGRAFICOS (IN_DADOSSOCIODEMOGRAFICOS_ID INTEGER NOT NULL DEFAULT NEXTVAL('SQ_DSD_IN_DADOSSOCIODEMOGRAFICOS_ID')
+                                    ,IN_PACIENTES_ID INTEGER NOT NULL
+                                    ,SM_CORRACA SMALLINT NOT NULL
+                                    ,SM_ESTADOCIVIL SMALLINT NOT NULL
+                                    ,SM_GRAUDEINSTRUCAO SMALLINT NOT NULL
+                                    ,IN_CBO_ID INTEGER NOT NULL
+                                    ,BO_APOSENTADO BOOLEAN NOT NULL DEFAULT FALSE
+                                    ,SM_TELEVISOR SMALLINT NOT NULL DEFAULT 0
+                                    ,SM_RADIO SMALLINT NOT NULL DEFAULT 0
+                                    ,SM_BANHEIRO SMALLINT NOT NULL DEFAULT 0
+                                    ,SM_AUTOMOVEL SMALLINT NOT NULL DEFAULT 0
+                                    ,SM_MENSALISTA SMALLINT NOT NULL DEFAULT 0
+                                    ,SM_MAQUINALAVAR SMALLINT NOT NULL DEFAULT 0
+                                    ,SM_VCRDVD SMALLINT NOT NULL DEFAULT 0
+                                    ,SM_GELADEIRA SMALLINT NOT NULL DEFAULT 0
+                                    ,SM_FREEZER SMALLINT NOT NULL DEFAULT 0
+                                    ,BO_CHEFEDEFAMILIA BOOLEAN NOT NULL
+                                    ,SM_GRAUINSTRCHEFEDEFAMILIA SMALLINT NOT NULL
+                                    ,CONSTRAINT PK_DSD PRIMARY KEY (IN_DADOSSOCIODEMOGRAFICOS_ID)
+                                    ,CONSTRAINT FK_DSD_PAC FOREIGN KEY (IN_PACIENTES_ID) REFERENCES PACIENTES (IN_PACIENTES_ID) ON UPDATE CASCADE ON DELETE CASCADE
+                                    ,CONSTRAINT FK_DSD_CBO FOREIGN KEY (IN_CBO_ID) REFERENCES CBO (IN_CBO_ID) ON UPDATE CASCADE ON DELETE RESTRICT);
+
+COMMENT ON COLUMN DADOSSOCIODEMOGRAFICOS.IN_CBO_ID IS 'PROFISSÃO (CBO)';
+
+ALTER SEQUENCE SQ_DSD_IN_DADOSSOCIODEMOGRAFICOS_ID 
+      OWNED BY DADOSSOCIODEMOGRAFICOS.IN_DADOSSOCIODEMOGRAFICOS_ID;
+---------------------------------------------------------------
 ---------------------------------------------------------------
 ---------------------------------------------------------------
 CREATE OR REPLACE FUNCTION IDU_USUARIOS(IN pMODO           CHAR
@@ -589,6 +623,105 @@ BEGIN
            , VA_TITULO = pVA_TITULO
            , EN_TIPO   = pEN_TIPO
        WHERE IN_CBO_ID = pIN_CBO_ID;
+
+    GET DIAGNOSTICS vRETURN := ROW_COUNT;
+    ---------------------------------------------------------------------------------------
+  END CASE;
+
+  RETURN vRETURN;
+END;
+$BODY$
+LANGUAGE PLPGSQL;
+---------------------------------------------------------------
+CREATE OR REPLACE FUNCTION IDU_DADOSSOCIODEMOGRAFICOS(IN pMODO                         CHAR
+                                                     ,IN pIN_DADOSSOCIODEMOGRAFICOS_ID DADOSSOCIODEMOGRAFICOS.IN_DADOSSOCIODEMOGRAFICOS_ID%TYPE = NULL
+                                                     ,IN pIN_PACIENTES_ID              DADOSSOCIODEMOGRAFICOS.IN_PACIENTES_ID%TYPE              = NULL
+                                                     ,IN pSM_CORRACA                   DADOSSOCIODEMOGRAFICOS.SM_CORRACA%TYPE                   = NULL
+                                                     ,IN pSM_ESTADOCIVIL               DADOSSOCIODEMOGRAFICOS.SM_ESTADOCIVIL%TYPE               = NULL
+                                                     ,IN pSM_GRAUDEINSTRUCAO           DADOSSOCIODEMOGRAFICOS.SM_GRAUDEINSTRUCAO%TYPE           = NULL
+                                                     ,IN pIN_CBO_ID                    DADOSSOCIODEMOGRAFICOS.IN_CBO_ID%TYPE                    = NULL
+                                                     ,IN pBO_APOSENTADO                DADOSSOCIODEMOGRAFICOS.BO_APOSENTADO%TYPE                = NULL
+                                                     ,IN pSM_TELEVISOR                 DADOSSOCIODEMOGRAFICOS.SM_TELEVISOR%TYPE                 = NULL
+                                                     ,IN pSM_RADIO                     DADOSSOCIODEMOGRAFICOS.SM_RADIO%TYPE                     = NULL
+                                                     ,IN pSM_BANHEIRO                  DADOSSOCIODEMOGRAFICOS.SM_BANHEIRO%TYPE                  = NULL
+                                                     ,IN pSM_AUTOMOVEL                 DADOSSOCIODEMOGRAFICOS.SM_AUTOMOVEL%TYPE                 = NULL
+                                                     ,IN pSM_MENSALISTA                DADOSSOCIODEMOGRAFICOS.SM_MENSALISTA%TYPE                = NULL
+                                                     ,IN pSM_MAQUINALAVAR              DADOSSOCIODEMOGRAFICOS.SM_MAQUINALAVAR%TYPE              = NULL
+                                                     ,IN pSM_VCRDVD                    DADOSSOCIODEMOGRAFICOS.SM_VCRDVD%TYPE                    = NULL
+                                                     ,IN pSM_GELADEIRA                 DADOSSOCIODEMOGRAFICOS.SM_GELADEIRA%TYPE                 = NULL
+                                                     ,IN pSM_FREEZER                   DADOSSOCIODEMOGRAFICOS.SM_FREEZER%TYPE                   = NULL
+                                                     ,IN pBO_CHEFEDEFAMILIA            DADOSSOCIODEMOGRAFICOS.BO_CHEFEDEFAMILIA%TYPE            = NULL
+                                                     ,IN pSM_GRAUINSTRCHEFEDEFAMILIA   DADOSSOCIODEMOGRAFICOS.SM_GRAUINSTRCHEFEDEFAMILIA%TYPE   = NULL)
+RETURNS BIGINT AS
+$BODY$
+DECLARE
+  vRETURN BIGINT := 0;
+BEGIN
+  CASE pMODO
+    WHEN 'I' THEN ----------------------------------------------------------- [ INSERT ] --
+      INSERT INTO DADOSSOCIODEMOGRAFICOS (IN_PACIENTES_ID
+                                         ,SM_CORRACA
+                                         ,SM_ESTADOCIVIL
+                                         ,SM_GRAUDEINSTRUCAO
+                                         ,IN_CBO_ID
+                                         ,BO_APOSENTADO
+                                         ,SM_TELEVISOR
+                                         ,SM_RADIO
+                                         ,SM_BANHEIRO
+                                         ,SM_AUTOMOVEL
+                                         ,SM_MENSALISTA
+                                         ,SM_MAQUINALAVAR
+                                         ,SM_VCRDVD
+                                         ,SM_GELADEIRA
+                                         ,SM_FREEZER
+                                         ,BO_CHEFEDEFAMILIA
+                                         ,SM_GRAUINSTRCHEFEDEFAMILIA)
+                                  VALUES (pIN_PACIENTES_ID
+                                         ,pSM_CORRACA
+                                         ,pSM_ESTADOCIVIL
+                                         ,pSM_GRAUDEINSTRUCAO
+                                         ,pIN_CBO_ID
+                                         ,pBO_APOSENTADO
+                                         ,pSM_TELEVISOR
+                                         ,pSM_RADIO
+                                         ,pSM_BANHEIRO
+                                         ,pSM_AUTOMOVEL
+                                         ,pSM_MENSALISTA
+                                         ,pSM_MAQUINALAVAR
+                                         ,pSM_VCRDVD
+                                         ,pSM_GELADEIRA
+                                         ,pSM_FREEZER
+                                         ,pBO_CHEFEDEFAMILIA
+                                         ,pSM_GRAUINSTRCHEFEDEFAMILIA);
+
+      vRETURN := CURRVAL('SQ_DSD_IN_DADOSSOCIODEMOGRAFICOS_ID');
+    ---------------------------------------------------------------------------------------
+    WHEN 'D' THEN ----------------------------------------------------------- [ DELETE ] --
+      DELETE FROM DADOSSOCIODEMOGRAFICOS
+            WHERE IN_DADOSSOCIODEMOGRAFICOS_ID = pIN_DADOSSOCIODEMOGRAFICOS_ID;
+
+      GET DIAGNOSTICS vRETURN := ROW_COUNT;
+    ---------------------------------------------------------------------------------------
+    WHEN 'U' THEN ----------------------------------------------------------- [ UPDATE ] --
+      UPDATE DADOSSOCIODEMOGRAFICOS
+         SET IN_PACIENTES_ID            = pIN_PACIENTES_ID
+           , SM_CORRACA                 = pSM_CORRACA
+           , SM_ESTADOCIVIL             = pSM_ESTADOCIVIL
+           , SM_GRAUDEINSTRUCAO         = pSM_GRAUDEINSTRUCAO
+           , IN_CBO_ID                  = pIN_CBO_ID
+           , BO_APOSENTADO              = pBO_APOSENTADO
+           , SM_TELEVISOR               = pSM_TELEVISOR
+           , SM_RADIO                   = pSM_RADIO
+           , SM_BANHEIRO                = pSM_BANHEIRO
+           , SM_AUTOMOVEL               = pSM_AUTOMOVEL
+           , SM_MENSALISTA              = pSM_MENSALISTA
+           , SM_MAQUINALAVAR            = pSM_MAQUINALAVAR
+           , SM_VCRDVD                  = pSM_VCRDVD
+           , SM_GELADEIRA               = pSM_GELADEIRA
+           , SM_FREEZER                 = pSM_FREEZER
+           , BO_CHEFEDEFAMILIA          = pBO_CHEFEDEFAMILIA
+           , SM_GRAUINSTRCHEFEDEFAMILIA = pSM_GRAUINSTRCHEFEDEFAMILIA
+       WHERE IN_DADOSSOCIODEMOGRAFICOS_ID = pIN_DADOSSOCIODEMOGRAFICOS_ID;
 
     GET DIAGNOSTICS vRETURN := ROW_COUNT;
     ---------------------------------------------------------------------------------------

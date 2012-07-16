@@ -11,7 +11,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
     Top = 40
     Width = 784
     Height = 522
-    ActivePage = TabSheet_Permissions
+    ActivePage = TabSheet_USU
     Align = alClient
     TabOrder = 0
     object TabSheet_Permissions: TTabSheet
@@ -1100,11 +1100,11 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
               Anchors = [akLeft, akTop, akRight]
               DataField = 'VA_NOME'
               DataSource = KRDMSegurancaEPermissoes.DTSRUsuarios
-              TabOrder = 0
               EditLabel.Width = 27
               EditLabel.Height = 13
               EditLabel.Caption = 'Nome'
               LabelSpacing = 1
+              TabOrder = 0
             end
             object KLDE_USU_VA_LOGIN: TKRKLabeledDBEdit
               Left = 8
@@ -1114,11 +1114,11 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
               Anchors = [akLeft, akTop, akRight]
               DataField = 'VA_LOGIN'
               DataSource = KRDMSegurancaEPermissoes.DTSRUsuarios
-              TabOrder = 1
               EditLabel.Width = 25
               EditLabel.Height = 13
               EditLabel.Caption = 'Login'
               LabelSpacing = 1
+              TabOrder = 1
             end
             object KLDE_USU_VA_EMAIL: TKRKLabeledDBEdit
               Left = 8
@@ -1128,11 +1128,11 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
               Anchors = [akLeft, akTop, akRight]
               DataField = 'VA_EMAIL'
               DataSource = KRDMSegurancaEPermissoes.DTSRUsuarios
-              TabOrder = 2
               EditLabel.Width = 28
               EditLabel.Height = 13
               EditLabel.Caption = 'E-mail'
               LabelSpacing = 1
+              TabOrder = 2
             end
             object DBCBSuperUsuario: TDBCheckBox
               Left = 8
@@ -1400,11 +1400,11 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
           Height = 21
           DataField = 'va_nome'
           DataSource = KRDMSegurancaEPermissoes.DTSRGrupos
-          TabOrder = 0
           EditLabel.Width = 27
           EditLabel.Height = 13
           EditLabel.Caption = 'Nome'
           LabelSpacing = 1
+          TabOrder = 0
         end
         object KLDE_GRU_VA_DESCRICAO: TKRKLabeledDBEdit
           Left = 224
@@ -1414,11 +1414,11 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
           Anchors = [akLeft, akTop, akRight]
           DataField = 'va_descricao'
           DataSource = KRDMSegurancaEPermissoes.DTSRGrupos
-          TabOrder = 1
           EditLabel.Width = 46
           EditLabel.Height = 13
           EditLabel.Caption = 'Descri'#231#227'o'
           LabelSpacing = 1
+          TabOrder = 1
         end
       end
       object DBNAGrupos: TDBNavigator
@@ -1518,12 +1518,11 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
     ExplicitWidth = 784
     inherited LABLCaption: TLabel
       Height = 38
-      ExplicitHeight = 38
     end
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C010102000800540120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800580120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2060,7 +2059,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C010102000800640120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800680120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
