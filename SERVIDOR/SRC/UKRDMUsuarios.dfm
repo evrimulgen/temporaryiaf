@@ -14,32 +14,35 @@ inherited KRDMUsuarios: TKRDMUsuarios
       item
         FieldName = 'sm_usuarios_id'
         FieldDescription = 'ID'
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'va_nome'
         FieldDescription = 'Nome'
         CheckBlank.Active = True
-        CheckBlank.FocusOnValidateFailure = True
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'va_login'
         FieldDescription = 'Login'
         CheckBlank.Active = True
-        CheckBlank.FocusOnValidateFailure = True
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'ch_senha'
         FieldDescription = 'Senha'
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'va_email'
         FieldDescription = 'E-mail'
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'bo_superusuario'
         FieldDescription = 'Superusu'#225'rio'
         CheckBlank.Active = True
-        CheckBlank.FocusOnValidateFailure = True
+        CheckTextSet.FocusOnValidateFailure = False
       end>
     Left = 24
     Top = 156
@@ -51,20 +54,24 @@ inherited KRDMUsuarios: TKRDMUsuarios
       item
         FieldName = 'entidade'
         FieldDescription = 'Entidade'
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'in_permissoesdosusuarios_id'
         FieldDescription = 'ID'
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'in_entidadesdosistema_id'
         FieldDescription = 'ID da entidade do sistema'
         CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'sm_usuarios_id'
         FieldDescription = 'ID do usu'#225'rio'
         CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'sm_ler'
@@ -73,6 +80,7 @@ inherited KRDMUsuarios: TKRDMUsuarios
         CheckNumber.Active = True
         CheckNumber.MaximumValue = 1.000000000000000000
         CheckNumber.CheckNumberMode = cnmRange
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'sm_inserir'
@@ -82,6 +90,7 @@ inherited KRDMUsuarios: TKRDMUsuarios
         CheckNumber.MinimumValue = -1.000000000000000000
         CheckNumber.MaximumValue = 1.000000000000000000
         CheckNumber.CheckNumberMode = cnmRange
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'sm_alterar'
@@ -91,6 +100,7 @@ inherited KRDMUsuarios: TKRDMUsuarios
         CheckNumber.MinimumValue = -1.000000000000000000
         CheckNumber.MaximumValue = 1.000000000000000000
         CheckNumber.CheckNumberMode = cnmRange
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'sm_excluir'
@@ -100,10 +110,12 @@ inherited KRDMUsuarios: TKRDMUsuarios
         CheckNumber.MinimumValue = -1.000000000000000000
         CheckNumber.MaximumValue = 1.000000000000000000
         CheckNumber.CheckNumberMode = cnmRange
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'tipo'
         FieldDescription = 'Tipo de entidade'
+        CheckTextSet.FocusOnValidateFailure = False
       end>
     Left = 264
     Top = 108
@@ -412,22 +424,24 @@ inherited KRDMUsuarios: TKRDMUsuarios
       item
         FieldName = 'in_gruposdosusuarios_id'
         FieldDescription = 'ID'
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'sm_grupos_id'
         FieldDescription = 'ID do grupo'
         CheckBlank.Active = True
-        CheckBlank.FocusOnValidateFailure = True
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'sm_usuarios_id'
         FieldDescription = 'ID do usu'#225'rio'
         CheckBlank.Active = True
-        CheckBlank.FocusOnValidateFailure = True
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'grupo'
         FieldDescription = 'Grupo'
+        CheckTextSet.FocusOnValidateFailure = False
       end>
     Left = 126
     Top = 108

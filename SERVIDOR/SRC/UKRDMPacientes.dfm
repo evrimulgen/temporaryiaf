@@ -356,6 +356,7 @@ inherited KRDMPacientes: TKRDMPacientes
         FieldName = 'en_genero'
         FieldDescription = 'G'#234'nero'
         CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
         CheckTextSet.CustomValidationMessage = 'O g'#234'nero escolhido n'#227'o existe'
         CheckTextSet.Strings.Strings = (
           'Masculino'
@@ -378,6 +379,7 @@ inherited KRDMPacientes: TKRDMPacientes
         FieldDescription = #211'rg'#227'o emissor do RG'
         CheckBlank.Active = True
         CheckTextSet.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
         CheckTextSet.CustomValidationMessage = 'O '#243'rg'#227'o emissor escolhido n'#227'o existe'
         CheckTextSet.Strings.Strings = (
           'ABNC'
@@ -452,6 +454,7 @@ inherited KRDMPacientes: TKRDMPacientes
         FieldDescription = 'UF de emiss'#227'o do RG'
         CheckBlank.Active = True
         CheckTextSet.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
         CheckTextSet.CustomValidationMessage = 'O UF de emiss'#227'o do RG escolhido n'#227'o existe'
         CheckTextSet.Strings.Strings = (
           'AC'
@@ -487,6 +490,7 @@ inherited KRDMPacientes: TKRDMPacientes
         FieldDescription = 'Tipo de logradouro'
         CheckBlank.Active = True
         CheckTextSet.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
         CheckTextSet.CustomValidationMessage = 'O tipo de logradouro escolhido n'#227'o existe'
         CheckTextSet.Strings.Strings = (
           'Outros'
@@ -569,6 +573,7 @@ inherited KRDMPacientes: TKRDMPacientes
         FieldDescription = 'UF'
         CheckBlank.Active = True
         CheckTextSet.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
         CheckTextSet.CustomValidationMessage = 'O UF escolhido n'#227'o existe'
         CheckTextSet.Strings.Strings = (
           'AC'

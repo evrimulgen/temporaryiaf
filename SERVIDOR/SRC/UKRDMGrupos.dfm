@@ -1,4 +1,5 @@
 inherited KRDMGrupos: TKRDMGrupos
+  OldCreateOrder = True
   Height = 213
   Width = 224
   object KRVCGrupos: TKRKValidationChecks
@@ -8,16 +9,19 @@ inherited KRDMGrupos: TKRDMGrupos
       item
         FieldName = 'sm_grupos_id'
         FieldDescription = 'ID'
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'va_nome'
         FieldDescription = 'Nome'
         CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'va_descricao'
         FieldDescription = 'Descri'#231#227'o'
         CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
       end>
     Left = 24
     Top = 156
@@ -34,24 +38,29 @@ inherited KRDMGrupos: TKRDMGrupos
       item
         FieldName = 'entidade'
         FieldDescription = 'Entidade'
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'tipo'
         FieldDescription = 'Tipo de entidade'
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'in_permissoesdosgrupos_id'
         FieldDescription = 'ID'
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'in_entidadesdosistema_id'
         FieldDescription = 'ID da entidade do sistema'
         CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'sm_grupos_id'
         FieldDescription = 'ID do grupo'
         CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'sm_ler'
@@ -60,6 +69,7 @@ inherited KRDMGrupos: TKRDMGrupos
         CheckNumber.Active = True
         CheckNumber.MaximumValue = 1.000000000000000000
         CheckNumber.CheckNumberMode = cnmRange
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'sm_inserir'
@@ -69,6 +79,7 @@ inherited KRDMGrupos: TKRDMGrupos
         CheckNumber.MinimumValue = -1.000000000000000000
         CheckNumber.MaximumValue = 1.000000000000000000
         CheckNumber.CheckNumberMode = cnmRange
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'sm_alterar'
@@ -78,6 +89,7 @@ inherited KRDMGrupos: TKRDMGrupos
         CheckNumber.MinimumValue = -1.000000000000000000
         CheckNumber.MaximumValue = 1.000000000000000000
         CheckNumber.CheckNumberMode = cnmRange
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'sm_excluir'
@@ -87,6 +99,7 @@ inherited KRDMGrupos: TKRDMGrupos
         CheckNumber.MinimumValue = -1.000000000000000000
         CheckNumber.MaximumValue = 1.000000000000000000
         CheckNumber.CheckNumberMode = cnmRange
+        CheckTextSet.FocusOnValidateFailure = False
       end>
     Left = 132
     Top = 156

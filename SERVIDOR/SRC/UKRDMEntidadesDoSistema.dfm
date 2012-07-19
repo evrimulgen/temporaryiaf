@@ -1,4 +1,5 @@
 inherited KRDMEntidadesDoSistema: TKRDMEntidadesDoSistema
+  OldCreateOrder = True
   Height = 165
   Width = 141
   object KRVCEntidadesDoSistema: TKRKValidationChecks
@@ -9,11 +10,13 @@ inherited KRDMEntidadesDoSistema: TKRDMEntidadesDoSistema
         FieldName = 'in_entidadesdosistema_id'
         FieldDescription = 'ID'
         CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'va_nome'
         FieldDescription = 'Nome'
         CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'sm_tipo'
@@ -22,6 +25,7 @@ inherited KRDMEntidadesDoSistema: TKRDMEntidadesDoSistema
         CheckNumber.Active = True
         CheckNumber.MaximumValue = 1.000000000000000000
         CheckNumber.CheckNumberMode = cnmRange
+        CheckTextSet.FocusOnValidateFailure = False
       end>
     Left = 54
     Top = 108

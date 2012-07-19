@@ -94,33 +94,32 @@ inherited KRDMCBO: TKRDMCBO
       item
         FieldName = 'in_cbo_id'
         FieldDescription = 'in_cbo_id'
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'ch_codigo'
         FieldDescription = 'CBO'
         CheckBlank.Active = True
-        CheckBlank.FocusOnValidateFailure = True
         CheckTextLength.Active = True
-        CheckTextLength.FocusOnValidateFailure = True
         CheckTextLength.CustomValidationMessage = 
           'O c'#243'digo de identifica'#231#227'o do CBO deve conter obrigatoriamente 6 ' +
           'caracteres num'#233'ricos'
         CheckTextLength.MinimumTextLength = 6
         CheckTextLength.MaximumTextLength = 6
         CheckTextLength.CheckTextLengthMode = ctmEqual
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'va_titulo'
         FieldDescription = 'T'#237'tulo'
         CheckBlank.Active = True
-        CheckBlank.FocusOnValidateFailure = True
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'en_tipo'
         FieldDescription = 'Tipo'
         CheckBlank.Active = True
         CheckTextSet.Active = True
-        CheckTextSet.FocusOnValidateFailure = True
         CheckTextSet.CustomValidationMessage = 'Os valores aceitos s'#227'o "Ocupa'#231#227'o" ou "Sin'#244'nimo".'
         CheckTextSet.Strings.Strings = (
           'Ocupa'#231#227'o'
