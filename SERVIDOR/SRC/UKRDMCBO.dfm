@@ -18,7 +18,10 @@ inherited KRDMCBO: TKRDMCBO
       '              ,CAST(:EN_TIPO AS TIPOCBO))')
     Connection = SODMPrincipal.UNCN
     SQL.Strings = (
-      'SELECT CBO.* '
+      'SELECT CBO.IN_CBO_ID'
+      '     , CBO.CH_CODIGO'
+      '     , CBO.VA_TITULO'
+      '     , CAST(CBO.EN_TIPO AS VARCHAR(8)) AS EN_TIPO'
       '  FROM CBO CBO'
       ' WHERE ((:IN_CBO_ID IS NULL) OR (CBO.IN_CBO_ID = :IN_CBO_ID))'
       '   AND ((:CH_CODIGO IS NULL) OR (CBO.CH_CODIGO = :CH_CODIGO))'
@@ -43,7 +46,7 @@ inherited KRDMCBO: TKRDMCBO
         DataType = ftString
         Name = 'CH_CODIGO'
         ParamType = ptInput
-        Size = 7
+        Size = 6
       end
       item
         DataType = ftString
@@ -67,7 +70,7 @@ inherited KRDMCBO: TKRDMCBO
       ProviderFlags = [pfInUpdate]
       Required = True
       FixedChar = True
-      Size = 7
+      Size = 6
     end
     object UNQYCBOva_titulo: TWideStringField
       DisplayLabel = 'T'#237'tulo'
@@ -76,12 +79,12 @@ inherited KRDMCBO: TKRDMCBO
       Required = True
       Size = 128
     end
-    object UNQYCBOen_tipo: TWideMemoField
+    object UNQYCBOen_tipo: TWideStringField
       DisplayLabel = 'Tipo'
       FieldName = 'en_tipo'
       ProviderFlags = [pfInUpdate]
       Required = True
-      BlobType = ftWideMemo
+      Size = 8
     end
   end
   object KRVCCBO: TKRKValidationChecks
@@ -100,10 +103,10 @@ inherited KRDMCBO: TKRDMCBO
         CheckTextLength.Active = True
         CheckTextLength.FocusOnValidateFailure = True
         CheckTextLength.CustomValidationMessage = 
-          'O c'#243'digo de identifica'#231#227'o do CBO deve estar no formato NNNN-NN o' +
-          'brigatoriamente'
-        CheckTextLength.MinimumTextLength = 7
-        CheckTextLength.MaximumTextLength = 7
+          'O c'#243'digo de identifica'#231#227'o do CBO deve conter obrigatoriamente 6 ' +
+          'caracteres num'#233'ricos'
+        CheckTextLength.MinimumTextLength = 6
+        CheckTextLength.MaximumTextLength = 6
         CheckTextLength.CheckTextLengthMode = ctmEqual
       end
       item

@@ -26,6 +26,7 @@ inherited KRFMDialogSelecao: TKRFMDialogSelecao
     OnAfterMultiselect = KRDGSelecaoAfterMultiselect
   end
   object DTSR: TDataSource
+    DataSet = CLDS
     Left = 36
     Top = 42
   end

@@ -1,28 +1,22 @@
 object SODMPrincipal: TSODMPrincipal
-  OldCreateOrder = False
+  OldCreateOrder = True
   OnCreate = SoapDataModuleCreate
   Height = 313
   Width = 153
   object DSPRUsuarios: TDataSetProvider
     DataSet = KRDMUsuarios.UNQYUsuarios
-    Constraints = False
-    Options = [poFetchBlobsOnDemand, poFetchDetailsOnDemand, poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poPropogateChanges]
     UpdateMode = upWhereKeyOnly
     Left = 54
     Top = 60
   end
   object DSPREntidadesDoSistema: TDataSetProvider
     DataSet = KRDMEntidadesDoSistema.UNQYEntidadesDoSistema
-    Constraints = False
-    Options = [poFetchBlobsOnDemand, poFetchDetailsOnDemand, poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poPropogateChanges]
     UpdateMode = upWhereKeyOnly
     Left = 54
     Top = 108
   end
   object DSPRGrupos: TDataSetProvider
     DataSet = KRDMGrupos.UNQYGrupos
-    Constraints = False
-    Options = [poFetchBlobsOnDemand, poFetchDetailsOnDemand, poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poPropogateChanges]
     UpdateMode = upWhereKeyOnly
     Left = 54
     Top = 156
@@ -47,7 +41,6 @@ object SODMPrincipal: TSODMPrincipal
     Top = 6
   end
   object UNSM: TUniSQLMonitor
-    Active = False
     Options = [moDBMonitor]
     Left = 114
     Top = 6
@@ -59,17 +52,12 @@ object SODMPrincipal: TSODMPrincipal
   end
   object DSPRCBO: TDataSetProvider
     DataSet = KRDMCBO.UNQYCBO
-    Constraints = False
-    Options = [poFetchBlobsOnDemand, poFetchDetailsOnDemand, poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poPropogateChanges]
     UpdateMode = upWhereKeyOnly
     Left = 54
     Top = 210
   end
   object DSPRPacientes: TDataSetProvider
     DataSet = KRDMPacientes.UNQYPacientes
-    Constraints = False
-    Options = [poFetchBlobsOnDemand, poFetchDetailsOnDemand, poIncFieldProps, poCascadeDeletes, poCascadeUpdates, poPropogateChanges]
-    UpdateMode = upWhereKeyOnly
     Left = 54
     Top = 258
   end

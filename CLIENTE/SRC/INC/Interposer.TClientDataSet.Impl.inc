@@ -10,6 +10,21 @@ begin
   inherited;
 end;
 
+procedure TClientDataSet.DoAfterOpen;
+var
+  Param: TCollectionItem;
+begin
+  inherited;
+  { Todos os TClientDataSet são filtrados mediante operações de refresh,
+  portanto, após abrir o TClientDataSet precisamos zerar todos os seus
+  parâmetros de forma que chamadas subsequentes a refresh utilizem parâmetros
+  nulos, o que invariavelmente vai trazer todos os registros disponíveis. Ao se
+  usar um filtro, os parâmetros são alterados de acordo e ao se pressionar
+  refresh novamente os parâmtros atualmente setados serão utilizados de novo }
+  for Param in Params do
+    TParam(Param).Clear;
+end;
+
 procedure TClientDataSet.DoBeforeApplyUpdates(var OwnerData: OleVariant);
 begin
   OwnerData := DAMOPrincipal.CurrentSession.ID;
@@ -95,7 +110,7 @@ begin
 
   if i < Fields.Count then
   begin
-    Tag := Tag - 1;
+    Tag := Pred(Tag);
     Fields[i].AsInteger := Tag;
   end;
 end;

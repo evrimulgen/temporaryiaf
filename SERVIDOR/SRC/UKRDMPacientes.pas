@@ -14,20 +14,20 @@ type
     UNQYPacientesva_nome: TWideStringField;
     UNQYPacientesda_datanascimento: TDateField;
     UNQYPacientesva_rg: TWideStringField;
-    UNQYPacientesen_orgaoemissorrg: TWideMemoField;
-    UNQYPacientesen_ufemissaorg: TWideMemoField;
-    UNQYPacientesen_tipologradouro: TWideMemoField;
+    UNQYPacientesen_orgaoemissorrg: TWideStringField;
+    UNQYPacientesen_ufemissaorg: TWideStringField;
+    UNQYPacientesen_tipologradouro: TWideStringField;
     UNQYPacientesva_nomelogradouro: TWideStringField;
     UNQYPacientesva_idlogradouro: TWideStringField;
     UNQYPacientesva_complementologradouro: TWideStringField;
     UNQYPacientesva_bairrologradouro: TWideStringField;
     UNQYPacientesva_cidade: TWideStringField;
-    UNQYPacientesen_uf: TWideMemoField;
+    UNQYPacientesen_uf: TWideStringField;
     UNQYPacientesch_foneresidencial: TWideStringField;
     UNQYPacientesch_fonecelular: TWideStringField;
     UNQYPacientestx_observacoes: TWideMemoField;
     KRVCPacientes: TKRKValidationChecks;
-    UNQYPacientesen_genero: TWideMemoField;
+    UNQYPacientesen_genero: TWideStringField;
     UNQYDadosSocioDemograficos: TUniQuery;
     KRVCDadosSocioDemograficos: TKRKValidationChecks;
     DTSRPacientes: TDataSource;
@@ -49,8 +49,6 @@ type
     UNQYDadosSocioDemograficossm_freezer: TSmallintField;
     UNQYDadosSocioDemograficosbo_chefedefamilia: TBooleanField;
     UNQYDadosSocioDemograficossm_grauinstrchefedefamilia: TSmallintField;
-    UNQYDadosSocioDemograficosprofissao: TWideStringField;
-    UNQYDadosSocioDemograficoscbo: TWideStringField;
   private
     { Private declarations }
   public

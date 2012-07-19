@@ -1,5 +1,5 @@
 inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
-  Caption = 'Gerenciar Pacientes'
+  Caption = 'Gerenciar Avaliados'
   ClientHeight = 476
   ClientWidth = 622
   ExplicitWidth = 638
@@ -11,7 +11,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
     Top = 40
     Width = 622
     Height = 436
-    ActivePage = TBSHConsultar
+    ActivePage = TBSHDadosSocioDemograficos
     Align = alClient
     TabOrder = 2
     object TBSHConsultar: TTabSheet
@@ -20,13 +20,13 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
       object KRDGPacientes: TKRKDBGrid
         AlignWithMargins = True
         Left = 0
-        Top = 147
+        Top = 179
         Width = 608
-        Height = 205
+        Height = 173
         Margins.Left = 0
         Margins.Right = 0
         Margins.Bottom = 0
-        Align = alBottom
+        Align = alClient
         DataSource = KRDMGerenciarPacientes.DTSRPacientes
         Options = [dgTitles, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
         OptionsEx = [dgAutomaticColumSizes]
@@ -48,7 +48,6 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
             Expanded = False
             FieldName = 'in_pacientes_id'
             Title.Alignment = taCenter
-            Title.Caption = 'C'#243'digo'
             Visible = True
           end
           item
@@ -67,14 +66,14 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           end
           item
             Expanded = False
-            FieldName = 'ch_foneresidencial'
+            FieldName = 'foneresidencial'
             Title.Alignment = taCenter
             Width = 100
             Visible = True
           end
           item
             Expanded = False
-            FieldName = 'ch_fonecelular'
+            FieldName = 'fonecelular'
             Title.Alignment = taCenter
             Width = 100
             Visible = True
@@ -83,30 +82,15 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
       object DBNAConsultarPacientes: TDBNavigator
         AlignWithMargins = True
         Left = 0
-        Top = 116
+        Top = 148
         Width = 608
         Height = 25
         Margins.Left = 0
         Margins.Right = 0
         DataSource = KRDMGerenciarPacientes.DTSRPacientes
         VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbRefresh]
-        Align = alBottom
+        Align = alTop
         TabOrder = 1
-        ExplicitTop = 166
-      end
-      object PANLConsultarPacientes: TPanel
-        AlignWithMargins = True
-        Left = 0
-        Top = 0
-        Width = 608
-        Height = 110
-        Margins.Left = 0
-        Margins.Top = 0
-        Margins.Right = 0
-        Align = alClient
-        BevelOuter = bvNone
-        TabOrder = 2
-        ExplicitHeight = 160
       end
       object GRBXFiltroPacientes: TGroupBox
         Left = 0
@@ -121,9 +105,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        TabOrder = 3
-        ExplicitTop = 374
-        ExplicitWidth = 482
+        TabOrder = 2
         object LABLFiltroPacientes: TLabel
           AlignWithMargins = True
           Left = 8
@@ -145,9 +127,189 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Transparent = True
           Layout = tlCenter
           WordWrap = True
-          ExplicitLeft = 5
-          ExplicitWidth = 472
-          ExplicitHeight = 30
+          ExplicitLeft = 10
+          ExplicitTop = 17
+        end
+      end
+      object PANLLayerFiltros: TPanel
+        AlignWithMargins = True
+        Left = 0
+        Top = 0
+        Width = 608
+        Height = 143
+        Margins.Left = 0
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 2
+        Align = alTop
+        BevelOuter = bvNone
+        Locked = True
+        TabOrder = 3
+        DesignSize = (
+          608
+          143)
+        object GRBXPorDadosUnicos: TGroupBox
+          Left = 0
+          Top = -2
+          Width = 164
+          Height = 55
+          Caption = ' Por dados '#250'nicos (ou) '
+          TabOrder = 0
+          object KRLECodigo: TKRKLabeledEdit
+            Left = 6
+            Top = 27
+            Width = 64
+            Height = 21
+            EditFormat.FinalMask = '###.###.###.###.###.###.###'
+            EditFormat.Format = foInteger
+            EditLabel.Width = 33
+            EditLabel.Height = 13
+            EditLabel.Caption = 'C'#243'digo'
+            LabelSpacing = 1
+            MaxLength = 27
+            TabOrder = 0
+            OnKeyPress = KRLECodigoKeyPress
+          end
+          object KRLEIdentidade: TKRKLabeledEdit
+            Left = 76
+            Top = 27
+            Width = 82
+            Height = 21
+            EditFormat.FinalMask = '###.###.###.###.###.###.###'
+            EditFormat.Format = foInteger
+            EditLabel.Width = 52
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Identidade'
+            LabelSpacing = 1
+            MaxLength = 27
+            TabOrder = 1
+            OnKeyPress = KRLEIdentidadeKeyPress
+          end
+        end
+        object GRBXPorDadosCompletos: TGroupBox
+          Left = 170
+          Top = -2
+          Width = 315
+          Height = 55
+          Caption = ' Por dados completos (ou) '
+          TabOrder = 1
+          object KRLENascimento: TKRKLabeledEdit
+            Left = 6
+            Top = 27
+            Width = 82
+            Height = 21
+            EditFormat.FinalMask = '##/##/####'
+            EditFormat.Format = foDate
+            EditLabel.Width = 55
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Nascimento'
+            LabelSpacing = 1
+            MaxLength = 10
+            TabOrder = 0
+            OnKeyPress = KRLENascimentoKeyPress
+          end
+          object KRLEFoneResidencial: TKRKLabeledEdit
+            Left = 94
+            Top = 27
+            Width = 105
+            Height = 21
+            EditFormat.FinalMask = '(##) ####-####'
+            EditFormat.Format = foCustom
+            EditFormat.FormatScript.Strings = (
+              '\D'#170
+              '^(\d\d)(\d)'#170'($1) $2'
+              '(\d{4})(\d)'#186'$1-$2')
+            EditLabel.Width = 77
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Fone residencial'
+            LabelSpacing = 1
+            MaxLength = 14
+            TabOrder = 1
+            OnKeyPress = KRLEFoneResidencialKeyPress
+          end
+          object KRLEFoneCelular: TKRKLabeledEdit
+            Left = 205
+            Top = 27
+            Width = 105
+            Height = 21
+            EditFormat.FinalMask = '(##) ####-####'
+            EditFormat.Format = foCustom
+            EditFormat.FormatScript.Strings = (
+              '\D'#170
+              '^(\d\d)(\d)'#170'($1) $2'
+              '(\d{4})(\d)'#186'$1-$2')
+            EditLabel.Width = 58
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Fone celular'
+            LabelSpacing = 1
+            MaxLength = 14
+            TabOrder = 2
+            OnKeyPress = KRLEFoneCelularKeyPress
+          end
+        end
+        object GRBXPorDadosParciais: TGroupBox
+          Left = 0
+          Top = 52
+          Width = 608
+          Height = 91
+          Anchors = [akLeft, akTop, akRight]
+          Caption = ' Por dados parciais (e) '
+          TabOrder = 2
+          DesignSize = (
+            608
+            91)
+          object LAEDNome: TLabeledEdit
+            Left = 6
+            Top = 27
+            Width = 597
+            Height = 21
+            Anchors = [akLeft, akTop, akRight]
+            EditLabel.Width = 27
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Nome'
+            LabelSpacing = 1
+            TabOrder = 0
+            OnKeyPress = DoKeyPressPesquisaParcial
+          end
+          object LAEDBairro: TLabeledEdit
+            Left = 448
+            Top = 63
+            Width = 155
+            Height = 21
+            Anchors = [akTop, akRight]
+            EditLabel.Width = 28
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Bairro'
+            LabelSpacing = 1
+            TabOrder = 1
+            OnKeyPress = DoKeyPressPesquisaParcial
+          end
+          object LAEDCidade: TLabeledEdit
+            Left = 287
+            Top = 63
+            Width = 155
+            Height = 21
+            Anchors = [akTop, akRight]
+            EditLabel.Width = 33
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Cidade'
+            LabelSpacing = 1
+            TabOrder = 2
+            OnKeyPress = DoKeyPressPesquisaParcial
+          end
+          object LAEDLogradouro: TLabeledEdit
+            Left = 6
+            Top = 63
+            Width = 275
+            Height = 21
+            Anchors = [akLeft, akTop, akRight]
+            EditLabel.Width = 55
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Logradouro'
+            LabelSpacing = 1
+            TabOrder = 3
+            OnKeyPress = DoKeyPressPesquisaParcial
+          end
         end
       end
     end
@@ -170,7 +332,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
       end
       object GRBXContato: TGroupBox
         Left = 289
-        Top = 55
+        Top = 52
         Width = 228
         Height = 55
         Caption = ' Contato '
@@ -182,9 +344,9 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Height = 21
           DataField = 'ch_fonecelular'
           DataSource = KRDMGerenciarPacientes.DTSRPacientes
-          EditFormat.FinalMask = '(##) ####-####'
-          EditFormat.Format = foCustom
-          EditFormat.FormatScript.Strings = (
+          DBEditFormat.FinalMask = '(##) ####-####'
+          DBEditFormat.Format = foCustom
+          DBEditFormat.FormatScript.Strings = (
             '\D'#170
             '^(\d\d)(\d)'#170'($1) $2'
             '(\d{4})(\d)'#186'$1-$2')
@@ -202,9 +364,9 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Height = 21
           DataField = 'ch_foneresidencial'
           DataSource = KRDMGerenciarPacientes.DTSRPacientes
-          EditFormat.FinalMask = '(##) ####-####'
-          EditFormat.Format = foCustom
-          EditFormat.FormatScript.Strings = (
+          DBEditFormat.FinalMask = '(##) ####-####'
+          DBEditFormat.Format = foCustom
+          DBEditFormat.FormatScript.Strings = (
             '\D'#170
             '^(\d\d)(\d)'#170'($1) $2'
             '(\d{4})(\d)'#186'$1-$2')
@@ -218,7 +380,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
       end
       object GRBXDocumentos: TGroupBox
         Left = 0
-        Top = 55
+        Top = 52
         Width = 283
         Height = 55
         Caption = ' Documentos '
@@ -246,9 +408,9 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Height = 21
           DataField = 'va_rg'
           DataSource = KRDMGerenciarPacientes.DTSRPacientes
-          EditFormat.FinalMask = '#.###.###.###'
-          EditFormat.Format = foCustom
-          EditFormat.FormatScript.Strings = (
+          DBEditFormat.FinalMask = '#.###.###.###'
+          DBEditFormat.Format = foCustom
+          DBEditFormat.FormatScript.Strings = (
             '\D'#170
             '(\d)(\d{3})$'#186'$1.$2'
             '(\d)(\d{3}\.)'#186'$1.$2'
@@ -378,7 +540,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
       end
       object GRBXDadosPessoais: TGroupBox
         Left = 0
-        Top = -3
+        Top = -2
         Width = 608
         Height = 55
         Anchors = [akLeft, akTop, akRight]
@@ -418,9 +580,9 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Anchors = [akTop, akRight]
           DataField = 'da_datanascimento'
           DataSource = KRDMGerenciarPacientes.DTSRPacientes
-          EditFormat.FinalMask = '##/##/####'
-          EditFormat.KeepMask = True
-          EditFormat.Format = foDate
+          DBEditFormat.FinalMask = '##/##/####'
+          DBEditFormat.KeepMask = True
+          DBEditFormat.Format = foDate
           EditLabel.Width = 55
           EditLabel.Height = 13
           EditLabel.Caption = 'Nascimento'
@@ -445,7 +607,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
       end
       object GRBXEndereco: TGroupBox
         Left = 0
-        Top = 113
+        Top = 106
         Width = 608
         Height = 91
         Anchors = [akLeft, akTop, akRight]
@@ -642,9 +804,9 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
       object GRBXObservacoes: TGroupBox
         AlignWithMargins = True
         Left = 0
-        Top = 204
+        Top = 199
         Width = 608
-        Height = 170
+        Height = 175
         Margins.Left = 0
         Margins.Top = 0
         Margins.Right = 0
@@ -656,7 +818,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Left = 6
           Top = 15
           Width = 596
-          Height = 148
+          Height = 153
           Margins.Left = 4
           Margins.Top = 0
           Margins.Right = 4
@@ -680,6 +842,8 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
         Align = alClient
         BevelInner = bvNone
         BevelOuter = bvNone
+        Color = clWindow
+        ParentColor = False
         TabOrder = 0
         object DBRGCorRaca: TDBRadioGroup
           AlignWithMargins = True
@@ -691,7 +855,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Margins.Top = 0
           Margins.Right = 6
           Align = alTop
-          Caption = ' 1 - Como voc'#234' auto-define a sua cor ou ra'#231'a? '
+          Caption = ' 1.0 - Como voc'#234' auto-define a sua cor ou ra'#231'a? '
           DataField = 'sm_corraca'
           DataSource = KRDMGerenciarPacientes.DTSRDadosSocioDemograficos
           Items.Strings = (
@@ -719,7 +883,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Margins.Top = 0
           Margins.Right = 6
           Align = alTop
-          Caption = ' 2 - Qual seu estado civil? '
+          Caption = ' 2.0 - Qual seu estado civil? '
           DataField = 'sm_estadocivil'
           DataSource = KRDMGerenciarPacientes.DTSRDadosSocioDemograficos
           Items.Strings = (
@@ -745,7 +909,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Margins.Top = 0
           Margins.Right = 6
           Align = alTop
-          Caption = ' 3 - Qual seu grau de instru'#231#227'o? '
+          Caption = ' 3.0 - Qual seu grau de instru'#231#227'o? '
           DataField = 'sm_graudeinstrucao'
           DataSource = KRDMGerenciarPacientes.DTSRDadosSocioDemograficos
           Items.Strings = (
@@ -778,7 +942,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Margins.Right = 6
           Align = alTop
           BiDiMode = bdLeftToRight
-          Caption = ' 4 - Qual sua profiss'#227'o e status ocupacional? '
+          Caption = ' 4.0 - Qual sua profiss'#227'o e status ocupacional? '
           ParentBiDiMode = False
           TabOrder = 3
           DesignSize = (
@@ -796,30 +960,27 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
               355
               21)
             object LAEDTituloCBO: TLabeledEdit
-              Left = 34
+              Left = 47
               Top = 0
-              Width = 297
+              Width = 284
               Height = 21
               Anchors = [akLeft, akTop, akRight]
               Color = clInfoBk
-              EditLabel.Width = 33
+              EditLabel.Width = 44
               EditLabel.Height = 13
-              EditLabel.Caption = 'C.B.O.'
+              EditLabel.Caption = 'Profiss'#227'o'
               LabelPosition = lpLeft
-              LabelSpacing = 1
               ReadOnly = True
               TabOrder = 1
-              ExplicitWidth = 214
             end
             object BUTNPesqisarCBO: TButton
               Left = 334
               Top = 0
               Width = 21
               Height = 21
+              Action = KRDMGerenciarPacientes.ACTNSelecionarCBO
               Align = alRight
-              Caption = '...'
               TabOrder = 0
-              ExplicitLeft = 251
             end
           end
           object DBRGProfissao: TDBRadioGroup
@@ -846,12 +1007,12 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Left = 6
           Top = 375
           Width = 575
-          Height = 380
+          Height = 425
           Margins.Left = 6
           Margins.Top = 0
           Margins.Right = 6
           Align = alTop
-          Caption = ' 5 - Quais e quantos dos itens abaixo existem em seu lar? '
+          Caption = ' 5.0 - Quais e quantos dos itens abaixo existem em seu lar? '
           TabOrder = 4
           object DBRGTelevisor: TDBRadioGroup
             AlignWithMargins = True
@@ -972,14 +1133,14 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           object DBRGMaquinaDeLavar: TDBRadioGroup
             AlignWithMargins = True
             Left = 8
-            Top = 195
+            Top = 240
             Width = 559
             Height = 42
             Margins.Left = 6
             Margins.Top = 0
             Margins.Right = 6
             Align = alTop
-            Caption = ' 5.5 - M'#225'quina de lavar '
+            Caption = ' 5.6 - M'#225'quina de lavar '
             Columns = 5
             DataField = 'sm_maquinalavar'
             DataSource = KRDMGerenciarPacientes.DTSRDadosSocioDemograficos
@@ -1001,14 +1162,14 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           object DBRGVCRDVD: TDBRadioGroup
             AlignWithMargins = True
             Left = 8
-            Top = 240
+            Top = 285
             Width = 559
             Height = 42
             Margins.Left = 6
             Margins.Top = 0
             Margins.Right = 6
             Align = alTop
-            Caption = ' 5.6 - V'#237'deocassete / DVD '
+            Caption = ' 5.7 - V'#237'deocassete / DVD '
             Columns = 5
             DataField = 'sm_vcrdvd'
             DataSource = KRDMGerenciarPacientes.DTSRDadosSocioDemograficos
@@ -1030,14 +1191,14 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           object DBRGGeladeira: TDBRadioGroup
             AlignWithMargins = True
             Left = 8
-            Top = 285
+            Top = 330
             Width = 559
             Height = 42
             Margins.Left = 6
             Margins.Top = 0
             Margins.Right = 6
             Align = alTop
-            Caption = ' 5.7 - Geladeira (uma porta) '
+            Caption = ' 5.8 - Geladeira (uma porta) '
             Columns = 5
             DataField = 'sm_geladeira'
             DataSource = KRDMGerenciarPacientes.DTSRDadosSocioDemograficos
@@ -1059,14 +1220,14 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           object DBRGFreezer: TDBRadioGroup
             AlignWithMargins = True
             Left = 8
-            Top = 330
+            Top = 375
             Width = 559
             Height = 42
             Margins.Left = 6
             Margins.Top = 0
             Margins.Right = 6
             Align = alTop
-            Caption = ' 5.8 - Freezer (independente ou 2'#170' porta da geladeira) '
+            Caption = ' 5.9 - Freezer (independente ou 2'#170' porta da geladeira) '
             Columns = 5
             DataField = 'sm_freezer'
             DataSource = KRDMGerenciarPacientes.DTSRDadosSocioDemograficos
@@ -1085,34 +1246,64 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
               '3'
               '4')
           end
+          object DBRGEmpregadaMensalista: TDBRadioGroup
+            AlignWithMargins = True
+            Left = 8
+            Top = 195
+            Width = 559
+            Height = 42
+            Margins.Left = 6
+            Margins.Top = 0
+            Margins.Right = 6
+            Align = alTop
+            Caption = ' 5.5 - Empregada mensalista '
+            Columns = 5
+            DataField = 'sm_mensalista'
+            DataSource = KRDMGerenciarPacientes.DTSRDadosSocioDemograficos
+            Items.Strings = (
+              'N'#227'o tem'
+              '1'
+              '2'
+              '3'
+              '4 ou +')
+            ParentBackground = True
+            TabOrder = 8
+            Values.Strings = (
+              '0'
+              '1'
+              '2'
+              '3'
+              '4')
+          end
         end
         object DBRGChefeDaFamilia: TDBRadioGroup
           AlignWithMargins = True
           Left = 6
-          Top = 758
+          Top = 803
           Width = 575
           Height = 42
           Margins.Left = 6
           Margins.Top = 0
           Margins.Right = 6
           Align = alTop
-          Caption = ' 6 - Voc'#234' '#233' o chefe da fam'#237'lia? '
+          Caption = ' 6.0 - Voc'#234' '#233' o chefe da fam'#237'lia? '
           Columns = 2
           DataField = 'bo_chefedefamilia'
           DataSource = KRDMGerenciarPacientes.DTSRDadosSocioDemograficos
           Items.Strings = (
-            'Sim (n'#227'o responda a quest'#227'o 7)'
-            'N'#227'o (responda a quest'#227'o 7)')
+            'Sim'
+            'N'#227'o')
           ParentBackground = True
           TabOrder = 5
           Values.Strings = (
             'True'
             'False')
+          OnChange = DBRGChefeDaFamiliaChange
         end
         object DBRGGrauChefeFamilia: TDBRadioGroup
           AlignWithMargins = True
           Left = 6
-          Top = 803
+          Top = 848
           Width = 575
           Height = 105
           Margins.Left = 6
@@ -1120,9 +1311,10 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Margins.Right = 6
           Margins.Bottom = 0
           Align = alTop
-          Caption = ' 7 - Qual o grau de instru'#231#227'o do chefe da fam'#237'lia? '
-          DataField = 'bo_chefedefamilia'
+          Caption = ' 7.0 - Qual o grau de instru'#231#227'o do chefe da fam'#237'lia? '
+          DataField = 'sm_grauinstrchefedefamilia'
           DataSource = KRDMGerenciarPacientes.DTSRDadosSocioDemograficos
+          Enabled = False
           Items.Strings = (
             
               'Analfabeto ou cursou at'#233' a 3'#170' s'#233'rie do ensino fundamental (prim'#225 +
@@ -1144,7 +1336,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
         end
         object PANLPaddingBottom: TPanel
           Left = 0
-          Top = 908
+          Top = 953
           Width = 587
           Height = 6
           Align = alBottom
@@ -1174,11 +1366,12 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
     ExplicitWidth = 622
     inherited LABLCaption: TLabel
       Height = 38
+      ExplicitHeight = 38
     end
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C010102000800C00020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800100120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1715,7 +1908,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C010102000800D00020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800200120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

@@ -2,11 +2,10 @@ unit UKRDMGerenciarPacientes;
 
 interface
 
-uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ImgList, KRK.Components.AdditionalControls.PngImageList,
-  KRK.Components.AdditionalControls.BalloonHint, ActnList, DB, DBClient,
-  UKRDMBasico;
+uses Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, DBClient
+   , DB, ImgList, ActnList, UKRDMBasico
+   , KRK.Components.AdditionalControls.BalloonHint
+   , KRK.Components.AdditionalControls.PngImageList;
 
 type
   TKRDMGerenciarPacientes = class(TKRDMBasico)
@@ -16,19 +15,19 @@ type
     CLDSPacientesva_nome: TWideStringField;
     CLDSPacientesda_datanascimento: TDateField;
     CLDSPacientesva_rg: TWideStringField;
-    CLDSPacientesen_orgaoemissorrg: TWideMemoField;
-    CLDSPacientesen_ufemissaorg: TWideMemoField;
-    CLDSPacientesen_tipologradouro: TWideMemoField;
+    CLDSPacientesen_orgaoemissorrg: TWideStringField;
+    CLDSPacientesen_ufemissaorg: TWideStringField;
+    CLDSPacientesen_tipologradouro: TWideStringField;
     CLDSPacientesva_nomelogradouro: TWideStringField;
     CLDSPacientesva_idlogradouro: TWideStringField;
     CLDSPacientesva_complementologradouro: TWideStringField;
     CLDSPacientesva_bairrologradouro: TWideStringField;
     CLDSPacientesva_cidade: TWideStringField;
-    CLDSPacientesen_uf: TWideMemoField;
+    CLDSPacientesen_uf: TWideStringField;
     CLDSPacientesch_foneresidencial: TWideStringField;
     CLDSPacientesch_fonecelular: TWideStringField;
     CLDSPacientestx_observacoes: TWideMemoField;
-    CLDSPacientesen_genero: TWideMemoField;
+    CLDSPacientesen_genero: TWideStringField;
     CLDSDadosSocioDemograficos: TClientDataSet;
     DTSRDadosSocioDemograficos: TDataSource;
     CLDSPacientesUNQYDadosSocioDemograficos: TDataSetField;
@@ -50,27 +49,42 @@ type
     CLDSDadosSocioDemograficossm_freezer: TSmallintField;
     CLDSDadosSocioDemograficosbo_chefedefamilia: TBooleanField;
     CLDSDadosSocioDemograficossm_grauinstrchefedefamilia: TSmallintField;
-    CLDSDadosSocioDemograficosprofissao: TWideStringField;
-    CLDSDadosSocioDemograficoscbo: TWideStringField;
-    procedure CLDSPacientesch_foneresidencialGetText(Sender: TField; var Text: string; DisplayText: Boolean);
-    procedure CLDSPacientesch_fonecelularGetText(Sender: TField; var Text: string; DisplayText: Boolean);
+    CLDSPacientesfoneresidencial: TStringField;
+    CLDSPacientesfonecelular: TStringField;
+    ACTNSelecionarCBO: TAction;
     procedure CLDSPacientesAfterRefresh(DataSet: TDataSet);
+    procedure CLDSPacientesCalcFields(DataSet: TDataSet);
+    procedure DTSRPacientesDataChange(Sender: TObject; Field: TField);
+    procedure ACTNSelecionarCBOExecute(Sender: TObject);
   private
     { Private declarations }
-    function ObterTelefoneResidencialFormatado: String;
-    function ObterTelefoneCelularFormatado: String;
+    procedure AlternarPaginas;
   public
     { Public declarations }
     procedure FiltrarPacientes(aCLDSPacientes: TClientDataSet; aIN_PACIENTES_ID: Integer; aVA_NOME, aEN_GENERO: String; aDA_DATANASCIMENTO: TDateTime; aVA_RG, aEN_ORGAOEMISSORRG, aEN_UFEMISSAORG, aEN_TIPOLOGRADOURO, aVA_NOMELOGRADOURO, aVA_IDLOGRADOURO, aVA_COMPLEMENTOLOGRADOURO, aVA_BAIRROLOGRADOURO, aVA_CIDADE, aEN_UF, aCH_FONERESIDENCIAL, aCH_FONECELULAR, aTX_OBSERVACOES: String);
+    procedure FiltrarCBO(aCLDSCBO: TClientDataSet; aIN_CBO_ID: Integer; aCH_CODIGO, aVA_TITULO, aEN_TIPO: String);
   end;
 
 implementation
 
-uses UDAMOPrincipal, UKRFMGerenciarPacientes, KRK.Lib.Db.Utils;
+uses UDAMOPrincipal, UKRFMGerenciarPacientes, KRK.Lib.Db.Utils, KRK.Lib.RegExp.Utils,
+  UKRFMSelecionarCBO;
 
 {$R *.dfm}
 
 { TKRDMGerenciarPacientes }
+
+procedure TKRDMGerenciarPacientes.FiltrarCBO(aCLDSCBO: TClientDataSet; aIN_CBO_ID: Integer; aCH_CODIGO, aVA_TITULO, aEN_TIPO: String);
+begin
+  if aCLDSCBO.ChangeCount = 0 then
+  begin
+    AssignParam(aCLDSCBO.Params.ParamByName('IN_CBO_ID'),aIN_CBO_ID);
+    AssignParam(aCLDSCBO.Params.ParamByName('CH_CODIGO'),aCH_CODIGO);
+    AssignParam(aCLDSCBO.Params.ParamByName('VA_TITULO'),aVA_TITULO);
+    AssignParam(aCLDSCBO.Params.ParamByName('EN_TIPO'),aEN_TIPO);
+    aCLDSCBO.Refresh;
+  end;
+end;
 
 procedure TKRDMGerenciarPacientes.FiltrarPacientes(aCLDSPacientes: TClientDataSet; aIN_PACIENTES_ID: Integer; aVA_NOME, aEN_GENERO: String; aDA_DATANASCIMENTO: TDateTime; aVA_RG, aEN_ORGAOEMISSORRG, aEN_UFEMISSAORG, aEN_TIPOLOGRADOURO, aVA_NOMELOGRADOURO, aVA_IDLOGRADOURO, aVA_COMPLEMENTOLOGRADOURO, aVA_BAIRROLOGRADOURO, aVA_CIDADE, aEN_UF, aCH_FONERESIDENCIAL, aCH_FONECELULAR, aTX_OBSERVACOES: String);
 begin
@@ -95,9 +109,37 @@ begin
     AssignParam(aCLDSPacientes.Params.ParamByName('TX_OBSERVACOES'),aTX_OBSERVACOES);
     aCLDSPacientes.Refresh;
   end;
+end;
+
+procedure TKRDMGerenciarPacientes.ACTNSelecionarCBOExecute(Sender: TObject);
+begin
+  inherited;
+  with TKRFMSelecionarCBO.Create(nil) do
+    try
+      CLDS.ConnectionBroker := CLDSPacientes.ConnectionBroker;
+      CLDS.ProviderName := 'DSPRCBO';
+      CLDS.Open;
+
+      if ShowModal = mrOk then
+      begin
+        CLDSDadosSocioDemograficos.Edit;
+        CLDSDadosSocioDemograficosin_cbo_id.AsInteger := CLDSin_cbo_id.AsInteger;
+        TKRFMGerenciarPacientes(MyForm).LAEDTituloCBO.Text := CLDSva_titulo.AsString;
+      end;
+    finally
+      Free;
+    end;
 
 end;
 
+procedure TKRDMGerenciarPacientes.AlternarPaginas;
+begin
+  if Assigned(MyForm) then
+  begin
+    TKRFMGerenciarPacientes(MyForm).TBSHConsultar.TabVisible := CLDSPacientes.State = dsBrowse;
+    TKRFMGerenciarPacientes(MyForm).TBSHDadosSocioDemograficos.TabVisible := (CLDSPacientes.RecordCount > 0) and (CLDSPacientesin_pacientes_id.AsInteger > 0);
+  end;
+end;
 
 procedure TKRDMGerenciarPacientes.CLDSPacientesAfterRefresh(DataSet: TDataSet);
 begin
@@ -105,42 +147,21 @@ begin
   TKRFMGerenciarPacientes(MyForm).LABLFiltroPacientes.Caption := TClientDataSet(DataSet).MyParams;
 end;
 
-procedure TKRDMGerenciarPacientes.CLDSPacientesch_fonecelularGetText(Sender: TField; var Text: string; DisplayText: Boolean);
+procedure TKRDMGerenciarPacientes.CLDSPacientesCalcFields(DataSet: TDataSet);
 begin
   inherited;
-  if DisplayText then
-    Text := ObterTelefoneCelularFormatado
-  else
-    Text := Sender.AsString;
-end;
-
-procedure TKRDMGerenciarPacientes.CLDSPacientesch_foneresidencialGetText(Sender: TField; var Text: string; DisplayText: Boolean);
-begin
-  inherited;
-  if DisplayText then
-    Text := ObterTelefoneResidencialFormatado
-  else
-    Text := Sender.AsString;
-end;
-
-function TKRDMGerenciarPacientes.ObterTelefoneCelularFormatado: String;
-begin
-  Result := '';
 
   if not Assigned(MyForm) then
     Exit;
 
-  Result := TKRFMGerenciarPacientes(MyForm).KLDEFoneCelular.EditText;
+  CLDSPacientesfoneresidencial.AsString := ApplyMask(TKRFMGerenciarPacientes(MyForm).KLDEFoneResidencial.DBEditFormat.FormatScript,CLDSPacientesch_foneresidencial.AsString);
+  CLDSPacientesfonecelular.AsString := ApplyMask(TKRFMGerenciarPacientes(MyForm).KLDEFoneCelular.DBEditFormat.FormatScript,CLDSPacientesch_fonecelular.AsString);
 end;
 
-function TKRDMGerenciarPacientes.ObterTelefoneResidencialFormatado: String;
+procedure TKRDMGerenciarPacientes.DTSRPacientesDataChange(Sender: TObject; Field: TField);
 begin
-  Result := '';
-
-  if not Assigned(MyForm) then
-    Exit;
-
-  Result := TKRFMGerenciarPacientes(MyForm).KLDEFoneResidencial.EditText;
+  inherited;
+  AlternarPaginas;
 end;
 
 end.

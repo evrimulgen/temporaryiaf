@@ -1,6 +1,6 @@
 inherited KRDMPacientes: TKRDMPacientes
   OldCreateOrder = True
-  Height = 292
+  Height = 201
   Width = 262
   object UNQYPacientes: TUniQuery
     SQLInsert.Strings = (
@@ -46,7 +46,27 @@ inherited KRDMPacientes: TKRDMPacientes
       '                    ,:TX_OBSERVACOES)')
     Connection = SODMPrincipal.UNCN
     SQL.Strings = (
-      'SELECT PAC.*'
+      'SELECT PAC.IN_PACIENTES_ID'
+      '     , PAC.VA_NOME'
+      '     , CAST(PAC.EN_GENERO AS VARCHAR(9)) AS EN_GENERO'
+      '     , PAC.DA_DATANASCIMENTO'
+      '     , PAC.VA_RG'
+      
+        '     , CAST(PAC.EN_ORGAOEMISSORRG AS VARCHAR(15)) AS EN_ORGAOEMI' +
+        'SSORRG'
+      '     , CAST(PAC.EN_UFEMISSAORG AS CHAR(2)) AS EN_UFEMISSAORG'
+      
+        '     , CAST(PAC.EN_TIPOLOGRADOURO AS VARCHAR(15)) AS EN_TIPOLOGR' +
+        'ADOURO'
+      '     , PAC.VA_NOMELOGRADOURO'
+      '     , PAC.VA_IDLOGRADOURO'
+      '     , PAC.VA_COMPLEMENTOLOGRADOURO'
+      '     , PAC.VA_BAIRROLOGRADOURO'
+      '     , PAC.VA_CIDADE'
+      '     , CAST(PAC.EN_UF AS CHAR(2)) AS EN_UF'
+      '     , PAC.CH_FONERESIDENCIAL'
+      '     , PAC.CH_FONECELULAR'
+      '     , PAC.TX_OBSERVACOES'
       '  FROM PACIENTES PAC'
       
         ' WHERE ((:IN_PACIENTES_ID IS NULL) OR PAC.IN_PACIENTES_ID = :IN_' +
@@ -212,12 +232,11 @@ inherited KRDMPacientes: TKRDMPacientes
       Required = True
       Size = 128
     end
-    object UNQYPacientesen_genero: TWideMemoField
+    object UNQYPacientesen_genero: TWideStringField
       DisplayLabel = 'G'#234'nero'
       DisplayWidth = 9
       FieldName = 'en_genero'
       Required = True
-      BlobType = ftWideMemo
       Size = 9
     end
     object UNQYPacientesda_datanascimento: TDateField
@@ -233,31 +252,28 @@ inherited KRDMPacientes: TKRDMPacientes
       Required = True
       Size = 10
     end
-    object UNQYPacientesen_orgaoemissorrg: TWideMemoField
+    object UNQYPacientesen_orgaoemissorrg: TWideStringField
       DisplayLabel = #211'rg'#227'o emissor do RG'
       DisplayWidth = 14
       FieldName = 'en_orgaoemissorrg'
       ProviderFlags = [pfInUpdate]
       Required = True
-      BlobType = ftWideMemo
       Size = 14
     end
-    object UNQYPacientesen_ufemissaorg: TWideMemoField
+    object UNQYPacientesen_ufemissaorg: TWideStringField
       DisplayLabel = 'UF de emiss'#227'o do RG'
       DisplayWidth = 2
       FieldName = 'en_ufemissaorg'
       ProviderFlags = [pfInUpdate]
       Required = True
-      BlobType = ftWideMemo
       Size = 2
     end
-    object UNQYPacientesen_tipologradouro: TWideMemoField
+    object UNQYPacientesen_tipologradouro: TWideStringField
       DisplayLabel = 'Tipo de logradouro'
       DisplayWidth = 15
       FieldName = 'en_tipologradouro'
       ProviderFlags = [pfInUpdate]
       Required = True
-      BlobType = ftWideMemo
       Size = 15
     end
     object UNQYPacientesva_nomelogradouro: TWideStringField
@@ -292,13 +308,12 @@ inherited KRDMPacientes: TKRDMPacientes
       Required = True
       Size = 30
     end
-    object UNQYPacientesen_uf: TWideMemoField
+    object UNQYPacientesen_uf: TWideStringField
       DisplayLabel = 'UF'
       DisplayWidth = 2
       FieldName = 'en_uf'
       ProviderFlags = [pfInUpdate]
       Required = True
-      BlobType = ftWideMemo
       Size = 2
     end
     object UNQYPacientesch_foneresidencial: TWideStringField
@@ -329,19 +344,18 @@ inherited KRDMPacientes: TKRDMPacientes
       item
         FieldName = 'in_pacientes_id'
         FieldDescription = 'in_pacientes_id'
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'va_nome'
         FieldDescription = 'Nome'
         CheckBlank.Active = True
-        CheckBlank.FocusOnValidateFailure = True
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'en_genero'
         FieldDescription = 'G'#234'nero'
         CheckBlank.Active = True
-        CheckBlank.FocusOnValidateFailure = True
-        CheckTextSet.FocusOnValidateFailure = True
         CheckTextSet.CustomValidationMessage = 'O g'#234'nero escolhido n'#227'o existe'
         CheckTextSet.Strings.Strings = (
           'Masculino'
@@ -351,21 +365,19 @@ inherited KRDMPacientes: TKRDMPacientes
         FieldName = 'da_datanascimento'
         FieldDescription = 'Data de nascimento'
         CheckBlank.Active = True
-        CheckBlank.FocusOnValidateFailure = True
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'va_rg'
         FieldDescription = 'RG'
         CheckBlank.Active = True
-        CheckBlank.FocusOnValidateFailure = True
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'en_orgaoemissorrg'
         FieldDescription = #211'rg'#227'o emissor do RG'
         CheckBlank.Active = True
-        CheckBlank.FocusOnValidateFailure = True
         CheckTextSet.Active = True
-        CheckTextSet.FocusOnValidateFailure = True
         CheckTextSet.CustomValidationMessage = 'O '#243'rg'#227'o emissor escolhido n'#227'o existe'
         CheckTextSet.Strings.Strings = (
           'ABNC'
@@ -439,9 +451,7 @@ inherited KRDMPacientes: TKRDMPacientes
         FieldName = 'en_ufemissaorg'
         FieldDescription = 'UF de emiss'#227'o do RG'
         CheckBlank.Active = True
-        CheckBlank.FocusOnValidateFailure = True
         CheckTextSet.Active = True
-        CheckTextSet.FocusOnValidateFailure = True
         CheckTextSet.CustomValidationMessage = 'O UF de emiss'#227'o do RG escolhido n'#227'o existe'
         CheckTextSet.Strings.Strings = (
           'AC'
@@ -476,9 +486,7 @@ inherited KRDMPacientes: TKRDMPacientes
         FieldName = 'en_tipologradouro'
         FieldDescription = 'Tipo de logradouro'
         CheckBlank.Active = True
-        CheckBlank.FocusOnValidateFailure = True
         CheckTextSet.Active = True
-        CheckTextSet.FocusOnValidateFailure = True
         CheckTextSet.CustomValidationMessage = 'O tipo de logradouro escolhido n'#227'o existe'
         CheckTextSet.Strings.Strings = (
           'Outros'
@@ -531,37 +539,36 @@ inherited KRDMPacientes: TKRDMPacientes
         FieldName = 'va_nomelogradouro'
         FieldDescription = 'Logradouro'
         CheckBlank.Active = True
-        CheckBlank.FocusOnValidateFailure = True
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'va_idlogradouro'
         FieldDescription = 'N'#250'mero'
         CheckBlank.Active = True
-        CheckBlank.FocusOnValidateFailure = True
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'va_complementologradouro'
         FieldDescription = 'Complemento'
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'va_bairrologradouro'
         FieldDescription = 'Bairro'
         CheckBlank.Active = True
-        CheckBlank.FocusOnValidateFailure = True
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'va_cidade'
         FieldDescription = 'Cidade'
         CheckBlank.Active = True
-        CheckBlank.FocusOnValidateFailure = True
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'en_uf'
         FieldDescription = 'UF'
         CheckBlank.Active = True
-        CheckBlank.FocusOnValidateFailure = True
         CheckTextSet.Active = True
-        CheckTextSet.FocusOnValidateFailure = True
         CheckTextSet.CustomValidationMessage = 'O UF escolhido n'#227'o existe'
         CheckTextSet.Strings.Strings = (
           'AC'
@@ -595,14 +602,17 @@ inherited KRDMPacientes: TKRDMPacientes
       item
         FieldName = 'ch_foneresidencial'
         FieldDescription = 'Telefone residencial'
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'ch_fonecelular'
         FieldDescription = 'Telefone celular'
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'tx_observacoes'
         FieldDescription = 'Observa'#231#245'es'
+        CheckTextSet.FocusOnValidateFailure = False
       end>
     Left = 30
     Top = 102
@@ -654,10 +664,7 @@ inherited KRDMPacientes: TKRDMPacientes
     Connection = SODMPrincipal.UNCN
     SQL.Strings = (
       'SELECT DSD.*'
-      '     , CBO.VA_TITULO AS PROFISSAO'
-      '     , CBO.CH_CODIGO AS CBO'
-      '  FROM DADOSSOCIODEMOGRAFICOS DSD'
-      '  JOIN CBO CBO USING (IN_CBO_ID)')
+      '  FROM DADOSSOCIODEMOGRAFICOS DSD')
     MasterSource = DTSRPacientes
     MasterFields = 'in_pacientes_id'
     DetailFields = 'in_pacientes_id'
@@ -777,19 +784,6 @@ inherited KRDMPacientes: TKRDMPacientes
       ProviderFlags = [pfInUpdate]
       Required = True
     end
-    object UNQYDadosSocioDemograficosprofissao: TWideStringField
-      FieldName = 'profissao'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 128
-    end
-    object UNQYDadosSocioDemograficoscbo: TWideStringField
-      FieldName = 'cbo'
-      ProviderFlags = []
-      ReadOnly = True
-      FixedChar = True
-      Size = 7
-    end
   end
   object KRVCDadosSocioDemograficos: TKRKValidationChecks
     DataSet = UNQYDadosSocioDemograficos
@@ -798,91 +792,216 @@ inherited KRDMPacientes: TKRDMPacientes
       item
         FieldName = 'in_dadossociodemograficos_id'
         FieldDescription = 'in_dadossociodemograficos_id'
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'in_pacientes_id'
         FieldDescription = 'in_pacientes_id'
         CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'sm_corraca'
         FieldDescription = 'Como voc'#234' auto-define a sua cor ou ra'#231'a?'
         CheckBlank.Active = True
+        CheckNumberSet.Active = True
+        CheckNumberSet.CustomValidationMessage = 'Op'#231#245'es v'#225'lidas variam de 1 a 5'
+        CheckNumberSet.Numbers.Strings = (
+          '1'
+          '2'
+          '3'
+          '4'
+          '5')
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'sm_estadocivil'
         FieldDescription = 'Qual o seu estado civil?'
         CheckBlank.Active = True
+        CheckNumberSet.Active = True
+        CheckNumberSet.CustomValidationMessage = 'Op'#231#245'es v'#225'lidas variam de 1 a 4'
+        CheckNumberSet.Numbers.Strings = (
+          '1'
+          '2'
+          '3'
+          '4')
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'sm_graudeinstrucao'
         FieldDescription = 'Qual seu grau de instru'#231#227'o?'
         CheckBlank.Active = True
+        CheckNumberSet.Active = True
+        CheckNumberSet.CustomValidationMessage = 'Op'#231#245'es v'#225'lidas variam de 1 a 5'
+        CheckNumberSet.Numbers.Strings = (
+          '1'
+          '2'
+          '3'
+          '4'
+          '5')
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'in_cbo_id'
         FieldDescription = 'Qual sua profiss'#227'o?'
         CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'bo_aposentado'
         FieldDescription = 'Qual seu status ocupacional?'
         CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'sm_televisor'
         FieldDescription = 'Quantos televisores em cores?'
         CheckBlank.Active = True
+        CheckNumberSet.Active = True
+        CheckNumberSet.CustomValidationMessage = 'Op'#231#245'es v'#225'lidas variam de 0 a 4'
+        CheckNumberSet.Numbers.Strings = (
+          '0'
+          '1'
+          '2'
+          '3'
+          '4')
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'sm_radio'
         FieldDescription = 'Quantos r'#225'dios?'
         CheckBlank.Active = True
+        CheckNumberSet.Active = True
+        CheckNumberSet.CustomValidationMessage = 'Op'#231#245'es v'#225'lidas variam de 0 a 4'
+        CheckNumberSet.Numbers.Strings = (
+          '0'
+          '1'
+          '2'
+          '3'
+          '4')
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'sm_banheiro'
         FieldDescription = 'Quantos banheiros?'
         CheckBlank.Active = True
+        CheckNumberSet.Active = True
+        CheckNumberSet.CustomValidationMessage = 'Op'#231#245'es v'#225'lidas variam de 0 a 4'
+        CheckNumberSet.Numbers.Strings = (
+          '0'
+          '1'
+          '2'
+          '3'
+          '4')
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'sm_automovel'
         FieldDescription = 'Quantos autom'#243'veis?'
         CheckBlank.Active = True
+        CheckNumberSet.Active = True
+        CheckNumberSet.CustomValidationMessage = 'Op'#231#245'es v'#225'lidas variam de 0 a 4'
+        CheckNumberSet.Numbers.Strings = (
+          '0'
+          '1'
+          '2'
+          '3'
+          '4')
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'sm_mensalista'
         FieldDescription = 'Quantas empregadas mensalistas?'
         CheckBlank.Active = True
+        CheckNumberSet.Active = True
+        CheckNumberSet.CustomValidationMessage = 'Op'#231#245'es v'#225'lidas variam de 0 a 4'
+        CheckNumberSet.Numbers.Strings = (
+          '0'
+          '1'
+          '2'
+          '3'
+          '4')
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'sm_maquinalavar'
         FieldDescription = 'Quantas m'#225'quinas de lavar?'
         CheckBlank.Active = True
+        CheckNumberSet.Active = True
+        CheckNumberSet.CustomValidationMessage = 'Op'#231#245'es v'#225'lidas variam de 0 a 4'
+        CheckNumberSet.Numbers.Strings = (
+          '0'
+          '1'
+          '2'
+          '3'
+          '4')
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'sm_vcrdvd'
         FieldDescription = 'Quandos videocassetes/DVDs?'
         CheckBlank.Active = True
+        CheckNumberSet.Active = True
+        CheckNumberSet.CustomValidationMessage = 'Op'#231#245'es v'#225'lidas variam de 0 a 4'
+        CheckNumberSet.Numbers.Strings = (
+          '0'
+          '1'
+          '2'
+          '3'
+          '4')
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'sm_geladeira'
         FieldDescription = 'Quantas geladeiras?'
         CheckBlank.Active = True
+        CheckNumberSet.Active = True
+        CheckNumberSet.CustomValidationMessage = 'Op'#231#245'es v'#225'lidas variam de 0 a 4'
+        CheckNumberSet.Numbers.Strings = (
+          '0'
+          '1'
+          '2'
+          '3'
+          '4')
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'sm_freezer'
         FieldDescription = 'Quantos freezeres?'
         CheckBlank.Active = True
+        CheckNumberSet.Active = True
+        CheckNumberSet.CustomValidationMessage = 'Op'#231#245'es v'#225'lidas variam de 0 a 4'
+        CheckNumberSet.Numbers.Strings = (
+          '0'
+          '1'
+          '2'
+          '3'
+          '4')
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'bo_chefedefamilia'
         FieldDescription = 'Voc'#234' '#233' o chefe da fam'#237'lia?'
         CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
       end
       item
         FieldName = 'sm_grauinstrchefedefamilia'
         FieldDescription = 'Qual o grau de instru'#231#227'o do chefe da fam'#237'lia?'
         CheckBlank.Active = True
+        CheckNumberSet.Active = True
+        CheckNumberSet.CustomValidationMessage = 'Op'#231#245'es v'#225'lidas variam de 1 a 5'
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'profissao'
+        FieldDescription = 'profissao'
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'cbo'
+        FieldDescription = 'cbo'
+        CheckTextSet.FocusOnValidateFailure = False
       end>
     Left = 150
     Top = 102

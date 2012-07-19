@@ -9,19 +9,6 @@ object DAMOPrincipal: TDAMOPrincipal
         Items.SmallIcons = False
         Items = <
           item
-            Action = ACTNIniciarAtendimentoPaciente
-            Caption = '&Iniciar atendimento'
-            ImageIndex = 7
-          end
-          item
-            Action = ACTNFinalizarAtendimentoPaciente
-            Caption = '&Finalizar atendimento'
-            ImageIndex = 8
-          end
-          item
-            Caption = '-'
-          end
-          item
             Action = ACTNAlterarMinhasPreferencias
             Caption = '&Alterar minhas prefer'#234'ncias'
             ImageIndex = 5
@@ -38,20 +25,11 @@ object DAMOPrincipal: TDAMOPrincipal
           item
             Items = <
               item
-                Action = ACTNIniciarAtendimentoPaciente
-                Caption = '&Iniciar atendimento'
-                ImageIndex = 7
-              end
-              item
-                Action = ACTNFinalizarAtendimentoPaciente
-                Caption = '&Finalizar atendimento'
-                ImageIndex = 8
-              end
-              item
-                Action = ACTNGerenciarPacientes
+                Action = ACTNGerenciarAvaliados
+                Caption = '&Gerenciar'
                 ImageIndex = 9
               end>
-            Caption = '&Paciente'
+            Caption = 'A&valiados'
           end
           item
             Items = <
@@ -66,36 +44,6 @@ object DAMOPrincipal: TDAMOPrincipal
                 ImageIndex = 6
               end>
             Caption = '&Usu'#225'rio'
-          end
-          item
-            Items = <
-              item
-                Items = <
-                  item
-                    Action = ACTNRelatorio1
-                    Caption = '&ACTNRelatorio1'
-                  end
-                  item
-                    Action = ACTNRelatorio2
-                    Caption = 'A&CTNRelatorio2'
-                  end>
-                Caption = '&Relat'#243'rio Tipo 1'
-                UsageCount = 1
-              end
-              item
-                Items = <
-                  item
-                    Action = ACTNRelatorio3
-                    Caption = '&ACTNRelatorio3'
-                  end>
-                Caption = 'R&elat'#243'rio Tipo 2'
-                UsageCount = 1
-              end
-              item
-                Action = ACTNRelatorio4
-                Caption = '&ACTNRelatorio4'
-              end>
-            Caption = '&Relat'#243'rios'
           end
           item
             Items = <
@@ -173,15 +121,15 @@ object DAMOPrincipal: TDAMOPrincipal
       OnExecute = ACTNAtualizarPrivilegiosExecute
     end
     object ACTNRelatorio1: TAction
-      Category = 'Relat'#243'rio Tipo 1'
+      Category = 'Relat'#243'rios'
       Caption = 'ACTNRelatorio1'
     end
     object ACTNRelatorio2: TAction
-      Category = 'Relat'#243'rio Tipo 1'
+      Category = 'Relat'#243'rios'
       Caption = 'ACTNRelatorio2'
     end
     object ACTNRelatorio3: TAction
-      Category = 'Relat'#243'rio Tipo 2'
+      Category = 'Relat'#243'rios'
       Caption = 'ACTNRelatorio3'
     end
     object ACTNRelatorio4: TAction
@@ -189,22 +137,11 @@ object DAMOPrincipal: TDAMOPrincipal
       Caption = 'ACTNRelatorio4'
       OnExecute = ACTNRelatorio4Execute
     end
-    object ACTNIniciarAtendimentoPaciente: TAction
-      Category = 'Paciente'
-      Caption = 'Iniciar atendimento'
-      ImageIndex = 7
-    end
-    object ACTNFinalizarAtendimentoPaciente: TAction
-      Category = 'Paciente'
-      Caption = 'Finalizar atendimento'
-      Enabled = False
-      ImageIndex = 8
-    end
-    object ACTNGerenciarPacientes: TAction
-      Category = 'Paciente'
-      Caption = 'Gerenciar pacientes'
+    object ACTNGerenciarAvaliados: TAction
+      Category = 'Avaliados'
+      Caption = 'Gerenciar'
       ImageIndex = 9
-      OnExecute = ACTNGerenciarPacientesExecute
+      OnExecute = ACTNGerenciarAvaliadosExecute
     end
   end
   object SOCNPrincipal: TSoapConnection
@@ -224,7 +161,7 @@ object DAMOPrincipal: TDAMOPrincipal
     Left = 90
     Top = 12
     Bitmap = {
-      494C01010A00B002680110001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C01010A00B0026C0110001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000100000007000000120000
       001D000000230000002600000027000000260000002400000020000000170000
@@ -641,7 +578,7 @@ object DAMOPrincipal: TDAMOPrincipal
     Left = 168
     Top = 12
     Bitmap = {
-      494C01010A00D4008C0118001800FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C01010A00D400900118001800FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000060000000480000000100200000000000006C
       0000000000000000000000000000000000000000000000000000000000010000
       00040000000B000000130000001A0000001F0000002200000024000000250000

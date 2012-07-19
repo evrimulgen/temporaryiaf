@@ -14,7 +14,7 @@ type
     UNQYCBOin_cbo_id: TIntegerField;
     UNQYCBOch_codigo: TWideStringField;
     UNQYCBOva_titulo: TWideStringField;
-    UNQYCBOen_tipo: TWideMemoField;
+    UNQYCBOen_tipo: TWideStringField;
   private
     { Private declarations }
   public

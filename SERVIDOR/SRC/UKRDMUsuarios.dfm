@@ -1,4 +1,5 @@
 inherited KRDMUsuarios: TKRDMUsuarios
+  OldCreateOrder = True
   Height = 206
   Width = 358
   object DTSRUsuarios: TDataSource
@@ -147,7 +148,6 @@ inherited KRDMUsuarios: TKRDMUsuarios
       
         '   AND ((:BO_SUPERUSUARIO IS NULL) OR (USU.BO_SUPERUSUARIO = :BO' +
         '_SUPERUSUARIO))')
-    UniDirectional = True
     SpecificOptions.Strings = (
       'PostgreSQL.FetchAll=False'
       'PostgreSQL.UseParamTypes=True')
@@ -256,7 +256,6 @@ inherited KRDMUsuarios: TKRDMUsuarios
     MasterSource = DTSRUsuarios
     MasterFields = 'SM_USUARIOS_ID'
     DetailFields = 'SM_USUARIOS_ID'
-    UniDirectional = True
     SpecificOptions.Strings = (
       'PostgreSQL.FetchAll=False'
       'PostgreSQL.UseParamTypes=True')
@@ -330,7 +329,6 @@ inherited KRDMUsuarios: TKRDMUsuarios
     MasterSource = DTSRUsuarios
     MasterFields = 'sm_usuarios_id'
     DetailFields = 'sm_usuarios_id'
-    UniDirectional = True
     SpecificOptions.Strings = (
       'PostgreSQL.FetchAll=False'
       'PostgreSQL.UseParamTypes=True')

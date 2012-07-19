@@ -114,8 +114,7 @@ type
     procedure LabeledEdit_GRU_VA_NOME2KeyPress(Sender: TObject; var Key: Char);
     procedure LabeledEdit_GRU_VA_NOMEKeyPress(Sender: TObject; var Key: Char);
     procedure KRDGPDGCellClick(Column: TColumn);
-    procedure KRDGGruposDoUsuarioAfterMultiselect(aSender: TObject;
-      aMultiSelectEventTrigger: TMultiSelectEventTrigger);
+    procedure KRDGGruposDoUsuarioAfterMultiselect(aSender: TObject; aMultiSelectEventTrigger: TMultiSelectEventTrigger);
   private
     { Private declarations }
     procedure FiltrarEntidadesDoSistema;

@@ -28,7 +28,8 @@ uses
   UKRFMDialogSelecao in '..\SRC\UKRFMDialogSelecao.pas' {KRFMDialogSelecao: TKRKForm},
   UKRFMSelecionarGrupo in '..\SRC\UKRFMSelecionarGrupo.pas' {KRFMSelecionarGrupo: TKRKForm},
   UKRDMGerenciarPacientes in '..\SRC\UKRDMGerenciarPacientes.pas' {KRDMGerenciarPacientes: TKRKDataModule},
-  UKRFMGerenciarPacientes in '..\SRC\UKRFMGerenciarPacientes.pas' {KRFMGerenciarPacientes: TKRKForm};
+  UKRFMGerenciarPacientes in '..\SRC\UKRFMGerenciarPacientes.pas' {KRFMGerenciarPacientes: TKRKForm},
+  UKRFMSelecionarCBO in '..\SRC\UKRFMSelecionarCBO.pas' {KRFMSelecionarCBO: TKRKForm};
 
 {$R *.res}
 

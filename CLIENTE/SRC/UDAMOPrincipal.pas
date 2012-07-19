@@ -26,9 +26,7 @@ type
     ACTNRelatorio2: TAction;
     ACTNRelatorio3: TAction;
     ACTNRelatorio4: TAction;
-    ACTNIniciarAtendimentoPaciente: TAction;
-    ACTNFinalizarAtendimentoPaciente: TAction;
-    ACTNGerenciarPacientes: TAction;
+    ACTNGerenciarAvaliados: TAction;
     procedure ACTNSegurancaEPermissoesExecute(Sender: TObject);
     procedure ACTNAjudaExecute(Sender: TObject);
     procedure ACTNSobreExecute(Sender: TObject);
@@ -39,7 +37,7 @@ type
     procedure ACTNAtualizarPrivilegiosExecute(Sender: TObject);
     procedure ACTNConfiguracoesGlobaisExecute(Sender: TObject);
     procedure ACTNRelatorio4Execute(Sender: TObject);
-    procedure ACTNGerenciarPacientesExecute(Sender: TObject);
+    procedure ACTNGerenciarAvaliadosExecute(Sender: TObject);
   private
     { Private declarations }
     FFORMPrincipal: TFORMPrincipal;
@@ -97,7 +95,7 @@ begin
   end;
 end;
 
-procedure TDAMOPrincipal.ACTNGerenciarPacientesExecute(Sender: TObject);
+procedure TDAMOPrincipal.ACTNGerenciarAvaliadosExecute(Sender: TObject);
 begin
   if not Assigned(FKRDMGerenciarPacientes) then
     TKRDMGerenciarPacientes.CreateMe(Self,FKRDMGerenciarPacientes,TKRDMGerenciarPacientes)
