@@ -20,9 +20,9 @@ type
     CLDScbo: TStringField;
     procedure LAEDTituloKeyPress(Sender: TObject; var Key: Char);
     procedure KRLECBOKeyPress(Sender: TObject; var Key: Char);
-    procedure CLDSCalcFields(DataSet: TDataSet);
     procedure KRKFormCreate(Sender: TObject);
     procedure DTSRDataChange(Sender: TObject; Field: TField);
+    procedure CLDSCalcFields(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -31,8 +31,8 @@ type
 
 implementation
 
-uses UKRDMAvaliadosGerenciar, UKRDMBasico, KRK.Lib.RegExp.Utils
-   , KRK.Wizards.Form;
+uses UKRDMAvaliadosGerenciar, UKRDMBasico, KRK.Wizards.Form
+   , KRK.Lib.RegExp.Utils;
 
 {$R *.dfm}
 

@@ -145,6 +145,7 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
       FieldName = 'en_genero'
       ProviderFlags = [pfInUpdate]
       Required = True
+      Size = 9
     end
     object CLDSPacientesda_datanascimento: TDateField
       Alignment = taCenter
@@ -167,6 +168,7 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
       FieldName = 'en_orgaoemissorrg'
       ProviderFlags = [pfInUpdate]
       Required = True
+      Size = 14
     end
     object CLDSPacientesen_ufemissaorg: TWideStringField
       DisplayLabel = 'UF de emiss'#227'o do RG'
@@ -174,6 +176,7 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
       FieldName = 'en_ufemissaorg'
       ProviderFlags = [pfInUpdate]
       Required = True
+      Size = 2
     end
     object CLDSPacientesen_tipologradouro: TWideStringField
       DisplayLabel = 'Tipo de logradouro'
@@ -181,6 +184,7 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
       FieldName = 'en_tipologradouro'
       ProviderFlags = [pfInUpdate]
       Required = True
+      Size = 15
     end
     object CLDSPacientesva_nomelogradouro: TWideStringField
       DisplayLabel = 'Logradouro'
@@ -220,6 +224,7 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
       FieldName = 'en_uf'
       ProviderFlags = [pfInUpdate]
       Required = True
+      Size = 2
     end
     object CLDSPacientesch_foneresidencial: TWideStringField
       Alignment = taCenter
@@ -358,6 +363,32 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
       FieldName = 'sm_grauinstrchefedefamilia'
       ProviderFlags = [pfInUpdate]
       Required = True
+    end
+    object CLDSDadosSocioDemograficoscbo: TWideStringField
+      Alignment = taCenter
+      FieldName = 'cbo'
+      ProviderFlags = []
+      ReadOnly = True
+      OnGetText = CLDSDadosSocioDemograficoscboGetText
+      FixedChar = True
+      Size = 6
+    end
+    object CLDSDadosSocioDemograficosprofissao: TWideStringField
+      FieldName = 'profissao'
+      ProviderFlags = []
+      ReadOnly = True
+      OnGetText = CLDSDadosSocioDemograficosprofissaoGetText
+      Size = 128
+    end
+    object CLDSDadosSocioDemograficosic_cbo: TStringField
+      FieldKind = fkInternalCalc
+      FieldName = 'ic_cbo'
+      Size = 6
+    end
+    object CLDSDadosSocioDemograficosic_profissao: TStringField
+      FieldKind = fkInternalCalc
+      FieldName = 'ic_profissao'
+      Size = 128
     end
   end
   object DTSRDadosSocioDemograficos: TDataSource

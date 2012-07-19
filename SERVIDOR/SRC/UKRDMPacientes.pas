@@ -49,6 +49,8 @@ type
     UNQYDadosSocioDemograficossm_freezer: TSmallintField;
     UNQYDadosSocioDemograficosbo_chefedefamilia: TBooleanField;
     UNQYDadosSocioDemograficossm_grauinstrchefedefamilia: TSmallintField;
+    UNQYDadosSocioDemograficoscbo: TWideStringField;
+    UNQYDadosSocioDemograficosprofissao: TWideStringField;
   private
     { Private declarations }
   public

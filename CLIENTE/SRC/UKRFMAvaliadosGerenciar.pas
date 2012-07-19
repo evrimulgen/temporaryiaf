@@ -7,7 +7,8 @@ uses
   Dialogs, UKRFMDBAwareBasico, ActnList, ImgList, StdCtrls, ComCtrls, ToolWin,
   Grids, DBGrids, KRK.Components.DataControls.DBGrid, DBCtrls, Mask,
   KRK.Components.DataControls.LabeledDBEdit, ExtCtrls,
-  KRK.Components.AdditionalControls.LabeledEdit;
+  KRK.Components.AdditionalControls.LabeledEdit,
+  KRK.Components.StandardControls.Panel;
 
 type
   TKRFMAvaliadosGerenciar = class(TKRFMDBAwareBasico)
@@ -62,7 +63,7 @@ type
     DBRGFreezer: TDBRadioGroup;
     DBRGProfissao: TDBRadioGroup;
     GRBXProfissao: TGroupBox;
-    LAEDTituloCBO: TLabeledEdit;
+    KLDECBO: TKRKLabeledDBEdit;
     DBRGChefeDaFamilia: TDBRadioGroup;
     DBRGGrauChefeFamilia: TDBRadioGroup;
     PANLPaddingBottom: TPanel;
@@ -82,6 +83,18 @@ type
     LAEDCidade: TLabeledEdit;
     LAEDLogradouro: TLabeledEdit;
     DBRGEmpregadaMensalista: TDBRadioGroup;
+    KRPAAvaliado1: TKRKPanel;
+    LABLAvaliado1: TLabel;
+    DBEDTituloCBO: TDBEdit;
+    TBSHChecagemDeSinaisESintomas: TTabSheet;
+    KRPAAvaliado2: TKRKPanel;
+    LABLAvaliado2: TLabel;
+    TBSHParametrosFisiologicos: TTabSheet;
+    KRPAAvaliado3: TKRKPanel;
+    LABLAvaliado3: TLabel;
+    TBSHParQ: TTabSheet;
+    KRPAAvaliado4: TKRKPanel;
+    LABLAvaliado4: TLabel;
     procedure DBRGChefeDaFamiliaChange(Sender: TObject);
     procedure KRLECodigoKeyPress(Sender: TObject; var Key: Char);
     procedure KRLEIdentidadeKeyPress(Sender: TObject; var Key: Char);
@@ -213,6 +226,10 @@ procedure TKRFMAvaliadosGerenciar.KRKFormCreate(Sender: TObject);
 begin
   inherited;
   TBSHDadosSocioDemograficos.TabVisible := False;
+  TBSHChecagemDeSinaisESintomas.TabVisible := False;
+  TBSHParametrosFisiologicos.TabVisible := False;
+  TBSHParQ.TabVisible := False;
+
   SCBXDadosSocioDemograficos.VertScrollBar.Position := 0;
 end;
 

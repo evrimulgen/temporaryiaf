@@ -669,7 +669,10 @@ inherited KRDMPacientes: TKRDMPacientes
     Connection = SODMPrincipal.UNCN
     SQL.Strings = (
       'SELECT DSD.*'
-      '  FROM DADOSSOCIODEMOGRAFICOS DSD')
+      '     , CBO.CH_CODIGO AS CBO'
+      '     , CBO.VA_TITULO AS PROFISSAO'
+      '  FROM DADOSSOCIODEMOGRAFICOS DSD'
+      '  JOIN CBO CBO USING (IN_CBO_ID)')
     MasterSource = DTSRPacientes
     MasterFields = 'in_pacientes_id'
     DetailFields = 'in_pacientes_id'
@@ -788,6 +791,19 @@ inherited KRDMPacientes: TKRDMPacientes
       FieldName = 'sm_grauinstrchefedefamilia'
       ProviderFlags = [pfInUpdate]
       Required = True
+    end
+    object UNQYDadosSocioDemograficoscbo: TWideStringField
+      FieldName = 'cbo'
+      ProviderFlags = []
+      ReadOnly = True
+      FixedChar = True
+      Size = 6
+    end
+    object UNQYDadosSocioDemograficosprofissao: TWideStringField
+      FieldName = 'profissao'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 128
     end
   end
   object KRVCDadosSocioDemograficos: TKRKValidationChecks
@@ -996,16 +1012,12 @@ inherited KRDMPacientes: TKRDMPacientes
         CheckBlank.Active = True
         CheckNumberSet.Active = True
         CheckNumberSet.CustomValidationMessage = 'Op'#231#245'es v'#225'lidas variam de 1 a 5'
-        CheckTextSet.FocusOnValidateFailure = False
-      end
-      item
-        FieldName = 'profissao'
-        FieldDescription = 'profissao'
-        CheckTextSet.FocusOnValidateFailure = False
-      end
-      item
-        FieldName = 'cbo'
-        FieldDescription = 'cbo'
+        CheckNumberSet.Numbers.Strings = (
+          '1'
+          '2'
+          '3'
+          '4'
+          '5')
         CheckTextSet.FocusOnValidateFailure = False
       end>
     Left = 150

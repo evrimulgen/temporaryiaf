@@ -11,7 +11,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
     Top = 40
     Width = 784
     Height = 522
-    ActivePage = TabSheet_Permissions
+    ActivePage = TabSheet_USU
     Align = alClient
     TabOrder = 0
     object TabSheet_Permissions: TTabSheet
@@ -135,10 +135,6 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
           object TBSHGRUConsultar: TTabSheet
             Caption = 'Grupos'
             ImageIndex = 1
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             DesignSize = (
               341
               200)
@@ -686,10 +682,6 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
           end
           object TBSHPDG: TTabSheet
             Caption = 'Entidades e permiss'#245'es do grupo selecionado'
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object PANLGRULayerTop: TPanel
               Left = 0
               Top = 0
@@ -1359,10 +1351,6 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
     object TabSheet_GRU: TTabSheet
       Caption = 'Gerenciamento de grupos'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object GroupBoxGruposConsultar: TGroupBox
         AlignWithMargins = True
         Left = 3
@@ -1535,7 +1523,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C0101020008005C0120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800600120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2072,7 +2060,7 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C0101020008006C0120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800700120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

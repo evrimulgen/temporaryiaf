@@ -70,13 +70,13 @@ inherited KRFMSelecionarCBO: TKRFMSelecionarCBO
         Expanded = False
         FieldName = 'cbo'
         Title.Alignment = taCenter
-        Width = 70
+        Width = 50
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'va_titulo'
-        Width = 333
+        Width = 353
         Visible = True
       end
       item
@@ -92,6 +92,7 @@ inherited KRFMSelecionarCBO: TKRFMSelecionarCBO
     Top = 162
   end
   inherited CLDS: TClientDataSet
+    IndexFieldNames = 'en_tipo'
     Params = <
       item
         DataType = ftInteger
@@ -117,6 +118,7 @@ inherited KRFMSelecionarCBO: TKRFMSelecionarCBO
         ParamType = ptInput
         Value = Null
       end>
+    StoreDefs = True
     OnCalcFields = CLDSCalcFields
     Top = 162
     object CLDSin_cbo_id: TIntegerField

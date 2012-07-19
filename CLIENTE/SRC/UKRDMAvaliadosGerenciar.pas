@@ -52,23 +52,30 @@ type
     CLDSPacientesfoneresidencial: TStringField;
     CLDSPacientesfonecelular: TStringField;
     ACTNSelecionarCBO: TAction;
+    CLDSDadosSocioDemograficoscbo: TWideStringField;
+    CLDSDadosSocioDemograficosprofissao: TWideStringField;
+    CLDSDadosSocioDemograficosic_cbo: TStringField;
+    CLDSDadosSocioDemograficosic_profissao: TStringField;
     procedure CLDSPacientesAfterRefresh(DataSet: TDataSet);
     procedure CLDSPacientesCalcFields(DataSet: TDataSet);
     procedure DTSRPacientesDataChange(Sender: TObject; Field: TField);
     procedure ACTNSelecionarCBOExecute(Sender: TObject);
+    procedure CLDSDadosSocioDemograficoscboGetText(Sender: TField; var Text: string; DisplayText: Boolean);
+    procedure CLDSDadosSocioDemograficosprofissaoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
   private
     { Private declarations }
     procedure AlternarPaginas;
   public
     { Public declarations }
+    constructor Create(aOwner: TComponent); override;
     procedure FiltrarPacientes(aCLDSPacientes: TClientDataSet; aIN_PACIENTES_ID: Integer; aVA_NOME, aEN_GENERO: String; aDA_DATANASCIMENTO: TDateTime; aVA_RG, aEN_ORGAOEMISSORRG, aEN_UFEMISSAORG, aEN_TIPOLOGRADOURO, aVA_NOMELOGRADOURO, aVA_IDLOGRADOURO, aVA_COMPLEMENTOLOGRADOURO, aVA_BAIRROLOGRADOURO, aVA_CIDADE, aEN_UF, aCH_FONERESIDENCIAL, aCH_FONECELULAR, aTX_OBSERVACOES: String);
     procedure FiltrarCBO(aCLDSCBO: TClientDataSet; aIN_CBO_ID: Integer; aCH_CODIGO, aVA_TITULO, aEN_TIPO: String);
   end;
 
 implementation
 
-uses UDAMOPrincipal, UKRFMAvaliadosGerenciar, KRK.Lib.Db.Utils, KRK.Lib.RegExp.Utils,
-  UKRFMSelecionarCBO;
+uses UDAMOPrincipal, UKRFMAvaliadosGerenciar, KRK.Lib.Db.Utils
+   , KRK.Lib.RegExp.Utils, UKRFMSelecionarCBO;
 
 {$R *.dfm}
 
@@ -124,12 +131,18 @@ begin
       begin
         CLDSDadosSocioDemograficos.Edit;
         CLDSDadosSocioDemograficosin_cbo_id.AsInteger := CLDSin_cbo_id.AsInteger;
-        TKRFMAvaliadosGerenciar(MyForm).LAEDTituloCBO.Text := CLDSva_titulo.AsString;
+        CLDSDadosSocioDemograficosic_cbo.AsString := CLDSch_codigo.AsString;
+        CLDSDadosSocioDemograficosic_profissao.AsString := CLDSva_titulo.AsString;
+
+        { Garante que ao alterar a profissão (editando o registro) os dados
+        apareçam imediatamente }
+        TKRFMAvaliadosGerenciar(MyForm).KLDECBO.SetFocus;
+        TKRFMAvaliadosGerenciar(MyForm).DBEDTituloCBO.SetFocus;
+        TKRFMAvaliadosGerenciar(MyForm).BUTNPesqisarCBO.SetFocus;
       end;
     finally
       Free;
     end;
-
 end;
 
 procedure TKRDMAvaliadosGerenciar.AlternarPaginas;
@@ -137,8 +150,43 @@ begin
   if Assigned(MyForm) then
   begin
     TKRFMAvaliadosGerenciar(MyForm).TBSHConsultar.TabVisible := CLDSPacientes.State = dsBrowse;
+
     TKRFMAvaliadosGerenciar(MyForm).TBSHDadosSocioDemograficos.TabVisible := (CLDSPacientes.RecordCount > 0) and (CLDSPacientesin_pacientes_id.AsInteger > 0);
+    TKRFMAvaliadosGerenciar(MyForm).TBSHChecagemDeSinaisESintomas.TabVisible := (CLDSPacientes.RecordCount > 0) and (CLDSPacientesin_pacientes_id.AsInteger > 0);
+    TKRFMAvaliadosGerenciar(MyForm).TBSHParametrosFisiologicos.TabVisible := (CLDSPacientes.RecordCount > 0) and (CLDSPacientesin_pacientes_id.AsInteger > 0);
+    TKRFMAvaliadosGerenciar(MyForm).TBSHParQ.TabVisible := (CLDSPacientes.RecordCount > 0) and (CLDSPacientesin_pacientes_id.AsInteger > 0);
+
+
+    if TKRFMAvaliadosGerenciar(MyForm).TBSHDadosSocioDemograficos.TabVisible then
+      TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado1.Caption := 'Avaliado: ' + CLDSPacientesva_nome.AsString;
+
+    if TKRFMAvaliadosGerenciar(MyForm).TBSHChecagemDeSinaisESintomas.TabVisible then
+      TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado2.Caption := 'Avaliado: ' + CLDSPacientesva_nome.AsString;
+
+    if TKRFMAvaliadosGerenciar(MyForm).TBSHParametrosFisiologicos.TabVisible then
+      TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado3.Caption := 'Avaliado: ' + CLDSPacientesva_nome.AsString;
+
+    if TKRFMAvaliadosGerenciar(MyForm).TBSHParQ.TabVisible then
+      TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado4.Caption := 'Avaliado: ' + CLDSPacientesva_nome.AsString;
   end;
+end;
+
+procedure TKRDMAvaliadosGerenciar.CLDSDadosSocioDemograficoscboGetText(Sender: TField; var Text: string; DisplayText: Boolean);
+begin
+  inherited;
+  if Sender.IsNull or (CLDSDadosSocioDemograficos.State = dsEdit) then
+    Text := CLDSDadosSocioDemograficosic_cbo.AsString
+  else
+    Text := Sender.AsString;
+end;
+
+procedure TKRDMAvaliadosGerenciar.CLDSDadosSocioDemograficosprofissaoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
+begin
+  inherited;
+  if Sender.IsNull or (CLDSDadosSocioDemograficos.State = dsEdit) then
+    Text := CLDSDadosSocioDemograficosic_profissao.AsString
+  else
+    Text := Sender.AsString;
 end;
 
 procedure TKRDMAvaliadosGerenciar.CLDSPacientesAfterRefresh(DataSet: TDataSet);
@@ -156,6 +204,14 @@ begin
 
   CLDSPacientesfoneresidencial.AsString := ApplyMask(TKRFMAvaliadosGerenciar(MyForm).KLDEFoneResidencial.DBEditFormat.FormatScript,CLDSPacientesch_foneresidencial.AsString);
   CLDSPacientesfonecelular.AsString := ApplyMask(TKRFMAvaliadosGerenciar(MyForm).KLDEFoneCelular.DBEditFormat.FormatScript,CLDSPacientesch_fonecelular.AsString);
+end;
+
+constructor TKRDMAvaliadosGerenciar.Create(aOwner: TComponent);
+begin
+  inherited;
+  { Indicando qual componente focar quando houver erro em certos campos que não
+  são acessados diretamente }
+  CLDSDadosSocioDemograficos.KRKValidationChecks.CheckableFields.ByFieldName['in_cbo_id'].ComponentToFocusOnValidateFailure := TKRFMAvaliadosGerenciar(MyForm).BUTNPesqisarCBO;
 end;
 
 procedure TKRDMAvaliadosGerenciar.DTSRPacientesDataChange(Sender: TObject; Field: TField);
