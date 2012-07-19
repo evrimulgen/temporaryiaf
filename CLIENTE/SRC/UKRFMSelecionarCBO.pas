@@ -31,7 +31,7 @@ type
 
 implementation
 
-uses UKRDMGerenciarPacientes, UKRDMBasico, KRK.Lib.RegExp.Utils
+uses UKRDMAvaliadosGerenciar, UKRDMBasico, KRK.Lib.RegExp.Utils
    , KRK.Wizards.Form;
 
 {$R *.dfm}
@@ -66,7 +66,7 @@ begin
     else if Length(TKRKLabeledEdit(Sender).UnformattedText) < 6 then
       Application.MessageBox('Por favor informe 6 caracteres numéricos no campo "CBO" antes de executar a consulta','Informe o dado corretamente',MB_ICONWARNING)
     else
-      TKRDMGerenciarPacientes(Owner).FiltrarCBO(UKRDMBasico.TClientDataSet(CLDS)
+      TKRDMAvaliadosGerenciar(Owner).FiltrarCBO(UKRDMBasico.TClientDataSet(CLDS)
                                                ,0
                                                ,TKRKLabeledEdit(Sender).UnformattedText
                                                ,''
@@ -80,7 +80,7 @@ begin
     if Trim(TLabeledEdit(Sender).Text) = '' then
       Application.MessageBox('Por favor informe um critério de pesquisa no campo "Título" antes de executar a consulta','Informe um critério de pesquisa',MB_ICONWARNING)
     else
-      TKRDMGerenciarPacientes(Owner).FiltrarCBO(UKRDMBasico.TClientDataSet(CLDS)
+      TKRDMAvaliadosGerenciar(Owner).FiltrarCBO(UKRDMBasico.TClientDataSet(CLDS)
                                                ,0
                                                ,''
                                                ,'*' + TLabeledEdit(Sender).Text + '*'

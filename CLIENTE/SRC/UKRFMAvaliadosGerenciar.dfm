@@ -1,4 +1,4 @@
-inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
+inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
   Caption = 'Gerenciar Avaliados'
   ClientHeight = 476
   ClientWidth = 622
@@ -27,7 +27,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
         Margins.Right = 0
         Margins.Bottom = 0
         Align = alClient
-        DataSource = KRDMGerenciarPacientes.DTSRPacientes
+        DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
         Options = [dgTitles, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
         OptionsEx = [dgAutomaticColumSizes]
         TabOrder = 0
@@ -87,7 +87,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
         Height = 25
         Margins.Left = 0
         Margins.Right = 0
-        DataSource = KRDMGerenciarPacientes.DTSRPacientes
+        DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
         VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbRefresh]
         Align = alTop
         TabOrder = 1
@@ -325,7 +325,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
         Top = 377
         Width = 608
         Height = 25
-        DataSource = KRDMGerenciarPacientes.DTSRPacientes
+        DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
         VisibleButtons = [nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh]
         Align = alBottom
         TabOrder = 5
@@ -343,7 +343,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Width = 105
           Height = 21
           DataField = 'ch_fonecelular'
-          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
           DBEditFormat.FinalMask = '(##) ####-####'
           DBEditFormat.Format = foCustom
           DBEditFormat.FormatScript.Strings = (
@@ -363,7 +363,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Width = 105
           Height = 21
           DataField = 'ch_foneresidencial'
-          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
           DBEditFormat.FinalMask = '(##) ####-####'
           DBEditFormat.Format = foCustom
           DBEditFormat.FormatScript.Strings = (
@@ -407,7 +407,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Width = 105
           Height = 21
           DataField = 'va_rg'
-          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
           DBEditFormat.FinalMask = '#.###.###.###'
           DBEditFormat.Format = foCustom
           DBEditFormat.FormatScript.Strings = (
@@ -429,7 +429,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Height = 21
           Style = csDropDownList
           DataField = 'en_orgaoemissorrg'
-          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
           Items.Strings = (
             'ABNC'
             'CGPI/DUREX/DPF'
@@ -506,7 +506,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Height = 21
           Style = csDropDownList
           DataField = 'en_ufemissaorg'
-          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
           Items.Strings = (
             'AC'
             'AL'
@@ -566,7 +566,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Style = csDropDownList
           Anchors = [akTop, akRight]
           DataField = 'en_genero'
-          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
           Items.Strings = (
             'Masculino'
             'Feminino')
@@ -579,7 +579,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Height = 21
           Anchors = [akTop, akRight]
           DataField = 'da_datanascimento'
-          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
           DBEditFormat.FinalMask = '##/##/####'
           DBEditFormat.KeepMask = True
           DBEditFormat.Format = foDate
@@ -597,7 +597,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Height = 21
           Anchors = [akLeft, akTop, akRight]
           DataField = 'va_nome'
-          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
           EditLabel.Width = 73
           EditLabel.Height = 13
           EditLabel.Caption = 'Nome completo'
@@ -641,7 +641,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Height = 21
           Style = csDropDownList
           DataField = 'en_tipologradouro'
-          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
           Items.Strings = (
             'Outros'
             'Aeroporto'
@@ -696,7 +696,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Width = 155
           Height = 21
           DataField = 'va_complementologradouro'
-          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
           EditLabel.Width = 65
           EditLabel.Height = 13
           EditLabel.Caption = 'Complemento'
@@ -713,7 +713,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Height = 21
           Anchors = [akTop, akRight]
           DataField = 'va_idlogradouro'
-          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
           EditLabel.Width = 37
           EditLabel.Height = 13
           EditLabel.Caption = 'N'#250'mero'
@@ -727,7 +727,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Height = 21
           Anchors = [akLeft, akTop, akRight]
           DataField = 'va_nomelogradouro'
-          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
           EditLabel.Width = 55
           EditLabel.Height = 13
           EditLabel.Caption = 'Logradouro'
@@ -742,7 +742,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Style = csDropDownList
           Anchors = [akTop, akRight]
           DataField = 'en_uf'
-          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
           Items.Strings = (
             'AC'
             'AL'
@@ -779,7 +779,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Width = 155
           Height = 21
           DataField = 'va_bairrologradouro'
-          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
           EditLabel.Width = 28
           EditLabel.Height = 13
           EditLabel.Caption = 'Bairro'
@@ -793,7 +793,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Height = 21
           Anchors = [akLeft, akTop, akRight]
           DataField = 'va_cidade'
-          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
           EditLabel.Width = 33
           EditLabel.Height = 13
           EditLabel.Caption = 'Cidade'
@@ -825,7 +825,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Margins.Bottom = 5
           Align = alClient
           DataField = 'tx_observacoes'
-          DataSource = KRDMGerenciarPacientes.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
           TabOrder = 0
         end
       end
@@ -839,6 +839,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
         Top = 31
         Width = 608
         Height = 371
+        VertScrollBar.Position = 40
         Align = alClient
         BevelInner = bvNone
         BevelOuter = bvNone
@@ -848,7 +849,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
         object DBRGCorRaca: TDBRadioGroup
           AlignWithMargins = True
           Left = 6
-          Top = 0
+          Top = -40
           Width = 575
           Height = 105
           Margins.Left = 6
@@ -857,7 +858,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Align = alTop
           Caption = ' 1.0 - Como voc'#234' auto-define a sua cor ou ra'#231'a? '
           DataField = 'sm_corraca'
-          DataSource = KRDMGerenciarPacientes.DTSRDadosSocioDemograficos
+          DataSource = KRDMAvaliadosGerenciar.DTSRDadosSocioDemograficos
           Items.Strings = (
             'Branca'
             'Preta (de origem ou descend'#234'ncia negra)'
@@ -876,7 +877,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
         object DBRGEstadoCivil: TDBRadioGroup
           AlignWithMargins = True
           Left = 6
-          Top = 108
+          Top = 68
           Width = 575
           Height = 88
           Margins.Left = 6
@@ -885,7 +886,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Align = alTop
           Caption = ' 2.0 - Qual seu estado civil? '
           DataField = 'sm_estadocivil'
-          DataSource = KRDMGerenciarPacientes.DTSRDadosSocioDemograficos
+          DataSource = KRDMAvaliadosGerenciar.DTSRDadosSocioDemograficos
           Items.Strings = (
             'Solteiro(a)'
             'Casado(a) ou em uni'#227'o est'#225'vel'
@@ -902,7 +903,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
         object DBRGGrauInstrucao: TDBRadioGroup
           AlignWithMargins = True
           Left = 6
-          Top = 199
+          Top = 159
           Width = 575
           Height = 105
           Margins.Left = 6
@@ -911,7 +912,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Align = alTop
           Caption = ' 3.0 - Qual seu grau de instru'#231#227'o? '
           DataField = 'sm_graudeinstrucao'
-          DataSource = KRDMGerenciarPacientes.DTSRDadosSocioDemograficos
+          DataSource = KRDMAvaliadosGerenciar.DTSRDadosSocioDemograficos
           Items.Strings = (
             
               'Analfabeto ou cursou at'#233' a 3'#170' s'#233'rie do ensino fundamental (prim'#225 +
@@ -934,7 +935,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
         object GRBXProfissao: TGroupBox
           AlignWithMargins = True
           Left = 6
-          Top = 307
+          Top = 267
           Width = 575
           Height = 65
           Margins.Left = 6
@@ -978,7 +979,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
               Top = 0
               Width = 21
               Height = 21
-              Action = KRDMGerenciarPacientes.ACTNSelecionarCBO
+              Action = KRDMAvaliadosGerenciar.ACTNSelecionarCBO
               Align = alRight
               TabOrder = 0
             end
@@ -991,7 +992,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
             Caption = ' Status '
             Columns = 2
             DataField = 'bo_aposentado'
-            DataSource = KRDMGerenciarPacientes.DTSRDadosSocioDemograficos
+            DataSource = KRDMAvaliadosGerenciar.DTSRDadosSocioDemograficos
             Items.Strings = (
               'Ativo(a)'
               'Aposentado(a)')
@@ -1005,7 +1006,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
         object GRBXPatrimonio: TGroupBox
           AlignWithMargins = True
           Left = 6
-          Top = 375
+          Top = 335
           Width = 575
           Height = 425
           Margins.Left = 6
@@ -1027,7 +1028,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
             Caption = ' 5.1 - Televisor em cores '
             Columns = 5
             DataField = 'sm_televisor'
-            DataSource = KRDMGerenciarPacientes.DTSRDadosSocioDemograficos
+            DataSource = KRDMAvaliadosGerenciar.DTSRDadosSocioDemograficos
             Items.Strings = (
               'N'#227'o tem'
               '1'
@@ -1056,7 +1057,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
             Caption = ' 5.2 - R'#225'dio '
             Columns = 5
             DataField = 'sm_radio'
-            DataSource = KRDMGerenciarPacientes.DTSRDadosSocioDemograficos
+            DataSource = KRDMAvaliadosGerenciar.DTSRDadosSocioDemograficos
             Items.Strings = (
               'N'#227'o tem'
               '1'
@@ -1085,7 +1086,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
             Caption = ' 5.3 - Banheiro '
             Columns = 5
             DataField = 'sm_banheiro'
-            DataSource = KRDMGerenciarPacientes.DTSRDadosSocioDemograficos
+            DataSource = KRDMAvaliadosGerenciar.DTSRDadosSocioDemograficos
             Items.Strings = (
               'N'#227'o tem'
               '1'
@@ -1114,7 +1115,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
             Caption = ' 5.4 - Autom'#243'vel '
             Columns = 5
             DataField = 'sm_automovel'
-            DataSource = KRDMGerenciarPacientes.DTSRDadosSocioDemograficos
+            DataSource = KRDMAvaliadosGerenciar.DTSRDadosSocioDemograficos
             Items.Strings = (
               'N'#227'o tem'
               '1'
@@ -1143,7 +1144,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
             Caption = ' 5.6 - M'#225'quina de lavar '
             Columns = 5
             DataField = 'sm_maquinalavar'
-            DataSource = KRDMGerenciarPacientes.DTSRDadosSocioDemograficos
+            DataSource = KRDMAvaliadosGerenciar.DTSRDadosSocioDemograficos
             Items.Strings = (
               'N'#227'o tem'
               '1'
@@ -1172,7 +1173,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
             Caption = ' 5.7 - V'#237'deocassete / DVD '
             Columns = 5
             DataField = 'sm_vcrdvd'
-            DataSource = KRDMGerenciarPacientes.DTSRDadosSocioDemograficos
+            DataSource = KRDMAvaliadosGerenciar.DTSRDadosSocioDemograficos
             Items.Strings = (
               'N'#227'o tem'
               '1'
@@ -1201,7 +1202,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
             Caption = ' 5.8 - Geladeira (uma porta) '
             Columns = 5
             DataField = 'sm_geladeira'
-            DataSource = KRDMGerenciarPacientes.DTSRDadosSocioDemograficos
+            DataSource = KRDMAvaliadosGerenciar.DTSRDadosSocioDemograficos
             Items.Strings = (
               'N'#227'o tem'
               '1'
@@ -1230,7 +1231,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
             Caption = ' 5.9 - Freezer (independente ou 2'#170' porta da geladeira) '
             Columns = 5
             DataField = 'sm_freezer'
-            DataSource = KRDMGerenciarPacientes.DTSRDadosSocioDemograficos
+            DataSource = KRDMAvaliadosGerenciar.DTSRDadosSocioDemograficos
             Items.Strings = (
               'N'#227'o tem'
               '1'
@@ -1259,7 +1260,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
             Caption = ' 5.5 - Empregada mensalista '
             Columns = 5
             DataField = 'sm_mensalista'
-            DataSource = KRDMGerenciarPacientes.DTSRDadosSocioDemograficos
+            DataSource = KRDMAvaliadosGerenciar.DTSRDadosSocioDemograficos
             Items.Strings = (
               'N'#227'o tem'
               '1'
@@ -1279,7 +1280,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
         object DBRGChefeDaFamilia: TDBRadioGroup
           AlignWithMargins = True
           Left = 6
-          Top = 803
+          Top = 763
           Width = 575
           Height = 42
           Margins.Left = 6
@@ -1289,7 +1290,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Caption = ' 6.0 - Voc'#234' '#233' o chefe da fam'#237'lia? '
           Columns = 2
           DataField = 'bo_chefedefamilia'
-          DataSource = KRDMGerenciarPacientes.DTSRDadosSocioDemograficos
+          DataSource = KRDMAvaliadosGerenciar.DTSRDadosSocioDemograficos
           Items.Strings = (
             'Sim'
             'N'#227'o')
@@ -1303,7 +1304,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
         object DBRGGrauChefeFamilia: TDBRadioGroup
           AlignWithMargins = True
           Left = 6
-          Top = 848
+          Top = 808
           Width = 575
           Height = 105
           Margins.Left = 6
@@ -1313,7 +1314,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
           Align = alTop
           Caption = ' 7.0 - Qual o grau de instru'#231#227'o do chefe da fam'#237'lia? '
           DataField = 'sm_grauinstrchefedefamilia'
-          DataSource = KRDMGerenciarPacientes.DTSRDadosSocioDemograficos
+          DataSource = KRDMAvaliadosGerenciar.DTSRDadosSocioDemograficos
           Enabled = False
           Items.Strings = (
             
@@ -1336,7 +1337,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
         end
         object PANLPaddingBottom: TPanel
           Left = 0
-          Top = 953
+          Top = 913
           Width = 587
           Height = 6
           Align = alBottom
@@ -1354,7 +1355,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
         Margins.Top = 0
         Margins.Right = 0
         Margins.Bottom = 6
-        DataSource = KRDMGerenciarPacientes.DTSRPacientes
+        DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
         VisibleButtons = [nbPost, nbCancel, nbRefresh]
         Align = alTop
         TabOrder = 1
@@ -1366,12 +1367,11 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
     ExplicitWidth = 622
     inherited LABLCaption: TLabel
       Height = 38
-      ExplicitHeight = 38
     end
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C010102000800100120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800140120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1908,7 +1908,7 @@ inherited KRFMGerenciarPacientes: TKRFMGerenciarPacientes
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C010102000800200120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800240120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

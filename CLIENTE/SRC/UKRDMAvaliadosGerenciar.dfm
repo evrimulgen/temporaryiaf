@@ -1,7 +1,7 @@
-inherited KRDMGerenciarPacientes: TKRDMGerenciarPacientes
+inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
   OldCreateOrder = True
   Properties.OpenAllDataSets = True
-  MyFormClass = 'TKRFMGerenciarPacientes'
+  MyFormClass = 'TKRFMAvaliadosGerenciar'
   Height = 162
   Width = 252
   inherited ACLI: TActionList

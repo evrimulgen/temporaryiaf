@@ -1,4 +1,4 @@
-unit UKRFMGerenciarPacientes;
+unit UKRFMAvaliadosGerenciar;
 
 interface
 
@@ -10,7 +10,7 @@ uses
   KRK.Components.AdditionalControls.LabeledEdit;
 
 type
-  TKRFMGerenciarPacientes = class(TKRFMDBAwareBasico)
+  TKRFMAvaliadosGerenciar = class(TKRFMDBAwareBasico)
     PGCTPacientes: TPageControl;
     TBSHConsultar: TTabSheet;
     TBSHGerenciar: TTabSheet;
@@ -98,26 +98,26 @@ type
 
 implementation
 
-uses UKRDMGerenciarPacientes, DB;
+uses UKRDMAvaliadosGerenciar, DB;
 
 {$R *.dfm}
 
-procedure TKRFMGerenciarPacientes.DBRGChefeDaFamiliaChange(Sender: TObject);
+procedure TKRFMAvaliadosGerenciar.DBRGChefeDaFamiliaChange(Sender: TObject);
 begin
   inherited;
   DBRGGrauChefeFamilia.Enabled := DBRGChefeDaFamilia.ItemIndex = 1;
-  if not DBRGGrauChefeFamilia.Enabled and (TKRDMGerenciarPacientes(Owner).CLDSDadosSocioDemograficos.State in [dsEdit,dsInsert])  then
+  if not DBRGGrauChefeFamilia.Enabled and (TKRDMAvaliadosGerenciar(Owner).CLDSDadosSocioDemograficos.State in [dsEdit,dsInsert])  then
   begin
-    TKRDMGerenciarPacientes(Owner).CLDSDadosSocioDemograficossm_grauinstrchefedefamilia.Clear;
+    TKRDMAvaliadosGerenciar(Owner).CLDSDadosSocioDemograficossm_grauinstrchefedefamilia.Clear;
     { TODO : Altere a regra de validação }
   end;
 end;
 
-procedure TKRFMGerenciarPacientes.KRLEFoneCelularKeyPress(Sender: TObject; var Key: Char);
+procedure TKRFMAvaliadosGerenciar.KRLEFoneCelularKeyPress(Sender: TObject; var Key: Char);
 begin
   inherited;
   if Key = #13 then
-    TKRDMGerenciarPacientes(Owner).FiltrarPacientes(TKRDMGerenciarPacientes(Owner).CLDSPacientes
+    TKRDMAvaliadosGerenciar(Owner).FiltrarPacientes(TKRDMAvaliadosGerenciar(Owner).CLDSPacientes
                                                    ,0
                                                    ,''
                                                    ,''
@@ -137,11 +137,11 @@ begin
                                                    ,'');
 end;
 
-procedure TKRFMGerenciarPacientes.KRLEFoneResidencialKeyPress(Sender: TObject; var Key: Char);
+procedure TKRFMAvaliadosGerenciar.KRLEFoneResidencialKeyPress(Sender: TObject; var Key: Char);
 begin
   inherited;
   if Key = #13 then
-    TKRDMGerenciarPacientes(Owner).FiltrarPacientes(TKRDMGerenciarPacientes(Owner).CLDSPacientes
+    TKRDMAvaliadosGerenciar(Owner).FiltrarPacientes(TKRDMAvaliadosGerenciar(Owner).CLDSPacientes
                                                    ,0
                                                    ,''
                                                    ,''
@@ -161,11 +161,11 @@ begin
                                                    ,'');
 end;
 
-procedure TKRFMGerenciarPacientes.KRLEIdentidadeKeyPress(Sender: TObject; var Key: Char);
+procedure TKRFMAvaliadosGerenciar.KRLEIdentidadeKeyPress(Sender: TObject; var Key: Char);
 begin
   inherited;
   if Key = #13 then
-    TKRDMGerenciarPacientes(Owner).FiltrarPacientes(TKRDMGerenciarPacientes(Owner).CLDSPacientes
+    TKRDMAvaliadosGerenciar(Owner).FiltrarPacientes(TKRDMAvaliadosGerenciar(Owner).CLDSPacientes
                                                    ,0
                                                    ,''
                                                    ,''
@@ -185,11 +185,11 @@ begin
                                                    ,'');
 end;
 
-procedure TKRFMGerenciarPacientes.KRLENascimentoKeyPress(Sender: TObject; var Key: Char);
+procedure TKRFMAvaliadosGerenciar.KRLENascimentoKeyPress(Sender: TObject; var Key: Char);
 begin
   inherited;
   if Key = #13 then
-    TKRDMGerenciarPacientes(Owner).FiltrarPacientes(TKRDMGerenciarPacientes(Owner).CLDSPacientes
+    TKRDMAvaliadosGerenciar(Owner).FiltrarPacientes(TKRDMAvaliadosGerenciar(Owner).CLDSPacientes
                                                    ,0
                                                    ,''
                                                    ,''
@@ -209,18 +209,18 @@ begin
                                                    ,'');
 end;
 
-procedure TKRFMGerenciarPacientes.KRKFormCreate(Sender: TObject);
+procedure TKRFMAvaliadosGerenciar.KRKFormCreate(Sender: TObject);
 begin
   inherited;
   TBSHDadosSocioDemograficos.TabVisible := False;
   SCBXDadosSocioDemograficos.VertScrollBar.Position := 0;
 end;
 
-procedure TKRFMGerenciarPacientes.KRLECodigoKeyPress(Sender: TObject; var Key: Char);
+procedure TKRFMAvaliadosGerenciar.KRLECodigoKeyPress(Sender: TObject; var Key: Char);
 begin
   inherited;
   if Key = #13 then
-    TKRDMGerenciarPacientes(Owner).FiltrarPacientes(TKRDMGerenciarPacientes(Owner).CLDSPacientes
+    TKRDMAvaliadosGerenciar(Owner).FiltrarPacientes(TKRDMAvaliadosGerenciar(Owner).CLDSPacientes
                                                    ,StrToIntDef(TKRKLabeledEdit(Sender).UnformattedText,0)
                                                    ,''
                                                    ,''
@@ -240,11 +240,11 @@ begin
                                                    ,'');
 end;
 
-procedure TKRFMGerenciarPacientes.DoKeyPressPesquisaParcial(Sender: TObject; var Key: Char);
+procedure TKRFMAvaliadosGerenciar.DoKeyPressPesquisaParcial(Sender: TObject; var Key: Char);
 begin
   inherited;
   if Key = #13 then
-    TKRDMGerenciarPacientes(Owner).FiltrarPacientes(TKRDMGerenciarPacientes(Owner).CLDSPacientes
+    TKRDMAvaliadosGerenciar(Owner).FiltrarPacientes(TKRDMAvaliadosGerenciar(Owner).CLDSPacientes
                                                    ,0
                                                    ,LAEDNome.Text
                                                    ,''
@@ -265,6 +265,6 @@ begin
 end;
 
 initialization
-  RegisterClass(TKRFMGerenciarPacientes)
+  RegisterClass(TKRFMAvaliadosGerenciar)
 
 end.

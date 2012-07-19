@@ -5,7 +5,7 @@ interface
 uses SysUtils, Classes, PlatformDefaultStyleActnCtrls, ActnList, ActnMan, DB
    , DBClient, SOAPConn, ImgList, Controls, UCommonTypes, UFORMPrincipal
    , UKRDMSegurancaEPermissoes, SOAPHTTPTrans, UFORMSplash, UKRDMConfiguracoes
-   , UKRDMRelatorio, UKRDMGerenciarPacientes;
+   , UKRDMRelatorio, UKRDMAvaliadosGerenciar;
 
 type
   TDAMOPrincipal = class(TDataModule)
@@ -45,7 +45,7 @@ type
     FKRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes;
     FKRDMConfiguracoes: TKRDMConfiguracoes;
     FKRDMRelatorio: TKRDMRelatorio;
-    FKRDMGerenciarPacientes: TKRDMGerenciarPacientes;
+    FKRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar;
     procedure DoReceivingData(Read, Total: Integer);
     procedure DoBeforePost(const HTTPReqResp: THTTPReqResp; Data: Pointer);
     procedure DoPostingData(Sent, Total: Integer);
@@ -97,10 +97,10 @@ end;
 
 procedure TDAMOPrincipal.ACTNGerenciarAvaliadosExecute(Sender: TObject);
 begin
-  if not Assigned(FKRDMGerenciarPacientes) then
-    TKRDMGerenciarPacientes.CreateMe(Self,FKRDMGerenciarPacientes,TKRDMGerenciarPacientes)
+  if not Assigned(FKRDMAvaliadosGerenciar) then
+    TKRDMAvaliadosGerenciar.CreateMe(Self,FKRDMAvaliadosGerenciar,TKRDMAvaliadosGerenciar)
   else
-    FKRDMGerenciarPacientes.MyForm.BringToFront;
+    FKRDMAvaliadosGerenciar.MyForm.BringToFront;
 end;
 
 procedure TDAMOPrincipal.ACTNRelatorio4Execute(Sender: TObject);

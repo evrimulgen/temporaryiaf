@@ -1,4 +1,4 @@
-unit UKRDMGerenciarPacientes;
+unit UKRDMAvaliadosGerenciar;
 
 interface
 
@@ -8,7 +8,7 @@ uses Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, DBClient
    , KRK.Components.AdditionalControls.PngImageList;
 
 type
-  TKRDMGerenciarPacientes = class(TKRDMBasico)
+  TKRDMAvaliadosGerenciar = class(TKRDMBasico)
     DTSRPacientes: TDataSource;
     CLDSPacientes: TClientDataSet;
     CLDSPacientesin_pacientes_id: TIntegerField;
@@ -67,14 +67,14 @@ type
 
 implementation
 
-uses UDAMOPrincipal, UKRFMGerenciarPacientes, KRK.Lib.Db.Utils, KRK.Lib.RegExp.Utils,
+uses UDAMOPrincipal, UKRFMAvaliadosGerenciar, KRK.Lib.Db.Utils, KRK.Lib.RegExp.Utils,
   UKRFMSelecionarCBO;
 
 {$R *.dfm}
 
-{ TKRDMGerenciarPacientes }
+{ TKRDMAvaliadosGerenciar }
 
-procedure TKRDMGerenciarPacientes.FiltrarCBO(aCLDSCBO: TClientDataSet; aIN_CBO_ID: Integer; aCH_CODIGO, aVA_TITULO, aEN_TIPO: String);
+procedure TKRDMAvaliadosGerenciar.FiltrarCBO(aCLDSCBO: TClientDataSet; aIN_CBO_ID: Integer; aCH_CODIGO, aVA_TITULO, aEN_TIPO: String);
 begin
   if aCLDSCBO.ChangeCount = 0 then
   begin
@@ -86,7 +86,7 @@ begin
   end;
 end;
 
-procedure TKRDMGerenciarPacientes.FiltrarPacientes(aCLDSPacientes: TClientDataSet; aIN_PACIENTES_ID: Integer; aVA_NOME, aEN_GENERO: String; aDA_DATANASCIMENTO: TDateTime; aVA_RG, aEN_ORGAOEMISSORRG, aEN_UFEMISSAORG, aEN_TIPOLOGRADOURO, aVA_NOMELOGRADOURO, aVA_IDLOGRADOURO, aVA_COMPLEMENTOLOGRADOURO, aVA_BAIRROLOGRADOURO, aVA_CIDADE, aEN_UF, aCH_FONERESIDENCIAL, aCH_FONECELULAR, aTX_OBSERVACOES: String);
+procedure TKRDMAvaliadosGerenciar.FiltrarPacientes(aCLDSPacientes: TClientDataSet; aIN_PACIENTES_ID: Integer; aVA_NOME, aEN_GENERO: String; aDA_DATANASCIMENTO: TDateTime; aVA_RG, aEN_ORGAOEMISSORRG, aEN_UFEMISSAORG, aEN_TIPOLOGRADOURO, aVA_NOMELOGRADOURO, aVA_IDLOGRADOURO, aVA_COMPLEMENTOLOGRADOURO, aVA_BAIRROLOGRADOURO, aVA_CIDADE, aEN_UF, aCH_FONERESIDENCIAL, aCH_FONECELULAR, aTX_OBSERVACOES: String);
 begin
   if aCLDSPacientes.ChangeCount = 0 then
   begin
@@ -111,7 +111,7 @@ begin
   end;
 end;
 
-procedure TKRDMGerenciarPacientes.ACTNSelecionarCBOExecute(Sender: TObject);
+procedure TKRDMAvaliadosGerenciar.ACTNSelecionarCBOExecute(Sender: TObject);
 begin
   inherited;
   with TKRFMSelecionarCBO.Create(nil) do
@@ -124,7 +124,7 @@ begin
       begin
         CLDSDadosSocioDemograficos.Edit;
         CLDSDadosSocioDemograficosin_cbo_id.AsInteger := CLDSin_cbo_id.AsInteger;
-        TKRFMGerenciarPacientes(MyForm).LAEDTituloCBO.Text := CLDSva_titulo.AsString;
+        TKRFMAvaliadosGerenciar(MyForm).LAEDTituloCBO.Text := CLDSva_titulo.AsString;
       end;
     finally
       Free;
@@ -132,33 +132,33 @@ begin
 
 end;
 
-procedure TKRDMGerenciarPacientes.AlternarPaginas;
+procedure TKRDMAvaliadosGerenciar.AlternarPaginas;
 begin
   if Assigned(MyForm) then
   begin
-    TKRFMGerenciarPacientes(MyForm).TBSHConsultar.TabVisible := CLDSPacientes.State = dsBrowse;
-    TKRFMGerenciarPacientes(MyForm).TBSHDadosSocioDemograficos.TabVisible := (CLDSPacientes.RecordCount > 0) and (CLDSPacientesin_pacientes_id.AsInteger > 0);
+    TKRFMAvaliadosGerenciar(MyForm).TBSHConsultar.TabVisible := CLDSPacientes.State = dsBrowse;
+    TKRFMAvaliadosGerenciar(MyForm).TBSHDadosSocioDemograficos.TabVisible := (CLDSPacientes.RecordCount > 0) and (CLDSPacientesin_pacientes_id.AsInteger > 0);
   end;
 end;
 
-procedure TKRDMGerenciarPacientes.CLDSPacientesAfterRefresh(DataSet: TDataSet);
+procedure TKRDMAvaliadosGerenciar.CLDSPacientesAfterRefresh(DataSet: TDataSet);
 begin
   inherited;
-  TKRFMGerenciarPacientes(MyForm).LABLFiltroPacientes.Caption := TClientDataSet(DataSet).MyParams;
+  TKRFMAvaliadosGerenciar(MyForm).LABLFiltroPacientes.Caption := TClientDataSet(DataSet).MyParams;
 end;
 
-procedure TKRDMGerenciarPacientes.CLDSPacientesCalcFields(DataSet: TDataSet);
+procedure TKRDMAvaliadosGerenciar.CLDSPacientesCalcFields(DataSet: TDataSet);
 begin
   inherited;
 
   if not Assigned(MyForm) then
     Exit;
 
-  CLDSPacientesfoneresidencial.AsString := ApplyMask(TKRFMGerenciarPacientes(MyForm).KLDEFoneResidencial.DBEditFormat.FormatScript,CLDSPacientesch_foneresidencial.AsString);
-  CLDSPacientesfonecelular.AsString := ApplyMask(TKRFMGerenciarPacientes(MyForm).KLDEFoneCelular.DBEditFormat.FormatScript,CLDSPacientesch_fonecelular.AsString);
+  CLDSPacientesfoneresidencial.AsString := ApplyMask(TKRFMAvaliadosGerenciar(MyForm).KLDEFoneResidencial.DBEditFormat.FormatScript,CLDSPacientesch_foneresidencial.AsString);
+  CLDSPacientesfonecelular.AsString := ApplyMask(TKRFMAvaliadosGerenciar(MyForm).KLDEFoneCelular.DBEditFormat.FormatScript,CLDSPacientesch_fonecelular.AsString);
 end;
 
-procedure TKRDMGerenciarPacientes.DTSRPacientesDataChange(Sender: TObject; Field: TField);
+procedure TKRDMAvaliadosGerenciar.DTSRPacientesDataChange(Sender: TObject; Field: TField);
 begin
   inherited;
   AlternarPaginas;
