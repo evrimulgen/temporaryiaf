@@ -6,18 +6,18 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
   ExplicitHeight = 514
   PixelsPerInch = 96
   TextHeight = 13
-  object PGCTPacientes: TPageControl [0]
+  object PGCTAvaliados: TPageControl [0]
     Left = 0
     Top = 40
     Width = 622
     Height = 436
-    ActivePage = TBSHConsultar
+    ActivePage = TBSHSinaisESintomas
     Align = alClient
     TabOrder = 2
     object TBSHConsultar: TTabSheet
       AlignWithMargins = True
       Caption = 'Consultar'
-      object KRDGPacientes: TKRKDBGrid
+      object KRDGAvaliados: TKRKDBGrid
         AlignWithMargins = True
         Left = 0
         Top = 179
@@ -27,7 +27,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         Margins.Right = 0
         Margins.Bottom = 0
         Align = alClient
-        DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
+        DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
         Options = [dgTitles, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
         OptionsEx = [dgAutomaticColumSizes]
         TabOrder = 0
@@ -46,7 +46,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           item
             Alignment = taCenter
             Expanded = False
-            FieldName = 'in_pacientes_id'
+            FieldName = 'in_avaliados_id'
             Title.Alignment = taCenter
             Visible = True
           end
@@ -79,7 +79,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             Visible = True
           end>
       end
-      object DBNAConsultarPacientes: TDBNavigator
+      object DBNAConsultarAvaliados: TDBNavigator
         AlignWithMargins = True
         Left = 0
         Top = 148
@@ -87,12 +87,12 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         Height = 25
         Margins.Left = 0
         Margins.Right = 0
-        DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
+        DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
         VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbRefresh]
         Align = alTop
         TabOrder = 1
       end
-      object GRBXFiltroPacientes: TGroupBox
+      object GRBXFiltroAvaliados: TGroupBox
         Left = 0
         Top = 352
         Width = 608
@@ -106,7 +106,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         Font.Style = []
         ParentFont = False
         TabOrder = 2
-        object LABLFiltroPacientes: TLabel
+        object LABLFiltroAvaliados: TLabel
           AlignWithMargins = True
           Left = 8
           Top = 15
@@ -320,12 +320,12 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       DesignSize = (
         608
         402)
-      object DBNAGerenciarPacientes: TDBNavigator
+      object DBNAGerenciarAvaliados: TDBNavigator
         Left = 0
         Top = 377
         Width = 608
         Height = 25
-        DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
+        DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
         VisibleButtons = [nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh]
         Align = alBottom
         TabOrder = 5
@@ -343,7 +343,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Width = 105
           Height = 21
           DataField = 'ch_fonecelular'
-          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
           DBEditFormat.FinalMask = '(##) ####-####'
           DBEditFormat.Format = foCustom
           DBEditFormat.FormatScript.Strings = (
@@ -363,7 +363,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Width = 105
           Height = 21
           DataField = 'ch_foneresidencial'
-          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
           DBEditFormat.FinalMask = '(##) ####-####'
           DBEditFormat.Format = foCustom
           DBEditFormat.FormatScript.Strings = (
@@ -407,7 +407,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Width = 105
           Height = 21
           DataField = 'va_rg'
-          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
           DBEditFormat.FinalMask = '#.###.###.###'
           DBEditFormat.Format = foCustom
           DBEditFormat.FormatScript.Strings = (
@@ -429,7 +429,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Height = 21
           Style = csDropDownList
           DataField = 'en_orgaoemissorrg'
-          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
           Items.Strings = (
             'ABNC'
             'CGPI/DUREX/DPF'
@@ -506,7 +506,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Height = 21
           Style = csDropDownList
           DataField = 'en_ufemissaorg'
-          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
           Items.Strings = (
             'AC'
             'AL'
@@ -566,7 +566,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Style = csDropDownList
           Anchors = [akTop, akRight]
           DataField = 'en_genero'
-          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
           Items.Strings = (
             'Masculino'
             'Feminino')
@@ -579,7 +579,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Height = 21
           Anchors = [akTop, akRight]
           DataField = 'da_datanascimento'
-          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
           DBEditFormat.FinalMask = '##/##/####'
           DBEditFormat.KeepMask = True
           DBEditFormat.Format = foDate
@@ -597,7 +597,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Height = 21
           Anchors = [akLeft, akTop, akRight]
           DataField = 'va_nome'
-          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
           EditLabel.Width = 73
           EditLabel.Height = 13
           EditLabel.Caption = 'Nome completo'
@@ -641,7 +641,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Height = 21
           Style = csDropDownList
           DataField = 'en_tipologradouro'
-          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
           Items.Strings = (
             'Outros'
             'Aeroporto'
@@ -696,7 +696,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Width = 155
           Height = 21
           DataField = 'va_complementologradouro'
-          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
           EditLabel.Width = 65
           EditLabel.Height = 13
           EditLabel.Caption = 'Complemento'
@@ -713,7 +713,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Height = 21
           Anchors = [akTop, akRight]
           DataField = 'va_idlogradouro'
-          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
           EditLabel.Width = 37
           EditLabel.Height = 13
           EditLabel.Caption = 'N'#250'mero'
@@ -727,7 +727,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Height = 21
           Anchors = [akLeft, akTop, akRight]
           DataField = 'va_nomelogradouro'
-          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
           EditLabel.Width = 55
           EditLabel.Height = 13
           EditLabel.Caption = 'Logradouro'
@@ -742,7 +742,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Style = csDropDownList
           Anchors = [akTop, akRight]
           DataField = 'en_uf'
-          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
           Items.Strings = (
             'AC'
             'AL'
@@ -779,7 +779,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Width = 155
           Height = 21
           DataField = 'va_bairrologradouro'
-          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
           EditLabel.Width = 28
           EditLabel.Height = 13
           EditLabel.Caption = 'Bairro'
@@ -793,7 +793,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Height = 21
           Anchors = [akLeft, akTop, akRight]
           DataField = 'va_cidade'
-          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
           EditLabel.Width = 33
           EditLabel.Height = 13
           EditLabel.Caption = 'Cidade'
@@ -825,7 +825,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Margins.Bottom = 5
           Align = alClient
           DataField = 'tx_observacoes'
-          DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
+          DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
           TabOrder = 0
         end
       end
@@ -839,17 +839,18 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         Top = 60
         Width = 608
         Height = 342
-        VertScrollBar.Position = 617
         Align = alClient
         BevelInner = bvNone
         BevelOuter = bvNone
         Color = clWindow
         ParentColor = False
         TabOrder = 0
+        OnMouseWheelDown = SCBXDadosSocioDemograficosMouseWheelDown
+        OnMouseWheelUp = SCBXDadosSocioDemograficosMouseWheelUp
         object DBRGCorRaca: TDBRadioGroup
           AlignWithMargins = True
           Left = 6
-          Top = -617
+          Top = 0
           Width = 575
           Height = 105
           Margins.Left = 6
@@ -877,7 +878,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object DBRGEstadoCivil: TDBRadioGroup
           AlignWithMargins = True
           Left = 6
-          Top = -509
+          Top = 108
           Width = 575
           Height = 88
           Margins.Left = 6
@@ -903,7 +904,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object DBRGGrauInstrucao: TDBRadioGroup
           AlignWithMargins = True
           Left = 6
-          Top = -418
+          Top = 199
           Width = 575
           Height = 105
           Margins.Left = 6
@@ -935,7 +936,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object GRBXProfissao: TGroupBox
           AlignWithMargins = True
           Left = 6
-          Top = -310
+          Top = 307
           Width = 575
           Height = 65
           Margins.Left = 6
@@ -1025,7 +1026,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object GRBXPatrimonio: TGroupBox
           AlignWithMargins = True
           Left = 6
-          Top = -242
+          Top = 375
           Width = 575
           Height = 425
           Margins.Left = 6
@@ -1299,7 +1300,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object DBRGChefeDaFamilia: TDBRadioGroup
           AlignWithMargins = True
           Left = 6
-          Top = 186
+          Top = 803
           Width = 575
           Height = 42
           Margins.Left = 6
@@ -1323,7 +1324,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object DBRGGrauChefeFamilia: TDBRadioGroup
           AlignWithMargins = True
           Left = 6
-          Top = 231
+          Top = 848
           Width = 575
           Height = 105
           Margins.Left = 6
@@ -1355,7 +1356,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         end
         object PANLPaddingBottom: TPanel
           Left = 0
-          Top = 336
+          Top = 953
           Width = 587
           Height = 6
           Align = alBottom
@@ -1372,7 +1373,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         Margins.Left = 0
         Margins.Right = 0
         Margins.Bottom = 6
-        DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
+        DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
         VisibleButtons = [nbPost, nbCancel, nbRefresh]
         Align = alTop
         TabOrder = 1
@@ -1412,7 +1413,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         end
       end
     end
-    object TBSHChecagemDeSinaisESintomas: TTabSheet
+    object TBSHSinaisESintomas: TTabSheet
       AlignWithMargins = True
       Caption = 'Checagem de sinais e sintomas'
       ImageIndex = 3
@@ -1459,10 +1460,63 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         Margins.Left = 0
         Margins.Right = 0
         Margins.Bottom = 6
-        DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
+        DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
         VisibleButtons = [nbPost, nbCancel, nbRefresh]
         Align = alTop
         TabOrder = 1
+      end
+      object SCBXChecagemDeSinaisESintomas: TScrollBox
+        Left = 0
+        Top = 60
+        Width = 608
+        Height = 342
+        Align = alClient
+        BevelInner = bvNone
+        BevelOuter = bvNone
+        Color = clWindow
+        ParentColor = False
+        TabOrder = 2
+        OnMouseWheelDown = SCBXDadosSocioDemograficosMouseWheelDown
+        OnMouseWheelUp = SCBXDadosSocioDemograficosMouseWheelUp
+        object Panel2: TPanel
+          Left = 0
+          Top = 332
+          Width = 604
+          Height = 6
+          Align = alBottom
+          BevelOuter = bvNone
+          TabOrder = 0
+        end
+        object PANLSinaisESintomas: TPanel
+          AlignWithMargins = True
+          Left = 6
+          Top = 6
+          Width = 592
+          Height = 35
+          Margins.Left = 6
+          Margins.Top = 6
+          Margins.Right = 6
+          Align = alTop
+          BevelInner = bvLowered
+          Color = clInfoBk
+          ParentBackground = False
+          TabOrder = 1
+          object LABLSinaisESintomas: TLabel
+            Left = 2
+            Top = 2
+            Width = 588
+            Height = 31
+            Align = alClient
+            Alignment = taCenter
+            Caption = 
+              'O AVALIADO TEM OU TEVE RECENTEMENTE ALGUMA DAS CONDI'#199#213'ES ABAIXO?' +
+              #13#10'Assinale o(s) item(ns) respondido(s) positivamente'
+            Color = clInfoBk
+            ParentColor = False
+            Layout = tlCenter
+            ExplicitHeight = 36
+          end
+        end
       end
     end
     object TBSHParametrosFisiologicos: TTabSheet
@@ -1512,7 +1566,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         Margins.Left = 0
         Margins.Right = 0
         Margins.Bottom = 6
-        DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
+        DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
         VisibleButtons = [nbPost, nbCancel, nbRefresh]
         Align = alTop
         TabOrder = 1
@@ -1565,7 +1619,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         Margins.Left = 0
         Margins.Right = 0
         Margins.Bottom = 6
-        DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
+        DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
         VisibleButtons = [nbPost, nbCancel, nbRefresh]
         Align = alTop
         TabOrder = 1
@@ -1581,7 +1635,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C010102000800380120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800400120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2118,7 +2172,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C010102000800480120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800500120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

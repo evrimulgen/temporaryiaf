@@ -1,4 +1,4 @@
-unit UKRDMPacientes;
+unit UKRDMAvaliados;
 
 interface
 
@@ -8,31 +8,31 @@ uses
   KRK.Components.DataControls.ValidationChecks;
 
 type
-  TKRDMPacientes = class(TKRDMBasico)
-    UNQYPacientes: TUniQuery;
-    UNQYPacientesin_pacientes_id: TIntegerField;
-    UNQYPacientesva_nome: TWideStringField;
-    UNQYPacientesda_datanascimento: TDateField;
-    UNQYPacientesva_rg: TWideStringField;
-    UNQYPacientesen_orgaoemissorrg: TWideStringField;
-    UNQYPacientesen_ufemissaorg: TWideStringField;
-    UNQYPacientesen_tipologradouro: TWideStringField;
-    UNQYPacientesva_nomelogradouro: TWideStringField;
-    UNQYPacientesva_idlogradouro: TWideStringField;
-    UNQYPacientesva_complementologradouro: TWideStringField;
-    UNQYPacientesva_bairrologradouro: TWideStringField;
-    UNQYPacientesva_cidade: TWideStringField;
-    UNQYPacientesen_uf: TWideStringField;
-    UNQYPacientesch_foneresidencial: TWideStringField;
-    UNQYPacientesch_fonecelular: TWideStringField;
-    UNQYPacientestx_observacoes: TWideMemoField;
-    KRVCPacientes: TKRKValidationChecks;
-    UNQYPacientesen_genero: TWideStringField;
+  TKRDMAvaliados = class(TKRDMBasico)
+    UNQYAvaliados: TUniQuery;
+    UNQYAvaliadosin_avaliados_id: TIntegerField;
+    UNQYAvaliadosva_nome: TWideStringField;
+    UNQYAvaliadosda_datanascimento: TDateField;
+    UNQYAvaliadosva_rg: TWideStringField;
+    UNQYAvaliadosen_orgaoemissorrg: TWideStringField;
+    UNQYAvaliadosen_ufemissaorg: TWideStringField;
+    UNQYAvaliadosen_tipologradouro: TWideStringField;
+    UNQYAvaliadosva_nomelogradouro: TWideStringField;
+    UNQYAvaliadosva_idlogradouro: TWideStringField;
+    UNQYAvaliadosva_complementologradouro: TWideStringField;
+    UNQYAvaliadosva_bairrologradouro: TWideStringField;
+    UNQYAvaliadosva_cidade: TWideStringField;
+    UNQYAvaliadosen_uf: TWideStringField;
+    UNQYAvaliadosch_foneresidencial: TWideStringField;
+    UNQYAvaliadosch_fonecelular: TWideStringField;
+    UNQYAvaliadostx_observacoes: TWideMemoField;
+    KRVCAvaliados: TKRKValidationChecks;
+    UNQYAvaliadosen_genero: TWideStringField;
     UNQYDadosSocioDemograficos: TUniQuery;
     KRVCDadosSocioDemograficos: TKRKValidationChecks;
-    DTSRPacientes: TDataSource;
+    DTSRAvaliados: TDataSource;
     UNQYDadosSocioDemograficosin_dadossociodemograficos_id: TIntegerField;
-    UNQYDadosSocioDemograficosin_pacientes_id: TIntegerField;
+    UNQYDadosSocioDemograficosin_avaliados_id: TIntegerField;
     UNQYDadosSocioDemograficossm_corraca: TSmallintField;
     UNQYDadosSocioDemograficossm_estadocivil: TSmallintField;
     UNQYDadosSocioDemograficossm_graudeinstrucao: TSmallintField;
@@ -64,3 +64,5 @@ uses USODMPrincipal;
 {$R *.dfm}
 
 end.
+
+

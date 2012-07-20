@@ -10,19 +10,19 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
       OnExecute = ACTNSelecionarCBOExecute
     end
   end
-  object DTSRPacientes: TDataSource
-    DataSet = CLDSPacientes
-    OnDataChange = DTSRPacientesDataChange
+  object DTSRAvaliados: TDataSource
+    DataSet = CLDSAvaliados
+    OnDataChange = DTSRAvaliadosDataChange
     Left = 30
     Top = 108
   end
-  object CLDSPacientes: TClientDataSet
+  object CLDSAvaliados: TClientDataSet
     Aggregates = <>
     ConnectionBroker = DAMOPrincipal.CNBRPrincipal
     Params = <
       item
         DataType = ftInteger
-        Name = 'IN_PACIENTES_ID'
+        Name = 'IN_AVALIADOS_ID'
         ParamType = ptInput
         Value = -1
       end
@@ -122,24 +122,24 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
         ParamType = ptInput
         Value = Null
       end>
-    ProviderName = 'DSPRPacientes'
-    AfterRefresh = CLDSPacientesAfterRefresh
-    OnCalcFields = CLDSPacientesCalcFields
+    ProviderName = 'DSPRAvaliados'
+    AfterRefresh = CLDSAvaliadosAfterRefresh
+    OnCalcFields = CLDSAvaliadosCalcFields
     Left = 30
     Top = 60
-    object CLDSPacientesin_pacientes_id: TIntegerField
+    object CLDSAvaliadosin_avaliados_id: TIntegerField
       DisplayLabel = 'C'#243'digo'
-      FieldName = 'in_pacientes_id'
+      FieldName = 'in_avaliados_id'
       ProviderFlags = [pfInUpdate, pfInKey]
     end
-    object CLDSPacientesva_nome: TWideStringField
+    object CLDSAvaliadosva_nome: TWideStringField
       DisplayLabel = 'Nome'
       FieldName = 'va_nome'
       ProviderFlags = [pfInUpdate]
       Required = True
       Size = 128
     end
-    object CLDSPacientesen_genero: TWideStringField
+    object CLDSAvaliadosen_genero: TWideStringField
       DisplayLabel = 'G'#234'nero'
       DisplayWidth = 9
       FieldName = 'en_genero'
@@ -147,14 +147,14 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
       Required = True
       Size = 9
     end
-    object CLDSPacientesda_datanascimento: TDateField
+    object CLDSAvaliadosda_datanascimento: TDateField
       Alignment = taCenter
       DisplayLabel = 'Data de nascimento'
       FieldName = 'da_datanascimento'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
-    object CLDSPacientesva_rg: TWideStringField
+    object CLDSAvaliadosva_rg: TWideStringField
       Alignment = taCenter
       DisplayLabel = 'RG'
       FieldName = 'va_rg'
@@ -162,7 +162,7 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
       Required = True
       Size = 10
     end
-    object CLDSPacientesen_orgaoemissorrg: TWideStringField
+    object CLDSAvaliadosen_orgaoemissorrg: TWideStringField
       DisplayLabel = #211'rg'#227'o emissor do RG'
       DisplayWidth = 14
       FieldName = 'en_orgaoemissorrg'
@@ -170,7 +170,7 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
       Required = True
       Size = 14
     end
-    object CLDSPacientesen_ufemissaorg: TWideStringField
+    object CLDSAvaliadosen_ufemissaorg: TWideStringField
       DisplayLabel = 'UF de emiss'#227'o do RG'
       DisplayWidth = 2
       FieldName = 'en_ufemissaorg'
@@ -178,7 +178,7 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
       Required = True
       Size = 2
     end
-    object CLDSPacientesen_tipologradouro: TWideStringField
+    object CLDSAvaliadosen_tipologradouro: TWideStringField
       DisplayLabel = 'Tipo de logradouro'
       DisplayWidth = 15
       FieldName = 'en_tipologradouro'
@@ -186,39 +186,39 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
       Required = True
       Size = 15
     end
-    object CLDSPacientesva_nomelogradouro: TWideStringField
+    object CLDSAvaliadosva_nomelogradouro: TWideStringField
       DisplayLabel = 'Logradouro'
       FieldName = 'va_nomelogradouro'
       ProviderFlags = [pfInUpdate]
       Required = True
       Size = 128
     end
-    object CLDSPacientesva_idlogradouro: TWideStringField
+    object CLDSAvaliadosva_idlogradouro: TWideStringField
       DisplayLabel = 'N'#250'mero'
       FieldName = 'va_idlogradouro'
       ProviderFlags = [pfInUpdate]
       Required = True
       Size = 10
     end
-    object CLDSPacientesva_complementologradouro: TWideStringField
+    object CLDSAvaliadosva_complementologradouro: TWideStringField
       DisplayLabel = 'Complemento'
       FieldName = 'va_complementologradouro'
       ProviderFlags = [pfInUpdate]
     end
-    object CLDSPacientesva_bairrologradouro: TWideStringField
+    object CLDSAvaliadosva_bairrologradouro: TWideStringField
       DisplayLabel = 'Bairro'
       FieldName = 'va_bairrologradouro'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
-    object CLDSPacientesva_cidade: TWideStringField
+    object CLDSAvaliadosva_cidade: TWideStringField
       DisplayLabel = 'Cidade'
       FieldName = 'va_cidade'
       ProviderFlags = [pfInUpdate]
       Required = True
       Size = 30
     end
-    object CLDSPacientesen_uf: TWideStringField
+    object CLDSAvaliadosen_uf: TWideStringField
       DisplayLabel = 'UF'
       DisplayWidth = 2
       FieldName = 'en_uf'
@@ -226,7 +226,7 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
       Required = True
       Size = 2
     end
-    object CLDSPacientesch_foneresidencial: TWideStringField
+    object CLDSAvaliadosch_foneresidencial: TWideStringField
       Alignment = taCenter
       DisplayLabel = 'Telefone residencial'
       FieldName = 'ch_foneresidencial'
@@ -234,7 +234,7 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
       FixedChar = True
       Size = 10
     end
-    object CLDSPacientesch_fonecelular: TWideStringField
+    object CLDSAvaliadosch_fonecelular: TWideStringField
       Alignment = taCenter
       DisplayLabel = 'Telefone celular'
       FieldName = 'ch_fonecelular'
@@ -242,16 +242,16 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
       FixedChar = True
       Size = 10
     end
-    object CLDSPacientestx_observacoes: TWideMemoField
+    object CLDSAvaliadostx_observacoes: TWideMemoField
       DisplayLabel = 'Observa'#231#245'es'
       FieldName = 'tx_observacoes'
       ProviderFlags = [pfInUpdate]
       BlobType = ftWideMemo
     end
-    object CLDSPacientesUNQYDadosSocioDemograficos: TDataSetField
+    object CLDSAvaliadosUNQYDadosSocioDemograficos: TDataSetField
       FieldName = 'UNQYDadosSocioDemograficos'
     end
-    object CLDSPacientesfoneresidencial: TStringField
+    object CLDSAvaliadosfoneresidencial: TStringField
       Alignment = taCenter
       DisplayLabel = 'Telefone residencial'
       FieldKind = fkCalculated
@@ -259,7 +259,7 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
       Size = 14
       Calculated = True
     end
-    object CLDSPacientesfonecelular: TStringField
+    object CLDSAvaliadosfonecelular: TStringField
       Alignment = taCenter
       DisplayLabel = 'Telefone celular'
       FieldKind = fkCalculated
@@ -271,7 +271,7 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
   object CLDSDadosSocioDemograficos: TClientDataSet
     Aggregates = <>
     ConnectionBroker = DAMOPrincipal.CNBRPrincipal
-    DataSetField = CLDSPacientesUNQYDadosSocioDemograficos
+    DataSetField = CLDSAvaliadosUNQYDadosSocioDemograficos
     Params = <>
     Left = 150
     Top = 60
@@ -279,8 +279,8 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
       FieldName = 'in_dadossociodemograficos_id'
       ProviderFlags = [pfInUpdate, pfInKey]
     end
-    object CLDSDadosSocioDemograficosin_pacientes_id: TIntegerField
-      FieldName = 'in_pacientes_id'
+    object CLDSDadosSocioDemograficosin_avaliados_id: TIntegerField
+      FieldName = 'in_avaliados_id'
       ProviderFlags = [pfInUpdate]
       Required = True
     end

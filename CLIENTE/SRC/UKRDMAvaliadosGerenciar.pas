@@ -9,30 +9,30 @@ uses Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, DBClient
 
 type
   TKRDMAvaliadosGerenciar = class(TKRDMBasico)
-    DTSRPacientes: TDataSource;
-    CLDSPacientes: TClientDataSet;
-    CLDSPacientesin_pacientes_id: TIntegerField;
-    CLDSPacientesva_nome: TWideStringField;
-    CLDSPacientesda_datanascimento: TDateField;
-    CLDSPacientesva_rg: TWideStringField;
-    CLDSPacientesen_orgaoemissorrg: TWideStringField;
-    CLDSPacientesen_ufemissaorg: TWideStringField;
-    CLDSPacientesen_tipologradouro: TWideStringField;
-    CLDSPacientesva_nomelogradouro: TWideStringField;
-    CLDSPacientesva_idlogradouro: TWideStringField;
-    CLDSPacientesva_complementologradouro: TWideStringField;
-    CLDSPacientesva_bairrologradouro: TWideStringField;
-    CLDSPacientesva_cidade: TWideStringField;
-    CLDSPacientesen_uf: TWideStringField;
-    CLDSPacientesch_foneresidencial: TWideStringField;
-    CLDSPacientesch_fonecelular: TWideStringField;
-    CLDSPacientestx_observacoes: TWideMemoField;
-    CLDSPacientesen_genero: TWideStringField;
+    DTSRAvaliados: TDataSource;
+    CLDSAvaliados: TClientDataSet;
+    CLDSAvaliadosin_avaliados_id: TIntegerField;
+    CLDSAvaliadosva_nome: TWideStringField;
+    CLDSAvaliadosda_datanascimento: TDateField;
+    CLDSAvaliadosva_rg: TWideStringField;
+    CLDSAvaliadosen_orgaoemissorrg: TWideStringField;
+    CLDSAvaliadosen_ufemissaorg: TWideStringField;
+    CLDSAvaliadosen_tipologradouro: TWideStringField;
+    CLDSAvaliadosva_nomelogradouro: TWideStringField;
+    CLDSAvaliadosva_idlogradouro: TWideStringField;
+    CLDSAvaliadosva_complementologradouro: TWideStringField;
+    CLDSAvaliadosva_bairrologradouro: TWideStringField;
+    CLDSAvaliadosva_cidade: TWideStringField;
+    CLDSAvaliadosen_uf: TWideStringField;
+    CLDSAvaliadosch_foneresidencial: TWideStringField;
+    CLDSAvaliadosch_fonecelular: TWideStringField;
+    CLDSAvaliadostx_observacoes: TWideMemoField;
+    CLDSAvaliadosen_genero: TWideStringField;
     CLDSDadosSocioDemograficos: TClientDataSet;
     DTSRDadosSocioDemograficos: TDataSource;
-    CLDSPacientesUNQYDadosSocioDemograficos: TDataSetField;
+    CLDSAvaliadosUNQYDadosSocioDemograficos: TDataSetField;
     CLDSDadosSocioDemograficosin_dadossociodemograficos_id: TIntegerField;
-    CLDSDadosSocioDemograficosin_pacientes_id: TIntegerField;
+    CLDSDadosSocioDemograficosin_avaliados_id: TIntegerField;
     CLDSDadosSocioDemograficossm_corraca: TSmallintField;
     CLDSDadosSocioDemograficossm_estadocivil: TSmallintField;
     CLDSDadosSocioDemograficossm_graudeinstrucao: TSmallintField;
@@ -49,16 +49,16 @@ type
     CLDSDadosSocioDemograficossm_freezer: TSmallintField;
     CLDSDadosSocioDemograficosbo_chefedefamilia: TBooleanField;
     CLDSDadosSocioDemograficossm_grauinstrchefedefamilia: TSmallintField;
-    CLDSPacientesfoneresidencial: TStringField;
-    CLDSPacientesfonecelular: TStringField;
+    CLDSAvaliadosfoneresidencial: TStringField;
+    CLDSAvaliadosfonecelular: TStringField;
     ACTNSelecionarCBO: TAction;
     CLDSDadosSocioDemograficoscbo: TWideStringField;
     CLDSDadosSocioDemograficosprofissao: TWideStringField;
     CLDSDadosSocioDemograficosic_cbo: TStringField;
     CLDSDadosSocioDemograficosic_profissao: TStringField;
-    procedure CLDSPacientesAfterRefresh(DataSet: TDataSet);
-    procedure CLDSPacientesCalcFields(DataSet: TDataSet);
-    procedure DTSRPacientesDataChange(Sender: TObject; Field: TField);
+    procedure CLDSAvaliadosAfterRefresh(DataSet: TDataSet);
+    procedure CLDSAvaliadosCalcFields(DataSet: TDataSet);
+    procedure DTSRAvaliadosDataChange(Sender: TObject; Field: TField);
     procedure ACTNSelecionarCBOExecute(Sender: TObject);
     procedure CLDSDadosSocioDemograficoscboGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure CLDSDadosSocioDemograficosprofissaoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
@@ -68,7 +68,7 @@ type
   public
     { Public declarations }
     constructor Create(aOwner: TComponent); override;
-    procedure FiltrarPacientes(aCLDSPacientes: TClientDataSet; aIN_PACIENTES_ID: Integer; aVA_NOME, aEN_GENERO: String; aDA_DATANASCIMENTO: TDateTime; aVA_RG, aEN_ORGAOEMISSORRG, aEN_UFEMISSAORG, aEN_TIPOLOGRADOURO, aVA_NOMELOGRADOURO, aVA_IDLOGRADOURO, aVA_COMPLEMENTOLOGRADOURO, aVA_BAIRROLOGRADOURO, aVA_CIDADE, aEN_UF, aCH_FONERESIDENCIAL, aCH_FONECELULAR, aTX_OBSERVACOES: String);
+    procedure FiltrarAvaliados(aCLDSAvaliados: TClientDataSet; aIN_AVALIADOS_ID: Integer; aVA_NOME, aEN_GENERO: String; aDA_DATANASCIMENTO: TDateTime; aVA_RG, aEN_ORGAOEMISSORRG, aEN_UFEMISSAORG, aEN_TIPOLOGRADOURO, aVA_NOMELOGRADOURO, aVA_IDLOGRADOURO, aVA_COMPLEMENTOLOGRADOURO, aVA_BAIRROLOGRADOURO, aVA_CIDADE, aEN_UF, aCH_FONERESIDENCIAL, aCH_FONECELULAR, aTX_OBSERVACOES: String);
     procedure FiltrarCBO(aCLDSCBO: TClientDataSet; aIN_CBO_ID: Integer; aCH_CODIGO, aVA_TITULO, aEN_TIPO: String);
   end;
 
@@ -93,28 +93,28 @@ begin
   end;
 end;
 
-procedure TKRDMAvaliadosGerenciar.FiltrarPacientes(aCLDSPacientes: TClientDataSet; aIN_PACIENTES_ID: Integer; aVA_NOME, aEN_GENERO: String; aDA_DATANASCIMENTO: TDateTime; aVA_RG, aEN_ORGAOEMISSORRG, aEN_UFEMISSAORG, aEN_TIPOLOGRADOURO, aVA_NOMELOGRADOURO, aVA_IDLOGRADOURO, aVA_COMPLEMENTOLOGRADOURO, aVA_BAIRROLOGRADOURO, aVA_CIDADE, aEN_UF, aCH_FONERESIDENCIAL, aCH_FONECELULAR, aTX_OBSERVACOES: String);
+procedure TKRDMAvaliadosGerenciar.FiltrarAvaliados(aCLDSAvaliados: TClientDataSet; aIN_AVALIADOS_ID: Integer; aVA_NOME, aEN_GENERO: String; aDA_DATANASCIMENTO: TDateTime; aVA_RG, aEN_ORGAOEMISSORRG, aEN_UFEMISSAORG, aEN_TIPOLOGRADOURO, aVA_NOMELOGRADOURO, aVA_IDLOGRADOURO, aVA_COMPLEMENTOLOGRADOURO, aVA_BAIRROLOGRADOURO, aVA_CIDADE, aEN_UF, aCH_FONERESIDENCIAL, aCH_FONECELULAR, aTX_OBSERVACOES: String);
 begin
-  if aCLDSPacientes.ChangeCount = 0 then
+  if aCLDSAvaliados.ChangeCount = 0 then
   begin
-    AssignParam(aCLDSPacientes.Params.ParamByName('IN_PACIENTES_ID'),aIN_PACIENTES_ID);
-    AssignParam(aCLDSPacientes.Params.ParamByName('VA_NOME'),aVA_NOME);
-    AssignParam(aCLDSPacientes.Params.ParamByName('EN_GENERO'),aEN_GENERO);
-    AssignParam(aCLDSPacientes.Params.ParamByName('DA_DATANASCIMENTO'),aDA_DATANASCIMENTO);
-    AssignParam(aCLDSPacientes.Params.ParamByName('VA_RG'),aVA_RG);
-    AssignParam(aCLDSPacientes.Params.ParamByName('EN_ORGAOEMISSORRG'),aEN_ORGAOEMISSORRG);
-    AssignParam(aCLDSPacientes.Params.ParamByName('EN_UFEMISSAORG'),aEN_UFEMISSAORG);
-    AssignParam(aCLDSPacientes.Params.ParamByName('EN_TIPOLOGRADOURO'),aEN_TIPOLOGRADOURO);
-    AssignParam(aCLDSPacientes.Params.ParamByName('VA_NOMELOGRADOURO'),aVA_NOMELOGRADOURO);
-    AssignParam(aCLDSPacientes.Params.ParamByName('VA_IDLOGRADOURO'),aVA_IDLOGRADOURO);
-    AssignParam(aCLDSPacientes.Params.ParamByName('VA_COMPLEMENTOLOGRADOURO'),aVA_COMPLEMENTOLOGRADOURO);
-    AssignParam(aCLDSPacientes.Params.ParamByName('VA_BAIRROLOGRADOURO'),aVA_BAIRROLOGRADOURO);
-    AssignParam(aCLDSPacientes.Params.ParamByName('VA_CIDADE'),aVA_CIDADE);
-    AssignParam(aCLDSPacientes.Params.ParamByName('EN_UF'),aEN_UF);
-    AssignParam(aCLDSPacientes.Params.ParamByName('CH_FONERESIDENCIAL'),aCH_FONERESIDENCIAL);
-    AssignParam(aCLDSPacientes.Params.ParamByName('CH_FONECELULAR'),aCH_FONECELULAR);
-    AssignParam(aCLDSPacientes.Params.ParamByName('TX_OBSERVACOES'),aTX_OBSERVACOES);
-    aCLDSPacientes.Refresh;
+    AssignParam(aCLDSAvaliados.Params.ParamByName('IN_AVALIADOS_ID'),aIN_AVALIADOS_ID);
+    AssignParam(aCLDSAvaliados.Params.ParamByName('VA_NOME'),aVA_NOME);
+    AssignParam(aCLDSAvaliados.Params.ParamByName('EN_GENERO'),aEN_GENERO);
+    AssignParam(aCLDSAvaliados.Params.ParamByName('DA_DATANASCIMENTO'),aDA_DATANASCIMENTO);
+    AssignParam(aCLDSAvaliados.Params.ParamByName('VA_RG'),aVA_RG);
+    AssignParam(aCLDSAvaliados.Params.ParamByName('EN_ORGAOEMISSORRG'),aEN_ORGAOEMISSORRG);
+    AssignParam(aCLDSAvaliados.Params.ParamByName('EN_UFEMISSAORG'),aEN_UFEMISSAORG);
+    AssignParam(aCLDSAvaliados.Params.ParamByName('EN_TIPOLOGRADOURO'),aEN_TIPOLOGRADOURO);
+    AssignParam(aCLDSAvaliados.Params.ParamByName('VA_NOMELOGRADOURO'),aVA_NOMELOGRADOURO);
+    AssignParam(aCLDSAvaliados.Params.ParamByName('VA_IDLOGRADOURO'),aVA_IDLOGRADOURO);
+    AssignParam(aCLDSAvaliados.Params.ParamByName('VA_COMPLEMENTOLOGRADOURO'),aVA_COMPLEMENTOLOGRADOURO);
+    AssignParam(aCLDSAvaliados.Params.ParamByName('VA_BAIRROLOGRADOURO'),aVA_BAIRROLOGRADOURO);
+    AssignParam(aCLDSAvaliados.Params.ParamByName('VA_CIDADE'),aVA_CIDADE);
+    AssignParam(aCLDSAvaliados.Params.ParamByName('EN_UF'),aEN_UF);
+    AssignParam(aCLDSAvaliados.Params.ParamByName('CH_FONERESIDENCIAL'),aCH_FONERESIDENCIAL);
+    AssignParam(aCLDSAvaliados.Params.ParamByName('CH_FONECELULAR'),aCH_FONECELULAR);
+    AssignParam(aCLDSAvaliados.Params.ParamByName('TX_OBSERVACOES'),aTX_OBSERVACOES);
+    aCLDSAvaliados.Refresh;
   end;
 end;
 
@@ -123,7 +123,7 @@ begin
   inherited;
   with TKRFMSelecionarCBO.Create(nil) do
     try
-      CLDS.ConnectionBroker := CLDSPacientes.ConnectionBroker;
+      CLDS.ConnectionBroker := CLDSAvaliados.ConnectionBroker;
       CLDS.ProviderName := 'DSPRCBO';
       CLDS.Open;
 
@@ -149,14 +149,14 @@ procedure TKRDMAvaliadosGerenciar.AlternarPaginas;
 begin
   if Assigned(MyForm) then
   begin
-    TKRFMAvaliadosGerenciar(MyForm).TBSHConsultar.TabVisible := CLDSPacientes.State = dsBrowse;
+    TKRFMAvaliadosGerenciar(MyForm).TBSHConsultar.TabVisible := CLDSAvaliados.State = dsBrowse;
 
-    TKRFMAvaliadosGerenciar(MyForm).TBSHDadosSocioDemograficos.TabVisible := (CLDSPacientes.RecordCount > 0) and (CLDSPacientesin_pacientes_id.AsInteger > 0);
-    TKRFMAvaliadosGerenciar(MyForm).TBSHChecagemDeSinaisESintomas.TabVisible := (CLDSPacientes.RecordCount > 0) and (CLDSPacientesin_pacientes_id.AsInteger > 0);
-    TKRFMAvaliadosGerenciar(MyForm).TBSHParametrosFisiologicos.TabVisible := (CLDSPacientes.RecordCount > 0) and (CLDSPacientesin_pacientes_id.AsInteger > 0);
-    TKRFMAvaliadosGerenciar(MyForm).TBSHParQ.TabVisible := (CLDSPacientes.RecordCount > 0) and (CLDSPacientesin_pacientes_id.AsInteger > 0);
+    TKRFMAvaliadosGerenciar(MyForm).TBSHDadosSocioDemograficos.TabVisible := (CLDSAvaliados.RecordCount > 0) and (CLDSAvaliadosin_avaliados_id.AsInteger > 0);
+    TKRFMAvaliadosGerenciar(MyForm).TBSHSinaisESintomas.TabVisible := (CLDSAvaliados.RecordCount > 0) and (CLDSAvaliadosin_avaliados_id.AsInteger > 0);
+    TKRFMAvaliadosGerenciar(MyForm).TBSHParametrosFisiologicos.TabVisible := (CLDSAvaliados.RecordCount > 0) and (CLDSAvaliadosin_avaliados_id.AsInteger > 0);
+    TKRFMAvaliadosGerenciar(MyForm).TBSHParQ.TabVisible := (CLDSAvaliados.RecordCount > 0) and (CLDSAvaliadosin_avaliados_id.AsInteger > 0);
 
-    TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado1.Caption := 'Avaliado: ' + AnsiUpperCase(CLDSPacientesva_nome.AsString);
+    TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado1.Caption := 'Avaliado: ' + AnsiUpperCase(CLDSAvaliadosva_nome.AsString);
     TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado2.Caption := TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado1.Caption;
     TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado3.Caption := TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado1.Caption;
     TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado4.Caption := TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado1.Caption;
@@ -181,21 +181,21 @@ begin
     Text := Sender.AsString;
 end;
 
-procedure TKRDMAvaliadosGerenciar.CLDSPacientesAfterRefresh(DataSet: TDataSet);
+procedure TKRDMAvaliadosGerenciar.CLDSAvaliadosAfterRefresh(DataSet: TDataSet);
 begin
   inherited;
-  TKRFMAvaliadosGerenciar(MyForm).LABLFiltroPacientes.Caption := TClientDataSet(DataSet).MyParams;
+  TKRFMAvaliadosGerenciar(MyForm).LABLFiltroAvaliados.Caption := TClientDataSet(DataSet).MyParams;
 end;
 
-procedure TKRDMAvaliadosGerenciar.CLDSPacientesCalcFields(DataSet: TDataSet);
+procedure TKRDMAvaliadosGerenciar.CLDSAvaliadosCalcFields(DataSet: TDataSet);
 begin
   inherited;
 
   if not Assigned(MyForm) then
     Exit;
 
-  CLDSPacientesfoneresidencial.AsString := ApplyMask(TKRFMAvaliadosGerenciar(MyForm).KLDEFoneResidencial.DBEditFormat.FormatScript,CLDSPacientesch_foneresidencial.AsString);
-  CLDSPacientesfonecelular.AsString := ApplyMask(TKRFMAvaliadosGerenciar(MyForm).KLDEFoneCelular.DBEditFormat.FormatScript,CLDSPacientesch_fonecelular.AsString);
+  CLDSAvaliadosfoneresidencial.AsString := ApplyMask(TKRFMAvaliadosGerenciar(MyForm).KLDEFoneResidencial.DBEditFormat.FormatScript,CLDSAvaliadosch_foneresidencial.AsString);
+  CLDSAvaliadosfonecelular.AsString := ApplyMask(TKRFMAvaliadosGerenciar(MyForm).KLDEFoneCelular.DBEditFormat.FormatScript,CLDSAvaliadosch_fonecelular.AsString);
 end;
 
 constructor TKRDMAvaliadosGerenciar.Create(aOwner: TComponent);
@@ -206,7 +206,7 @@ begin
   CLDSDadosSocioDemograficos.KRKValidationChecks.CheckableFields.ByFieldName['in_cbo_id'].ComponentToFocusOnValidateFailure := TKRFMAvaliadosGerenciar(MyForm).BUTNPesqisarCBO;
 end;
 
-procedure TKRDMAvaliadosGerenciar.DTSRPacientesDataChange(Sender: TObject; Field: TField);
+procedure TKRDMAvaliadosGerenciar.DTSRAvaliadosDataChange(Sender: TObject; Field: TField);
 begin
   inherited;
   AlternarPaginas;

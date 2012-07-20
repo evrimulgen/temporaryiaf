@@ -5,19 +5,16 @@ object SODMPrincipal: TSODMPrincipal
   Width = 153
   object DSPRUsuarios: TDataSetProvider
     DataSet = KRDMUsuarios.UNQYUsuarios
-    UpdateMode = upWhereKeyOnly
     Left = 54
     Top = 60
   end
   object DSPREntidadesDoSistema: TDataSetProvider
     DataSet = KRDMEntidadesDoSistema.UNQYEntidadesDoSistema
-    UpdateMode = upWhereKeyOnly
     Left = 54
     Top = 108
   end
   object DSPRGrupos: TDataSetProvider
     DataSet = KRDMGrupos.UNQYGrupos
-    UpdateMode = upWhereKeyOnly
     Left = 54
     Top = 156
   end
@@ -52,12 +49,11 @@ object SODMPrincipal: TSODMPrincipal
   end
   object DSPRCBO: TDataSetProvider
     DataSet = KRDMCBO.UNQYCBO
-    UpdateMode = upWhereKeyOnly
     Left = 54
     Top = 210
   end
-  object DSPRPacientes: TDataSetProvider
-    DataSet = KRDMPacientes.UNQYPacientes
+  object DSPRAvaliados: TDataSetProvider
+    DataSet = KRDMAvaliados.UNQYAvaliados
     Left = 54
     Top = 258
   end

@@ -12,10 +12,10 @@ uses
 
 type
   TKRFMAvaliadosGerenciar = class(TKRFMDBAwareBasico)
-    PGCTPacientes: TPageControl;
+    PGCTAvaliados: TPageControl;
     TBSHConsultar: TTabSheet;
     TBSHGerenciar: TTabSheet;
-    KRDGPacientes: TKRKDBGrid;
+    KRDGAvaliados: TKRKDBGrid;
     KLDEDataNascimento: TKRKLabeledDBEdit;
     KLDERg: TKRKLabeledDBEdit;
     LABLOrgaoEmissor: TLabel;
@@ -33,10 +33,10 @@ type
     KLDEFoneResidencial: TKRKLabeledDBEdit;
     KLDEFoneCelular: TKRKLabeledDBEdit;
     DBMOObservacoes: TDBMemo;
-    DBNAGerenciarPacientes: TDBNavigator;
+    DBNAGerenciarAvaliados: TDBNavigator;
     KLDENome: TKRKLabeledDBEdit;
     DBCXUF: TDBComboBox;
-    DBNAConsultarPacientes: TDBNavigator;
+    DBNAConsultarAvaliados: TDBNavigator;
     DBCXGenero: TDBComboBox;
     LABLGenero: TLabel;
     GRBXContato: TGroupBox;
@@ -67,8 +67,8 @@ type
     DBRGChefeDaFamilia: TDBRadioGroup;
     DBRGGrauChefeFamilia: TDBRadioGroup;
     PANLPaddingBottom: TPanel;
-    GRBXFiltroPacientes: TGroupBox;
-    LABLFiltroPacientes: TLabel;
+    GRBXFiltroAvaliados: TGroupBox;
+    LABLFiltroAvaliados: TLabel;
     PANLLayerFiltros: TPanel;
     GRBXPorDadosUnicos: TGroupBox;
     KRLECodigo: TKRKLabeledEdit;
@@ -86,7 +86,7 @@ type
     KRPAAvaliado1: TKRKPanel;
     LABLAvaliado1: TLabel;
     DBEDTituloCBO: TDBEdit;
-    TBSHChecagemDeSinaisESintomas: TTabSheet;
+    TBSHSinaisESintomas: TTabSheet;
     KRPAAvaliado2: TKRKPanel;
     LABLAvaliado2: TLabel;
     TBSHParametrosFisiologicos: TTabSheet;
@@ -98,6 +98,10 @@ type
     DBNAChecagemDeSinaisESintomas: TDBNavigator;
     DBNAParametrosFisiologicos: TDBNavigator;
     DBNAParQ: TDBNavigator;
+    SCBXChecagemDeSinaisESintomas: TScrollBox;
+    Panel2: TPanel;
+    PANLSinaisESintomas: TPanel;
+    LABLSinaisESintomas: TLabel;
     procedure DBRGChefeDaFamiliaChange(Sender: TObject);
     procedure KRLECodigoKeyPress(Sender: TObject; var Key: Char);
     procedure KRLEIdentidadeKeyPress(Sender: TObject; var Key: Char);
@@ -106,6 +110,8 @@ type
     procedure KRLEFoneCelularKeyPress(Sender: TObject; var Key: Char);
     procedure DoKeyPressPesquisaParcial(Sender: TObject; var Key: Char);
     procedure KRKFormCreate(Sender: TObject);
+    procedure SCBXDadosSocioDemograficosMouseWheelDown(Sender: TObject; Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
+    procedure SCBXDadosSocioDemograficosMouseWheelUp(Sender: TObject; Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
   private
     { Private declarations }
   public
@@ -133,7 +139,7 @@ procedure TKRFMAvaliadosGerenciar.KRLEFoneCelularKeyPress(Sender: TObject; var K
 begin
   inherited;
   if Key = #13 then
-    TKRDMAvaliadosGerenciar(Owner).FiltrarPacientes(TKRDMAvaliadosGerenciar(Owner).CLDSPacientes
+    TKRDMAvaliadosGerenciar(Owner).FiltrarAvaliados(TKRDMAvaliadosGerenciar(Owner).CLDSAvaliados
                                                    ,0
                                                    ,''
                                                    ,''
@@ -157,7 +163,7 @@ procedure TKRFMAvaliadosGerenciar.KRLEFoneResidencialKeyPress(Sender: TObject; v
 begin
   inherited;
   if Key = #13 then
-    TKRDMAvaliadosGerenciar(Owner).FiltrarPacientes(TKRDMAvaliadosGerenciar(Owner).CLDSPacientes
+    TKRDMAvaliadosGerenciar(Owner).FiltrarAvaliados(TKRDMAvaliadosGerenciar(Owner).CLDSAvaliados
                                                    ,0
                                                    ,''
                                                    ,''
@@ -181,7 +187,7 @@ procedure TKRFMAvaliadosGerenciar.KRLEIdentidadeKeyPress(Sender: TObject; var Ke
 begin
   inherited;
   if Key = #13 then
-    TKRDMAvaliadosGerenciar(Owner).FiltrarPacientes(TKRDMAvaliadosGerenciar(Owner).CLDSPacientes
+    TKRDMAvaliadosGerenciar(Owner).FiltrarAvaliados(TKRDMAvaliadosGerenciar(Owner).CLDSAvaliados
                                                    ,0
                                                    ,''
                                                    ,''
@@ -205,7 +211,7 @@ procedure TKRFMAvaliadosGerenciar.KRLENascimentoKeyPress(Sender: TObject; var Ke
 begin
   inherited;
   if Key = #13 then
-    TKRDMAvaliadosGerenciar(Owner).FiltrarPacientes(TKRDMAvaliadosGerenciar(Owner).CLDSPacientes
+    TKRDMAvaliadosGerenciar(Owner).FiltrarAvaliados(TKRDMAvaliadosGerenciar(Owner).CLDSAvaliados
                                                    ,0
                                                    ,''
                                                    ,''
@@ -225,11 +231,61 @@ begin
                                                    ,'');
 end;
 
+procedure TKRFMAvaliadosGerenciar.SCBXDadosSocioDemograficosMouseWheelDown(Sender: TObject; Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
+begin
+  inherited;
+  with SCBXDadosSocioDemograficos.VertScrollBar Do
+  begin
+    if (Position <= (Range - Increment)) then
+      Position := Position + Increment
+    else
+      Position := Range - Increment;
+  end;
+end;
+
+procedure TKRFMAvaliadosGerenciar.SCBXDadosSocioDemograficosMouseWheelUp(Sender: TObject; Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
+begin
+  inherited;
+  with SCBXDadosSocioDemograficos.VertScrollBar do
+  begin
+    if (Position >= Increment) then
+      Position := Position - Increment
+    else
+      Position := 0;
+  end;
+end;
+
+//procedure TForm.FormMouseWheel(Sender: TObject; Shift: TShiftState;
+//WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+//Var
+//msg: Cardinal;
+//code: Cardinal;
+//i, n: Integer;
+//begin
+//If WindowFromPoint( mouse.Cursorpos ) = scrollbox1.Handle Then Begin
+//Handled := true;
+//If ssShift In Shift Then
+//msg := WM_HSCROLL
+//Else
+//msg := WM_VSCROLL;
+//
+//If WheelDelta < 0 Then
+//code := SB_LINEDOWN
+//Else
+//code := SB_LINEUP;
+//
+//n:= Mouse.WheelScrollLines;
+//For i:= 1 to n Do
+//scrollbox1.Perform( msg, code, 0 );
+//scrollbox1.Perform( msg, SB_ENDSCROLL, 0 );
+//End;
+//end;
+
 procedure TKRFMAvaliadosGerenciar.KRKFormCreate(Sender: TObject);
 begin
   inherited;
   TBSHDadosSocioDemograficos.TabVisible := False;
-  TBSHChecagemDeSinaisESintomas.TabVisible := False;
+  TBSHSinaisESintomas.TabVisible := False;
   TBSHParametrosFisiologicos.TabVisible := False;
   TBSHParQ.TabVisible := False;
   DBRGGrauChefeFamilia.Hide;
@@ -241,7 +297,7 @@ procedure TKRFMAvaliadosGerenciar.KRLECodigoKeyPress(Sender: TObject; var Key: C
 begin
   inherited;
   if Key = #13 then
-    TKRDMAvaliadosGerenciar(Owner).FiltrarPacientes(TKRDMAvaliadosGerenciar(Owner).CLDSPacientes
+    TKRDMAvaliadosGerenciar(Owner).FiltrarAvaliados(TKRDMAvaliadosGerenciar(Owner).CLDSAvaliados
                                                    ,StrToIntDef(TKRKLabeledEdit(Sender).UnformattedText,0)
                                                    ,''
                                                    ,''
@@ -265,7 +321,7 @@ procedure TKRFMAvaliadosGerenciar.DoKeyPressPesquisaParcial(Sender: TObject; var
 begin
   inherited;
   if Key = #13 then
-    TKRDMAvaliadosGerenciar(Owner).FiltrarPacientes(TKRDMAvaliadosGerenciar(Owner).CLDSPacientes
+    TKRDMAvaliadosGerenciar(Owner).FiltrarAvaliados(TKRDMAvaliadosGerenciar(Owner).CLDSAvaliados
                                                    ,0
                                                    ,LAEDNome.Text
                                                    ,''

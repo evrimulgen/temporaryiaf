@@ -1,10 +1,10 @@
-inherited KRDMPacientes: TKRDMPacientes
+inherited KRDMAvaliados: TKRDMAvaliados
   OldCreateOrder = True
   Height = 201
   Width = 262
-  object UNQYPacientes: TUniQuery
+  object UNQYAvaliados: TUniQuery
     SQLInsert.Strings = (
-      'SELECT IDU_PACIENTES('#39'I'#39
+      'SELECT IDU_AVALIADOS('#39'I'#39
       '                    ,NULL'
       '                    ,:VA_NOME'
       '                    ,CAST(:EN_GENERO AS GENERO)'
@@ -23,11 +23,11 @@ inherited KRDMPacientes: TKRDMPacientes
       '                    ,:CH_FONECELULAR'
       '                    ,:TX_OBSERVACOES)')
     SQLDelete.Strings = (
-      'SELECT IDU_PACIENTES('#39'D'#39
-      '                    ,:IN_PACIENTES_ID)')
+      'SELECT IDU_AVALIADOS('#39'D'#39
+      '                    ,:IN_AVALIADOS_ID)')
     SQLUpdate.Strings = (
-      'SELECT IDU_PACIENTES('#39'U'#39
-      '                    ,:IN_PACIENTES_ID'
+      'SELECT IDU_AVALIADOS('#39'U'#39
+      '                    ,:IN_AVALIADOS_ID'
       '                    ,:VA_NOME'
       '                    ,CAST(:EN_GENERO AS GENERO)'
       '                    ,:DA_DATANASCIMENTO'
@@ -46,74 +46,74 @@ inherited KRDMPacientes: TKRDMPacientes
       '                    ,:TX_OBSERVACOES)')
     Connection = SODMPrincipal.UNCN
     SQL.Strings = (
-      'SELECT PAC.IN_PACIENTES_ID'
-      '     , PAC.VA_NOME'
-      '     , CAST(PAC.EN_GENERO AS VARCHAR(9)) AS EN_GENERO'
-      '     , PAC.DA_DATANASCIMENTO'
-      '     , PAC.VA_RG'
+      'SELECT AVA.IN_AVALIADOS_ID'
+      '     , AVA.VA_NOME'
+      '     , CAST(AVA.EN_GENERO AS VARCHAR(9)) AS EN_GENERO'
+      '     , AVA.DA_DATANASCIMENTO'
+      '     , AVA.VA_RG'
       
-        '     , CAST(PAC.EN_ORGAOEMISSORRG AS VARCHAR(15)) AS EN_ORGAOEMI' +
+        '     , CAST(AVA.EN_ORGAOEMISSORRG AS VARCHAR(15)) AS EN_ORGAOEMI' +
         'SSORRG'
-      '     , CAST(PAC.EN_UFEMISSAORG AS CHAR(2)) AS EN_UFEMISSAORG'
+      '     , CAST(AVA.EN_UFEMISSAORG AS CHAR(2)) AS EN_UFEMISSAORG'
       
-        '     , CAST(PAC.EN_TIPOLOGRADOURO AS VARCHAR(15)) AS EN_TIPOLOGR' +
+        '     , CAST(AVA.EN_TIPOLOGRADOURO AS VARCHAR(15)) AS EN_TIPOLOGR' +
         'ADOURO'
-      '     , PAC.VA_NOMELOGRADOURO'
-      '     , PAC.VA_IDLOGRADOURO'
-      '     , PAC.VA_COMPLEMENTOLOGRADOURO'
-      '     , PAC.VA_BAIRROLOGRADOURO'
-      '     , PAC.VA_CIDADE'
-      '     , CAST(PAC.EN_UF AS CHAR(2)) AS EN_UF'
-      '     , PAC.CH_FONERESIDENCIAL'
-      '     , PAC.CH_FONECELULAR'
-      '     , PAC.TX_OBSERVACOES'
-      '  FROM PACIENTES PAC'
+      '     , AVA.VA_NOMELOGRADOURO'
+      '     , AVA.VA_IDLOGRADOURO'
+      '     , AVA.VA_COMPLEMENTOLOGRADOURO'
+      '     , AVA.VA_BAIRROLOGRADOURO'
+      '     , AVA.VA_CIDADE'
+      '     , CAST(AVA.EN_UF AS CHAR(2)) AS EN_UF'
+      '     , AVA.CH_FONERESIDENCIAL'
+      '     , AVA.CH_FONECELULAR'
+      '     , AVA.TX_OBSERVACOES'
+      '  FROM AVALIADOS AVA'
       
-        ' WHERE ((:IN_PACIENTES_ID IS NULL) OR PAC.IN_PACIENTES_ID = :IN_' +
-        'PACIENTES_ID)'
+        ' WHERE ((:IN_AVALIADOS_ID IS NULL) OR AVA.IN_AVALIADOS_ID = :IN_' +
+        'AVALIADOS_ID)'
       
-        '   AND ((:VA_NOME IS NULL) OR UPPER(PAC.VA_NOME) LIKE UPPER(:VA_' +
+        '   AND ((:VA_NOME IS NULL) OR UPPER(AVA.VA_NOME) LIKE UPPER(:VA_' +
         'NOME))'
       
-        '   AND ((:EN_GENERO IS NULL) OR CAST(PAC.EN_GENERO AS VARCHAR) =' +
+        '   AND ((:EN_GENERO IS NULL) OR CAST(AVA.EN_GENERO AS VARCHAR) =' +
         ' :EN_GENERO)'
       
-        '   AND ((:DA_DATANASCIMENTO IS NULL) OR PAC.DA_DATANASCIMENTO = ' +
+        '   AND ((:DA_DATANASCIMENTO IS NULL) OR AVA.DA_DATANASCIMENTO = ' +
         ':DA_DATANASCIMENTO)'
-      '   AND ((:VA_RG IS NULL) OR PAC.VA_RG = :VA_RG)'
+      '   AND ((:VA_RG IS NULL) OR AVA.VA_RG = :VA_RG)'
       
-        '   AND ((:EN_ORGAOEMISSORRG IS NULL) OR CAST(PAC.EN_ORGAOEMISSOR' +
+        '   AND ((:EN_ORGAOEMISSORRG IS NULL) OR CAST(AVA.EN_ORGAOEMISSOR' +
         'RG AS VARCHAR) = :EN_ORGAOEMISSORRG)'
       
-        '   AND ((:EN_UFEMISSAORG IS NULL) OR CAST(PAC.EN_UFEMISSAORG AS ' +
+        '   AND ((:EN_UFEMISSAORG IS NULL) OR CAST(AVA.EN_UFEMISSAORG AS ' +
         'VARCHAR) = :EN_UFEMISSAORG)'
       
-        '   AND ((:EN_TIPOLOGRADOURO IS NULL) OR CAST(PAC.EN_TIPOLOGRADOU' +
+        '   AND ((:EN_TIPOLOGRADOURO IS NULL) OR CAST(AVA.EN_TIPOLOGRADOU' +
         'RO AS VARCHAR) = :EN_TIPOLOGRADOURO)'
       
-        '   AND ((:VA_NOMELOGRADOURO IS NULL) OR UPPER(PAC.VA_NOMELOGRADO' +
+        '   AND ((:VA_NOMELOGRADOURO IS NULL) OR UPPER(AVA.VA_NOMELOGRADO' +
         'URO) LIKE UPPER(:VA_NOMELOGRADOURO))'
       
-        '   AND ((:VA_IDLOGRADOURO IS NULL) OR UPPER(PAC.VA_IDLOGRADOURO)' +
+        '   AND ((:VA_IDLOGRADOURO IS NULL) OR UPPER(AVA.VA_IDLOGRADOURO)' +
         ' LIKE UPPER(:VA_IDLOGRADOURO))'
       
-        '   AND ((:VA_COMPLEMENTOLOGRADOURO IS NULL) OR UPPER(PAC.VA_COMP' +
+        '   AND ((:VA_COMPLEMENTOLOGRADOURO IS NULL) OR UPPER(AVA.VA_COMP' +
         'LEMENTOLOGRADOURO) LIKE UPPER(:VA_COMPLEMENTOLOGRADOURO))'
       
-        '   AND ((:VA_BAIRROLOGRADOURO IS NULL) OR UPPER(PAC.VA_BAIRROLOG' +
+        '   AND ((:VA_BAIRROLOGRADOURO IS NULL) OR UPPER(AVA.VA_BAIRROLOG' +
         'RADOURO) LIKE UPPER(:VA_BAIRROLOGRADOURO))'
       
-        '   AND ((:VA_CIDADE IS NULL) OR UPPER(PAC.VA_CIDADE) LIKE UPPER(' +
+        '   AND ((:VA_CIDADE IS NULL) OR UPPER(AVA.VA_CIDADE) LIKE UPPER(' +
         ':VA_CIDADE))'
-      '   AND ((:EN_UF IS NULL) OR CAST(PAC.EN_UF AS VARCHAR) = :EN_UF)'
+      '   AND ((:EN_UF IS NULL) OR CAST(AVA.EN_UF AS VARCHAR) = :EN_UF)'
       
-        '   AND ((:CH_FONERESIDENCIAL IS NULL) OR PAC.CH_FONERESIDENCIAL ' +
+        '   AND ((:CH_FONERESIDENCIAL IS NULL) OR AVA.CH_FONERESIDENCIAL ' +
         '= :CH_FONERESIDENCIAL)'
       
-        '   AND ((:CH_FONECELULAR IS NULL) OR PAC.CH_FONECELULAR = :CH_FO' +
+        '   AND ((:CH_FONECELULAR IS NULL) OR AVA.CH_FONECELULAR = :CH_FO' +
         'NECELULAR)'
       
-        '   AND ((:TX_OBSERVACOES IS NULL) OR UPPER(PAC.TX_OBSERVACOES) L' +
+        '   AND ((:TX_OBSERVACOES IS NULL) OR UPPER(AVA.TX_OBSERVACOES) L' +
         'IKE UPPER(:TX_OBSERVACOES))')
     SpecificOptions.Strings = (
       'PostgreSQL.FetchAll=False'
@@ -123,7 +123,7 @@ inherited KRDMPacientes: TKRDMPacientes
     ParamData = <
       item
         DataType = ftInteger
-        Name = 'IN_PACIENTES_ID'
+        Name = 'IN_AVALIADOS_ID'
         ParamType = ptInput
       end
       item
@@ -221,38 +221,38 @@ inherited KRDMPacientes: TKRDMPacientes
         ParamType = ptInput
         Value = ''
       end>
-    object UNQYPacientesin_pacientes_id: TIntegerField
-      FieldName = 'in_pacientes_id'
+    object UNQYAvaliadosin_avaliados_id: TIntegerField
+      FieldName = 'in_avaliados_id'
       ProviderFlags = [pfInUpdate, pfInKey]
     end
-    object UNQYPacientesva_nome: TWideStringField
+    object UNQYAvaliadosva_nome: TWideStringField
       DisplayLabel = 'Nome'
       FieldName = 'va_nome'
       ProviderFlags = [pfInUpdate]
       Required = True
       Size = 128
     end
-    object UNQYPacientesen_genero: TWideStringField
+    object UNQYAvaliadosen_genero: TWideStringField
       DisplayLabel = 'G'#234'nero'
       DisplayWidth = 9
       FieldName = 'en_genero'
       Required = True
       Size = 9
     end
-    object UNQYPacientesda_datanascimento: TDateField
+    object UNQYAvaliadosda_datanascimento: TDateField
       DisplayLabel = 'Data de nascimento'
       FieldName = 'da_datanascimento'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
-    object UNQYPacientesva_rg: TWideStringField
+    object UNQYAvaliadosva_rg: TWideStringField
       DisplayLabel = 'RG'
       FieldName = 'va_rg'
       ProviderFlags = [pfInUpdate]
       Required = True
       Size = 10
     end
-    object UNQYPacientesen_orgaoemissorrg: TWideStringField
+    object UNQYAvaliadosen_orgaoemissorrg: TWideStringField
       DisplayLabel = #211'rg'#227'o emissor do RG'
       DisplayWidth = 14
       FieldName = 'en_orgaoemissorrg'
@@ -260,7 +260,7 @@ inherited KRDMPacientes: TKRDMPacientes
       Required = True
       Size = 14
     end
-    object UNQYPacientesen_ufemissaorg: TWideStringField
+    object UNQYAvaliadosen_ufemissaorg: TWideStringField
       DisplayLabel = 'UF de emiss'#227'o do RG'
       DisplayWidth = 2
       FieldName = 'en_ufemissaorg'
@@ -268,7 +268,7 @@ inherited KRDMPacientes: TKRDMPacientes
       Required = True
       Size = 2
     end
-    object UNQYPacientesen_tipologradouro: TWideStringField
+    object UNQYAvaliadosen_tipologradouro: TWideStringField
       DisplayLabel = 'Tipo de logradouro'
       DisplayWidth = 15
       FieldName = 'en_tipologradouro'
@@ -276,39 +276,39 @@ inherited KRDMPacientes: TKRDMPacientes
       Required = True
       Size = 15
     end
-    object UNQYPacientesva_nomelogradouro: TWideStringField
+    object UNQYAvaliadosva_nomelogradouro: TWideStringField
       DisplayLabel = 'Logradouro'
       FieldName = 'va_nomelogradouro'
       ProviderFlags = [pfInUpdate]
       Required = True
       Size = 128
     end
-    object UNQYPacientesva_idlogradouro: TWideStringField
+    object UNQYAvaliadosva_idlogradouro: TWideStringField
       DisplayLabel = 'N'#250'mero'
       FieldName = 'va_idlogradouro'
       ProviderFlags = [pfInUpdate]
       Required = True
       Size = 10
     end
-    object UNQYPacientesva_complementologradouro: TWideStringField
+    object UNQYAvaliadosva_complementologradouro: TWideStringField
       DisplayLabel = 'Complemento'
       FieldName = 'va_complementologradouro'
       ProviderFlags = [pfInUpdate]
     end
-    object UNQYPacientesva_bairrologradouro: TWideStringField
+    object UNQYAvaliadosva_bairrologradouro: TWideStringField
       DisplayLabel = 'Bairro'
       FieldName = 'va_bairrologradouro'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
-    object UNQYPacientesva_cidade: TWideStringField
+    object UNQYAvaliadosva_cidade: TWideStringField
       DisplayLabel = 'Cidade'
       FieldName = 'va_cidade'
       ProviderFlags = [pfInUpdate]
       Required = True
       Size = 30
     end
-    object UNQYPacientesen_uf: TWideStringField
+    object UNQYAvaliadosen_uf: TWideStringField
       DisplayLabel = 'UF'
       DisplayWidth = 2
       FieldName = 'en_uf'
@@ -316,34 +316,34 @@ inherited KRDMPacientes: TKRDMPacientes
       Required = True
       Size = 2
     end
-    object UNQYPacientesch_foneresidencial: TWideStringField
+    object UNQYAvaliadosch_foneresidencial: TWideStringField
       DisplayLabel = 'Telefone residencial'
       FieldName = 'ch_foneresidencial'
       ProviderFlags = [pfInUpdate]
       FixedChar = True
       Size = 10
     end
-    object UNQYPacientesch_fonecelular: TWideStringField
+    object UNQYAvaliadosch_fonecelular: TWideStringField
       DisplayLabel = 'Telefone celular'
       FieldName = 'ch_fonecelular'
       ProviderFlags = [pfInUpdate]
       FixedChar = True
       Size = 10
     end
-    object UNQYPacientestx_observacoes: TWideMemoField
+    object UNQYAvaliadostx_observacoes: TWideMemoField
       DisplayLabel = 'Observa'#231#245'es'
       FieldName = 'tx_observacoes'
       ProviderFlags = [pfInUpdate]
       BlobType = ftWideMemo
     end
   end
-  object KRVCPacientes: TKRKValidationChecks
-    DataSet = UNQYPacientes
-    TableName = 'PACIENTES'
+  object KRVCAvaliados: TKRKValidationChecks
+    DataSet = UNQYAvaliados
+    TableName = 'AVALIADOS'
     CheckableFields = <
       item
-        FieldName = 'in_pacientes_id'
-        FieldDescription = 'in_pacientes_id'
+        FieldName = 'in_avaliados_id'
+        FieldDescription = 'in_avaliados_id'
         CheckTextSet.FocusOnValidateFailure = False
       end
       item
@@ -626,7 +626,7 @@ inherited KRDMPacientes: TKRDMPacientes
     SQLInsert.Strings = (
       'SELECT IDU_DADOSSOCIODEMOGRAFICOS('#39'I'#39
       '                                 ,NULL'
-      '                                 ,:IN_PACIENTES_ID'
+      '                                 ,:IN_AVALIADOS_ID'
       '                                 ,:SM_CORRACA'
       '                                 ,:SM_ESTADOCIVIL'
       '                                 ,:SM_GRAUDEINSTRUCAO'
@@ -649,7 +649,7 @@ inherited KRDMPacientes: TKRDMPacientes
     SQLUpdate.Strings = (
       'SELECT IDU_DADOSSOCIODEMOGRAFICOS('#39'U'#39
       '                                 ,:IN_DADOSSOCIODEMOGRAFICOS_ID'
-      '                                 ,:IN_PACIENTES_ID'
+      '                                 ,:IN_AVALIADOS_ID'
       '                                 ,:SM_CORRACA'
       '                                 ,:SM_ESTADOCIVIL'
       '                                 ,:SM_GRAUDEINSTRUCAO'
@@ -673,9 +673,9 @@ inherited KRDMPacientes: TKRDMPacientes
       '     , CBO.VA_TITULO AS PROFISSAO'
       '  FROM DADOSSOCIODEMOGRAFICOS DSD'
       '  JOIN CBO CBO USING (IN_CBO_ID)')
-    MasterSource = DTSRPacientes
-    MasterFields = 'in_pacientes_id'
-    DetailFields = 'in_pacientes_id'
+    MasterSource = DTSRAvaliados
+    MasterFields = 'in_avaliados_id'
+    DetailFields = 'in_avaliados_id'
     SpecificOptions.Strings = (
       'PostgreSQL.FetchAll=False'
       'PostgreSQL.UseParamTypes=True')
@@ -684,15 +684,15 @@ inherited KRDMPacientes: TKRDMPacientes
     ParamData = <
       item
         DataType = ftInteger
-        Name = 'in_pacientes_id'
+        Name = 'in_avaliados_id'
         ParamType = ptInput
       end>
     object UNQYDadosSocioDemograficosin_dadossociodemograficos_id: TIntegerField
       FieldName = 'in_dadossociodemograficos_id'
       ProviderFlags = [pfInUpdate, pfInKey]
     end
-    object UNQYDadosSocioDemograficosin_pacientes_id: TIntegerField
-      FieldName = 'in_pacientes_id'
+    object UNQYDadosSocioDemograficosin_avaliados_id: TIntegerField
+      FieldName = 'in_avaliados_id'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
@@ -815,8 +815,8 @@ inherited KRDMPacientes: TKRDMPacientes
         CheckTextSet.FocusOnValidateFailure = False
       end
       item
-        FieldName = 'in_pacientes_id'
-        FieldDescription = 'in_pacientes_id'
+        FieldName = 'in_avaliados_id'
+        FieldDescription = 'in_avaliados_id'
         CheckBlank.Active = True
         CheckTextSet.FocusOnValidateFailure = False
       end
@@ -1032,8 +1032,8 @@ inherited KRDMPacientes: TKRDMPacientes
     Left = 150
     Top = 102
   end
-  object DTSRPacientes: TDataSource
-    DataSet = UNQYPacientes
+  object DTSRAvaliados: TDataSource
+    DataSet = UNQYAvaliados
     Left = 30
     Top = 150
   end

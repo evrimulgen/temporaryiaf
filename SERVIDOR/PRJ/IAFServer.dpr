@@ -26,7 +26,7 @@ uses
   UExtraUtilities in '..\SRC\UExtraUtilities.pas',
   UKRDMGrupos in '..\SRC\UKRDMGrupos.pas' {KRDMGrupos: TKRKDataModule},
   UKRDMCBO in '..\SRC\UKRDMCBO.pas' {KRDMCBO: TKRKDataModule},
-  UKRDMPacientes in '..\SRC\UKRDMPacientes.pas' {KRDMPacientes: TKRKDataModule};
+  UKRDMAvaliados in '..\SRC\UKRDMAvaliados.pas' {KRDMAvaliados: TKRKDataModule};
 
 {$R *.res}
 

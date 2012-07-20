@@ -28,7 +28,7 @@ type
     UNSM: TUniSQLMonitor;
     UNTR: TUniTransaction;
     DSPRCBO: TDataSetProvider;
-    DSPRPacientes: TDataSetProvider;
+    DSPRAvaliados: TDataSetProvider;
     procedure UNCNBeforeConnect(Sender: TObject);
     procedure SoapDataModuleCreate(Sender: TObject);
   public
@@ -47,7 +47,7 @@ implementation
 uses UExtraUtilities, KRK.Lib.Rtl.Common.FileUtils, Variants
    , KRK.Lib.DCpcrypt.Base64, KRK.Lib.Rtl.Common.VariantUtils
    , UKRDMEntidadesDoSistema, UKRDMGrupos, UKRDMUsuarios, KRK.Lib.Db.Consts
-   , UKRDMCBO, UKRDMPacientes;
+   , UKRDMCBO, UKRDMAvaliados;
 
 procedure TSODMPrincipalCreateInstance(out obj: TObject);
 begin
