@@ -123,7 +123,7 @@ CREATE TABLE PERMISSOESDOSUSUARIOS (IN_PERMISSOESDOSUSUARIOS_ID INTEGER NOT NULL
 ALTER SEQUENCE SQ_PDU_IN_PERMISSOESDOSUSUARIOS_ID 
       OWNED BY PERMISSOESDOSUSUARIOS.IN_PERMISSOESDOSUSUARIOS_ID;
 ---------------------------------------------------------------
-CREATE SEQUENCE SQ_PAC_IN_PACIENTES_ID
+CREATE SEQUENCE SQ_AVA_IN_AVALIADOS_ID
       INCREMENT 1
        MINVALUE 1
        MAXVALUE 2147483647
@@ -135,7 +135,7 @@ CREATE TYPE UF AS ENUM ('AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','
 CREATE TYPE TIPOLOGRADOURO AS ENUM ('Outros','Aeroporto','Alameda','Área','Avenida','Campo','Chácara','Colônia','Condomínio','Conjunto','Distrito','Esplanada','Estação','Estrada','Favela','Fazenda','Feira','Jardim','Ladeira','Lago','Lagoa','Largo','Loteamento','Morro','Núcleo','Parque','Passarela','Pátio','Praça','Quadra','Recanto','Residencial','Rodovia','Rua','Setor','Sítio','Travessa','Trecho','Trevo','Vale','Vereda','Via','Viaduto','Viela','Vila');
 CREATE TYPE GENERO AS ENUM ('Masculino','Feminino');
   
-CREATE TABLE PACIENTES (IN_PACIENTES_ID INTEGER NOT NULL DEFAULT NEXTVAL('SQ_PAC_IN_PACIENTES_ID')
+CREATE TABLE AVALIADOS (IN_AVALIADOS_ID INTEGER NOT NULL DEFAULT NEXTVAL('SQ_AVA_IN_AVALIADOS_ID')
                        ,VA_NOME VARCHAR(128) NOT NULL
                        ,EN_GENERO GENERO NOT NULL
                        ,DA_DATANASCIMENTO DATE NOT NULL
@@ -152,11 +152,13 @@ CREATE TABLE PACIENTES (IN_PACIENTES_ID INTEGER NOT NULL DEFAULT NEXTVAL('SQ_PAC
                        ,CH_FONERESIDENCIAL CHAR(10)
                        ,CH_FONECELULAR CHAR(10)
                        ,TX_OBSERVACOES TEXT
-                       ,CONSTRAINT PK_PAC PRIMARY KEY (IN_PACIENTES_ID)
-                       ,CONSTRAINT UC_PAC_RG_ORGAOEMISSORRG_UFEMISSAORG UNIQUE (VA_RG, EN_ORGAOEMISSORRG, EN_UFEMISSAORG));                       
+                       ,CONSTRAINT PK_AVA PRIMARY KEY (IN_AVALIADOS_ID)
+                       ,CONSTRAINT UC_AVA_RG_ORGAOEMISSORRG_UFEMISSAORG UNIQUE (VA_RG, EN_ORGAOEMISSORRG, EN_UFEMISSAORG));
 
-ALTER SEQUENCE SQ_PAC_IN_PACIENTES_ID 
-      OWNED BY PACIENTES.IN_PACIENTES_ID;
+COMMENT ON TABLE AVALIADOS IS 'AVALIADOS';
+
+ALTER SEQUENCE SQ_AVA_IN_AVALIADOS_ID 
+      OWNED BY AVALIADOS.IN_AVALIADOS_ID;
 ---------------------------------------------------------------
 CREATE SEQUENCE SQ_CBO_IN_CBO_ID
       INCREMENT 1
@@ -173,10 +175,10 @@ CREATE TABLE CBO (IN_CBO_ID INTEGER NOT NULL DEFAULT NEXTVAL('SQ_CBO_IN_CBO_ID')
                  ,EN_TIPO TIPOCBO NOT NULL
                  ,CONSTRAINT PK_CBO PRIMARY KEY (IN_CBO_ID));
 
+COMMENT ON TABLE CBO IS 'Classificação Brasileira de Ocupações. Versão 2002';
 COMMENT ON COLUMN CBO.CH_CODIGO IS 'CÓDIGO DO CBO';
 COMMENT ON COLUMN CBO.VA_TITULO IS 'NOME DA OCUPAÇÃO';
 COMMENT ON COLUMN CBO.EN_TIPO IS 'TIPO DO TÍTULO. PODE SER "OCUPAÇÃO" OU "SINÔNIMO"';
-COMMENT ON TABLE CBO IS 'Classificação Brasileira de Ocupações. Versão 2002';
 
 ALTER SEQUENCE SQ_CBO_IN_CBO_ID 
       OWNED BY CBO.IN_CBO_ID;
@@ -189,7 +191,7 @@ CREATE SEQUENCE SQ_DSD_IN_DADOSSOCIODEMOGRAFICOS_ID
           CACHE 1;
 
 CREATE TABLE DADOSSOCIODEMOGRAFICOS (IN_DADOSSOCIODEMOGRAFICOS_ID INTEGER NOT NULL DEFAULT NEXTVAL('SQ_DSD_IN_DADOSSOCIODEMOGRAFICOS_ID')
-                                    ,IN_PACIENTES_ID INTEGER NOT NULL
+                                    ,IN_AVALIADOS_ID INTEGER NOT NULL
                                     ,SM_CORRACA SMALLINT NOT NULL
                                     ,SM_ESTADOCIVIL SMALLINT NOT NULL
                                     ,SM_GRAUDEINSTRUCAO SMALLINT NOT NULL
@@ -207,13 +209,65 @@ CREATE TABLE DADOSSOCIODEMOGRAFICOS (IN_DADOSSOCIODEMOGRAFICOS_ID INTEGER NOT NU
                                     ,BO_CHEFEDEFAMILIA BOOLEAN NOT NULL
                                     ,SM_GRAUINSTRCHEFEDEFAMILIA SMALLINT
                                     ,CONSTRAINT PK_DSD PRIMARY KEY (IN_DADOSSOCIODEMOGRAFICOS_ID)
-                                    ,CONSTRAINT FK_DSD_PAC FOREIGN KEY (IN_PACIENTES_ID) REFERENCES PACIENTES (IN_PACIENTES_ID) ON UPDATE CASCADE ON DELETE CASCADE
+                                    ,CONSTRAINT FK_DSD_AVA FOREIGN KEY (IN_AVALIADOS_ID) REFERENCES AVALIADOS (IN_AVALIADOS_ID) ON UPDATE CASCADE ON DELETE CASCADE
                                     ,CONSTRAINT FK_DSD_CBO FOREIGN KEY (IN_CBO_ID) REFERENCES CBO (IN_CBO_ID) ON UPDATE CASCADE ON DELETE RESTRICT);
 
+COMMENT ON TABLE DADOSSOCIODEMOGRAFICOS IS 'DADOS SÓCIO-DEMOGRÁFICOS DOS AVALIADOS';
 COMMENT ON COLUMN DADOSSOCIODEMOGRAFICOS.IN_CBO_ID IS 'PROFISSÃO (CBO)';
 
 ALTER SEQUENCE SQ_DSD_IN_DADOSSOCIODEMOGRAFICOS_ID 
       OWNED BY DADOSSOCIODEMOGRAFICOS.IN_DADOSSOCIODEMOGRAFICOS_ID;
+---------------------------------------------------------------
+CREATE SEQUENCE SQ_SES_IN_SINAISESINTOMAS_ID
+      INCREMENT 1
+       MINVALUE 1
+       MAXVALUE 2147483647
+          START 1
+          CACHE 1;
+
+CREATE TABLE SINAISESINTOMAS (IN_SINAISESINTOMAS_ID INTEGER NOT NULL DEFAULT NEXTVAL('SQ_SES_IN_SINAISESINTOMAS_ID')
+                             ,IN_AVALIADOS_ID INTEGER NOT NULL
+                             ,BO_DORPEIPESMANBRA BOOLEAN DEFAULT FALSE
+                             ,BO_BATCARIRRRAPPALREP BOOLEAN DEFAULT FALSE
+                             ,BO_DIFRESDEISON BOOLEAN DEFAULT FALSE
+                             ,BO_GRAPERPESSEMMOTCON BOOLEAN DEFAULT FALSE
+                             ,BO_INFACOFEB BOOLEAN DEFAULT FALSE
+                             ,BO_FEBDESBATCARACE BOOLEAN DEFAULT FALSE
+                             ,BO_DORPERCAM BOOLEAN DEFAULT FALSE
+                             ,BO_HERABDINCO BOOLEAN DEFAULT FALSE
+                             ,BO_LESPESTORNAOSAR BOOLEAN DEFAULT FALSE
+                             ,BO_TORINC BOOLEAN DEFAULT FALSE
+                             ,BO_QUERECDEIDIFCAMDORPER BOOLEAN DEFAULT FALSE
+                             ,BO_PROALGCIROLH BOOLEAN DEFAULT FALSE
+                             ,BO_JUNINC BOOLEAN DEFAULT FALSE
+                             ,BO_CANINCFALARATIHAB BOOLEAN DEFAULT FALSE
+                             ,BO_DIFRESREP BOOLEAN DEFAULT FALSE
+                             ,BO_TONDES BOOLEAN DEFAULT FALSE
+                             ,BO_ALGCIRMEN90DIA BOOLEAN DEFAULT FALSE
+                             ,CONSTRAINT PK_SES PRIMARY KEY (IN_SINAISESINTOMAS_ID)
+                             ,CONSTRAINT FK_SES_AVA FOREIGN KEY (IN_AVALIADOS_ID) REFERENCES AVALIADOS (IN_AVALIADOS_ID) ON UPDATE CASCADE ON DELETE CASCADE);
+
+COMMENT ON TABLE SINAISESINTOMAS IS 'CHECAGEM DE SINAIS E SINTOMAS DOS AVALIADOS';
+COMMENT ON COLUMN SINAISESINTOMAS.BO_DORPEIPESMANBRA IS 'DOR OU DESCONFORTO NO PEITO, PESCOÇO, MANDÍBULA, BRAÇO(S) OU ÁREA PRÓXIMA';
+COMMENT ON COLUMN SINAISESINTOMAS.BO_BATCARIRRRAPPALREP IS 'BATIMENTOS CARDÍACOS IRREGULARES E RÁPIDOS OU PALPITAÇÕES EM REPOUSO';
+COMMENT ON COLUMN SINAISESINTOMAS.BO_DIFRESDEISON IS 'DIFICULDADE NA RESPIRAÇÃO QUANDO SE DEITA OU DURANTE O SONO';
+COMMENT ON COLUMN SINAISESINTOMAS.BO_GRAPERPESSEMMOTCON IS 'GRANDE PERDA DE PESO SEM MOTIVO CONHECIDO';
+COMMENT ON COLUMN SINAISESINTOMAS.BO_INFACOFEB IS 'INFECÇÃO ACOMPANHADA DE FEBRE';
+COMMENT ON COLUMN SINAISESINTOMAS.BO_FEBDESBATCARACE IS 'FEBRE COM DESIDRATAÇÃO E BATIMENTOS CARDÍACOS ACELERADOS';
+COMMENT ON COLUMN SINAISESINTOMAS.BO_DORPERCAM IS 'DOR NA PERNA AO CAMINHAR';
+COMMENT ON COLUMN SINAISESINTOMAS.BO_HERABDINCO IS 'HÉRNIA ABDOMINAL INCOMODANDO';
+COMMENT ON COLUMN SINAISESINTOMAS.BO_LESPESTORNAOSAR IS 'LESÕES NOS PÉS OU TORNOZELOS QUE NÃO SARAM';
+COMMENT ON COLUMN SINAISESINTOMAS.BO_TORINC IS 'TORNOZELOS INCHADOS';
+COMMENT ON COLUMN SINAISESINTOMAS.BO_QUERECDEIDIFCAMDORPER IS 'QUEDA RECENTE DEIXANDO DIFICULDADE PARA CAMINHAR E DOR PERSISTENTE';
+COMMENT ON COLUMN SINAISESINTOMAS.BO_PROALGCIROLH IS 'PROBLEMAS OU ALGUMA CIRURGIA NOS OLHOS';
+COMMENT ON COLUMN SINAISESINTOMAS.BO_JUNINC IS 'JUNTAS INCHADAS';
+COMMENT ON COLUMN SINAISESINTOMAS.BO_CANINCFALARATIHAB IS 'CANSAÇO INCOMUM OU FALTA DE AR EM ATIVIDADES HABITUAIS';
+COMMENT ON COLUMN SINAISESINTOMAS.BO_DIFRESREP IS 'DIFICULDADE NA RESPIRAÇÃO EM REPOUSO';
+COMMENT ON COLUMN SINAISESINTOMAS.BO_TONDES IS 'TONTURA OU DESMAIO';
+COMMENT ON COLUMN SINAISESINTOMAS.BO_TONDES IS 'ALGUMA CIRURGIA A MENOS DE 90 DIAS';
+
+ALTER SEQUENCE SQ_SES_IN_SINAISESINTOMAS_ID 
+      OWNED BY SINAISESINTOMAS.IN_SINAISESINTOMAS_ID;
 ---------------------------------------------------------------
 ---------------------------------------------------------------
 ---------------------------------------------------------------
@@ -495,24 +549,24 @@ END;
 $BODY$
 LANGUAGE PLPGSQL;
 ---------------------------------------------------------------
-CREATE OR REPLACE FUNCTION IDU_PACIENTES(IN pMODO                     CHAR
-                                        ,IN pIN_PACIENTES_ID          PACIENTES.IN_PACIENTES_ID%TYPE          = NULL
-                                        ,IN pVA_NOME                  PACIENTES.VA_NOME%TYPE                  = NULL
-                                        ,IN pEN_GENERO                PACIENTES.EN_GENERO%TYPE                = NULL
-                                        ,IN pDA_DATANASCIMENTO        PACIENTES.DA_DATANASCIMENTO%TYPE        = NULL
-                                        ,IN pVA_RG                    PACIENTES.VA_RG%TYPE                    = NULL
-                                        ,IN pEN_ORGAOEMISSORRG        PACIENTES.EN_ORGAOEMISSORRG%TYPE        = NULL
-                                        ,IN pEN_UFEMISSAORG           PACIENTES.EN_UFEMISSAORG%TYPE           = NULL
-                                        ,IN pEN_TIPOLOGRADOURO        PACIENTES.EN_TIPOLOGRADOURO%TYPE        = NULL
-                                        ,IN pVA_NOMELOGRADOURO        PACIENTES.VA_NOMELOGRADOURO%TYPE        = NULL
-                                        ,IN pVA_IDLOGRADOURO          PACIENTES.VA_IDLOGRADOURO%TYPE          = NULL
-                                        ,IN pVA_COMPLEMENTOLOGRADOURO PACIENTES.VA_COMPLEMENTOLOGRADOURO%TYPE = NULL
-                                        ,IN pVA_BAIRROLOGRADOURO      PACIENTES.VA_BAIRROLOGRADOURO%TYPE      = NULL
-                                        ,IN pVA_CIDADE                PACIENTES.VA_CIDADE%TYPE                = NULL
-                                        ,IN pEN_UF                    PACIENTES.EN_UF%TYPE                    = NULL
-                                        ,IN pCH_FONERESIDENCIAL       PACIENTES.CH_FONERESIDENCIAL%TYPE       = NULL
-                                        ,IN pCH_FONECELULAR           PACIENTES.CH_FONECELULAR%TYPE           = NULL
-                                        ,IN pTX_OBSERVACOES           PACIENTES.TX_OBSERVACOES%TYPE           = NULL)
+CREATE OR REPLACE FUNCTION IDU_AVALIADOS(IN pMODO                     CHAR
+                                        ,IN pIN_AVALIADOS_ID          AVALIADOS.IN_AVALIADOS_ID%TYPE          = NULL
+                                        ,IN pVA_NOME                  AVALIADOS.VA_NOME%TYPE                  = NULL
+                                        ,IN pEN_GENERO                AVALIADOS.EN_GENERO%TYPE                = NULL
+                                        ,IN pDA_DATANASCIMENTO        AVALIADOS.DA_DATANASCIMENTO%TYPE        = NULL
+                                        ,IN pVA_RG                    AVALIADOS.VA_RG%TYPE                    = NULL
+                                        ,IN pEN_ORGAOEMISSORRG        AVALIADOS.EN_ORGAOEMISSORRG%TYPE        = NULL
+                                        ,IN pEN_UFEMISSAORG           AVALIADOS.EN_UFEMISSAORG%TYPE           = NULL
+                                        ,IN pEN_TIPOLOGRADOURO        AVALIADOS.EN_TIPOLOGRADOURO%TYPE        = NULL
+                                        ,IN pVA_NOMELOGRADOURO        AVALIADOS.VA_NOMELOGRADOURO%TYPE        = NULL
+                                        ,IN pVA_IDLOGRADOURO          AVALIADOS.VA_IDLOGRADOURO%TYPE          = NULL
+                                        ,IN pVA_COMPLEMENTOLOGRADOURO AVALIADOS.VA_COMPLEMENTOLOGRADOURO%TYPE = NULL
+                                        ,IN pVA_BAIRROLOGRADOURO      AVALIADOS.VA_BAIRROLOGRADOURO%TYPE      = NULL
+                                        ,IN pVA_CIDADE                AVALIADOS.VA_CIDADE%TYPE                = NULL
+                                        ,IN pEN_UF                    AVALIADOS.EN_UF%TYPE                    = NULL
+                                        ,IN pCH_FONERESIDENCIAL       AVALIADOS.CH_FONERESIDENCIAL%TYPE       = NULL
+                                        ,IN pCH_FONECELULAR           AVALIADOS.CH_FONECELULAR%TYPE           = NULL
+                                        ,IN pTX_OBSERVACOES           AVALIADOS.TX_OBSERVACOES%TYPE           = NULL)
 RETURNS BIGINT AS
 $BODY$
 DECLARE
@@ -520,7 +574,7 @@ DECLARE
 BEGIN
   CASE pMODO
     WHEN 'I' THEN ----------------------------------------------------------- [ INSERT ] --
-      INSERT INTO PACIENTES (VA_NOME
+      INSERT INTO AVALIADOS (VA_NOME
                             ,EN_GENERO
                             ,DA_DATANASCIMENTO
                             ,VA_RG
@@ -553,16 +607,16 @@ BEGIN
                             ,pCH_FONECELULAR
                             ,pTX_OBSERVACOES);
 
-      vRETURN := CURRVAL('SQ_PAC_IN_PACIENTES_ID');
+      vRETURN := CURRVAL('SQ_AVA_IN_AVALIADOS_ID');
     ---------------------------------------------------------------------------------------
     WHEN 'D' THEN ----------------------------------------------------------- [ DELETE ] --
-      DELETE FROM PACIENTES
-            WHERE IN_PACIENTES_ID = pIN_PACIENTES_ID;
+      DELETE FROM AVALIADOS
+            WHERE IN_AVALIADOS_ID = pIN_AVALIADOS_ID;
 
       GET DIAGNOSTICS vRETURN := ROW_COUNT;
     ---------------------------------------------------------------------------------------
     WHEN 'U' THEN ----------------------------------------------------------- [ UPDATE ] --
-      UPDATE PACIENTES
+      UPDATE AVALIADOS
          SET VA_NOME                  = pVA_NOME
            , EN_GENERO                = pEN_GENERO
            , DA_DATANASCIMENTO        = pDA_DATANASCIMENTO
@@ -579,7 +633,7 @@ BEGIN
            , CH_FONERESIDENCIAL       = pCH_FONERESIDENCIAL
            , CH_FONECELULAR           = pCH_FONECELULAR
            , TX_OBSERVACOES           = pTX_OBSERVACOES
-       WHERE IN_PACIENTES_ID = pIN_PACIENTES_ID;
+       WHERE IN_AVALIADOS_ID = pIN_AVALIADOS_ID;
 
     GET DIAGNOSTICS vRETURN := ROW_COUNT;
     ---------------------------------------------------------------------------------------
@@ -635,7 +689,7 @@ LANGUAGE PLPGSQL;
 ---------------------------------------------------------------
 CREATE OR REPLACE FUNCTION IDU_DADOSSOCIODEMOGRAFICOS(IN pMODO                         CHAR
                                                      ,IN pIN_DADOSSOCIODEMOGRAFICOS_ID DADOSSOCIODEMOGRAFICOS.IN_DADOSSOCIODEMOGRAFICOS_ID%TYPE = NULL
-                                                     ,IN pIN_PACIENTES_ID              DADOSSOCIODEMOGRAFICOS.IN_PACIENTES_ID%TYPE              = NULL
+                                                     ,IN pIN_AVALIADOS_ID              DADOSSOCIODEMOGRAFICOS.IN_AVALIADOS_ID%TYPE              = NULL
                                                      ,IN pSM_CORRACA                   DADOSSOCIODEMOGRAFICOS.SM_CORRACA%TYPE                   = NULL
                                                      ,IN pSM_ESTADOCIVIL               DADOSSOCIODEMOGRAFICOS.SM_ESTADOCIVIL%TYPE               = NULL
                                                      ,IN pSM_GRAUDEINSTRUCAO           DADOSSOCIODEMOGRAFICOS.SM_GRAUDEINSTRUCAO%TYPE           = NULL
@@ -659,7 +713,7 @@ DECLARE
 BEGIN
   CASE pMODO
     WHEN 'I' THEN ----------------------------------------------------------- [ INSERT ] --
-      INSERT INTO DADOSSOCIODEMOGRAFICOS (IN_PACIENTES_ID
+      INSERT INTO DADOSSOCIODEMOGRAFICOS (IN_AVALIADOS_ID
                                          ,SM_CORRACA
                                          ,SM_ESTADOCIVIL
                                          ,SM_GRAUDEINSTRUCAO
@@ -676,7 +730,7 @@ BEGIN
                                          ,SM_FREEZER
                                          ,BO_CHEFEDEFAMILIA
                                          ,SM_GRAUINSTRCHEFEDEFAMILIA)
-                                  VALUES (pIN_PACIENTES_ID
+                                  VALUES (pIN_AVALIADOS_ID
                                          ,pSM_CORRACA
                                          ,pSM_ESTADOCIVIL
                                          ,pSM_GRAUDEINSTRUCAO
@@ -704,7 +758,7 @@ BEGIN
     ---------------------------------------------------------------------------------------
     WHEN 'U' THEN ----------------------------------------------------------- [ UPDATE ] --
       UPDATE DADOSSOCIODEMOGRAFICOS
-         SET IN_PACIENTES_ID            = pIN_PACIENTES_ID
+         SET IN_AVALIADOS_ID            = pIN_AVALIADOS_ID
            , SM_CORRACA                 = pSM_CORRACA
            , SM_ESTADOCIVIL             = pSM_ESTADOCIVIL
            , SM_GRAUDEINSTRUCAO         = pSM_GRAUDEINSTRUCAO
@@ -722,6 +776,109 @@ BEGIN
            , BO_CHEFEDEFAMILIA          = pBO_CHEFEDEFAMILIA
            , SM_GRAUINSTRCHEFEDEFAMILIA = pSM_GRAUINSTRCHEFEDEFAMILIA
        WHERE IN_DADOSSOCIODEMOGRAFICOS_ID = pIN_DADOSSOCIODEMOGRAFICOS_ID;
+
+    GET DIAGNOSTICS vRETURN := ROW_COUNT;
+    ---------------------------------------------------------------------------------------
+  END CASE;
+
+  RETURN vRETURN;
+END;
+$BODY$
+LANGUAGE PLPGSQL;
+---------------------------------------------------------------
+CREATE OR REPLACE FUNCTION IDU_SINAISESINTOMAS(IN pMODO                     CHAR
+                                              ,IN pIN_SINAISESINTOMAS_ID    SINAISESINTOMAS.IN_SINAISESINTOMAS_ID%TYPE    = NULL
+                                              ,IN pIN_AVALIADOS_ID          SINAISESINTOMAS.IN_AVALIADOS_ID%TYPE          = NULL
+                                              ,IN pBO_DORPEIPESMANBRA       SINAISESINTOMAS.BO_DORPEIPESMANBRA%TYPE       = NULL
+                                              ,IN pBO_BATCARIRRRAPPALREP    SINAISESINTOMAS.BO_BATCARIRRRAPPALREP%TYPE    = NULL
+                                              ,IN pBO_DIFRESDEISON          SINAISESINTOMAS.BO_DIFRESDEISON%TYPE          = NULL
+                                              ,IN pBO_GRAPERPESSEMMOTCON    SINAISESINTOMAS.BO_GRAPERPESSEMMOTCON%TYPE    = NULL
+                                              ,IN pBO_INFACOFEB             SINAISESINTOMAS.BO_INFACOFEB%TYPE             = NULL
+                                              ,IN pBO_FEBDESBATCARACE       SINAISESINTOMAS.BO_FEBDESBATCARACE%TYPE       = NULL
+                                              ,IN pBO_DORPERCAM             SINAISESINTOMAS.BO_DORPERCAM%TYPE             = NULL
+                                              ,IN pBO_HERABDINCO            SINAISESINTOMAS.BO_HERABDINCO%TYPE            = NULL
+                                              ,IN pBO_LESPESTORNAOSAR       SINAISESINTOMAS.BO_LESPESTORNAOSAR%TYPE       = NULL
+                                              ,IN pBO_TORINC                SINAISESINTOMAS.BO_TORINC%TYPE                = NULL
+                                              ,IN pBO_QUERECDEIDIFCAMDORPER SINAISESINTOMAS.BO_QUERECDEIDIFCAMDORPER%TYPE = NULL
+                                              ,IN pBO_PROALGCIROLH          SINAISESINTOMAS.BO_PROALGCIROLH%TYPE          = NULL
+                                              ,IN pBO_JUNINC                SINAISESINTOMAS.BO_JUNINC%TYPE                = NULL
+                                              ,IN pBO_CANINCFALARATIHAB     SINAISESINTOMAS.BO_CANINCFALARATIHAB%TYPE     = NULL
+                                              ,IN pBO_DIFRESREP             SINAISESINTOMAS.BO_DIFRESREP%TYPE             = NULL
+                                              ,IN pBO_TONDES                SINAISESINTOMAS.BO_TONDES%TYPE                = NULL
+                                              ,IN pBO_ALGCIRMEN90DIA        SINAISESINTOMAS.BO_ALGCIRMEN90DIA%TYPE        = NULL)
+RETURNS BIGINT AS
+$BODY$
+DECLARE
+  vRETURN BIGINT := 0;
+BEGIN
+  CASE pMODO
+    WHEN 'I' THEN ----------------------------------------------------------- [ INSERT ] --
+      INSERT INTO SINAISESINTOMAS (IN_AVALIADOS_ID
+                                  ,BO_DORPEIPESMANBRA
+                                  ,BO_BATCARIRRRAPPALREP
+                                  ,BO_DIFRESDEISON
+                                  ,BO_GRAPERPESSEMMOTCON
+                                  ,BO_INFACOFEB
+                                  ,BO_FEBDESBATCARACE
+                                  ,BO_DORPERCAM
+                                  ,BO_HERABDINCO
+                                  ,BO_LESPESTORNAOSAR
+                                  ,BO_TORINC
+                                  ,BO_QUERECDEIDIFCAMDORPER
+                                  ,BO_PROALGCIROLH
+                                  ,BO_JUNINC
+                                  ,BO_CANINCFALARATIHAB
+                                  ,BO_DIFRESREP
+                                  ,BO_TONDES
+                                  ,BO_ALGCIRMEN90DIA)
+                           VALUES (pIN_AVALIADOS_ID
+                                  ,pBO_DORPEIPESMANBRA
+                                  ,pBO_BATCARIRRRAPPALREP
+                                  ,pBO_DIFRESDEISON
+                                  ,pBO_GRAPERPESSEMMOTCON
+                                  ,pBO_INFACOFEB
+                                  ,pBO_FEBDESBATCARACE
+                                  ,pBO_DORPERCAM
+                                  ,pBO_HERABDINCO
+                                  ,pBO_LESPESTORNAOSAR
+                                  ,pBO_TORINC
+                                  ,pBO_QUERECDEIDIFCAMDORPER
+                                  ,pBO_PROALGCIROLH
+                                  ,pBO_JUNINC
+                                  ,pBO_CANINCFALARATIHAB
+                                  ,pBO_DIFRESREP
+                                  ,pBO_TONDES
+                                  ,pBO_ALGCIRMEN90DIA);
+
+      vRETURN := CURRVAL('SQ_SES_IN_SINAISESINTOMAS_ID');
+    ---------------------------------------------------------------------------------------
+    WHEN 'D' THEN ----------------------------------------------------------- [ DELETE ] --
+      DELETE FROM SINAISESINTOMAS
+            WHERE IN_SINAISESINTOMAS_ID = pIN_SINAISESINTOMAS_ID;
+
+      GET DIAGNOSTICS vRETURN := ROW_COUNT;
+    ---------------------------------------------------------------------------------------
+    WHEN 'U' THEN ----------------------------------------------------------- [ UPDATE ] --
+      UPDATE SINAISESINTOMAS
+         SET IN_AVALIADOS_ID          = pIN_AVALIADOS_ID
+           , BO_DORPEIPESMANBRA       = pBO_DORPEIPESMANBRA
+           , BO_BATCARIRRRAPPALREP    = pBO_BATCARIRRRAPPALREP
+           , BO_DIFRESDEISON          = pBO_DIFRESDEISON
+           , BO_GRAPERPESSEMMOTCON    = pBO_GRAPERPESSEMMOTCON
+           , BO_INFACOFEB             = pBO_INFACOFEB
+           , BO_FEBDESBATCARACE       = pBO_FEBDESBATCARACE
+           , BO_DORPERCAM             = pBO_DORPERCAM
+           , BO_HERABDINCO            = pBO_HERABDINCO
+           , BO_LESPESTORNAOSAR       = pBO_LESPESTORNAOSAR
+           , BO_TORINC                = pBO_TORINC
+           , BO_QUERECDEIDIFCAMDORPER = pBO_QUERECDEIDIFCAMDORPER
+           , BO_PROALGCIROLH          = pBO_PROALGCIROLH
+           , BO_JUNINC                = pBO_JUNINC
+           , BO_CANINCFALARATIHAB     = pBO_CANINCFALARATIHAB
+           , BO_DIFRESREP             = pBO_DIFRESREP
+           , BO_TONDES                = pBO_TONDES
+           , BO_ALGCIRMEN90DIA        = pBO_ALGCIRMEN90DIA
+       WHERE IN_SINAISESINTOMAS_ID = pIN_SINAISESINTOMAS_ID;
 
     GET DIAGNOSTICS vRETURN := ROW_COUNT;
     ---------------------------------------------------------------------------------------
