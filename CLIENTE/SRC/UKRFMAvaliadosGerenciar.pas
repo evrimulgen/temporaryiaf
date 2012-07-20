@@ -95,6 +95,9 @@ type
     TBSHParQ: TTabSheet;
     KRPAAvaliado4: TKRKPanel;
     LABLAvaliado4: TLabel;
+    DBNAChecagemDeSinaisESintomas: TDBNavigator;
+    DBNAParametrosFisiologicos: TDBNavigator;
+    DBNAParQ: TDBNavigator;
     procedure DBRGChefeDaFamiliaChange(Sender: TObject);
     procedure KRLECodigoKeyPress(Sender: TObject; var Key: Char);
     procedure KRLEIdentidadeKeyPress(Sender: TObject; var Key: Char);
@@ -118,12 +121,12 @@ uses UKRDMAvaliadosGerenciar, DB;
 procedure TKRFMAvaliadosGerenciar.DBRGChefeDaFamiliaChange(Sender: TObject);
 begin
   inherited;
-  DBRGGrauChefeFamilia.Enabled := DBRGChefeDaFamilia.ItemIndex = 1;
-  if not DBRGGrauChefeFamilia.Enabled and (TKRDMAvaliadosGerenciar(Owner).CLDSDadosSocioDemograficos.State in [dsEdit,dsInsert])  then
-  begin
+  DBRGGrauChefeFamilia.Visible := DBRGChefeDaFamilia.ItemIndex = 1;
+
+  TKRDMAvaliadosGerenciar(Owner).CLDSDadosSocioDemograficos.KRKValidationChecks.Active := DBRGGrauChefeFamilia.Visible;
+
+  if not DBRGGrauChefeFamilia.Visible and (TKRDMAvaliadosGerenciar(Owner).CLDSDadosSocioDemograficos.State in [dsEdit,dsInsert])  then
     TKRDMAvaliadosGerenciar(Owner).CLDSDadosSocioDemograficossm_grauinstrchefedefamilia.Clear;
-    { TODO : Altere a regra de validação }
-  end;
 end;
 
 procedure TKRFMAvaliadosGerenciar.KRLEFoneCelularKeyPress(Sender: TObject; var Key: Char);
@@ -229,6 +232,7 @@ begin
   TBSHChecagemDeSinaisESintomas.TabVisible := False;
   TBSHParametrosFisiologicos.TabVisible := False;
   TBSHParQ.TabVisible := False;
+  DBRGGrauChefeFamilia.Hide;
 
   SCBXDadosSocioDemograficos.VertScrollBar.Position := 0;
 end;

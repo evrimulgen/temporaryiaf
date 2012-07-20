@@ -156,18 +156,10 @@ begin
     TKRFMAvaliadosGerenciar(MyForm).TBSHParametrosFisiologicos.TabVisible := (CLDSPacientes.RecordCount > 0) and (CLDSPacientesin_pacientes_id.AsInteger > 0);
     TKRFMAvaliadosGerenciar(MyForm).TBSHParQ.TabVisible := (CLDSPacientes.RecordCount > 0) and (CLDSPacientesin_pacientes_id.AsInteger > 0);
 
-
-    if TKRFMAvaliadosGerenciar(MyForm).TBSHDadosSocioDemograficos.TabVisible then
-      TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado1.Caption := 'Avaliado: ' + CLDSPacientesva_nome.AsString;
-
-    if TKRFMAvaliadosGerenciar(MyForm).TBSHChecagemDeSinaisESintomas.TabVisible then
-      TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado2.Caption := 'Avaliado: ' + CLDSPacientesva_nome.AsString;
-
-    if TKRFMAvaliadosGerenciar(MyForm).TBSHParametrosFisiologicos.TabVisible then
-      TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado3.Caption := 'Avaliado: ' + CLDSPacientesva_nome.AsString;
-
-    if TKRFMAvaliadosGerenciar(MyForm).TBSHParQ.TabVisible then
-      TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado4.Caption := 'Avaliado: ' + CLDSPacientesva_nome.AsString;
+    TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado1.Caption := 'Avaliado: ' + AnsiUpperCase(CLDSPacientesva_nome.AsString);
+    TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado2.Caption := TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado1.Caption;
+    TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado3.Caption := TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado1.Caption;
+    TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado4.Caption := TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado1.Caption;
   end;
 end;
 

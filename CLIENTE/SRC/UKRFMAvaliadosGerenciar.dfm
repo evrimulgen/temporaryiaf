@@ -839,6 +839,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         Top = 60
         Width = 608
         Height = 342
+        VertScrollBar.Position = 617
         Align = alClient
         BevelInner = bvNone
         BevelOuter = bvNone
@@ -848,7 +849,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object DBRGCorRaca: TDBRadioGroup
           AlignWithMargins = True
           Left = 6
-          Top = 0
+          Top = -617
           Width = 575
           Height = 105
           Margins.Left = 6
@@ -876,7 +877,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object DBRGEstadoCivil: TDBRadioGroup
           AlignWithMargins = True
           Left = 6
-          Top = 108
+          Top = -509
           Width = 575
           Height = 88
           Margins.Left = 6
@@ -902,7 +903,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object DBRGGrauInstrucao: TDBRadioGroup
           AlignWithMargins = True
           Left = 6
-          Top = 199
+          Top = -418
           Width = 575
           Height = 105
           Margins.Left = 6
@@ -934,7 +935,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object GRBXProfissao: TGroupBox
           AlignWithMargins = True
           Left = 6
-          Top = 307
+          Top = -310
           Width = 575
           Height = 65
           Margins.Left = 6
@@ -1024,7 +1025,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object GRBXPatrimonio: TGroupBox
           AlignWithMargins = True
           Left = 6
-          Top = 375
+          Top = -242
           Width = 575
           Height = 425
           Margins.Left = 6
@@ -1298,7 +1299,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object DBRGChefeDaFamilia: TDBRadioGroup
           AlignWithMargins = True
           Left = 6
-          Top = 803
+          Top = 186
           Width = 575
           Height = 42
           Margins.Left = 6
@@ -1322,7 +1323,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object DBRGGrauChefeFamilia: TDBRadioGroup
           AlignWithMargins = True
           Left = 6
-          Top = 848
+          Top = 231
           Width = 575
           Height = 105
           Margins.Left = 6
@@ -1333,7 +1334,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Caption = ' 7.0 - Qual o grau de instru'#231#227'o do chefe da fam'#237'lia? '
           DataField = 'sm_grauinstrchefedefamilia'
           DataSource = KRDMAvaliadosGerenciar.DTSRDadosSocioDemograficos
-          Enabled = False
           Items.Strings = (
             
               'Analfabeto ou cursou at'#233' a 3'#170' s'#233'rie do ensino fundamental (prim'#225 +
@@ -1355,7 +1355,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         end
         object PANLPaddingBottom: TPanel
           Left = 0
-          Top = 953
+          Top = 336
           Width = 587
           Height = 6
           Align = alBottom
@@ -1402,13 +1402,13 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Caption = 'Avaliado: ?????'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -15
           Font.Name = 'Tahoma'
           Font.Style = [fsBold]
           ParentFont = False
           Layout = tlCenter
-          ExplicitWidth = 100
-          ExplicitHeight = 16
+          ExplicitWidth = 119
+          ExplicitHeight = 18
         end
       end
     end
@@ -1416,10 +1416,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       AlignWithMargins = True
       Caption = 'Checagem de sinais e sintomas'
       ImageIndex = 3
-      ExplicitLeft = 4
-      ExplicitTop = 24
-      ExplicitWidth = 614
-      ExplicitHeight = 408
       object KRPAAvaliado2: TKRKPanel
         AlignWithMargins = True
         Left = 0
@@ -1445,24 +1441,34 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Caption = 'Avaliado: ?????'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -15
           Font.Name = 'Tahoma'
           Font.Style = [fsBold]
           ParentFont = False
           Layout = tlCenter
-          ExplicitWidth = 100
-          ExplicitHeight = 16
+          ExplicitWidth = 119
+          ExplicitHeight = 18
         end
+      end
+      object DBNAChecagemDeSinaisESintomas: TDBNavigator
+        AlignWithMargins = True
+        Left = 0
+        Top = 29
+        Width = 608
+        Height = 25
+        Margins.Left = 0
+        Margins.Right = 0
+        Margins.Bottom = 6
+        DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
+        VisibleButtons = [nbPost, nbCancel, nbRefresh]
+        Align = alTop
+        TabOrder = 1
       end
     end
     object TBSHParametrosFisiologicos: TTabSheet
       AlignWithMargins = True
       Caption = 'Par'#226'metros fisiol'#243'gicos'
       ImageIndex = 4
-      ExplicitLeft = 8
-      ExplicitTop = 24
-      ExplicitWidth = 614
-      ExplicitHeight = 408
       object KRPAAvaliado3: TKRKPanel
         AlignWithMargins = True
         Left = 0
@@ -1488,24 +1494,34 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Caption = 'Avaliado: ?????'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -15
           Font.Name = 'Tahoma'
           Font.Style = [fsBold]
           ParentFont = False
           Layout = tlCenter
-          ExplicitWidth = 100
-          ExplicitHeight = 16
+          ExplicitWidth = 119
+          ExplicitHeight = 18
         end
+      end
+      object DBNAParametrosFisiologicos: TDBNavigator
+        AlignWithMargins = True
+        Left = 0
+        Top = 29
+        Width = 608
+        Height = 25
+        Margins.Left = 0
+        Margins.Right = 0
+        Margins.Bottom = 6
+        DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
+        VisibleButtons = [nbPost, nbCancel, nbRefresh]
+        Align = alTop
+        TabOrder = 1
       end
     end
     object TBSHParQ: TTabSheet
       AlignWithMargins = True
       Caption = 'PAR-Q+'
       ImageIndex = 5
-      ExplicitLeft = 4
-      ExplicitTop = 24
-      ExplicitWidth = 614
-      ExplicitHeight = 408
       object KRPAAvaliado4: TKRKPanel
         AlignWithMargins = True
         Left = 0
@@ -1531,14 +1547,28 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Caption = 'Avaliado: ?????'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -15
           Font.Name = 'Tahoma'
           Font.Style = [fsBold]
           ParentFont = False
           Layout = tlCenter
-          ExplicitWidth = 100
-          ExplicitHeight = 16
+          ExplicitWidth = 119
+          ExplicitHeight = 18
         end
+      end
+      object DBNAParQ: TDBNavigator
+        AlignWithMargins = True
+        Left = 0
+        Top = 29
+        Width = 608
+        Height = 25
+        Margins.Left = 0
+        Margins.Right = 0
+        Margins.Bottom = 6
+        DataSource = KRDMAvaliadosGerenciar.DTSRPacientes
+        VisibleButtons = [nbPost, nbCancel, nbRefresh]
+        Align = alTop
+        TabOrder = 1
       end
     end
   end
@@ -1547,12 +1577,11 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
     ExplicitWidth = 622
     inherited LABLCaption: TLabel
       Height = 38
-      ExplicitHeight = 38
     end
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C010102000800300120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800380120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2089,7 +2118,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C010102000800400120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800480120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

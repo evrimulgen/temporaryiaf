@@ -362,7 +362,6 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
     object CLDSDadosSocioDemograficossm_grauinstrchefedefamilia: TSmallintField
       FieldName = 'sm_grauinstrchefedefamilia'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object CLDSDadosSocioDemograficoscbo: TWideStringField
       Alignment = taCenter

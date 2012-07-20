@@ -790,7 +790,6 @@ inherited KRDMPacientes: TKRDMPacientes
       DisplayLabel = 'Qual o grau de instru'#231#227'o do chefe da fam'#237'lia?'
       FieldName = 'sm_grauinstrchefedefamilia'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYDadosSocioDemograficoscbo: TWideStringField
       FieldName = 'cbo'
@@ -1018,6 +1017,16 @@ inherited KRDMPacientes: TKRDMPacientes
           '3'
           '4'
           '5')
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'cbo'
+        FieldDescription = 'cbo'
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'profissao'
+        FieldDescription = 'profissao'
         CheckTextSet.FocusOnValidateFailure = False
       end>
     Left = 150
