@@ -98,10 +98,27 @@ type
     DBNAChecagemDeSinaisESintomas: TDBNavigator;
     DBNAParametrosFisiologicos: TDBNavigator;
     DBNAParQ: TDBNavigator;
-    SCBXChecagemDeSinaisESintomas: TScrollBox;
+    SCBXSinaisESintomas: TScrollBox;
     Panel2: TPanel;
     PANLSinaisESintomas: TPanel;
     LABLSinaisESintomas: TLabel;
+    DBCBDorPeiPesManBra: TDBCheckBox;
+    DBCBBatCarIrrRapPalRep: TDBCheckBox;
+    DBCBDifResDeiSon: TDBCheckBox;
+    DBCBGraPerPesSemMotCon: TDBCheckBox;
+    DBCBInfAcoFeb: TDBCheckBox;
+    DBCBFebDesBatCarAce: TDBCheckBox;
+    DBCBDorPerCam: TDBCheckBox;
+    DBCBHerAbdInco: TDBCheckBox;
+    DBCBLesPesTorNaoSar: TDBCheckBox;
+    DBCBTorInc: TDBCheckBox;
+    DBCBQueRecDeiDifCamDorPer: TDBCheckBox;
+    DBCBProAlgCirOlh: TDBCheckBox;
+    DBCBJunInc: TDBCheckBox;
+    DBCBCanIncFalArAtiHab: TDBCheckBox;
+    DBCBDifResRep: TDBCheckBox;
+    DBCBTonDes: TDBCheckBox;
+    DBCBAlgCirMen90Dia: TDBCheckBox;
     procedure DBRGChefeDaFamiliaChange(Sender: TObject);
     procedure KRLECodigoKeyPress(Sender: TObject; var Key: Char);
     procedure KRLEIdentidadeKeyPress(Sender: TObject; var Key: Char);
@@ -291,6 +308,7 @@ begin
   DBRGGrauChefeFamilia.Hide;
 
   SCBXDadosSocioDemograficos.VertScrollBar.Position := 0;
+  SCBXSinaisESintomas.VertScrollBar.Position := 0;
 end;
 
 procedure TKRFMAvaliadosGerenciar.KRLECodigoKeyPress(Sender: TObject; var Key: Char);

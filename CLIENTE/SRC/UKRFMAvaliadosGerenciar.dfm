@@ -1465,7 +1465,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         Align = alTop
         TabOrder = 1
       end
-      object SCBXChecagemDeSinaisESintomas: TScrollBox
+      object SCBXSinaisESintomas: TScrollBox
         Left = 0
         Top = 60
         Width = 608
@@ -1480,9 +1480,9 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         OnMouseWheelUp = SCBXDadosSocioDemograficosMouseWheelUp
         object Panel2: TPanel
           Left = 0
-          Top = 332
-          Width = 604
-          Height = 6
+          Top = 384
+          Width = 587
+          Height = 4
           Align = alBottom
           BevelOuter = bvNone
           TabOrder = 0
@@ -1491,7 +1491,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           AlignWithMargins = True
           Left = 6
           Top = 6
-          Width = 592
+          Width = 575
           Height = 35
           Margins.Left = 6
           Margins.Top = 6
@@ -1504,7 +1504,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           object LABLSinaisESintomas: TLabel
             Left = 2
             Top = 2
-            Width = 588
+            Width = 571
             Height = 31
             Align = alClient
             Alignment = taCenter
@@ -1514,8 +1514,321 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             Color = clInfoBk
             ParentColor = False
             Layout = tlCenter
-            ExplicitHeight = 36
+            ExplicitWidth = 387
+            ExplicitHeight = 26
           end
+        end
+        object DBCBDorPeiPesManBra: TDBCheckBox
+          AlignWithMargins = True
+          Left = 6
+          Top = 47
+          Width = 575
+          Height = 17
+          Margins.Left = 6
+          Margins.Right = 6
+          Margins.Bottom = 0
+          Align = alTop
+          AllowGrayed = True
+          Caption = 
+            'Dor ou desconforto no peito, pesco'#231'o, mand'#237'bula, bra'#231'o(s) ou '#225're' +
+            'a pr'#243'xima'
+          DataField = 'bo_dorpeipesmanbra'
+          DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
+          TabOrder = 2
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCBBatCarIrrRapPalRep: TDBCheckBox
+          AlignWithMargins = True
+          Left = 6
+          Top = 67
+          Width = 575
+          Height = 17
+          Margins.Left = 6
+          Margins.Right = 6
+          Margins.Bottom = 0
+          Align = alTop
+          AllowGrayed = True
+          Caption = 
+            'Batimentos card'#237'acos irregulares e r'#225'pidos ou palpita'#231#245'es em rep' +
+            'ouso'
+          DataField = 'bo_batcarirrrappalrep'
+          DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
+          TabOrder = 3
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCBDifResDeiSon: TDBCheckBox
+          AlignWithMargins = True
+          Left = 6
+          Top = 87
+          Width = 575
+          Height = 17
+          Margins.Left = 6
+          Margins.Right = 6
+          Margins.Bottom = 0
+          Align = alTop
+          AllowGrayed = True
+          Caption = 'Dificuldade na respira'#231#227'o quando se deita ou durante o sono'
+          DataField = 'bo_difresdeison'
+          DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
+          TabOrder = 4
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCBGraPerPesSemMotCon: TDBCheckBox
+          AlignWithMargins = True
+          Left = 6
+          Top = 107
+          Width = 575
+          Height = 17
+          Margins.Left = 6
+          Margins.Right = 6
+          Margins.Bottom = 0
+          Align = alTop
+          AllowGrayed = True
+          Caption = 'Grande perda de peso sem motivo conhecido'
+          DataField = 'bo_graperpessemmotcon'
+          DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
+          TabOrder = 5
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCBInfAcoFeb: TDBCheckBox
+          AlignWithMargins = True
+          Left = 6
+          Top = 127
+          Width = 575
+          Height = 17
+          Margins.Left = 6
+          Margins.Right = 6
+          Margins.Bottom = 0
+          Align = alTop
+          AllowGrayed = True
+          Caption = 'Infec'#231#227'o acompanhada de febre'
+          DataField = 'bo_infacofeb'
+          DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
+          TabOrder = 6
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCBFebDesBatCarAce: TDBCheckBox
+          AlignWithMargins = True
+          Left = 6
+          Top = 147
+          Width = 575
+          Height = 17
+          Margins.Left = 6
+          Margins.Right = 6
+          Margins.Bottom = 0
+          Align = alTop
+          AllowGrayed = True
+          Caption = 'Febre com desidrata'#231#227'o e batimentos card'#237'acos acelerados'
+          DataField = 'bo_febdesbatcarace'
+          DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
+          TabOrder = 7
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCBDorPerCam: TDBCheckBox
+          AlignWithMargins = True
+          Left = 6
+          Top = 167
+          Width = 575
+          Height = 17
+          Margins.Left = 6
+          Margins.Right = 6
+          Margins.Bottom = 0
+          Align = alTop
+          AllowGrayed = True
+          Caption = 'Dor na perna ao caminhar'
+          DataField = 'bo_dorpercam'
+          DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
+          TabOrder = 8
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCBHerAbdInco: TDBCheckBox
+          AlignWithMargins = True
+          Left = 6
+          Top = 187
+          Width = 575
+          Height = 17
+          Margins.Left = 6
+          Margins.Right = 6
+          Margins.Bottom = 0
+          Align = alTop
+          AllowGrayed = True
+          Caption = 'H'#233'rnia abdominal incomodando'
+          DataField = 'bo_herabdinco'
+          DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
+          TabOrder = 9
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCBLesPesTorNaoSar: TDBCheckBox
+          AlignWithMargins = True
+          Left = 6
+          Top = 207
+          Width = 575
+          Height = 17
+          Margins.Left = 6
+          Margins.Right = 6
+          Margins.Bottom = 0
+          Align = alTop
+          AllowGrayed = True
+          Caption = 'Les'#245'es nos p'#233's ou tornozelos que n'#227'o saram'
+          DataField = 'bo_lespestornaosar'
+          DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
+          TabOrder = 10
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCBTorInc: TDBCheckBox
+          AlignWithMargins = True
+          Left = 6
+          Top = 227
+          Width = 575
+          Height = 17
+          Margins.Left = 6
+          Margins.Right = 6
+          Margins.Bottom = 0
+          Align = alTop
+          AllowGrayed = True
+          Caption = 'Tornozelos inchados'
+          DataField = 'bo_torinc'
+          DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
+          TabOrder = 11
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCBQueRecDeiDifCamDorPer: TDBCheckBox
+          AlignWithMargins = True
+          Left = 6
+          Top = 247
+          Width = 575
+          Height = 17
+          Margins.Left = 6
+          Margins.Right = 6
+          Margins.Bottom = 0
+          Align = alTop
+          AllowGrayed = True
+          Caption = 
+            'Queda recente deixando dificuldade para caminhar e dor persisten' +
+            'te'
+          DataField = 'bo_querecdeidifcamdorper'
+          DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
+          TabOrder = 12
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCBProAlgCirOlh: TDBCheckBox
+          AlignWithMargins = True
+          Left = 6
+          Top = 267
+          Width = 575
+          Height = 17
+          Margins.Left = 6
+          Margins.Right = 6
+          Margins.Bottom = 0
+          Align = alTop
+          AllowGrayed = True
+          Caption = 'Problemas ou alguma cirurgia nos olhos'
+          DataField = 'bo_proalgcirolh'
+          DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
+          TabOrder = 13
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCBJunInc: TDBCheckBox
+          AlignWithMargins = True
+          Left = 6
+          Top = 287
+          Width = 575
+          Height = 17
+          Margins.Left = 6
+          Margins.Right = 6
+          Margins.Bottom = 0
+          Align = alTop
+          AllowGrayed = True
+          Caption = 'Juntas inchadas'
+          DataField = 'bo_juninc'
+          DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
+          TabOrder = 14
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCBCanIncFalArAtiHab: TDBCheckBox
+          AlignWithMargins = True
+          Left = 6
+          Top = 307
+          Width = 575
+          Height = 17
+          Margins.Left = 6
+          Margins.Right = 6
+          Margins.Bottom = 0
+          Align = alTop
+          AllowGrayed = True
+          Caption = 'Cansa'#231'o incomum ou falta de ar em atividades habituais'
+          DataField = 'bo_canincfalaratihab'
+          DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
+          TabOrder = 15
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCBDifResRep: TDBCheckBox
+          AlignWithMargins = True
+          Left = 6
+          Top = 327
+          Width = 575
+          Height = 17
+          Margins.Left = 6
+          Margins.Right = 6
+          Margins.Bottom = 0
+          Align = alTop
+          AllowGrayed = True
+          Caption = 'Dificuldade na respira'#231#227'o em repouso'
+          DataField = 'bo_difresrep'
+          DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
+          TabOrder = 16
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCBTonDes: TDBCheckBox
+          AlignWithMargins = True
+          Left = 6
+          Top = 347
+          Width = 575
+          Height = 17
+          Margins.Left = 6
+          Margins.Right = 6
+          Margins.Bottom = 0
+          Align = alTop
+          AllowGrayed = True
+          Caption = 'Tontura ou desmaio'
+          DataField = 'bo_tondes'
+          DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
+          TabOrder = 17
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCBAlgCirMen90Dia: TDBCheckBox
+          AlignWithMargins = True
+          Left = 6
+          Top = 367
+          Width = 575
+          Height = 17
+          Margins.Left = 6
+          Margins.Right = 6
+          Margins.Bottom = 0
+          Align = alTop
+          AllowGrayed = True
+          Caption = 'Alguma cirurgia a menos de 90 dias'
+          DataField = 'bo_algcirmen90dia'
+          DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
+          TabOrder = 18
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
         end
       end
     end
@@ -1631,11 +1944,12 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
     ExplicitWidth = 622
     inherited LABLCaption: TLabel
       Height = 38
+      ExplicitHeight = 38
     end
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C010102000800400120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800440120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2172,7 +2486,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C010102000800500120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800540120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

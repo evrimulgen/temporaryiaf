@@ -51,6 +51,26 @@ type
     UNQYDadosSocioDemograficossm_grauinstrchefedefamilia: TSmallintField;
     UNQYDadosSocioDemograficoscbo: TWideStringField;
     UNQYDadosSocioDemograficosprofissao: TWideStringField;
+    UNQYSinaisESintomas: TUniQuery;
+    UNQYSinaisESintomasin_sinaisesintomas_id: TIntegerField;
+    UNQYSinaisESintomasin_avaliados_id: TIntegerField;
+    UNQYSinaisESintomasbo_dorpeipesmanbra: TBooleanField;
+    UNQYSinaisESintomasbo_batcarirrrappalrep: TBooleanField;
+    UNQYSinaisESintomasbo_difresdeison: TBooleanField;
+    UNQYSinaisESintomasbo_graperpessemmotcon: TBooleanField;
+    UNQYSinaisESintomasbo_infacofeb: TBooleanField;
+    UNQYSinaisESintomasbo_febdesbatcarace: TBooleanField;
+    UNQYSinaisESintomasbo_dorpercam: TBooleanField;
+    UNQYSinaisESintomasbo_herabdinco: TBooleanField;
+    UNQYSinaisESintomasbo_lespestornaosar: TBooleanField;
+    UNQYSinaisESintomasbo_torinc: TBooleanField;
+    UNQYSinaisESintomasbo_querecdeidifcamdorper: TBooleanField;
+    UNQYSinaisESintomasbo_proalgcirolh: TBooleanField;
+    UNQYSinaisESintomasbo_juninc: TBooleanField;
+    UNQYSinaisESintomasbo_canincfalaratihab: TBooleanField;
+    UNQYSinaisESintomasbo_difresrep: TBooleanField;
+    UNQYSinaisESintomasbo_tondes: TBooleanField;
+    UNQYSinaisESintomasbo_algcirmen90dia: TBooleanField;
   private
     { Private declarations }
   public
@@ -64,5 +84,3 @@ uses USODMPrincipal;
 {$R *.dfm}
 
 end.
-
-

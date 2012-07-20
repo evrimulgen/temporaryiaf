@@ -3,7 +3,7 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
   Properties.OpenAllDataSets = True
   MyFormClass = 'TKRFMAvaliadosGerenciar'
   Height = 162
-  Width = 252
+  Width = 416
   inherited ACLI: TActionList
     object ACTNSelecionarCBO: TAction
       Caption = '...'
@@ -17,6 +17,7 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
     Top = 108
   end
   object CLDSAvaliados: TClientDataSet
+    Active = True
     Aggregates = <>
     ConnectionBroker = DAMOPrincipal.CNBRPrincipal
     Params = <
@@ -250,12 +251,18 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
     end
     object CLDSAvaliadosUNQYDadosSocioDemograficos: TDataSetField
       FieldName = 'UNQYDadosSocioDemograficos'
+      ProviderFlags = []
+    end
+    object CLDSAvaliadosUNQYSinaisESintomas: TDataSetField
+      FieldName = 'UNQYSinaisESintomas'
+      ProviderFlags = []
     end
     object CLDSAvaliadosfoneresidencial: TStringField
       Alignment = taCenter
       DisplayLabel = 'Telefone residencial'
       FieldKind = fkCalculated
       FieldName = 'foneresidencial'
+      ProviderFlags = []
       Size = 14
       Calculated = True
     end
@@ -269,11 +276,12 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
     end
   end
   object CLDSDadosSocioDemograficos: TClientDataSet
+    Active = True
     Aggregates = <>
     ConnectionBroker = DAMOPrincipal.CNBRPrincipal
     DataSetField = CLDSAvaliadosUNQYDadosSocioDemograficos
     Params = <>
-    Left = 150
+    Left = 144
     Top = 60
     object CLDSDadosSocioDemograficosin_dadossociodemograficos_id: TIntegerField
       FieldName = 'in_dadossociodemograficos_id'
@@ -285,81 +293,97 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
       Required = True
     end
     object CLDSDadosSocioDemograficossm_corraca: TSmallintField
+      DisplayLabel = 'Como voc'#234' auto-define a sua cor ou ra'#231'a?'
       FieldName = 'sm_corraca'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object CLDSDadosSocioDemograficossm_estadocivil: TSmallintField
+      DisplayLabel = 'Qual o seu estado civil?'
       FieldName = 'sm_estadocivil'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object CLDSDadosSocioDemograficossm_graudeinstrucao: TSmallintField
+      DisplayLabel = 'Qual seu grau de instru'#231#227'o?'
       FieldName = 'sm_graudeinstrucao'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object CLDSDadosSocioDemograficosin_cbo_id: TIntegerField
+      DisplayLabel = 'Qual sua profiss'#227'o?'
       FieldName = 'in_cbo_id'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object CLDSDadosSocioDemograficosbo_aposentado: TBooleanField
+      DisplayLabel = 'Qual seu status ocupacional?'
       FieldName = 'bo_aposentado'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object CLDSDadosSocioDemograficossm_televisor: TSmallintField
+      DisplayLabel = 'Quantos televisores em cores?'
       FieldName = 'sm_televisor'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object CLDSDadosSocioDemograficossm_radio: TSmallintField
+      DisplayLabel = 'Quantos r'#225'dios?'
       FieldName = 'sm_radio'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object CLDSDadosSocioDemograficossm_banheiro: TSmallintField
+      DisplayLabel = 'Quantos banheiros?'
       FieldName = 'sm_banheiro'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object CLDSDadosSocioDemograficossm_automovel: TSmallintField
+      DisplayLabel = 'Quantos autom'#243'veis?'
       FieldName = 'sm_automovel'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object CLDSDadosSocioDemograficossm_mensalista: TSmallintField
+      DisplayLabel = 'Quantas empregadas mensalistas?'
       FieldName = 'sm_mensalista'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object CLDSDadosSocioDemograficossm_maquinalavar: TSmallintField
+      DisplayLabel = 'Quantas m'#225'quinas de lavar?'
       FieldName = 'sm_maquinalavar'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object CLDSDadosSocioDemograficossm_vcrdvd: TSmallintField
+      DisplayLabel = 'Quandos videocassetes/DVDs?'
       FieldName = 'sm_vcrdvd'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object CLDSDadosSocioDemograficossm_geladeira: TSmallintField
+      DisplayLabel = 'Quantas geladeiras?'
       FieldName = 'sm_geladeira'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object CLDSDadosSocioDemograficossm_freezer: TSmallintField
+      DisplayLabel = 'Quantos freezeres?'
       FieldName = 'sm_freezer'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object CLDSDadosSocioDemograficosbo_chefedefamilia: TBooleanField
+      DisplayLabel = 'Voc'#234' '#233' o chefe da fam'#237'lia?'
       FieldName = 'bo_chefedefamilia'
       ProviderFlags = [pfInUpdate]
       Required = True
     end
     object CLDSDadosSocioDemograficossm_grauinstrchefedefamilia: TSmallintField
+      DisplayLabel = 'Qual o grau de instru'#231#227'o do chefe da fam'#237'lia?'
       FieldName = 'sm_grauinstrchefedefamilia'
       ProviderFlags = [pfInUpdate]
     end
@@ -382,17 +406,90 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
     object CLDSDadosSocioDemograficosic_cbo: TStringField
       FieldKind = fkInternalCalc
       FieldName = 'ic_cbo'
+      ProviderFlags = []
       Size = 6
     end
     object CLDSDadosSocioDemograficosic_profissao: TStringField
       FieldKind = fkInternalCalc
       FieldName = 'ic_profissao'
+      ProviderFlags = []
       Size = 128
     end
   end
   object DTSRDadosSocioDemograficos: TDataSource
     DataSet = CLDSDadosSocioDemograficos
-    Left = 150
+    Left = 144
+    Top = 108
+  end
+  object CLDSSinaisESintomas: TClientDataSet
+    Aggregates = <>
+    ConnectionBroker = DAMOPrincipal.CNBRPrincipal
+    DataSetField = CLDSAvaliadosUNQYSinaisESintomas
+    Params = <>
+    Left = 270
+    Top = 60
+    object CLDSSinaisESintomasin_sinaisesintomas_id: TIntegerField
+      FieldName = 'in_sinaisesintomas_id'
+    end
+    object CLDSSinaisESintomasin_avaliados_id: TIntegerField
+      FieldName = 'in_avaliados_id'
+      Required = True
+    end
+    object CLDSSinaisESintomasbo_dorpeipesmanbra: TBooleanField
+      FieldName = 'bo_dorpeipesmanbra'
+    end
+    object CLDSSinaisESintomasbo_batcarirrrappalrep: TBooleanField
+      FieldName = 'bo_batcarirrrappalrep'
+    end
+    object CLDSSinaisESintomasbo_difresdeison: TBooleanField
+      FieldName = 'bo_difresdeison'
+    end
+    object CLDSSinaisESintomasbo_graperpessemmotcon: TBooleanField
+      FieldName = 'bo_graperpessemmotcon'
+    end
+    object CLDSSinaisESintomasbo_infacofeb: TBooleanField
+      FieldName = 'bo_infacofeb'
+    end
+    object CLDSSinaisESintomasbo_febdesbatcarace: TBooleanField
+      FieldName = 'bo_febdesbatcarace'
+    end
+    object CLDSSinaisESintomasbo_dorpercam: TBooleanField
+      FieldName = 'bo_dorpercam'
+    end
+    object CLDSSinaisESintomasbo_herabdinco: TBooleanField
+      FieldName = 'bo_herabdinco'
+    end
+    object CLDSSinaisESintomasbo_lespestornaosar: TBooleanField
+      FieldName = 'bo_lespestornaosar'
+    end
+    object CLDSSinaisESintomasbo_torinc: TBooleanField
+      FieldName = 'bo_torinc'
+    end
+    object CLDSSinaisESintomasbo_querecdeidifcamdorper: TBooleanField
+      FieldName = 'bo_querecdeidifcamdorper'
+    end
+    object CLDSSinaisESintomasbo_proalgcirolh: TBooleanField
+      FieldName = 'bo_proalgcirolh'
+    end
+    object CLDSSinaisESintomasbo_juninc: TBooleanField
+      FieldName = 'bo_juninc'
+    end
+    object CLDSSinaisESintomasbo_canincfalaratihab: TBooleanField
+      FieldName = 'bo_canincfalaratihab'
+    end
+    object CLDSSinaisESintomasbo_difresrep: TBooleanField
+      FieldName = 'bo_difresrep'
+    end
+    object CLDSSinaisESintomasbo_tondes: TBooleanField
+      FieldName = 'bo_tondes'
+    end
+    object CLDSSinaisESintomasbo_algcirmen90dia: TBooleanField
+      FieldName = 'bo_algcirmen90dia'
+    end
+  end
+  object DTSRSinaisESintomas: TDataSource
+    DataSet = CLDSSinaisESintomas
+    Left = 270
     Top = 108
   end
 end

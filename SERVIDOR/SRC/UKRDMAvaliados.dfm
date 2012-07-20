@@ -1,7 +1,7 @@
 inherited KRDMAvaliados: TKRDMAvaliados
   OldCreateOrder = True
   Height = 201
-  Width = 262
+  Width = 420
   object UNQYAvaliados: TUniQuery
     SQLInsert.Strings = (
       'SELECT IDU_AVALIADOS('#39'I'#39
@@ -1036,5 +1036,144 @@ inherited KRDMAvaliados: TKRDMAvaliados
     DataSet = UNQYAvaliados
     Left = 30
     Top = 150
+  end
+  object UNQYSinaisESintomas: TUniQuery
+    SQLInsert.Strings = (
+      'SELECT IDU_SINAISESINTOMAS('#39'I'#39
+      '                          ,NULL'
+      '                          ,:IN_AVALIADOS_ID'
+      '                          ,:BO_DORPEIPESMANBRA'
+      '                          ,:BO_BATCARIRRRAPPALREP'
+      '                          ,:BO_DIFRESDEISON'
+      '                          ,:BO_GRAPERPESSEMMOTCON'
+      '                          ,:BO_INFACOFEB'
+      '                          ,:BO_FEBDESBATCARACE'
+      '                          ,:BO_DORPERCAM'
+      '                          ,:BO_HERABDINCO'
+      '                          ,:BO_LESPESTORNAOSAR'
+      '                          ,:BO_TORINC'
+      '                          ,:BO_QUERECDEIDIFCAMDORPER'
+      '                          ,:BO_PROALGCIROLH'
+      '                          ,:BO_JUNINC'
+      '                          ,:BO_CANINCFALARATIHAB'
+      '                          ,:BO_DIFRESREP'
+      '                          ,:BO_TONDES'
+      '                          ,:BO_ALGCIRMEN90DIA);')
+    SQLDelete.Strings = (
+      'SELECT IDU_SINAISESINTOMAS('#39'D'#39
+      '                          ,:IN_SINAISESINTOMAS_ID);')
+    SQLUpdate.Strings = (
+      'SELECT IDU_SINAISESINTOMAS('#39'U'#39
+      '                          ,:IN_SINAISESINTOMAS_ID'
+      '                          ,:IN_AVALIADOS_ID'
+      '                          ,:BO_DORPEIPESMANBRA'
+      '                          ,:BO_BATCARIRRRAPPALREP'
+      '                          ,:BO_DIFRESDEISON'
+      '                          ,:BO_GRAPERPESSEMMOTCON'
+      '                          ,:BO_INFACOFEB'
+      '                          ,:BO_FEBDESBATCARACE'
+      '                          ,:BO_DORPERCAM'
+      '                          ,:BO_HERABDINCO'
+      '                          ,:BO_LESPESTORNAOSAR'
+      '                          ,:BO_TORINC'
+      '                          ,:BO_QUERECDEIDIFCAMDORPER'
+      '                          ,:BO_PROALGCIROLH'
+      '                          ,:BO_JUNINC'
+      '                          ,:BO_CANINCFALARATIHAB'
+      '                          ,:BO_DIFRESREP'
+      '                          ,:BO_TONDES'
+      '                          ,:BO_ALGCIRMEN90DIA);')
+    Connection = SODMPrincipal.UNCN
+    SQL.Strings = (
+      'SELECT SES.* '
+      '  FROM SINAISESINTOMAS SES')
+    MasterSource = DTSRAvaliados
+    MasterFields = 'in_avaliados_id'
+    DetailFields = 'in_avaliados_id'
+    Left = 282
+    Top = 54
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'in_avaliados_id'
+        ParamType = ptInput
+      end>
+    object UNQYSinaisESintomasin_sinaisesintomas_id: TIntegerField
+      FieldName = 'in_sinaisesintomas_id'
+      ProviderFlags = [pfInUpdate, pfInKey]
+    end
+    object UNQYSinaisESintomasin_avaliados_id: TIntegerField
+      FieldName = 'in_avaliados_id'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYSinaisESintomasbo_dorpeipesmanbra: TBooleanField
+      FieldName = 'bo_dorpeipesmanbra'
+      ProviderFlags = [pfInUpdate]
+    end
+    object UNQYSinaisESintomasbo_batcarirrrappalrep: TBooleanField
+      FieldName = 'bo_batcarirrrappalrep'
+      ProviderFlags = [pfInUpdate]
+    end
+    object UNQYSinaisESintomasbo_difresdeison: TBooleanField
+      FieldName = 'bo_difresdeison'
+      ProviderFlags = [pfInUpdate]
+    end
+    object UNQYSinaisESintomasbo_graperpessemmotcon: TBooleanField
+      FieldName = 'bo_graperpessemmotcon'
+      ProviderFlags = [pfInUpdate]
+    end
+    object UNQYSinaisESintomasbo_infacofeb: TBooleanField
+      FieldName = 'bo_infacofeb'
+      ProviderFlags = [pfInUpdate]
+    end
+    object UNQYSinaisESintomasbo_febdesbatcarace: TBooleanField
+      FieldName = 'bo_febdesbatcarace'
+      ProviderFlags = [pfInUpdate]
+    end
+    object UNQYSinaisESintomasbo_dorpercam: TBooleanField
+      FieldName = 'bo_dorpercam'
+      ProviderFlags = [pfInUpdate]
+    end
+    object UNQYSinaisESintomasbo_herabdinco: TBooleanField
+      FieldName = 'bo_herabdinco'
+      ProviderFlags = [pfInUpdate]
+    end
+    object UNQYSinaisESintomasbo_lespestornaosar: TBooleanField
+      FieldName = 'bo_lespestornaosar'
+      ProviderFlags = [pfInUpdate]
+    end
+    object UNQYSinaisESintomasbo_torinc: TBooleanField
+      FieldName = 'bo_torinc'
+      ProviderFlags = [pfInUpdate]
+    end
+    object UNQYSinaisESintomasbo_querecdeidifcamdorper: TBooleanField
+      FieldName = 'bo_querecdeidifcamdorper'
+      ProviderFlags = [pfInUpdate]
+    end
+    object UNQYSinaisESintomasbo_proalgcirolh: TBooleanField
+      FieldName = 'bo_proalgcirolh'
+      ProviderFlags = [pfInUpdate]
+    end
+    object UNQYSinaisESintomasbo_juninc: TBooleanField
+      FieldName = 'bo_juninc'
+      ProviderFlags = [pfInUpdate]
+    end
+    object UNQYSinaisESintomasbo_canincfalaratihab: TBooleanField
+      FieldName = 'bo_canincfalaratihab'
+      ProviderFlags = [pfInUpdate]
+    end
+    object UNQYSinaisESintomasbo_difresrep: TBooleanField
+      FieldName = 'bo_difresrep'
+      ProviderFlags = [pfInUpdate]
+    end
+    object UNQYSinaisESintomasbo_tondes: TBooleanField
+      FieldName = 'bo_tondes'
+      ProviderFlags = [pfInUpdate]
+    end
+    object UNQYSinaisESintomasbo_algcirmen90dia: TBooleanField
+      FieldName = 'bo_algcirmen90dia'
+      ProviderFlags = [pfInUpdate]
+    end
   end
 end
