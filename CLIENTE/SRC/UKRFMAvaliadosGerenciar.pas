@@ -119,6 +119,17 @@ type
     DBCBDifResRep: TDBCheckBox;
     DBCBTonDes: TDBCheckBox;
     DBCBAlgCirMen90Dia: TDBCheckBox;
+    KRDGParametrosFisiologicos: TKRKDBGrid;
+    DBNAParametrosFisiologicos2: TDBNavigator;
+    Label1: TLabel;
+    DBEdit1: TDBEdit;
+    DBCheckBox1: TDBCheckBox;
+    Label2: TLabel;
+    DBEdit2: TDBEdit;
+    Label3: TLabel;
+    DBEdit3: TDBEdit;
+    GRBXPulso: TGroupBox;
+    GRBXPressaoArterial: TGroupBox;
     procedure DBRGChefeDaFamiliaChange(Sender: TObject);
     procedure KRLECodigoKeyPress(Sender: TObject; var Key: Char);
     procedure KRLEIdentidadeKeyPress(Sender: TObject; var Key: Char);

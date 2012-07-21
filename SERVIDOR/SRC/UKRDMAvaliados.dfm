@@ -1,7 +1,7 @@
 inherited KRDMAvaliados: TKRDMAvaliados
   OldCreateOrder = True
-  Height = 201
-  Width = 420
+  Height = 304
+  Width = 243
   object UNQYAvaliados: TUniQuery
     SQLInsert.Strings = (
       'SELECT IDU_AVALIADOS('#39'I'#39
@@ -679,7 +679,7 @@ inherited KRDMAvaliados: TKRDMAvaliados
     SpecificOptions.Strings = (
       'PostgreSQL.FetchAll=False'
       'PostgreSQL.UseParamTypes=True')
-    Left = 150
+    Left = 144
     Top = 54
     ParamData = <
       item
@@ -1029,7 +1029,7 @@ inherited KRDMAvaliados: TKRDMAvaliados
         FieldDescription = 'profissao'
         CheckTextSet.FocusOnValidateFailure = False
       end>
-    Left = 150
+    Left = 144
     Top = 102
   end
   object DTSRAvaliados: TDataSource
@@ -1090,8 +1090,8 @@ inherited KRDMAvaliados: TKRDMAvaliados
     MasterSource = DTSRAvaliados
     MasterFields = 'in_avaliados_id'
     DetailFields = 'in_avaliados_id'
-    Left = 282
-    Top = 54
+    Left = 144
+    Top = 150
     ParamData = <
       item
         DataType = ftInteger
@@ -1175,5 +1175,130 @@ inherited KRDMAvaliados: TKRDMAvaliados
       FieldName = 'bo_algcirmen90dia'
       ProviderFlags = [pfInUpdate]
     end
+  end
+  object UNQYParametrosFisiologicos: TUniQuery
+    SQLInsert.Strings = (
+      'SELECT IDU_PARAMETROSFISIOLOGICOS('#39'I'#39
+      '                                 ,NULL'
+      '                                 ,:IN_AVALIADOS_ID'
+      '                                 ,:TS_MOMAFE'
+      '                                 ,:SM_FREPUL'
+      '                                 ,:BO_PULRIT'
+      '                                 ,:SM_PRESIS'
+      '                                 ,:SM_PREDIA)')
+    SQLDelete.Strings = (
+      'SELECT IDU_PARAMETROSFISIOLOGICOS('#39'D'#39
+      '                                 ,:IN_PARAMETROSFISIOLOGICOS_ID)')
+    SQLUpdate.Strings = (
+      'SELECT IDU_PARAMETROSFISIOLOGICOS('#39'U'#39
+      '                                 ,:IN_PARAMETROSFISIOLOGICOS_ID'
+      '                                 ,:IN_AVALIADOS_ID'
+      '                                 ,:TS_MOMAFE'
+      '                                 ,:SM_FREPUL'
+      '                                 ,:BO_PULRIT'
+      '                                 ,:SM_PRESIS'
+      '                                 ,:SM_PREDIA)')
+    Connection = SODMPrincipal.UNCN
+    SQL.Strings = (
+      'SELECT PAF.*'
+      '  FROM PARAMETROSFISIOLOGICOS PAF')
+    MasterSource = DTSRAvaliados
+    MasterFields = 'in_avaliados_id'
+    DetailFields = 'in_avaliados_id'
+    Left = 144
+    Top = 198
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'in_avaliados_id'
+        ParamType = ptInput
+      end>
+    object UNQYParametrosFisiologicosin_parametrosfisiologicos_id: TIntegerField
+      DisplayLabel = 'ID'
+      FieldName = 'in_parametrosfisiologicos_id'
+      ProviderFlags = [pfInUpdate, pfInKey]
+    end
+    object UNQYParametrosFisiologicosin_avaliados_id: TIntegerField
+      DisplayLabel = 'ID do avaliado'
+      FieldName = 'in_avaliados_id'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParametrosFisiologicosts_momafe: TDateTimeField
+      DisplayLabel = 'Data e hora da aferi'#231#227'o'
+      FieldName = 'ts_momafe'
+      ProviderFlags = [pfInUpdate]
+    end
+    object UNQYParametrosFisiologicossm_frepul: TSmallintField
+      DisplayLabel = 'Frequ'#234'ncia do pulso (bpm)'
+      FieldName = 'sm_frepul'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParametrosFisiologicosbo_pulrit: TBooleanField
+      DisplayLabel = 'Ritmo'
+      FieldName = 'bo_pulrit'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParametrosFisiologicossm_presis: TSmallintField
+      DisplayLabel = 'Press'#227'o sist'#243'lica (mmHg)'
+      FieldName = 'sm_presis'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParametrosFisiologicossm_predia: TSmallintField
+      DisplayLabel = 'Press'#227'o diast'#243'lica (mmHg)'
+      FieldName = 'sm_predia'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+  end
+  object KRVCParametrosFisiologicos: TKRKValidationChecks
+    DataSet = UNQYParametrosFisiologicos
+    TableName = 'PARAMETROSFISIOLOGICOS'
+    CheckableFields = <
+      item
+        FieldName = 'in_parametrosfisiologicos_id'
+        FieldDescription = 'ID'
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'in_avaliados_id'
+        FieldDescription = 'ID do avaliado'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'ts_momafe'
+        FieldDescription = 'Data e hora da aferi'#231#227'o'
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'sm_frepul'
+        FieldDescription = 'Frequ'#234'ncia do pulso (bpm)'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pulrit'
+        FieldDescription = 'Ritmo'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'sm_presis'
+        FieldDescription = 'Press'#227'o sist'#243'lica (mmHg)'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'sm_predia'
+        FieldDescription = 'Press'#227'o diast'#243'lica (mmHg)'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end>
+    Left = 144
+    Top = 246
   end
 end

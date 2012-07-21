@@ -2,8 +2,8 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
   OldCreateOrder = True
   Properties.OpenAllDataSets = True
   MyFormClass = 'TKRFMAvaliadosGerenciar'
-  Height = 162
-  Width = 416
+  Height = 358
+  Width = 246
   inherited ACLI: TActionList
     object ACTNSelecionarCBO: TAction
       Caption = '...'
@@ -257,6 +257,10 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
       FieldName = 'UNQYSinaisESintomas'
       ProviderFlags = []
     end
+    object CLDSAvaliadosUNQYParametrosFisiologicos: TDataSetField
+      FieldName = 'UNQYParametrosFisiologicos'
+      ProviderFlags = []
+    end
     object CLDSAvaliadosfoneresidencial: TStringField
       Alignment = taCenter
       DisplayLabel = 'Telefone residencial'
@@ -422,74 +426,155 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
     Top = 108
   end
   object CLDSSinaisESintomas: TClientDataSet
+    Active = True
     Aggregates = <>
     ConnectionBroker = DAMOPrincipal.CNBRPrincipal
     DataSetField = CLDSAvaliadosUNQYSinaisESintomas
     Params = <>
-    Left = 270
-    Top = 60
+    Left = 144
+    Top = 156
     object CLDSSinaisESintomasin_sinaisesintomas_id: TIntegerField
       FieldName = 'in_sinaisesintomas_id'
+      ProviderFlags = [pfInUpdate, pfInKey]
     end
     object CLDSSinaisESintomasin_avaliados_id: TIntegerField
       FieldName = 'in_avaliados_id'
+      ProviderFlags = [pfInUpdate]
       Required = True
     end
     object CLDSSinaisESintomasbo_dorpeipesmanbra: TBooleanField
+      DefaultExpression = #39'False'#39
       FieldName = 'bo_dorpeipesmanbra'
+      ProviderFlags = [pfInUpdate]
     end
     object CLDSSinaisESintomasbo_batcarirrrappalrep: TBooleanField
+      DefaultExpression = #39'False'#39
       FieldName = 'bo_batcarirrrappalrep'
+      ProviderFlags = [pfInUpdate]
     end
     object CLDSSinaisESintomasbo_difresdeison: TBooleanField
+      DefaultExpression = #39'False'#39
       FieldName = 'bo_difresdeison'
+      ProviderFlags = [pfInUpdate]
     end
     object CLDSSinaisESintomasbo_graperpessemmotcon: TBooleanField
+      DefaultExpression = #39'False'#39
       FieldName = 'bo_graperpessemmotcon'
+      ProviderFlags = [pfInUpdate]
     end
     object CLDSSinaisESintomasbo_infacofeb: TBooleanField
+      DefaultExpression = #39'False'#39
       FieldName = 'bo_infacofeb'
+      ProviderFlags = [pfInUpdate]
     end
     object CLDSSinaisESintomasbo_febdesbatcarace: TBooleanField
+      DefaultExpression = #39'False'#39
       FieldName = 'bo_febdesbatcarace'
+      ProviderFlags = [pfInUpdate]
     end
     object CLDSSinaisESintomasbo_dorpercam: TBooleanField
+      DefaultExpression = #39'False'#39
       FieldName = 'bo_dorpercam'
+      ProviderFlags = [pfInUpdate]
     end
     object CLDSSinaisESintomasbo_herabdinco: TBooleanField
+      DefaultExpression = #39'False'#39
       FieldName = 'bo_herabdinco'
+      ProviderFlags = [pfInUpdate]
     end
     object CLDSSinaisESintomasbo_lespestornaosar: TBooleanField
+      DefaultExpression = #39'False'#39
       FieldName = 'bo_lespestornaosar'
+      ProviderFlags = [pfInUpdate]
     end
     object CLDSSinaisESintomasbo_torinc: TBooleanField
+      DefaultExpression = #39'False'#39
       FieldName = 'bo_torinc'
+      ProviderFlags = [pfInUpdate]
     end
     object CLDSSinaisESintomasbo_querecdeidifcamdorper: TBooleanField
+      DefaultExpression = #39'False'#39
       FieldName = 'bo_querecdeidifcamdorper'
+      ProviderFlags = [pfInUpdate]
     end
     object CLDSSinaisESintomasbo_proalgcirolh: TBooleanField
+      DefaultExpression = #39'False'#39
       FieldName = 'bo_proalgcirolh'
+      ProviderFlags = [pfInUpdate]
     end
     object CLDSSinaisESintomasbo_juninc: TBooleanField
+      DefaultExpression = #39'False'#39
       FieldName = 'bo_juninc'
+      ProviderFlags = [pfInUpdate]
     end
     object CLDSSinaisESintomasbo_canincfalaratihab: TBooleanField
+      DefaultExpression = #39'False'#39
       FieldName = 'bo_canincfalaratihab'
+      ProviderFlags = [pfInUpdate]
     end
     object CLDSSinaisESintomasbo_difresrep: TBooleanField
+      DefaultExpression = #39'False'#39
       FieldName = 'bo_difresrep'
+      ProviderFlags = [pfInUpdate]
     end
     object CLDSSinaisESintomasbo_tondes: TBooleanField
+      DefaultExpression = #39'False'#39
       FieldName = 'bo_tondes'
+      ProviderFlags = [pfInUpdate]
     end
     object CLDSSinaisESintomasbo_algcirmen90dia: TBooleanField
+      DefaultExpression = #39'False'#39
       FieldName = 'bo_algcirmen90dia'
+      ProviderFlags = [pfInUpdate]
     end
   end
   object DTSRSinaisESintomas: TDataSource
     DataSet = CLDSSinaisESintomas
-    Left = 270
-    Top = 108
+    Left = 144
+    Top = 204
+  end
+  object CLDSParametrosFisiologicos: TClientDataSet
+    Aggregates = <>
+    ConnectionBroker = DAMOPrincipal.CNBRPrincipal
+    DataSetField = CLDSAvaliadosUNQYParametrosFisiologicos
+    Params = <>
+    Left = 144
+    Top = 252
+    object CLDSParametrosFisiologicosin_parametrosfisiologicos_id: TIntegerField
+      FieldName = 'in_parametrosfisiologicos_id'
+    end
+    object CLDSParametrosFisiologicosin_avaliados_id: TIntegerField
+      FieldName = 'in_avaliados_id'
+      Required = True
+    end
+    object CLDSParametrosFisiologicosts_momafe: TDateTimeField
+      Alignment = taCenter
+      FieldName = 'ts_momafe'
+    end
+    object CLDSParametrosFisiologicossm_frepul: TSmallintField
+      Alignment = taCenter
+      FieldName = 'sm_frepul'
+      Required = True
+    end
+    object CLDSParametrosFisiologicosbo_pulrit: TBooleanField
+      Alignment = taCenter
+      FieldName = 'bo_pulrit'
+      Required = True
+    end
+    object CLDSParametrosFisiologicossm_presis: TSmallintField
+      Alignment = taCenter
+      FieldName = 'sm_presis'
+      Required = True
+    end
+    object CLDSParametrosFisiologicossm_predia: TSmallintField
+      Alignment = taCenter
+      FieldName = 'sm_predia'
+      Required = True
+    end
+  end
+  object DTSRParametrosFisiologicos: TDataSource
+    DataSet = CLDSParametrosFisiologicos
+    Left = 144
+    Top = 300
   end
 end

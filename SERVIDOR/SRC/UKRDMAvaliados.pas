@@ -71,6 +71,15 @@ type
     UNQYSinaisESintomasbo_difresrep: TBooleanField;
     UNQYSinaisESintomasbo_tondes: TBooleanField;
     UNQYSinaisESintomasbo_algcirmen90dia: TBooleanField;
+    UNQYParametrosFisiologicos: TUniQuery;
+    KRVCParametrosFisiologicos: TKRKValidationChecks;
+    UNQYParametrosFisiologicosin_parametrosfisiologicos_id: TIntegerField;
+    UNQYParametrosFisiologicosin_avaliados_id: TIntegerField;
+    UNQYParametrosFisiologicosts_momafe: TDateTimeField;
+    UNQYParametrosFisiologicossm_frepul: TSmallintField;
+    UNQYParametrosFisiologicosbo_pulrit: TBooleanField;
+    UNQYParametrosFisiologicossm_presis: TSmallintField;
+    UNQYParametrosFisiologicossm_predia: TSmallintField;
   private
     { Private declarations }
   public

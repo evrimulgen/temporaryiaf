@@ -1,28 +1,30 @@
 inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
   Caption = 'Gerenciar Avaliados'
-  ClientHeight = 476
+  ClientHeight = 474
   ClientWidth = 622
   ExplicitWidth = 638
-  ExplicitHeight = 514
+  ExplicitHeight = 512
   PixelsPerInch = 96
   TextHeight = 13
   object PGCTAvaliados: TPageControl [0]
     Left = 0
     Top = 40
     Width = 622
-    Height = 436
-    ActivePage = TBSHSinaisESintomas
+    Height = 434
+    ActivePage = TBSHParametrosFisiologicos
     Align = alClient
     TabOrder = 2
+    ExplicitHeight = 436
     object TBSHConsultar: TTabSheet
       AlignWithMargins = True
       Caption = 'Consultar'
+      ExplicitHeight = 402
       object KRDGAvaliados: TKRKDBGrid
         AlignWithMargins = True
         Left = 0
         Top = 179
         Width = 608
-        Height = 173
+        Height = 171
         Margins.Left = 0
         Margins.Right = 0
         Margins.Bottom = 0
@@ -94,7 +96,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       end
       object GRBXFiltroAvaliados: TGroupBox
         Left = 0
-        Top = 352
+        Top = 350
         Width = 608
         Height = 50
         Align = alBottom
@@ -106,6 +108,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         Font.Style = []
         ParentFont = False
         TabOrder = 2
+        ExplicitTop = 352
         object LABLFiltroAvaliados: TLabel
           AlignWithMargins = True
           Left = 8
@@ -317,18 +320,20 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       AlignWithMargins = True
       Caption = 'Gerenciar'
       ImageIndex = 1
+      ExplicitHeight = 402
       DesignSize = (
         608
-        402)
+        400)
       object DBNAGerenciarAvaliados: TDBNavigator
         Left = 0
-        Top = 377
+        Top = 375
         Width = 608
         Height = 25
         DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
         VisibleButtons = [nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh]
         Align = alBottom
         TabOrder = 5
+        ExplicitTop = 377
       end
       object GRBXContato: TGroupBox
         Left = 289
@@ -804,7 +809,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       object GRBXObservacoes: TGroupBox
         AlignWithMargins = True
         Left = 0
-        Top = 199
+        Top = 197
         Width = 608
         Height = 175
         Margins.Left = 0
@@ -813,6 +818,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         Align = alBottom
         Caption = ' Observa'#231#245'es '
         TabOrder = 4
+        ExplicitTop = 199
         object DBMOObservacoes: TDBMemo
           AlignWithMargins = True
           Left = 6
@@ -834,11 +840,12 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       AlignWithMargins = True
       Caption = 'Dados s'#243'cio-demogr'#225'ficos'
       ImageIndex = 2
+      ExplicitHeight = 402
       object SCBXDadosSocioDemograficos: TScrollBox
         Left = 0
         Top = 60
         Width = 608
-        Height = 342
+        Height = 340
         Align = alClient
         BevelInner = bvNone
         BevelOuter = bvNone
@@ -847,6 +854,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         TabOrder = 0
         OnMouseWheelDown = SCBXDadosSocioDemograficosMouseWheelDown
         OnMouseWheelUp = SCBXDadosSocioDemograficosMouseWheelUp
+        ExplicitHeight = 342
         object DBRGCorRaca: TDBRadioGroup
           AlignWithMargins = True
           Left = 6
@@ -1417,6 +1425,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       AlignWithMargins = True
       Caption = 'Checagem de sinais e sintomas'
       ImageIndex = 3
+      ExplicitHeight = 402
       object KRPAAvaliado2: TKRKPanel
         AlignWithMargins = True
         Left = 0
@@ -1469,7 +1478,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         Left = 0
         Top = 60
         Width = 608
-        Height = 342
+        Height = 340
         Align = alClient
         BevelInner = bvNone
         BevelOuter = bvNone
@@ -1478,6 +1487,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         TabOrder = 2
         OnMouseWheelDown = SCBXDadosSocioDemograficosMouseWheelDown
         OnMouseWheelUp = SCBXDadosSocioDemograficosMouseWheelUp
+        ExplicitHeight = 342
         object Panel2: TPanel
           Left = 0
           Top = 384
@@ -1528,7 +1538,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Margins.Right = 6
           Margins.Bottom = 0
           Align = alTop
-          AllowGrayed = True
           Caption = 
             'Dor ou desconforto no peito, pesco'#231'o, mand'#237'bula, bra'#231'o(s) ou '#225're' +
             'a pr'#243'xima'
@@ -1548,7 +1557,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Margins.Right = 6
           Margins.Bottom = 0
           Align = alTop
-          AllowGrayed = True
           Caption = 
             'Batimentos card'#237'acos irregulares e r'#225'pidos ou palpita'#231#245'es em rep' +
             'ouso'
@@ -1568,7 +1576,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Margins.Right = 6
           Margins.Bottom = 0
           Align = alTop
-          AllowGrayed = True
           Caption = 'Dificuldade na respira'#231#227'o quando se deita ou durante o sono'
           DataField = 'bo_difresdeison'
           DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
@@ -1586,7 +1593,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Margins.Right = 6
           Margins.Bottom = 0
           Align = alTop
-          AllowGrayed = True
           Caption = 'Grande perda de peso sem motivo conhecido'
           DataField = 'bo_graperpessemmotcon'
           DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
@@ -1604,7 +1610,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Margins.Right = 6
           Margins.Bottom = 0
           Align = alTop
-          AllowGrayed = True
           Caption = 'Infec'#231#227'o acompanhada de febre'
           DataField = 'bo_infacofeb'
           DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
@@ -1622,7 +1627,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Margins.Right = 6
           Margins.Bottom = 0
           Align = alTop
-          AllowGrayed = True
           Caption = 'Febre com desidrata'#231#227'o e batimentos card'#237'acos acelerados'
           DataField = 'bo_febdesbatcarace'
           DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
@@ -1640,7 +1644,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Margins.Right = 6
           Margins.Bottom = 0
           Align = alTop
-          AllowGrayed = True
           Caption = 'Dor na perna ao caminhar'
           DataField = 'bo_dorpercam'
           DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
@@ -1658,7 +1661,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Margins.Right = 6
           Margins.Bottom = 0
           Align = alTop
-          AllowGrayed = True
           Caption = 'H'#233'rnia abdominal incomodando'
           DataField = 'bo_herabdinco'
           DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
@@ -1676,7 +1678,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Margins.Right = 6
           Margins.Bottom = 0
           Align = alTop
-          AllowGrayed = True
           Caption = 'Les'#245'es nos p'#233's ou tornozelos que n'#227'o saram'
           DataField = 'bo_lespestornaosar'
           DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
@@ -1694,7 +1695,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Margins.Right = 6
           Margins.Bottom = 0
           Align = alTop
-          AllowGrayed = True
           Caption = 'Tornozelos inchados'
           DataField = 'bo_torinc'
           DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
@@ -1712,7 +1712,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Margins.Right = 6
           Margins.Bottom = 0
           Align = alTop
-          AllowGrayed = True
           Caption = 
             'Queda recente deixando dificuldade para caminhar e dor persisten' +
             'te'
@@ -1732,7 +1731,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Margins.Right = 6
           Margins.Bottom = 0
           Align = alTop
-          AllowGrayed = True
           Caption = 'Problemas ou alguma cirurgia nos olhos'
           DataField = 'bo_proalgcirolh'
           DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
@@ -1750,7 +1748,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Margins.Right = 6
           Margins.Bottom = 0
           Align = alTop
-          AllowGrayed = True
           Caption = 'Juntas inchadas'
           DataField = 'bo_juninc'
           DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
@@ -1768,7 +1765,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Margins.Right = 6
           Margins.Bottom = 0
           Align = alTop
-          AllowGrayed = True
           Caption = 'Cansa'#231'o incomum ou falta de ar em atividades habituais'
           DataField = 'bo_canincfalaratihab'
           DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
@@ -1786,7 +1782,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Margins.Right = 6
           Margins.Bottom = 0
           Align = alTop
-          AllowGrayed = True
           Caption = 'Dificuldade na respira'#231#227'o em repouso'
           DataField = 'bo_difresrep'
           DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
@@ -1804,7 +1799,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Margins.Right = 6
           Margins.Bottom = 0
           Align = alTop
-          AllowGrayed = True
           Caption = 'Tontura ou desmaio'
           DataField = 'bo_tondes'
           DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
@@ -1822,7 +1816,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Margins.Right = 6
           Margins.Bottom = 0
           Align = alTop
-          AllowGrayed = True
           Caption = 'Alguma cirurgia a menos de 90 dias'
           DataField = 'bo_algcirmen90dia'
           DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
@@ -1836,6 +1829,31 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       AlignWithMargins = True
       Caption = 'Par'#226'metros fisiol'#243'gicos'
       ImageIndex = 4
+      ExplicitHeight = 402
+      object Label1: TLabel
+        Left = 194
+        Top = 294
+        Width = 47
+        Height = 13
+        Caption = 'sm_frepul'
+        FocusControl = DBEdit1
+      end
+      object Label2: TLabel
+        Left = 334
+        Top = 300
+        Width = 47
+        Height = 13
+        Caption = 'sm_presis'
+        FocusControl = DBEdit2
+      end
+      object Label3: TLabel
+        Left = 334
+        Top = 327
+        Width = 49
+        Height = 13
+        Caption = 'sm_predia'
+        FocusControl = DBEdit3
+      end
       object KRPAAvaliado3: TKRKPanel
         AlignWithMargins = True
         Left = 0
@@ -1884,11 +1902,145 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         Align = alTop
         TabOrder = 1
       end
+      object KRDGParametrosFisiologicos: TKRKDBGrid
+        AlignWithMargins = True
+        Left = 0
+        Top = 61
+        Width = 608
+        Height = 201
+        Margins.Left = 0
+        Margins.Top = 1
+        Margins.Right = 0
+        Align = alTop
+        DataSource = KRDMAvaliadosGerenciar.DTSRParametrosFisiologicos
+        Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
+        OptionsEx = [dgAutomaticColumSizes]
+        ReadOnly = True
+        TabOrder = 2
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+        RowColors = <
+          item
+            BackgroundColor = clBtnFace
+            ForegroundColor = clNone
+          end>
+        VariableWidthColumns = '<ts_momafe><sm_frepul><bo_pulrit><sm_presis><sm_predia>'
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'ts_momafe'
+            Title.Alignment = taCenter
+            Width = 113
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'sm_frepul'
+            Title.Alignment = taCenter
+            Width = 113
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'bo_pulrit'
+            Title.Alignment = taCenter
+            Width = 113
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'sm_presis'
+            Title.Alignment = taCenter
+            Width = 113
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'sm_predia'
+            Title.Alignment = taCenter
+            Width = 112
+            Visible = True
+          end>
+      end
+      object DBNAParametrosFisiologicos2: TDBNavigator
+        AlignWithMargins = True
+        Left = 0
+        Top = 268
+        Width = 608
+        Height = 25
+        Margins.Left = 0
+        Margins.Right = 0
+        VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbPost, nbCancel, nbRefresh]
+        Align = alTop
+        TabOrder = 3
+        ExplicitLeft = 330
+        ExplicitTop = 246
+        ExplicitWidth = 232
+      end
+      object DBEdit1: TDBEdit
+        Left = 194
+        Top = 312
+        Width = 134
+        Height = 21
+        DataField = 'sm_frepul'
+        DataSource = KRDMAvaliadosGerenciar.DTSRParametrosFisiologicos
+        TabOrder = 4
+      end
+      object DBCheckBox1: TDBCheckBox
+        Left = 194
+        Top = 339
+        Width = 97
+        Height = 17
+        Caption = 'bo_pulrit'
+        DataField = 'bo_pulrit'
+        DataSource = KRDMAvaliadosGerenciar.DTSRParametrosFisiologicos
+        TabOrder = 5
+        ValueChecked = 'True'
+        ValueUnchecked = 'False'
+      end
+      object DBEdit2: TDBEdit
+        Left = 334
+        Top = 312
+        Width = 134
+        Height = 21
+        DataField = 'sm_presis'
+        DataSource = KRDMAvaliadosGerenciar.DTSRParametrosFisiologicos
+        TabOrder = 6
+      end
+      object DBEdit3: TDBEdit
+        Left = 334
+        Top = 339
+        Width = 134
+        Height = 21
+        DataField = 'sm_predia'
+        DataSource = KRDMAvaliadosGerenciar.DTSRParametrosFisiologicos
+        TabOrder = 7
+      end
+      object GRBXPulso: TGroupBox
+        Left = 3
+        Top = 299
+        Width = 185
+        Height = 105
+        Caption = ' Pulso '
+        TabOrder = 8
+      end
+      object GRBXPressaoArterial: TGroupBox
+        Left = 194
+        Top = 362
+        Width = 185
+        Height = 49
+        Caption = ' Press'#227'o arterial'
+        TabOrder = 9
+      end
     end
     object TBSHParQ: TTabSheet
       AlignWithMargins = True
       Caption = 'PAR-Q+'
       ImageIndex = 5
+      ExplicitHeight = 402
       object KRPAAvaliado4: TKRKPanel
         AlignWithMargins = True
         Left = 0
@@ -1944,12 +2096,11 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
     ExplicitWidth = 622
     inherited LABLCaption: TLabel
       Height = 38
-      ExplicitHeight = 38
     end
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C010102000800440120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800500120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2486,7 +2637,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C010102000800540120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800600120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

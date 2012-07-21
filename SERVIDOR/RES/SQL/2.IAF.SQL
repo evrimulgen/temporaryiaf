@@ -269,6 +269,34 @@ COMMENT ON COLUMN SINAISESINTOMAS.BO_TONDES IS 'ALGUMA CIRURGIA A MENOS DE 90 DI
 ALTER SEQUENCE SQ_SES_IN_SINAISESINTOMAS_ID 
       OWNED BY SINAISESINTOMAS.IN_SINAISESINTOMAS_ID;
 ---------------------------------------------------------------
+CREATE SEQUENCE SQ_PAF_IN_PARAMETROSFISIOLOGICOS_ID
+      INCREMENT 1
+       MINVALUE 1
+       MAXVALUE 2147483647
+          START 1
+          CACHE 1;
+          
+CREATE TABLE PARAMETROSFISIOLOGICOS (IN_PARAMETROSFISIOLOGICOS_ID INTEGER NOT NULL DEFAULT NEXTVAL('SQ_PAF_IN_PARAMETROSFISIOLOGICOS_ID')
+                                    ,IN_AVALIADOS_ID INTEGER NOT NULL
+                                    ,TS_MOMAFE TIMESTAMP NOT NULL DEFAULT LOCALTIMESTAMP
+                                    ,SM_FREPUL SMALLINT NOT NULL
+                                    ,BO_PULRIT BOOLEAN NOT NULL
+                                    ,SM_PRESIS SMALLINT NOT NULL
+                                    ,SM_PREDIA SMALLINT NOT NULL
+                                    ,CONSTRAINT PK_PAF PRIMARY KEY (IN_PARAMETROSFISIOLOGICOS_ID)
+                                    ,CONSTRAINT FK_PAF_AVA FOREIGN KEY (IN_AVALIADOS_ID) REFERENCES AVALIADOS (IN_AVALIADOS_ID) ON UPDATE CASCADE ON DELETE CASCADE);
+
+COMMENT ON TABLE PARAMETROSFISIOLOGICOS IS 'PARÂMETROS FISIOLÓGICOS DOS AVALIADOS';
+COMMENT ON COLUMN PARAMETROSFISIOLOGICOS.IN_AVALIADOS_ID IS 'ID DO AVALIADO';
+COMMENT ON COLUMN PARAMETROSFISIOLOGICOS.TS_MOMAFE IS 'MOMENTO DA AFERIÇÃO';
+COMMENT ON COLUMN PARAMETROSFISIOLOGICOS.SM_FREPUL IS 'FREQUÊNCIA DO PULSO (BPM)';
+COMMENT ON COLUMN PARAMETROSFISIOLOGICOS.BO_PULRIT IS 'PULSO RÍTMICO (TRUE) OU ARRÍTMICO (FALSE)';
+COMMENT ON COLUMN PARAMETROSFISIOLOGICOS.SM_PRESIS IS 'PRESSÃO SISTÓLICA (mmHg)';
+COMMENT ON COLUMN PARAMETROSFISIOLOGICOS.SM_PREDIA IS 'PRESSÃO DIASTÓLICA (mmHg)';
+
+ALTER SEQUENCE SQ_PAF_IN_PARAMETROSFISIOLOGICOS_ID 
+      OWNED BY PARAMETROSFISIOLOGICOS.IN_PARAMETROSFISIOLOGICOS_ID;
+---------------------------------------------------------------
 ---------------------------------------------------------------
 ---------------------------------------------------------------
 CREATE OR REPLACE FUNCTION IDU_USUARIOS(IN pMODO           CHAR
@@ -294,7 +322,7 @@ BEGIN
                            ,pVA_LOGIN
                            ,sha512('') -- todo novo usuário tem de criar sua própria senha.
                            ,pVA_EMAIL
-                           ,pBO_SUPERUSUARIO);
+                           ,COALESCE(pBO_SUPERUSUARIO,FALSE));
 
     vRETURN := CURRVAL('SQ_USU_SM_USUARIOS_ID');
     ---------------------------------------------------------------------------------------
@@ -384,10 +412,10 @@ BEGIN
                                         ,SM_EXCLUIR)
                                  VALUES (pIN_ENTIDADESDOSISTEMA_ID
                                         ,pSM_USUARIOS_ID
-                                        ,pSM_LER
-                                        ,pSM_INSERIR
-                                        ,pSM_ALTERAR
-                                        ,pSM_EXCLUIR);
+                                        ,COALESCE(pSM_LER,0)
+                                        ,COALESCE(pSM_INSERIR,0)
+                                        ,COALESCE(pSM_ALTERAR,0)
+                                        ,COALESCE(pSM_EXCLUIR,0));
 
     vRETURN := CURRVAL('SQ_PDU_IN_PERMISSOESDOSUSUARIOS_ID');
     ---------------------------------------------------------------------------------------
@@ -439,10 +467,10 @@ BEGIN
                                       ,SM_EXCLUIR)
                                VALUES (pIN_ENTIDADESDOSISTEMA_ID
                                       ,pSM_GRUPOS_ID
-                                      ,pSM_LER
-                                      ,pSM_INSERIR
-                                      ,pSM_ALTERAR
-                                      ,pSM_EXCLUIR);
+                                      ,COALESCE(pSM_LER,0)
+                                      ,COALESCE(pSM_INSERIR,0)
+                                      ,COALESCE(pSM_ALTERAR,0)
+                                      ,COALESCE(pSM_EXCLUIR,0));
 
     vRETURN := CURRVAL('SQ_PDG_IN_PERMISSOESDOSGRUPOS_ID');
     ---------------------------------------------------------------------------------------
@@ -598,7 +626,7 @@ BEGIN
                             ,pEN_UFEMISSAORG
                             ,pEN_TIPOLOGRADOURO
                             ,pVA_NOMELOGRADOURO
-                            ,pVA_IDLOGRADOURO
+                            ,COALESCE(pVA_IDLOGRADOURO,'S/N')
                             ,pVA_COMPLEMENTOLOGRADOURO
                             ,pVA_BAIRROLOGRADOURO
                             ,pVA_CIDADE
@@ -735,16 +763,16 @@ BEGIN
                                          ,pSM_ESTADOCIVIL
                                          ,pSM_GRAUDEINSTRUCAO
                                          ,pIN_CBO_ID
-                                         ,pBO_APOSENTADO
-                                         ,pSM_TELEVISOR
-                                         ,pSM_RADIO
-                                         ,pSM_BANHEIRO
-                                         ,pSM_AUTOMOVEL
-                                         ,pSM_MENSALISTA
-                                         ,pSM_MAQUINALAVAR
-                                         ,pSM_VCRDVD
-                                         ,pSM_GELADEIRA
-                                         ,pSM_FREEZER
+                                         ,COALESCE(pBO_APOSENTADO,FALSE)
+                                         ,COALESCE(pSM_TELEVISOR,0)
+                                         ,COALESCE(pSM_RADIO,0)
+                                         ,COALESCE(pSM_BANHEIRO,0)
+                                         ,COALESCE(pSM_AUTOMOVEL,0)
+                                         ,COALESCE(pSM_MENSALISTA,0)
+                                         ,COALESCE(pSM_MAQUINALAVAR,0)
+                                         ,COALESCE(pSM_VCRDVD,0)
+                                         ,COALESCE(pSM_GELADEIRA,0)
+                                         ,COALESCE(pSM_FREEZER,0)
                                          ,pBO_CHEFEDEFAMILIA
                                          ,pSM_GRAUINSTRCHEFEDEFAMILIA);
 
@@ -832,23 +860,23 @@ BEGIN
                                   ,BO_TONDES
                                   ,BO_ALGCIRMEN90DIA)
                            VALUES (pIN_AVALIADOS_ID
-                                  ,pBO_DORPEIPESMANBRA
-                                  ,pBO_BATCARIRRRAPPALREP
-                                  ,pBO_DIFRESDEISON
-                                  ,pBO_GRAPERPESSEMMOTCON
-                                  ,pBO_INFACOFEB
-                                  ,pBO_FEBDESBATCARACE
-                                  ,pBO_DORPERCAM
-                                  ,pBO_HERABDINCO
-                                  ,pBO_LESPESTORNAOSAR
-                                  ,pBO_TORINC
-                                  ,pBO_QUERECDEIDIFCAMDORPER
-                                  ,pBO_PROALGCIROLH
-                                  ,pBO_JUNINC
-                                  ,pBO_CANINCFALARATIHAB
-                                  ,pBO_DIFRESREP
-                                  ,pBO_TONDES
-                                  ,pBO_ALGCIRMEN90DIA);
+                                  ,COALESCE(pBO_DORPEIPESMANBRA,FALSE)
+                                  ,COALESCE(pBO_BATCARIRRRAPPALREP,FALSE)
+                                  ,COALESCE(pBO_DIFRESDEISON,FALSE)
+                                  ,COALESCE(pBO_GRAPERPESSEMMOTCON,FALSE)
+                                  ,COALESCE(pBO_INFACOFEB,FALSE)
+                                  ,COALESCE(pBO_FEBDESBATCARACE,FALSE)
+                                  ,COALESCE(pBO_DORPERCAM,FALSE)
+                                  ,COALESCE(pBO_HERABDINCO,FALSE)
+                                  ,COALESCE(pBO_LESPESTORNAOSAR,FALSE)
+                                  ,COALESCE(pBO_TORINC,FALSE)
+                                  ,COALESCE(pBO_QUERECDEIDIFCAMDORPER,FALSE)
+                                  ,COALESCE(pBO_PROALGCIROLH,FALSE)
+                                  ,COALESCE(pBO_JUNINC,FALSE)
+                                  ,COALESCE(pBO_CANINCFALARATIHAB,FALSE)
+                                  ,COALESCE(pBO_DIFRESREP,FALSE)
+                                  ,COALESCE(pBO_TONDES,FALSE)
+                                  ,COALESCE(pBO_ALGCIRMEN90DIA,FALSE));
 
       vRETURN := CURRVAL('SQ_SES_IN_SINAISESINTOMAS_ID');
     ---------------------------------------------------------------------------------------
@@ -879,6 +907,61 @@ BEGIN
            , BO_TONDES                = pBO_TONDES
            , BO_ALGCIRMEN90DIA        = pBO_ALGCIRMEN90DIA
        WHERE IN_SINAISESINTOMAS_ID = pIN_SINAISESINTOMAS_ID;
+
+    GET DIAGNOSTICS vRETURN := ROW_COUNT;
+    ---------------------------------------------------------------------------------------
+  END CASE;
+
+  RETURN vRETURN;
+END;
+$BODY$
+LANGUAGE PLPGSQL;
+---------------------------------------------------------------
+CREATE OR REPLACE FUNCTION IDU_PARAMETROSFISIOLOGICOS(IN pMODO                         CHAR
+                                                     ,IN pIN_PARAMETROSFISIOLOGICOS_ID PARAMETROSFISIOLOGICOS.IN_PARAMETROSFISIOLOGICOS_ID%TYPE = NULL
+                                                     ,IN pIN_AVALIADOS_ID              PARAMETROSFISIOLOGICOS.IN_AVALIADOS_ID%TYPE              = NULL
+                                                     ,IN pTS_MOMAFE                    PARAMETROSFISIOLOGICOS.TS_MOMAFE%TYPE                    = NULL
+                                                     ,IN pSM_FREPUL                    PARAMETROSFISIOLOGICOS.SM_FREPUL%TYPE                    = NULL
+                                                     ,IN pBO_PULRIT                    PARAMETROSFISIOLOGICOS.BO_PULRIT%TYPE                    = NULL
+                                                     ,IN pSM_PRESIS                    PARAMETROSFISIOLOGICOS.SM_PRESIS%TYPE                    = NULL
+                                                     ,IN pSM_PREDIA                    PARAMETROSFISIOLOGICOS.SM_PREDIA%TYPE                    = NULL)
+RETURNS BIGINT AS
+$BODY$
+DECLARE
+  vRETURN BIGINT := 0;
+BEGIN
+  CASE pMODO
+    WHEN 'I' THEN ----------------------------------------------------------- [ INSERT ] --
+      INSERT INTO PARAMETROSFISIOLOGICOS (IN_AVALIADOS_ID
+                                         ,TS_MOMAFE
+                                         ,SM_FREPUL
+                                         ,BO_PULRIT
+                                         ,SM_PRESIS
+                                         ,SM_PREDIA)
+                                  VALUES (pIN_AVALIADOS_ID
+                                         ,COALESCE(pTS_MOMAFE,LOCALTIMESTAMP)
+                                         ,pSM_FREPUL
+                                         ,pBO_PULRIT
+                                         ,pSM_PRESIS
+                                         ,pSM_PREDIA);
+
+      vRETURN := CURRVAL('SQ_PAF_IN_PARAMETROSFISIOLOGICOS_ID');
+    ---------------------------------------------------------------------------------------
+    WHEN 'D' THEN ----------------------------------------------------------- [ DELETE ] --
+      DELETE FROM PARAMETROSFISIOLOGICOS
+            WHERE IN_PARAMETROSFISIOLOGICOS_ID = pIN_PARAMETROSFISIOLOGICOS_ID;
+
+      GET DIAGNOSTICS vRETURN := ROW_COUNT;
+    ---------------------------------------------------------------------------------------
+    WHEN 'U' THEN ----------------------------------------------------------- [ UPDATE ] --
+      UPDATE PARAMETROSFISIOLOGICOS
+         SET IN_AVALIADOS_ID = pIN_AVALIADOS_ID
+           , TS_MOMAFE       = pTS_MOMAFE
+           , SM_FREPUL       = pSM_FREPUL
+           , BO_PULRIT       = pBO_PULRIT
+           , SM_PRESIS       = pSM_PRESIS
+           , SM_PREDIA       = pSM_PREDIA
+       WHERE IN_PARAMETROSFISIOLOGICOS_ID = pIN_PARAMETROSFISIOLOGICOS_ID;
 
     GET DIAGNOSTICS vRETURN := ROW_COUNT;
     ---------------------------------------------------------------------------------------

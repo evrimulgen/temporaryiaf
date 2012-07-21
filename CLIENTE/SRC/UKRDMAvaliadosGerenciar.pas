@@ -78,6 +78,16 @@ type
     CLDSSinaisESintomasbo_difresrep: TBooleanField;
     CLDSSinaisESintomasbo_tondes: TBooleanField;
     CLDSSinaisESintomasbo_algcirmen90dia: TBooleanField;
+    CLDSParametrosFisiologicos: TClientDataSet;
+    CLDSAvaliadosUNQYParametrosFisiologicos: TDataSetField;
+    DTSRParametrosFisiologicos: TDataSource;
+    CLDSParametrosFisiologicosin_parametrosfisiologicos_id: TIntegerField;
+    CLDSParametrosFisiologicosin_avaliados_id: TIntegerField;
+    CLDSParametrosFisiologicosts_momafe: TDateTimeField;
+    CLDSParametrosFisiologicossm_frepul: TSmallintField;
+    CLDSParametrosFisiologicosbo_pulrit: TBooleanField;
+    CLDSParametrosFisiologicossm_presis: TSmallintField;
+    CLDSParametrosFisiologicossm_predia: TSmallintField;
     procedure CLDSAvaliadosAfterRefresh(DataSet: TDataSet);
     procedure CLDSAvaliadosCalcFields(DataSet: TDataSet);
     procedure DTSRAvaliadosDataChange(Sender: TObject; Field: TField);
