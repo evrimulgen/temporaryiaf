@@ -94,9 +94,12 @@ type
     procedure ACTNSelecionarCBOExecute(Sender: TObject);
     procedure CLDSDadosSocioDemograficoscboGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure CLDSDadosSocioDemograficosprofissaoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
+    procedure CLDSParametrosFisiologicosBeforeEdit(DataSet: TDataSet);
+    procedure CLDSParametrosFisiologicosbo_pulritGetText(Sender: TField;
+      var Text: string; DisplayText: Boolean);
   private
     { Private declarations }
-    procedure AlternarPaginas;
+    procedure AlternarPaginasPeloMestre;
   public
     { Public declarations }
     constructor Create(aOwner: TComponent); override;
@@ -177,7 +180,7 @@ begin
     end;
 end;
 
-procedure TKRDMAvaliadosGerenciar.AlternarPaginas;
+procedure TKRDMAvaliadosGerenciar.AlternarPaginasPeloMestre;
 begin
   if Assigned(MyForm) then
   begin
@@ -213,6 +216,27 @@ begin
     Text := Sender.AsString;
 end;
 
+procedure TKRDMAvaliadosGerenciar.CLDSParametrosFisiologicosBeforeEdit(DataSet: TDataSet);
+begin
+  inherited;
+  Application.MessageBox('Não é possível editar aferições. Para alterar um valor, inclua uma nova aferição','Não é permitida a alteração de registros',MB_ICONWARNING);
+  Abort;
+end;
+
+procedure TKRDMAvaliadosGerenciar.CLDSParametrosFisiologicosbo_pulritGetText(Sender: TField; var Text: string; DisplayText: Boolean);
+begin
+  inherited;
+  if DisplayText then
+  begin
+    if Sender.AsBoolean then
+      Text := 'Rítmico'
+    else
+      Text := 'Arrítmico';
+  end
+  else
+    Text := Sender.AsString;
+end;
+
 procedure TKRDMAvaliadosGerenciar.CLDSAvaliadosAfterRefresh(DataSet: TDataSet);
 begin
   inherited;
@@ -241,7 +265,7 @@ end;
 procedure TKRDMAvaliadosGerenciar.DTSRAvaliadosDataChange(Sender: TObject; Field: TField);
 begin
   inherited;
-  AlternarPaginas;
+  AlternarPaginasPeloMestre;
 end;
 
 end.

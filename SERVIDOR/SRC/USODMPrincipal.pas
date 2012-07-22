@@ -196,6 +196,7 @@ begin
         UNQY.SpecificOptions.Add('PostgreSQL.UseParamTypes=True');
         UNQY.SpecificOptions.Add('PostgreSQL.FetchAll=False');
 
+        { == Obtendo o valor do campo auto incremento ======================== }
         UNQY.SQL.Text := PostGres_DefaultColumnValues;
 
         with TStringList.Create do
@@ -214,8 +215,22 @@ begin
 
         UNQY.ParamCheck := False;
         UNQY.SQL.Text := 'SELECT ' + ValorPadrao;
+
         UNQY.Open;
-        DeltaDS.FieldByName(CampoChave).NewValue := UNQY.Fields[0].AsInteger;
+        i := UNQY.Fields[0].AsInteger;
+        DeltaDS.FieldByName(CampoChave).NewValue := i;
+        UNQY.Close;
+        { ==================================================================== }
+
+        { == Obtendo outros valores em tabelas específicas =================== }
+        if LowerCase(CampoChave) = 'in_parametrosfisiologicos_id' then
+        begin
+          UNQY.SQL.Text := 'SELECT TS_MOMAFE FROM PARAMETROSFISIOLOGICOS WHERE IN_PARAMETROSFISIOLOGICOS_ID = ' + IntToStr(i);
+          UNQY.Open;
+          DeltaDS.FieldByName('TS_MOMAFE').NewValue := UNQY.Fields[0].AsDateTime;
+          UNQY.Close;
+        end;
+        { ==================================================================== }
       finally
         UNQY.Close;
         UNQY.Free;

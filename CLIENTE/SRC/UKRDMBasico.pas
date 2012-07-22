@@ -27,6 +27,7 @@ type
     { Declarações privadas }
     FActionManager: TActionManager;
     procedure DoReconcileError(DataSet: TCustomClientDataSet; E: EReconcileError; UpdateKind: TUpdateKind; var Action: TReconcileAction);
+    function CheckPermission(const aTableName, aAction: String): Boolean;
   protected
     { Declarações protegidas }
     procedure ApplyPermissions; virtual;
@@ -34,6 +35,10 @@ type
     { Declarações públicas }
     constructor Create(aOwner: TComponent); override;
     procedure ConfigureErrorHint(aTitle, aText: String; aWinControl: TWinControl; aShowHint: Boolean); virtual;
+    function CanSelect(const aTableName: String): Boolean; virtual;
+    function CanInsert(const aTableName: String): Boolean; virtual;
+    function CanDelete(const aTableName: String): Boolean; virtual;
+    function CanUpdate(const aTableName: String): Boolean; virtual;
     property ActionManager: TActionManager read FActionManager;
   end;
 
@@ -42,7 +47,8 @@ implementation
 {$R *.dfm}
 
 uses UDAMOPrincipal, UExtraMethods, KRK.Lib.Rtl.Common.FileUtils
-   , KRK.Lib.Db.Utils, UConfiguracoes, KRK.Lib.Rtl.Common.VariantUtils;
+   , KRK.Lib.Db.Utils, UConfiguracoes, KRK.Lib.Rtl.Common.VariantUtils
+   , Variants;
 
 {$I INC\Interposer.TClientDataSet.Impl.inc}
 
@@ -93,7 +99,7 @@ begin
         definido precisa manipular o evento OnReconcileError }
         TClientDataset(TDataSetItem(CI).DataSet).OnReconcileError := DoReconcileError;
 
-        KRKValidationChecks := GetConstraintsFor(ProviderName,TDataSetItem(CI).DataSet.Name,DAMOPrincipal.CurrentSession.ID);
+        KRKValidationChecks := GetConstraintsFor(ProviderName,TDataSetItem(CI).DataSet.Name,TDAMOPrincipal(Owner).CurrentSession.ID);
 
         if KRKValidationChecks <> '' then
         begin
@@ -204,6 +210,41 @@ begin
 //    end;
 //  end;
   { Em seguida aplicamos as permissões ao componente ACLI (TActionList) }
+end;
+
+{ A característica do compilador conhecida como curto-circuito booleano (boolean
+short-circuit) }
+
+function TKRDMBasico.CheckPermission(const aTableName, aAction: String): Boolean;
+var
+  Permission: Variant;
+begin
+  Permission := TDAMOPrincipal(Owner).CLDSPermissoes.Lookup('ENTIDADE',UpperCase(aTableName),UpperCase(aAction));
+  Result := (not VarIsNull(Permission)) and Boolean(Permission);
+end;
+
+function TKRDMBasico.CanDelete(const aTableName: String): Boolean;
+begin
+  Result := TDAMOPrincipal(Owner).CurrentSession.Data.bo_superusuario
+         or CheckPermission(aTableName,'EXCLUIR')
+end;
+
+function TKRDMBasico.CanInsert(const aTableName: String): Boolean;
+begin
+  Result := TDAMOPrincipal(Owner).CurrentSession.Data.bo_superusuario
+         or CheckPermission(aTableName,'INSERIR');
+end;
+
+function TKRDMBasico.CanSelect(const aTableName: String): Boolean;
+begin
+  Result := TDAMOPrincipal(Owner).CurrentSession.Data.bo_superusuario
+         or CheckPermission(aTableName,'LER');
+end;
+
+function TKRDMBasico.CanUpdate(const aTableName: String): Boolean;
+begin
+  Result := TDAMOPrincipal(Owner).CurrentSession.Data.bo_superusuario
+         or CheckPermission(aTableName,'ALTERAR');
 end;
 
 procedure TKRDMBasico.ConfigureErrorHint(aTitle, aText: String; aWinControl: TWinControl; aShowHint: Boolean);

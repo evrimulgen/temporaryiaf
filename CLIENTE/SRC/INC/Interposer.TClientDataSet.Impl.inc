@@ -50,16 +50,64 @@ begin
     OleVariantByteArrayUCLDecompress(Result);
 end;
 
+procedure TClientDataSet.DoBeforeInsert;
+begin
+  if Owner is TKRDMBasico then
+  begin
+    if not (Owner as TKRDMBasico).CanInsert(StringReplace(Name,'CLDS','',[])) then
+    begin
+      Application.MessageBox('Você não tem permissão para inserir este registro','Permissão insuficiente',MB_ICONWARNING);
+      Abort;
+    end;
+  end;
+
+  inherited;
+end;
+
 procedure TClientDataSet.DoBeforeDelete;
 begin
+  if Owner is TKRDMBasico then
+  begin
+    if not (Owner as TKRDMBasico).CanDelete(StringReplace(Name,'CLDS','',[])) then
+    begin
+      Application.MessageBox('Você não tem permissão para excluir este registro','Permissão insuficiente',MB_ICONWARNING);
+      Abort;
+    end;
+  end;
+
   { Atualmente esta validação não faz nada! }
   FKRKValidationChecks.ValidateBeforeDelete;
   inherited;
 end;
 
+procedure TClientDataSet.DoBeforeEdit;
+begin
+  if Owner is TKRDMBasico then
+  begin
+    if not (Owner as TKRDMBasico).CanUpdate(StringReplace(Name,'CLDS','',[])) then
+    begin
+      Application.MessageBox('Você não tem permissão para alterar este registro','Permissão insuficiente',MB_ICONWARNING);
+      Abort;
+    end;
+  end;
+
+  inherited;
+end;
+
 procedure TClientDataSet.DoBeforePost;
 begin
-  inherited;
+  if Owner is TKRDMBasico then
+  begin
+    if not (Owner as TKRDMBasico).CanSelect(StringReplace(Name,'CLDS','',[]))
+    or not (Owner as TKRDMBasico).CanInsert(StringReplace(Name,'CLDS','',[]))
+    or not (Owner as TKRDMBasico).CanDelete(StringReplace(Name,'CLDS','',[]))
+    or not (Owner as TKRDMBasico).CanUpdate(StringReplace(Name,'CLDS','',[])) then
+    begin
+      Application.MessageBox('Você não tem permissão para confirmar esta alteração','Permissão insuficiente',MB_ICONWARNING);
+      Abort;
+    end;
+  end;
+
   try
     if Assigned(FKRKValidationChecks.DataSet) then
       FKRKValidationChecks.ValidateBeforePost;
@@ -73,6 +121,21 @@ begin
       Abort;
     end;
   end;
+  inherited;
+end;
+
+procedure TClientDataSet.DoBeforeOpen;
+begin
+  if Owner is TKRDMBasico then
+  begin
+    if not (Owner as TKRDMBasico).CanSelect(StringReplace(Name,'CLDS','',[])) then
+    begin
+      Application.MessageBox(PWideChar('Você não tem permissão exibir registros da tabela ' + StringReplace(Name,'CLDS','',[])),'Permissão insuficiente',MB_ICONWARNING);
+      Abort;
+    end;
+  end;
+
+  inherited;
 end;
 
 procedure TClientDataSet.DoBeforeExecute(var OwnerData: OleVariant);

@@ -96,7 +96,6 @@ type
     KRPAAvaliado4: TKRKPanel;
     LABLAvaliado4: TLabel;
     DBNAChecagemDeSinaisESintomas: TDBNavigator;
-    DBNAParametrosFisiologicos: TDBNavigator;
     DBNAParQ: TDBNavigator;
     SCBXSinaisESintomas: TScrollBox;
     Panel2: TPanel;
@@ -121,15 +120,12 @@ type
     DBCBAlgCirMen90Dia: TDBCheckBox;
     KRDGParametrosFisiologicos: TKRKDBGrid;
     DBNAParametrosFisiologicos2: TDBNavigator;
-    Label1: TLabel;
-    DBEdit1: TDBEdit;
-    DBCheckBox1: TDBCheckBox;
-    Label2: TLabel;
-    DBEdit2: TDBEdit;
-    Label3: TLabel;
-    DBEdit3: TDBEdit;
     GRBXPulso: TGroupBox;
     GRBXPressaoArterial: TGroupBox;
+    KLDEFrequenciaPulso: TKRKLabeledDBEdit;
+    DBRGRitmoPulso: TDBRadioGroup;
+    KLDEPressaoSistolica: TKRKLabeledDBEdit;
+    KLDEPressaoDiastolica: TKRKLabeledDBEdit;
     procedure DBRGChefeDaFamiliaChange(Sender: TObject);
     procedure KRLECodigoKeyPress(Sender: TObject; var Key: Char);
     procedure KRLEIdentidadeKeyPress(Sender: TObject; var Key: Char);
@@ -140,6 +136,8 @@ type
     procedure KRKFormCreate(Sender: TObject);
     procedure SCBXDadosSocioDemograficosMouseWheelDown(Sender: TObject; Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
     procedure SCBXDadosSocioDemograficosMouseWheelUp(Sender: TObject; Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
+    procedure DoBeforeAction(Sender: TObject; Button: TNavigateBtn);
+    procedure PGCTAvaliadosChanging(Sender: TObject; var AllowChange: Boolean);
   private
     { Private declarations }
   public
@@ -151,6 +149,29 @@ implementation
 uses UKRDMAvaliadosGerenciar, DB;
 
 {$R *.dfm}
+
+procedure TKRFMAvaliadosGerenciar.DoBeforeAction(Sender: TObject; Button: TNavigateBtn);
+begin
+  inherited;
+  { As três ações precisam ser aplicadas sempre no CLDS pai. O Refresh deve ser
+  aplicado no CLDS pai porque somente este tem um Provider. O Cancel deve ser
+  aplicado no pai ANTES de ser aplicado no filho. Ao terminar este procedure o
+  Cancel do filho será executado. O Post precisa ser aplicado primeiro no filho
+  e depois, no pai, a operação deve ser cancelada, pois nada estava sendo feito
+  no pai. Ao final, nada mais precisa ser feito e por isso executa-se um Abort }
+  case Button of
+    nbRefresh: begin
+      TKRDMAvaliadosGerenciar(Owner).CLDSAvaliados.Refresh;
+      Abort;
+    end;
+    nbCancel: TKRDMAvaliadosGerenciar(Owner).CLDSAvaliados.Cancel;
+    nbPost: begin
+      TDBNavigator(Sender).DataSource.DataSet.Post;
+      TKRDMAvaliadosGerenciar(Owner).CLDSAvaliados.Cancel;
+      Abort;
+    end;
+  end;
+end;
 
 procedure TKRFMAvaliadosGerenciar.DBRGChefeDaFamiliaChange(Sender: TObject);
 begin
@@ -257,6 +278,20 @@ begin
                                                    ,''
                                                    ,''
                                                    ,'');
+end;
+
+procedure TKRFMAvaliadosGerenciar.PGCTAvaliadosChanging(Sender: TObject; var AllowChange: Boolean);
+begin
+  inherited;
+  case PGCTAvaliados.ActivePageIndex of
+    1..5: begin
+      if TKRDMAvaliadosGerenciar(Owner).CLDSAvaliados.State = dsEdit then
+      begin
+        Application.MessageBox('Antes de acessar outra página conclua a edição na página atual confirmando-a ou cancelando-a','Edição em andamento: Não é possível mudar de página',MB_ICONWARNING);
+        AllowChange := False;
+      end;
+    end;
+  end;
 end;
 
 procedure TKRFMAvaliadosGerenciar.SCBXDadosSocioDemograficosMouseWheelDown(Sender: TObject; Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);

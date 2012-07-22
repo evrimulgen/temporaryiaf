@@ -11,14 +11,13 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
     Top = 40
     Width = 622
     Height = 434
-    ActivePage = TBSHParametrosFisiologicos
+    ActivePage = TBSHConsultar
     Align = alClient
     TabOrder = 2
-    ExplicitHeight = 436
+    OnChanging = PGCTAvaliadosChanging
     object TBSHConsultar: TTabSheet
       AlignWithMargins = True
       Caption = 'Consultar'
-      ExplicitHeight = 402
       object KRDGAvaliados: TKRKDBGrid
         AlignWithMargins = True
         Left = 0
@@ -108,7 +107,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         Font.Style = []
         ParentFont = False
         TabOrder = 2
-        ExplicitTop = 352
         object LABLFiltroAvaliados: TLabel
           AlignWithMargins = True
           Left = 8
@@ -320,7 +318,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       AlignWithMargins = True
       Caption = 'Gerenciar'
       ImageIndex = 1
-      ExplicitHeight = 402
       DesignSize = (
         608
         400)
@@ -333,7 +330,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         VisibleButtons = [nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh]
         Align = alBottom
         TabOrder = 5
-        ExplicitTop = 377
       end
       object GRBXContato: TGroupBox
         Left = 289
@@ -818,7 +814,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         Align = alBottom
         Caption = ' Observa'#231#245'es '
         TabOrder = 4
-        ExplicitTop = 199
         object DBMOObservacoes: TDBMemo
           AlignWithMargins = True
           Left = 6
@@ -840,7 +835,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       AlignWithMargins = True
       Caption = 'Dados s'#243'cio-demogr'#225'ficos'
       ImageIndex = 2
-      ExplicitHeight = 402
       object SCBXDadosSocioDemograficos: TScrollBox
         Left = 0
         Top = 60
@@ -854,7 +848,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         TabOrder = 0
         OnMouseWheelDown = SCBXDadosSocioDemograficosMouseWheelDown
         OnMouseWheelUp = SCBXDadosSocioDemograficosMouseWheelUp
-        ExplicitHeight = 342
         object DBRGCorRaca: TDBRadioGroup
           AlignWithMargins = True
           Left = 6
@@ -1381,10 +1374,11 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         Margins.Left = 0
         Margins.Right = 0
         Margins.Bottom = 6
-        DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
+        DataSource = KRDMAvaliadosGerenciar.DTSRDadosSocioDemograficos
         VisibleButtons = [nbPost, nbCancel, nbRefresh]
         Align = alTop
         TabOrder = 1
+        BeforeAction = DoBeforeAction
       end
       object KRPAAvaliado1: TKRKPanel
         AlignWithMargins = True
@@ -1425,7 +1419,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       AlignWithMargins = True
       Caption = 'Checagem de sinais e sintomas'
       ImageIndex = 3
-      ExplicitHeight = 402
       object KRPAAvaliado2: TKRKPanel
         AlignWithMargins = True
         Left = 0
@@ -1469,10 +1462,11 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         Margins.Left = 0
         Margins.Right = 0
         Margins.Bottom = 6
-        DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
+        DataSource = KRDMAvaliadosGerenciar.DTSRSinaisESintomas
         VisibleButtons = [nbPost, nbCancel, nbRefresh]
         Align = alTop
         TabOrder = 1
+        BeforeAction = DoBeforeAction
       end
       object SCBXSinaisESintomas: TScrollBox
         Left = 0
@@ -1487,7 +1481,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         TabOrder = 2
         OnMouseWheelDown = SCBXDadosSocioDemograficosMouseWheelDown
         OnMouseWheelUp = SCBXDadosSocioDemograficosMouseWheelUp
-        ExplicitHeight = 342
         object Panel2: TPanel
           Left = 0
           Top = 384
@@ -1825,35 +1818,67 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         end
       end
     end
+    object TBSHParQ: TTabSheet
+      AlignWithMargins = True
+      Caption = 'PAR-Q+'
+      ImageIndex = 5
+      object KRPAAvaliado4: TKRKPanel
+        AlignWithMargins = True
+        Left = 0
+        Top = 0
+        Width = 608
+        Height = 23
+        Margins.Left = 0
+        Margins.Top = 0
+        Margins.Right = 0
+        Align = alTop
+        ParentBackground = False
+        TabOrder = 0
+        GradientFill = True
+        GradientColorA = clYellow
+        GradientColorB = 43690
+        object LABLAvaliado4: TLabel
+          Left = 1
+          Top = 1
+          Width = 606
+          Height = 21
+          Align = alClient
+          Alignment = taCenter
+          Caption = 'Avaliado: ?????'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -15
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+          Layout = tlCenter
+          ExplicitWidth = 119
+          ExplicitHeight = 18
+        end
+      end
+      object DBNAParQ: TDBNavigator
+        AlignWithMargins = True
+        Left = 0
+        Top = 29
+        Width = 608
+        Height = 25
+        Margins.Left = 0
+        Margins.Right = 0
+        Margins.Bottom = 6
+        DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
+        VisibleButtons = [nbPost, nbCancel, nbRefresh]
+        Align = alTop
+        TabOrder = 1
+      end
+    end
     object TBSHParametrosFisiologicos: TTabSheet
       AlignWithMargins = True
       Caption = 'Par'#226'metros fisiol'#243'gicos'
       ImageIndex = 4
-      ExplicitHeight = 402
-      object Label1: TLabel
-        Left = 194
-        Top = 294
-        Width = 47
-        Height = 13
-        Caption = 'sm_frepul'
-        FocusControl = DBEdit1
-      end
-      object Label2: TLabel
-        Left = 334
-        Top = 300
-        Width = 47
-        Height = 13
-        Caption = 'sm_presis'
-        FocusControl = DBEdit2
-      end
-      object Label3: TLabel
-        Left = 334
-        Top = 327
-        Width = 49
-        Height = 13
-        Caption = 'sm_predia'
-        FocusControl = DBEdit3
-      end
+      ExplicitLeft = 14
+      DesignSize = (
+        608
+        400)
       object KRPAAvaliado3: TKRKPanel
         AlignWithMargins = True
         Left = 0
@@ -1888,35 +1913,20 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           ExplicitHeight = 18
         end
       end
-      object DBNAParametrosFisiologicos: TDBNavigator
+      object KRDGParametrosFisiologicos: TKRKDBGrid
         AlignWithMargins = True
         Left = 0
         Top = 29
         Width = 608
-        Height = 25
-        Margins.Left = 0
-        Margins.Right = 0
-        Margins.Bottom = 6
-        DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
-        VisibleButtons = [nbPost, nbCancel, nbRefresh]
-        Align = alTop
-        TabOrder = 1
-      end
-      object KRDGParametrosFisiologicos: TKRKDBGrid
-        AlignWithMargins = True
-        Left = 0
-        Top = 61
-        Width = 608
         Height = 201
         Margins.Left = 0
-        Margins.Top = 1
         Margins.Right = 0
         Align = alTop
         DataSource = KRDMAvaliadosGerenciar.DTSRParametrosFisiologicos
         Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
         OptionsEx = [dgAutomaticColumSizes]
         ReadOnly = True
-        TabOrder = 2
+        TabOrder = 1
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
         TitleFont.Height = -11
@@ -1968,126 +1978,114 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       object DBNAParametrosFisiologicos2: TDBNavigator
         AlignWithMargins = True
         Left = 0
-        Top = 268
+        Top = 236
         Width = 608
         Height = 25
         Margins.Left = 0
         Margins.Right = 0
+        DataSource = KRDMAvaliadosGerenciar.DTSRParametrosFisiologicos
         VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbPost, nbCancel, nbRefresh]
         Align = alTop
-        TabOrder = 3
-        ExplicitLeft = 330
-        ExplicitTop = 246
-        ExplicitWidth = 232
-      end
-      object DBEdit1: TDBEdit
-        Left = 194
-        Top = 312
-        Width = 134
-        Height = 21
-        DataField = 'sm_frepul'
-        DataSource = KRDMAvaliadosGerenciar.DTSRParametrosFisiologicos
-        TabOrder = 4
-      end
-      object DBCheckBox1: TDBCheckBox
-        Left = 194
-        Top = 339
-        Width = 97
-        Height = 17
-        Caption = 'bo_pulrit'
-        DataField = 'bo_pulrit'
-        DataSource = KRDMAvaliadosGerenciar.DTSRParametrosFisiologicos
-        TabOrder = 5
-        ValueChecked = 'True'
-        ValueUnchecked = 'False'
-      end
-      object DBEdit2: TDBEdit
-        Left = 334
-        Top = 312
-        Width = 134
-        Height = 21
-        DataField = 'sm_presis'
-        DataSource = KRDMAvaliadosGerenciar.DTSRParametrosFisiologicos
-        TabOrder = 6
-      end
-      object DBEdit3: TDBEdit
-        Left = 334
-        Top = 339
-        Width = 134
-        Height = 21
-        DataField = 'sm_predia'
-        DataSource = KRDMAvaliadosGerenciar.DTSRParametrosFisiologicos
-        TabOrder = 7
+        TabOrder = 2
+        BeforeAction = DoBeforeAction
+        ExplicitTop = 268
       end
       object GRBXPulso: TGroupBox
-        Left = 3
-        Top = 299
-        Width = 185
-        Height = 105
-        Caption = ' Pulso '
-        TabOrder = 8
-      end
-      object GRBXPressaoArterial: TGroupBox
-        Left = 194
-        Top = 362
-        Width = 185
-        Height = 49
-        Caption = ' Press'#227'o arterial'
-        TabOrder = 9
-      end
-    end
-    object TBSHParQ: TTabSheet
-      AlignWithMargins = True
-      Caption = 'PAR-Q+'
-      ImageIndex = 5
-      ExplicitHeight = 402
-      object KRPAAvaliado4: TKRKPanel
-        AlignWithMargins = True
         Left = 0
-        Top = 0
-        Width = 608
-        Height = 23
-        Margins.Left = 0
-        Margins.Top = 0
-        Margins.Right = 0
-        Align = alTop
-        ParentBackground = False
-        TabOrder = 0
-        GradientFill = True
-        GradientColorA = clYellow
-        GradientColorB = 43690
-        object LABLAvaliado4: TLabel
-          Left = 1
-          Top = 1
-          Width = 606
+        Top = 262
+        Width = 290
+        Height = 55
+        Caption = ' Pulso '
+        TabOrder = 3
+        object KLDEFrequenciaPulso: TKRKLabeledDBEdit
+          Left = 91
+          Top = 21
+          Width = 51
           Height = 21
-          Align = alClient
-          Alignment = taCenter
-          Caption = 'Avaliado: ?????'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -15
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          Layout = tlCenter
-          ExplicitWidth = 119
-          ExplicitHeight = 18
+          DataField = 'sm_frepul'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParametrosFisiologicos
+          DBEditFormat.FinalMask = '#.###'
+          DBEditFormat.Format = foCustom
+          DBEditFormat.FormatScript.Strings = (
+            '\D'#170
+            '(\d)(\d{3})$'#186'$1.$2')
+          EditLabel.Width = 84
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Frequ'#234'ncia (bpm)'
+          LabelPosition = lpLeft
+          LabelSpacing = 1
+          MaxLength = 5
+          TabOrder = 0
+        end
+        object DBRGRitmoPulso: TDBRadioGroup
+          Left = 148
+          Top = 7
+          Width = 136
+          Height = 41
+          BiDiMode = bdRightToLeftReadingOnly
+          Caption = ' Ritmo '
+          Columns = 2
+          DataField = 'bo_pulrit'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParametrosFisiologicos
+          Items.Strings = (
+            'r'#237'tmico'
+            'arr'#237'tmico')
+          ParentBackground = True
+          ParentBiDiMode = False
+          TabOrder = 1
+          Values.Strings = (
+            'True'
+            'False')
         end
       end
-      object DBNAParQ: TDBNavigator
-        AlignWithMargins = True
-        Left = 0
-        Top = 29
-        Width = 608
-        Height = 25
-        Margins.Left = 0
-        Margins.Right = 0
-        Margins.Bottom = 6
-        DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
-        VisibleButtons = [nbPost, nbCancel, nbRefresh]
-        Align = alTop
-        TabOrder = 1
+      object GRBXPressaoArterial: TGroupBox
+        Left = 318
+        Top = 262
+        Width = 290
+        Height = 55
+        Anchors = [akTop, akRight]
+        Caption = ' Press'#227'o arterial'
+        TabOrder = 4
+        object KLDEPressaoSistolica: TKRKLabeledDBEdit
+          Left = 85
+          Top = 21
+          Width = 53
+          Height = 21
+          DataField = 'sm_presis'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParametrosFisiologicos
+          DBEditFormat.FinalMask = '#.###'
+          DBEditFormat.Format = foCustom
+          DBEditFormat.FormatScript.Strings = (
+            '\D'#170
+            '(\d)(\d{3})$'#186'$1.$2')
+          EditLabel.Width = 78
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Sist'#243'lica (mmHg)'
+          LabelPosition = lpLeft
+          LabelSpacing = 1
+          MaxLength = 5
+          TabOrder = 0
+        end
+        object KLDEPressaoDiastolica: TKRKLabeledDBEdit
+          Left = 230
+          Top = 21
+          Width = 53
+          Height = 21
+          DataField = 'sm_predia'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParametrosFisiologicos
+          DBEditFormat.FinalMask = '#.###'
+          DBEditFormat.Format = foCustom
+          DBEditFormat.FormatScript.Strings = (
+            '\D'#170
+            '(\d)(\d{3})$'#186'$1.$2')
+          EditLabel.Width = 85
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Diast'#243'lica (mmHg)'
+          LabelPosition = lpLeft
+          LabelSpacing = 1
+          MaxLength = 5
+          TabOrder = 1
+        end
       end
     end
   end
@@ -2096,11 +2094,12 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
     ExplicitWidth = 622
     inherited LABLCaption: TLabel
       Height = 38
+      ExplicitHeight = 38
     end
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C010102000800500120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800540120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2637,7 +2636,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C010102000800600120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800640120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

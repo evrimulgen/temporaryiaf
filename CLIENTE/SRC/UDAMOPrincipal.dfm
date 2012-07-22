@@ -9,6 +9,13 @@ object DAMOPrincipal: TDAMOPrincipal
         Items.SmallIcons = False
         Items = <
           item
+            Action = ACTNGerenciarAvaliados
+            ImageIndex = 9
+          end
+          item
+            Caption = '-'
+          end
+          item
             Action = ACTNAlterarMinhasPreferencias
             Caption = '&Alterar minhas prefer'#234'ncias'
             ImageIndex = 5
@@ -17,6 +24,19 @@ object DAMOPrincipal: TDAMOPrincipal
             Action = ACTNAtualizarPrivilegios
             Caption = 'A&tualizar privil'#233'gios'
             ImageIndex = 6
+          end
+          item
+            Caption = '-'
+          end
+          item
+            Action = ACTNAjuda
+            Caption = 'A&juda'
+            ImageIndex = 1
+          end
+          item
+            Action = ACTNSobre
+            Caption = '&Sobre o IAF'
+            ImageIndex = 0
           end>
         ActionBar = FORMPrincipal.ACTBPrincipal
       end
@@ -161,7 +181,7 @@ object DAMOPrincipal: TDAMOPrincipal
     Left = 90
     Top = 12
     Bitmap = {
-      494C01010A00B0026C0110001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C01010A00B002740110001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000100000007000000120000
       001D000000230000002600000027000000260000002400000020000000170000
@@ -578,7 +598,7 @@ object DAMOPrincipal: TDAMOPrincipal
     Left = 168
     Top = 12
     Bitmap = {
-      494C01010A00D400900118001800FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C01010A00D400980118001800FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000060000000480000000100200000000000006C
       0000000000000000000000000000000000000000000000000000000000010000
       00040000000B000000130000001A0000001F0000002200000024000000250000

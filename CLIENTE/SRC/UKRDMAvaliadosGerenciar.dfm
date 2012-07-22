@@ -17,7 +17,6 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
     Top = 108
   end
   object CLDSAvaliados: TClientDataSet
-    Active = True
     Aggregates = <>
     ConnectionBroker = DAMOPrincipal.CNBRPrincipal
     Params = <
@@ -280,7 +279,6 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
     end
   end
   object CLDSDadosSocioDemograficos: TClientDataSet
-    Active = True
     Aggregates = <>
     ConnectionBroker = DAMOPrincipal.CNBRPrincipal
     DataSetField = CLDSAvaliadosUNQYDadosSocioDemograficos
@@ -426,7 +424,6 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
     Top = 108
   end
   object CLDSSinaisESintomas: TClientDataSet
-    Active = True
     Aggregates = <>
     ConnectionBroker = DAMOPrincipal.CNBRPrincipal
     DataSetField = CLDSAvaliadosUNQYSinaisESintomas
@@ -538,6 +535,7 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
     ConnectionBroker = DAMOPrincipal.CNBRPrincipal
     DataSetField = CLDSAvaliadosUNQYParametrosFisiologicos
     Params = <>
+    BeforeEdit = CLDSParametrosFisiologicosBeforeEdit
     Left = 144
     Top = 252
     object CLDSParametrosFisiologicosin_parametrosfisiologicos_id: TIntegerField
@@ -560,6 +558,7 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
       Alignment = taCenter
       FieldName = 'bo_pulrit'
       Required = True
+      OnGetText = CLDSParametrosFisiologicosbo_pulritGetText
     end
     object CLDSParametrosFisiologicossm_presis: TSmallintField
       Alignment = taCenter
