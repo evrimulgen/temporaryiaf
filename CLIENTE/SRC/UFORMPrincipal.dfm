@@ -71,7 +71,7 @@ object FORMPrincipal: TFORMPrincipal
     Height = 19
     Panels = <
       item
-        Width = 100
+        Width = 94
       end
       item
         Alignment = taCenter
@@ -85,7 +85,7 @@ object FORMPrincipal: TFORMPrincipal
   object PRBAAndamento: TProgressBar
     Left = 1
     Top = 545
-    Width = 97
+    Width = 93
     Height = 16
     Anchors = [akLeft, akBottom]
     TabOrder = 3

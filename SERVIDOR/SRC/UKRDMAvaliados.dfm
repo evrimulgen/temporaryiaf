@@ -1,7 +1,7 @@
 inherited KRDMAvaliados: TKRDMAvaliados
   OldCreateOrder = True
   Height = 304
-  Width = 243
+  Width = 302
   object UNQYAvaliados: TUniQuery
     SQLInsert.Strings = (
       'SELECT IDU_AVALIADOS('#39'I'#39
@@ -1300,5 +1300,678 @@ inherited KRDMAvaliados: TKRDMAvaliados
       end>
     Left = 144
     Top = 246
+  end
+  object UNQYParQ: TUniQuery
+    SQLInsert.Strings = (
+      'SELECT IDU_PARQ('#39'I'#39
+      '               ,NULL'
+      '               ,:IN_AVALIADOS_ID'
+      '               ,:BO_PG1'
+      '               ,:BO_PG2'
+      '               ,:BO_PG3'
+      '               ,:BO_PG4'
+      '               ,:BO_PG5'
+      '               ,:BO_PG6'
+      '               ,:BO_PG7'
+      '               ,:BO_PC1'
+      '               ,:BO_PC1A'
+      '               ,:BO_PC1B'
+      '               ,:BO_PC1C'
+      '               ,:BO_PC2'
+      '               ,:BO_PC2A'
+      '               ,:BO_PC2B'
+      '               ,:BO_PC3'
+      '               ,:BO_PC3A'
+      '               ,:BO_PC3B'
+      '               ,:BO_PC3C'
+      '               ,:BO_PC3D'
+      '               ,:BO_PC3E'
+      '               ,:BO_PC4'
+      '               ,:BO_PC4A'
+      '               ,:BO_PC4B'
+      '               ,:BO_PC4C'
+      '               ,:BO_PC5'
+      '               ,:BO_PC5A'
+      '               ,:BO_PC5B'
+      '               ,:BO_PC6'
+      '               ,:BO_PC6A'
+      '               ,:BO_PC6B'
+      '               ,:BO_PC6C'
+      '               ,:BO_PC6D'
+      '               ,:BO_PC7'
+      '               ,:BO_PC7A'
+      '               ,:BO_PC7B'
+      '               ,:BO_PC7C'
+      '               ,:BO_PC8'
+      '               ,:BO_PC8A'
+      '               ,:BO_PC8B'
+      '               ,:BO_PC8C'
+      '               ,:BO_PC9'
+      '               ,:BO_PC9A'
+      '               ,:BO_PC9B'
+      '               ,:BO_PC9C)')
+    SQLDelete.Strings = (
+      'SELECT IDU_PARQ('#39'D'#39
+      '               ,:IN_PARQ_ID);')
+    SQLUpdate.Strings = (
+      'SELECT IDU_PARQ('#39'U'#39
+      '               ,:IN_PARQ_ID'
+      '               ,:IN_AVALIADOS_ID'
+      '               ,:BO_PG1'
+      '               ,:BO_PG2'
+      '               ,:BO_PG3'
+      '               ,:BO_PG4'
+      '               ,:BO_PG5'
+      '               ,:BO_PG6'
+      '               ,:BO_PG7'
+      '               ,:BO_PC1'
+      '               ,:BO_PC1A'
+      '               ,:BO_PC1B'
+      '               ,:BO_PC1C'
+      '               ,:BO_PC2'
+      '               ,:BO_PC2A'
+      '               ,:BO_PC2B'
+      '               ,:BO_PC3'
+      '               ,:BO_PC3A'
+      '               ,:BO_PC3B'
+      '               ,:BO_PC3C'
+      '               ,:BO_PC3D'
+      '               ,:BO_PC3E'
+      '               ,:BO_PC4'
+      '               ,:BO_PC4A'
+      '               ,:BO_PC4B'
+      '               ,:BO_PC4C'
+      '               ,:BO_PC5'
+      '               ,:BO_PC5A'
+      '               ,:BO_PC5B'
+      '               ,:BO_PC6'
+      '               ,:BO_PC6A'
+      '               ,:BO_PC6B'
+      '               ,:BO_PC6C'
+      '               ,:BO_PC6D'
+      '               ,:BO_PC7'
+      '               ,:BO_PC7A'
+      '               ,:BO_PC7B'
+      '               ,:BO_PC7C'
+      '               ,:BO_PC8'
+      '               ,:BO_PC8A'
+      '               ,:BO_PC8B'
+      '               ,:BO_PC8C'
+      '               ,:BO_PC9'
+      '               ,:BO_PC9A'
+      '               ,:BO_PC9B'
+      '               ,:BO_PC9C)')
+    Connection = SODMPrincipal.UNCN
+    SQL.Strings = (
+      'SELECT PAQ.*'
+      '  FROM PARQ PAQ')
+    MasterSource = DTSRAvaliados
+    MasterFields = 'in_avaliados_id'
+    DetailFields = 'in_avaliados_id'
+    Left = 252
+    Top = 54
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'in_avaliados_id'
+        ParamType = ptInput
+      end>
+    object UNQYParQin_parq_id: TIntegerField
+      DisplayLabel = 'ID'
+      FieldName = 'in_parq_id'
+      ProviderFlags = [pfInUpdate, pfInKey]
+    end
+    object UNQYParQin_avaliados_id: TIntegerField
+      DisplayLabel = 'Avaliados ID'
+      FieldName = 'in_avaliados_id'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pg1: TBooleanField
+      DisplayLabel = 'PERGUNTA GERAL 1'
+      FieldName = 'bo_pg1'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pg2: TBooleanField
+      DisplayLabel = 'PERGUNTA GERAL 2'
+      FieldName = 'bo_pg2'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pg3: TBooleanField
+      DisplayLabel = 'PERGUNTA GERAL 3'
+      FieldName = 'bo_pg3'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pg4: TBooleanField
+      DisplayLabel = 'PERGUNTA GERAL 4'
+      FieldName = 'bo_pg4'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pg5: TBooleanField
+      DisplayLabel = 'PERGUNTA GERAL 5'
+      FieldName = 'bo_pg5'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pg6: TBooleanField
+      DisplayLabel = 'PERGUNTA GERAL 6'
+      FieldName = 'bo_pg6'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pg7: TBooleanField
+      DisplayLabel = 'PERGUNTA GERAL 7'
+      FieldName = 'bo_pg7'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc1: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 1'
+      FieldName = 'bo_pc1'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc1a: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 1. QUEST'#195'O A'
+      FieldName = 'bo_pc1a'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc1b: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 1. QUEST'#195'O B'
+      FieldName = 'bo_pc1b'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc1c: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 1. QUEST'#195'O C'
+      FieldName = 'bo_pc1c'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc2: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 2'
+      FieldName = 'bo_pc2'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc2a: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 2. QUEST'#195'O A'
+      FieldName = 'bo_pc2a'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc2b: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 2. QUEST'#195'O B'
+      FieldName = 'bo_pc2b'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc3: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 3'
+      FieldName = 'bo_pc3'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc3a: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 3. QUEST'#195'O A'
+      FieldName = 'bo_pc3a'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc3b: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 3. QUEST'#195'O B'
+      FieldName = 'bo_pc3b'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc3c: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 3. QUEST'#195'O C'
+      FieldName = 'bo_pc3c'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc3d: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 3. QUEST'#195'O D'
+      FieldName = 'bo_pc3d'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc3e: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 3. QUEST'#195'O E'
+      FieldName = 'bo_pc3e'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc4: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 4'
+      FieldName = 'bo_pc4'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc4a: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 4. QUEST'#195'O A'
+      FieldName = 'bo_pc4a'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc4b: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 4. QUEST'#195'O B'
+      FieldName = 'bo_pc4b'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc4c: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 4. QUEST'#195'O C'
+      FieldName = 'bo_pc4c'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc5: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 5'
+      FieldName = 'bo_pc5'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc5a: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 5. QUEST'#195'O A'
+      FieldName = 'bo_pc5a'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc5b: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 5. QUEST'#195'O B'
+      FieldName = 'bo_pc5b'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc6: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 6'
+      FieldName = 'bo_pc6'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc6a: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 6. QUEST'#195'O A'
+      FieldName = 'bo_pc6a'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc6b: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 6. QUEST'#195'O B'
+      FieldName = 'bo_pc6b'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc6c: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 6. QUEST'#195'O C'
+      FieldName = 'bo_pc6c'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc6d: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 6. QUEST'#195'O D'
+      FieldName = 'bo_pc6d'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc7: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 7'
+      FieldName = 'bo_pc7'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc7a: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 7. QUEST'#195'O A'
+      FieldName = 'bo_pc7a'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc7b: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 7. QUEST'#195'O B'
+      FieldName = 'bo_pc7b'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc7c: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 7. QUEST'#195'O C'
+      FieldName = 'bo_pc7c'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc8: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 8'
+      FieldName = 'bo_pc8'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc8a: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 8. QUEST'#195'O A'
+      FieldName = 'bo_pc8a'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc8b: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 8. QUEST'#195'O B'
+      FieldName = 'bo_pc8b'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc8c: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 8. QUEST'#195'O C'
+      FieldName = 'bo_pc8c'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc9: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 9'
+      FieldName = 'bo_pc9'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc9a: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 9. QUEST'#195'O A'
+      FieldName = 'bo_pc9a'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc9b: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 9. QUEST'#195'O B'
+      FieldName = 'bo_pc9b'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+    object UNQYParQbo_pc9c: TBooleanField
+      DisplayLabel = 'PERGUNTA COMPLEMENTAR 9. QUEST'#195'O C'
+      FieldName = 'bo_pc9c'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+    end
+  end
+  object KRVCParQ: TKRKValidationChecks
+    DataSet = UNQYParQ
+    TableName = 'PARQ'
+    CheckableFields = <
+      item
+        FieldName = 'in_parq_id'
+        FieldDescription = 'ID'
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'in_avaliados_id'
+        FieldDescription = 'Avaliados ID'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pg1'
+        FieldDescription = 'PERGUNTA GERAL 1'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pg2'
+        FieldDescription = 'PERGUNTA GERAL 2'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pg3'
+        FieldDescription = 'PERGUNTA GERAL 3'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pg4'
+        FieldDescription = 'PERGUNTA GERAL 4'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pg5'
+        FieldDescription = 'PERGUNTA GERAL 5'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pg6'
+        FieldDescription = 'PERGUNTA GERAL 6'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pg7'
+        FieldDescription = 'PERGUNTA GERAL 7'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc1'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 1'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc1a'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 1. QUEST'#195'O A'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc1b'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 1. QUEST'#195'O B'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc1c'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 1. QUEST'#195'O C'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc2'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 2'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc2a'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 2. QUEST'#195'O A'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc2b'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 2. QUEST'#195'O B'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc3'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 3'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc3a'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 3. QUEST'#195'O A'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc3b'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 3. QUEST'#195'O B'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc3c'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 3. QUEST'#195'O C'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc3d'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 3. QUEST'#195'O D'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc3e'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 3. QUEST'#195'O E'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc4'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 4'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc4a'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 4. QUEST'#195'O A'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc4b'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 4. QUEST'#195'O B'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc4c'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 4. QUEST'#195'O C'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc5'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 5'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc5a'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 5. QUEST'#195'O A'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc5b'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 5. QUEST'#195'O B'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc6'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 6'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc6a'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 6. QUEST'#195'O A'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc6b'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 6. QUEST'#195'O B'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc6c'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 6. QUEST'#195'O C'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc6d'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 6. QUEST'#195'O D'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc7'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 7'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc7a'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 7. QUEST'#195'O A'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc7b'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 7. QUEST'#195'O B'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc7c'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 7. QUEST'#195'O C'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc8'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 8'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc8a'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 8. QUEST'#195'O A'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc8b'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 8. QUEST'#195'O B'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc8c'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 8. QUEST'#195'O C'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc9'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 9'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc9a'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 9. QUEST'#195'O A'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc9b'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 9. QUEST'#195'O B'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end
+      item
+        FieldName = 'bo_pc9c'
+        FieldDescription = 'PERGUNTA COMPLEMENTAR 9. QUEST'#195'O C'
+        CheckBlank.Active = True
+        CheckTextSet.FocusOnValidateFailure = False
+      end>
+    Left = 252
+    Top = 102
   end
 end

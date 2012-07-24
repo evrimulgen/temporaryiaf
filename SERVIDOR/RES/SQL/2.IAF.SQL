@@ -297,6 +297,111 @@ COMMENT ON COLUMN PARAMETROSFISIOLOGICOS.SM_PREDIA IS 'PRESSÃO DIASTÓLICA (mmH
 ALTER SEQUENCE SQ_PAF_IN_PARAMETROSFISIOLOGICOS_ID 
       OWNED BY PARAMETROSFISIOLOGICOS.IN_PARAMETROSFISIOLOGICOS_ID;
 ---------------------------------------------------------------
+CREATE SEQUENCE SQ_PAQ_IN_PARQ_ID
+      INCREMENT 1
+       MINVALUE 1
+       MAXVALUE 2147483647
+          START 1
+          CACHE 1;
+          
+CREATE TABLE PARQ (IN_PARQ_ID INTEGER NOT NULL DEFAULT NEXTVAL('SQ_PAQ_IN_PARQ_ID')
+                  ,IN_AVALIADOS_ID INTEGER NOT NULL
+                  ,BO_PG1 BOOLEAN NOT NULL
+                  ,BO_PG2 BOOLEAN NOT NULL
+                  ,BO_PG3 BOOLEAN NOT NULL
+                  ,BO_PG4 BOOLEAN NOT NULL
+                  ,BO_PG5 BOOLEAN NOT NULL
+                  ,BO_PG6 BOOLEAN NOT NULL
+                  ,BO_PG7 BOOLEAN NOT NULL
+                  ,BO_PC1 BOOLEAN NOT NULL
+                  ,BO_PC1A BOOLEAN NOT NULL
+                  ,BO_PC1B BOOLEAN NOT NULL
+                  ,BO_PC1C BOOLEAN NOT NULL
+                  ,BO_PC2 BOOLEAN NOT NULL
+                  ,BO_PC2A BOOLEAN NOT NULL
+                  ,BO_PC2B BOOLEAN NOT NULL
+                  ,BO_PC3 BOOLEAN NOT NULL
+                  ,BO_PC3A BOOLEAN NOT NULL
+                  ,BO_PC3B BOOLEAN NOT NULL
+                  ,BO_PC3C BOOLEAN NOT NULL
+                  ,BO_PC3D BOOLEAN NOT NULL
+                  ,BO_PC3E BOOLEAN NOT NULL
+                  ,BO_PC4 BOOLEAN NOT NULL
+                  ,BO_PC4A BOOLEAN NOT NULL
+                  ,BO_PC4B BOOLEAN NOT NULL
+                  ,BO_PC4C BOOLEAN NOT NULL
+                  ,BO_PC5 BOOLEAN NOT NULL
+                  ,BO_PC5A BOOLEAN NOT NULL
+                  ,BO_PC5B BOOLEAN NOT NULL
+                  ,BO_PC6 BOOLEAN NOT NULL
+                  ,BO_PC6A BOOLEAN NOT NULL
+                  ,BO_PC6B BOOLEAN NOT NULL
+                  ,BO_PC6C BOOLEAN NOT NULL
+                  ,BO_PC6D BOOLEAN NOT NULL
+                  ,BO_PC7 BOOLEAN NOT NULL
+                  ,BO_PC7A BOOLEAN NOT NULL
+                  ,BO_PC7B BOOLEAN NOT NULL
+                  ,BO_PC7C BOOLEAN NOT NULL
+                  ,BO_PC8 BOOLEAN NOT NULL
+                  ,BO_PC8A BOOLEAN NOT NULL
+                  ,BO_PC8B BOOLEAN NOT NULL
+                  ,BO_PC8C BOOLEAN NOT NULL
+                  ,BO_PC9 BOOLEAN NOT NULL
+                  ,BO_PC9A BOOLEAN NOT NULL
+                  ,BO_PC9B BOOLEAN NOT NULL
+                  ,BO_PC9C BOOLEAN NOT NULL
+                  ,CONSTRAINT PK_PAQ PRIMARY KEY (IN_PARQ_ID)
+                  ,CONSTRAINT FK_PAQ_AVA FOREIGN KEY (IN_AVALIADOS_ID) REFERENCES AVALIADOS (IN_AVALIADOS_ID) ON UPDATE CASCADE ON DELETE CASCADE);
+
+COMMENT ON TABLE PARQ IS 'PAR-Q+ (QUESTIONÁRIO DE PRONTIDÃO DE ATIVIDADE FÍSICA PARA TODOS)';
+COMMENT ON COLUMN PARQ.BO_PG1 IS 'PERGUNTA GERAL 1';
+COMMENT ON COLUMN PARQ.BO_PG2 IS 'PERGUNTA GERAL 2';
+COMMENT ON COLUMN PARQ.BO_PG3 IS 'PERGUNTA GERAL 3';
+COMMENT ON COLUMN PARQ.BO_PG4 IS 'PERGUNTA GERAL 4';
+COMMENT ON COLUMN PARQ.BO_PG5 IS 'PERGUNTA GERAL 5';
+COMMENT ON COLUMN PARQ.BO_PG6 IS 'PERGUNTA GERAL 6';
+COMMENT ON COLUMN PARQ.BO_PG7 IS 'PERGUNTA GERAL 7';
+COMMENT ON COLUMN PARQ.BO_PC1 IS 'PERGUNTA COMPLEMENTAR 1';
+COMMENT ON COLUMN PARQ.BO_PC1A IS 'PERGUNTA COMPLEMENTAR 1. QUESTÃO A';
+COMMENT ON COLUMN PARQ.BO_PC1B IS 'PERGUNTA COMPLEMENTAR 1. QUESTÃO B';
+COMMENT ON COLUMN PARQ.BO_PC1C IS 'PERGUNTA COMPLEMENTAR 1. QUESTÃO C';
+COMMENT ON COLUMN PARQ.BO_PC2 IS 'PERGUNTA COMPLEMENTAR 2';
+COMMENT ON COLUMN PARQ.BO_PC2A IS 'PERGUNTA COMPLEMENTAR 2. QUESTÃO A';
+COMMENT ON COLUMN PARQ.BO_PC2B IS 'PERGUNTA COMPLEMENTAR 2. QUESTÃO B';
+COMMENT ON COLUMN PARQ.BO_PC3 IS 'PERGUNTA COMPLEMENTAR 3';
+COMMENT ON COLUMN PARQ.BO_PC3A IS 'PERGUNTA COMPLEMENTAR 3. QUESTÃO A';
+COMMENT ON COLUMN PARQ.BO_PC3B IS 'PERGUNTA COMPLEMENTAR 3. QUESTÃO B';
+COMMENT ON COLUMN PARQ.BO_PC3C IS 'PERGUNTA COMPLEMENTAR 3. QUESTÃO C';
+COMMENT ON COLUMN PARQ.BO_PC3D IS 'PERGUNTA COMPLEMENTAR 3. QUESTÃO D';
+COMMENT ON COLUMN PARQ.BO_PC3E IS 'PERGUNTA COMPLEMENTAR 3. QUESTÃO E';
+COMMENT ON COLUMN PARQ.BO_PC4 IS 'PERGUNTA COMPLEMENTAR 4';
+COMMENT ON COLUMN PARQ.BO_PC4A IS 'PERGUNTA COMPLEMENTAR 4. QUESTÃO A';
+COMMENT ON COLUMN PARQ.BO_PC4B IS 'PERGUNTA COMPLEMENTAR 4. QUESTÃO B';
+COMMENT ON COLUMN PARQ.BO_PC4C IS 'PERGUNTA COMPLEMENTAR 4. QUESTÃO C';
+COMMENT ON COLUMN PARQ.BO_PC5 IS 'PERGUNTA COMPLEMENTAR 5';
+COMMENT ON COLUMN PARQ.BO_PC5A IS 'PERGUNTA COMPLEMENTAR 5. QUESTÃO A';
+COMMENT ON COLUMN PARQ.BO_PC5B IS 'PERGUNTA COMPLEMENTAR 5. QUESTÃO B';
+COMMENT ON COLUMN PARQ.BO_PC6 IS 'PERGUNTA COMPLEMENTAR 6';
+COMMENT ON COLUMN PARQ.BO_PC6A IS 'PERGUNTA COMPLEMENTAR 6. QUESTÃO A';
+COMMENT ON COLUMN PARQ.BO_PC6B IS 'PERGUNTA COMPLEMENTAR 6. QUESTÃO B';
+COMMENT ON COLUMN PARQ.BO_PC6C IS 'PERGUNTA COMPLEMENTAR 6. QUESTÃO C';
+COMMENT ON COLUMN PARQ.BO_PC6D IS 'PERGUNTA COMPLEMENTAR 6. QUESTÃO D';
+COMMENT ON COLUMN PARQ.BO_PC7 IS 'PERGUNTA COMPLEMENTAR 7';
+COMMENT ON COLUMN PARQ.BO_PC7A IS 'PERGUNTA COMPLEMENTAR 7. QUESTÃO A';
+COMMENT ON COLUMN PARQ.BO_PC7B IS 'PERGUNTA COMPLEMENTAR 7. QUESTÃO B';
+COMMENT ON COLUMN PARQ.BO_PC7C IS 'PERGUNTA COMPLEMENTAR 7. QUESTÃO C';
+COMMENT ON COLUMN PARQ.BO_PC8 IS 'PERGUNTA COMPLEMENTAR 8';
+COMMENT ON COLUMN PARQ.BO_PC8A IS 'PERGUNTA COMPLEMENTAR 8. QUESTÃO A';
+COMMENT ON COLUMN PARQ.BO_PC8B IS 'PERGUNTA COMPLEMENTAR 8. QUESTÃO B';
+COMMENT ON COLUMN PARQ.BO_PC8C IS 'PERGUNTA COMPLEMENTAR 8. QUESTÃO C';
+COMMENT ON COLUMN PARQ.BO_PC9 IS 'PERGUNTA COMPLEMENTAR 9';
+COMMENT ON COLUMN PARQ.BO_PC9A IS 'PERGUNTA COMPLEMENTAR 9. QUESTÃO A';
+COMMENT ON COLUMN PARQ.BO_PC9B IS 'PERGUNTA COMPLEMENTAR 9. QUESTÃO B';
+COMMENT ON COLUMN PARQ.BO_PC9C IS 'PERGUNTA COMPLEMENTAR 9. QUESTÃO C';
+
+ALTER SEQUENCE SQ_PAQ_IN_PARQ_ID 
+      OWNED BY PARQ.IN_PARQ_ID;
+---------------------------------------------------------------
 ---------------------------------------------------------------
 ---------------------------------------------------------------
 CREATE OR REPLACE FUNCTION IDU_USUARIOS(IN pMODO           CHAR
@@ -962,6 +1067,217 @@ BEGIN
            , SM_PRESIS       = pSM_PRESIS
            , SM_PREDIA       = pSM_PREDIA
        WHERE IN_PARAMETROSFISIOLOGICOS_ID = pIN_PARAMETROSFISIOLOGICOS_ID;
+
+    GET DIAGNOSTICS vRETURN := ROW_COUNT;
+    ---------------------------------------------------------------------------------------
+  END CASE;
+
+  RETURN vRETURN;
+END;
+$BODY$
+LANGUAGE PLPGSQL;
+---------------------------------------------------------------
+CREATE OR REPLACE FUNCTION IDU_PARQ(IN pMODO            CHAR
+                                   ,IN pIN_PARQ_ID      PARQ.IN_PARQ_ID%TYPE      = NULL
+                                   ,IN pIN_AVALIADOS_ID PARQ.IN_AVALIADOS_ID%TYPE = NULL
+                                   ,IN pBO_PG1          PARQ.BO_PG1%TYPE          = NULL
+                                   ,IN pBO_PG2          PARQ.BO_PG2%TYPE          = NULL
+                                   ,IN pBO_PG3          PARQ.BO_PG3%TYPE          = NULL
+                                   ,IN pBO_PG4          PARQ.BO_PG4%TYPE          = NULL
+                                   ,IN pBO_PG5          PARQ.BO_PG5%TYPE          = NULL
+                                   ,IN pBO_PG6          PARQ.BO_PG6%TYPE          = NULL
+                                   ,IN pBO_PG7          PARQ.BO_PG7%TYPE          = NULL
+                                   ,IN pBO_PC1          PARQ.BO_PC1%TYPE          = NULL
+                                   ,IN pBO_PC1A         PARQ.BO_PC1A%TYPE         = NULL
+                                   ,IN pBO_PC1B         PARQ.BO_PC1B%TYPE         = NULL
+                                   ,IN pBO_PC1C         PARQ.BO_PC1C%TYPE         = NULL
+                                   ,IN pBO_PC2          PARQ.BO_PC2%TYPE          = NULL
+                                   ,IN pBO_PC2A         PARQ.BO_PC2A%TYPE         = NULL
+                                   ,IN pBO_PC2B         PARQ.BO_PC2B%TYPE         = NULL
+                                   ,IN pBO_PC3          PARQ.BO_PC3%TYPE          = NULL
+                                   ,IN pBO_PC3A         PARQ.BO_PC3A%TYPE         = NULL
+                                   ,IN pBO_PC3B         PARQ.BO_PC3B%TYPE         = NULL
+                                   ,IN pBO_PC3C         PARQ.BO_PC3C%TYPE         = NULL
+                                   ,IN pBO_PC3D         PARQ.BO_PC3D%TYPE         = NULL
+                                   ,IN pBO_PC3E         PARQ.BO_PC3E%TYPE         = NULL
+                                   ,IN pBO_PC4          PARQ.BO_PC4%TYPE          = NULL
+                                   ,IN pBO_PC4A         PARQ.BO_PC4A%TYPE         = NULL
+                                   ,IN pBO_PC4B         PARQ.BO_PC4B%TYPE         = NULL
+                                   ,IN pBO_PC4C         PARQ.BO_PC4C%TYPE         = NULL
+                                   ,IN pBO_PC5          PARQ.BO_PC5%TYPE          = NULL
+                                   ,IN pBO_PC5A         PARQ.BO_PC5A%TYPE         = NULL
+                                   ,IN pBO_PC5B         PARQ.BO_PC5B%TYPE         = NULL
+                                   ,IN pBO_PC6          PARQ.BO_PC6%TYPE          = NULL
+                                   ,IN pBO_PC6A         PARQ.BO_PC6A%TYPE         = NULL
+                                   ,IN pBO_PC6B         PARQ.BO_PC6B%TYPE         = NULL
+                                   ,IN pBO_PC6C         PARQ.BO_PC6C%TYPE         = NULL
+                                   ,IN pBO_PC6D         PARQ.BO_PC6D%TYPE         = NULL
+                                   ,IN pBO_PC7          PARQ.BO_PC7%TYPE          = NULL
+                                   ,IN pBO_PC7A         PARQ.BO_PC7A%TYPE         = NULL
+                                   ,IN pBO_PC7B         PARQ.BO_PC7B%TYPE         = NULL
+                                   ,IN pBO_PC7C         PARQ.BO_PC7C%TYPE         = NULL
+                                   ,IN pBO_PC8          PARQ.BO_PC8%TYPE          = NULL
+                                   ,IN pBO_PC8A         PARQ.BO_PC8A%TYPE         = NULL
+                                   ,IN pBO_PC8B         PARQ.BO_PC8B%TYPE         = NULL
+                                   ,IN pBO_PC8C         PARQ.BO_PC8C%TYPE         = NULL
+                                   ,IN pBO_PC9          PARQ.BO_PC9%TYPE          = NULL
+                                   ,IN pBO_PC9A         PARQ.BO_PC9A%TYPE         = NULL
+                                   ,IN pBO_PC9B         PARQ.BO_PC9B%TYPE         = NULL
+                                   ,IN pBO_PC9C         PARQ.BO_PC9C%TYPE         = NULL)
+RETURNS BIGINT AS
+$BODY$
+DECLARE
+  vRETURN BIGINT := 0;
+BEGIN
+  CASE pMODO
+    WHEN 'I' THEN ----------------------------------------------------------- [ INSERT ] --
+      INSERT INTO PARQ (IN_AVALIADOS_ID
+                       ,BO_PG1
+                       ,BO_PG2
+                       ,BO_PG3
+                       ,BO_PG4
+                       ,BO_PG5
+                       ,BO_PG6
+                       ,BO_PG7
+                       ,BO_PC1
+                       ,BO_PC1A
+                       ,BO_PC1B
+                       ,BO_PC1C
+                       ,BO_PC2
+                       ,BO_PC2A
+                       ,BO_PC2B
+                       ,BO_PC3
+                       ,BO_PC3A
+                       ,BO_PC3B
+                       ,BO_PC3C
+                       ,BO_PC3D
+                       ,BO_PC3E
+                       ,BO_PC4
+                       ,BO_PC4A
+                       ,BO_PC4B
+                       ,BO_PC4C
+                       ,BO_PC5
+                       ,BO_PC5A
+                       ,BO_PC5B
+                       ,BO_PC6
+                       ,BO_PC6A
+                       ,BO_PC6B
+                       ,BO_PC6C
+                       ,BO_PC6D
+                       ,BO_PC7
+                       ,BO_PC7A
+                       ,BO_PC7B
+                       ,BO_PC7C
+                       ,BO_PC8
+                       ,BO_PC8A
+                       ,BO_PC8B
+                       ,BO_PC8C
+                       ,BO_PC9
+                       ,BO_PC9A
+                       ,BO_PC9B
+                       ,BO_PC9C)
+                VALUES (pIN_AVALIADOS_ID
+                       ,pBO_PG1
+                       ,pBO_PG2
+                       ,pBO_PG3
+                       ,pBO_PG4
+                       ,pBO_PG5
+                       ,pBO_PG6
+                       ,pBO_PG7
+                       ,pBO_PC1
+                       ,pBO_PC1A
+                       ,pBO_PC1B
+                       ,pBO_PC1C
+                       ,pBO_PC2
+                       ,pBO_PC2A
+                       ,pBO_PC2B
+                       ,pBO_PC3
+                       ,pBO_PC3A
+                       ,pBO_PC3B
+                       ,pBO_PC3C
+                       ,pBO_PC3D
+                       ,pBO_PC3E
+                       ,pBO_PC4
+                       ,pBO_PC4A
+                       ,pBO_PC4B
+                       ,pBO_PC4C
+                       ,pBO_PC5
+                       ,pBO_PC5A
+                       ,pBO_PC5B
+                       ,pBO_PC6
+                       ,pBO_PC6A
+                       ,pBO_PC6B
+                       ,pBO_PC6C
+                       ,pBO_PC6D
+                       ,pBO_PC7
+                       ,pBO_PC7A
+                       ,pBO_PC7B
+                       ,pBO_PC7C
+                       ,pBO_PC8
+                       ,pBO_PC8A
+                       ,pBO_PC8B
+                       ,pBO_PC8C
+                       ,pBO_PC9
+                       ,pBO_PC9A
+                       ,pBO_PC9B
+                       ,pBO_PC9C);
+
+      vRETURN := CURRVAL('SQ_PAQ_IN_PARQ_ID');
+    ---------------------------------------------------------------------------------------
+    WHEN 'D' THEN ----------------------------------------------------------- [ DELETE ] --
+      DELETE FROM PARQ
+            WHERE IN_PARQ_ID = pIN_PARQ_ID;
+
+      GET DIAGNOSTICS vRETURN := ROW_COUNT;
+    ---------------------------------------------------------------------------------------
+    WHEN 'U' THEN ----------------------------------------------------------- [ UPDATE ] --
+      UPDATE PARQ
+         SET IN_AVALIADOS_ID = pIN_AVALIADOS_ID
+           , BO_PG1          = pBO_PG1
+           , BO_PG2          = pBO_PG2
+           , BO_PG3          = pBO_PG3
+           , BO_PG4          = pBO_PG4
+           , BO_PG5          = pBO_PG5
+           , BO_PG6          = pBO_PG6
+           , BO_PG7          = pBO_PG7
+           , BO_PC1          = pBO_PC1
+           , BO_PC1A         = pBO_PC1A
+           , BO_PC1B         = pBO_PC1B
+           , BO_PC1C         = pBO_PC1C
+           , BO_PC2          = pBO_PC2
+           , BO_PC2A         = pBO_PC2A
+           , BO_PC2B         = pBO_PC2B
+           , BO_PC3          = pBO_PC3
+           , BO_PC3A         = pBO_PC3A
+           , BO_PC3B         = pBO_PC3B
+           , BO_PC3C         = pBO_PC3C
+           , BO_PC3D         = pBO_PC3D
+           , BO_PC3E         = pBO_PC3E
+           , BO_PC4          = pBO_PC4
+           , BO_PC4A         = pBO_PC4A
+           , BO_PC4B         = pBO_PC4B
+           , BO_PC4C         = pBO_PC4C
+           , BO_PC5          = pBO_PC5
+           , BO_PC5A         = pBO_PC5A
+           , BO_PC5B         = pBO_PC5B
+           , BO_PC6          = pBO_PC6
+           , BO_PC6A         = pBO_PC6A
+           , BO_PC6B         = pBO_PC6B
+           , BO_PC6C         = pBO_PC6C
+           , BO_PC6D         = pBO_PC6D
+           , BO_PC7          = pBO_PC7
+           , BO_PC7A         = pBO_PC7A
+           , BO_PC7B         = pBO_PC7B
+           , BO_PC7C         = pBO_PC7C
+           , BO_PC8          = pBO_PC8
+           , BO_PC8A         = pBO_PC8A
+           , BO_PC8B         = pBO_PC8B
+           , BO_PC8C         = pBO_PC8C
+           , BO_PC9          = pBO_PC9
+           , BO_PC9A         = pBO_PC9A
+           , BO_PC9B         = pBO_PC9B
+           , BO_PC9C         = pBO_PC9C
+       WHERE IN_PARQ_ID = pIN_PARQ_ID;
 
     GET DIAGNOSTICS vRETURN := ROW_COUNT;
     ---------------------------------------------------------------------------------------

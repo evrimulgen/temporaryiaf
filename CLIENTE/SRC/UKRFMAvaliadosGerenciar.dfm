@@ -1,17 +1,17 @@
 inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
   Caption = 'Gerenciar Avaliados'
-  ClientHeight = 474
-  ClientWidth = 622
-  ExplicitWidth = 638
-  ExplicitHeight = 512
+  ClientHeight = 477
+  ClientWidth = 784
+  ExplicitWidth = 800
+  ExplicitHeight = 515
   PixelsPerInch = 96
   TextHeight = 13
   object PGCTAvaliados: TPageControl [0]
     Left = 0
     Top = 40
-    Width = 622
-    Height = 434
-    ActivePage = TBSHConsultar
+    Width = 784
+    Height = 437
+    ActivePage = TBSHParQ
     Align = alClient
     TabOrder = 2
     OnChanging = PGCTAvaliadosChanging
@@ -22,8 +22,8 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         AlignWithMargins = True
         Left = 0
         Top = 179
-        Width = 608
-        Height = 171
+        Width = 770
+        Height = 174
         Margins.Left = 0
         Margins.Right = 0
         Margins.Bottom = 0
@@ -54,7 +54,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           item
             Expanded = False
             FieldName = 'va_nome'
-            Width = 243
+            Width = 405
             Visible = True
           end
           item
@@ -84,7 +84,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         AlignWithMargins = True
         Left = 0
         Top = 148
-        Width = 608
+        Width = 770
         Height = 25
         Margins.Left = 0
         Margins.Right = 0
@@ -95,8 +95,8 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       end
       object GRBXFiltroAvaliados: TGroupBox
         Left = 0
-        Top = 350
-        Width = 608
+        Top = 353
+        Width = 770
         Height = 50
         Align = alBottom
         Caption = ' Filtros definidos '
@@ -111,7 +111,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           AlignWithMargins = True
           Left = 8
           Top = 15
-          Width = 592
+          Width = 754
           Height = 26
           Margins.Left = 6
           Margins.Top = 0
@@ -130,13 +130,14 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           WordWrap = True
           ExplicitLeft = 10
           ExplicitTop = 17
+          ExplicitWidth = 592
         end
       end
       object PANLLayerFiltros: TPanel
         AlignWithMargins = True
         Left = 0
         Top = 0
-        Width = 608
+        Width = 770
         Height = 143
         Margins.Left = 0
         Margins.Top = 0
@@ -147,7 +148,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         Locked = True
         TabOrder = 3
         DesignSize = (
-          608
+          770
           143)
         object GRBXPorDadosUnicos: TGroupBox
           Left = 0
@@ -251,18 +252,18 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object GRBXPorDadosParciais: TGroupBox
           Left = 0
           Top = 52
-          Width = 608
+          Width = 770
           Height = 91
           Anchors = [akLeft, akTop, akRight]
           Caption = ' Por dados parciais (e) '
           TabOrder = 2
           DesignSize = (
-            608
+            770
             91)
           object LAEDNome: TLabeledEdit
             Left = 6
             Top = 27
-            Width = 597
+            Width = 759
             Height = 21
             Anchors = [akLeft, akTop, akRight]
             EditLabel.Width = 27
@@ -273,7 +274,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             OnKeyPress = DoKeyPressPesquisaParcial
           end
           object LAEDBairro: TLabeledEdit
-            Left = 448
+            Left = 610
             Top = 63
             Width = 155
             Height = 21
@@ -286,7 +287,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             OnKeyPress = DoKeyPressPesquisaParcial
           end
           object LAEDCidade: TLabeledEdit
-            Left = 287
+            Left = 449
             Top = 63
             Width = 155
             Height = 21
@@ -301,7 +302,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           object LAEDLogradouro: TLabeledEdit
             Left = 6
             Top = 63
-            Width = 275
+            Width = 437
             Height = 21
             Anchors = [akLeft, akTop, akRight]
             EditLabel.Width = 55
@@ -319,12 +320,12 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       Caption = 'Gerenciar'
       ImageIndex = 1
       DesignSize = (
-        608
-        400)
+        770
+        403)
       object DBNAGerenciarAvaliados: TDBNavigator
         Left = 0
-        Top = 375
-        Width = 608
+        Top = 378
+        Width = 770
         Height = 25
         DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
         VisibleButtons = [nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh]
@@ -542,16 +543,16 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       object GRBXDadosPessoais: TGroupBox
         Left = 0
         Top = -2
-        Width = 608
+        Width = 770
         Height = 55
         Anchors = [akLeft, akTop, akRight]
         Caption = ' Dados pessoais '
         TabOrder = 0
         DesignSize = (
-          608
+          770
           55)
         object LABLGenero: TLabel
-          Left = 444
+          Left = 606
           Top = 13
           Width = 35
           Height = 13
@@ -560,7 +561,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           ExplicitLeft = 447
         end
         object DBCXGenero: TDBComboBox
-          Left = 444
+          Left = 606
           Top = 27
           Width = 70
           Height = 21
@@ -574,7 +575,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           TabOrder = 1
         end
         object KLDEDataNascimento: TKRKLabeledDBEdit
-          Left = 520
+          Left = 682
           Top = 27
           Width = 82
           Height = 21
@@ -594,7 +595,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object KLDENome: TKRKLabeledDBEdit
           Left = 6
           Top = 27
-          Width = 432
+          Width = 594
           Height = 21
           Anchors = [akLeft, akTop, akRight]
           DataField = 'va_nome'
@@ -609,13 +610,13 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       object GRBXEndereco: TGroupBox
         Left = 0
         Top = 106
-        Width = 608
+        Width = 770
         Height = 91
         Anchors = [akLeft, akTop, akRight]
         Caption = ' Endere'#231'o '
         TabOrder = 3
         DesignSize = (
-          608
+          770
           91)
         object LABLTipoDeLogradouro: TLabel
           Left = 6
@@ -626,7 +627,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           FocusControl = DBCXTipoLogradouro
         end
         object LABLUF: TLabel
-          Left = 556
+          Left = 718
           Top = 49
           Width = 21
           Height = 13
@@ -708,7 +709,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           TabOrder = 3
         end
         object KLDEIdLogradouro: TKRKLabeledDBEdit
-          Left = 474
+          Left = 636
           Top = 27
           Width = 128
           Height = 21
@@ -724,7 +725,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object KLDELogradouro: TKRKLabeledDBEdit
           Left = 102
           Top = 27
-          Width = 366
+          Width = 528
           Height = 21
           Anchors = [akLeft, akTop, akRight]
           DataField = 'va_nomelogradouro'
@@ -736,7 +737,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           TabOrder = 1
         end
         object DBCXUF: TDBComboBox
-          Left = 556
+          Left = 718
           Top = 63
           Width = 46
           Height = 21
@@ -790,7 +791,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object KLDECidade: TKRKLabeledDBEdit
           Left = 328
           Top = 63
-          Width = 222
+          Width = 384
           Height = 21
           Anchors = [akLeft, akTop, akRight]
           DataField = 'va_cidade'
@@ -805,8 +806,8 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       object GRBXObservacoes: TGroupBox
         AlignWithMargins = True
         Left = 0
-        Top = 197
-        Width = 608
+        Top = 200
+        Width = 770
         Height = 175
         Margins.Left = 0
         Margins.Top = 0
@@ -818,7 +819,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           AlignWithMargins = True
           Left = 6
           Top = 15
-          Width = 596
+          Width = 758
           Height = 153
           Margins.Left = 4
           Margins.Top = 0
@@ -838,21 +839,21 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       object SCBXDadosSocioDemograficos: TScrollBox
         Left = 0
         Top = 60
-        Width = 608
-        Height = 340
+        Width = 770
+        Height = 343
         Align = alClient
         BevelInner = bvNone
         BevelOuter = bvNone
         Color = clWindow
         ParentColor = False
         TabOrder = 0
-        OnMouseWheelDown = SCBXDadosSocioDemograficosMouseWheelDown
-        OnMouseWheelUp = SCBXDadosSocioDemograficosMouseWheelUp
+        OnMouseWheelDown = DoScrollBoxMouseWheelDown
+        OnMouseWheelUp = DoScrollBoxMouseWheelUp
         object DBRGCorRaca: TDBRadioGroup
           AlignWithMargins = True
           Left = 6
           Top = 0
-          Width = 575
+          Width = 737
           Height = 105
           Margins.Left = 6
           Margins.Top = 0
@@ -880,7 +881,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           AlignWithMargins = True
           Left = 6
           Top = 108
-          Width = 575
+          Width = 737
           Height = 88
           Margins.Left = 6
           Margins.Top = 0
@@ -906,7 +907,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           AlignWithMargins = True
           Left = 6
           Top = 199
-          Width = 575
+          Width = 737
           Height = 105
           Margins.Left = 6
           Margins.Top = 0
@@ -938,7 +939,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           AlignWithMargins = True
           Left = 6
           Top = 307
-          Width = 575
+          Width = 737
           Height = 65
           Margins.Left = 6
           Margins.Top = 0
@@ -949,18 +950,18 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           ParentBiDiMode = False
           TabOrder = 3
           DesignSize = (
-            575
+            737
             65)
           object PANLCBO: TPanel
             Left = 212
             Top = 29
-            Width = 355
+            Width = 517
             Height = 21
             Anchors = [akLeft, akTop, akRight]
             BevelOuter = bvNone
             TabOrder = 0
             DesignSize = (
-              355
+              517
               21)
             object KLDECBO: TKRKLabeledDBEdit
               Left = 47
@@ -984,7 +985,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               TabOrder = 1
             end
             object BUTNPesqisarCBO: TButton
-              Left = 334
+              Left = 496
               Top = 0
               Width = 21
               Height = 21
@@ -995,7 +996,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             object DBEDTituloCBO: TDBEdit
               Left = 100
               Top = 0
-              Width = 231
+              Width = 393
               Height = 21
               Anchors = [akLeft, akTop, akRight]
               Color = clInfoBk
@@ -1028,7 +1029,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           AlignWithMargins = True
           Left = 6
           Top = 375
-          Width = 575
+          Width = 737
           Height = 425
           Margins.Left = 6
           Margins.Top = 0
@@ -1040,7 +1041,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             AlignWithMargins = True
             Left = 8
             Top = 15
-            Width = 559
+            Width = 721
             Height = 42
             Margins.Left = 6
             Margins.Top = 0
@@ -1069,7 +1070,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             AlignWithMargins = True
             Left = 8
             Top = 60
-            Width = 559
+            Width = 721
             Height = 42
             Margins.Left = 6
             Margins.Top = 0
@@ -1098,7 +1099,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             AlignWithMargins = True
             Left = 8
             Top = 105
-            Width = 559
+            Width = 721
             Height = 42
             Margins.Left = 6
             Margins.Top = 0
@@ -1127,7 +1128,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             AlignWithMargins = True
             Left = 8
             Top = 150
-            Width = 559
+            Width = 721
             Height = 42
             Margins.Left = 6
             Margins.Top = 0
@@ -1156,7 +1157,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             AlignWithMargins = True
             Left = 8
             Top = 240
-            Width = 559
+            Width = 721
             Height = 42
             Margins.Left = 6
             Margins.Top = 0
@@ -1185,7 +1186,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             AlignWithMargins = True
             Left = 8
             Top = 285
-            Width = 559
+            Width = 721
             Height = 42
             Margins.Left = 6
             Margins.Top = 0
@@ -1214,7 +1215,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             AlignWithMargins = True
             Left = 8
             Top = 330
-            Width = 559
+            Width = 721
             Height = 42
             Margins.Left = 6
             Margins.Top = 0
@@ -1243,7 +1244,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             AlignWithMargins = True
             Left = 8
             Top = 375
-            Width = 559
+            Width = 721
             Height = 42
             Margins.Left = 6
             Margins.Top = 0
@@ -1272,7 +1273,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             AlignWithMargins = True
             Left = 8
             Top = 195
-            Width = 559
+            Width = 721
             Height = 42
             Margins.Left = 6
             Margins.Top = 0
@@ -1302,7 +1303,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           AlignWithMargins = True
           Left = 6
           Top = 803
-          Width = 575
+          Width = 737
           Height = 42
           Margins.Left = 6
           Margins.Top = 0
@@ -1326,7 +1327,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           AlignWithMargins = True
           Left = 6
           Top = 848
-          Width = 575
+          Width = 737
           Height = 105
           Margins.Left = 6
           Margins.Top = 0
@@ -1358,7 +1359,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object PANLPaddingBottom: TPanel
           Left = 0
           Top = 953
-          Width = 587
+          Width = 749
           Height = 6
           Align = alBottom
           BevelOuter = bvNone
@@ -1369,7 +1370,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         AlignWithMargins = True
         Left = 0
         Top = 29
-        Width = 608
+        Width = 770
         Height = 25
         Margins.Left = 0
         Margins.Right = 0
@@ -1384,7 +1385,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         AlignWithMargins = True
         Left = 0
         Top = 0
-        Width = 608
+        Width = 770
         Height = 23
         Margins.Left = 0
         Margins.Top = 0
@@ -1398,7 +1399,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object LABLAvaliado1: TLabel
           Left = 1
           Top = 1
-          Width = 606
+          Width = 768
           Height = 21
           Align = alClient
           Alignment = taCenter
@@ -1423,7 +1424,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         AlignWithMargins = True
         Left = 0
         Top = 0
-        Width = 608
+        Width = 770
         Height = 23
         Margins.Left = 0
         Margins.Top = 0
@@ -1437,7 +1438,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object LABLAvaliado2: TLabel
           Left = 1
           Top = 1
-          Width = 606
+          Width = 768
           Height = 21
           Align = alClient
           Alignment = taCenter
@@ -1457,7 +1458,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         AlignWithMargins = True
         Left = 0
         Top = 29
-        Width = 608
+        Width = 770
         Height = 25
         Margins.Left = 0
         Margins.Right = 0
@@ -1471,20 +1472,20 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       object SCBXSinaisESintomas: TScrollBox
         Left = 0
         Top = 60
-        Width = 608
-        Height = 340
+        Width = 770
+        Height = 343
         Align = alClient
         BevelInner = bvNone
         BevelOuter = bvNone
         Color = clWindow
         ParentColor = False
         TabOrder = 2
-        OnMouseWheelDown = SCBXDadosSocioDemograficosMouseWheelDown
-        OnMouseWheelUp = SCBXDadosSocioDemograficosMouseWheelUp
+        OnMouseWheelDown = DoScrollBoxMouseWheelDown
+        OnMouseWheelUp = DoScrollBoxMouseWheelUp
         object Panel2: TPanel
           Left = 0
           Top = 384
-          Width = 587
+          Width = 749
           Height = 4
           Align = alBottom
           BevelOuter = bvNone
@@ -1494,7 +1495,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           AlignWithMargins = True
           Left = 6
           Top = 6
-          Width = 575
+          Width = 737
           Height = 35
           Margins.Left = 6
           Margins.Top = 6
@@ -1505,10 +1506,15 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           ParentBackground = False
           TabOrder = 1
           object LABLSinaisESintomas: TLabel
+            AlignWithMargins = True
             Left = 2
             Top = 2
-            Width = 571
+            Width = 733
             Height = 31
+            Margins.Left = 0
+            Margins.Top = 0
+            Margins.Right = 0
+            Margins.Bottom = 0
             Align = alClient
             Alignment = taCenter
             Caption = 
@@ -1525,7 +1531,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           AlignWithMargins = True
           Left = 6
           Top = 47
-          Width = 575
+          Width = 737
           Height = 17
           Margins.Left = 6
           Margins.Right = 6
@@ -1544,7 +1550,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           AlignWithMargins = True
           Left = 6
           Top = 67
-          Width = 575
+          Width = 737
           Height = 17
           Margins.Left = 6
           Margins.Right = 6
@@ -1563,7 +1569,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           AlignWithMargins = True
           Left = 6
           Top = 87
-          Width = 575
+          Width = 737
           Height = 17
           Margins.Left = 6
           Margins.Right = 6
@@ -1580,7 +1586,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           AlignWithMargins = True
           Left = 6
           Top = 107
-          Width = 575
+          Width = 737
           Height = 17
           Margins.Left = 6
           Margins.Right = 6
@@ -1597,7 +1603,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           AlignWithMargins = True
           Left = 6
           Top = 127
-          Width = 575
+          Width = 737
           Height = 17
           Margins.Left = 6
           Margins.Right = 6
@@ -1614,7 +1620,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           AlignWithMargins = True
           Left = 6
           Top = 147
-          Width = 575
+          Width = 737
           Height = 17
           Margins.Left = 6
           Margins.Right = 6
@@ -1631,7 +1637,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           AlignWithMargins = True
           Left = 6
           Top = 167
-          Width = 575
+          Width = 737
           Height = 17
           Margins.Left = 6
           Margins.Right = 6
@@ -1648,7 +1654,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           AlignWithMargins = True
           Left = 6
           Top = 187
-          Width = 575
+          Width = 737
           Height = 17
           Margins.Left = 6
           Margins.Right = 6
@@ -1665,7 +1671,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           AlignWithMargins = True
           Left = 6
           Top = 207
-          Width = 575
+          Width = 737
           Height = 17
           Margins.Left = 6
           Margins.Right = 6
@@ -1682,7 +1688,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           AlignWithMargins = True
           Left = 6
           Top = 227
-          Width = 575
+          Width = 737
           Height = 17
           Margins.Left = 6
           Margins.Right = 6
@@ -1699,7 +1705,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           AlignWithMargins = True
           Left = 6
           Top = 247
-          Width = 575
+          Width = 737
           Height = 17
           Margins.Left = 6
           Margins.Right = 6
@@ -1718,7 +1724,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           AlignWithMargins = True
           Left = 6
           Top = 267
-          Width = 575
+          Width = 737
           Height = 17
           Margins.Left = 6
           Margins.Right = 6
@@ -1735,7 +1741,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           AlignWithMargins = True
           Left = 6
           Top = 287
-          Width = 575
+          Width = 737
           Height = 17
           Margins.Left = 6
           Margins.Right = 6
@@ -1752,7 +1758,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           AlignWithMargins = True
           Left = 6
           Top = 307
-          Width = 575
+          Width = 737
           Height = 17
           Margins.Left = 6
           Margins.Right = 6
@@ -1769,7 +1775,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           AlignWithMargins = True
           Left = 6
           Top = 327
-          Width = 575
+          Width = 737
           Height = 17
           Margins.Left = 6
           Margins.Right = 6
@@ -1786,7 +1792,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           AlignWithMargins = True
           Left = 6
           Top = 347
-          Width = 575
+          Width = 737
           Height = 17
           Margins.Left = 6
           Margins.Right = 6
@@ -1803,7 +1809,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           AlignWithMargins = True
           Left = 6
           Top = 367
-          Width = 575
+          Width = 737
           Height = 17
           Margins.Left = 6
           Margins.Right = 6
@@ -1822,11 +1828,12 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       AlignWithMargins = True
       Caption = 'PAR-Q+'
       ImageIndex = 5
+      OnShow = TBSHParQShow
       object KRPAAvaliado4: TKRKPanel
         AlignWithMargins = True
         Left = 0
         Top = 0
-        Width = 608
+        Width = 770
         Height = 23
         Margins.Left = 0
         Margins.Top = 0
@@ -1840,7 +1847,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object LABLAvaliado4: TLabel
           Left = 1
           Top = 1
-          Width = 606
+          Width = 768
           Height = 21
           Align = alClient
           Alignment = taCenter
@@ -1860,30 +1867,1315 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         AlignWithMargins = True
         Left = 0
         Top = 29
-        Width = 608
+        Width = 770
         Height = 25
         Margins.Left = 0
         Margins.Right = 0
         Margins.Bottom = 6
-        DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
+        DataSource = KRDMAvaliadosGerenciar.DTSRParQ
         VisibleButtons = [nbPost, nbCancel, nbRefresh]
         Align = alTop
         TabOrder = 1
+        BeforeAction = DoBeforeAction
+      end
+      object SCBXParQ: TScrollBox
+        Left = 0
+        Top = 60
+        Width = 770
+        Height = 343
+        VertScrollBar.Position = 184
+        Align = alClient
+        Color = clWhite
+        ParentColor = False
+        TabOrder = 2
+        OnMouseWheelDown = DoScrollBoxMouseWheelDown
+        OnMouseWheelUp = DoScrollBoxMouseWheelUp
+        object PANLParQBottom: TPanel
+          Left = 0
+          Top = 1921
+          Width = 749
+          Height = 4
+          Align = alBottom
+          BevelOuter = bvNone
+          TabOrder = 0
+        end
+        object DBCheckBox1: TDBCheckBox
+          Left = 48
+          Top = 872
+          Width = 97
+          Height = 17
+          Caption = 'bo_pg1'
+          DataField = 'bo_pg1'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 1
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox2: TDBCheckBox
+          Left = 48
+          Top = 896
+          Width = 97
+          Height = 17
+          Caption = 'bo_pg2'
+          DataField = 'bo_pg2'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 2
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox3: TDBCheckBox
+          Left = 48
+          Top = 920
+          Width = 97
+          Height = 17
+          Caption = 'bo_pg3'
+          DataField = 'bo_pg3'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 3
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox4: TDBCheckBox
+          Left = 48
+          Top = 944
+          Width = 97
+          Height = 17
+          Caption = 'bo_pg4'
+          DataField = 'bo_pg4'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 4
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox5: TDBCheckBox
+          Left = 48
+          Top = 968
+          Width = 97
+          Height = 17
+          Caption = 'bo_pg5'
+          DataField = 'bo_pg5'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 5
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox6: TDBCheckBox
+          Left = 48
+          Top = 992
+          Width = 97
+          Height = 17
+          Caption = 'bo_pg6'
+          DataField = 'bo_pg6'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 6
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox7: TDBCheckBox
+          Left = 48
+          Top = 1016
+          Width = 97
+          Height = 17
+          Caption = 'bo_pg7'
+          DataField = 'bo_pg7'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 7
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox8: TDBCheckBox
+          Left = 48
+          Top = 1040
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc1'
+          DataField = 'bo_pc1'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 8
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox9: TDBCheckBox
+          Left = 48
+          Top = 1064
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc1a'
+          DataField = 'bo_pc1a'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 9
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox10: TDBCheckBox
+          Left = 48
+          Top = 1088
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc1b'
+          DataField = 'bo_pc1b'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 10
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox11: TDBCheckBox
+          Left = 48
+          Top = 1112
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc1c'
+          DataField = 'bo_pc1c'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 11
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox12: TDBCheckBox
+          Left = 48
+          Top = 1136
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc2'
+          DataField = 'bo_pc2'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 12
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox13: TDBCheckBox
+          Left = 48
+          Top = 1160
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc2a'
+          DataField = 'bo_pc2a'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 13
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox14: TDBCheckBox
+          Left = 48
+          Top = 1184
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc2b'
+          DataField = 'bo_pc2b'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 14
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox15: TDBCheckBox
+          Left = 48
+          Top = 1208
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc3'
+          DataField = 'bo_pc3'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 15
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox16: TDBCheckBox
+          Left = 48
+          Top = 1232
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc3a'
+          DataField = 'bo_pc3a'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 16
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox17: TDBCheckBox
+          Left = 48
+          Top = 1256
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc3b'
+          DataField = 'bo_pc3b'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 17
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox18: TDBCheckBox
+          Left = 48
+          Top = 1280
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc3c'
+          DataField = 'bo_pc3c'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 18
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox19: TDBCheckBox
+          Left = 48
+          Top = 1304
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc3d'
+          DataField = 'bo_pc3d'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 19
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox20: TDBCheckBox
+          Left = 48
+          Top = 1328
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc3e'
+          DataField = 'bo_pc3e'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 20
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox21: TDBCheckBox
+          Left = 48
+          Top = 1352
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc4'
+          DataField = 'bo_pc4'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 21
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox22: TDBCheckBox
+          Left = 48
+          Top = 1376
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc4a'
+          DataField = 'bo_pc4a'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 22
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox23: TDBCheckBox
+          Left = 48
+          Top = 1400
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc4b'
+          DataField = 'bo_pc4b'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 23
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox24: TDBCheckBox
+          Left = 48
+          Top = 1424
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc4c'
+          DataField = 'bo_pc4c'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 24
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox25: TDBCheckBox
+          Left = 48
+          Top = 1448
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc5'
+          DataField = 'bo_pc5'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 25
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox26: TDBCheckBox
+          Left = 48
+          Top = 1472
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc5a'
+          DataField = 'bo_pc5a'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 26
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox27: TDBCheckBox
+          Left = 48
+          Top = 1496
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc5b'
+          DataField = 'bo_pc5b'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 27
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox28: TDBCheckBox
+          Left = 48
+          Top = 1520
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc6'
+          DataField = 'bo_pc6'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 28
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox29: TDBCheckBox
+          Left = 48
+          Top = 1544
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc6a'
+          DataField = 'bo_pc6a'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 29
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox30: TDBCheckBox
+          Left = 48
+          Top = 1568
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc6b'
+          DataField = 'bo_pc6b'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 30
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox31: TDBCheckBox
+          Left = 48
+          Top = 1592
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc6c'
+          DataField = 'bo_pc6c'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 31
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox32: TDBCheckBox
+          Left = 48
+          Top = 1616
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc6d'
+          DataField = 'bo_pc6d'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 32
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox33: TDBCheckBox
+          Left = 48
+          Top = 1640
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc7'
+          DataField = 'bo_pc7'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 33
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox34: TDBCheckBox
+          Left = 48
+          Top = 1664
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc7a'
+          DataField = 'bo_pc7a'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 34
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox35: TDBCheckBox
+          Left = 48
+          Top = 1688
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc7b'
+          DataField = 'bo_pc7b'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 35
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox36: TDBCheckBox
+          Left = 48
+          Top = 1712
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc7c'
+          DataField = 'bo_pc7c'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 36
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox37: TDBCheckBox
+          Left = 48
+          Top = 1736
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc8'
+          DataField = 'bo_pc8'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 37
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox38: TDBCheckBox
+          Left = 48
+          Top = 1760
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc8a'
+          DataField = 'bo_pc8a'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 38
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox39: TDBCheckBox
+          Left = 48
+          Top = 1784
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc8b'
+          DataField = 'bo_pc8b'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 39
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox40: TDBCheckBox
+          Left = 48
+          Top = 1808
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc8c'
+          DataField = 'bo_pc8c'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 40
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox41: TDBCheckBox
+          Left = 48
+          Top = 1832
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc9'
+          DataField = 'bo_pc9'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 41
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox42: TDBCheckBox
+          Left = 48
+          Top = 1856
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc9a'
+          DataField = 'bo_pc9a'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 42
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox43: TDBCheckBox
+          Left = 48
+          Top = 1880
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc9b'
+          DataField = 'bo_pc9b'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 43
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object DBCheckBox44: TDBCheckBox
+          Left = 48
+          Top = 1904
+          Width = 97
+          Height = 17
+          Caption = 'bo_pc9c'
+          DataField = 'bo_pc9c'
+          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+          TabOrder = 44
+          ValueChecked = 'True'
+          ValueUnchecked = 'False'
+        end
+        object PANLParQ1: TPanel
+          AlignWithMargins = True
+          Left = 6
+          Top = -178
+          Width = 737
+          Height = 35
+          Margins.Left = 6
+          Margins.Top = 6
+          Margins.Right = 6
+          Align = alTop
+          BevelInner = bvLowered
+          Color = clInfoBk
+          ParentBackground = False
+          TabOrder = 45
+          object LABLParQ1: TLabel
+            AlignWithMargins = True
+            Left = 4
+            Top = 4
+            Width = 729
+            Height = 27
+            Margins.Left = 2
+            Margins.Top = 2
+            Margins.Right = 2
+            Margins.Bottom = 2
+            Align = alClient
+            Alignment = taCenter
+            Caption = 
+              'PERGUNTAS GERAIS SOBRE A SA'#218'DE DO AVALIADO'#13#10'Estas quest'#245'es s'#227'o s' +
+              'empre obrigat'#243'rias'
+            Color = clInfoBk
+            ParentColor = False
+            Layout = tlCenter
+            ExplicitWidth = 253
+            ExplicitHeight = 26
+          end
+        end
+        object PANLParQ2: TPanel
+          AlignWithMargins = True
+          Left = 6
+          Top = 178
+          Width = 737
+          Height = 35
+          Margins.Left = 6
+          Margins.Right = 6
+          Align = alTop
+          BevelInner = bvLowered
+          Color = clInfoBk
+          ParentBackground = False
+          TabOrder = 46
+          Visible = False
+          object LABLParQ2: TLabel
+            AlignWithMargins = True
+            Left = 4
+            Top = 4
+            Width = 729
+            Height = 27
+            Margins.Left = 2
+            Margins.Top = 2
+            Margins.Right = 2
+            Margins.Bottom = 2
+            Align = alClient
+            Alignment = taCenter
+            Caption = 
+              'QUEST'#213'ES COMPLEMENTARES SOBRE A CONDI'#199#195'O DE SA'#218'DE DO AVALIADO'#13#10'E' +
+              'stas quest'#245'es somente s'#227'o obrigat'#243'rias caso uma ou mais das resp' +
+              'ostas acima tenha sido SIM '
+            Color = clInfoBk
+            ParentColor = False
+            Layout = tlCenter
+            ExplicitWidth = 461
+            ExplicitHeight = 26
+          end
+        end
+        object PANLPG: TPanel
+          AlignWithMargins = True
+          Left = 6
+          Top = -137
+          Width = 737
+          Height = 309
+          Margins.Left = 6
+          Margins.Right = 6
+          Align = alTop
+          AutoSize = True
+          BevelInner = bvLowered
+          Color = clWhite
+          ParentBackground = False
+          TabOrder = 47
+          object KRPAPG: TKRKPanel
+            Left = 2
+            Top = 2
+            Width = 733
+            Height = 35
+            Align = alTop
+            Color = clBlack
+            Constraints.MinHeight = 35
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentBackground = False
+            ParentFont = False
+            TabOrder = 0
+            object LABLPG: TLabel
+              AlignWithMargins = True
+              Left = 4
+              Top = 4
+              Width = 625
+              Height = 27
+              Align = alClient
+              Caption = 
+                'Por favor, fa'#231'a as sete perguntas abaixo ao avaliado e pe'#231'a-o pa' +
+                'ra que as responda honestamente. Marque na coluna correspondente' +
+                ' SIM ou N'#195'O de acordo com as respostas'
+              Layout = tlCenter
+              WordWrap = True
+              ExplicitWidth = 576
+              ExplicitHeight = 26
+            end
+            object GRBXSN1: TGroupBox
+              Left = 632
+              Top = 1
+              Width = 100
+              Height = 33
+              Align = alRight
+              Color = clInfoBk
+              ParentBackground = False
+              ParentColor = False
+              TabOrder = 0
+              ExplicitLeft = 547
+              DesignSize = (
+                100
+                33)
+              object LABLS1: TLabel
+                Left = 14
+                Top = 10
+                Width = 22
+                Height = 13
+                Caption = 'SIM'
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clBlack
+                Font.Height = -11
+                Font.Name = 'Tahoma'
+                Font.Style = [fsBold]
+                ParentFont = False
+              end
+              object LABLN1: TLabel
+                Left = 64
+                Top = 10
+                Width = 23
+                Height = 13
+                Caption = 'N'#195'O'
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clBlack
+                Font.Height = -11
+                Font.Name = 'Tahoma'
+                Font.Style = [fsBold]
+                ParentFont = False
+              end
+              object BVELSN1: TBevel
+                Left = 49
+                Top = 4
+                Width = 2
+                Height = 25
+                Anchors = [akTop, akRight]
+                Shape = bsLeftLine
+                Style = bsRaised
+              end
+            end
+          end
+          object PANLPG1: TPanel
+            Left = 2
+            Top = 37
+            Width = 733
+            Height = 35
+            Align = alTop
+            AutoSize = True
+            Color = clWhite
+            Constraints.MinHeight = 35
+            ParentBackground = False
+            TabOrder = 1
+            OnResize = DoPanelQuestaoResize
+            DesignSize = (
+              733
+              35)
+            object LABLPG1: TLabel
+              AlignWithMargins = True
+              Left = 53
+              Top = 4
+              Width = 575
+              Height = 26
+              Margins.Left = 52
+              Margins.Right = 104
+              Align = alTop
+              Caption = 
+                'Seu m'#233'dico j'#225' lhe disse que voc'#234' tem alguma doen'#231'a cardiovascula' +
+                'r OU hipertens'#227'o?'
+              Constraints.MinHeight = 26
+              Layout = tlCenter
+              WordWrap = True
+              ExplicitLeft = 51
+              ExplicitWidth = 408
+            end
+            object DBRGPG1: TDBRadioGroup
+              Left = 632
+              Top = 1
+              Width = 100
+              Height = 33
+              Anchors = [akTop, akRight]
+              Color = clInfoBk
+              Columns = 2
+              Constraints.MinHeight = 33
+              DataField = 'bo_pg1'
+              DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Items.Strings = (
+                'S'
+                'N')
+              ParentBackground = False
+              ParentColor = False
+              ParentFont = False
+              TabOrder = 0
+              Values.Strings = (
+                'True'
+                'False')
+              OnChange = DoPGChange
+            end
+            object PANLPGP1: TPanel
+              Left = 0
+              Top = 1
+              Width = 50
+              Height = 33
+              Caption = '1'
+              Color = clBlack
+              Constraints.MinHeight = 33
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWhite
+              Font.Height = -15
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
+              ParentBackground = False
+              ParentFont = False
+              TabOrder = 1
+            end
+          end
+          object PANLPG2: TPanel
+            Left = 2
+            Top = 72
+            Width = 733
+            Height = 35
+            Align = alTop
+            AutoSize = True
+            Color = 14671839
+            Constraints.MinHeight = 35
+            ParentBackground = False
+            TabOrder = 2
+            OnResize = DoPanelQuestaoResize
+            DesignSize = (
+              733
+              35)
+            object LABLPG2: TLabel
+              AlignWithMargins = True
+              Left = 53
+              Top = 4
+              Width = 575
+              Height = 26
+              Margins.Left = 52
+              Margins.Right = 104
+              Align = alTop
+              Caption = 
+                'Voc'#234' sente dor no peito em repouso, durante suas atividades coti' +
+                'dianas OU quando voc'#234' faz atividades f'#237'sicas?'
+              Constraints.MinHeight = 26
+              Layout = tlCenter
+              WordWrap = True
+              ExplicitWidth = 536
+            end
+            object DBRGPG2: TDBRadioGroup
+              Left = 632
+              Top = 1
+              Width = 100
+              Height = 33
+              Anchors = [akTop, akRight]
+              Color = clInfoBk
+              Columns = 2
+              Constraints.MinHeight = 33
+              DataField = 'bo_pg2'
+              DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Items.Strings = (
+                'S'
+                'N')
+              ParentBackground = False
+              ParentColor = False
+              ParentFont = False
+              TabOrder = 0
+              Values.Strings = (
+                'True'
+                'False')
+              OnChange = DoPGChange
+            end
+            object PANLPGP2: TPanel
+              Left = 0
+              Top = 1
+              Width = 50
+              Height = 33
+              Caption = '2'
+              Color = clBlack
+              Constraints.MinHeight = 33
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWhite
+              Font.Height = -15
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
+              ParentBackground = False
+              ParentFont = False
+              TabOrder = 1
+            end
+          end
+          object PANLPG3: TPanel
+            Left = 2
+            Top = 107
+            Width = 733
+            Height = 35
+            Align = alTop
+            AutoSize = True
+            Color = clWhite
+            Constraints.MinHeight = 35
+            ParentBackground = False
+            TabOrder = 3
+            OnResize = DoPanelQuestaoResize
+            DesignSize = (
+              733
+              35)
+            object LABLPG3: TLabel
+              AlignWithMargins = True
+              Left = 53
+              Top = 4
+              Width = 575
+              Height = 26
+              Margins.Left = 52
+              Margins.Right = 104
+              Align = alTop
+              Caption = 
+                'Voc'#234' perde o equil'#237'brio por causa de tontura OU voc'#234' perdeu a co' +
+                'nsci'#234'ncia nos '#250'ltimos 12 meses?'#13#10'Responder N'#195'O caso sua tontura ' +
+                'tenha sido associada '#224' hiperventila'#231#227'o, inclusive durante exerc'#237 +
+                'cio f'#237'sico intenso'
+              Constraints.MinHeight = 26
+              Layout = tlCenter
+              WordWrap = True
+              ExplicitWidth = 547
+            end
+            object DBRGPG3: TDBRadioGroup
+              Left = 632
+              Top = 1
+              Width = 100
+              Height = 33
+              Anchors = [akTop, akRight]
+              Color = clInfoBk
+              Columns = 2
+              Constraints.MinHeight = 33
+              DataField = 'bo_pg3'
+              DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Items.Strings = (
+                'S'
+                'N')
+              ParentBackground = False
+              ParentColor = False
+              ParentFont = False
+              TabOrder = 0
+              Values.Strings = (
+                'True'
+                'False')
+              OnChange = DoPGChange
+            end
+            object PANLPGP3: TPanel
+              Left = 0
+              Top = 1
+              Width = 50
+              Height = 33
+              Caption = '3'
+              Color = clBlack
+              Constraints.MinHeight = 33
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWhite
+              Font.Height = -15
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
+              ParentBackground = False
+              ParentFont = False
+              TabOrder = 1
+            end
+          end
+          object PANLPG4: TPanel
+            Left = 2
+            Top = 142
+            Width = 733
+            Height = 35
+            Align = alTop
+            AutoSize = True
+            Color = 14671839
+            Constraints.MinHeight = 35
+            ParentBackground = False
+            TabOrder = 4
+            OnResize = DoPanelQuestaoResize
+            DesignSize = (
+              733
+              35)
+            object LABLPG4: TLabel
+              AlignWithMargins = True
+              Left = 53
+              Top = 4
+              Width = 575
+              Height = 26
+              Margins.Left = 52
+              Margins.Right = 104
+              Align = alTop
+              Caption = 
+                'Voc'#234' j'#225' foi diagnosticado com alguma outra doen'#231'a cr'#244'nica (que n' +
+                #227'o seja doen'#231'a card'#237'aca ou hipertens'#227'o)?'
+              Constraints.MinHeight = 26
+              Layout = tlCenter
+              WordWrap = True
+              ExplicitWidth = 516
+            end
+            object DBRGPG4: TDBRadioGroup
+              Left = 632
+              Top = 1
+              Width = 100
+              Height = 33
+              Anchors = [akTop, akRight]
+              Color = clInfoBk
+              Columns = 2
+              Constraints.MinHeight = 33
+              DataField = 'bo_pg4'
+              DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Items.Strings = (
+                'S'
+                'N')
+              ParentBackground = False
+              ParentColor = False
+              ParentFont = False
+              TabOrder = 0
+              Values.Strings = (
+                'True'
+                'False')
+              OnChange = DoPGChange
+            end
+            object PANLPGP4: TPanel
+              Left = 0
+              Top = 1
+              Width = 50
+              Height = 33
+              Caption = '4'
+              Color = clBlack
+              Constraints.MinHeight = 33
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWhite
+              Font.Height = -15
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
+              ParentBackground = False
+              ParentFont = False
+              TabOrder = 1
+            end
+          end
+          object PANLPG5: TPanel
+            Left = 2
+            Top = 177
+            Width = 733
+            Height = 35
+            Align = alTop
+            AutoSize = True
+            Color = clWhite
+            Constraints.MinHeight = 35
+            ParentBackground = False
+            TabOrder = 5
+            OnResize = DoPanelQuestaoResize
+            DesignSize = (
+              733
+              35)
+            object LABLPG5: TLabel
+              AlignWithMargins = True
+              Left = 53
+              Top = 4
+              Width = 575
+              Height = 26
+              Margins.Left = 52
+              Margins.Right = 104
+              Align = alTop
+              Caption = 
+                'Voc'#234' est'#225' atualmente tomando rem'#233'dios prescritos para alguma doe' +
+                'n'#231'a cr'#244'nica?'
+              Constraints.MinHeight = 26
+              Layout = tlCenter
+              WordWrap = True
+              ExplicitWidth = 387
+            end
+            object DBRGPG5: TDBRadioGroup
+              Left = 632
+              Top = 1
+              Width = 100
+              Height = 33
+              Anchors = [akTop, akRight]
+              Color = clInfoBk
+              Columns = 2
+              Constraints.MinHeight = 33
+              DataField = 'bo_pg5'
+              DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Items.Strings = (
+                'S'
+                'N')
+              ParentBackground = False
+              ParentColor = False
+              ParentFont = False
+              TabOrder = 0
+              Values.Strings = (
+                'True'
+                'False')
+              OnChange = DoPGChange
+            end
+            object PANLPGP5: TPanel
+              Left = 0
+              Top = 1
+              Width = 50
+              Height = 33
+              Caption = '5'
+              Color = clBlack
+              Constraints.MinHeight = 33
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWhite
+              Font.Height = -15
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
+              ParentBackground = False
+              ParentFont = False
+              TabOrder = 1
+            end
+          end
+          object PANLPG6: TPanel
+            Left = 2
+            Top = 212
+            Width = 733
+            Height = 60
+            Align = alTop
+            AutoSize = True
+            Color = 14671839
+            Constraints.MinHeight = 35
+            ParentBackground = False
+            TabOrder = 6
+            OnResize = DoPanelQuestaoResize
+            DesignSize = (
+              733
+              60)
+            object LABLPG6: TLabel
+              AlignWithMargins = True
+              Left = 53
+              Top = 4
+              Width = 575
+              Height = 52
+              Margins.Left = 52
+              Margins.Right = 104
+              Align = alTop
+              Caption = 
+                'Voc'#234' tem algum problema nos ossos ou articula'#231#245'es que poderia se' +
+                ' agravar em voc'#234' se tornando mais ativo fisicamente?'#13#10'Favor resp' +
+                'onder N'#195'O se voc'#234' teve um problema de articula'#231#227'o no passado, ma' +
+                's que atualmente n'#227'o limita sua capacidade de ser fisicamente at' +
+                'ivo. Por exemplo: joelho, tornozelo, ombro ou outros'
+              Constraints.MinHeight = 26
+              WordWrap = True
+              ExplicitWidth = 537
+            end
+            object DBRGPG6: TDBRadioGroup
+              Left = 632
+              Top = 1
+              Width = 100
+              Height = 58
+              Anchors = [akTop, akRight]
+              Color = clInfoBk
+              Columns = 2
+              Constraints.MinHeight = 33
+              DataField = 'bo_pg6'
+              DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Items.Strings = (
+                'S'
+                'N')
+              ParentBackground = False
+              ParentColor = False
+              ParentFont = False
+              TabOrder = 0
+              Values.Strings = (
+                'True'
+                'False')
+              OnChange = DoPGChange
+            end
+            object PANLPGP6: TPanel
+              Left = 0
+              Top = 1
+              Width = 50
+              Height = 58
+              Caption = '6'
+              Color = clBlack
+              Constraints.MinHeight = 33
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWhite
+              Font.Height = -15
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
+              ParentBackground = False
+              ParentFont = False
+              TabOrder = 1
+            end
+          end
+          object PANLPG7: TPanel
+            Left = 2
+            Top = 272
+            Width = 733
+            Height = 35
+            Align = alTop
+            AutoSize = True
+            Color = clWhite
+            Constraints.MinHeight = 35
+            ParentBackground = False
+            TabOrder = 7
+            OnResize = DoPanelQuestaoResize
+            DesignSize = (
+              733
+              35)
+            object LABLPG7: TLabel
+              AlignWithMargins = True
+              Left = 53
+              Top = 4
+              Width = 575
+              Height = 26
+              Margins.Left = 52
+              Margins.Right = 104
+              Align = alTop
+              Caption = 
+                'Seu m'#233'dico j'#225' lhe falou que voc'#234' s'#243' devia fazer atividades f'#237'sic' +
+                'as sob supervis'#227'o m'#233'dica?'
+              Constraints.MinHeight = 26
+              Layout = tlCenter
+              WordWrap = True
+              ExplicitWidth = 428
+            end
+            object DBRGPG7: TDBRadioGroup
+              Left = 632
+              Top = 1
+              Width = 100
+              Height = 33
+              Anchors = [akTop, akRight]
+              Color = clInfoBk
+              Columns = 2
+              Constraints.MinHeight = 33
+              DataField = 'bo_pg7'
+              DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Items.Strings = (
+                'S'
+                'N')
+              ParentBackground = False
+              ParentColor = False
+              ParentFont = False
+              TabOrder = 0
+              Values.Strings = (
+                'True'
+                'False')
+              OnChange = DoPGChange
+            end
+            object PANLPGP7: TPanel
+              Left = 0
+              Top = 1
+              Width = 50
+              Height = 33
+              Caption = '7'
+              Color = clBlack
+              Constraints.MinHeight = 33
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWhite
+              Font.Height = -15
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
+              ParentBackground = False
+              ParentFont = False
+              TabOrder = 1
+            end
+          end
+        end
+        object PANLPC: TPanel
+          AlignWithMargins = True
+          Left = 6
+          Top = 219
+          Width = 737
+          Height = 41
+          Margins.Left = 6
+          Margins.Right = 6
+          Align = alTop
+          BevelInner = bvLowered
+          TabOrder = 48
+          Visible = False
+        end
       end
     end
     object TBSHParametrosFisiologicos: TTabSheet
       AlignWithMargins = True
       Caption = 'Par'#226'metros fisiol'#243'gicos'
       ImageIndex = 4
-      ExplicitLeft = 14
       DesignSize = (
-        608
-        400)
+        770
+        403)
       object KRPAAvaliado3: TKRKPanel
         AlignWithMargins = True
         Left = 0
         Top = 0
-        Width = 608
+        Width = 770
         Height = 23
         Margins.Left = 0
         Margins.Top = 0
@@ -1897,7 +3189,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object LABLAvaliado3: TLabel
           Left = 1
           Top = 1
-          Width = 606
+          Width = 768
           Height = 21
           Align = alClient
           Alignment = taCenter
@@ -1917,7 +3209,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         AlignWithMargins = True
         Left = 0
         Top = 29
-        Width = 608
+        Width = 770
         Height = 201
         Margins.Left = 0
         Margins.Right = 0
@@ -1943,35 +3235,35 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             Expanded = False
             FieldName = 'ts_momafe'
             Title.Alignment = taCenter
-            Width = 113
+            Width = 146
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'sm_frepul'
             Title.Alignment = taCenter
-            Width = 113
+            Width = 145
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'bo_pulrit'
             Title.Alignment = taCenter
-            Width = 113
+            Width = 145
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'sm_presis'
             Title.Alignment = taCenter
-            Width = 113
+            Width = 145
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'sm_predia'
             Title.Alignment = taCenter
-            Width = 112
+            Width = 145
             Visible = True
           end>
       end
@@ -1979,7 +3271,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         AlignWithMargins = True
         Left = 0
         Top = 236
-        Width = 608
+        Width = 770
         Height = 25
         Margins.Left = 0
         Margins.Right = 0
@@ -1988,7 +3280,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         Align = alTop
         TabOrder = 2
         BeforeAction = DoBeforeAction
-        ExplicitTop = 268
       end
       object GRBXPulso: TGroupBox
         Left = 0
@@ -2039,7 +3330,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         end
       end
       object GRBXPressaoArterial: TGroupBox
-        Left = 318
+        Left = 480
         Top = 262
         Width = 290
         Height = 55
@@ -2088,18 +3379,56 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         end
       end
     end
+    object TBSHRastreioDeSarcopenia: TTabSheet
+      AlignWithMargins = True
+      Caption = 'Rastreio de Sarcopenia'
+      ImageIndex = 6
+      object KRPAAvaliado5: TKRKPanel
+        AlignWithMargins = True
+        Left = 0
+        Top = 0
+        Width = 770
+        Height = 23
+        Margins.Left = 0
+        Margins.Top = 0
+        Margins.Right = 0
+        Align = alTop
+        ParentBackground = False
+        TabOrder = 0
+        GradientFill = True
+        GradientColorA = clYellow
+        GradientColorB = 43690
+        object LABLAvaliado5: TLabel
+          Left = 1
+          Top = 1
+          Width = 768
+          Height = 21
+          Align = alClient
+          Alignment = taCenter
+          Caption = 'Avaliado: ?????'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -15
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+          Layout = tlCenter
+          ExplicitWidth = 119
+          ExplicitHeight = 18
+        end
+      end
+    end
   end
   inherited TLBRAcoes: TToolBar
-    Width = 622
-    ExplicitWidth = 622
+    Width = 784
+    ExplicitWidth = 784
     inherited LABLCaption: TLabel
       Height = 38
-      ExplicitHeight = 38
     end
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C010102000800540120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800940120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2636,7 +3965,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C010102000800640120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800A40120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
