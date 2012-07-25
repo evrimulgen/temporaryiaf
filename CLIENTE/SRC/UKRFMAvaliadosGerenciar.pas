@@ -141,13 +141,6 @@ type
     LABLAvaliado5: TLabel;
     SCBXParQ: TScrollBox;
     PANLParQBottom: TPanel;
-    DBCheckBox1: TDBCheckBox;
-    DBCheckBox2: TDBCheckBox;
-    DBCheckBox3: TDBCheckBox;
-    DBCheckBox4: TDBCheckBox;
-    DBCheckBox5: TDBCheckBox;
-    DBCheckBox6: TDBCheckBox;
-    DBCheckBox7: TDBCheckBox;
     DBCheckBox8: TDBCheckBox;
     DBCheckBox9: TDBCheckBox;
     DBCheckBox10: TDBCheckBox;
@@ -187,7 +180,7 @@ type
     DBCheckBox44: TDBCheckBox;
     PANLParQ1: TPanel;
     LABLParQ1: TLabel;
-    PANLParQ2: TPanel;
+    PANLPCTitulo: TPanel;
     LABLParQ2: TLabel;
     PANLPG: TPanel;
     KRPAPG: TKRKPanel;
@@ -213,9 +206,9 @@ type
     PANLPG7: TPanel;
     LABLPG7: TLabel;
     DBRGPG7: TDBRadioGroup;
-    GRBXSN1: TGroupBox;
-    LABLS1: TLabel;
-    LABLN1: TLabel;
+    GRBXSNPG: TGroupBox;
+    LABLSPG: TLabel;
+    LABLNPG: TLabel;
     BVELSN1: TBevel;
     PANLPGP1: TPanel;
     PANLPGP2: TPanel;
@@ -225,6 +218,62 @@ type
     PANLPGP6: TPanel;
     PANLPGP7: TPanel;
     PANLPC: TPanel;
+    PANLPC1: TPanel;
+    LABLPC1: TLabel;
+    DBRGPC1: TDBRadioGroup;
+    PANLPCP1: TPanel;
+    PANLPC2: TPanel;
+    LABLPC2: TLabel;
+    DBRGPC2: TDBRadioGroup;
+    PANLPCP2: TPanel;
+    PANLPC3: TPanel;
+    LABLPC3: TLabel;
+    DBRGPC3: TDBRadioGroup;
+    PANLPCP3: TPanel;
+    KRPAPC: TKRKPanel;
+    LABLPC: TLabel;
+    GRBXSNPC: TGroupBox;
+    LABLSPC: TLabel;
+    LABLNPC: TLabel;
+    Bevel1: TBevel;
+    PANLPC4: TPanel;
+    LABLPC4: TLabel;
+    DBRGPC4: TDBRadioGroup;
+    PANLPCP4: TPanel;
+    PANLPC5: TPanel;
+    LABLPC5: TLabel;
+    DBRGPC5: TDBRadioGroup;
+    PANLPCP5: TPanel;
+    PANLPC6: TPanel;
+    LABLPC6: TLabel;
+    DBRGPC6: TDBRadioGroup;
+    PANLPCP6: TPanel;
+    PANLPC7: TPanel;
+    LABLPC7: TLabel;
+    DBRGPC7: TDBRadioGroup;
+    PANLPCP7: TPanel;
+    PANLPC8: TPanel;
+    LABLPC8: TLabel;
+    DBRGPC8: TDBRadioGroup;
+    PANLPCP8: TPanel;
+    PANLPC9: TPanel;
+    LABLPC9: TLabel;
+    DBRGPC9: TDBRadioGroup;
+    PANLPCP9: TPanel;
+    PANLPC1A: TPanel;
+    LABLPC1A: TLabel;
+    DBRGPC1A: TDBRadioGroup;
+    PANLPCP1A: TPanel;
+    PANLPC1B: TPanel;
+    LABLPC1B: TLabel;
+    DBRGPC1B: TDBRadioGroup;
+    PANLPCP1B: TPanel;
+    PANLPC1C: TPanel;
+    LABLPC1C: TLabel;
+    DBRGPC1C: TDBRadioGroup;
+    PANLPCP1C: TPanel;
+    PANLPC1Sub: TPanel;
+    PANLPCLayer: TPanel;
     procedure DBRGChefeDaFamiliaChange(Sender: TObject);
     procedure KRLECodigoKeyPress(Sender: TObject; var Key: Char);
     procedure KRLEIdentidadeKeyPress(Sender: TObject; var Key: Char);
@@ -240,6 +289,7 @@ type
     procedure TBSHParQShow(Sender: TObject);
     procedure DoPanelQuestaoResize(Sender: TObject);
     procedure DoPGChange(Sender: TObject);
+    procedure DBRGPC1Change(Sender: TObject);
   private
     { Private declarations }
     procedure AjustarDBRadioGroup(const aDBRadioGroup: TDBRadioGroup);
@@ -390,6 +440,18 @@ begin
     TKRDMAvaliadosGerenciar(Owner).CLDSDadosSocioDemograficossm_grauinstrchefedefamilia.Clear;
 end;
 
+procedure TKRFMAvaliadosGerenciar.DBRGPC1Change(Sender: TObject);
+begin
+  inherited;
+  PANLPC1Sub.Visible := DBRGPC1.ItemIndex = 0;
+//  DBRGGrauChefeFamilia.Visible := DBRGChefeDaFamilia.ItemIndex = 1;
+
+//  TKRDMAvaliadosGerenciar(Owner).CLDSDadosSocioDemograficos.KRKValidationChecks.Active := DBRGGrauChefeFamilia.Visible;
+//
+//  if not DBRGGrauChefeFamilia.Visible and (TKRDMAvaliadosGerenciar(Owner).CLDSDadosSocioDemograficos.State in [dsEdit,dsInsert])  then
+//    TKRDMAvaliadosGerenciar(Owner).CLDSDadosSocioDemograficossm_grauinstrchefedefamilia.Clear;
+end;
+
 procedure TKRFMAvaliadosGerenciar.KRLEFoneCelularKeyPress(Sender: TObject; var Key: Char);
 begin
   inherited;
@@ -488,14 +550,13 @@ end;
 
 procedure TKRFMAvaliadosGerenciar.MostrarPerguntasComplementares;
 begin
-  PANLPC.Visible := (DBRGPG1.ItemIndex = 0)
-                 or (DBRGPG2.ItemIndex = 0)
-                 or (DBRGPG3.ItemIndex = 0)
-                 or (DBRGPG4.ItemIndex = 0)
-                 or (DBRGPG5.ItemIndex = 0)
-                 or (DBRGPG6.ItemIndex = 0)
-                 or (DBRGPG7.ItemIndex = 0);
-  PANLParQ2.Visible := PANLPC.Visible;
+  PANLPCLayer.Visible := (DBRGPG1.ItemIndex = 0)
+                      or (DBRGPG2.ItemIndex = 0)
+                      or (DBRGPG3.ItemIndex = 0)
+                      or (DBRGPG4.ItemIndex = 0)
+                      or (DBRGPG5.ItemIndex = 0)
+                      or (DBRGPG6.ItemIndex = 0)
+                      or (DBRGPG7.ItemIndex = 0);
 end;
 
 procedure TKRFMAvaliadosGerenciar.DoPanelQuestaoResize(Sender: TObject);
@@ -552,6 +613,7 @@ procedure TKRFMAvaliadosGerenciar.TBSHParQShow(Sender: TObject);
 begin
   inherited;
   { Ajustando DBRadioGroups da página Par-Q+ }
+  { Perguntas gerais }
   AjustarDBRadioGroup(DBRGPG1);
   AjustarDBRadioGroup(DBRGPG2);
   AjustarDBRadioGroup(DBRGPG3);
@@ -559,6 +621,20 @@ begin
   AjustarDBRadioGroup(DBRGPG5);
   AjustarDBRadioGroup(DBRGPG6);
   AjustarDBRadioGroup(DBRGPG7);
+
+  { Perguntas complementares }
+  AjustarDBRadioGroup(DBRGPC1);
+  AjustarDBRadioGroup(DBRGPC1A);
+  AjustarDBRadioGroup(DBRGPC1B);
+  AjustarDBRadioGroup(DBRGPC1C);
+  AjustarDBRadioGroup(DBRGPC2);
+  AjustarDBRadioGroup(DBRGPC3);
+  AjustarDBRadioGroup(DBRGPC4);
+  AjustarDBRadioGroup(DBRGPC5);
+  AjustarDBRadioGroup(DBRGPC6);
+  AjustarDBRadioGroup(DBRGPC7);
+  AjustarDBRadioGroup(DBRGPC8);
+  AjustarDBRadioGroup(DBRGPC9);
 end;
 
 //procedure TForm.FormMouseWheel(Sender: TObject; Shift: TShiftState;
