@@ -2,8 +2,8 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
   OldCreateOrder = True
   Properties.OpenAllDataSets = True
   MyFormClass = 'TKRFMAvaliadosGerenciar'
-  Height = 358
-  Width = 304
+  Height = 353
+  Width = 299
   inherited ACLI: TActionList
     object ACTNSelecionarCBO: TAction
       Caption = '...'
@@ -638,151 +638,114 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
     end
     object CLDSParQbo_pc1: TBooleanField
       FieldName = 'bo_pc1'
-      Required = True
     end
     object CLDSParQbo_pc1a: TBooleanField
       FieldName = 'bo_pc1a'
-      Required = True
     end
     object CLDSParQbo_pc1b: TBooleanField
       FieldName = 'bo_pc1b'
-      Required = True
     end
     object CLDSParQbo_pc1c: TBooleanField
       FieldName = 'bo_pc1c'
-      Required = True
     end
     object CLDSParQbo_pc2: TBooleanField
       FieldName = 'bo_pc2'
-      Required = True
     end
     object CLDSParQbo_pc2a: TBooleanField
       FieldName = 'bo_pc2a'
-      Required = True
     end
     object CLDSParQbo_pc2b: TBooleanField
       FieldName = 'bo_pc2b'
-      Required = True
     end
     object CLDSParQbo_pc3: TBooleanField
       FieldName = 'bo_pc3'
-      Required = True
     end
     object CLDSParQbo_pc3a: TBooleanField
       FieldName = 'bo_pc3a'
-      Required = True
     end
     object CLDSParQbo_pc3b: TBooleanField
       FieldName = 'bo_pc3b'
-      Required = True
     end
     object CLDSParQbo_pc3c: TBooleanField
       FieldName = 'bo_pc3c'
-      Required = True
     end
     object CLDSParQbo_pc3d: TBooleanField
       FieldName = 'bo_pc3d'
-      Required = True
     end
     object CLDSParQbo_pc3e: TBooleanField
       FieldName = 'bo_pc3e'
-      Required = True
     end
     object CLDSParQbo_pc4: TBooleanField
       FieldName = 'bo_pc4'
-      Required = True
     end
     object CLDSParQbo_pc4a: TBooleanField
       FieldName = 'bo_pc4a'
-      Required = True
     end
     object CLDSParQbo_pc4b: TBooleanField
       FieldName = 'bo_pc4b'
-      Required = True
     end
     object CLDSParQbo_pc4c: TBooleanField
       FieldName = 'bo_pc4c'
-      Required = True
     end
     object CLDSParQbo_pc5: TBooleanField
       FieldName = 'bo_pc5'
-      Required = True
     end
     object CLDSParQbo_pc5a: TBooleanField
       FieldName = 'bo_pc5a'
-      Required = True
     end
     object CLDSParQbo_pc5b: TBooleanField
       FieldName = 'bo_pc5b'
-      Required = True
     end
     object CLDSParQbo_pc6: TBooleanField
       FieldName = 'bo_pc6'
-      Required = True
     end
     object CLDSParQbo_pc6a: TBooleanField
       FieldName = 'bo_pc6a'
-      Required = True
     end
     object CLDSParQbo_pc6b: TBooleanField
       FieldName = 'bo_pc6b'
-      Required = True
     end
     object CLDSParQbo_pc6c: TBooleanField
       FieldName = 'bo_pc6c'
-      Required = True
     end
     object CLDSParQbo_pc6d: TBooleanField
       FieldName = 'bo_pc6d'
-      Required = True
     end
     object CLDSParQbo_pc7: TBooleanField
       FieldName = 'bo_pc7'
-      Required = True
     end
     object CLDSParQbo_pc7a: TBooleanField
       FieldName = 'bo_pc7a'
-      Required = True
     end
     object CLDSParQbo_pc7b: TBooleanField
       FieldName = 'bo_pc7b'
-      Required = True
     end
     object CLDSParQbo_pc7c: TBooleanField
       FieldName = 'bo_pc7c'
-      Required = True
     end
     object CLDSParQbo_pc8: TBooleanField
       FieldName = 'bo_pc8'
-      Required = True
     end
     object CLDSParQbo_pc8a: TBooleanField
       FieldName = 'bo_pc8a'
-      Required = True
     end
     object CLDSParQbo_pc8b: TBooleanField
       FieldName = 'bo_pc8b'
-      Required = True
     end
     object CLDSParQbo_pc8c: TBooleanField
       FieldName = 'bo_pc8c'
-      Required = True
     end
     object CLDSParQbo_pc9: TBooleanField
       FieldName = 'bo_pc9'
-      Required = True
     end
     object CLDSParQbo_pc9a: TBooleanField
       FieldName = 'bo_pc9a'
-      Required = True
     end
     object CLDSParQbo_pc9b: TBooleanField
       FieldName = 'bo_pc9b'
-      Required = True
     end
     object CLDSParQbo_pc9c: TBooleanField
       FieldName = 'bo_pc9c'
-      Required = True
     end
   end
   object DTSRParQ: TDataSource

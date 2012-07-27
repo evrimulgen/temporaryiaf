@@ -11,7 +11,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
     Top = 40
     Width = 784
     Height = 437
-    ActivePage = TBSHParQ
+    ActivePage = TBSHConsultar
     Align = alClient
     TabOrder = 2
     OnChanging = PGCTAvaliadosChanging
@@ -319,6 +319,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       AlignWithMargins = True
       Caption = 'Gerenciar'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         770
         403)
@@ -836,6 +840,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       AlignWithMargins = True
       Caption = 'Dados s'#243'cio-demogr'#225'ficos'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object SCBXDadosSocioDemograficos: TScrollBox
         Left = 0
         Top = 60
@@ -1400,8 +1408,8 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object LABLAvaliado1: TLabel
           Left = 1
           Top = 1
-          Width = 768
-          Height = 21
+          Width = 119
+          Height = 18
           Align = alClient
           Alignment = taCenter
           Caption = 'Avaliado: ?????'
@@ -1412,8 +1420,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Font.Style = [fsBold]
           ParentFont = False
           Layout = tlCenter
-          ExplicitWidth = 119
-          ExplicitHeight = 18
         end
       end
     end
@@ -1421,6 +1427,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       AlignWithMargins = True
       Caption = 'Checagem de sinais e sintomas'
       ImageIndex = 3
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object KRPAAvaliado2: TKRKPanel
         AlignWithMargins = True
         Left = 0
@@ -1439,8 +1449,8 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object LABLAvaliado2: TLabel
           Left = 1
           Top = 1
-          Width = 768
-          Height = 21
+          Width = 119
+          Height = 18
           Align = alClient
           Alignment = taCenter
           Caption = 'Avaliado: ?????'
@@ -1451,8 +1461,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Font.Style = [fsBold]
           ParentFont = False
           Layout = tlCenter
-          ExplicitWidth = 119
-          ExplicitHeight = 18
         end
       end
       object DBNAChecagemDeSinaisESintomas: TDBNavigator
@@ -1510,8 +1518,8 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             AlignWithMargins = True
             Left = 2
             Top = 2
-            Width = 733
-            Height = 31
+            Width = 387
+            Height = 26
             Margins.Left = 0
             Margins.Top = 0
             Margins.Right = 0
@@ -1524,8 +1532,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             Color = clInfoBk
             ParentColor = False
             Layout = tlCenter
-            ExplicitWidth = 387
-            ExplicitHeight = 26
           end
         end
         object DBCBDorPeiPesManBra: TDBCheckBox
@@ -5742,6 +5748,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       AlignWithMargins = True
       Caption = 'Par'#226'metros fisiol'#243'gicos'
       ImageIndex = 4
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         770
         403)
@@ -5763,8 +5773,8 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object LABLAvaliado3: TLabel
           Left = 1
           Top = 1
-          Width = 768
-          Height = 21
+          Width = 119
+          Height = 18
           Align = alClient
           Alignment = taCenter
           Caption = 'Avaliado: ?????'
@@ -5775,8 +5785,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Font.Style = [fsBold]
           ParentFont = False
           Layout = tlCenter
-          ExplicitWidth = 119
-          ExplicitHeight = 18
         end
       end
       object KRDGParametrosFisiologicos: TKRKDBGrid
@@ -5957,6 +5965,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       AlignWithMargins = True
       Caption = 'Rastreio de Sarcopenia'
       ImageIndex = 6
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object KRPAAvaliado5: TKRKPanel
         AlignWithMargins = True
         Left = 0
@@ -5975,8 +5987,8 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object LABLAvaliado5: TLabel
           Left = 1
           Top = 1
-          Width = 768
-          Height = 21
+          Width = 119
+          Height = 18
           Align = alClient
           Alignment = taCenter
           Caption = 'Avaliado: ?????'
@@ -5987,8 +5999,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Font.Style = [fsBold]
           ParentFont = False
           Layout = tlCenter
-          ExplicitWidth = 119
-          ExplicitHeight = 18
         end
       end
     end
@@ -6003,7 +6013,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C010102000800B00120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800B80120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -6540,7 +6550,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C010102000800C00120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800C80120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

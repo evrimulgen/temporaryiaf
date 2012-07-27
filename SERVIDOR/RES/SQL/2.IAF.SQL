@@ -313,43 +313,43 @@ CREATE TABLE PARQ (IN_PARQ_ID INTEGER NOT NULL DEFAULT NEXTVAL('SQ_PAQ_IN_PARQ_I
                   ,BO_PG5 BOOLEAN NOT NULL
                   ,BO_PG6 BOOLEAN NOT NULL
                   ,BO_PG7 BOOLEAN NOT NULL
-                  ,BO_PC1 BOOLEAN NOT NULL
-                  ,BO_PC1A BOOLEAN NOT NULL
-                  ,BO_PC1B BOOLEAN NOT NULL
-                  ,BO_PC1C BOOLEAN NOT NULL
-                  ,BO_PC2 BOOLEAN NOT NULL
-                  ,BO_PC2A BOOLEAN NOT NULL
-                  ,BO_PC2B BOOLEAN NOT NULL
-                  ,BO_PC3 BOOLEAN NOT NULL
-                  ,BO_PC3A BOOLEAN NOT NULL
-                  ,BO_PC3B BOOLEAN NOT NULL
-                  ,BO_PC3C BOOLEAN NOT NULL
-                  ,BO_PC3D BOOLEAN NOT NULL
-                  ,BO_PC3E BOOLEAN NOT NULL
-                  ,BO_PC4 BOOLEAN NOT NULL
-                  ,BO_PC4A BOOLEAN NOT NULL
-                  ,BO_PC4B BOOLEAN NOT NULL
-                  ,BO_PC4C BOOLEAN NOT NULL
-                  ,BO_PC5 BOOLEAN NOT NULL
-                  ,BO_PC5A BOOLEAN NOT NULL
-                  ,BO_PC5B BOOLEAN NOT NULL
-                  ,BO_PC6 BOOLEAN NOT NULL
-                  ,BO_PC6A BOOLEAN NOT NULL
-                  ,BO_PC6B BOOLEAN NOT NULL
-                  ,BO_PC6C BOOLEAN NOT NULL
-                  ,BO_PC6D BOOLEAN NOT NULL
-                  ,BO_PC7 BOOLEAN NOT NULL
-                  ,BO_PC7A BOOLEAN NOT NULL
-                  ,BO_PC7B BOOLEAN NOT NULL
-                  ,BO_PC7C BOOLEAN NOT NULL
-                  ,BO_PC8 BOOLEAN NOT NULL
-                  ,BO_PC8A BOOLEAN NOT NULL
-                  ,BO_PC8B BOOLEAN NOT NULL
-                  ,BO_PC8C BOOLEAN NOT NULL
-                  ,BO_PC9 BOOLEAN NOT NULL
-                  ,BO_PC9A BOOLEAN NOT NULL
-                  ,BO_PC9B BOOLEAN NOT NULL
-                  ,BO_PC9C BOOLEAN NOT NULL
+                  ,BO_PC1 BOOLEAN
+                  ,BO_PC1A BOOLEAN
+                  ,BO_PC1B BOOLEAN
+                  ,BO_PC1C BOOLEAN
+                  ,BO_PC2 BOOLEAN
+                  ,BO_PC2A BOOLEAN
+                  ,BO_PC2B BOOLEAN
+                  ,BO_PC3 BOOLEAN
+                  ,BO_PC3A BOOLEAN
+                  ,BO_PC3B BOOLEAN
+                  ,BO_PC3C BOOLEAN
+                  ,BO_PC3D BOOLEAN
+                  ,BO_PC3E BOOLEAN
+                  ,BO_PC4 BOOLEAN
+                  ,BO_PC4A BOOLEAN
+                  ,BO_PC4B BOOLEAN
+                  ,BO_PC4C BOOLEAN
+                  ,BO_PC5 BOOLEAN
+                  ,BO_PC5A BOOLEAN
+                  ,BO_PC5B BOOLEAN
+                  ,BO_PC6 BOOLEAN
+                  ,BO_PC6A BOOLEAN
+                  ,BO_PC6B BOOLEAN
+                  ,BO_PC6C BOOLEAN
+                  ,BO_PC6D BOOLEAN
+                  ,BO_PC7 BOOLEAN
+                  ,BO_PC7A BOOLEAN
+                  ,BO_PC7B BOOLEAN
+                  ,BO_PC7C BOOLEAN
+                  ,BO_PC8 BOOLEAN
+                  ,BO_PC8A BOOLEAN
+                  ,BO_PC8B BOOLEAN
+                  ,BO_PC8C BOOLEAN
+                  ,BO_PC9 BOOLEAN
+                  ,BO_PC9A BOOLEAN
+                  ,BO_PC9B BOOLEAN
+                  ,BO_PC9C BOOLEAN
                   ,CONSTRAINT PK_PAQ PRIMARY KEY (IN_PARQ_ID)
                   ,CONSTRAINT FK_PAQ_AVA FOREIGN KEY (IN_AVALIADOS_ID) REFERENCES AVALIADOS (IN_AVALIADOS_ID) ON UPDATE CASCADE ON DELETE CASCADE);
 

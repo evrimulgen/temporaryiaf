@@ -1473,223 +1473,186 @@ inherited KRDMAvaliados: TKRDMAvaliados
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 1'
       FieldName = 'bo_pc1'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc1a: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 1. QUEST'#195'O A'
       FieldName = 'bo_pc1a'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc1b: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 1. QUEST'#195'O B'
       FieldName = 'bo_pc1b'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc1c: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 1. QUEST'#195'O C'
       FieldName = 'bo_pc1c'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc2: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 2'
       FieldName = 'bo_pc2'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc2a: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 2. QUEST'#195'O A'
       FieldName = 'bo_pc2a'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc2b: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 2. QUEST'#195'O B'
       FieldName = 'bo_pc2b'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc3: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 3'
       FieldName = 'bo_pc3'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc3a: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 3. QUEST'#195'O A'
       FieldName = 'bo_pc3a'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc3b: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 3. QUEST'#195'O B'
       FieldName = 'bo_pc3b'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc3c: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 3. QUEST'#195'O C'
       FieldName = 'bo_pc3c'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc3d: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 3. QUEST'#195'O D'
       FieldName = 'bo_pc3d'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc3e: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 3. QUEST'#195'O E'
       FieldName = 'bo_pc3e'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc4: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 4'
       FieldName = 'bo_pc4'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc4a: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 4. QUEST'#195'O A'
       FieldName = 'bo_pc4a'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc4b: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 4. QUEST'#195'O B'
       FieldName = 'bo_pc4b'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc4c: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 4. QUEST'#195'O C'
       FieldName = 'bo_pc4c'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc5: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 5'
       FieldName = 'bo_pc5'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc5a: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 5. QUEST'#195'O A'
       FieldName = 'bo_pc5a'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc5b: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 5. QUEST'#195'O B'
       FieldName = 'bo_pc5b'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc6: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 6'
       FieldName = 'bo_pc6'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc6a: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 6. QUEST'#195'O A'
       FieldName = 'bo_pc6a'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc6b: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 6. QUEST'#195'O B'
       FieldName = 'bo_pc6b'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc6c: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 6. QUEST'#195'O C'
       FieldName = 'bo_pc6c'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc6d: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 6. QUEST'#195'O D'
       FieldName = 'bo_pc6d'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc7: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 7'
       FieldName = 'bo_pc7'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc7a: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 7. QUEST'#195'O A'
       FieldName = 'bo_pc7a'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc7b: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 7. QUEST'#195'O B'
       FieldName = 'bo_pc7b'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc7c: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 7. QUEST'#195'O C'
       FieldName = 'bo_pc7c'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc8: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 8'
       FieldName = 'bo_pc8'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc8a: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 8. QUEST'#195'O A'
       FieldName = 'bo_pc8a'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc8b: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 8. QUEST'#195'O B'
       FieldName = 'bo_pc8b'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc8c: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 8. QUEST'#195'O C'
       FieldName = 'bo_pc8c'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc9: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 9'
       FieldName = 'bo_pc9'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc9a: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 9. QUEST'#195'O A'
       FieldName = 'bo_pc9a'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc9b: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 9. QUEST'#195'O B'
       FieldName = 'bo_pc9b'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
     object UNQYParQbo_pc9c: TBooleanField
       DisplayLabel = 'PERGUNTA COMPLEMENTAR 9. QUEST'#195'O C'
       FieldName = 'bo_pc9c'
       ProviderFlags = [pfInUpdate]
-      Required = True
     end
   end
   object KRVCParQ: TKRKValidationChecks
