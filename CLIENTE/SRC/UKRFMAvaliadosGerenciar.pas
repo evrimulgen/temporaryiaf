@@ -2,13 +2,12 @@ unit UKRFMAvaliadosGerenciar;
 
 interface
 
-uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, UKRFMDBAwareBasico, ActnList, ImgList, StdCtrls, ComCtrls, ToolWin,
-  Grids, DBGrids, KRK.Components.DataControls.DBGrid, DBCtrls, Mask,
-  KRK.Components.DataControls.LabeledDBEdit, ExtCtrls,
-  KRK.Components.AdditionalControls.LabeledEdit,
-  KRK.Components.StandardControls.Panel;
+uses Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms
+   , Dialogs, UKRFMDBAwareBasico, ActnList, ImgList, StdCtrls, ComCtrls, ToolWin
+   , Grids, DBGrids, KRK.Components.DataControls.DBGrid, DBCtrls, Mask
+   , KRK.Components.DataControls.LabeledDBEdit, ExtCtrls
+   , KRK.Components.AdditionalControls.LabeledEdit
+   , KRK.Components.StandardControls.Panel;
 
 type
   TDBRadioGroup = class(DBCtrls.TDBRadioGroup)
@@ -141,49 +140,12 @@ type
     LABLAvaliado5: TLabel;
     SCBXParQ: TScrollBox;
     PANLParQBottom: TPanel;
-    DBCheckBox8: TDBCheckBox;
-    DBCheckBox9: TDBCheckBox;
-    DBCheckBox10: TDBCheckBox;
-    DBCheckBox11: TDBCheckBox;
-    DBCheckBox12: TDBCheckBox;
-    DBCheckBox13: TDBCheckBox;
-    DBCheckBox14: TDBCheckBox;
-    DBCheckBox15: TDBCheckBox;
-    DBCheckBox16: TDBCheckBox;
-    DBCheckBox17: TDBCheckBox;
-    DBCheckBox18: TDBCheckBox;
-    DBCheckBox19: TDBCheckBox;
-    DBCheckBox20: TDBCheckBox;
-    DBCheckBox21: TDBCheckBox;
-    DBCheckBox22: TDBCheckBox;
-    DBCheckBox23: TDBCheckBox;
-    DBCheckBox24: TDBCheckBox;
-    DBCheckBox25: TDBCheckBox;
-    DBCheckBox26: TDBCheckBox;
-    DBCheckBox27: TDBCheckBox;
-    DBCheckBox28: TDBCheckBox;
-    DBCheckBox29: TDBCheckBox;
-    DBCheckBox30: TDBCheckBox;
-    DBCheckBox31: TDBCheckBox;
-    DBCheckBox32: TDBCheckBox;
-    DBCheckBox33: TDBCheckBox;
-    DBCheckBox34: TDBCheckBox;
-    DBCheckBox35: TDBCheckBox;
-    DBCheckBox36: TDBCheckBox;
-    DBCheckBox37: TDBCheckBox;
-    DBCheckBox38: TDBCheckBox;
-    DBCheckBox39: TDBCheckBox;
-    DBCheckBox40: TDBCheckBox;
-    DBCheckBox41: TDBCheckBox;
-    DBCheckBox42: TDBCheckBox;
-    DBCheckBox43: TDBCheckBox;
-    DBCheckBox44: TDBCheckBox;
-    PANLParQ1: TPanel;
+    PANLPGTitulo: TPanel;
     LABLParQ1: TLabel;
     PANLPCTitulo: TPanel;
     LABLParQ2: TLabel;
     PANLPG: TPanel;
-    KRPAPG: TKRKPanel;
+    PANLPGInfo: TPanel;
     PANLPG1: TPanel;
     LABLPG1: TLabel;
     LABLPG: TLabel;
@@ -230,7 +192,7 @@ type
     LABLPC3: TLabel;
     DBRGPC3: TDBRadioGroup;
     PANLPCP3: TPanel;
-    KRPAPC: TKRKPanel;
+    PANLPCInfo: TPanel;
     LABLPC: TLabel;
     GRBXSNPC: TGroupBox;
     LABLSPC: TLabel;
@@ -274,6 +236,114 @@ type
     PANLPCP1C: TPanel;
     PANLPC1Sub: TPanel;
     PANLPCLayer: TPanel;
+    PANLPC2Sub: TPanel;
+    PANLPC2A: TPanel;
+    LABLPC2A: TLabel;
+    DBRGPC2A: TDBRadioGroup;
+    PANLPCP2A: TPanel;
+    PANLPC2B: TPanel;
+    LABLPC2B: TLabel;
+    DBRGPC2B: TDBRadioGroup;
+    PANLPCP2B: TPanel;
+    PANLPC3Sub: TPanel;
+    PANLPC3A: TPanel;
+    LABLPC3A: TLabel;
+    DBRGPC3A: TDBRadioGroup;
+    PANLPCP3A: TPanel;
+    PANLPC3B: TPanel;
+    LABLPC3B: TLabel;
+    DBRGPC3B: TDBRadioGroup;
+    PANLPCP3B: TPanel;
+    PANLPC3C: TPanel;
+    LABLPC3C: TLabel;
+    DBRGPC3C: TDBRadioGroup;
+    PANLPCP3C: TPanel;
+    PANLPC3D: TPanel;
+    LABLPC3D: TLabel;
+    DBRGPC3D: TDBRadioGroup;
+    PANLPCP3D: TPanel;
+    PANLPC3E: TPanel;
+    LABLPC3E: TLabel;
+    DBRGPC3E: TDBRadioGroup;
+    PANLPCP3E: TPanel;
+    PANLPC4Sub: TPanel;
+    PANLPC4A: TPanel;
+    LABLPC4A: TLabel;
+    DBRGPC4A: TDBRadioGroup;
+    PANLPCP4A: TPanel;
+    PANLPC4B: TPanel;
+    LABLPC4B: TLabel;
+    DBRGPC4B: TDBRadioGroup;
+    PANLPCP4B: TPanel;
+    PANLPC4C: TPanel;
+    LABLPC4C: TLabel;
+    DBRGPC4C: TDBRadioGroup;
+    PANLPCP4C: TPanel;
+    PANLPC5Sub: TPanel;
+    PANLPC5A: TPanel;
+    LABLPC5A: TLabel;
+    DBRGPC5A: TDBRadioGroup;
+    PANLPCP5A: TPanel;
+    PANLPC5B: TPanel;
+    LABLPC5B: TLabel;
+    DBRGPC5B: TDBRadioGroup;
+    PANLPCP5B: TPanel;
+    PANLPC6Sub: TPanel;
+    PANLPC6A: TPanel;
+    LABLPC6A: TLabel;
+    DBRGPC6A: TDBRadioGroup;
+    PANLPCP6A: TPanel;
+    PANLPC6B: TPanel;
+    LABLPC6B: TLabel;
+    DBRGPC6B: TDBRadioGroup;
+    PANLPCP6B: TPanel;
+    PANLPC6C: TPanel;
+    LABLPC6C: TLabel;
+    DBRGPC6C: TDBRadioGroup;
+    PANLPCP6C: TPanel;
+    PANLPC6D: TPanel;
+    LABLPC6D: TLabel;
+    DBRGPC6D: TDBRadioGroup;
+    PANLPCP6D: TPanel;
+    PANLPC7Sub: TPanel;
+    PANLPC7A: TPanel;
+    LABLPC7A: TLabel;
+    DBRGPC7A: TDBRadioGroup;
+    PANLPCP7A: TPanel;
+    PANLPC7B: TPanel;
+    LABLPC7B: TLabel;
+    DBRGPC7B: TDBRadioGroup;
+    PANLPCP7B: TPanel;
+    PANLPC7C: TPanel;
+    LABLPC7C: TLabel;
+    DBRGPC7C: TDBRadioGroup;
+    PANLPCP7C: TPanel;
+    PANLPC8Sub: TPanel;
+    PANLPC8A: TPanel;
+    LABLPC8A: TLabel;
+    DBRGPC8A: TDBRadioGroup;
+    PANLPCP8A: TPanel;
+    PANLPC8B: TPanel;
+    LABLPC8B: TLabel;
+    DBRGPC8B: TDBRadioGroup;
+    PANLPCP8B: TPanel;
+    PANLPC8C: TPanel;
+    LABLPC8C: TLabel;
+    DBRGPC8C: TDBRadioGroup;
+    PANLPCP8C: TPanel;
+    PANLPC9Sub: TPanel;
+    PANLPC9A: TPanel;
+    LABLPC9A: TLabel;
+    DBRGPC9A: TDBRadioGroup;
+    PANLPCP9A: TPanel;
+    PANLPC9B: TPanel;
+    LABLPC9B: TLabel;
+    DBRGPC9B: TDBRadioGroup;
+    PANLPCP9B: TPanel;
+    PANLPC9C: TPanel;
+    LABLPC9C: TLabel;
+    DBRGPC9C: TDBRadioGroup;
+    PANLPCP9C: TPanel;
     procedure DBRGChefeDaFamiliaChange(Sender: TObject);
     procedure KRLECodigoKeyPress(Sender: TObject; var Key: Char);
     procedure KRLEIdentidadeKeyPress(Sender: TObject; var Key: Char);
@@ -289,12 +359,13 @@ type
     procedure TBSHParQShow(Sender: TObject);
     procedure DoPanelQuestaoResize(Sender: TObject);
     procedure DoPGChange(Sender: TObject);
-    procedure DBRGPC1Change(Sender: TObject);
+    procedure DoRespostaMestreChange(Sender: TObject);
   private
     { Private declarations }
     procedure AjustarDBRadioGroup(const aDBRadioGroup: TDBRadioGroup);
     procedure AjustarConteudo(const aPanel: TPanel);
     procedure MostrarPerguntasComplementares;
+    procedure MostrarSubPerguntas(const aDBRadioGroup: TDBRadioGroup);
   public
     { Public declarations }
   end;
@@ -330,7 +401,6 @@ end;
 
 procedure TKRFMAvaliadosGerenciar.AjustarConteudo(const aPanel: TPanel);
 var
-  i: Byte;
   LABL: TLabel;
   DBRG: TDBRadioGroup;
   PANL: TPanel;
@@ -339,19 +409,9 @@ begin
   DORE := aPanel.OnResize;
   try
     aPanel.OnResize := nil;
-    LABL := nil;
-    DBRG := nil;
-    PANL := nil;
-
-    for i := 0 to Pred(aPanel.ControlCount) do
-    begin
-      if aPanel.Controls[i] is TLabel then
-        LABL := TLabel(aPanel.Controls[i])
-      else if aPanel.Controls[i] is TDBRadioGroup then
-        DBRG := TDBRadioGroup(aPanel.Controls[i])
-      else if aPanel.Controls[i] is TPanel then
-        PANL := TPanel(aPanel.Controls[i]);
-    end;
+    LABL := TLabel(aPanel.Controls[0]);
+    DBRG := TDBRadioGroup(aPanel.Controls[1]);
+    PANL := TPanel(aPanel.Controls[2]);
 
     if Assigned(DBRG) and Assigned(LABL) and Assigned(PANL) then
     begin
@@ -369,28 +429,19 @@ begin
       aPanel.AutoSize := False;
       aPanel.AutoSize := True;
 
-      { Ajusta o tamanho do RadioGroup e o indicador de questão para que os
-      mesmos ocupem a altura correta }
+      { Ajusta o tamanho e as posições do RadioGroup e o indicador de questão
+      para que os mesmos ocupem a altura e a posição corretas }
+      DBRG.Top := 1;
+      DBRG.Left := aPanel.Width - DBRG.Width - 1;
       DBRG.Height := aPanel.Height - 2;
+
+      PANL.Top := 1;
+      PANL.Left := 0;
       PANL.Height := aPanel.Height - 2;
     end;
 
-    { Reajustar o interior do Radiogroup }
-    if DBRG.Tag = 1 then
-    begin
-      { Centralizando verticalmente }
-      DBRG.Controls[1].Width := 15;
-      DBRG.Controls[1].Height := 15;
-      DBRG.Controls[1].Top := DBRG.Height div 2 - DBRG.Controls[1].Height div 2;
-
-      DBRG.Controls[2].Width := 15;
-      DBRG.Controls[2].Height := 15;
-      DBRG.Controls[2].Top := DBRG.Height div 2 - DBRG.Controls[2].Height div 2;
-
-      { Centralizando horizontalmente nos dois quartos do retângulo }
-      DBRG.Controls[1].Left := DBRG.Width div 4 - DBRG.Controls[1].Width div 2;
-      DBRG.Controls[2].Left := DBRG.Width div 4 - DBRG.Controls[2].Width div 2 + DBRG.Width div 2;
-    end;
+    { Ajustar o interior do Radiogroup }
+    AjustarDBRadioGroup(DBRG);
   finally
     aPanel.OnResize := DORE;
   end;
@@ -398,7 +449,7 @@ end;
 
 procedure TKRFMAvaliadosGerenciar.AjustarDBRadioGroup(const aDBRadioGroup: TDBRadioGroup);
 begin
-  if aDBRadioGroup.Tag = 0 then
+  if aDBRadioGroup.ControlCount < 3 then
   begin
     with TBevel.Create(aDBRadioGroup) do
     begin
@@ -411,8 +462,11 @@ begin
       Left := Parent.Width div 2 - Width div 2;
       Anchors := [akTop,akBottom];
     end;
+  end;
 
-    { Centralizando verticalmente }
+  { Centralizando verticalmente }
+  if aDBRadioGroup.ControlCount = 3 then
+  begin
     aDBRadioGroup.Controls[1].Width := 15;
     aDBRadioGroup.Controls[1].Height := 15;
     aDBRadioGroup.Controls[1].Top := aDBRadioGroup.Height div 2 - aDBRadioGroup.Controls[1].Height div 2;
@@ -424,8 +478,6 @@ begin
     { Centralizando horizontalmente nos dois quartos do retângulo }
     aDBRadioGroup.Controls[1].Left := aDBRadioGroup.Width div 4 - aDBRadioGroup.Controls[1].Width div 2;
     aDBRadioGroup.Controls[2].Left := aDBRadioGroup.Width div 4 - aDBRadioGroup.Controls[2].Width div 2 + aDBRadioGroup.Width div 2;
-
-    aDBRadioGroup.Tag := 1;
   end;
 end;
 
@@ -440,16 +492,10 @@ begin
     TKRDMAvaliadosGerenciar(Owner).CLDSDadosSocioDemograficossm_grauinstrchefedefamilia.Clear;
 end;
 
-procedure TKRFMAvaliadosGerenciar.DBRGPC1Change(Sender: TObject);
+procedure TKRFMAvaliadosGerenciar.DoRespostaMestreChange(Sender: TObject);
 begin
   inherited;
-  PANLPC1Sub.Visible := DBRGPC1.ItemIndex = 0;
-//  DBRGGrauChefeFamilia.Visible := DBRGChefeDaFamilia.ItemIndex = 1;
-
-//  TKRDMAvaliadosGerenciar(Owner).CLDSDadosSocioDemograficos.KRKValidationChecks.Active := DBRGGrauChefeFamilia.Visible;
-//
-//  if not DBRGGrauChefeFamilia.Visible and (TKRDMAvaliadosGerenciar(Owner).CLDSDadosSocioDemograficos.State in [dsEdit,dsInsert])  then
-//    TKRDMAvaliadosGerenciar(Owner).CLDSDadosSocioDemograficossm_grauinstrchefedefamilia.Clear;
+  MostrarSubPerguntas(TDBRadioGroup(Sender));
 end;
 
 procedure TKRFMAvaliadosGerenciar.KRLEFoneCelularKeyPress(Sender: TObject; var Key: Char);
@@ -549,7 +595,14 @@ begin
 end;
 
 procedure TKRFMAvaliadosGerenciar.MostrarPerguntasComplementares;
+var
+  i, j: Word;
+  PANLPCx: TPanel;
+  PANLPCxy: TPanel;
+  EstadoAnterior: Boolean;
 begin
+  EstadoAnterior := PANLPCLayer.Visible;
+
   PANLPCLayer.Visible := (DBRGPG1.ItemIndex = 0)
                       or (DBRGPG2.ItemIndex = 0)
                       or (DBRGPG3.ItemIndex = 0)
@@ -557,6 +610,69 @@ begin
                       or (DBRGPG5.ItemIndex = 0)
                       or (DBRGPG6.ItemIndex = 0)
                       or (DBRGPG7.ItemIndex = 0);
+
+  if EstadoAnterior <> PANLPCLayer.Visible then
+  begin
+    i := 0;
+    repeat
+      Inc(i);
+
+      PANLPCx := TPanel(FindComponent(Format('PANLPC%u',[i])));
+
+      if Assigned(PANLPCx) then
+      begin
+        TKRDMAvaliadosGerenciar(Owner).AlternarValidacao(TDBRadioGroup(PANLPCx.Controls[1]).DataSource.DataSet.Name
+                                                        ,TDBRadioGroup(PANLPCx.Controls[1]).Field.FieldName
+                                                        ,PANLPCLayer.Visible);
+
+        j := 64;
+        repeat
+          Inc(j);
+
+          PANLPCxy := TPanel(FindComponent(Format('PANLPC%u%s',[i,Chr(j)])));
+
+          if Assigned(PANLPCxy) then
+          begin
+            TKRDMAvaliadosGerenciar(Owner).AlternarValidacao(TDBRadioGroup(PANLPCxy.Controls[1]).DataSource.DataSet.Name
+                                                            ,TDBRadioGroup(PANLPCxy.Controls[1]).Field.FieldName
+                                                            ,PANLPCLayer.Visible);
+          end;
+        until not Assigned(PANLPCxy);
+
+      end;
+    until not Assigned(PANLPCx);
+  end;
+end;
+
+procedure TKRFMAvaliadosGerenciar.MostrarSubPerguntas(const aDBRadioGroup: TDBRadioGroup);
+var
+  PANLPCxSub: TPanel;
+  i: Byte;
+begin
+  { Otendo o painel com as subperguntas }
+  PANLPCxSub := TPanel(FindComponent('PANL' + Copy(aDBRadioGroup.Name,5,Length(aDBRadioGroup.Name)) + 'Sub'));
+
+  { Se há um painel de subperguntas realiza alguns procedimentos }
+  if Assigned(PANLPCxSub) then
+  begin
+    { ajusta a visibilidade de acordo com a resposta mestre escolhida }
+    PANLPCxSub.Visible := aDBRadioGroup.ItemIndex = 0;
+
+    { Caso o painel de subperguntas esteja visível, ajusta sua posição vertical
+    de forma que ele apareça imediatamente abaixo da pergunta mestre. Isso é
+    feito ajustando o Top de forma que ele seja exatamente o meio da altura do
+    mestre, mais 1 }
+    if PANLPCxSub.Visible then
+      PANLPCxSub.Top := aDBRadioGroup.Parent.Top + aDBRadioGroup.Parent.Height div 2 + 1;
+
+    { Ativa ou desativa os validadores correspondentes às subperguntas. Caso o
+    painel de subperguntas esteja visível, ativa a validação das subperguntas,
+    do contrário, não }
+    for i := 0 to Pred(PANLPCxSub.ControlCount) do
+      TKRDMAvaliadosGerenciar(Owner).AlternarValidacao(TDBRadioGroup(TPanel(PANLPCxSub.Controls[i]).Controls[1]).DataSource.DataSet.Name
+                                                      ,TDBRadioGroup(TPanel(PANLPCxSub.Controls[i]).Controls[1]).Field.FieldName
+                                                      ,PANLPCxSub.Visible);
+  end;
 end;
 
 procedure TKRFMAvaliadosGerenciar.DoPanelQuestaoResize(Sender: TObject);
@@ -612,29 +728,11 @@ end;
 procedure TKRFMAvaliadosGerenciar.TBSHParQShow(Sender: TObject);
 begin
   inherited;
-  { Ajustando DBRadioGroups da página Par-Q+ }
-  { Perguntas gerais }
-  AjustarDBRadioGroup(DBRGPG1);
-  AjustarDBRadioGroup(DBRGPG2);
-  AjustarDBRadioGroup(DBRGPG3);
-  AjustarDBRadioGroup(DBRGPG4);
-  AjustarDBRadioGroup(DBRGPG5);
-  AjustarDBRadioGroup(DBRGPG6);
-  AjustarDBRadioGroup(DBRGPG7);
-
-  { Perguntas complementares }
-  AjustarDBRadioGroup(DBRGPC1);
-  AjustarDBRadioGroup(DBRGPC1A);
-  AjustarDBRadioGroup(DBRGPC1B);
-  AjustarDBRadioGroup(DBRGPC1C);
-  AjustarDBRadioGroup(DBRGPC2);
-  AjustarDBRadioGroup(DBRGPC3);
-  AjustarDBRadioGroup(DBRGPC4);
-  AjustarDBRadioGroup(DBRGPC5);
-  AjustarDBRadioGroup(DBRGPC6);
-  AjustarDBRadioGroup(DBRGPC7);
-  AjustarDBRadioGroup(DBRGPC8);
-  AjustarDBRadioGroup(DBRGPC9);
+  try
+    SCBXParQ.AutoScroll := False;
+  finally
+    SCBXParQ.AutoScroll := True;
+  end;
 end;
 
 //procedure TForm.FormMouseWheel(Sender: TObject; Shift: TShiftState;

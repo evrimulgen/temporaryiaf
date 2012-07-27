@@ -11,7 +11,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
     Top = 40
     Width = 784
     Height = 437
-    ActivePage = TBSHConsultar
+    ActivePage = TBSHParQ
     Align = alClient
     TabOrder = 2
     OnChanging = PGCTAvaliadosChanging
@@ -1884,6 +1884,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         Top = 60
         Width = 770
         Height = 343
+        VertScrollBar.Position = 339
         Align = alClient
         Color = clWhite
         ParentColor = False
@@ -1892,137 +1893,17 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         OnMouseWheelUp = DoScrollBoxMouseWheelUp
         object PANLParQBottom: TPanel
           Left = 0
-          Top = 1639
+          Top = 1495
           Width = 749
-          Height = 4
+          Height = 6
           Align = alBottom
           BevelOuter = bvNone
           TabOrder = 0
         end
-        object DBCheckBox28: TDBCheckBox
-          Left = 12
-          Top = 1524
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc6'
-          DataField = 'bo_pc6'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 21
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox29: TDBCheckBox
-          Left = 12
-          Top = 1548
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc6a'
-          DataField = 'bo_pc6a'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 22
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox30: TDBCheckBox
-          Left = 12
-          Top = 1572
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc6b'
-          DataField = 'bo_pc6b'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 23
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox31: TDBCheckBox
-          Left = 12
-          Top = 1596
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc6c'
-          DataField = 'bo_pc6c'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 24
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox32: TDBCheckBox
-          Left = 12
-          Top = 1620
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc6d'
-          DataField = 'bo_pc6d'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 25
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox33: TDBCheckBox
-          Left = 84
-          Top = 1525
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc7'
-          DataField = 'bo_pc7'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 26
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox34: TDBCheckBox
-          Left = 84
-          Top = 1549
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc7a'
-          DataField = 'bo_pc7a'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 27
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox35: TDBCheckBox
-          Left = 84
-          Top = 1573
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc7b'
-          DataField = 'bo_pc7b'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 28
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox36: TDBCheckBox
-          Left = 84
-          Top = 1597
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc7c'
-          DataField = 'bo_pc7c'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 29
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox37: TDBCheckBox
-          Left = 84
-          Top = 1621
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc8'
-          DataField = 'bo_pc8'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 30
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object PANLParQ1: TPanel
+        object PANLPGTitulo: TPanel
           AlignWithMargins = True
           Left = 6
-          Top = 6
+          Top = -333
           Width = 737
           Height = 35
           Margins.Left = 6
@@ -2032,7 +1913,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           BevelInner = bvLowered
           Color = clInfoBk
           ParentBackground = False
-          TabOrder = 38
+          TabOrder = 1
           object LABLParQ1: TLabel
             AlignWithMargins = True
             Left = 4
@@ -2058,7 +1939,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object PANLPG: TPanel
           AlignWithMargins = True
           Left = 6
-          Top = 47
+          Top = -292
           Width = 737
           Height = 309
           Margins.Left = 6
@@ -2068,8 +1949,8 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           BevelInner = bvLowered
           Color = clWhite
           ParentBackground = False
-          TabOrder = 39
-          object KRPAPG: TKRKPanel
+          TabOrder = 2
+          object PANLPGInfo: TPanel
             Left = 2
             Top = 2
             Width = 733
@@ -2221,7 +2102,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Constraints.MinHeight = 33
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWhite
-              Font.Height = -15
+              Font.Height = -24
               Font.Name = 'Tahoma'
               Font.Style = [fsBold]
               ParentBackground = False
@@ -2236,7 +2117,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             Height = 35
             Align = alTop
             AutoSize = True
-            Color = 14671839
+            Color = 15724527
             Constraints.MinHeight = 35
             ParentBackground = False
             TabOrder = 2
@@ -2299,7 +2180,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Constraints.MinHeight = 33
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWhite
-              Font.Height = -15
+              Font.Height = -24
               Font.Name = 'Tahoma'
               Font.Style = [fsBold]
               ParentBackground = False
@@ -2379,7 +2260,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Constraints.MinHeight = 33
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWhite
-              Font.Height = -15
+              Font.Height = -24
               Font.Name = 'Tahoma'
               Font.Style = [fsBold]
               ParentBackground = False
@@ -2394,7 +2275,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             Height = 35
             Align = alTop
             AutoSize = True
-            Color = 14671839
+            Color = 15724527
             Constraints.MinHeight = 35
             ParentBackground = False
             TabOrder = 4
@@ -2414,7 +2295,9 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Caption = 
                 'Voc'#234' j'#225' foi diagnosticado com alguma outra doen'#231'a cr'#244'nica (que n' +
                 #227'o seja doen'#231'a card'#237'aca ou hipertens'#227'o)?'
+              Color = 15724527
               Constraints.MinHeight = 26
+              ParentColor = False
               Layout = tlCenter
               WordWrap = True
               ExplicitWidth = 516
@@ -2457,7 +2340,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Constraints.MinHeight = 33
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWhite
-              Font.Height = -15
+              Font.Height = -24
               Font.Name = 'Tahoma'
               Font.Style = [fsBold]
               ParentBackground = False
@@ -2535,7 +2418,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Constraints.MinHeight = 33
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWhite
-              Font.Height = -15
+              Font.Height = -24
               Font.Name = 'Tahoma'
               Font.Style = [fsBold]
               ParentBackground = False
@@ -2550,7 +2433,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             Height = 60
             Align = alTop
             AutoSize = True
-            Color = 14671839
+            Color = 15724527
             Constraints.MinHeight = 35
             ParentBackground = False
             TabOrder = 6
@@ -2615,7 +2498,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Constraints.MinHeight = 33
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWhite
-              Font.Height = -15
+              Font.Height = -24
               Font.Name = 'Tahoma'
               Font.Style = [fsBold]
               ParentBackground = False
@@ -2693,7 +2576,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Constraints.MinHeight = 33
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWhite
-              Font.Height = -15
+              Font.Height = -24
               Font.Name = 'Tahoma'
               Font.Style = [fsBold]
               ParentBackground = False
@@ -2702,344 +2585,19 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             end
           end
         end
-        object DBCheckBox23: TDBCheckBox
-          Left = 153
-          Top = 1524
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc4b'
-          DataField = 'bo_pc4b'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 16
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox24: TDBCheckBox
-          Left = 153
-          Top = 1548
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc4c'
-          DataField = 'bo_pc4c'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 17
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox25: TDBCheckBox
-          Left = 153
-          Top = 1572
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc5'
-          DataField = 'bo_pc5'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 18
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox26: TDBCheckBox
-          Left = 153
-          Top = 1596
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc5a'
-          DataField = 'bo_pc5a'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 19
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox27: TDBCheckBox
-          Left = 153
-          Top = 1620
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc5b'
-          DataField = 'bo_pc5b'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 20
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox18: TDBCheckBox
-          Left = 227
-          Top = 1525
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc3c'
-          DataField = 'bo_pc3c'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 11
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox19: TDBCheckBox
-          Left = 227
-          Top = 1549
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc3d'
-          DataField = 'bo_pc3d'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 12
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox20: TDBCheckBox
-          Left = 227
-          Top = 1573
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc3e'
-          DataField = 'bo_pc3e'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 13
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox21: TDBCheckBox
-          Left = 227
-          Top = 1597
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc4'
-          DataField = 'bo_pc4'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 14
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox22: TDBCheckBox
-          Left = 227
-          Top = 1621
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc4a'
-          DataField = 'bo_pc4a'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 15
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox13: TDBCheckBox
-          Left = 293
-          Top = 1526
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc2a'
-          DataField = 'bo_pc2a'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 6
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox14: TDBCheckBox
-          Left = 293
-          Top = 1549
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc2b'
-          DataField = 'bo_pc2b'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 7
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox15: TDBCheckBox
-          Left = 293
-          Top = 1573
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc3'
-          DataField = 'bo_pc3'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 8
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox16: TDBCheckBox
-          Left = 293
-          Top = 1597
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc3a'
-          DataField = 'bo_pc3a'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 9
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox17: TDBCheckBox
-          Left = 293
-          Top = 1621
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc3b'
-          DataField = 'bo_pc3b'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 10
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox8: TDBCheckBox
-          Left = 360
-          Top = 1526
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc1'
-          DataField = 'bo_pc1'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 1
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox9: TDBCheckBox
-          Left = 360
-          Top = 1550
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc1a'
-          DataField = 'bo_pc1a'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 2
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox10: TDBCheckBox
-          Left = 360
-          Top = 1574
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc1b'
-          DataField = 'bo_pc1b'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 3
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox11: TDBCheckBox
-          Left = 360
-          Top = 1598
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc1c'
-          DataField = 'bo_pc1c'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 4
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox12: TDBCheckBox
-          Left = 360
-          Top = 1622
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc2'
-          DataField = 'bo_pc2'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 5
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox38: TDBCheckBox
-          Left = 426
-          Top = 1526
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc8a'
-          DataField = 'bo_pc8a'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 31
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox39: TDBCheckBox
-          Left = 426
-          Top = 1550
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc8b'
-          DataField = 'bo_pc8b'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 32
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox40: TDBCheckBox
-          Left = 426
-          Top = 1574
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc8c'
-          DataField = 'bo_pc8c'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 33
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox41: TDBCheckBox
-          Left = 426
-          Top = 1598
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc9'
-          DataField = 'bo_pc9'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 34
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox42: TDBCheckBox
-          Left = 426
-          Top = 1622
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc9a'
-          DataField = 'bo_pc9a'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 35
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox44: TDBCheckBox
-          Left = 492
-          Top = 1551
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc9c'
-          DataField = 'bo_pc9c'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 37
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
-        object DBCheckBox43: TDBCheckBox
-          Left = 492
-          Top = 1527
-          Width = 97
-          Height = 17
-          Caption = 'bo_pc9b'
-          DataField = 'bo_pc9b'
-          DataSource = KRDMAvaliadosGerenciar.DTSRParQ
-          TabOrder = 36
-          ValueChecked = 'True'
-          ValueUnchecked = 'False'
-        end
         object PANLPCLayer: TPanel
           AlignWithMargins = True
           Left = 6
-          Top = 362
+          Top = 23
           Width = 737
-          Height = 706
+          Height = 1472
           Margins.Left = 6
           Margins.Right = 6
           Margins.Bottom = 0
           Align = alTop
           AutoSize = True
           BevelOuter = bvNone
-          TabOrder = 40
-          Visible = False
+          TabOrder = 3
           object PANLPCTitulo: TPanel
             AlignWithMargins = True
             Left = 0
@@ -3073,8 +2631,8 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Color = clInfoBk
               ParentColor = False
               Layout = tlCenter
-              ExplicitLeft = 6
-              ExplicitTop = 16
+              ExplicitWidth = 461
+              ExplicitHeight = 26
             end
           end
           object PANLPC: TPanel
@@ -3082,11 +2640,12 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             Left = 0
             Top = 41
             Width = 737
-            Height = 665
+            Height = 1431
             Margins.Left = 0
             Margins.Right = 0
             Margins.Bottom = 0
             Align = alTop
+            AutoSize = True
             BevelInner = bvLowered
             Color = clBlack
             ParentBackground = False
@@ -3103,7 +2662,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               ParentBackground = False
               TabOrder = 0
               OnResize = DoPanelQuestaoResize
-              ExplicitWidth = 745
               DesignSize = (
                 733
                 35)
@@ -3148,8 +2706,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Values.Strings = (
                   'True'
                   'False')
-                OnChange = DBRGPC1Change
-                ExplicitLeft = 644
+                OnChange = DoRespostaMestreChange
               end
               object PANLPCP1: TPanel
                 Left = 0
@@ -3161,7 +2718,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 33
                 Font.Charset = DEFAULT_CHARSET
                 Font.Color = clWhite
-                Font.Height = -15
+                Font.Height = -24
                 Font.Name = 'Tahoma'
                 Font.Style = [fsBold]
                 ParentBackground = False
@@ -3176,13 +2733,11 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Height = 35
               Align = alTop
               AutoSize = True
-              Color = 14671839
+              Color = 15724527
               Constraints.MinHeight = 35
               ParentBackground = False
               TabOrder = 1
               OnResize = DoPanelQuestaoResize
-              ExplicitTop = 183
-              ExplicitWidth = 745
               DesignSize = (
                 733
                 35)
@@ -3227,7 +2782,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Values.Strings = (
                   'True'
                   'False')
-                ExplicitLeft = 644
+                OnChange = DoRespostaMestreChange
               end
               object PANLPCP2: TPanel
                 Left = 0
@@ -3239,7 +2794,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 33
                 Font.Charset = DEFAULT_CHARSET
                 Font.Color = clWhite
-                Font.Height = -15
+                Font.Height = -24
                 Font.Name = 'Tahoma'
                 Font.Style = [fsBold]
                 ParentBackground = False
@@ -3249,7 +2804,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             end
             object PANLPC3: TPanel
               Left = 2
-              Top = 215
+              Top = 288
               Width = 733
               Height = 47
               Align = alTop
@@ -3259,8 +2814,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               ParentBackground = False
               TabOrder = 2
               OnResize = DoPanelQuestaoResize
-              ExplicitTop = 218
-              ExplicitWidth = 745
               DesignSize = (
                 733
                 47)
@@ -3308,7 +2861,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Values.Strings = (
                   'True'
                   'False')
-                ExplicitLeft = 644
+                OnChange = DoRespostaMestreChange
               end
               object PANLPCP3: TPanel
                 Left = 0
@@ -3320,7 +2873,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 33
                 Font.Charset = DEFAULT_CHARSET
                 Font.Color = clWhite
-                Font.Height = -15
+                Font.Height = -24
                 Font.Name = 'Tahoma'
                 Font.Style = [fsBold]
                 ParentBackground = False
@@ -3328,7 +2881,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 TabOrder = 1
               end
             end
-            object KRPAPC: TKRKPanel
+            object PANLPCInfo: TPanel
               Left = 2
               Top = 2
               Width = 733
@@ -3344,7 +2897,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               ParentBackground = False
               ParentFont = False
               TabOrder = 3
-              ExplicitWidth = 745
               object LABLPC: TLabel
                 AlignWithMargins = True
                 Left = 4
@@ -3371,7 +2923,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 ParentBackground = False
                 ParentColor = False
                 TabOrder = 0
-                ExplicitLeft = 644
                 DesignSize = (
                   100
                   33)
@@ -3414,18 +2965,16 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             end
             object PANLPC4: TPanel
               Left = 2
-              Top = 262
+              Top = 525
               Width = 733
               Height = 35
               Align = alTop
               AutoSize = True
-              Color = 14671839
+              Color = 15724527
               Constraints.MinHeight = 35
               ParentBackground = False
               TabOrder = 4
               OnResize = DoPanelQuestaoResize
-              ExplicitTop = 265
-              ExplicitWidth = 745
               DesignSize = (
                 733
                 35)
@@ -3472,7 +3021,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Values.Strings = (
                   'True'
                   'False')
-                ExplicitLeft = 644
+                OnChange = DoRespostaMestreChange
               end
               object PANLPCP4: TPanel
                 Left = 0
@@ -3484,7 +3033,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 33
                 Font.Charset = DEFAULT_CHARSET
                 Font.Color = clWhite
-                Font.Height = -15
+                Font.Height = -24
                 Font.Name = 'Tahoma'
                 Font.Style = [fsBold]
                 ParentBackground = False
@@ -3494,7 +3043,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             end
             object PANLPC5: TPanel
               Left = 2
-              Top = 297
+              Top = 668
               Width = 733
               Height = 47
               Align = alTop
@@ -3504,8 +3053,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               ParentBackground = False
               TabOrder = 5
               OnResize = DoPanelQuestaoResize
-              ExplicitTop = 300
-              ExplicitWidth = 745
               DesignSize = (
                 733
                 47)
@@ -3554,7 +3101,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Values.Strings = (
                   'True'
                   'False')
-                ExplicitLeft = 644
+                OnChange = DoRespostaMestreChange
               end
               object PANLPCP5: TPanel
                 Left = 0
@@ -3566,7 +3113,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 33
                 Font.Charset = DEFAULT_CHARSET
                 Font.Color = clWhite
-                Font.Height = -15
+                Font.Height = -24
                 Font.Name = 'Tahoma'
                 Font.Style = [fsBold]
                 ParentBackground = False
@@ -3576,18 +3123,16 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             end
             object PANLPC6: TPanel
               Left = 2
-              Top = 344
+              Top = 788
               Width = 733
               Height = 35
               Align = alTop
               AutoSize = True
-              Color = 14671839
+              Color = 15724527
               Constraints.MinHeight = 35
               ParentBackground = False
               TabOrder = 6
               OnResize = DoPanelQuestaoResize
-              ExplicitTop = 347
-              ExplicitWidth = 745
               DesignSize = (
                 733
                 35)
@@ -3634,7 +3179,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Values.Strings = (
                   'True'
                   'False')
-                ExplicitLeft = 644
+                OnChange = DoRespostaMestreChange
               end
               object PANLPCP6: TPanel
                 Left = 0
@@ -3646,7 +3191,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 33
                 Font.Charset = DEFAULT_CHARSET
                 Font.Color = clWhite
-                Font.Height = -15
+                Font.Height = -24
                 Font.Name = 'Tahoma'
                 Font.Style = [fsBold]
                 ParentBackground = False
@@ -3656,7 +3201,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             end
             object PANLPC7: TPanel
               Left = 2
-              Top = 379
+              Top = 966
               Width = 733
               Height = 35
               Align = alTop
@@ -3666,8 +3211,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               ParentBackground = False
               TabOrder = 7
               OnResize = DoPanelQuestaoResize
-              ExplicitTop = 382
-              ExplicitWidth = 745
               DesignSize = (
                 733
                 35)
@@ -3714,7 +3257,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Values.Strings = (
                   'True'
                   'False')
-                ExplicitLeft = 644
+                OnChange = DoRespostaMestreChange
               end
               object PANLPCP7: TPanel
                 Left = 0
@@ -3726,7 +3269,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 33
                 Font.Charset = DEFAULT_CHARSET
                 Font.Color = clWhite
-                Font.Height = -15
+                Font.Height = -24
                 Font.Name = 'Tahoma'
                 Font.Style = [fsBold]
                 ParentBackground = False
@@ -3736,18 +3279,16 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             end
             object PANLPC8: TPanel
               Left = 2
-              Top = 414
+              Top = 1109
               Width = 733
               Height = 35
               Align = alTop
               AutoSize = True
-              Color = 14671839
+              Color = 15724527
               Constraints.MinHeight = 35
               ParentBackground = False
               TabOrder = 8
               OnResize = DoPanelQuestaoResize
-              ExplicitTop = 417
-              ExplicitWidth = 745
               DesignSize = (
                 733
                 35)
@@ -3794,7 +3335,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Values.Strings = (
                   'True'
                   'False')
-                ExplicitLeft = 644
+                OnChange = DoRespostaMestreChange
               end
               object PANLPCP8: TPanel
                 Left = 0
@@ -3806,7 +3347,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 33
                 Font.Charset = DEFAULT_CHARSET
                 Font.Color = clWhite
-                Font.Height = -15
+                Font.Height = -24
                 Font.Name = 'Tahoma'
                 Font.Style = [fsBold]
                 ParentBackground = False
@@ -3816,7 +3357,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             end
             object PANLPC9: TPanel
               Left = 2
-              Top = 449
+              Top = 1264
               Width = 733
               Height = 60
               Align = alTop
@@ -3826,8 +3367,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               ParentBackground = False
               TabOrder = 9
               OnResize = DoPanelQuestaoResize
-              ExplicitTop = 452
-              ExplicitWidth = 745
               DesignSize = (
                 733
                 60)
@@ -3860,7 +3399,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Color = clInfoBk
                 Columns = 2
                 Constraints.MinHeight = 33
-                DataField = 'bo_pc5'
+                DataField = 'bo_pc9'
                 DataSource = KRDMAvaliadosGerenciar.DTSRParQ
                 Font.Charset = DEFAULT_CHARSET
                 Font.Color = clWindowText
@@ -3877,7 +3416,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Values.Strings = (
                   'True'
                   'False')
-                ExplicitLeft = 644
+                OnChange = DoRespostaMestreChange
               end
               object PANLPCP9: TPanel
                 Left = 0
@@ -3889,7 +3428,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 33
                 Font.Charset = DEFAULT_CHARSET
                 Font.Color = clWhite
-                Font.Height = -15
+                Font.Height = -24
                 Font.Name = 'Tahoma'
                 Font.Style = [fsBold]
                 ParentBackground = False
@@ -3911,7 +3450,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               BevelOuter = bvNone
               TabOrder = 10
               Visible = False
-              ExplicitWidth = 745
               object PANLPC1A: TPanel
                 Left = 0
                 Top = 0
@@ -3924,7 +3462,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 ParentBackground = False
                 TabOrder = 0
                 OnResize = DoPanelQuestaoResize
-                ExplicitWidth = 745
                 DesignSize = (
                   733
                   35)
@@ -3973,14 +3510,13 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Values.Strings = (
                     'True'
                     'False')
-                  ExplicitLeft = 644
                 end
                 object PANLPCP1A: TPanel
                   Left = 0
                   Top = 1
                   Width = 50
                   Height = 33
-                  Caption = 'A'
+                  Caption = '1A'
                   Color = clBlack
                   Constraints.MinHeight = 33
                   Font.Charset = DEFAULT_CHARSET
@@ -4005,7 +3541,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 ParentBackground = False
                 TabOrder = 1
                 OnResize = DoPanelQuestaoResize
-                ExplicitWidth = 745
                 DesignSize = (
                   733
                   35)
@@ -4054,14 +3589,13 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Values.Strings = (
                     'True'
                     'False')
-                  ExplicitLeft = 644
                 end
                 object PANLPCP1B: TPanel
                   Left = 0
                   Top = 1
                   Width = 50
                   Height = 33
-                  Caption = 'B'
+                  Caption = '1B'
                   Color = clBlack
                   Constraints.MinHeight = 33
                   Font.Charset = DEFAULT_CHARSET
@@ -4086,7 +3620,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 ParentBackground = False
                 TabOrder = 2
                 OnResize = DoPanelQuestaoResize
-                ExplicitWidth = 745
                 DesignSize = (
                   733
                   35)
@@ -4133,14 +3666,2061 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Values.Strings = (
                     'True'
                     'False')
-                  ExplicitLeft = 644
                 end
                 object PANLPCP1C: TPanel
                   Left = 0
                   Top = 1
                   Width = 50
                   Height = 33
-                  Caption = 'C'
+                  Caption = '1C'
+                  Color = clBlack
+                  Constraints.MinHeight = 33
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clYellow
+                  Font.Height = -15
+                  Font.Name = 'Tahoma'
+                  Font.Style = [fsBold]
+                  ParentBackground = False
+                  ParentFont = False
+                  TabOrder = 1
+                end
+              end
+            end
+            object PANLPC2Sub: TPanel
+              AlignWithMargins = True
+              Left = 2
+              Top = 215
+              Width = 733
+              Height = 70
+              Margins.Left = 0
+              Margins.Top = 0
+              Margins.Right = 0
+              Align = alTop
+              AutoSize = True
+              BevelOuter = bvNone
+              TabOrder = 11
+              object PANLPC2A: TPanel
+                Left = 0
+                Top = 0
+                Width = 733
+                Height = 35
+                Align = alTop
+                AutoSize = True
+                Color = 15724527
+                Constraints.MinHeight = 35
+                ParentBackground = False
+                TabOrder = 0
+                OnResize = DoPanelQuestaoResize
+                DesignSize = (
+                  733
+                  35)
+                object LABLPC2A: TLabel
+                  AlignWithMargins = True
+                  Left = 53
+                  Top = 4
+                  Width = 575
+                  Height = 26
+                  Margins.Left = 52
+                  Margins.Right = 104
+                  Align = alTop
+                  Caption = 
+                    'Seu diagn'#243'stico de c'#226'ncer inclui um dos seguintes tipos: pulm'#245'es' +
+                    '/broncog'#234'nico, mieloma m'#250'ltiplo (c'#226'ncer das c'#233'lulas plasm'#225'ticas)' +
+                    ', cabe'#231'a e/ou pesco'#231'o?'
+                  Constraints.MinHeight = 26
+                  Layout = tlCenter
+                  WordWrap = True
+                  ExplicitWidth = 558
+                end
+                object DBRGPC2A: TDBRadioGroup
+                  Left = 632
+                  Top = 1
+                  Width = 100
+                  Height = 33
+                  Anchors = [akTop, akRight]
+                  Color = clInfoBk
+                  Columns = 2
+                  Constraints.MinHeight = 33
+                  DataField = 'bo_pc2a'
+                  DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Items.Strings = (
+                    'S'
+                    'N')
+                  ParentBackground = False
+                  ParentColor = False
+                  ParentFont = False
+                  TabOrder = 0
+                  Values.Strings = (
+                    'True'
+                    'False')
+                end
+                object PANLPCP2A: TPanel
+                  Left = 0
+                  Top = 1
+                  Width = 50
+                  Height = 33
+                  Caption = '2A'
+                  Color = clBlack
+                  Constraints.MinHeight = 33
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clYellow
+                  Font.Height = -15
+                  Font.Name = 'Tahoma'
+                  Font.Style = [fsBold]
+                  ParentBackground = False
+                  ParentFont = False
+                  TabOrder = 1
+                end
+              end
+              object PANLPC2B: TPanel
+                Left = 0
+                Top = 35
+                Width = 733
+                Height = 35
+                Align = alTop
+                AutoSize = True
+                Color = 15724527
+                Constraints.MinHeight = 35
+                ParentBackground = False
+                TabOrder = 1
+                OnResize = DoPanelQuestaoResize
+                DesignSize = (
+                  733
+                  35)
+                object LABLPC2B: TLabel
+                  AlignWithMargins = True
+                  Left = 53
+                  Top = 4
+                  Width = 575
+                  Height = 26
+                  Margins.Left = 52
+                  Margins.Right = 104
+                  Align = alTop
+                  Caption = 
+                    'Voc'#234' est'#225' atualmente fazendo terapia contra c'#226'ncer (como quimiot' +
+                    'erapia ou radioterapia)?'
+                  Constraints.MinHeight = 26
+                  Layout = tlCenter
+                  WordWrap = True
+                  ExplicitWidth = 436
+                end
+                object DBRGPC2B: TDBRadioGroup
+                  Left = 632
+                  Top = 1
+                  Width = 100
+                  Height = 33
+                  Anchors = [akTop, akRight]
+                  Color = clInfoBk
+                  Columns = 2
+                  Constraints.MinHeight = 33
+                  DataField = 'bo_pc2b'
+                  DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Items.Strings = (
+                    'S'
+                    'N')
+                  ParentBackground = False
+                  ParentColor = False
+                  ParentFont = False
+                  TabOrder = 0
+                  Values.Strings = (
+                    'True'
+                    'False')
+                end
+                object PANLPCP2B: TPanel
+                  Left = 0
+                  Top = 1
+                  Width = 50
+                  Height = 33
+                  Caption = '2B'
+                  Color = clBlack
+                  Constraints.MinHeight = 33
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clYellow
+                  Font.Height = -15
+                  Font.Name = 'Tahoma'
+                  Font.Style = [fsBold]
+                  ParentBackground = False
+                  ParentFont = False
+                  TabOrder = 1
+                end
+              end
+            end
+            object PANLPC3Sub: TPanel
+              AlignWithMargins = True
+              Left = 2
+              Top = 335
+              Width = 733
+              Height = 187
+              Margins.Left = 0
+              Margins.Top = 0
+              Margins.Right = 0
+              Align = alTop
+              AutoSize = True
+              BevelOuter = bvNone
+              TabOrder = 12
+              object PANLPC3A: TPanel
+                Left = 0
+                Top = 0
+                Width = 733
+                Height = 47
+                Align = alTop
+                AutoSize = True
+                Color = clWhite
+                Constraints.MinHeight = 35
+                ParentBackground = False
+                TabOrder = 0
+                OnResize = DoPanelQuestaoResize
+                DesignSize = (
+                  733
+                  47)
+                object LABLPC3A: TLabel
+                  AlignWithMargins = True
+                  Left = 53
+                  Top = 4
+                  Width = 575
+                  Height = 39
+                  Margins.Left = 52
+                  Margins.Right = 104
+                  Align = alTop
+                  Caption = 
+                    'Voc'#234' tem dificuldade de controlar a condi'#231#227'o (ou alguma das cond' +
+                    'i'#231#245'es) citada(s) com medicamentos ou outras terapias prescritas ' +
+                    'por um profissional?'#13#10'Responda N'#195'O se voc'#234' n'#227'o est'#225' tomando medi' +
+                    'camentos ou recebendo outros tratamentos'
+                  Constraints.MinHeight = 26
+                  Layout = tlCenter
+                  WordWrap = True
+                end
+                object DBRGPC3A: TDBRadioGroup
+                  Left = 632
+                  Top = 1
+                  Width = 100
+                  Height = 45
+                  Anchors = [akTop, akRight]
+                  Color = clInfoBk
+                  Columns = 2
+                  Constraints.MinHeight = 33
+                  DataField = 'bo_pc3a'
+                  DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Items.Strings = (
+                    'S'
+                    'N')
+                  ParentBackground = False
+                  ParentColor = False
+                  ParentFont = False
+                  TabOrder = 0
+                  Values.Strings = (
+                    'True'
+                    'False')
+                end
+                object PANLPCP3A: TPanel
+                  Left = 0
+                  Top = 1
+                  Width = 50
+                  Height = 45
+                  Caption = '3A'
+                  Color = clBlack
+                  Constraints.MinHeight = 33
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clYellow
+                  Font.Height = -15
+                  Font.Name = 'Tahoma'
+                  Font.Style = [fsBold]
+                  ParentBackground = False
+                  ParentFont = False
+                  TabOrder = 1
+                end
+              end
+              object PANLPC3B: TPanel
+                Left = 0
+                Top = 47
+                Width = 733
+                Height = 35
+                Align = alTop
+                AutoSize = True
+                Color = clWhite
+                Constraints.MinHeight = 35
+                ParentBackground = False
+                TabOrder = 1
+                OnResize = DoPanelQuestaoResize
+                DesignSize = (
+                  733
+                  35)
+                object LABLPC3B: TLabel
+                  AlignWithMargins = True
+                  Left = 53
+                  Top = 4
+                  Width = 575
+                  Height = 26
+                  Margins.Left = 52
+                  Margins.Right = 104
+                  Align = alTop
+                  Caption = 
+                    'Voc'#234' tem batimento card'#237'aco irregular (ex.: fibrila'#231#227'o atrial, c' +
+                    'ontra'#231#227'o ventricular prematura) que precisa de acompanhamento m'#233 +
+                    'dico?'
+                  Constraints.MinHeight = 26
+                  Layout = tlCenter
+                  WordWrap = True
+                  ExplicitWidth = 523
+                end
+                object DBRGPC3B: TDBRadioGroup
+                  Left = 632
+                  Top = 1
+                  Width = 100
+                  Height = 33
+                  Anchors = [akTop, akRight]
+                  Color = clInfoBk
+                  Columns = 2
+                  Constraints.MinHeight = 33
+                  DataField = 'bo_pc3b'
+                  DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Items.Strings = (
+                    'S'
+                    'N')
+                  ParentBackground = False
+                  ParentColor = False
+                  ParentFont = False
+                  TabOrder = 0
+                  Values.Strings = (
+                    'True'
+                    'False')
+                end
+                object PANLPCP3B: TPanel
+                  Left = 0
+                  Top = 1
+                  Width = 50
+                  Height = 33
+                  Caption = '3B'
+                  Color = clBlack
+                  Constraints.MinHeight = 33
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clYellow
+                  Font.Height = -15
+                  Font.Name = 'Tahoma'
+                  Font.Style = [fsBold]
+                  ParentBackground = False
+                  ParentFont = False
+                  TabOrder = 1
+                end
+              end
+              object PANLPC3C: TPanel
+                Left = 0
+                Top = 82
+                Width = 733
+                Height = 35
+                Align = alTop
+                AutoSize = True
+                Color = clWhite
+                Constraints.MinHeight = 35
+                ParentBackground = False
+                TabOrder = 2
+                OnResize = DoPanelQuestaoResize
+                DesignSize = (
+                  733
+                  35)
+                object LABLPC3C: TLabel
+                  AlignWithMargins = True
+                  Left = 53
+                  Top = 4
+                  Width = 575
+                  Height = 26
+                  Margins.Left = 52
+                  Margins.Right = 104
+                  Align = alTop
+                  Caption = 'Voc'#234' tem insufici'#234'ncia card'#237'aca cr'#244'nica?'
+                  Constraints.MinHeight = 26
+                  Layout = tlCenter
+                  WordWrap = True
+                  ExplicitWidth = 189
+                end
+                object DBRGPC3C: TDBRadioGroup
+                  Left = 632
+                  Top = 1
+                  Width = 100
+                  Height = 33
+                  Anchors = [akTop, akRight]
+                  Color = clInfoBk
+                  Columns = 2
+                  Constraints.MinHeight = 33
+                  DataField = 'bo_pc3c'
+                  DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Items.Strings = (
+                    'S'
+                    'N')
+                  ParentBackground = False
+                  ParentColor = False
+                  ParentFont = False
+                  TabOrder = 0
+                  Values.Strings = (
+                    'True'
+                    'False')
+                end
+                object PANLPCP3C: TPanel
+                  Left = 0
+                  Top = 1
+                  Width = 50
+                  Height = 33
+                  Caption = '3C'
+                  Color = clBlack
+                  Constraints.MinHeight = 33
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clYellow
+                  Font.Height = -15
+                  Font.Name = 'Tahoma'
+                  Font.Style = [fsBold]
+                  ParentBackground = False
+                  ParentFont = False
+                  TabOrder = 1
+                end
+              end
+              object PANLPC3D: TPanel
+                Left = 0
+                Top = 117
+                Width = 733
+                Height = 35
+                Align = alTop
+                AutoSize = True
+                Color = clWhite
+                Constraints.MinHeight = 35
+                ParentBackground = False
+                TabOrder = 3
+                OnResize = DoPanelQuestaoResize
+                DesignSize = (
+                  733
+                  35)
+                object LABLPC3D: TLabel
+                  AlignWithMargins = True
+                  Left = 53
+                  Top = 4
+                  Width = 575
+                  Height = 26
+                  Margins.Left = 52
+                  Margins.Right = 104
+                  Align = alTop
+                  Caption = 
+                    'Voc'#234' tem press'#227'o arterial em repouso igual ou maior que 160/90 m' +
+                    'mHg com ou sem medica'#231#227'o?'#13#10'Responda SIM se voc'#234' n'#227'o sabe sua pre' +
+                    'ss'#227'o arterial durante repouso'
+                  Constraints.MinHeight = 26
+                  Layout = tlCenter
+                  WordWrap = True
+                  ExplicitWidth = 457
+                end
+                object DBRGPC3D: TDBRadioGroup
+                  Left = 632
+                  Top = 1
+                  Width = 100
+                  Height = 33
+                  Anchors = [akTop, akRight]
+                  Color = clInfoBk
+                  Columns = 2
+                  Constraints.MinHeight = 33
+                  DataField = 'bo_pc3d'
+                  DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Items.Strings = (
+                    'S'
+                    'N')
+                  ParentBackground = False
+                  ParentColor = False
+                  ParentFont = False
+                  TabOrder = 0
+                  Values.Strings = (
+                    'True'
+                    'False')
+                end
+                object PANLPCP3D: TPanel
+                  Left = 0
+                  Top = 1
+                  Width = 50
+                  Height = 33
+                  Caption = '3D'
+                  Color = clBlack
+                  Constraints.MinHeight = 33
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clYellow
+                  Font.Height = -15
+                  Font.Name = 'Tahoma'
+                  Font.Style = [fsBold]
+                  ParentBackground = False
+                  ParentFont = False
+                  TabOrder = 1
+                end
+              end
+              object PANLPC3E: TPanel
+                Left = 0
+                Top = 152
+                Width = 733
+                Height = 35
+                Align = alTop
+                AutoSize = True
+                Color = clWhite
+                Constraints.MinHeight = 35
+                ParentBackground = False
+                TabOrder = 4
+                OnResize = DoPanelQuestaoResize
+                DesignSize = (
+                  733
+                  35)
+                object LABLPC3E: TLabel
+                  AlignWithMargins = True
+                  Left = 53
+                  Top = 4
+                  Width = 575
+                  Height = 26
+                  Margins.Left = 52
+                  Margins.Right = 104
+                  Align = alTop
+                  Caption = 
+                    'Voc'#234' tem doen'#231'a arterial coron'#225'ria (cardiovascular) diagnosticad' +
+                    'a e n'#227'o participou de atividade f'#237'sica regular nos '#250'ltimos 2 mes' +
+                    'es?'
+                  Constraints.MinHeight = 26
+                  Layout = tlCenter
+                  WordWrap = True
+                  ExplicitWidth = 545
+                end
+                object DBRGPC3E: TDBRadioGroup
+                  Left = 632
+                  Top = 1
+                  Width = 100
+                  Height = 33
+                  Anchors = [akTop, akRight]
+                  Color = clInfoBk
+                  Columns = 2
+                  Constraints.MinHeight = 33
+                  DataField = 'bo_pc3e'
+                  DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Items.Strings = (
+                    'S'
+                    'N')
+                  ParentBackground = False
+                  ParentColor = False
+                  ParentFont = False
+                  TabOrder = 0
+                  Values.Strings = (
+                    'True'
+                    'False')
+                end
+                object PANLPCP3E: TPanel
+                  Left = 0
+                  Top = 1
+                  Width = 50
+                  Height = 33
+                  Caption = '3E'
+                  Color = clBlack
+                  Constraints.MinHeight = 33
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clYellow
+                  Font.Height = -15
+                  Font.Name = 'Tahoma'
+                  Font.Style = [fsBold]
+                  ParentBackground = False
+                  ParentFont = False
+                  TabOrder = 1
+                end
+              end
+            end
+            object PANLPC4Sub: TPanel
+              AlignWithMargins = True
+              Left = 2
+              Top = 560
+              Width = 733
+              Height = 105
+              Margins.Left = 0
+              Margins.Top = 0
+              Margins.Right = 0
+              Align = alTop
+              AutoSize = True
+              BevelOuter = bvNone
+              TabOrder = 13
+              object PANLPC4A: TPanel
+                Left = 0
+                Top = 0
+                Width = 733
+                Height = 35
+                Align = alTop
+                AutoSize = True
+                Color = 15724527
+                Constraints.MinHeight = 35
+                ParentBackground = False
+                TabOrder = 0
+                OnResize = DoPanelQuestaoResize
+                DesignSize = (
+                  733
+                  35)
+                object LABLPC4A: TLabel
+                  AlignWithMargins = True
+                  Left = 53
+                  Top = 4
+                  Width = 575
+                  Height = 26
+                  Margins.Left = 52
+                  Margins.Right = 104
+                  Align = alTop
+                  Caption = 
+                    'O n'#237'vel de a'#231#250'car no seu sangue est'#225' frequentemente acima de 234' +
+                    ' mg/dl (13.0 mmol/l)?'#13#10'Responda SIM se voc'#234' n'#227'o tem certeza'
+                  Constraints.MinHeight = 26
+                  Layout = tlCenter
+                  WordWrap = True
+                  ExplicitWidth = 427
+                end
+                object DBRGPC4A: TDBRadioGroup
+                  Left = 632
+                  Top = 1
+                  Width = 100
+                  Height = 33
+                  Anchors = [akTop, akRight]
+                  Color = clInfoBk
+                  Columns = 2
+                  Constraints.MinHeight = 33
+                  DataField = 'bo_pc4a'
+                  DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Items.Strings = (
+                    'S'
+                    'N')
+                  ParentBackground = False
+                  ParentColor = False
+                  ParentFont = False
+                  TabOrder = 0
+                  Values.Strings = (
+                    'True'
+                    'False')
+                end
+                object PANLPCP4A: TPanel
+                  Left = 0
+                  Top = 1
+                  Width = 50
+                  Height = 33
+                  Caption = '4A'
+                  Color = clBlack
+                  Constraints.MinHeight = 33
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clYellow
+                  Font.Height = -15
+                  Font.Name = 'Tahoma'
+                  Font.Style = [fsBold]
+                  ParentBackground = False
+                  ParentFont = False
+                  TabOrder = 1
+                end
+              end
+              object PANLPC4B: TPanel
+                Left = 0
+                Top = 35
+                Width = 733
+                Height = 35
+                Align = alTop
+                AutoSize = True
+                Color = 15724527
+                Constraints.MinHeight = 35
+                ParentBackground = False
+                TabOrder = 1
+                OnResize = DoPanelQuestaoResize
+                DesignSize = (
+                  733
+                  35)
+                object LABLPC4B: TLabel
+                  AlignWithMargins = True
+                  Left = 53
+                  Top = 4
+                  Width = 575
+                  Height = 26
+                  Margins.Left = 52
+                  Margins.Right = 104
+                  Align = alTop
+                  Caption = 
+                    'Voc'#234' tem algum sinal ou sintoma de complica'#231#245'es do diabetes, com' +
+                    'o doen'#231'a card'#237'aca ou vascular e/ou complica'#231#245'es que afetem seus ' +
+                    'olhos, rins e a sensibilidade nos seus p'#233's e dedos dos p'#233's?'
+                  Constraints.MinHeight = 26
+                  Layout = tlCenter
+                  WordWrap = True
+                  ExplicitWidth = 427
+                end
+                object DBRGPC4B: TDBRadioGroup
+                  Left = 632
+                  Top = 1
+                  Width = 100
+                  Height = 33
+                  Anchors = [akTop, akRight]
+                  Color = clInfoBk
+                  Columns = 2
+                  Constraints.MinHeight = 33
+                  DataField = 'bo_pc4b'
+                  DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Items.Strings = (
+                    'S'
+                    'N')
+                  ParentBackground = False
+                  ParentColor = False
+                  ParentFont = False
+                  TabOrder = 0
+                  Values.Strings = (
+                    'True'
+                    'False')
+                end
+                object PANLPCP4B: TPanel
+                  Left = 0
+                  Top = 1
+                  Width = 50
+                  Height = 33
+                  Caption = '4B'
+                  Color = clBlack
+                  Constraints.MinHeight = 33
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clYellow
+                  Font.Height = -15
+                  Font.Name = 'Tahoma'
+                  Font.Style = [fsBold]
+                  ParentBackground = False
+                  ParentFont = False
+                  TabOrder = 1
+                end
+              end
+              object PANLPC4C: TPanel
+                Left = 0
+                Top = 70
+                Width = 733
+                Height = 35
+                Align = alTop
+                AutoSize = True
+                Color = 15724527
+                Constraints.MinHeight = 35
+                ParentBackground = False
+                TabOrder = 2
+                OnResize = DoPanelQuestaoResize
+                DesignSize = (
+                  733
+                  35)
+                object LABLPC4C: TLabel
+                  AlignWithMargins = True
+                  Left = 53
+                  Top = 4
+                  Width = 575
+                  Height = 26
+                  Margins.Left = 52
+                  Margins.Right = 104
+                  Align = alTop
+                  Caption = 
+                    'Voc'#234' tem outra condi'#231#227'o metab'#243'lica, tais como doen'#231'as na tire'#243'id' +
+                    'e, diabetes relacionada '#224' gravidez, doen'#231'a cr'#244'nica do rim, probl' +
+                    'emas de f'#237'gado?'
+                  Constraints.MinHeight = 26
+                  Layout = tlCenter
+                  WordWrap = True
+                  ExplicitWidth = 574
+                end
+                object DBRGPC4C: TDBRadioGroup
+                  Left = 632
+                  Top = 1
+                  Width = 100
+                  Height = 33
+                  Anchors = [akTop, akRight]
+                  Color = clInfoBk
+                  Columns = 2
+                  Constraints.MinHeight = 33
+                  DataField = 'bo_pc4c'
+                  DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Items.Strings = (
+                    'S'
+                    'N')
+                  ParentBackground = False
+                  ParentColor = False
+                  ParentFont = False
+                  TabOrder = 0
+                  Values.Strings = (
+                    'True'
+                    'False')
+                end
+                object PANLPCP4C: TPanel
+                  Left = 0
+                  Top = 1
+                  Width = 50
+                  Height = 33
+                  Caption = '4C'
+                  Color = clBlack
+                  Constraints.MinHeight = 33
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clYellow
+                  Font.Height = -15
+                  Font.Name = 'Tahoma'
+                  Font.Style = [fsBold]
+                  ParentBackground = False
+                  ParentFont = False
+                  TabOrder = 1
+                end
+              end
+            end
+            object PANLPC5Sub: TPanel
+              AlignWithMargins = True
+              Left = 2
+              Top = 715
+              Width = 733
+              Height = 70
+              Margins.Left = 0
+              Margins.Top = 0
+              Margins.Right = 0
+              Align = alTop
+              AutoSize = True
+              BevelOuter = bvNone
+              TabOrder = 14
+              object PANLPC5A: TPanel
+                Left = 0
+                Top = 0
+                Width = 733
+                Height = 35
+                Align = alTop
+                AutoSize = True
+                Color = clWhite
+                Constraints.MinHeight = 35
+                ParentBackground = False
+                TabOrder = 0
+                OnResize = DoPanelQuestaoResize
+                DesignSize = (
+                  733
+                  35)
+                object LABLPC5A: TLabel
+                  AlignWithMargins = True
+                  Left = 53
+                  Top = 4
+                  Width = 575
+                  Height = 26
+                  Margins.Left = 52
+                  Margins.Right = 104
+                  Align = alTop
+                  Caption = 
+                    'Voc'#234' tem dificuldade de controlar sua condi'#231#227'o com medicamentos ' +
+                    'ou outras terapias prescritas por um profissional?'#13#10'Responda N'#195'O' +
+                    ' se voc'#234' n'#227'o est'#225' atualmente tomando medicamentos ou recebendo o' +
+                    'utros tratamentos'
+                  Constraints.MinHeight = 26
+                  Layout = tlCenter
+                  WordWrap = True
+                  ExplicitWidth = 556
+                end
+                object DBRGPC5A: TDBRadioGroup
+                  Left = 632
+                  Top = 1
+                  Width = 100
+                  Height = 33
+                  Anchors = [akTop, akRight]
+                  Color = clInfoBk
+                  Columns = 2
+                  Constraints.MinHeight = 33
+                  DataField = 'bo_pc5a'
+                  DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Items.Strings = (
+                    'S'
+                    'N')
+                  ParentBackground = False
+                  ParentColor = False
+                  ParentFont = False
+                  TabOrder = 0
+                  Values.Strings = (
+                    'True'
+                    'False')
+                end
+                object PANLPCP5A: TPanel
+                  Left = 0
+                  Top = 1
+                  Width = 50
+                  Height = 33
+                  Caption = '5A'
+                  Color = clBlack
+                  Constraints.MinHeight = 33
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clYellow
+                  Font.Height = -15
+                  Font.Name = 'Tahoma'
+                  Font.Style = [fsBold]
+                  ParentBackground = False
+                  ParentFont = False
+                  TabOrder = 1
+                end
+              end
+              object PANLPC5B: TPanel
+                Left = 0
+                Top = 35
+                Width = 733
+                Height = 35
+                Align = alTop
+                AutoSize = True
+                Color = clWhite
+                Constraints.MinHeight = 35
+                ParentBackground = False
+                TabOrder = 1
+                OnResize = DoPanelQuestaoResize
+                DesignSize = (
+                  733
+                  35)
+                object LABLPC5B: TLabel
+                  AlignWithMargins = True
+                  Left = 53
+                  Top = 4
+                  Width = 575
+                  Height = 26
+                  Margins.Left = 52
+                  Margins.Right = 104
+                  Align = alTop
+                  Caption = 'Voc'#234' tem problemas nas costas que afetem nervos ou m'#250'sculos?'
+                  Constraints.MinHeight = 26
+                  Layout = tlCenter
+                  WordWrap = True
+                  ExplicitWidth = 310
+                end
+                object DBRGPC5B: TDBRadioGroup
+                  Left = 632
+                  Top = 1
+                  Width = 100
+                  Height = 33
+                  Anchors = [akTop, akRight]
+                  Color = clInfoBk
+                  Columns = 2
+                  Constraints.MinHeight = 33
+                  DataField = 'bo_pc5b'
+                  DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Items.Strings = (
+                    'S'
+                    'N')
+                  ParentBackground = False
+                  ParentColor = False
+                  ParentFont = False
+                  TabOrder = 0
+                  Values.Strings = (
+                    'True'
+                    'False')
+                end
+                object PANLPCP5B: TPanel
+                  Left = 0
+                  Top = 1
+                  Width = 50
+                  Height = 33
+                  Caption = '5B'
+                  Color = clBlack
+                  Constraints.MinHeight = 33
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clYellow
+                  Font.Height = -15
+                  Font.Name = 'Tahoma'
+                  Font.Style = [fsBold]
+                  ParentBackground = False
+                  ParentFont = False
+                  TabOrder = 1
+                end
+              end
+            end
+            object PANLPC6Sub: TPanel
+              AlignWithMargins = True
+              Left = 2
+              Top = 823
+              Width = 733
+              Height = 140
+              Margins.Left = 0
+              Margins.Top = 0
+              Margins.Right = 0
+              Align = alTop
+              AutoSize = True
+              BevelOuter = bvNone
+              TabOrder = 15
+              object PANLPC6A: TPanel
+                Left = 0
+                Top = 0
+                Width = 733
+                Height = 35
+                Align = alTop
+                AutoSize = True
+                Color = 15724527
+                Constraints.MinHeight = 35
+                ParentBackground = False
+                TabOrder = 0
+                OnResize = DoPanelQuestaoResize
+                DesignSize = (
+                  733
+                  35)
+                object LABLPC6A: TLabel
+                  AlignWithMargins = True
+                  Left = 53
+                  Top = 4
+                  Width = 575
+                  Height = 26
+                  Margins.Left = 52
+                  Margins.Right = 104
+                  Align = alTop
+                  Caption = 
+                    'Voc'#234' tem dificuldade de controlar sua condi'#231#227'o com medicamentos ' +
+                    'ou outras terapias prescritas por um profissional?'#13#10'Responda N'#195'O' +
+                    ' se voc'#234' n'#227'o est'#225' atualmente tomando medicamentos ou recebendo o' +
+                    'utros tratamentos'
+                  Constraints.MinHeight = 26
+                  Layout = tlCenter
+                  WordWrap = True
+                  ExplicitWidth = 556
+                end
+                object DBRGPC6A: TDBRadioGroup
+                  Left = 632
+                  Top = 1
+                  Width = 100
+                  Height = 33
+                  Anchors = [akTop, akRight]
+                  Color = clInfoBk
+                  Columns = 2
+                  Constraints.MinHeight = 33
+                  DataField = 'bo_pc6a'
+                  DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Items.Strings = (
+                    'S'
+                    'N')
+                  ParentBackground = False
+                  ParentColor = False
+                  ParentFont = False
+                  TabOrder = 0
+                  Values.Strings = (
+                    'True'
+                    'False')
+                end
+                object PANLPCP6A: TPanel
+                  Left = 0
+                  Top = 1
+                  Width = 50
+                  Height = 33
+                  Caption = '6A'
+                  Color = clBlack
+                  Constraints.MinHeight = 33
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clYellow
+                  Font.Height = -15
+                  Font.Name = 'Tahoma'
+                  Font.Style = [fsBold]
+                  ParentBackground = False
+                  ParentFont = False
+                  TabOrder = 1
+                end
+              end
+              object PANLPC6B: TPanel
+                Left = 0
+                Top = 35
+                Width = 733
+                Height = 35
+                Align = alTop
+                AutoSize = True
+                Color = 15724527
+                Constraints.MinHeight = 35
+                ParentBackground = False
+                TabOrder = 1
+                OnResize = DoPanelQuestaoResize
+                DesignSize = (
+                  733
+                  35)
+                object LABLPC6B: TLabel
+                  AlignWithMargins = True
+                  Left = 53
+                  Top = 4
+                  Width = 575
+                  Height = 26
+                  Margins.Left = 52
+                  Margins.Right = 104
+                  Align = alTop
+                  Caption = 
+                    'Seu m'#233'dico j'#225' mencionou que seu n'#237'vel de oxig'#234'nio no sangue '#233' ba' +
+                    'ixo durante repouso ou exerc'#237'cio e/ou que voc'#234' precisa de terapi' +
+                    'a de oxig'#234'nio suplementar?'
+                  Constraints.MinHeight = 26
+                  Layout = tlCenter
+                  WordWrap = True
+                  ExplicitWidth = 553
+                end
+                object DBRGPC6B: TDBRadioGroup
+                  Left = 632
+                  Top = 1
+                  Width = 100
+                  Height = 33
+                  Anchors = [akTop, akRight]
+                  Color = clInfoBk
+                  Columns = 2
+                  Constraints.MinHeight = 33
+                  DataField = 'bo_pc6b'
+                  DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Items.Strings = (
+                    'S'
+                    'N')
+                  ParentBackground = False
+                  ParentColor = False
+                  ParentFont = False
+                  TabOrder = 0
+                  Values.Strings = (
+                    'True'
+                    'False')
+                end
+                object PANLPCP6B: TPanel
+                  Left = 0
+                  Top = 1
+                  Width = 50
+                  Height = 33
+                  Caption = '6B'
+                  Color = clBlack
+                  Constraints.MinHeight = 33
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clYellow
+                  Font.Height = -15
+                  Font.Name = 'Tahoma'
+                  Font.Style = [fsBold]
+                  ParentBackground = False
+                  ParentFont = False
+                  TabOrder = 1
+                end
+              end
+              object PANLPC6C: TPanel
+                Left = 0
+                Top = 70
+                Width = 733
+                Height = 35
+                Align = alTop
+                AutoSize = True
+                Color = 15724527
+                Constraints.MinHeight = 35
+                ParentBackground = False
+                TabOrder = 2
+                OnResize = DoPanelQuestaoResize
+                DesignSize = (
+                  733
+                  35)
+                object LABLPC6C: TLabel
+                  AlignWithMargins = True
+                  Left = 53
+                  Top = 4
+                  Width = 575
+                  Height = 26
+                  Margins.Left = 52
+                  Margins.Right = 104
+                  Align = alTop
+                  Caption = 
+                    'Se asm'#225'tico, voc'#234' tem sintomas de aperto no peito, respira'#231#227'o of' +
+                    'egante, dificuldade de respirar, tosse persistente (mais de 2 di' +
+                    'as por semana) ou voc'#234' j'#225' usou medicamentos de emerg'#234'ncia mais q' +
+                    'ue duas vezes na '#250'ltima semana?'
+                  Constraints.MinHeight = 26
+                  Layout = tlCenter
+                  WordWrap = True
+                  ExplicitWidth = 555
+                end
+                object DBRGPC6C: TDBRadioGroup
+                  Left = 632
+                  Top = 1
+                  Width = 100
+                  Height = 33
+                  Anchors = [akTop, akRight]
+                  Color = clInfoBk
+                  Columns = 2
+                  Constraints.MinHeight = 33
+                  DataField = 'bo_pc6c'
+                  DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Items.Strings = (
+                    'S'
+                    'N')
+                  ParentBackground = False
+                  ParentColor = False
+                  ParentFont = False
+                  TabOrder = 0
+                  Values.Strings = (
+                    'True'
+                    'False')
+                end
+                object PANLPCP6C: TPanel
+                  Left = 0
+                  Top = 1
+                  Width = 50
+                  Height = 33
+                  Caption = '6C'
+                  Color = clBlack
+                  Constraints.MinHeight = 33
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clYellow
+                  Font.Height = -15
+                  Font.Name = 'Tahoma'
+                  Font.Style = [fsBold]
+                  ParentBackground = False
+                  ParentFont = False
+                  TabOrder = 1
+                end
+              end
+              object PANLPC6D: TPanel
+                Left = 0
+                Top = 105
+                Width = 733
+                Height = 35
+                Align = alTop
+                AutoSize = True
+                Color = 15724527
+                Constraints.MinHeight = 35
+                ParentBackground = False
+                TabOrder = 3
+                OnResize = DoPanelQuestaoResize
+                DesignSize = (
+                  733
+                  35)
+                object LABLPC6D: TLabel
+                  AlignWithMargins = True
+                  Left = 53
+                  Top = 4
+                  Width = 575
+                  Height = 26
+                  Margins.Left = 52
+                  Margins.Right = 104
+                  Align = alTop
+                  Caption = 
+                    'Seu m'#233'dico j'#225' lhe disse que voc'#234' tem hipertens'#227'o nos vasos sangu' +
+                    #237'neos dos pulm'#245'es?'
+                  Constraints.MinHeight = 26
+                  Layout = tlCenter
+                  WordWrap = True
+                  ExplicitWidth = 413
+                end
+                object DBRGPC6D: TDBRadioGroup
+                  Left = 632
+                  Top = 1
+                  Width = 100
+                  Height = 33
+                  Anchors = [akTop, akRight]
+                  Color = clInfoBk
+                  Columns = 2
+                  Constraints.MinHeight = 33
+                  DataField = 'bo_pc6d'
+                  DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Items.Strings = (
+                    'S'
+                    'N')
+                  ParentBackground = False
+                  ParentColor = False
+                  ParentFont = False
+                  TabOrder = 0
+                  Values.Strings = (
+                    'True'
+                    'False')
+                end
+                object PANLPCP6D: TPanel
+                  Left = 0
+                  Top = 1
+                  Width = 50
+                  Height = 33
+                  Caption = '6D'
+                  Color = clBlack
+                  Constraints.MinHeight = 33
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clYellow
+                  Font.Height = -15
+                  Font.Name = 'Tahoma'
+                  Font.Style = [fsBold]
+                  ParentBackground = False
+                  ParentFont = False
+                  TabOrder = 1
+                end
+              end
+            end
+            object PANLPC7Sub: TPanel
+              AlignWithMargins = True
+              Left = 2
+              Top = 1001
+              Width = 733
+              Height = 105
+              Margins.Left = 0
+              Margins.Top = 0
+              Margins.Right = 0
+              Align = alTop
+              AutoSize = True
+              BevelOuter = bvNone
+              TabOrder = 16
+              object PANLPC7A: TPanel
+                Left = 0
+                Top = 0
+                Width = 733
+                Height = 35
+                Align = alTop
+                AutoSize = True
+                Color = clWhite
+                Constraints.MinHeight = 35
+                ParentBackground = False
+                TabOrder = 0
+                OnResize = DoPanelQuestaoResize
+                DesignSize = (
+                  733
+                  35)
+                object LABLPC7A: TLabel
+                  AlignWithMargins = True
+                  Left = 53
+                  Top = 4
+                  Width = 575
+                  Height = 26
+                  Margins.Left = 52
+                  Margins.Right = 104
+                  Align = alTop
+                  Caption = 
+                    'Voc'#234' tem dificuldade de controlar essa condi'#231#227'o com medicamentos' +
+                    ' ou outras terapias prescritas por um profissional?'#13#10'Responda N'#195 +
+                    'O se voc'#234' n'#227'o est'#225' atualmente tomando medicamentos ou recebendo ' +
+                    'outros tratamentos'
+                  Constraints.MinHeight = 26
+                  Layout = tlCenter
+                  WordWrap = True
+                  ExplicitWidth = 561
+                end
+                object DBRGPC7A: TDBRadioGroup
+                  Left = 632
+                  Top = 1
+                  Width = 100
+                  Height = 33
+                  Anchors = [akTop, akRight]
+                  Color = clInfoBk
+                  Columns = 2
+                  Constraints.MinHeight = 33
+                  DataField = 'bo_pc7a'
+                  DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Items.Strings = (
+                    'S'
+                    'N')
+                  ParentBackground = False
+                  ParentColor = False
+                  ParentFont = False
+                  TabOrder = 0
+                  Values.Strings = (
+                    'True'
+                    'False')
+                end
+                object PANLPCP7A: TPanel
+                  Left = 0
+                  Top = 1
+                  Width = 50
+                  Height = 33
+                  Caption = '7A'
+                  Color = clBlack
+                  Constraints.MinHeight = 33
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clYellow
+                  Font.Height = -15
+                  Font.Name = 'Tahoma'
+                  Font.Style = [fsBold]
+                  ParentBackground = False
+                  ParentFont = False
+                  TabOrder = 1
+                end
+              end
+              object PANLPC7B: TPanel
+                Left = 0
+                Top = 35
+                Width = 733
+                Height = 35
+                Align = alTop
+                AutoSize = True
+                Color = clWhite
+                Constraints.MinHeight = 35
+                ParentBackground = False
+                TabOrder = 1
+                OnResize = DoPanelQuestaoResize
+                DesignSize = (
+                  733
+                  35)
+                object LABLPC7B: TLabel
+                  AlignWithMargins = True
+                  Left = 53
+                  Top = 4
+                  Width = 575
+                  Height = 26
+                  Margins.Left = 52
+                  Margins.Right = 104
+                  Align = alTop
+                  Caption = 
+                    'Voc'#234' comumente tem press'#227'o sangu'#237'nea baixa durante repouso, o su' +
+                    'ficiente para causar tontura, sensa'#231#227'o de leveza na cabe'#231'a e/ou ' +
+                    'desmaio?'
+                  Constraints.MinHeight = 26
+                  Layout = tlCenter
+                  WordWrap = True
+                  ExplicitWidth = 572
+                end
+                object DBRGPC7B: TDBRadioGroup
+                  Left = 632
+                  Top = 1
+                  Width = 100
+                  Height = 33
+                  Anchors = [akTop, akRight]
+                  Color = clInfoBk
+                  Columns = 2
+                  Constraints.MinHeight = 33
+                  DataField = 'bo_pc7b'
+                  DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Items.Strings = (
+                    'S'
+                    'N')
+                  ParentBackground = False
+                  ParentColor = False
+                  ParentFont = False
+                  TabOrder = 0
+                  Values.Strings = (
+                    'True'
+                    'False')
+                end
+                object PANLPCP7B: TPanel
+                  Left = 0
+                  Top = 1
+                  Width = 50
+                  Height = 33
+                  Caption = '7B'
+                  Color = clBlack
+                  Constraints.MinHeight = 33
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clYellow
+                  Font.Height = -15
+                  Font.Name = 'Tahoma'
+                  Font.Style = [fsBold]
+                  ParentBackground = False
+                  ParentFont = False
+                  TabOrder = 1
+                end
+              end
+              object PANLPC7C: TPanel
+                Left = 0
+                Top = 70
+                Width = 733
+                Height = 35
+                Align = alTop
+                AutoSize = True
+                Color = clWhite
+                Constraints.MinHeight = 35
+                ParentBackground = False
+                TabOrder = 2
+                OnResize = DoPanelQuestaoResize
+                DesignSize = (
+                  733
+                  35)
+                object LABLPC7C: TLabel
+                  AlignWithMargins = True
+                  Left = 53
+                  Top = 4
+                  Width = 575
+                  Height = 26
+                  Margins.Left = 52
+                  Margins.Right = 104
+                  Align = alTop
+                  Caption = 
+                    'Seu m'#233'dico j'#225' lhe disse que voc'#234' tem eleva'#231#245'es s'#250'bitas de press'#227 +
+                    'o sangu'#237'nea (disreflexia auton'#244'mica)?'
+                  Constraints.MinHeight = 26
+                  Layout = tlCenter
+                  WordWrap = True
+                  ExplicitWidth = 497
+                end
+                object DBRGPC7C: TDBRadioGroup
+                  Left = 632
+                  Top = 1
+                  Width = 100
+                  Height = 33
+                  Anchors = [akTop, akRight]
+                  Color = clInfoBk
+                  Columns = 2
+                  Constraints.MinHeight = 33
+                  DataField = 'bo_pc7c'
+                  DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Items.Strings = (
+                    'S'
+                    'N')
+                  ParentBackground = False
+                  ParentColor = False
+                  ParentFont = False
+                  TabOrder = 0
+                  Values.Strings = (
+                    'True'
+                    'False')
+                end
+                object PANLPCP7C: TPanel
+                  Left = 0
+                  Top = 1
+                  Width = 50
+                  Height = 33
+                  Caption = '7C'
+                  Color = clBlack
+                  Constraints.MinHeight = 33
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clYellow
+                  Font.Height = -15
+                  Font.Name = 'Tahoma'
+                  Font.Style = [fsBold]
+                  ParentBackground = False
+                  ParentFont = False
+                  TabOrder = 1
+                end
+              end
+            end
+            object PANLPC8Sub: TPanel
+              AlignWithMargins = True
+              Left = 2
+              Top = 1144
+              Width = 733
+              Height = 117
+              Margins.Left = 0
+              Margins.Top = 0
+              Margins.Right = 0
+              Align = alTop
+              AutoSize = True
+              BevelOuter = bvNone
+              TabOrder = 17
+              object PANLPC8A: TPanel
+                Left = 0
+                Top = 0
+                Width = 733
+                Height = 47
+                Align = alTop
+                AutoSize = True
+                Color = 15724527
+                Constraints.MinHeight = 35
+                ParentBackground = False
+                TabOrder = 0
+                OnResize = DoPanelQuestaoResize
+                DesignSize = (
+                  733
+                  47)
+                object LABLPC8A: TLabel
+                  AlignWithMargins = True
+                  Left = 53
+                  Top = 4
+                  Width = 575
+                  Height = 39
+                  Margins.Left = 52
+                  Margins.Right = 104
+                  Align = alTop
+                  Caption = 
+                    'Voc'#234' tem dificuldade de controlar sua condi'#231#227'o de sa'#250'de ou doen'#231 +
+                    'a com medicamentos ou outras terapias prescritas por um profissi' +
+                    'onal?'#13#10'Responda N'#195'O se voc'#234' n'#227'o est'#225' atualmente tomando medicame' +
+                    'ntos ou recebendo outros tratamentos'
+                  Constraints.MinHeight = 26
+                  Layout = tlCenter
+                  WordWrap = True
+                  ExplicitWidth = 561
+                end
+                object DBRGPC8A: TDBRadioGroup
+                  Left = 632
+                  Top = 1
+                  Width = 100
+                  Height = 45
+                  Anchors = [akTop, akRight]
+                  Color = clInfoBk
+                  Columns = 2
+                  Constraints.MinHeight = 33
+                  DataField = 'bo_pc8a'
+                  DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Items.Strings = (
+                    'S'
+                    'N')
+                  ParentBackground = False
+                  ParentColor = False
+                  ParentFont = False
+                  TabOrder = 0
+                  Values.Strings = (
+                    'True'
+                    'False')
+                end
+                object PANLPCP8A: TPanel
+                  Left = 0
+                  Top = 1
+                  Width = 50
+                  Height = 45
+                  Caption = '8A'
+                  Color = clBlack
+                  Constraints.MinHeight = 33
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clYellow
+                  Font.Height = -15
+                  Font.Name = 'Tahoma'
+                  Font.Style = [fsBold]
+                  ParentBackground = False
+                  ParentFont = False
+                  TabOrder = 1
+                end
+              end
+              object PANLPC8B: TPanel
+                Left = 0
+                Top = 47
+                Width = 733
+                Height = 35
+                Align = alTop
+                AutoSize = True
+                Color = 15724527
+                Constraints.MinHeight = 35
+                ParentBackground = False
+                TabOrder = 1
+                OnResize = DoPanelQuestaoResize
+                DesignSize = (
+                  733
+                  35)
+                object LABLPC8B: TLabel
+                  AlignWithMargins = True
+                  Left = 53
+                  Top = 4
+                  Width = 575
+                  Height = 26
+                  Margins.Left = 52
+                  Margins.Right = 104
+                  Align = alTop
+                  Caption = 'Voc'#234' tem alguma dificuldade para caminhar ou de mobilidade?'
+                  Constraints.MinHeight = 26
+                  Layout = tlCenter
+                  WordWrap = True
+                  ExplicitWidth = 294
+                end
+                object DBRGPC8B: TDBRadioGroup
+                  Left = 632
+                  Top = 1
+                  Width = 100
+                  Height = 33
+                  Anchors = [akTop, akRight]
+                  Color = clInfoBk
+                  Columns = 2
+                  Constraints.MinHeight = 33
+                  DataField = 'bo_pc8b'
+                  DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Items.Strings = (
+                    'S'
+                    'N')
+                  ParentBackground = False
+                  ParentColor = False
+                  ParentFont = False
+                  TabOrder = 0
+                  Values.Strings = (
+                    'True'
+                    'False')
+                end
+                object PANLPCP8B: TPanel
+                  Left = 0
+                  Top = 1
+                  Width = 50
+                  Height = 33
+                  Caption = '8B'
+                  Color = clBlack
+                  Constraints.MinHeight = 33
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clYellow
+                  Font.Height = -15
+                  Font.Name = 'Tahoma'
+                  Font.Style = [fsBold]
+                  ParentBackground = False
+                  ParentFont = False
+                  TabOrder = 1
+                end
+              end
+              object PANLPC8C: TPanel
+                Left = 0
+                Top = 82
+                Width = 733
+                Height = 35
+                Align = alTop
+                AutoSize = True
+                Color = 15724527
+                Constraints.MinHeight = 35
+                ParentBackground = False
+                TabOrder = 2
+                OnResize = DoPanelQuestaoResize
+                DesignSize = (
+                  733
+                  35)
+                object LABLPC8C: TLabel
+                  AlignWithMargins = True
+                  Left = 53
+                  Top = 4
+                  Width = 575
+                  Height = 26
+                  Margins.Left = 52
+                  Margins.Right = 104
+                  Align = alTop
+                  Caption = 
+                    'Voc'#234' teve um derrame, ou comprometimento nos nervos ou m'#250'sculos ' +
+                    'nos '#250'ltimos 6 meses?'
+                  Constraints.MinHeight = 26
+                  Layout = tlCenter
+                  WordWrap = True
+                  ExplicitWidth = 435
+                end
+                object DBRGPC8C: TDBRadioGroup
+                  Left = 632
+                  Top = 1
+                  Width = 100
+                  Height = 33
+                  Anchors = [akTop, akRight]
+                  Color = clInfoBk
+                  Columns = 2
+                  Constraints.MinHeight = 33
+                  DataField = 'bo_pc8c'
+                  DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Items.Strings = (
+                    'S'
+                    'N')
+                  ParentBackground = False
+                  ParentColor = False
+                  ParentFont = False
+                  TabOrder = 0
+                  Values.Strings = (
+                    'True'
+                    'False')
+                end
+                object PANLPCP8C: TPanel
+                  Left = 0
+                  Top = 1
+                  Width = 50
+                  Height = 33
+                  Caption = '8C'
+                  Color = clBlack
+                  Constraints.MinHeight = 33
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clYellow
+                  Font.Height = -15
+                  Font.Name = 'Tahoma'
+                  Font.Style = [fsBold]
+                  ParentBackground = False
+                  ParentFont = False
+                  TabOrder = 1
+                end
+              end
+            end
+            object PANLPC9Sub: TPanel
+              Left = 2
+              Top = 1324
+              Width = 733
+              Height = 105
+              Align = alTop
+              AutoSize = True
+              BevelOuter = bvNone
+              TabOrder = 18
+              object PANLPC9A: TPanel
+                Left = 0
+                Top = 0
+                Width = 733
+                Height = 35
+                Align = alTop
+                AutoSize = True
+                Color = clWhite
+                Constraints.MinHeight = 35
+                ParentBackground = False
+                TabOrder = 0
+                OnResize = DoPanelQuestaoResize
+                DesignSize = (
+                  733
+                  35)
+                object LABLPC9A: TLabel
+                  AlignWithMargins = True
+                  Left = 53
+                  Top = 4
+                  Width = 575
+                  Height = 26
+                  Margins.Left = 52
+                  Margins.Right = 104
+                  Align = alTop
+                  Caption = 
+                    'Voc'#234' teve uma s'#237'ncope, desmaio ou perda de consci'#234'ncia resultant' +
+                    'e de uma les'#227'o na cabe'#231'a nos '#250'ltimos 12 meses OU voc'#234' foi diagno' +
+                    'sticado com concuss'#227'o nos '#250'ltimos 12 meses?'
+                  Constraints.MinHeight = 26
+                  Layout = tlCenter
+                  WordWrap = True
+                  ExplicitWidth = 569
+                end
+                object DBRGPC9A: TDBRadioGroup
+                  Left = 632
+                  Top = 1
+                  Width = 100
+                  Height = 33
+                  Anchors = [akTop, akRight]
+                  Color = clInfoBk
+                  Columns = 2
+                  Constraints.MinHeight = 33
+                  DataField = 'bo_pc9a'
+                  DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Items.Strings = (
+                    'S'
+                    'N')
+                  ParentBackground = False
+                  ParentColor = False
+                  ParentFont = False
+                  TabOrder = 0
+                  Values.Strings = (
+                    'True'
+                    'False')
+                end
+                object PANLPCP9A: TPanel
+                  Left = 0
+                  Top = 1
+                  Width = 50
+                  Height = 33
+                  Caption = '9A'
+                  Color = clBlack
+                  Constraints.MinHeight = 33
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clYellow
+                  Font.Height = -15
+                  Font.Name = 'Tahoma'
+                  Font.Style = [fsBold]
+                  ParentBackground = False
+                  ParentFont = False
+                  TabOrder = 1
+                end
+              end
+              object PANLPC9B: TPanel
+                Left = 0
+                Top = 35
+                Width = 733
+                Height = 35
+                Align = alTop
+                AutoSize = True
+                Color = clWhite
+                Constraints.MinHeight = 35
+                ParentBackground = False
+                TabOrder = 1
+                OnResize = DoPanelQuestaoResize
+                DesignSize = (
+                  733
+                  35)
+                object LABLPC9B: TLabel
+                  AlignWithMargins = True
+                  Left = 53
+                  Top = 4
+                  Width = 575
+                  Height = 26
+                  Margins.Left = 52
+                  Margins.Right = 104
+                  Align = alTop
+                  Caption = 
+                    'Voc'#234' tem alguma outra condi'#231#227'o de sa'#250'de ou doen'#231'a que n'#227'o foi me' +
+                    'ncionada nas quest'#245'es anteriores, tais como epilepsia, condi'#231#245'es' +
+                    ' neurol'#243'gicas, problemas de rim?'
+                  Constraints.MinHeight = 26
+                  Layout = tlCenter
+                  WordWrap = True
+                  ExplicitWidth = 546
+                end
+                object DBRGPC9B: TDBRadioGroup
+                  Left = 632
+                  Top = 1
+                  Width = 100
+                  Height = 33
+                  Anchors = [akTop, akRight]
+                  Color = clInfoBk
+                  Columns = 2
+                  Constraints.MinHeight = 33
+                  DataField = 'bo_pc9b'
+                  DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Items.Strings = (
+                    'S'
+                    'N')
+                  ParentBackground = False
+                  ParentColor = False
+                  ParentFont = False
+                  TabOrder = 0
+                  Values.Strings = (
+                    'True'
+                    'False')
+                end
+                object PANLPCP9B: TPanel
+                  Left = 0
+                  Top = 1
+                  Width = 50
+                  Height = 33
+                  Caption = '9B'
+                  Color = clBlack
+                  Constraints.MinHeight = 33
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clYellow
+                  Font.Height = -15
+                  Font.Name = 'Tahoma'
+                  Font.Style = [fsBold]
+                  ParentBackground = False
+                  ParentFont = False
+                  TabOrder = 1
+                end
+              end
+              object PANLPC9C: TPanel
+                Left = 0
+                Top = 70
+                Width = 733
+                Height = 35
+                Align = alTop
+                AutoSize = True
+                Color = clWhite
+                Constraints.MinHeight = 35
+                ParentBackground = False
+                TabOrder = 2
+                OnResize = DoPanelQuestaoResize
+                DesignSize = (
+                  733
+                  35)
+                object LABLPC9C: TLabel
+                  AlignWithMargins = True
+                  Left = 53
+                  Top = 4
+                  Width = 575
+                  Height = 26
+                  Margins.Left = 52
+                  Margins.Right = 104
+                  Align = alTop
+                  Caption = 
+                    '9c: Voc'#234' atualmente vive com duas ou mais condi'#231#227'o de sa'#250'de ou d' +
+                    'oen'#231'a?'
+                  Constraints.MinHeight = 26
+                  Layout = tlCenter
+                  WordWrap = True
+                  ExplicitWidth = 358
+                end
+                object DBRGPC9C: TDBRadioGroup
+                  Left = 632
+                  Top = 1
+                  Width = 100
+                  Height = 33
+                  Anchors = [akTop, akRight]
+                  Color = clInfoBk
+                  Columns = 2
+                  Constraints.MinHeight = 33
+                  DataField = 'bo_pc9c'
+                  DataSource = KRDMAvaliadosGerenciar.DTSRParQ
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Items.Strings = (
+                    'S'
+                    'N')
+                  ParentBackground = False
+                  ParentColor = False
+                  ParentFont = False
+                  TabOrder = 0
+                  Values.Strings = (
+                    'True'
+                    'False')
+                end
+                object PANLPCP9C: TPanel
+                  Left = 0
+                  Top = 1
+                  Width = 50
+                  Height = 33
+                  Caption = '9C'
                   Color = clBlack
                   Constraints.MinHeight = 33
                   Font.Charset = DEFAULT_CHARSET
@@ -4423,7 +6003,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C010102000800980120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800B00120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -4960,7 +6540,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C010102000800A80120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800C00120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

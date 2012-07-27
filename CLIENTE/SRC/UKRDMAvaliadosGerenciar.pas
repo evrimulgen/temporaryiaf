@@ -144,8 +144,7 @@ type
     procedure CLDSDadosSocioDemograficoscboGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure CLDSDadosSocioDemograficosprofissaoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure CLDSParametrosFisiologicosBeforeEdit(DataSet: TDataSet);
-    procedure CLDSParametrosFisiologicosbo_pulritGetText(Sender: TField;
-      var Text: string; DisplayText: Boolean);
+    procedure CLDSParametrosFisiologicosbo_pulritGetText(Sender: TField; var Text: string; DisplayText: Boolean);
   private
     { Private declarations }
     procedure AlternarPaginasPeloMestre;
@@ -154,6 +153,7 @@ type
     constructor Create(aOwner: TComponent); override;
     procedure FiltrarAvaliados(aCLDSAvaliados: TClientDataSet; aIN_AVALIADOS_ID: Integer; aVA_NOME, aEN_GENERO: String; aDA_DATANASCIMENTO: TDateTime; aVA_RG, aEN_ORGAOEMISSORRG, aEN_UFEMISSAORG, aEN_TIPOLOGRADOURO, aVA_NOMELOGRADOURO, aVA_IDLOGRADOURO, aVA_COMPLEMENTOLOGRADOURO, aVA_BAIRROLOGRADOURO, aVA_CIDADE, aEN_UF, aCH_FONERESIDENCIAL, aCH_FONECELULAR, aTX_OBSERVACOES: String);
     procedure FiltrarCBO(aCLDSCBO: TClientDataSet; aIN_CBO_ID: Integer; aCH_CODIGO, aVA_TITULO, aEN_TIPO: String);
+    procedure AlternarValidacao(const aNomeCLDS, aNomeCampo: String; aAtivo: Boolean);
   end;
 
 implementation
@@ -247,6 +247,13 @@ begin
     TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado4.Caption := TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado1.Caption;
     TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado5.Caption := TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado1.Caption;
   end;
+end;
+
+procedure TKRDMAvaliadosGerenciar.AlternarValidacao(const aNomeCLDS, aNomeCampo: String; aAtivo: Boolean);
+begin
+  { Usei Ptr porque o cast direto não retornava um TClientDataset com os
+  KRKValidationChecks. Verifique a unit KRK.Wizards.DataModule.pas }
+  TClientDataSet(ClientDataSets[aNomeCLDS].Ptr^).KRKValidationChecks.CheckableFields.ByFieldName[aNomeCampo].Active := aAtivo;
 end;
 
 procedure TKRDMAvaliadosGerenciar.CLDSDadosSocioDemograficoscboGetText(Sender: TField; var Text: string; DisplayText: Boolean);
