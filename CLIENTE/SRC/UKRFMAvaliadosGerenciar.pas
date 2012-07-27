@@ -598,7 +598,7 @@ procedure TKRFMAvaliadosGerenciar.MostrarPerguntasComplementares;
 var
   i, j: Word;
   PANLPCx: TPanel;
-  PANLPCxy: TPanel;
+  PANLPCxSub: TPanel;
   EstadoAnterior: Boolean;
 begin
   EstadoAnterior := PANLPCLayer.Visible;
@@ -621,24 +621,24 @@ begin
 
       if Assigned(PANLPCx) then
       begin
+        if not PANLPCLayer.Visible and (TDBRadioGroup(PANLPCx.Controls[1]).DataSource.DataSet.state in [dsEdit,dsInsert]) then
+          TDBRadioGroup(PANLPCx.Controls[1]).Field.Clear;
+
         TKRDMAvaliadosGerenciar(Owner).AlternarValidacao(TDBRadioGroup(PANLPCx.Controls[1]).DataSource.DataSet.Name
                                                         ,TDBRadioGroup(PANLPCx.Controls[1]).Field.FieldName
                                                         ,PANLPCLayer.Visible);
 
-        j := 64;
-        repeat
-          Inc(j);
+        PANLPCxSub := TPanel(FindComponent(Format('PANLPC%uSub',[i])));
 
-          PANLPCxy := TPanel(FindComponent(Format('PANLPC%u%s',[i,Chr(j)])));
+        for j := 0 to Pred(PANLPCxSub.ControlCount) do
+        begin
+          if not PANLPCxSub.Visible and (TDBRadioGroup(TPanel(PANLPCxSub.Controls[j]).Controls[1]).DataSource.DataSet.state in [dsEdit,dsInsert]) then
+            TDBRadioGroup(TPanel(PANLPCxSub.Controls[j]).Controls[1]).Field.Clear;
 
-          if Assigned(PANLPCxy) then
-          begin
-            TKRDMAvaliadosGerenciar(Owner).AlternarValidacao(TDBRadioGroup(PANLPCxy.Controls[1]).DataSource.DataSet.Name
-                                                            ,TDBRadioGroup(PANLPCxy.Controls[1]).Field.FieldName
-                                                            ,PANLPCLayer.Visible);
-          end;
-        until not Assigned(PANLPCxy);
-
+          TKRDMAvaliadosGerenciar(Owner).AlternarValidacao(TDBRadioGroup(TPanel(PANLPCxSub.Controls[j]).Controls[1]).DataSource.DataSet.Name
+                                                          ,TDBRadioGroup(TPanel(PANLPCxSub.Controls[j]).Controls[1]).Field.FieldName
+                                                          ,PANLPCxSub.Visible);
+        end;
       end;
     until not Assigned(PANLPCx);
   end;
@@ -669,9 +669,14 @@ begin
     painel de subperguntas esteja visível, ativa a validação das subperguntas,
     do contrário, não }
     for i := 0 to Pred(PANLPCxSub.ControlCount) do
+    begin
+      if (not PANLPCxSub.Visible) and (TDBRadioGroup(TPanel(PANLPCxSub.Controls[i]).Controls[1]).DataSource.DataSet.state in [dsEdit,dsInsert]) then
+        TDBRadioGroup(TPanel(PANLPCxSub.Controls[i]).Controls[1]).Field.Clear;
+
       TKRDMAvaliadosGerenciar(Owner).AlternarValidacao(TDBRadioGroup(TPanel(PANLPCxSub.Controls[i]).Controls[1]).DataSource.DataSet.Name
                                                       ,TDBRadioGroup(TPanel(PANLPCxSub.Controls[i]).Controls[1]).Field.FieldName
                                                       ,PANLPCxSub.Visible);
+    end;
   end;
 end;
 
