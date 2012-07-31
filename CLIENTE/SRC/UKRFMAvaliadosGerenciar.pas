@@ -7,7 +7,8 @@ uses Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms
    , Grids, DBGrids, KRK.Components.DataControls.DBGrid, DBCtrls, Mask
    , KRK.Components.DataControls.LabeledDBEdit, ExtCtrls
    , KRK.Components.AdditionalControls.LabeledEdit
-   , KRK.Components.StandardControls.Panel;
+   , KRK.Components.StandardControls.Panel
+   , KRK.Components.AdditionalControls.RTFLabel;
 
 type
   TDBRadioGroup = class(DBCtrls.TDBRadioGroup)
@@ -147,26 +148,21 @@ type
     PANLPG: TPanel;
     PANLPGInfo: TPanel;
     PANLPG1: TPanel;
-    LABLPG1: TLabel;
     LABLPG: TLabel;
     PANLPG2: TPanel;
-    LABLPG2: TLabel;
     DBRGPG1: TDBRadioGroup;
     DBRGPG2: TDBRadioGroup;
     PANLPG3: TPanel;
-    LABLPG3: TLabel;
+    LABLPG3: TRtfLabel;
     DBRGPG3: TDBRadioGroup;
     PANLPG4: TPanel;
-    LABLPG4: TLabel;
     DBRGPG4: TDBRadioGroup;
     PANLPG5: TPanel;
-    LABLPG5: TLabel;
     DBRGPG5: TDBRadioGroup;
     PANLPG6: TPanel;
-    LABLPG6: TLabel;
+    LABLPG6: TRtfLabel;
     DBRGPG6: TDBRadioGroup;
     PANLPG7: TPanel;
-    LABLPG7: TLabel;
     DBRGPG7: TDBRadioGroup;
     GRBXSNPG: TGroupBox;
     LABLSPG: TLabel;
@@ -181,15 +177,13 @@ type
     PANLPGP7: TPanel;
     PANLPC: TPanel;
     PANLPC1: TPanel;
-    LABLPC1: TLabel;
     DBRGPC1: TDBRadioGroup;
     PANLPCP1: TPanel;
     PANLPC2: TPanel;
-    LABLPC2: TLabel;
     DBRGPC2: TDBRadioGroup;
     PANLPCP2: TPanel;
     PANLPC3: TPanel;
-    LABLPC3: TLabel;
+    LABLPC3: TRtfLabel;
     DBRGPC3: TDBRadioGroup;
     PANLPCP3: TPanel;
     PANLPCInfo: TPanel;
@@ -199,151 +193,158 @@ type
     LABLNPC: TLabel;
     Bevel1: TBevel;
     PANLPC4: TPanel;
-    LABLPC4: TLabel;
+    LABLPC4: TRtfLabel;
     DBRGPC4: TDBRadioGroup;
     PANLPCP4: TPanel;
     PANLPC5: TPanel;
-    LABLPC5: TLabel;
+    LABLPC5: TRtfLabel;
     DBRGPC5: TDBRadioGroup;
     PANLPCP5: TPanel;
     PANLPC6: TPanel;
-    LABLPC6: TLabel;
+    LABLPC6: TRtfLabel;
     DBRGPC6: TDBRadioGroup;
     PANLPCP6: TPanel;
     PANLPC7: TPanel;
-    LABLPC7: TLabel;
+    LABLPC7: TRtfLabel;
     DBRGPC7: TDBRadioGroup;
     PANLPCP7: TPanel;
     PANLPC8: TPanel;
-    LABLPC8: TLabel;
+    LABLPC8: TRtfLabel;
     DBRGPC8: TDBRadioGroup;
     PANLPCP8: TPanel;
     PANLPC9: TPanel;
-    LABLPC9: TLabel;
+    LABLPC9: TRtfLabel;
     DBRGPC9: TDBRadioGroup;
     PANLPCP9: TPanel;
     PANLPC1A: TPanel;
-    LABLPC1A: TLabel;
+    LABLPC1A: TRtfLabel;
     DBRGPC1A: TDBRadioGroup;
     PANLPCP1A: TPanel;
     PANLPC1B: TPanel;
-    LABLPC1B: TLabel;
     DBRGPC1B: TDBRadioGroup;
     PANLPCP1B: TPanel;
     PANLPC1C: TPanel;
-    LABLPC1C: TLabel;
     DBRGPC1C: TDBRadioGroup;
     PANLPCP1C: TPanel;
     PANLPC1Sub: TPanel;
     PANLPCLayer: TPanel;
     PANLPC2Sub: TPanel;
     PANLPC2A: TPanel;
-    LABLPC2A: TLabel;
     DBRGPC2A: TDBRadioGroup;
     PANLPCP2A: TPanel;
     PANLPC2B: TPanel;
-    LABLPC2B: TLabel;
     DBRGPC2B: TDBRadioGroup;
     PANLPCP2B: TPanel;
     PANLPC3Sub: TPanel;
     PANLPC3A: TPanel;
-    LABLPC3A: TLabel;
+    LABLPC3A: TRtfLabel;
     DBRGPC3A: TDBRadioGroup;
     PANLPCP3A: TPanel;
     PANLPC3B: TPanel;
-    LABLPC3B: TLabel;
     DBRGPC3B: TDBRadioGroup;
     PANLPCP3B: TPanel;
     PANLPC3C: TPanel;
-    LABLPC3C: TLabel;
     DBRGPC3C: TDBRadioGroup;
     PANLPCP3C: TPanel;
     PANLPC3D: TPanel;
-    LABLPC3D: TLabel;
+    LABLPC3D: TRtfLabel;
     DBRGPC3D: TDBRadioGroup;
     PANLPCP3D: TPanel;
     PANLPC3E: TPanel;
-    LABLPC3E: TLabel;
     DBRGPC3E: TDBRadioGroup;
     PANLPCP3E: TPanel;
     PANLPC4Sub: TPanel;
     PANLPC4A: TPanel;
-    LABLPC4A: TLabel;
+    LABLPC4A: TRtfLabel;
     DBRGPC4A: TDBRadioGroup;
     PANLPCP4A: TPanel;
     PANLPC4B: TPanel;
-    LABLPC4B: TLabel;
     DBRGPC4B: TDBRadioGroup;
     PANLPCP4B: TPanel;
     PANLPC4C: TPanel;
-    LABLPC4C: TLabel;
     DBRGPC4C: TDBRadioGroup;
     PANLPCP4C: TPanel;
     PANLPC5Sub: TPanel;
     PANLPC5A: TPanel;
-    LABLPC5A: TLabel;
+    LABLPC5A: TRtfLabel;
     DBRGPC5A: TDBRadioGroup;
     PANLPCP5A: TPanel;
     PANLPC5B: TPanel;
-    LABLPC5B: TLabel;
     DBRGPC5B: TDBRadioGroup;
     PANLPCP5B: TPanel;
     PANLPC6Sub: TPanel;
     PANLPC6A: TPanel;
-    LABLPC6A: TLabel;
+    LABLPC6A: TRtfLabel;
     DBRGPC6A: TDBRadioGroup;
     PANLPCP6A: TPanel;
     PANLPC6B: TPanel;
-    LABLPC6B: TLabel;
     DBRGPC6B: TDBRadioGroup;
     PANLPCP6B: TPanel;
     PANLPC6C: TPanel;
-    LABLPC6C: TLabel;
     DBRGPC6C: TDBRadioGroup;
     PANLPCP6C: TPanel;
     PANLPC6D: TPanel;
-    LABLPC6D: TLabel;
     DBRGPC6D: TDBRadioGroup;
     PANLPCP6D: TPanel;
     PANLPC7Sub: TPanel;
     PANLPC7A: TPanel;
-    LABLPC7A: TLabel;
+    LABLPC7A: TRtfLabel;
     DBRGPC7A: TDBRadioGroup;
     PANLPCP7A: TPanel;
     PANLPC7B: TPanel;
-    LABLPC7B: TLabel;
     DBRGPC7B: TDBRadioGroup;
     PANLPCP7B: TPanel;
     PANLPC7C: TPanel;
-    LABLPC7C: TLabel;
     DBRGPC7C: TDBRadioGroup;
     PANLPCP7C: TPanel;
     PANLPC8Sub: TPanel;
     PANLPC8A: TPanel;
-    LABLPC8A: TLabel;
+    LABLPC8A: TRtfLabel;
     DBRGPC8A: TDBRadioGroup;
     PANLPCP8A: TPanel;
     PANLPC8B: TPanel;
-    LABLPC8B: TLabel;
     DBRGPC8B: TDBRadioGroup;
     PANLPCP8B: TPanel;
     PANLPC8C: TPanel;
-    LABLPC8C: TLabel;
     DBRGPC8C: TDBRadioGroup;
     PANLPCP8C: TPanel;
     PANLPC9Sub: TPanel;
     PANLPC9A: TPanel;
-    LABLPC9A: TLabel;
     DBRGPC9A: TDBRadioGroup;
     PANLPCP9A: TPanel;
     PANLPC9B: TPanel;
-    LABLPC9B: TLabel;
     DBRGPC9B: TDBRadioGroup;
     PANLPCP9B: TPanel;
     PANLPC9C: TPanel;
-    LABLPC9C: TLabel;
     DBRGPC9C: TDBRadioGroup;
     PANLPCP9C: TPanel;
+    LABLPG1: TRtfLabel;
+    LABLPG2: TRtfLabel;
+    LABLPG4: TRtfLabel;
+    LABLPG5: TRtfLabel;
+    LABLPG7: TRtfLabel;
+    LABLPC1: TRtfLabel;
+    LABLPC2: TRtfLabel;
+    LABLPC1B: TRtfLabel;
+    LABLPC1C: TRtfLabel;
+    LABLPC2A: TRtfLabel;
+    LABLPC2B: TRtfLabel;
+    LABLPC3B: TRtfLabel;
+    LABLPC3C: TRtfLabel;
+    LABLPC3E: TRtfLabel;
+    LABLPC4B: TRtfLabel;
+    LABLPC4C: TRtfLabel;
+    LABLPC5B: TRtfLabel;
+    LABLPC6B: TRtfLabel;
+    LABLPC6C: TRtfLabel;
+    LABLPC6D: TRtfLabel;
+    LABLPC7B: TRtfLabel;
+    LABLPC7C: TRtfLabel;
+    LABLPC8B: TRtfLabel;
+    LABLPC8C: TRtfLabel;
+    LABLPC9A: TRtfLabel;
+    LABLPC9B: TRtfLabel;
+    LABLPC9C: TRtfLabel;
     procedure DBRGChefeDaFamiliaChange(Sender: TObject);
     procedure KRLECodigoKeyPress(Sender: TObject; var Key: Char);
     procedure KRLEIdentidadeKeyPress(Sender: TObject; var Key: Char);
@@ -357,9 +358,9 @@ type
     procedure DoBeforeAction(Sender: TObject; Button: TNavigateBtn);
     procedure PGCTAvaliadosChanging(Sender: TObject; var AllowChange: Boolean);
     procedure TBSHParQShow(Sender: TObject);
-    procedure DoPanelQuestaoResize(Sender: TObject);
     procedure DoPGChange(Sender: TObject);
     procedure DoRespostaMestreChange(Sender: TObject);
+    procedure DoRTFLabelResize(Sender: TObject);
   private
     { Private declarations }
     procedure AjustarDBRadioGroup(const aDBRadioGroup: TDBRadioGroup);
@@ -401,50 +402,35 @@ end;
 
 procedure TKRFMAvaliadosGerenciar.AjustarConteudo(const aPanel: TPanel);
 var
-  LABL: TLabel;
   DBRG: TDBRadioGroup;
   PANL: TPanel;
-  DORE: TNotifyEvent;
 begin
-  DORE := aPanel.OnResize;
-  try
-    aPanel.OnResize := nil;
-    LABL := TLabel(aPanel.Controls[0]);
-    DBRG := TDBRadioGroup(aPanel.Controls[1]);
-    PANL := TPanel(aPanel.Controls[2]);
+  DBRG := TDBRadioGroup(aPanel.Controls[1]);
+  PANL := TPanel(aPanel.Controls[2]);
 
-    if Assigned(DBRG) and Assigned(LABL) and Assigned(PANL) then
-    begin
-      { Diminui todos os componentes aos seus tamanhos mínimos }
-      DBRG.Height := DBRG.Constraints.MinHeight;
-      LABL.Height := LABL.Constraints.MinHeight;
-      PANL.Height := PANL.Constraints.MinHeight;
-      aPanel.Height := aPanel.Constraints.MinHeight;
+  if Assigned(DBRG) and Assigned(PANL) then
+  begin
+    { Desabilita o Autosize do TPanel }
+    aPanel.AutoSize := False;
 
-      { Faz o Label se ajustar ao seu conteúdo }
-      LABL.AutoSize := False;
-      LABL.AutoSize := True;
+    { Diminui os componentes internos aos seus tamanhos mínimos }
+    DBRG.Height := DBRG.Constraints.MinHeight;
+    PANL.Height := PANL.Constraints.MinHeight;
 
-      { Faz o Panel se ajustar ao seu conteúdo }
-      aPanel.AutoSize := False;
-      aPanel.AutoSize := True;
+    { Ajusta a posição horizontal do TDBRadioGroup }
+    DBRG.Left := aPanel.Width - DBRG.Width - 1;
 
-      { Ajusta o tamanho e as posições do RadioGroup e o indicador de questão
-      para que os mesmos ocupem a altura e a posição corretas }
-      DBRG.Top := 1;
-      DBRG.Left := aPanel.Width - DBRG.Width - 1;
-      DBRG.Height := aPanel.Height - 2;
+    { Ajusta a altura do TPanel de forma que ele contenha o texto completo }
+    aPanel.AutoSize := True;
 
-      PANL.Top := 1;
-      PANL.Left := 0;
-      PANL.Height := aPanel.Height - 2;
-    end;
-
-    { Ajustar o interior do Radiogroup }
-    AjustarDBRadioGroup(DBRG);
-  finally
-    aPanel.OnResize := DORE;
+    { Ajusta o tamanho do RadioGroup e o indicador de questão para que os
+    mesmos ocupem a altura do TPanel }
+    DBRG.Height := aPanel.Height - 2;
+    PANL.Height := aPanel.Height - 2;
   end;
+
+  { Ajustar o interior do Radiogroup }
+  AjustarDBRadioGroup(DBRG);
 end;
 
 procedure TKRFMAvaliadosGerenciar.AjustarDBRadioGroup(const aDBRadioGroup: TDBRadioGroup);
@@ -594,6 +580,12 @@ begin
                                                    ,'');
 end;
 
+procedure TKRFMAvaliadosGerenciar.DoRTFLabelResize(Sender: TObject);
+begin
+  inherited;
+  AjustarConteudo(TPanel(TRTFLabel(Sender).Parent));
+end;
+
 procedure TKRFMAvaliadosGerenciar.MostrarPerguntasComplementares;
 var
   i, j: Word;
@@ -613,6 +605,13 @@ begin
 
   if EstadoAnterior <> PANLPCLayer.Visible then
   begin
+    if PANLPCLayer.Visible then
+    begin
+      { Força todos os itens internos a executar um evento de redimensionamento }
+      PANLPC.Padding.Right := PANLPC.Padding.Right + 1;
+      PANLPC.Padding.Right := PANLPC.Padding.Right - 1;
+    end;
+
     i := 0;
     repeat
       Inc(i);
@@ -661,9 +660,15 @@ begin
     { Caso o painel de subperguntas esteja visível, ajusta sua posição vertical
     de forma que ele apareça imediatamente abaixo da pergunta mestre. Isso é
     feito ajustando o Top de forma que ele seja exatamente o meio da altura do
-    mestre, mais 1 }
+    mestre, mais 1. Além disso devemos forçar um ajuste do conteúdo }
     if PANLPCxSub.Visible then
+    begin
       PANLPCxSub.Top := aDBRadioGroup.Parent.Top + aDBRadioGroup.Parent.Height div 2 + 1;
+
+      { Força todos os itens internos a executar um evento de redimensionamento }
+      PANLPCxSub.Padding.Right := PANLPCxSub.Padding.Right + 1;
+      PANLPCxSub.Padding.Right := PANLPCxSub.Padding.Right - 1;
+    end;
 
     { Ativa ou desativa os validadores correspondentes às subperguntas. Caso o
     painel de subperguntas esteja visível, ativa a validação das subperguntas,
@@ -678,12 +683,6 @@ begin
                                                       ,PANLPCxSub.Visible);
     end;
   end;
-end;
-
-procedure TKRFMAvaliadosGerenciar.DoPanelQuestaoResize(Sender: TObject);
-begin
-  inherited;
-  AjustarConteudo(TPanel(Sender));
 end;
 
 procedure TKRFMAvaliadosGerenciar.DoPGChange(Sender: TObject);
@@ -733,11 +732,9 @@ end;
 procedure TKRFMAvaliadosGerenciar.TBSHParQShow(Sender: TObject);
 begin
   inherited;
-  try
-    SCBXParQ.AutoScroll := False;
-  finally
-    SCBXParQ.AutoScroll := True;
-  end;
+  { Força todos os itens internos a executar um evento de redimensionamento }
+  SCBXParQ.Padding.Right := SCBXParQ.Padding.Right + 1;
+  SCBXParQ.Padding.Right := SCBXParQ.Padding.Right - 1;
 end;
 
 //procedure TForm.FormMouseWheel(Sender: TObject; Shift: TShiftState;

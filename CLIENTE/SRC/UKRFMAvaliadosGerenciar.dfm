@@ -319,10 +319,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       AlignWithMargins = True
       Caption = 'Gerenciar'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       DesignSize = (
         770
         403)
@@ -840,10 +836,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       AlignWithMargins = True
       Caption = 'Dados s'#243'cio-demogr'#225'ficos'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object SCBXDadosSocioDemograficos: TScrollBox
         Left = 0
         Top = 60
@@ -1408,8 +1400,8 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object LABLAvaliado1: TLabel
           Left = 1
           Top = 1
-          Width = 119
-          Height = 18
+          Width = 768
+          Height = 21
           Align = alClient
           Alignment = taCenter
           Caption = 'Avaliado: ?????'
@@ -1420,6 +1412,8 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Font.Style = [fsBold]
           ParentFont = False
           Layout = tlCenter
+          ExplicitWidth = 119
+          ExplicitHeight = 18
         end
       end
     end
@@ -1427,10 +1421,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       AlignWithMargins = True
       Caption = 'Checagem de sinais e sintomas'
       ImageIndex = 3
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object KRPAAvaliado2: TKRKPanel
         AlignWithMargins = True
         Left = 0
@@ -1449,8 +1439,8 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object LABLAvaliado2: TLabel
           Left = 1
           Top = 1
-          Width = 119
-          Height = 18
+          Width = 768
+          Height = 21
           Align = alClient
           Alignment = taCenter
           Caption = 'Avaliado: ?????'
@@ -1461,6 +1451,8 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Font.Style = [fsBold]
           ParentFont = False
           Layout = tlCenter
+          ExplicitWidth = 119
+          ExplicitHeight = 18
         end
       end
       object DBNAChecagemDeSinaisESintomas: TDBNavigator
@@ -1518,8 +1510,8 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             AlignWithMargins = True
             Left = 2
             Top = 2
-            Width = 387
-            Height = 26
+            Width = 733
+            Height = 31
             Margins.Left = 0
             Margins.Top = 0
             Margins.Right = 0
@@ -1532,6 +1524,8 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             Color = clInfoBk
             ParentColor = False
             Layout = tlCenter
+            ExplicitWidth = 387
+            ExplicitHeight = 26
           end
         end
         object DBCBDorPeiPesManBra: TDBCheckBox
@@ -1890,7 +1884,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         Top = 60
         Width = 770
         Height = 343
-        VertScrollBar.Position = 339
         Align = alClient
         Color = clWhite
         ParentColor = False
@@ -1899,7 +1892,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         OnMouseWheelUp = DoScrollBoxMouseWheelUp
         object PANLParQBottom: TPanel
           Left = 0
-          Top = 1495
+          Top = 1906
           Width = 749
           Height = 6
           Align = alBottom
@@ -1909,7 +1902,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object PANLPGTitulo: TPanel
           AlignWithMargins = True
           Left = 6
-          Top = -333
+          Top = 6
           Width = 737
           Height = 35
           Margins.Left = 6
@@ -1945,7 +1938,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object PANLPG: TPanel
           AlignWithMargins = True
           Left = 6
-          Top = -292
+          Top = 47
           Width = 737
           Height = 309
           Margins.Left = 6
@@ -2049,11 +2042,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             Constraints.MinHeight = 35
             ParentBackground = False
             TabOrder = 1
-            OnResize = DoPanelQuestaoResize
             DesignSize = (
               733
               35)
-            object LABLPG1: TLabel
+            object LABLPG1: TRtfLabel
               AlignWithMargins = True
               Left = 53
               Top = 4
@@ -2063,12 +2055,15 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Margins.Right = 104
               Align = alTop
               Caption = 
-                'Seu m'#233'dico j'#225' lhe disse que voc'#234' tem alguma doen'#231'a cardiovascula' +
-                'r OU hipertens'#227'o?'
+                '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                '\uc1\pard\sl240\slmult1\lang22\b\f0\fs16 Seu m\'#39'e9dico j\'#39'e1 lhe' +
+                ' disse que voc\'#39'ea tem alguma doen\'#39'e7a cardiovascular OU hipert' +
+                'ens\'#39'e3o?\par'#13#10'}'#13#10
               Constraints.MinHeight = 26
-              Layout = tlCenter
+              Transparent = True
               WordWrap = True
-              ExplicitWidth = 408
+              OnResize = DoRTFLabelResize
             end
             object DBRGPG1: TDBRadioGroup
               Left = 632
@@ -2127,11 +2122,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             Constraints.MinHeight = 35
             ParentBackground = False
             TabOrder = 2
-            OnResize = DoPanelQuestaoResize
             DesignSize = (
               733
               35)
-            object LABLPG2: TLabel
+            object LABLPG2: TRtfLabel
               AlignWithMargins = True
               Left = 53
               Top = 4
@@ -2141,12 +2135,15 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Margins.Right = 104
               Align = alTop
               Caption = 
-                'Voc'#234' sente dor no peito em repouso, durante suas atividades coti' +
-                'dianas OU quando voc'#234' faz atividades f'#237'sicas?'
+                '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                '\uc1\pard\sl240\slmult1\lang22\b\f0\fs16 Voc\'#39'ea sente dor no pe' +
+                'ito em repouso, durante suas atividades cotidianas OU quando voc' +
+                '\'#39'ea faz atividades f\'#39'edsicas?\par'#13#10'}'#13#10
               Constraints.MinHeight = 26
-              Layout = tlCenter
+              Transparent = True
               WordWrap = True
-              ExplicitWidth = 536
+              OnResize = DoRTFLabelResize
             end
             object DBRGPG2: TDBRadioGroup
               Left = 632
@@ -2205,11 +2202,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             Constraints.MinHeight = 35
             ParentBackground = False
             TabOrder = 3
-            OnResize = DoPanelQuestaoResize
             DesignSize = (
               733
               35)
-            object LABLPG3: TLabel
+            object LABLPG3: TRtfLabel
               AlignWithMargins = True
               Left = 53
               Top = 4
@@ -2219,13 +2215,16 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Margins.Right = 104
               Align = alTop
               Caption = 
-                'Voc'#234' perde o equil'#237'brio por causa de tontura OU voc'#234' perdeu a co' +
-                'nsci'#234'ncia nos '#250'ltimos 12 meses?'#13#10'Responder N'#195'O caso sua tontura ' +
-                'tenha sido associada '#224' hiperventila'#231#227'o, inclusive durante exerc'#237 +
-                'cio f'#237'sico intenso'
+                '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                '\uc1\pard\sl240\slmult1\lang22\f0\fs16 \b Voc\'#39'ea perde o equil\' +
+                #39'edbrio por causa de tontura OU voc\'#39'ea perdeu a consci\'#39'eancia ' +
+                'nos \'#39'faltimos 12 meses?\b0 \par'#13#10'\i Responda \b N\'#39'c3O\b0  caso' +
+                ' sua tontura tenha sido associada \'#39'e0 hiperventila\'#39'e7\'#39'e3o, in' +
+                'clusive durante exerc\'#39'edcio f\'#39'edsico intenso\i0\par}'
               Constraints.MinHeight = 26
-              Layout = tlCenter
               WordWrap = True
+              OnResize = DoRTFLabelResize
               ExplicitWidth = 547
             end
             object DBRGPG3: TDBRadioGroup
@@ -2285,11 +2284,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             Constraints.MinHeight = 35
             ParentBackground = False
             TabOrder = 4
-            OnResize = DoPanelQuestaoResize
             DesignSize = (
               733
               35)
-            object LABLPG4: TLabel
+            object LABLPG4: TRtfLabel
               AlignWithMargins = True
               Left = 53
               Top = 4
@@ -2299,14 +2297,17 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Margins.Right = 104
               Align = alTop
               Caption = 
-                'Voc'#234' j'#225' foi diagnosticado com alguma outra doen'#231'a cr'#244'nica (que n' +
-                #227'o seja doen'#231'a card'#237'aca ou hipertens'#227'o)?'
+                '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                '\uc1\pard\sl240\slmult1\lang22\b\f0\fs16 Voc\'#39'ea j\'#39'e1 foi diagn' +
+                'osticado com alguma outra doen\'#39'e7a cr\'#39'f4nica (que n\'#39'e3o seja ' +
+                'doen\'#39'e7a card\'#39'edaca ou hipertens\'#39'e3o)?\par'#13#10'}'#13#10
               Color = 15724527
               Constraints.MinHeight = 26
               ParentColor = False
-              Layout = tlCenter
+              Transparent = True
               WordWrap = True
-              ExplicitWidth = 516
+              OnResize = DoRTFLabelResize
             end
             object DBRGPG4: TDBRadioGroup
               Left = 632
@@ -2365,11 +2366,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             Constraints.MinHeight = 35
             ParentBackground = False
             TabOrder = 5
-            OnResize = DoPanelQuestaoResize
             DesignSize = (
               733
               35)
-            object LABLPG5: TLabel
+            object LABLPG5: TRtfLabel
               AlignWithMargins = True
               Left = 53
               Top = 4
@@ -2379,12 +2379,15 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Margins.Right = 104
               Align = alTop
               Caption = 
-                'Voc'#234' est'#225' atualmente tomando rem'#233'dios prescritos para alguma doe' +
-                'n'#231'a cr'#244'nica?'
+                '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                '\uc1\pard\sl240\slmult1\lang22\b\f0\fs16 Voc\'#39'ea est\'#39'e1 atualme' +
+                'nte tomando rem\'#39'e9dios prescritos para alguma doen\'#39'e7a cr\'#39'f4n' +
+                'ica?\par'#13#10'}'#13#10
               Constraints.MinHeight = 26
-              Layout = tlCenter
+              Transparent = True
               WordWrap = True
-              ExplicitWidth = 387
+              OnResize = DoRTFLabelResize
             end
             object DBRGPG5: TDBRadioGroup
               Left = 632
@@ -2443,11 +2446,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             Constraints.MinHeight = 35
             ParentBackground = False
             TabOrder = 6
-            OnResize = DoPanelQuestaoResize
             DesignSize = (
               733
               60)
-            object LABLPG6: TLabel
+            object LABLPG6: TRtfLabel
               AlignWithMargins = True
               Left = 53
               Top = 4
@@ -2457,14 +2459,21 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Margins.Right = 104
               Align = alTop
               Caption = 
-                'Voc'#234' tem algum problema nos ossos ou articula'#231#245'es que poderia se' +
-                ' agravar em voc'#234' se tornando mais ativo fisicamente?'#13#10'Responder ' +
-                'N'#195'O se voc'#234' teve um problema de articula'#231#227'o no passado, mas que ' +
-                'atualmente n'#227'o limita sua capacidade de ser fisicamente ativo. P' +
-                'or exemplo: joelho, tornozelo, ombro ou outros'
+                '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                '\uc1\pard\sl240\slmult1\lang22\f0\fs16 \b Voc\'#39'ea tem algum prob' +
+                'lema nos ossos ou articula\'#39'e7\'#39'f5es que poderia se agravar em v' +
+                'oc\'#39'ea se tornando mais ativo fisicamente?\b0 \par'#13#10'\i Responda ' +
+                '\b N\'#39'c3O\b0  se voc\'#39'ea teve um problema de articula\'#39'e7\'#39'e3o n' +
+                'o passado, mas que atualmente n\'#39'e3o limita sua capacidade de se' +
+                'r fisicamente ativo. Por exemplo: joelho, tornozelo, ombro ou ou' +
+                'tros\i0\par'#13#10'}'#13#10
+              Color = 15724527
               Constraints.MinHeight = 26
+              ParentColor = False
+              Transparent = True
               WordWrap = True
-              ExplicitWidth = 566
+              OnResize = DoRTFLabelResize
             end
             object DBRGPG6: TDBRadioGroup
               Left = 632
@@ -2523,11 +2532,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             Constraints.MinHeight = 35
             ParentBackground = False
             TabOrder = 7
-            OnResize = DoPanelQuestaoResize
             DesignSize = (
               733
               35)
-            object LABLPG7: TLabel
+            object LABLPG7: TRtfLabel
               AlignWithMargins = True
               Left = 53
               Top = 4
@@ -2537,12 +2545,15 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Margins.Right = 104
               Align = alTop
               Caption = 
-                'Seu m'#233'dico j'#225' lhe falou que voc'#234' s'#243' devia fazer atividades f'#237'sic' +
-                'as sob supervis'#227'o m'#233'dica?'
+                '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                '\uc1\pard\sl240\slmult1\lang22\b\f0\fs16 Seu m\'#39'e9dico j\'#39'e1 lhe' +
+                ' falou que voc\'#39'ea s\'#39'f3 devia fazer atividades f\'#39'edsicas sob s' +
+                'upervis\'#39'e3o m\'#39'e9dica?\par'#13#10'}'#13#10
               Constraints.MinHeight = 26
-              Layout = tlCenter
+              Transparent = True
               WordWrap = True
-              ExplicitWidth = 428
+              OnResize = DoRTFLabelResize
             end
             object DBRGPG7: TDBRadioGroup
               Left = 632
@@ -2594,9 +2605,9 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object PANLPCLayer: TPanel
           AlignWithMargins = True
           Left = 6
-          Top = 23
+          Top = 362
           Width = 737
-          Height = 1472
+          Height = 1544
           Margins.Left = 6
           Margins.Right = 6
           Margins.Bottom = 0
@@ -2646,7 +2657,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             Left = 0
             Top = 41
             Width = 737
-            Height = 1431
+            Height = 1503
             Margins.Left = 0
             Margins.Right = 0
             Margins.Bottom = 0
@@ -2667,11 +2678,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Constraints.MinHeight = 35
               ParentBackground = False
               TabOrder = 0
-              OnResize = DoPanelQuestaoResize
               DesignSize = (
                 733
                 35)
-              object LABLPC1: TLabel
+              object LABLPC1: TRtfLabel
                 AlignWithMargins = True
                 Left = 53
                 Top = 4
@@ -2680,11 +2690,15 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Margins.Left = 52
                 Margins.Right = 104
                 Align = alTop
-                Caption = 'Voc'#234' tem artrite, osteoporose ou problemas de coluna?'
+                Caption = 
+                  '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                  'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                  '\uc1\pard\sl240\slmult1\lang22\b\f0\fs16 Voc\'#39'ea tem artrite, os' +
+                  'teoporose ou problemas de coluna?\par'#13#10'}'#13#10
                 Constraints.MinHeight = 26
-                Layout = tlCenter
+                Transparent = True
                 WordWrap = True
-                ExplicitWidth = 265
+                OnResize = DoRTFLabelResize
               end
               object DBRGPC1: TDBRadioGroup
                 Left = 632
@@ -2734,7 +2748,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             end
             object PANLPC2: TPanel
               Left = 2
-              Top = 180
+              Top = 204
               Width = 733
               Height = 35
               Align = alTop
@@ -2743,11 +2757,11 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Constraints.MinHeight = 35
               ParentBackground = False
               TabOrder = 1
-              OnResize = DoPanelQuestaoResize
+              ExplicitTop = 180
               DesignSize = (
                 733
                 35)
-              object LABLPC2: TLabel
+              object LABLPC2: TRtfLabel
                 AlignWithMargins = True
                 Left = 53
                 Top = 4
@@ -2756,11 +2770,15 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Margins.Left = 52
                 Margins.Right = 104
                 Align = alTop
-                Caption = 'Voc'#234' tem algum tipo de c'#226'ncer?'
+                Caption = 
+                  '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                  'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                  '\uc1\pard\sl240\slmult1\lang22\b\f0\fs16 Voc\'#39'ea tem algum tipo ' +
+                  'de c\'#39'e2ncer?\par'#13#10'}'#13#10
                 Constraints.MinHeight = 26
-                Layout = tlCenter
+                Transparent = True
                 WordWrap = True
-                ExplicitWidth = 151
+                OnResize = DoRTFLabelResize
               end
               object DBRGPC2: TDBRadioGroup
                 Left = 632
@@ -2810,7 +2828,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             end
             object PANLPC3: TPanel
               Left = 2
-              Top = 288
+              Top = 312
               Width = 733
               Height = 47
               Align = alTop
@@ -2819,11 +2837,11 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Constraints.MinHeight = 35
               ParentBackground = False
               TabOrder = 2
-              OnResize = DoPanelQuestaoResize
+              ExplicitTop = 288
               DesignSize = (
                 733
                 47)
-              object LABLPC3: TLabel
+              object LABLPC3: TRtfLabel
                 AlignWithMargins = True
                 Left = 53
                 Top = 4
@@ -2833,12 +2851,16 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Margins.Right = 104
                 Align = alTop
                 Caption = 
-                  'Voc'#234' tem alguma doen'#231'a card'#237'aca ou cardiovascular? '#13#10'Isto inclui' +
-                  ' doen'#231'a da art'#233'ria coron'#225'ria, hipertens'#227'o, insufici'#234'ncia card'#237'ac' +
-                  'a, anormalidade diagnosticada do ritmo card'#237'aco'
+                  '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                  'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                  '\uc1\pard\sl240\slmult1\lang22\f0\fs16 \b Voc\'#39'ea tem alguma doe' +
+                  'n\'#39'e7a card\'#39'edaca ou cardiovascular?\b0 \par'#13#10'\i Isto inclui do' +
+                  'en\'#39'e7a da art\'#39'e9ria coron\'#39'e1ria, hipertens\'#39'e3o, insufici\'#39'ea' +
+                  'ncia card\'#39'edaca, anormalidade diagnosticada do ritmo card\'#39'edac' +
+                  'o\i0\par'#13#10'}'#13#10
                 Constraints.MinHeight = 26
-                Layout = tlCenter
                 WordWrap = True
+                OnResize = DoRTFLabelResize
                 ExplicitWidth = 537
               end
               object DBRGPC3: TDBRadioGroup
@@ -2971,7 +2993,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             end
             object PANLPC4: TPanel
               Left = 2
-              Top = 525
+              Top = 549
               Width = 733
               Height = 35
               Align = alTop
@@ -2980,11 +3002,11 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Constraints.MinHeight = 35
               ParentBackground = False
               TabOrder = 4
-              OnResize = DoPanelQuestaoResize
+              ExplicitTop = 525
               DesignSize = (
                 733
                 35)
-              object LABLPC4: TLabel
+              object LABLPC4: TRtfLabel
                 AlignWithMargins = True
                 Left = 53
                 Top = 4
@@ -2994,11 +3016,14 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Margins.Right = 104
                 Align = alTop
                 Caption = 
-                  'Voc'#234' tem alguma doen'#231'a metab'#243'lica?'#13#10'Isto inclui diabetes tipo 1,' +
-                  ' diabetes tipo 2 e pr'#233'-diabetes.'
+                  '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                  'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                  '\uc1\pard\sl240\slmult1\lang22\f0\fs16 \b Voc\'#39'ea tem alguma doe' +
+                  'n\'#39'e7a metab\'#39'f3lica?\b0 \par'#13#10'\i Isto inclui diabetes tipo 1, d' +
+                  'iabetes tipo 2 e pr\'#39'e9-diabetes\i0\par'#13#10'}'#13#10
                 Constraints.MinHeight = 26
-                Layout = tlCenter
                 WordWrap = True
+                OnResize = DoRTFLabelResize
                 ExplicitWidth = 274
               end
               object DBRGPC4: TDBRadioGroup
@@ -3049,7 +3074,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             end
             object PANLPC5: TPanel
               Left = 2
-              Top = 668
+              Top = 692
               Width = 733
               Height = 47
               Align = alTop
@@ -3058,11 +3083,11 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Constraints.MinHeight = 35
               ParentBackground = False
               TabOrder = 5
-              OnResize = DoPanelQuestaoResize
+              ExplicitTop = 668
               DesignSize = (
                 733
                 47)
-              object LABLPC5: TLabel
+              object LABLPC5: TRtfLabel
                 AlignWithMargins = True
                 Left = 53
                 Top = 4
@@ -3072,14 +3097,17 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Margins.Right = 104
                 Align = alTop
                 Caption = 
-                  'Voc'#234' tem algum problema de sa'#250'de mental ou problemas de aprendiz' +
-                  'agem?'#13#10'Isto inclui doen'#231'a de Alzheimer, dem'#234'ncia, depress'#227'o, tra' +
-                  'nstornos de ansiedade, transtornos alimentares, transtorno psic'#243 +
-                  'tico, defici'#234'ncia intelectual, S'#237'ndrome de Down'
+                  '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                  'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                  '\uc1\pard\sl240\slmult1\lang22\f0\fs16 \b Voc\'#39'ea tem algum prob' +
+                  'lema de sa\'#39'fade mental ou problemas de aprendizagem?\b0 \par'#13#10'\' +
+                  'i Isto inclui doen\'#39'e7a de Alzheimer, dem\'#39'eancia, depress\'#39'e3o,' +
+                  ' transtornos de ansiedade, transtornos alimentares, transtorno p' +
+                  'sic\'#39'f3tico, defici\'#39'eancia intelectual, S\'#39'edndrome de Down\i0\' +
+                  'par'#13#10'}'#13#10
                 Constraints.MinHeight = 26
-                Layout = tlCenter
                 WordWrap = True
-                ExplicitWidth = 568
+                OnResize = DoRTFLabelResize
               end
               object DBRGPC5: TDBRadioGroup
                 Left = 632
@@ -3129,7 +3157,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             end
             object PANLPC6: TPanel
               Left = 2
-              Top = 788
+              Top = 824
               Width = 733
               Height = 35
               Align = alTop
@@ -3138,11 +3166,11 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Constraints.MinHeight = 35
               ParentBackground = False
               TabOrder = 6
-              OnResize = DoPanelQuestaoResize
+              ExplicitTop = 788
               DesignSize = (
                 733
                 35)
-              object LABLPC6: TLabel
+              object LABLPC6: TRtfLabel
                 AlignWithMargins = True
                 Left = 53
                 Top = 4
@@ -3152,11 +3180,14 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Margins.Right = 104
                 Align = alTop
                 Caption = 
-                  'Voc'#234' tem uma doen'#231'a respirat'#243'ria? '#13#10'Isto inclui doen'#231'a pulmonar ' +
-                  'obstrutiva cr'#244'nica, asma, hipertens'#227'o pulmonar'
+                  '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                  'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                  '\uc1\pard\sl240\slmult1\lang22\f0\fs16 \b Voc\'#39'ea tem uma doen\'#39 +
+                  'e7a respirat\'#39'f3ria?\b0 \par'#13#10'\i Isto inclui doen\'#39'e7a pulmonar ' +
+                  'obstrutiva cr\'#39'f4nica, asma, hipertens\'#39'e3o pulmonar\i0\par'#13#10'}'#13#10
                 Constraints.MinHeight = 26
-                Layout = tlCenter
                 WordWrap = True
+                OnResize = DoRTFLabelResize
                 ExplicitWidth = 362
               end
               object DBRGPC6: TDBRadioGroup
@@ -3207,7 +3238,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             end
             object PANLPC7: TPanel
               Left = 2
-              Top = 966
+              Top = 1026
               Width = 733
               Height = 35
               Align = alTop
@@ -3216,11 +3247,11 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Constraints.MinHeight = 35
               ParentBackground = False
               TabOrder = 7
-              OnResize = DoPanelQuestaoResize
+              ExplicitTop = 966
               DesignSize = (
                 733
                 35)
-              object LABLPC7: TLabel
+              object LABLPC7: TRtfLabel
                 AlignWithMargins = True
                 Left = 53
                 Top = 4
@@ -3230,11 +3261,14 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Margins.Right = 104
                 Align = alTop
                 Caption = 
-                  'Voc'#234' tem alguma les'#227'o da medula espinhal? '#13#10'Isto inclui tetraple' +
-                  'gia e paraplegia'
+                  '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                  'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                  '\uc1\pard\sl240\slmult1\lang22\f0\fs16 \b Voc\'#39'ea tem alguma les' +
+                  '\'#39'e3o da medula espinhal?\b0 \par'#13#10'\i Isto inclui tetraplegia e ' +
+                  'paraplegia\i0\par'#13#10'}'#13#10
                 Constraints.MinHeight = 26
-                Layout = tlCenter
                 WordWrap = True
+                OnResize = DoRTFLabelResize
                 ExplicitWidth = 211
               end
               object DBRGPC7: TDBRadioGroup
@@ -3285,7 +3319,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             end
             object PANLPC8: TPanel
               Left = 2
-              Top = 1109
+              Top = 1181
               Width = 733
               Height = 35
               Align = alTop
@@ -3294,11 +3328,11 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Constraints.MinHeight = 35
               ParentBackground = False
               TabOrder = 8
-              OnResize = DoPanelQuestaoResize
+              ExplicitTop = 1109
               DesignSize = (
                 733
                 35)
-              object LABLPC8: TLabel
+              object LABLPC8: TRtfLabel
                 AlignWithMargins = True
                 Left = 53
                 Top = 4
@@ -3308,11 +3342,14 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Margins.Right = 104
                 Align = alTop
                 Caption = 
-                  'Voc'#234' j'#225' sofreu um derrame?'#13#10'Isto inclui ataque isqu'#234'mico transit' +
-                  #243'rio (AIT) ou evento cerebrovascular'
+                  '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                  'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                  '\uc1\pard\sl240\slmult1\lang22\f0\fs16 \b Voc\'#39'ea j\'#39'e1 sofreu u' +
+                  'm derrame?\b0 \par'#13#10'\i Isto inclui ataque isqu\'#39'eamico transit\'#39 +
+                  'f3rio (AIT) ou evento cerebrovascular\i0\par'#13#10'}'#13#10
                 Constraints.MinHeight = 26
-                Layout = tlCenter
                 WordWrap = True
+                OnResize = DoRTFLabelResize
                 ExplicitWidth = 343
               end
               object DBRGPC8: TDBRadioGroup
@@ -3363,7 +3400,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             end
             object PANLPC9: TPanel
               Left = 2
-              Top = 1264
+              Top = 1336
               Width = 733
               Height = 60
               Align = alTop
@@ -3372,11 +3409,11 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Constraints.MinHeight = 35
               ParentBackground = False
               TabOrder = 9
-              OnResize = DoPanelQuestaoResize
+              ExplicitTop = 1264
               DesignSize = (
                 733
                 60)
-              object LABLPC9: TLabel
+              object LABLPC9: TRtfLabel
                 AlignWithMargins = True
                 Left = 53
                 Top = 4
@@ -3386,14 +3423,18 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Margins.Right = 104
                 Align = alTop
                 Caption = 
-                  'Voc'#234' tem alguma outra condi'#231#227'o de sa'#250'de ou doen'#231'a n'#227'o mencionada' +
-                  ' nas quest'#245'es anteriores ou voc'#234' tem duas ou mais condi'#231#245'es de s' +
-                  'a'#250'de ou doen'#231'as associadas?'#13#10'Responda SIM se, por exemplo, voc'#234' ' +
-                  'tem uma doen'#231'a card'#237'aca e diabetes, ou j'#225' teve c'#226'ncer e agora te' +
-                  'm uma doen'#231'a card'#237'aca'
+                  '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                  'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                  '\uc1\pard\sl240\slmult1\lang22\f0\fs16 \b Voc\'#39'ea tem alguma out' +
+                  'ra condi\'#39'e7\'#39'e3o de sa\'#39'fade ou doen\'#39'e7a n\'#39'e3o mencionada nas' +
+                  ' quest\'#39'f5es anteriores ou voc\'#39'ea tem duas ou mais condi\'#39'e7\'#39'f' +
+                  '5es de sa\'#39'fade ou doen\'#39'e7as associadas?\b0 \par'#13#10'\i Responda \' +
+                  'b SIM\b0  se, por exemplo, voc\'#39'ea tem uma doen\'#39'e7a card\'#39'edaca' +
+                  ' e diabetes, ou j\'#39'e1 teve c\'#39'e2ncer e agora tem uma doen\'#39'e7a c' +
+                  'ard\'#39'edaca\i0\par'#13#10'}'#13#10
                 Constraints.MinHeight = 26
-                Layout = tlCenter
                 WordWrap = True
+                OnResize = DoRTFLabelResize
                 ExplicitWidth = 573
               end
               object DBRGPC9: TDBRadioGroup
@@ -3447,7 +3488,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Left = 2
               Top = 72
               Width = 733
-              Height = 105
+              Height = 129
               Margins.Left = 0
               Margins.Top = 0
               Margins.Right = 0
@@ -3460,41 +3501,42 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Left = 0
                 Top = 0
                 Width = 733
-                Height = 35
+                Height = 47
                 Align = alTop
                 AutoSize = True
                 Color = clWhite
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 0
-                OnResize = DoPanelQuestaoResize
                 DesignSize = (
                   733
-                  35)
-                object LABLPC1A: TLabel
+                  47)
+                object LABLPC1A: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
                   Width = 575
-                  Height = 26
+                  Height = 39
                   Margins.Left = 52
                   Margins.Right = 104
                   Align = alTop
                   Caption = 
-                    'Voc'#234' tem dificuldade de controlar sua condi'#231#227'o com medicamentos ' +
-                    'ou outras terapias prescritas por um profissional?'#13#10'Responda N'#195'O' +
-                    ' se voc'#234' n'#227'o est'#225' tomando medicamentos ou recebendo outros trata' +
-                    'mentos'
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\f0\fs16 \b Voc\'#39'ea tem dificuldad' +
+                    'e de controlar sua condi\'#39'e7\'#39'e3o com medicamentos ou outras ter' +
+                    'apias prescritas por um profissional?\b \par'#13#10'\i Responda \b N\'#39 +
+                    'c3O\b0  se voc\'#39'ea n\'#39'e3o est\'#39'e1 tomando medicamentos ou recebe' +
+                    'ndo outros tratamentos\i0\par}'
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
                   WordWrap = True
-                  ExplicitWidth = 556
+                  OnResize = DoRTFLabelResize
                 end
                 object DBRGPC1A: TDBRadioGroup
                   Left = 632
                   Top = 1
                   Width = 100
-                  Height = 33
+                  Height = 45
                   Anchors = [akTop, akRight]
                   Color = clInfoBk
                   Columns = 2
@@ -3521,7 +3563,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Left = 0
                   Top = 1
                   Width = 50
-                  Height = 33
+                  Height = 45
                   Caption = '1A'
                   Color = clBlack
                   Constraints.MinHeight = 33
@@ -3537,43 +3579,45 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               end
               object PANLPC1B: TPanel
                 Left = 0
-                Top = 35
+                Top = 47
                 Width = 733
-                Height = 35
+                Height = 47
                 Align = alTop
                 AutoSize = True
                 Color = clWhite
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 1
-                OnResize = DoPanelQuestaoResize
                 DesignSize = (
                   733
-                  35)
-                object LABLPC1B: TLabel
+                  47)
+                object LABLPC1B: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
                   Width = 575
-                  Height = 26
+                  Height = 39
                   Margins.Left = 52
                   Margins.Right = 104
                   Align = alTop
                   Caption = 
-                    'Voc'#234' tem problemas de articula'#231#227'o que causam dor, uma fratura re' +
-                    'cente ou uma fratura causada por osteoporose ou c'#226'ncer, alguma v' +
-                    #233'rtebra deslocada (espondilolistese) e/ou rachadura no anel '#243'sse' +
-                    'o da v'#233'rtebra (espondil'#243'lise)?'
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\b\f0\fs16 Voc\'#39'ea tem problemas d' +
+                    'e articula\'#39'e7\'#39'e3o que causam dor, uma fratura recente ou uma f' +
+                    'ratura causada por osteoporose ou c\'#39'e2ncer, alguma v\'#39'e9rtebra ' +
+                    'deslocada (espondilolistese) e/ou rachadura no anel \'#39'f3sseo da ' +
+                    'v\'#39'e9rtebra (espondil\'#39'f3lise)?\par'#13#10'}'#13#10
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
+                  Transparent = True
                   WordWrap = True
-                  ExplicitWidth = 567
+                  OnResize = DoRTFLabelResize
                 end
                 object DBRGPC1B: TDBRadioGroup
                   Left = 632
                   Top = 1
                   Width = 100
-                  Height = 33
+                  Height = 45
                   Anchors = [akTop, akRight]
                   Color = clInfoBk
                   Columns = 2
@@ -3600,7 +3644,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Left = 0
                   Top = 1
                   Width = 50
-                  Height = 33
+                  Height = 45
                   Caption = '1B'
                   Color = clBlack
                   Constraints.MinHeight = 33
@@ -3616,7 +3660,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               end
               object PANLPC1C: TPanel
                 Left = 0
-                Top = 70
+                Top = 94
                 Width = 733
                 Height = 35
                 Align = alTop
@@ -3625,11 +3669,11 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 2
-                OnResize = DoPanelQuestaoResize
+                ExplicitTop = 70
                 DesignSize = (
                   733
                   35)
-                object LABLPC1C: TLabel
+                object LABLPC1C: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
@@ -3639,12 +3683,15 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Margins.Right = 104
                   Align = alTop
                   Caption = 
-                    'Voc'#234' j'#225' tomou inje'#231#245'es de ester'#243'ides ou tabletes de ester'#243'ides r' +
-                    'egularmente por mais de tr'#234's meses?'
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\b\f0\fs16 Voc\'#39'ea j\'#39'e1 tomou inj' +
+                    'e\'#39'e7\'#39'f5es de ester\'#39'f3ides ou tabletes de ester\'#39'f3ides regula' +
+                    'rmente por mais de tr\'#39'eas meses?\par'#13#10'}'#13#10
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
+                  Transparent = True
                   WordWrap = True
-                  ExplicitWidth = 488
+                  OnResize = DoRTFLabelResize
                 end
                 object DBRGPC1C: TDBRadioGroup
                   Left = 632
@@ -3695,7 +3742,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             object PANLPC2Sub: TPanel
               AlignWithMargins = True
               Left = 2
-              Top = 215
+              Top = 239
               Width = 733
               Height = 70
               Margins.Left = 0
@@ -3705,6 +3752,8 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               AutoSize = True
               BevelOuter = bvNone
               TabOrder = 11
+              Visible = False
+              ExplicitTop = 215
               object PANLPC2A: TPanel
                 Left = 0
                 Top = 0
@@ -3716,11 +3765,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 0
-                OnResize = DoPanelQuestaoResize
                 DesignSize = (
                   733
                   35)
-                object LABLPC2A: TLabel
+                object LABLPC2A: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
@@ -3730,13 +3778,16 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Margins.Right = 104
                   Align = alTop
                   Caption = 
-                    'Seu diagn'#243'stico de c'#226'ncer inclui um dos seguintes tipos: pulm'#245'es' +
-                    '/broncog'#234'nico, mieloma m'#250'ltiplo (c'#226'ncer das c'#233'lulas plasm'#225'ticas)' +
-                    ', cabe'#231'a e/ou pesco'#231'o?'
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\b\f0\fs16 Seu diagn\'#39'f3stico de c' +
+                    '\'#39'e2ncer inclui um dos seguintes tipos: pulm\'#39'f5es/broncog\'#39'eani' +
+                    'co, mieloma m\'#39'faltiplo (c\'#39'e2ncer das c\'#39'e9lulas plasm\'#39'e1ticas' +
+                    '), cabe\'#39'e7a e/ou pesco\'#39'e7o?\par'#13#10'}'#13#10
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
+                  Transparent = True
                   WordWrap = True
-                  ExplicitWidth = 558
+                  OnResize = DoRTFLabelResize
                 end
                 object DBRGPC2A: TDBRadioGroup
                   Left = 632
@@ -3794,11 +3845,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 1
-                OnResize = DoPanelQuestaoResize
                 DesignSize = (
                   733
                   35)
-                object LABLPC2B: TLabel
+                object LABLPC2B: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
@@ -3808,12 +3858,15 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Margins.Right = 104
                   Align = alTop
                   Caption = 
-                    'Voc'#234' est'#225' atualmente fazendo terapia contra c'#226'ncer (como quimiot' +
-                    'erapia ou radioterapia)?'
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\b\f0\fs16 Voc\'#39'ea est\'#39'e1 atualme' +
+                    'nte fazendo terapia contra c\'#39'e2ncer (como quimioterapia ou radi' +
+                    'oterapia)?\par'#13#10'}'#13#10
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
+                  Transparent = True
                   WordWrap = True
-                  ExplicitWidth = 436
+                  OnResize = DoRTFLabelResize
                 end
                 object DBRGPC2B: TDBRadioGroup
                   Left = 632
@@ -3864,7 +3917,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             object PANLPC3Sub: TPanel
               AlignWithMargins = True
               Left = 2
-              Top = 335
+              Top = 359
               Width = 733
               Height = 187
               Margins.Left = 0
@@ -3874,6 +3927,8 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               AutoSize = True
               BevelOuter = bvNone
               TabOrder = 12
+              Visible = False
+              ExplicitTop = 335
               object PANLPC3A: TPanel
                 Left = 0
                 Top = 0
@@ -3885,11 +3940,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 0
-                OnResize = DoPanelQuestaoResize
                 DesignSize = (
                   733
                   47)
-                object LABLPC3A: TLabel
+                object LABLPC3A: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
@@ -3899,13 +3953,17 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Margins.Right = 104
                   Align = alTop
                   Caption = 
-                    'Voc'#234' tem dificuldade de controlar a condi'#231#227'o (ou alguma das cond' +
-                    'i'#231#245'es) citada(s) com medicamentos ou outras terapias prescritas ' +
-                    'por um profissional?'#13#10'Responda N'#195'O se voc'#234' n'#227'o est'#225' tomando medi' +
-                    'camentos ou recebendo outros tratamentos'
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\f0\fs16 \b Voc\'#39'ea tem dificuldad' +
+                    'e de controlar a condi\'#39'e7\'#39'e3o (ou alguma das condi\'#39'e7\'#39'f5es) ' +
+                    'citada(s) com medicamentos ou outras terapias prescritas por um ' +
+                    'profissional?\b0 \par'#13#10'\i Responda \b N\'#39'c3O\b0  se voc\'#39'ea n\'#39'e' +
+                    '3o est\'#39'e1 tomando medicamentos ou recebendo outros tratamentos\' +
+                    'i0\par'#13#10'}'#13#10
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
                   WordWrap = True
+                  OnResize = DoRTFLabelResize
                 end
                 object DBRGPC3A: TDBRadioGroup
                   Left = 632
@@ -3963,11 +4021,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 1
-                OnResize = DoPanelQuestaoResize
                 DesignSize = (
                   733
                   35)
-                object LABLPC3B: TLabel
+                object LABLPC3B: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
@@ -3977,13 +4034,16 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Margins.Right = 104
                   Align = alTop
                   Caption = 
-                    'Voc'#234' tem batimento card'#237'aco irregular (ex.: fibrila'#231#227'o atrial, c' +
-                    'ontra'#231#227'o ventricular prematura) que precisa de acompanhamento m'#233 +
-                    'dico?'
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\b\f0\fs16 Voc\'#39'ea tem batimento c' +
+                    'ard\'#39'edaco irregular (ex.: fibrila\'#39'e7\'#39'e3o atrial, contra\'#39'e7\'#39 +
+                    'e3o ventricular prematura) que precisa de acompanhamento m\'#39'e9di' +
+                    'co?\par'#13#10'}'#13#10
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
+                  Transparent = True
                   WordWrap = True
-                  ExplicitWidth = 523
+                  OnResize = DoRTFLabelResize
                 end
                 object DBRGPC3B: TDBRadioGroup
                   Left = 632
@@ -4041,11 +4101,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 2
-                OnResize = DoPanelQuestaoResize
                 DesignSize = (
                   733
                   35)
-                object LABLPC3C: TLabel
+                object LABLPC3C: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
@@ -4054,11 +4113,15 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Margins.Left = 52
                   Margins.Right = 104
                   Align = alTop
-                  Caption = 'Voc'#234' tem insufici'#234'ncia card'#237'aca cr'#244'nica?'
+                  Caption = 
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\b\f0\fs16 Voc\'#39'ea tem insufici\'#39'e' +
+                    'ancia card\'#39'edaca cr\'#39'f4nica?\par'#13#10'}'#13#10
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
+                  Transparent = True
                   WordWrap = True
-                  ExplicitWidth = 189
+                  OnResize = DoRTFLabelResize
                 end
                 object DBRGPC3C: TDBRadioGroup
                   Left = 632
@@ -4116,11 +4179,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 3
-                OnResize = DoPanelQuestaoResize
                 DesignSize = (
                   733
                   35)
-                object LABLPC3D: TLabel
+                object LABLPC3D: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
@@ -4130,12 +4192,15 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Margins.Right = 104
                   Align = alTop
                   Caption = 
-                    'Voc'#234' tem press'#227'o arterial em repouso igual ou maior que 160/90 m' +
-                    'mHg com ou sem medica'#231#227'o?'#13#10'Responda SIM se voc'#234' n'#227'o sabe sua pre' +
-                    'ss'#227'o arterial durante repouso'
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\f0\fs16 \b Voc\'#39'ea tem press\'#39'e3o' +
+                    ' arterial em repouso igual ou maior que 160/90 mmHg com ou sem m' +
+                    'edica\'#39'e7\'#39'e3o?\b0 \par'#13#10'\i Responda \b SIM\b0  se voc\'#39'ea n\'#39'e3' +
+                    'o sabe sua press\'#39'e3o arterial durante repouso\i0\par'#13#10'}'#13#10
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
                   WordWrap = True
+                  OnResize = DoRTFLabelResize
                   ExplicitWidth = 457
                 end
                 object DBRGPC3D: TDBRadioGroup
@@ -4194,11 +4259,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 4
-                OnResize = DoPanelQuestaoResize
                 DesignSize = (
                   733
                   35)
-                object LABLPC3E: TLabel
+                object LABLPC3E: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
@@ -4208,13 +4272,16 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Margins.Right = 104
                   Align = alTop
                   Caption = 
-                    'Voc'#234' tem doen'#231'a arterial coron'#225'ria (cardiovascular) diagnosticad' +
-                    'a e n'#227'o participou de atividade f'#237'sica regular nos '#250'ltimos 2 mes' +
-                    'es?'
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\b\f0\fs16 Voc\'#39'ea tem doen\'#39'e7a a' +
+                    'rterial coron\'#39'e1ria (cardiovascular) diagnosticada e n\'#39'e3o par' +
+                    'ticipou de atividade f\'#39'edsica regular nos \'#39'faltimos 2 meses?\p' +
+                    'ar'#13#10'}'#13#10
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
+                  Transparent = True
                   WordWrap = True
-                  ExplicitWidth = 545
+                  OnResize = DoRTFLabelResize
                 end
                 object DBRGPC3E: TDBRadioGroup
                   Left = 632
@@ -4265,7 +4332,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             object PANLPC4Sub: TPanel
               AlignWithMargins = True
               Left = 2
-              Top = 560
+              Top = 584
               Width = 733
               Height = 105
               Margins.Left = 0
@@ -4275,6 +4342,8 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               AutoSize = True
               BevelOuter = bvNone
               TabOrder = 13
+              Visible = False
+              ExplicitTop = 560
               object PANLPC4A: TPanel
                 Left = 0
                 Top = 0
@@ -4286,11 +4355,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 0
-                OnResize = DoPanelQuestaoResize
                 DesignSize = (
                   733
                   35)
-                object LABLPC4A: TLabel
+                object LABLPC4A: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
@@ -4300,11 +4368,15 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Margins.Right = 104
                   Align = alTop
                   Caption = 
-                    'O n'#237'vel de a'#231#250'car no seu sangue est'#225' frequentemente acima de 234' +
-                    ' mg/dl (13.0 mmol/l)?'#13#10'Responda SIM se voc'#234' n'#227'o tem certeza'
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\f0\fs16 \b O n\'#39'edvel de a\'#39'e7\'#39'f' +
+                    'acar no seu sangue est\'#39'e1 frequentemente acima de 234 mg/dl (13' +
+                    '.0 mmol/l)?\b0 \par'#13#10'\i Responda \b SIM\b0  se voc\'#39'ea n\'#39'e3o te' +
+                    'm certeza\i0\par'#13#10'}'#13#10
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
                   WordWrap = True
+                  OnResize = DoRTFLabelResize
                   ExplicitWidth = 427
                 end
                 object DBRGPC4A: TDBRadioGroup
@@ -4363,11 +4435,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 1
-                OnResize = DoPanelQuestaoResize
                 DesignSize = (
                   733
                   35)
-                object LABLPC4B: TLabel
+                object LABLPC4B: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
@@ -4377,13 +4448,17 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Margins.Right = 104
                   Align = alTop
                   Caption = 
-                    'Voc'#234' tem algum sinal ou sintoma de complica'#231#245'es do diabetes, com' +
-                    'o doen'#231'a card'#237'aca ou vascular e/ou complica'#231#245'es que afetem seus ' +
-                    'olhos, rins e a sensibilidade nos seus p'#233's e dedos dos p'#233's?'
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\b\f0\fs16 Voc\'#39'ea tem algum sinal' +
+                    ' ou sintoma de complica\'#39'e7\'#39'f5es do diabetes, como doen\'#39'e7a ca' +
+                    'rd\'#39'edaca ou vascular e/ou complica\'#39'e7\'#39'f5es que afetem seus ol' +
+                    'hos, rins e a sensibilidade nos seus p\'#39'e9s e dedos dos p\'#39'e9s?\' +
+                    'par'#13#10'}'#13#10
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
+                  Transparent = True
                   WordWrap = True
-                  ExplicitWidth = 427
+                  OnResize = DoRTFLabelResize
                 end
                 object DBRGPC4B: TDBRadioGroup
                   Left = 632
@@ -4441,11 +4516,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 2
-                OnResize = DoPanelQuestaoResize
                 DesignSize = (
                   733
                   35)
-                object LABLPC4C: TLabel
+                object LABLPC4C: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
@@ -4455,13 +4529,16 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Margins.Right = 104
                   Align = alTop
                   Caption = 
-                    'Voc'#234' tem outra condi'#231#227'o metab'#243'lica, tais como doen'#231'as na tire'#243'id' +
-                    'e, diabetes relacionada '#224' gravidez, doen'#231'a cr'#244'nica do rim, probl' +
-                    'emas de f'#237'gado?'
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\b\f0\fs16 Voc\'#39'ea tem outra condi' +
+                    '\'#39'e7\'#39'e3o metab\'#39'f3lica, tais como doen\'#39'e7as na tire\'#39'f3ide, di' +
+                    'abetes relacionada \'#39'e0 gravidez, doen\'#39'e7a cr\'#39'f4nica do rim, p' +
+                    'roblemas de f\'#39'edgado?\par'#13#10'}'#13#10
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
+                  Transparent = True
                   WordWrap = True
-                  ExplicitWidth = 574
+                  OnResize = DoRTFLabelResize
                 end
                 object DBRGPC4C: TDBRadioGroup
                   Left = 632
@@ -4512,9 +4589,9 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             object PANLPC5Sub: TPanel
               AlignWithMargins = True
               Left = 2
-              Top = 715
+              Top = 739
               Width = 733
-              Height = 70
+              Height = 82
               Margins.Left = 0
               Margins.Top = 0
               Margins.Right = 0
@@ -4522,45 +4599,47 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               AutoSize = True
               BevelOuter = bvNone
               TabOrder = 14
+              Visible = False
               object PANLPC5A: TPanel
                 Left = 0
                 Top = 0
                 Width = 733
-                Height = 35
+                Height = 47
                 Align = alTop
                 AutoSize = True
                 Color = clWhite
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 0
-                OnResize = DoPanelQuestaoResize
                 DesignSize = (
                   733
-                  35)
-                object LABLPC5A: TLabel
+                  47)
+                object LABLPC5A: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
                   Width = 575
-                  Height = 26
+                  Height = 39
                   Margins.Left = 52
                   Margins.Right = 104
                   Align = alTop
                   Caption = 
-                    'Voc'#234' tem dificuldade de controlar sua condi'#231#227'o com medicamentos ' +
-                    'ou outras terapias prescritas por um profissional?'#13#10'Responda N'#195'O' +
-                    ' se voc'#234' n'#227'o est'#225' atualmente tomando medicamentos ou recebendo o' +
-                    'utros tratamentos'
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\f0\fs16 \b Voc\'#39'ea tem dificuldad' +
+                    'e de controlar sua condi\'#39'e7\'#39'e3o com medicamentos ou outras ter' +
+                    'apias prescritas por um profissional?\b0 \par'#13#10'\i Responda \b N\' +
+                    #39'c3O\b0  se voc\'#39'ea n\'#39'e3o est\'#39'e1 atualmente tomando medicament' +
+                    'os ou recebendo outros tratamentos\i0\par'#13#10'}'#13#10
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
                   WordWrap = True
-                  ExplicitWidth = 556
+                  OnResize = DoRTFLabelResize
                 end
                 object DBRGPC5A: TDBRadioGroup
                   Left = 632
                   Top = 1
                   Width = 100
-                  Height = 33
+                  Height = 45
                   Anchors = [akTop, akRight]
                   Color = clInfoBk
                   Columns = 2
@@ -4587,7 +4666,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Left = 0
                   Top = 1
                   Width = 50
-                  Height = 33
+                  Height = 45
                   Caption = '5A'
                   Color = clBlack
                   Constraints.MinHeight = 33
@@ -4603,7 +4682,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               end
               object PANLPC5B: TPanel
                 Left = 0
-                Top = 35
+                Top = 47
                 Width = 733
                 Height = 35
                 Align = alTop
@@ -4612,11 +4691,11 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 1
-                OnResize = DoPanelQuestaoResize
+                ExplicitTop = 35
                 DesignSize = (
                   733
                   35)
-                object LABLPC5B: TLabel
+                object LABLPC5B: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
@@ -4625,11 +4704,15 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Margins.Left = 52
                   Margins.Right = 104
                   Align = alTop
-                  Caption = 'Voc'#234' tem problemas nas costas que afetem nervos ou m'#250'sculos?'
+                  Caption = 
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\b\f0\fs16 Voc\'#39'ea tem problemas n' +
+                    'as costas que afetem nervos ou m\'#39'fasculos?\par'#13#10'}'#13#10
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
+                  Transparent = True
                   WordWrap = True
-                  ExplicitWidth = 310
+                  OnResize = DoRTFLabelResize
                 end
                 object DBRGPC5B: TDBRadioGroup
                   Left = 632
@@ -4680,9 +4763,9 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             object PANLPC6Sub: TPanel
               AlignWithMargins = True
               Left = 2
-              Top = 823
+              Top = 859
               Width = 733
-              Height = 140
+              Height = 164
               Margins.Left = 0
               Margins.Top = 0
               Margins.Right = 0
@@ -4690,45 +4773,47 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               AutoSize = True
               BevelOuter = bvNone
               TabOrder = 15
+              Visible = False
               object PANLPC6A: TPanel
                 Left = 0
                 Top = 0
                 Width = 733
-                Height = 35
+                Height = 47
                 Align = alTop
                 AutoSize = True
                 Color = 15724527
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 0
-                OnResize = DoPanelQuestaoResize
                 DesignSize = (
                   733
-                  35)
-                object LABLPC6A: TLabel
+                  47)
+                object LABLPC6A: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
                   Width = 575
-                  Height = 26
+                  Height = 39
                   Margins.Left = 52
                   Margins.Right = 104
                   Align = alTop
                   Caption = 
-                    'Voc'#234' tem dificuldade de controlar sua condi'#231#227'o com medicamentos ' +
-                    'ou outras terapias prescritas por um profissional?'#13#10'Responda N'#195'O' +
-                    ' se voc'#234' n'#227'o est'#225' atualmente tomando medicamentos ou recebendo o' +
-                    'utros tratamentos'
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\f0\fs16 \b Voc\'#39'ea tem dificuldad' +
+                    'e de controlar sua condi\'#39'e7\'#39'e3o com medicamentos ou outras ter' +
+                    'apias prescritas por um profissional?\b0 \par'#13#10'\i Responda \b N\' +
+                    #39'c3O\b0  se voc\'#39'ea n\'#39'e3o est\'#39'e1 atualmente tomando medicament' +
+                    'os ou recebendo outros tratamentos\i0\par'#13#10'}'#13#10
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
                   WordWrap = True
-                  ExplicitWidth = 556
+                  OnResize = DoRTFLabelResize
                 end
                 object DBRGPC6A: TDBRadioGroup
                   Left = 632
                   Top = 1
                   Width = 100
-                  Height = 33
+                  Height = 45
                   Anchors = [akTop, akRight]
                   Color = clInfoBk
                   Columns = 2
@@ -4755,7 +4840,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Left = 0
                   Top = 1
                   Width = 50
-                  Height = 33
+                  Height = 45
                   Caption = '6A'
                   Color = clBlack
                   Constraints.MinHeight = 33
@@ -4771,7 +4856,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               end
               object PANLPC6B: TPanel
                 Left = 0
-                Top = 35
+                Top = 47
                 Width = 733
                 Height = 35
                 Align = alTop
@@ -4780,11 +4865,11 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 1
-                OnResize = DoPanelQuestaoResize
+                ExplicitTop = 35
                 DesignSize = (
                   733
                   35)
-                object LABLPC6B: TLabel
+                object LABLPC6B: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
@@ -4794,13 +4879,16 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Margins.Right = 104
                   Align = alTop
                   Caption = 
-                    'Seu m'#233'dico j'#225' mencionou que seu n'#237'vel de oxig'#234'nio no sangue '#233' ba' +
-                    'ixo durante repouso ou exerc'#237'cio e/ou que voc'#234' precisa de terapi' +
-                    'a de oxig'#234'nio suplementar?'
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\b\f0\fs16 Seu m\'#39'e9dico j\'#39'e1 men' +
+                    'cionou que seu n\'#39'edvel de oxig\'#39'eanio no sangue \'#39'e9 baixo dura' +
+                    'nte repouso ou exerc\'#39'edcio e/ou que voc\'#39'ea precisa de terapia ' +
+                    'de oxig\'#39'eanio suplementar?\par'#13#10'}'#13#10
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
+                  Transparent = True
                   WordWrap = True
-                  ExplicitWidth = 553
+                  OnResize = DoRTFLabelResize
                 end
                 object DBRGPC6B: TDBRadioGroup
                   Left = 632
@@ -4849,43 +4937,45 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               end
               object PANLPC6C: TPanel
                 Left = 0
-                Top = 70
+                Top = 82
                 Width = 733
-                Height = 35
+                Height = 47
                 Align = alTop
                 AutoSize = True
                 Color = 15724527
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 2
-                OnResize = DoPanelQuestaoResize
                 DesignSize = (
                   733
-                  35)
-                object LABLPC6C: TLabel
+                  47)
+                object LABLPC6C: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
                   Width = 575
-                  Height = 26
+                  Height = 39
                   Margins.Left = 52
                   Margins.Right = 104
                   Align = alTop
                   Caption = 
-                    'Se asm'#225'tico, voc'#234' tem sintomas de aperto no peito, respira'#231#227'o of' +
-                    'egante, dificuldade de respirar, tosse persistente (mais de 2 di' +
-                    'as por semana) ou voc'#234' j'#225' usou medicamentos de emerg'#234'ncia mais q' +
-                    'ue duas vezes na '#250'ltima semana?'
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\b\f0\fs16 Se asm\'#39'e1tico, voc\'#39'ea' +
+                    ' tem sintomas de aperto no peito, respira\'#39'e7\'#39'e3o ofegante, dif' +
+                    'iculdade de respirar, tosse persistente (mais de 2 dias por sema' +
+                    'na) ou voc\'#39'ea j\'#39'e1 usou medicamentos de emerg\'#39'eancia mais que' +
+                    ' duas vezes na \'#39'faltima semana?\par'#13#10'}'#13#10
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
+                  Transparent = True
                   WordWrap = True
-                  ExplicitWidth = 555
+                  OnResize = DoRTFLabelResize
                 end
                 object DBRGPC6C: TDBRadioGroup
                   Left = 632
                   Top = 1
                   Width = 100
-                  Height = 33
+                  Height = 45
                   Anchors = [akTop, akRight]
                   Color = clInfoBk
                   Columns = 2
@@ -4912,7 +5002,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Left = 0
                   Top = 1
                   Width = 50
-                  Height = 33
+                  Height = 45
                   Caption = '6C'
                   Color = clBlack
                   Constraints.MinHeight = 33
@@ -4928,7 +5018,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               end
               object PANLPC6D: TPanel
                 Left = 0
-                Top = 105
+                Top = 129
                 Width = 733
                 Height = 35
                 Align = alTop
@@ -4937,11 +5027,11 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 3
-                OnResize = DoPanelQuestaoResize
+                ExplicitTop = 105
                 DesignSize = (
                   733
                   35)
-                object LABLPC6D: TLabel
+                object LABLPC6D: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
@@ -4951,12 +5041,15 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Margins.Right = 104
                   Align = alTop
                   Caption = 
-                    'Seu m'#233'dico j'#225' lhe disse que voc'#234' tem hipertens'#227'o nos vasos sangu' +
-                    #237'neos dos pulm'#245'es?'
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\b\f0\fs16 Seu m\'#39'e9dico j\'#39'e1 lhe' +
+                    ' disse que voc\'#39'ea tem hipertens\'#39'e3o nos vasos sangu\'#39'edneos do' +
+                    's pulm\'#39'f5es?\par'#13#10'}'#13#10
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
+                  Transparent = True
                   WordWrap = True
-                  ExplicitWidth = 413
+                  OnResize = DoRTFLabelResize
                 end
                 object DBRGPC6D: TDBRadioGroup
                   Left = 632
@@ -5007,9 +5100,9 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             object PANLPC7Sub: TPanel
               AlignWithMargins = True
               Left = 2
-              Top = 1001
+              Top = 1061
               Width = 733
-              Height = 105
+              Height = 117
               Margins.Left = 0
               Margins.Top = 0
               Margins.Right = 0
@@ -5017,45 +5110,47 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               AutoSize = True
               BevelOuter = bvNone
               TabOrder = 16
+              Visible = False
               object PANLPC7A: TPanel
                 Left = 0
                 Top = 0
                 Width = 733
-                Height = 35
+                Height = 47
                 Align = alTop
                 AutoSize = True
                 Color = clWhite
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 0
-                OnResize = DoPanelQuestaoResize
                 DesignSize = (
                   733
-                  35)
-                object LABLPC7A: TLabel
+                  47)
+                object LABLPC7A: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
                   Width = 575
-                  Height = 26
+                  Height = 39
                   Margins.Left = 52
                   Margins.Right = 104
                   Align = alTop
                   Caption = 
-                    'Voc'#234' tem dificuldade de controlar essa condi'#231#227'o com medicamentos' +
-                    ' ou outras terapias prescritas por um profissional?'#13#10'Responda N'#195 +
-                    'O se voc'#234' n'#227'o est'#225' atualmente tomando medicamentos ou recebendo ' +
-                    'outros tratamentos'
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\f0\fs16 \b Voc\'#39'ea tem dificuldad' +
+                    'e de controlar essa condi\'#39'e7\'#39'e3o com medicamentos ou outras te' +
+                    'rapias prescritas por um profissional?\b0 \par'#13#10'\i Responda \b N' +
+                    '\'#39'c3O\b0  se voc\'#39'ea n\'#39'e3o est\'#39'e1 atualmente tomando medicamen' +
+                    'tos ou recebendo outros tratamentos\i0\par'#13#10'}'#13#10
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
                   WordWrap = True
-                  ExplicitWidth = 561
+                  OnResize = DoRTFLabelResize
                 end
                 object DBRGPC7A: TDBRadioGroup
                   Left = 632
                   Top = 1
                   Width = 100
-                  Height = 33
+                  Height = 45
                   Anchors = [akTop, akRight]
                   Color = clInfoBk
                   Columns = 2
@@ -5082,7 +5177,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Left = 0
                   Top = 1
                   Width = 50
-                  Height = 33
+                  Height = 45
                   Caption = '7A'
                   Color = clBlack
                   Constraints.MinHeight = 33
@@ -5098,7 +5193,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               end
               object PANLPC7B: TPanel
                 Left = 0
-                Top = 35
+                Top = 47
                 Width = 733
                 Height = 35
                 Align = alTop
@@ -5107,11 +5202,11 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 1
-                OnResize = DoPanelQuestaoResize
+                ExplicitTop = 35
                 DesignSize = (
                   733
                   35)
-                object LABLPC7B: TLabel
+                object LABLPC7B: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
@@ -5121,13 +5216,16 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Margins.Right = 104
                   Align = alTop
                   Caption = 
-                    'Voc'#234' comumente tem press'#227'o sangu'#237'nea baixa durante repouso, o su' +
-                    'ficiente para causar tontura, sensa'#231#227'o de leveza na cabe'#231'a e/ou ' +
-                    'desmaio?'
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\b\f0\fs16 Voc\'#39'ea comumente tem p' +
+                    'ress\'#39'e3o sangu\'#39'ednea baixa durante repouso, o suficiente para ' +
+                    'causar tontura, sensa\'#39'e7\'#39'e3o de leveza na cabe\'#39'e7a e/ou desma' +
+                    'io?\par'#13#10'}'#13#10
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
+                  Transparent = True
                   WordWrap = True
-                  ExplicitWidth = 572
+                  OnResize = DoRTFLabelResize
                 end
                 object DBRGPC7B: TDBRadioGroup
                   Left = 632
@@ -5176,7 +5274,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               end
               object PANLPC7C: TPanel
                 Left = 0
-                Top = 70
+                Top = 82
                 Width = 733
                 Height = 35
                 Align = alTop
@@ -5185,11 +5283,11 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 2
-                OnResize = DoPanelQuestaoResize
+                ExplicitTop = 70
                 DesignSize = (
                   733
                   35)
-                object LABLPC7C: TLabel
+                object LABLPC7C: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
@@ -5199,12 +5297,15 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Margins.Right = 104
                   Align = alTop
                   Caption = 
-                    'Seu m'#233'dico j'#225' lhe disse que voc'#234' tem eleva'#231#245'es s'#250'bitas de press'#227 +
-                    'o sangu'#237'nea (disreflexia auton'#244'mica)?'
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\b\f0\fs16 Seu m\'#39'e9dico j\'#39'e1 lhe' +
+                    ' disse que voc\'#39'ea tem eleva\'#39'e7\'#39'f5es s\'#39'fabitas de press\'#39'e3o ' +
+                    'sangu\'#39'ednea (disreflexia auton\'#39'f4mica)?\par'#13#10'}'#13#10
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
+                  Transparent = True
                   WordWrap = True
-                  ExplicitWidth = 497
+                  OnResize = DoRTFLabelResize
                 end
                 object DBRGPC7C: TDBRadioGroup
                   Left = 632
@@ -5255,7 +5356,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             object PANLPC8Sub: TPanel
               AlignWithMargins = True
               Left = 2
-              Top = 1144
+              Top = 1216
               Width = 733
               Height = 117
               Margins.Left = 0
@@ -5265,6 +5366,8 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               AutoSize = True
               BevelOuter = bvNone
               TabOrder = 17
+              Visible = False
+              ExplicitTop = 1144
               object PANLPC8A: TPanel
                 Left = 0
                 Top = 0
@@ -5276,11 +5379,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 0
-                OnResize = DoPanelQuestaoResize
                 DesignSize = (
                   733
                   47)
-                object LABLPC8A: TLabel
+                object LABLPC8A: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
@@ -5290,13 +5392,17 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Margins.Right = 104
                   Align = alTop
                   Caption = 
-                    'Voc'#234' tem dificuldade de controlar sua condi'#231#227'o de sa'#250'de ou doen'#231 +
-                    'a com medicamentos ou outras terapias prescritas por um profissi' +
-                    'onal?'#13#10'Responda N'#195'O se voc'#234' n'#227'o est'#225' atualmente tomando medicame' +
-                    'ntos ou recebendo outros tratamentos'
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\f0\fs16 \b Voc\'#39'ea tem dificuldad' +
+                    'e de controlar sua condi\'#39'e7\'#39'e3o de sa\'#39'fade ou doen\'#39'e7a com m' +
+                    'edicamentos ou outras terapias prescritas por um profissional?\b' +
+                    '0 \par'#13#10'\i Responda \b N\'#39'c3O\b0  se voc\'#39'ea n\'#39'e3o est\'#39'e1 atua' +
+                    'lmente tomando medicamentos ou recebendo outros tratamentos\i0\p' +
+                    'ar'#13#10'}'#13#10
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
                   WordWrap = True
+                  OnResize = DoRTFLabelResize
                   ExplicitWidth = 561
                 end
                 object DBRGPC8A: TDBRadioGroup
@@ -5355,11 +5461,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 1
-                OnResize = DoPanelQuestaoResize
                 DesignSize = (
                   733
                   35)
-                object LABLPC8B: TLabel
+                object LABLPC8B: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
@@ -5368,11 +5473,15 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Margins.Left = 52
                   Margins.Right = 104
                   Align = alTop
-                  Caption = 'Voc'#234' tem alguma dificuldade para caminhar ou de mobilidade?'
+                  Caption = 
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\b\f0\fs16 Voc\'#39'ea tem alguma difi' +
+                    'culdade para caminhar ou de mobilidade?\par'#13#10'}'#13#10
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
+                  Transparent = True
                   WordWrap = True
-                  ExplicitWidth = 294
+                  OnResize = DoRTFLabelResize
                 end
                 object DBRGPC8B: TDBRadioGroup
                   Left = 632
@@ -5430,11 +5539,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 2
-                OnResize = DoPanelQuestaoResize
                 DesignSize = (
                   733
                   35)
-                object LABLPC8C: TLabel
+                object LABLPC8C: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
@@ -5444,12 +5552,15 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Margins.Right = 104
                   Align = alTop
                   Caption = 
-                    'Voc'#234' teve um derrame, ou comprometimento nos nervos ou m'#250'sculos ' +
-                    'nos '#250'ltimos 6 meses?'
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\b\f0\fs16 Voc\'#39'ea teve um derrame' +
+                    ', ou comprometimento nos nervos ou m\'#39'fasculos nos \'#39'faltimos 6 ' +
+                    'meses?\par'#13#10'}'#13#10
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
+                  Transparent = True
                   WordWrap = True
-                  ExplicitWidth = 435
+                  OnResize = DoRTFLabelResize
                 end
                 object DBRGPC8C: TDBRadioGroup
                   Left = 632
@@ -5499,13 +5610,15 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             end
             object PANLPC9Sub: TPanel
               Left = 2
-              Top = 1324
+              Top = 1396
               Width = 733
               Height = 105
               Align = alTop
               AutoSize = True
               BevelOuter = bvNone
               TabOrder = 18
+              Visible = False
+              ExplicitTop = 1324
               object PANLPC9A: TPanel
                 Left = 0
                 Top = 0
@@ -5517,11 +5630,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 0
-                OnResize = DoPanelQuestaoResize
                 DesignSize = (
                   733
                   35)
-                object LABLPC9A: TLabel
+                object LABLPC9A: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
@@ -5531,13 +5643,16 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Margins.Right = 104
                   Align = alTop
                   Caption = 
-                    'Voc'#234' teve uma s'#237'ncope, desmaio ou perda de consci'#234'ncia resultant' +
-                    'e de uma les'#227'o na cabe'#231'a nos '#250'ltimos 12 meses OU voc'#234' foi diagno' +
-                    'sticado com concuss'#227'o nos '#250'ltimos 12 meses?'
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\b\f0\fs16 Voc\'#39'ea teve uma s\'#39'edn' +
+                    'cope, desmaio ou perda de consci\'#39'eancia resultante de uma les\'#39 +
+                    'e3o na cabe\'#39'e7a nos \'#39'faltimos 12 meses OU voc\'#39'ea foi diagnost' +
+                    'icado com concuss\'#39'e3o nos \'#39'faltimos 12 meses?\par'#13#10'}'#13#10
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
+                  Transparent = True
                   WordWrap = True
-                  ExplicitWidth = 569
+                  OnResize = DoRTFLabelResize
                 end
                 object DBRGPC9A: TDBRadioGroup
                   Left = 632
@@ -5595,11 +5710,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 1
-                OnResize = DoPanelQuestaoResize
                 DesignSize = (
                   733
                   35)
-                object LABLPC9B: TLabel
+                object LABLPC9B: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
@@ -5609,13 +5723,16 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Margins.Right = 104
                   Align = alTop
                   Caption = 
-                    'Voc'#234' tem alguma outra condi'#231#227'o de sa'#250'de ou doen'#231'a que n'#227'o foi me' +
-                    'ncionada nas quest'#245'es anteriores, tais como epilepsia, condi'#231#245'es' +
-                    ' neurol'#243'gicas, problemas de rim?'
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\b\f0\fs16 Voc\'#39'ea tem alguma outr' +
+                    'a condi\'#39'e7\'#39'e3o de sa\'#39'fade ou doen\'#39'e7a que n\'#39'e3o foi mencion' +
+                    'ada nas quest\'#39'f5es anteriores, tais como epilepsia, condi\'#39'e7\'#39 +
+                    'f5es neurol\'#39'f3gicas, problemas de rim?\par'#13#10'}'#13#10
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
+                  Transparent = True
                   WordWrap = True
-                  ExplicitWidth = 546
+                  OnResize = DoRTFLabelResize
                 end
                 object DBRGPC9B: TDBRadioGroup
                   Left = 632
@@ -5673,11 +5790,10 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 2
-                OnResize = DoPanelQuestaoResize
                 DesignSize = (
                   733
                   35)
-                object LABLPC9C: TLabel
+                object LABLPC9C: TRtfLabel
                   AlignWithMargins = True
                   Left = 53
                   Top = 4
@@ -5687,12 +5803,15 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                   Margins.Right = 104
                   Align = alTop
                   Caption = 
-                    '9c: Voc'#234' atualmente vive com duas ou mais condi'#231#227'o de sa'#250'de ou d' +
-                    'oen'#231'a?'
+                    '{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil\fcha' +
+                    'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
+                    '\uc1\pard\sl240\slmult1\lang22\b\f0\fs16 Voc\'#39'ea atualmente vive' +
+                    ' com duas ou mais condi\'#39'e7\'#39'e3o de sa\'#39'fade ou doen\'#39'e7a?\par'#13#10 +
+                    '}'#13#10
                   Constraints.MinHeight = 26
-                  Layout = tlCenter
+                  Transparent = True
                   WordWrap = True
-                  ExplicitWidth = 358
+                  OnResize = DoRTFLabelResize
                 end
                 object DBRGPC9C: TDBRadioGroup
                   Left = 632
@@ -5748,10 +5867,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       AlignWithMargins = True
       Caption = 'Par'#226'metros fisiol'#243'gicos'
       ImageIndex = 4
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       DesignSize = (
         770
         403)
@@ -5773,8 +5888,8 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object LABLAvaliado3: TLabel
           Left = 1
           Top = 1
-          Width = 119
-          Height = 18
+          Width = 768
+          Height = 21
           Align = alClient
           Alignment = taCenter
           Caption = 'Avaliado: ?????'
@@ -5785,6 +5900,8 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Font.Style = [fsBold]
           ParentFont = False
           Layout = tlCenter
+          ExplicitWidth = 119
+          ExplicitHeight = 18
         end
       end
       object KRDGParametrosFisiologicos: TKRKDBGrid
@@ -5965,10 +6082,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       AlignWithMargins = True
       Caption = 'Rastreio de Sarcopenia'
       ImageIndex = 6
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object KRPAAvaliado5: TKRKPanel
         AlignWithMargins = True
         Left = 0
@@ -5987,8 +6100,8 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object LABLAvaliado5: TLabel
           Left = 1
           Top = 1
-          Width = 119
-          Height = 18
+          Width = 768
+          Height = 21
           Align = alClient
           Alignment = taCenter
           Caption = 'Avaliado: ?????'
@@ -5999,6 +6112,8 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Font.Style = [fsBold]
           ParentFont = False
           Layout = tlCenter
+          ExplicitWidth = 119
+          ExplicitHeight = 18
         end
       end
     end
@@ -6008,12 +6123,11 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
     ExplicitWidth = 784
     inherited LABLCaption: TLabel
       Height = 38
-      ExplicitHeight = 38
     end
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C010102000800B80120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800EC0120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -6550,7 +6664,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C010102000800C80120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800FC0120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
