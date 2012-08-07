@@ -18,10 +18,8 @@ begin
       if not CheckDefaults or (Self.TabVisible = True) then
         Self.TabVisible := Visible;
 
-//      porque não é possível habilitar os tabsheets?
-
-      if not CheckDefaults or not Assigned(Self.OnClick) then
-        Self.OnClick := OnExecute;
+      if not CheckDefaults or not Assigned(Self.OnShow) then
+        Self.OnShow := OnExecute;
 
       if not CheckDefaults or (Self.HelpContext = 0) then
         Self.HelpContext := HelpContext;

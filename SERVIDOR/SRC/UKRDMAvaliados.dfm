@@ -794,14 +794,12 @@ inherited KRDMAvaliados: TKRDMAvaliados
     object UNQYDadosSocioDemograficoscbo: TWideStringField
       FieldName = 'cbo'
       ProviderFlags = []
-      ReadOnly = True
       FixedChar = True
       Size = 6
     end
     object UNQYDadosSocioDemograficosprofissao: TWideStringField
       FieldName = 'profissao'
       ProviderFlags = []
-      ReadOnly = True
       Size = 128
     end
   end

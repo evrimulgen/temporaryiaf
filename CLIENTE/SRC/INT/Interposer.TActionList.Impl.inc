@@ -6,7 +6,7 @@ begin
   begin
     TAction(Actions[i]).Enabled := TAction(Actions[i]).Enabled;
 
-    if TAction(Actions[i]).ToggleVisibility then
+    if TAction(Actions[i]).PermissionTogglesVisibility then
       TAction(Actions[i]).Visible := TAction(Actions[i]).Visible;
   end;
 end;

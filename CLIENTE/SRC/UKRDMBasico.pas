@@ -5,18 +5,20 @@ unit UKRDMBasico;
 interface
 
 uses Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms
-   , KRK.Wizards.DataModule, ActnList, ImgList, DBClient, UReconcileErrorDialog
-   , DB, KRK.Components.DataControls.ValidationChecks
-   , KRK.Components.AdditionalControls.BalloonHint, ActnMenus
-   , ActnMan, KRK.Lib.Rtl.Common.Classes.Interposer
+   , ActnList, ImgList, DBClient, DB, ActnMenus, ActnMan
+   { Units que não pertencem ao Delphi }
+   , UReconcileErrorDialog, KRK.Wizards.DataModule
+   , KRK.Components.DataControls.ValidationChecks
+   , KRK.Components.AdditionalControls.BalloonHint
+   , KRK.Lib.Rtl.Common.Classes.Interposer
    , KRK.Components.AdditionalControls.PngImageList;
 
 type
-{$I INC\Interposer.TClientDataSet.Intf.inc}
+{$I INT\Interposer.TClientDataSet.Intf.inc}
 
-{$I INC\Interposer.TActionList.Intf.inc}
+{$I INT\Interposer.TActionList.Intf.inc}
 
-{$I INC\Interposer.TAction.Intf.inc}
+{$I INT\Interposer.TAction.Intf.inc}
 
   TKRDMBasico = class(TKRKDataModule)
     ACLI: TActionList;
@@ -46,15 +48,10 @@ implementation
 
 {$R *.dfm}
 
-uses UDAMOPrincipal, UExtraMethods, KRK.Lib.Rtl.Common.FileUtils
-   , KRK.Lib.Db.Utils, UConfiguracoes, KRK.Lib.Rtl.Common.VariantUtils
-   , Variants;
-
-{$I INC\Interposer.TClientDataSet.Impl.inc}
-
-{$I INC\Interposer.TActionList.Impl.inc}
-
-{$I INC\Interposer.TAction.Impl.inc}
+uses Variants, ComCtrls
+   { Units que não pertencem ao Delphi }
+   , UDAMOPrincipal, UExtraMethods, UConfiguracoes, KRK.Lib.Rtl.Common.FileUtils
+   , KRK.Lib.Db.Utils, KRK.Lib.Rtl.Common.VariantUtils;
 
 constructor TKRDMBasico.Create(aOwner: TComponent);
 { ---------------------------------------------------------------------------- }
@@ -181,39 +178,11 @@ begin
   "Permitida" e "Enabled" de ACLI de forma que fiquem desabilitadas apenas as
   ações não permitidas }
   ACLI.SyncActionsWithPermissions;
-
-
-
-//  { Primeiramente aplicamos a segurança em um possível menu principal da janela
-//  associada. Como para os menus principais é necessário um Action Manager,
-//  verificamos apenas a presença deste último }
-//  if Assigned(FActionManager) then
-//  begin
-//    { Oculta todas as ações disponíveis. Isso não oculta as categorias de ações,
-//    apenas as ações propriamente ditas }
-//    for i := 0 to Pred(FActionManager.ActionCount) do
-//      TAction(FActionManager.Actions[i]).Visible := False;
-//
-//    { Torna visíveis apenas as ações que forem permitidas }
-//    TDAMOPrincipal(Owner).CLDSPermissoes.First;
-//    while not TDAMOPrincipal(Owner).CLDSPermissoes.Eof do
-//    begin
-//      if (TDAMOPrincipal(Owner).CLDSPermissoes.Fields[1].AsInteger = 1) and (Pos(Self.Name + '.',TDAMOPrincipal(Owner).CLDSPermissoes.Fields[0].AsString) = 1) then
-//        for i := 0 to Pred(FActionManager.ActionCount) do
-//          if Copy(TDAMOPrincipal(Owner).CLDSPermissoes.Fields[0].AsString,Succ(Pos('.',TDAMOPrincipal(Owner).CLDSPermissoes.Fields[0].AsString)),Length(TDAMOPrincipal(Owner).CLDSPermissoes.Fields[0].AsString)) = FActionManager.Actions[i].Name then
-//          begin
-//            TAction(FActionManager.Actions[i]).Visible := TDAMOPrincipal(Owner).CLDSPermissoes.Fields[2].AsBoolean;
-//            Break;
-//          end;
-//
-//      TDAMOPrincipal(Owner).CLDSPermissoes.Next;
-//    end;
-//  end;
-  { Em seguida aplicamos as permissões ao componente ACLI (TActionList) }
 end;
 
 { A característica do compilador conhecida como curto-circuito booleano (boolean
-short-circuit) }
+short-circuit) não funciona com operandos do tipo Variant. Um cast se torna
+obrigatório! }
 
 function TKRDMBasico.CheckPermission(const aTableName, aAction: String): Boolean;
 var
@@ -261,5 +230,11 @@ begin
       Show;
   end;
 end;
+
+{$I INT\Interposer.TClientDataSet.Impl.inc}
+
+{$I INT\Interposer.TActionList.Impl.inc}
+
+{$I INT\Interposer.TAction.Impl.inc}
 
 end.

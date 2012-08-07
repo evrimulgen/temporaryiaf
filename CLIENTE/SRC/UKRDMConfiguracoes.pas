@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, UKRDMBasico, KRK.Components.AdditionalControls.BalloonHint, ImgList,
-  ActnList;
+  ActnList, KRK.Components.AdditionalControls.PngImageList;
 
 type
   TKRDMConfiguracoes = class(TKRDMBasico)

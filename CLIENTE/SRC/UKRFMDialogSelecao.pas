@@ -13,8 +13,7 @@ type
     CLDS: TClientDataSet;
     procedure KRKFormCancelButtonClick(Sender: TObject);
     procedure KRKFormOkButtonClick(Sender: TObject);
-    procedure KRDGSelecaoAfterMultiselect(aSender: TObject;
-      aMultiSelectEventTrigger: TMultiSelectEventTrigger);
+    procedure KRDGSelecaoAfterMultiselect(aSender: TObject; aMultiSelectEventTrigger: TMultiSelectEventTrigger);
     procedure KRKFormCreate(Sender: TObject);
   private
     { Private declarations }

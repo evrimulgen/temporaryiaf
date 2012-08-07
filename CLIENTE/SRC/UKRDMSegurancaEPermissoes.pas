@@ -192,8 +192,12 @@ begin
 
   if not TDAMOPrincipal(Owner).CurrentSession.Data.bo_superusuario then
     Application.MessageBox('Para usar esta funcionalidade você precisa ser um superusuário','Privilégio insuficiente!',MB_ICONWARNING)
+  else if ClientDataSets.UpdatesPending then
+    Application.MessageBox('Existem alterações não confirmadas. Por favor, confirme todas as alterações antes de executar esta ação','Atualizações não confirmadas!',MB_ICONWARNING)
   else if Application.MessageBox('Certifique-se de que todas as janelas das quais você deseja registrar as entidades estejam abertas. Deseja continuar?','Buscar e registrar entidades?',MB_ICONQUESTION or MB_YESNO) = IDYES then
     try
+      FiltrarEntidadesDoSistema(CLDSEntidadesDoSistema,0,'',-1);
+
       CLDSEntidadesDoSistema.DisableControls;
       for i := 0 to Pred(TDAMOPrincipal(owner).FORMPrincipal.MDIChildCount) do
       begin

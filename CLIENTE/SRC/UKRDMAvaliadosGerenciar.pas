@@ -3,8 +3,9 @@ unit UKRDMAvaliadosGerenciar;
 interface
 
 uses Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, DBClient
-   , DB, ImgList, ActnList, UKRDMBasico
-   , KRK.Components.AdditionalControls.BalloonHint
+   , DB, ImgList, ActnList
+   { Units que não pertencem ao Delphi }
+   , UKRDMBasico, KRK.Components.AdditionalControls.BalloonHint
    , KRK.Components.AdditionalControls.PngImageList;
 
 type
@@ -54,8 +55,6 @@ type
     ACTNSelecionarCBO: TAction;
     CLDSDadosSocioDemograficoscbo: TWideStringField;
     CLDSDadosSocioDemograficosprofissao: TWideStringField;
-    CLDSDadosSocioDemograficosic_cbo: TStringField;
-    CLDSDadosSocioDemograficosic_profissao: TStringField;
     CLDSAvaliadosUNQYSinaisESintomas: TDataSetField;
     CLDSSinaisESintomas: TClientDataSet;
     DTSRSinaisESintomas: TDataSource;
@@ -137,14 +136,18 @@ type
     CLDSParQbo_pc9a: TBooleanField;
     CLDSParQbo_pc9b: TBooleanField;
     CLDSParQbo_pc9c: TBooleanField;
+    ACTNTBSHDadosSocioDemograficos: TAction;
+    ACTNTBSHSinaisESintomas: TAction;
+    ACTNTBSHParQ: TAction;
+    ACTNTBSHParametrosFisiologicos: TAction;
+    ACTNTBSHRastreioDeSarcopenia: TAction;
     procedure CLDSAvaliadosAfterRefresh(DataSet: TDataSet);
     procedure CLDSAvaliadosCalcFields(DataSet: TDataSet);
     procedure DTSRAvaliadosDataChange(Sender: TObject; Field: TField);
     procedure ACTNSelecionarCBOExecute(Sender: TObject);
-    procedure CLDSDadosSocioDemograficoscboGetText(Sender: TField; var Text: string; DisplayText: Boolean);
-    procedure CLDSDadosSocioDemograficosprofissaoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure CLDSParametrosFisiologicosBeforeEdit(DataSet: TDataSet);
     procedure CLDSParametrosFisiologicosbo_pulritGetText(Sender: TField; var Text: string; DisplayText: Boolean);
+    procedure ACTNTBSHParQExecute(Sender: TObject);
   private
     { Private declarations }
     procedure AlternarPaginasPeloMestre;
@@ -158,8 +161,10 @@ type
 
 implementation
 
-uses UDAMOPrincipal, UKRFMAvaliadosGerenciar, KRK.Lib.Db.Utils
-   , KRK.Lib.RegExp.Utils, UKRFMSelecionarCBO;
+uses
+   { Units que não pertencem ao Delphi }
+     UKRFMAvaliadosGerenciar, UDAMOPrincipal, UKRFMSelecionarCBO
+   , KRK.Lib.Db.Utils, KRK.Lib.RegExp.Utils;
 
 {$R *.dfm}
 
@@ -215,8 +220,9 @@ begin
       begin
         CLDSDadosSocioDemograficos.Edit;
         CLDSDadosSocioDemograficosin_cbo_id.AsInteger := CLDSin_cbo_id.AsInteger;
-        CLDSDadosSocioDemograficosic_cbo.AsString := CLDSch_codigo.AsString;
-        CLDSDadosSocioDemograficosic_profissao.AsString := CLDSva_titulo.AsString;
+
+        CLDSDadosSocioDemograficoscbo.AsString := CLDSch_codigo.AsString;
+        CLDSDadosSocioDemograficosprofissao.AsString := CLDSva_titulo.AsString;
 
         { Garante que ao alterar a profissão (editando o registro) os dados
         apareçam imediatamente }
@@ -229,17 +235,25 @@ begin
     end;
 end;
 
+procedure TKRDMAvaliadosGerenciar.ACTNTBSHParQExecute(Sender: TObject);
+begin
+  inherited;
+  { Força todos os itens internos a executar um evento de redimensionamento }
+  TKRFMAvaliadosGerenciar(MyForm).SCBXParQ.Padding.Right := TKRFMAvaliadosGerenciar(MyForm).SCBXParQ.Padding.Right + 1;
+  TKRFMAvaliadosGerenciar(MyForm).SCBXParQ.Padding.Right := TKRFMAvaliadosGerenciar(MyForm).SCBXParQ.Padding.Right - 1;
+end;
+
 procedure TKRDMAvaliadosGerenciar.AlternarPaginasPeloMestre;
 begin
   if Assigned(MyForm) then
   begin
     TKRFMAvaliadosGerenciar(MyForm).TBSHConsultar.TabVisible := CLDSAvaliados.State = dsBrowse;
 
-    TKRFMAvaliadosGerenciar(MyForm).TBSHDadosSocioDemograficos.TabVisible := (CLDSAvaliados.RecordCount > 0) and (CLDSAvaliadosin_avaliados_id.AsInteger > 0);
-    TKRFMAvaliadosGerenciar(MyForm).TBSHSinaisESintomas.TabVisible := (CLDSAvaliados.RecordCount > 0) and (CLDSAvaliadosin_avaliados_id.AsInteger > 0);
-    TKRFMAvaliadosGerenciar(MyForm).TBSHParametrosFisiologicos.TabVisible := (CLDSAvaliados.RecordCount > 0) and (CLDSAvaliadosin_avaliados_id.AsInteger > 0);
-    TKRFMAvaliadosGerenciar(MyForm).TBSHParQ.TabVisible := (CLDSAvaliados.RecordCount > 0) and (CLDSAvaliadosin_avaliados_id.AsInteger > 0);
-    TKRFMAvaliadosGerenciar(MyForm).TBSHRastreioDeSarcopenia.TabVisible := (CLDSAvaliados.RecordCount > 0) and (CLDSAvaliadosin_avaliados_id.AsInteger > 0);
+    ACTNTBSHDadosSocioDemograficos.Visible := (CLDSAvaliados.RecordCount > 0) and (CLDSAvaliadosin_avaliados_id.AsInteger > 0);
+    ACTNTBSHSinaisESintomas.Visible := (CLDSAvaliados.RecordCount > 0) and (CLDSAvaliadosin_avaliados_id.AsInteger > 0);
+    ACTNTBSHParametrosFisiologicos.Visible := (CLDSAvaliados.RecordCount > 0) and (CLDSAvaliadosin_avaliados_id.AsInteger > 0);
+    ACTNTBSHParQ.Visible := (CLDSAvaliados.RecordCount > 0) and (CLDSAvaliadosin_avaliados_id.AsInteger > 0);
+    ACTNTBSHRastreioDeSarcopenia.Visible := (CLDSAvaliados.RecordCount > 0) and (CLDSAvaliadosin_avaliados_id.AsInteger > 0);
 
     TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado1.Caption := 'Avaliado: ' + AnsiUpperCase(CLDSAvaliadosva_nome.AsString);
     TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado2.Caption := TKRFMAvaliadosGerenciar(MyForm).LABLAvaliado1.Caption;
@@ -256,28 +270,10 @@ begin
   TClientDataSet(ClientDataSets[aNomeCLDS].Ptr^).KRKValidationChecks.CheckableFields.ByFieldName[aNomeCampo].Active := aAtivo;
 end;
 
-procedure TKRDMAvaliadosGerenciar.CLDSDadosSocioDemograficoscboGetText(Sender: TField; var Text: string; DisplayText: Boolean);
-begin
-  inherited;
-  if Sender.IsNull or (CLDSDadosSocioDemograficos.State = dsEdit) then
-    Text := CLDSDadosSocioDemograficosic_cbo.AsString
-  else
-    Text := Sender.AsString;
-end;
-
-procedure TKRDMAvaliadosGerenciar.CLDSDadosSocioDemograficosprofissaoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
-begin
-  inherited;
-  if Sender.IsNull or (CLDSDadosSocioDemograficos.State = dsEdit) then
-    Text := CLDSDadosSocioDemograficosic_profissao.AsString
-  else
-    Text := Sender.AsString;
-end;
-
 procedure TKRDMAvaliadosGerenciar.CLDSParametrosFisiologicosBeforeEdit(DataSet: TDataSet);
 begin
   inherited;
-  Application.MessageBox('Não é possível editar aferições. Para alterar um valor, inclua uma nova aferição','Não é permitida a alteração de registros',MB_ICONWARNING);
+  Application.MessageBox('Não é possível editar aferições. Para alterar um valor, inclua uma nova aferição','Não é permitida a alteração deste registro',MB_ICONWARNING);
   Abort;
 end;
 

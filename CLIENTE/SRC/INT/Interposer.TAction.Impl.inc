@@ -2,7 +2,7 @@ constructor TAction.Create(aOwner: TComponent);
 begin
   inherited;
   FPermitida := True;
-  FToggleVisibility := False;
+  FPermissionTogglesVisibility := False;
 end;
 
 function TAction.Execute: Boolean;
@@ -26,14 +26,6 @@ end;
 procedure TAction.SetPermitida(const Value: Boolean);
 begin
   FPermitida := Value;
-
-  if not FPermitida then
-  begin
-    Enabled := Enabled;
-
-    if FToggleVisibility then
-      Visible := Visible;
-  end;
 end;
 
 function TAction.GetVisible: Boolean;
@@ -52,6 +44,8 @@ var
 begin
   if Value <> inherited Visible then
   begin
+//    inherited Visible := FPermitida and Value;
+
     for I := 0 to Pred(Clients.Count) do
     begin
       Link := TObject(Clients.List[I]) as TActionLink;

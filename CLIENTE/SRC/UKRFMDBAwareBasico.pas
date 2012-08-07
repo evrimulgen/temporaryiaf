@@ -5,14 +5,18 @@ unit UKRFMDBAwareBasico;
 interface
 
 uses Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms
-   , KRK.Wizards.Form, ToolWin, StdCtrls, ComCtrls, ImgList, ActnList, DBCtrls
-   , ActnMenus, KRK.Lib.Rtl.Common.Classes.Interposer;
+   , ToolWin, StdCtrls, ComCtrls, ImgList, ActnList, DBCtrls, ActnMenus
+   { Units que não pertencem ao Delphi }
+   , KRK.Wizards.Form, KRK.Lib.Rtl.Common.Classes.Interposer;
 
 type
-  TDBNavigator = class (DBCtrls.TDBNavigator)
-  public
-    procedure BtnClick(Index: TNavigateBtn); override;
-  end;
+{$I INT\Interposer.TDBNavigator.Intf.inc}
+
+{$I INT\Interposer.TTabSheet.Intf.inc}
+
+{$I INT\Interposer.TActionList.Intf.inc}
+
+{$I INT\Interposer.TAction.Intf.inc}
 
   TKRFMDBAwareBasico = class(TKRKForm)
     TLBRAcoes: TToolBar;
@@ -48,7 +52,9 @@ implementation
 
 {$R *.dfm}
 
-uses KRK.Wizards.DataModule, DBClient, UDAMOPrincipal, Dialogs;
+uses Dialogs, DBClient, DB
+   { Units que não pertencem ao Delphi }
+   , UDAMOPrincipal, KRK.Wizards.DataModule;
 
 procedure TKRFMDBAwareBasico.ACLIToolbarUpdate(Action: TBasicAction; var Handled: Boolean);
 var
@@ -121,12 +127,13 @@ end;
 
 procedure TKRFMDBAwareBasico.KRKFormCreate(Sender: TObject);
 var
-  i: Word;
+  i, j: Word;
 begin
   LABLCaption.Caption := '  ' + Caption;
 
-  { Todo TActionMainMenuBar é ocultável }
   for i := 0 to Pred(ComponentCount) do
+  begin
+    { Todo TActionMainMenuBar é ocultável }
     if Components[i] is ActnMenus.TActionMainMenuBar then
     begin
       FActionMainMenuBar := TActionMainMenuBar(Components[i]);
@@ -134,6 +141,21 @@ begin
       FActionMainMenuBar.ClearNullMenus;
       Break; { Apenas o primeiro ActionMainMenuBar é afetado! }
     end;
+
+    { Cada TTabSheet deve ser atribuído à sua ação correspondente, desde que haja uma ação no DataModule que seja  }
+    if Components[i] is TTabSheet then
+      for j := 0 to Pred(TKRKDataModule(Owner).ComponentCount) do
+        if (TKRKDataModule(Owner).Components[j] is ActnList.TAction) and (TKRKDataModule(Owner).Components[j].Name = 'ACTN' + Components[i].Name) then
+        begin
+          TAction(TKRKDataModule(Owner).Components[j]).Caption := TTabSheet(Components[i]).Caption;
+          { A linha abaixo torna a implementação do método execute da ação
+          opcional. Assim, ações que não tem um método execute, permanecem
+          habilitadas, assim como todos os clientes conectados a elas }
+          TAction(TKRKDataModule(Owner).Components[j]).DisableIfNoHandler := False;
+          TAction(TKRKDataModule(Owner).Components[j]).PermissionTogglesVisibility := True;
+          TTabSheet(Components[i]).Action := TAction(TKRKDataModule(Owner).Components[j]);
+        end;
+  end;
 end;
 
 procedure TKRFMDBAwareBasico.KRKFormDBAwareBasicoClose(Sender: TObject; var Action: TCloseAction);
@@ -155,23 +177,12 @@ begin
       TClientDataset(TDataSetItem(CI).DataSet).CancelUpdates;
 end;
 
-{ TDBNavigator }
+{$I INT\Interposer.TDBNavigator.Impl.inc}
 
-procedure TDBNavigator.BtnClick(Index: TNavigateBtn);
-begin
-  if Index = nbRefresh then
-    if TClientDataSet(DataSource.DataSet).ChangeCount = 0 then
-    begin
-      if TClientDataSet(DataSource.DataSet).Params[0].AsInteger = -1 then
-        TClientDataSet(DataSource.DataSet).Params[0].Clear;
-    end
-    else
-    begin
-      Application.MessageBox('Não é possível atualizar até que as alterações sejam confirmadas ou revertidas. Utilize os botões no canto superior esquerdo da tela para confirmar ou reverter TODAS AS ALTERAÇÕES na mesma','Existem alterações não confirmadas',MB_ICONWARNING);
-      Abort
-    end;
+{$I INT\Interposer.TTabSheet.Impl.inc}
 
-  inherited;
-end;
+{$I INT\Interposer.TActionList.Impl.inc}
+
+{$I INT\Interposer.TAction.Impl.inc}
 
 end.

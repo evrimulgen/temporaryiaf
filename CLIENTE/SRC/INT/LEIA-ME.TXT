@@ -1,0 +1,14 @@
+Como usar Interposers?
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+Em units básicas, as quais são herdadas, deve-se usar as Interposers no formato
+INC, de forma que qualquer unit herdada faça uso das interposers simplesmente
+por ter a unit pai na cláusula uses. Aqui as regras para uso das Interposers são
+mantidas, isto é, a unit da classe pai, onde estão os includes das Interposers,
+deve estar lista (na cláusula uses) sempre após as units das classes básicas das
+Interposers
+
+Em units que não são básicas, deve-se usar as Interposers no formato PAS,
+evitando assim a duplicação de código desnecessário
+
+Mesmo as Interposers no formato PAS são criadas usando como base os arquivos de
+include, por isso, para alterar uma Interposer, altere apenas seus arquivos INC

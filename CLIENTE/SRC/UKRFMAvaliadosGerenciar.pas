@@ -3,24 +3,17 @@ unit UKRFMAvaliadosGerenciar;
 interface
 
 uses Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms
-   , Dialogs, UKRFMDBAwareBasico, ActnList, ImgList, StdCtrls, ComCtrls, ToolWin
-   , Grids, DBGrids, KRK.Components.DataControls.DBGrid, DBCtrls, Mask
-   , KRK.Components.DataControls.LabeledDBEdit, ExtCtrls
+   , Dialogs, ActnList, ImgList, StdCtrls, ComCtrls, ToolWin, Grids, DBGrids
+   , DBCtrls, Mask, ExtCtrls
+   { Units que não pertencem ao Delphi }
+   , UKRFMDBAwareBasico, KRK.Components.DataControls.DBGrid
+   , KRK.Components.DataControls.LabeledDBEdit
    , KRK.Components.AdditionalControls.LabeledEdit
    , KRK.Components.StandardControls.Panel
-   , KRK.Components.AdditionalControls.RTFLabel;
+   , KRK.Components.AdditionalControls.RTFLabel
+   , Interposer.TDBRadioGroup, Interposer.TGroupBox;
 
 type
-  TDBRadioGroup = class(DBCtrls.TDBRadioGroup)
-  protected
-    procedure Paint; override;
-  end;
-
-  TGroupBox = class(StdCtrls.TGroupBox)
-  protected
-    procedure Paint; override;
-  end;
-
   TKRFMAvaliadosGerenciar = class(TKRFMDBAwareBasico)
     PGCTAvaliados: TPageControl;
     TBSHConsultar: TTabSheet;
@@ -345,6 +338,7 @@ type
     LABLPC9A: TRtfLabel;
     LABLPC9B: TRtfLabel;
     LABLPC9C: TRtfLabel;
+    BUTN: TButton;
     procedure DBRGChefeDaFamiliaChange(Sender: TObject);
     procedure KRLECodigoKeyPress(Sender: TObject; var Key: Char);
     procedure KRLEIdentidadeKeyPress(Sender: TObject; var Key: Char);
@@ -357,7 +351,6 @@ type
     procedure DoScrollBoxMouseWheelUp(Sender: TObject; Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
     procedure DoBeforeAction(Sender: TObject; Button: TNavigateBtn);
     procedure PGCTAvaliadosChanging(Sender: TObject; var AllowChange: Boolean);
-    procedure TBSHParQShow(Sender: TObject);
     procedure DoPGChange(Sender: TObject);
     procedure DoRespostaMestreChange(Sender: TObject);
     procedure DoRTFLabelResize(Sender: TObject);
@@ -373,7 +366,9 @@ type
 
 implementation
 
-uses UKRDMAvaliadosGerenciar, DB, Themes;
+uses DB, Themes
+   { Units que não pertencem ao Delphi }
+   , UKRDMAvaliadosGerenciar;
 
 {$R *.dfm}
 
@@ -729,14 +724,6 @@ begin
   end;
 end;
 
-procedure TKRFMAvaliadosGerenciar.TBSHParQShow(Sender: TObject);
-begin
-  inherited;
-  { Força todos os itens internos a executar um evento de redimensionamento }
-  SCBXParQ.Padding.Right := SCBXParQ.Padding.Right + 1;
-  SCBXParQ.Padding.Right := SCBXParQ.Padding.Right - 1;
-end;
-
 //procedure TForm.FormMouseWheel(Sender: TObject; Shift: TShiftState;
 //WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
 //Var
@@ -766,13 +753,6 @@ end;
 procedure TKRFMAvaliadosGerenciar.KRKFormCreate(Sender: TObject);
 begin
   inherited;
-  TBSHDadosSocioDemograficos.TabVisible := False;
-  TBSHSinaisESintomas.TabVisible := False;
-  TBSHParametrosFisiologicos.TabVisible := False;
-  TBSHParQ.TabVisible := False;
-  TBSHRastreioDeSarcopenia.TabVisible := False;
-  DBRGGrauChefeFamilia.Hide;
-
   SCBXDadosSocioDemograficos.VertScrollBar.Position := 0;
   SCBXSinaisESintomas.VertScrollBar.Position := 0;
   SCBXParQ.VertScrollbar.Position := 0;
@@ -824,112 +804,6 @@ begin
                                                    ,''
                                                    ,''
                                                    ,'');
-end;
-
-{ TDBRadioGroup }
-
-procedure TDBRadioGroup.Paint;
-var
-  H: Integer;
-  R: TRect;
-  Flags: Longint;
-begin
-  if ThemeControl(Self) then
-    inherited
-  else
-    with Canvas do
-    begin
-      Font := Self.Font;
-      H := 0;
-
-      if Text <> '' then
-      begin
-        H := TextHeight('Wg');
-        R := Rect(0, H div 2 - 1, Width, Height);
-      end
-      else
-        R := Rect(0, 0, Width, Height);
-
-      if Ctl3D then
-      begin
-        Inc(R.Left);
-        Inc(R.Top);
-        Brush.Color := clBtnHighlight;
-        FrameRect(R);
-        OffsetRect(R, -1, -1);
-        Brush.Color := clBtnShadow;
-      end
-      else
-        Brush.Color := clWindowFrame;
-
-      FrameRect(R);
-
-      if Text <> '' then
-      begin
-        if not UseRightToLeftAlignment then
-          R := Rect(8, 0, 0, H)
-        else
-          R := Rect(R.Right - Canvas.TextWidth(Text) - 8, 0, 0, H);
-
-        Flags := DrawTextBiDiModeFlags(DT_SINGLELINE);
-        DrawText(Handle, Text, Length(Text), R, Flags or DT_CALCRECT);
-        Brush.Color := Color;
-        DrawText(Handle, Text, Length(Text), R, Flags);
-      end;
-    end;
-end;
-
-{ TGroupBox }
-
-procedure TGroupBox.Paint;
-var
-  H: Integer;
-  R: TRect;
-  Flags: Longint;
-begin
-  if ThemeControl(Self) then
-    inherited
-  else
-    with Canvas do
-    begin
-      Font := Self.Font;
-      H := 0;
-
-      if Text <> '' then
-      begin
-        H := TextHeight('Wg');
-        R := Rect(0, H div 2 - 1, Width, Height);
-      end
-      else
-        R := Rect(0, 0, Width, Height);
-
-      if Ctl3D then
-      begin
-        Inc(R.Left);
-        Inc(R.Top);
-        Brush.Color := clBtnHighlight;
-        FrameRect(R);
-        OffsetRect(R, -1, -1);
-        Brush.Color := clBtnShadow;
-      end
-      else
-        Brush.Color := clWindowFrame;
-
-      FrameRect(R);
-
-      if Text <> '' then
-      begin
-        if not UseRightToLeftAlignment then
-          R := Rect(8, 0, 0, H)
-        else
-          R := Rect(R.Right - Canvas.TextWidth(Text) - 8, 0, 0, H);
-
-        Flags := DrawTextBiDiModeFlags(DT_SINGLELINE);
-        DrawText(Handle, Text, Length(Text), R, Flags or DT_CALCRECT);
-        Brush.Color := Color;
-        DrawText(Handle, Text, Length(Text), R, Flags);
-      end;
-    end;
 end;
 
 initialization

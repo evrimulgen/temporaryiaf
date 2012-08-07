@@ -29,7 +29,14 @@ uses
   UKRFMSelecionarGrupo in '..\SRC\UKRFMSelecionarGrupo.pas' {KRFMSelecionarGrupo: TKRKForm},
   UKRDMAvaliadosGerenciar in '..\SRC\UKRDMAvaliadosGerenciar.pas' {KRDMAvaliadosGerenciar: TKRKDataModule},
   UKRFMAvaliadosGerenciar in '..\SRC\UKRFMAvaliadosGerenciar.pas' {KRFMAvaliadosGerenciar: TKRKForm},
-  UKRFMSelecionarCBO in '..\SRC\UKRFMSelecionarCBO.pas' {KRFMSelecionarCBO: TKRKForm};
+  UKRFMSelecionarCBO in '..\SRC\UKRFMSelecionarCBO.pas' {KRFMSelecionarCBO: TKRKForm},
+  Interposer.TAction in '..\SRC\INT\Interposer.TAction.pas',
+  Interposer.TActionList in '..\SRC\INT\Interposer.TActionList.pas',
+  Interposer.TClientDataSet in '..\SRC\INT\Interposer.TClientDataSet.pas',
+  Interposer.TDBNavigator in '..\SRC\INT\Interposer.TDBNavigator.pas',
+  Interposer.TDBRadioGroup in '..\SRC\INT\Interposer.TDBRadioGroup.pas',
+  Interposer.TGroupBox in '..\SRC\INT\Interposer.TGroupBox.pas',
+  Interposer.TTabSheet in '..\SRC\INT\Interposer.TTabSheet.pas';
 
 {$R *.res}
 

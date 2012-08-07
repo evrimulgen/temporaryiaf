@@ -1,7 +1,7 @@
   TAction = class(ActnList.TAction)
   private
     FPermitida: Boolean;
-    FToggleVisibility: Boolean;
+    FPermissionTogglesVisibility: Boolean;
     procedure SetPermitida(const Value: Boolean);
     function GetEnabled: Boolean;
     procedure SetEnabled(const Value: Boolean);
@@ -12,7 +12,7 @@
     function Execute: Boolean; override;
     property Enabled: Boolean read GetEnabled write SetEnabled;
     property Permitida: Boolean read FPermitida write SetPermitida default True;
-    property ToggleVisibility: Boolean read FToggleVisibility write FToggleVisibility default False;
+    property PermissionTogglesVisibility: Boolean read FPermissionTogglesVisibility write FPermissionTogglesVisibility default False;
     property Visible: Boolean read GetVisible write SetVisible;
   end;
 

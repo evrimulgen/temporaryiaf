@@ -841,7 +841,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         Top = 60
         Width = 770
         Height = 343
-        VertScrollBar.Position = 418
         Align = alClient
         BevelInner = bvNone
         BevelOuter = bvNone
@@ -853,7 +852,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object DBRGCorRaca: TDBRadioGroup
           AlignWithMargins = True
           Left = 6
-          Top = -418
+          Top = 0
           Width = 737
           Height = 105
           Margins.Left = 6
@@ -881,7 +880,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object DBRGEstadoCivil: TDBRadioGroup
           AlignWithMargins = True
           Left = 6
-          Top = -310
+          Top = 108
           Width = 737
           Height = 88
           Margins.Left = 6
@@ -907,7 +906,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object DBRGGrauInstrucao: TDBRadioGroup
           AlignWithMargins = True
           Left = 6
-          Top = -219
+          Top = 199
           Width = 737
           Height = 105
           Margins.Left = 6
@@ -939,7 +938,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object GRBXProfissao: TGroupBox
           AlignWithMargins = True
           Left = 6
-          Top = -111
+          Top = 307
           Width = 737
           Height = 65
           Margins.Left = 6
@@ -1029,7 +1028,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object GRBXPatrimonio: TGroupBox
           AlignWithMargins = True
           Left = 6
-          Top = -43
+          Top = 375
           Width = 737
           Height = 425
           Margins.Left = 6
@@ -1303,7 +1302,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object DBRGChefeDaFamilia: TDBRadioGroup
           AlignWithMargins = True
           Left = 6
-          Top = 385
+          Top = 803
           Width = 737
           Height = 42
           Margins.Left = 6
@@ -1327,7 +1326,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object DBRGGrauChefeFamilia: TDBRadioGroup
           AlignWithMargins = True
           Left = 6
-          Top = 430
+          Top = 848
           Width = 737
           Height = 105
           Margins.Left = 6
@@ -1359,7 +1358,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         end
         object PANLPaddingBottom: TPanel
           Left = 0
-          Top = 535
+          Top = 953
           Width = 749
           Height = 6
           Align = alBottom
@@ -1829,7 +1828,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       AlignWithMargins = True
       Caption = 'PAR-Q+'
       ImageIndex = 5
-      OnShow = TBSHParQShow
       object KRPAAvaliado4: TKRKPanel
         AlignWithMargins = True
         Left = 0
@@ -1884,6 +1882,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         Top = 60
         Width = 770
         Height = 343
+        VertScrollBar.Position = 248
         Align = alClient
         Color = clWhite
         ParentColor = False
@@ -1892,7 +1891,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         OnMouseWheelUp = DoScrollBoxMouseWheelUp
         object PANLParQBottom: TPanel
           Left = 0
-          Top = 1906
+          Top = 1658
           Width = 749
           Height = 6
           Align = alBottom
@@ -1902,7 +1901,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object PANLPGTitulo: TPanel
           AlignWithMargins = True
           Left = 6
-          Top = 6
+          Top = -242
           Width = 737
           Height = 35
           Margins.Left = 6
@@ -1938,7 +1937,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object PANLPG: TPanel
           AlignWithMargins = True
           Left = 6
-          Top = 47
+          Top = -201
           Width = 737
           Height = 309
           Margins.Left = 6
@@ -2605,7 +2604,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         object PANLPCLayer: TPanel
           AlignWithMargins = True
           Left = 6
-          Top = 362
+          Top = 114
           Width = 737
           Height = 1544
           Margins.Left = 6
@@ -2757,7 +2756,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Constraints.MinHeight = 35
               ParentBackground = False
               TabOrder = 1
-              ExplicitTop = 180
               DesignSize = (
                 733
                 35)
@@ -2837,7 +2835,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Constraints.MinHeight = 35
               ParentBackground = False
               TabOrder = 2
-              ExplicitTop = 288
               DesignSize = (
                 733
                 47)
@@ -3002,7 +2999,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Constraints.MinHeight = 35
               ParentBackground = False
               TabOrder = 4
-              ExplicitTop = 525
               DesignSize = (
                 733
                 35)
@@ -3083,7 +3079,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Constraints.MinHeight = 35
               ParentBackground = False
               TabOrder = 5
-              ExplicitTop = 668
               DesignSize = (
                 733
                 47)
@@ -3166,7 +3161,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Constraints.MinHeight = 35
               ParentBackground = False
               TabOrder = 6
-              ExplicitTop = 788
               DesignSize = (
                 733
                 35)
@@ -3247,7 +3241,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Constraints.MinHeight = 35
               ParentBackground = False
               TabOrder = 7
-              ExplicitTop = 966
               DesignSize = (
                 733
                 35)
@@ -3328,7 +3321,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Constraints.MinHeight = 35
               ParentBackground = False
               TabOrder = 8
-              ExplicitTop = 1109
               DesignSize = (
                 733
                 35)
@@ -3409,7 +3401,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               Constraints.MinHeight = 35
               ParentBackground = False
               TabOrder = 9
-              ExplicitTop = 1264
               DesignSize = (
                 733
                 60)
@@ -3525,9 +3516,9 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                     'rset0 Tahoma;}}'#13#10'{\*\generator Msftedit 5.41.21.2510;}\viewkind4' +
                     '\uc1\pard\sl240\slmult1\lang22\f0\fs16 \b Voc\'#39'ea tem dificuldad' +
                     'e de controlar sua condi\'#39'e7\'#39'e3o com medicamentos ou outras ter' +
-                    'apias prescritas por um profissional?\b \par'#13#10'\i Responda \b N\'#39 +
-                    'c3O\b0  se voc\'#39'ea n\'#39'e3o est\'#39'e1 tomando medicamentos ou recebe' +
-                    'ndo outros tratamentos\i0\par}'
+                    'apias prescritas por um profissional?\b0 \par'#13#10'\i Responda \b N\' +
+                    #39'c3O\b0  se voc\'#39'ea n\'#39'e3o est\'#39'e1 tomando medicamentos ou receb' +
+                    'endo outros tratamentos\i0\par}'
                   Constraints.MinHeight = 26
                   WordWrap = True
                   OnResize = DoRTFLabelResize
@@ -3669,7 +3660,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 2
-                ExplicitTop = 70
                 DesignSize = (
                   733
                   35)
@@ -3753,7 +3743,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               BevelOuter = bvNone
               TabOrder = 11
               Visible = False
-              ExplicitTop = 215
               object PANLPC2A: TPanel
                 Left = 0
                 Top = 0
@@ -3928,7 +3917,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               BevelOuter = bvNone
               TabOrder = 12
               Visible = False
-              ExplicitTop = 335
               object PANLPC3A: TPanel
                 Left = 0
                 Top = 0
@@ -4343,7 +4331,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               BevelOuter = bvNone
               TabOrder = 13
               Visible = False
-              ExplicitTop = 560
               object PANLPC4A: TPanel
                 Left = 0
                 Top = 0
@@ -4691,7 +4678,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 1
-                ExplicitTop = 35
                 DesignSize = (
                   733
                   35)
@@ -4865,7 +4851,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 1
-                ExplicitTop = 35
                 DesignSize = (
                   733
                   35)
@@ -5027,7 +5012,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 3
-                ExplicitTop = 105
                 DesignSize = (
                   733
                   35)
@@ -5202,7 +5186,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 1
-                ExplicitTop = 35
                 DesignSize = (
                   733
                   35)
@@ -5283,7 +5266,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
                 Constraints.MinHeight = 35
                 ParentBackground = False
                 TabOrder = 2
-                ExplicitTop = 70
                 DesignSize = (
                   733
                   35)
@@ -5367,7 +5349,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               BevelOuter = bvNone
               TabOrder = 17
               Visible = False
-              ExplicitTop = 1144
               object PANLPC8A: TPanel
                 Left = 0
                 Top = 0
@@ -5618,7 +5599,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
               BevelOuter = bvNone
               TabOrder = 18
               Visible = False
-              ExplicitTop = 1324
               object PANLPC9A: TPanel
                 Left = 0
                 Top = 0
@@ -6121,13 +6101,18 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
   inherited TLBRAcoes: TToolBar
     Width = 784
     ExplicitWidth = 784
-    inherited LABLCaption: TLabel
+    object BUTN: TButton
+      Left = 333
+      Top = 0
+      Width = 75
       Height = 38
+      Caption = 'BUTN'
+      TabOrder = 0
     end
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C010102000800EC0120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800180220002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -6664,7 +6649,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C010102000800FC0120002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800280220002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

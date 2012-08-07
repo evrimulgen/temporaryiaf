@@ -9,6 +9,27 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
       Caption = '...'
       OnExecute = ACTNSelecionarCBOExecute
     end
+    object ACTNTBSHDadosSocioDemograficos: TAction
+      Caption = 'ACTNTBSHDadosSocioDemograficos'
+      Visible = False
+    end
+    object ACTNTBSHSinaisESintomas: TAction
+      Caption = 'ACTNTBSHSinaisESintomas'
+      Visible = False
+    end
+    object ACTNTBSHParQ: TAction
+      Caption = 'ACTNTBSHParQ'
+      Visible = False
+      OnExecute = ACTNTBSHParQExecute
+    end
+    object ACTNTBSHParametrosFisiologicos: TAction
+      Caption = 'ACTNTBSHParametrosFisiologicos'
+      Visible = False
+    end
+    object ACTNTBSHRastreioDeSarcopenia: TAction
+      Caption = 'ACTNTBSHRastreioDeSarcopenia'
+      Visible = False
+    end
   end
   object DTSRAvaliados: TDataSource
     DataSet = CLDSAvaliados
@@ -397,27 +418,11 @@ inherited KRDMAvaliadosGerenciar: TKRDMAvaliadosGerenciar
       Alignment = taCenter
       FieldName = 'cbo'
       ProviderFlags = []
-      ReadOnly = True
-      OnGetText = CLDSDadosSocioDemograficoscboGetText
       FixedChar = True
       Size = 6
     end
     object CLDSDadosSocioDemograficosprofissao: TWideStringField
       FieldName = 'profissao'
-      ProviderFlags = []
-      ReadOnly = True
-      OnGetText = CLDSDadosSocioDemograficosprofissaoGetText
-      Size = 128
-    end
-    object CLDSDadosSocioDemograficosic_cbo: TStringField
-      FieldKind = fkInternalCalc
-      FieldName = 'ic_cbo'
-      ProviderFlags = []
-      Size = 6
-    end
-    object CLDSDadosSocioDemograficosic_profissao: TStringField
-      FieldKind = fkInternalCalc
-      FieldName = 'ic_profissao'
       ProviderFlags = []
       Size = 128
     end
