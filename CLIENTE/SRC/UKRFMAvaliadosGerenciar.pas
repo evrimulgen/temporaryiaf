@@ -338,7 +338,6 @@ type
     LABLPC9A: TRtfLabel;
     LABLPC9B: TRtfLabel;
     LABLPC9C: TRtfLabel;
-    BUTN: TButton;
     procedure DBRGChefeDaFamiliaChange(Sender: TObject);
     procedure KRLECodigoKeyPress(Sender: TObject; var Key: Char);
     procedure KRLEIdentidadeKeyPress(Sender: TObject; var Key: Char);
