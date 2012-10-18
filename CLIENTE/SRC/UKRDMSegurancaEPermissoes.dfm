@@ -428,35 +428,8 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
   end
   object CLDSGruposDosUsuarios: TClientDataSet
     Aggregates = <>
-    ConnectionBroker = DAMOPrincipal.CNBRPrincipal
     DataSetField = CLDSUsuariosUNQYGruposDosUsuarios
-    FieldDefs = <
-      item
-        Name = 'in_gruposdosusuarios_id'
-        DataType = ftInteger
-      end
-      item
-        Name = 'sm_grupos_id'
-        DataType = ftSmallint
-      end
-      item
-        Name = 'sm_usuarios_id'
-        DataType = ftSmallint
-      end
-      item
-        Name = 'grupo'
-        Attributes = [faReadonly]
-        DataType = ftWideString
-        Size = 64
-      end
-      item
-        Name = 'ic_grupo'
-        DataType = ftString
-        Size = 64
-      end>
-    IndexDefs = <>
     Params = <>
-    StoreDefs = True
     Left = 54
     Top = 156
     object CLDSGruposDosUsuariosin_gruposdosusuarios_id: TIntegerField
@@ -479,20 +452,11 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
       DisplayLabel = 'Grupo'
       FieldName = 'grupo'
       ProviderFlags = []
-      ReadOnly = True
-      OnGetText = CLDSGruposDosUsuariosgrupoGetText
-      Size = 64
-    end
-    object CLDSGruposDosUsuariosic_grupo: TStringField
-      FieldKind = fkInternalCalc
-      FieldName = 'ic_grupo'
-      ProviderFlags = []
       Size = 64
     end
   end
   object CLDSPermissoesDosUsuarios: TClientDataSet
     Aggregates = <>
-    ConnectionBroker = DAMOPrincipal.CNBRPrincipal
     DataSetField = CLDSUsuariosCONUNQYPermissoesDosUsuarios
     Params = <>
     Left = 192
@@ -501,15 +465,11 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
       DisplayLabel = 'Entidade'
       FieldName = 'entidade'
       ProviderFlags = []
-      ReadOnly = True
-      OnGetText = CLDSPermissoesDosUsuariosentidadeGetText
       Size = 128
     end
     object CLDSPermissoesDosUsuariostipo: TSmallintField
       FieldName = 'tipo'
       ProviderFlags = []
-      ReadOnly = True
-      OnGetText = CLDSPermissoesDosUsuariostipoGetText
     end
     object CLDSPermissoesDosUsuariosin_permissoesdosusuarios_id: TIntegerField
       FieldName = 'in_permissoesdosusuarios_id'
@@ -539,17 +499,6 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
       DisplayLabel = '_Excluir'
       FieldName = 'sm_excluir'
       OnGetText = DoGetTextVazio
-    end
-    object CLDSPermissoesDosUsuariosic_entidade: TStringField
-      FieldKind = fkInternalCalc
-      FieldName = 'ic_entidade'
-      ProviderFlags = []
-      Size = 128
-    end
-    object CLDSPermissoesDosUsuariosic_tipo: TIntegerField
-      FieldKind = fkInternalCalc
-      FieldName = 'ic_tipo'
-      ProviderFlags = []
     end
   end
   object DTSRPermissoesDosUsuarios: TDataSource
@@ -617,17 +566,13 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
     Left = 336
     Top = 156
     object CLDSPermissoesDosGruposentidade: TWideStringField
-      FieldName = 'Entidade'
+      FieldName = 'entidade'
       ProviderFlags = []
-      ReadOnly = True
-      OnGetText = CLDSPermissoesDosGruposentidadeGetText
       Size = 128
     end
     object CLDSPermissoesDosGrupostipo: TSmallintField
       FieldName = 'tipo'
       ProviderFlags = []
-      ReadOnly = True
-      OnGetText = CLDSPermissoesDosGrupostipoGetText
     end
     object CLDSPermissoesDosGruposin_permissoesdosgrupos_id: TIntegerField
       DisplayLabel = 'ID'
@@ -664,18 +609,6 @@ inherited KRDMSegurancaEPermissoes: TKRDMSegurancaEPermissoes
       FieldName = 'sm_excluir'
       Required = True
       OnGetText = DoGetTextVazio
-    end
-    object CLDSPermissoesDosGruposic_entidade: TStringField
-      FieldKind = fkInternalCalc
-      FieldName = 'ic_entidade'
-      ProviderFlags = []
-      Size = 128
-    end
-    object CLDSPermissoesDosGruposic_tipo: TStringField
-      FieldKind = fkInternalCalc
-      FieldName = 'ic_tipo'
-      ProviderFlags = []
-      Size = 10
     end
   end
   object DTSRPermissoesDosGrupos: TDataSource

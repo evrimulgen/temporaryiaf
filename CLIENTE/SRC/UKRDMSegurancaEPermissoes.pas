@@ -52,12 +52,9 @@ type
     CLDSUsuarioslogin: TWideStringField;
     CLDSPermissoesDosUsuariostipo: TSmallintField;
     ACTNAdicionarEntidade: TAction;
-    CLDSPermissoesDosUsuariosic_entidade: TStringField;
-    CLDSPermissoesDosUsuariosic_tipo: TIntegerField;
     CLDSUsuariosCONUNQYPermissoesDosUsuarios: TDataSetField;
     CLDSUsuariosUNQYGruposDosUsuarios: TDataSetField;
     DTSRGruposDosUsuarios: TDataSource;
-    CLDSGruposDosUsuariosic_grupo: TStringField;
     DTSRGrupos: TDataSource;
     CLDSGrupos: TClientDataSet;
     CLDSGrupossm_grupos_id: TSmallintField;
@@ -80,8 +77,6 @@ type
     CLDSPermissoesDosGrupossm_inserir: TSmallintField;
     CLDSPermissoesDosGrupossm_alterar: TSmallintField;
     CLDSPermissoesDosGrupossm_excluir: TSmallintField;
-    CLDSPermissoesDosGruposic_entidade: TStringField;
-    CLDSPermissoesDosGruposic_tipo: TStringField;
     ACTNRessetarSenhas: TAction;
     ACTNRegistrarEntidades: TAction;
     CLDSUsuariosbo_superusuario: TBooleanField;
@@ -93,12 +88,7 @@ type
     procedure CLDSUsuariosAfterRefresh(DataSet: TDataSet);
     procedure DoGetTextVazio(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure ACTNAdicionarEntidadeExecute(Sender: TObject);
-    procedure CLDSPermissoesDosUsuariosentidadeGetText(Sender: TField; var Text: string; DisplayText: Boolean);
-    procedure CLDSPermissoesDosUsuariostipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
-    procedure CLDSGruposDosUsuariosgrupoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure CLDSGruposAfterRefresh(DataSet: TDataSet);
-    procedure CLDSPermissoesDosGruposentidadeGetText(Sender: TField; var Text: string; DisplayText: Boolean);
-    procedure CLDSPermissoesDosGrupostipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure ACTNRessetarSenhasExecute(Sender: TObject);
     procedure ACTNRegistrarEntidadesExecute(Sender: TObject);
     procedure ACTNAdicionarGruposAoUsuarioExecute(Sender: TObject);
@@ -165,7 +155,7 @@ begin
                 CLDSGruposDosUsuarios.Append;
                 CLDSGruposDosUsuariossm_grupos_id.AsInteger := CLDSsm_grupos_id.AsInteger;
                 CLDSGruposDosUsuariossm_usuarios_id.AsInteger := CLDSUsuariossm_usuarios_id.AsInteger;
-                CLDSGruposDosUsuariosic_grupo.AsString := CLDSva_nome.AsString;
+                CLDSGruposDosUsuariosgrupo.AsString := CLDSva_nome.AsString;
                 CLDSGruposDosUsuarios.Post;
               end;
             end;
@@ -342,8 +332,8 @@ begin
           CLDSPermissoesDosGrupos.Append;
           CLDSPermissoesDosGruposin_entidadesdosistema_id.AsInteger := CLDSEntidadesDoSistemain_entidadesdosistema_id.AsInteger;
           CLDSPermissoesDosGrupossm_grupos_id.AsInteger             := CLDSGruposCONsm_grupos_id.AsInteger;
-          CLDSPermissoesDosGruposic_entidade.AsString               := CLDSEntidadesDoSistemava_nome.AsString;
-          CLDSPermissoesDosGruposic_tipo.AsInteger                  := CLDSEntidadesDoSistemasm_tipo.AsInteger;
+          CLDSPermissoesDosGruposentidade.AsString                  := CLDSEntidadesDoSistemava_nome.AsString;
+          CLDSPermissoesDosGrupostipo.AsInteger                     := CLDSEntidadesDoSistemasm_tipo.AsInteger;
 
           CLDSPermissoesDosGrupossm_ler.AsInteger := 0;
 
@@ -411,8 +401,8 @@ begin
           CLDSPermissoesDosUsuarios.Append;
           CLDSPermissoesDosUsuariosin_entidadesdosistema_id.AsInteger := CLDSEntidadesDoSistemain_entidadesdosistema_id.AsInteger;
           CLDSPermissoesDosUsuariossm_usuarios_id.AsInteger           := CLDSUsuariosCONsm_usuarios_id.AsInteger;
-          CLDSPermissoesDosUsuariosic_entidade.AsString               := CLDSEntidadesDoSistemava_nome.AsString;
-          CLDSPermissoesDosUsuariosic_tipo.AsInteger                  := CLDSEntidadesDoSistemasm_tipo.AsInteger;
+          CLDSPermissoesDosUsuariosentidade.AsString                  := CLDSEntidadesDoSistemava_nome.AsString;
+          CLDSPermissoesDosUsuariostipo.AsInteger                     := CLDSEntidadesDoSistemasm_tipo.AsInteger;
 
           CLDSPermissoesDosUsuariossm_ler.AsInteger := 0;
 
@@ -523,51 +513,6 @@ procedure TKRDMSegurancaEPermissoes.CLDSGruposAfterRefresh(DataSet: TDataSet);
 begin
   inherited;
   TKRFMSegurancaEPermissoes(MyForm).LABLGRUFiltros.Caption := TClientDataSet(DataSet).MyParams;
-end;
-
-procedure TKRDMSegurancaEPermissoes.CLDSGruposDosUsuariosgrupoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
-begin
-  inherited;
-  if Sender.IsNull then
-    Text := CLDSGruposDosUsuariosic_grupo.AsString
-  else
-    Text := Sender.AsString;
-end;
-
-procedure TKRDMSegurancaEPermissoes.CLDSPermissoesDosGruposentidadeGetText(Sender: TField; var Text: string; DisplayText: Boolean);
-begin
-  inherited;
-  if Sender.IsNull then
-    Text := CLDSPermissoesDosGruposic_entidade.AsString
-  else
-    Text := Sender.AsString;
-end;
-
-procedure TKRDMSegurancaEPermissoes.CLDSPermissoesDosGrupostipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
-begin
-  inherited;
-  if Sender.IsNull then
-    Text := CLDSPermissoesDosGruposic_tipo.AsString
-  else
-    Text := Sender.AsString;
-end;
-
-procedure TKRDMSegurancaEPermissoes.CLDSPermissoesDosUsuariosentidadeGetText(Sender: TField; var Text: string; DisplayText: Boolean);
-begin
-  inherited;
-  if Sender.IsNull then
-    Text := CLDSPermissoesDosUsuariosic_entidade.AsString
-  else
-    Text := Sender.AsString;
-end;
-
-procedure TKRDMSegurancaEPermissoes.CLDSPermissoesDosUsuariostipoGetText(Sender: TField; var Text: string; DisplayText: Boolean);
-begin
-  inherited;
-  if Sender.IsNull then
-    Text := CLDSPermissoesDosUsuariosic_tipo.AsString
-  else
-    Text := Sender.AsString;
 end;
 
 procedure TKRDMSegurancaEPermissoes.DoGetTextVazio(Sender: TField; var Text: string; DisplayText: Boolean);

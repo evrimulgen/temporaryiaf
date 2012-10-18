@@ -930,13 +930,13 @@ inherited KRFMSegurancaEPermissoes: TKRFMSegurancaEPermissoes
                   BackgroundColor = clBtnFace
                   ForegroundColor = clNone
                 end>
-              VariableWidthColumns = '<Entidade>'
+              VariableWidthColumns = '<entidade>'
               OnCellClick = KRDGPDGCellClick
               OnDrawColumnCell = DoDrawColumnCell
               Columns = <
                 item
                   Expanded = False
-                  FieldName = 'Entidade'
+                  FieldName = 'entidade'
                   Width = 526
                   Visible = True
                 end
