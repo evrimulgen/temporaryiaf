@@ -750,11 +750,27 @@ end;
 //end;
 
 procedure TKRFMAvaliadosGerenciar.KRKFormCreate(Sender: TObject);
+var
+  i: Integer;
 begin
   inherited;
   SCBXDadosSocioDemograficos.VertScrollBar.Position := 0;
   SCBXSinaisESintomas.VertScrollBar.Position := 0;
   SCBXParQ.VertScrollbar.Position := 0;
+
+  { O código abaixo força cada página visivel do page control a ser exibida
+  inicialmente e ao final mantém exibida apenas a página que precisa manter-se
+  visível. Isso foi necessário porque quando um TabSheet está associado a uma
+  ação, não sei porque no método TAction.SetVisible ao executar a linha
+  inherited Visible := FPermitida and Value, os tabsheets aparecem imediatamente
+  mas a tab (texto do topo) que aparece selecionada não é a tab correta }
+//  try
+//    for i := 0 to pred(PGCTAvaliados.PageCount) do
+//      if PGCTAvaliados.Pages[i].TabVisible then
+//        PGCTAvaliados.TabIndex := i;
+//  finally
+//    PGCTAvaliados.TabIndex := 0;
+//  end;
 end;
 
 procedure TKRFMAvaliadosGerenciar.KRLECodigoKeyPress(Sender: TObject; var Key: Char);

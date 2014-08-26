@@ -3,7 +3,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
   ClientHeight = 477
   ClientWidth = 784
   ExplicitWidth = 800
-  ExplicitHeight = 515
+  ExplicitHeight = 516
   PixelsPerInch = 96
   TextHeight = 13
   object PGCTAvaliados: TPageControl [0]
@@ -14,6 +14,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
     ActivePage = TBSHConsultar
     Align = alClient
     TabOrder = 2
+    OnChange = DoPGChange
     OnChanging = PGCTAvaliadosChanging
     object TBSHConsultar: TTabSheet
       AlignWithMargins = True
@@ -21,9 +22,9 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       object KRDGAvaliados: TKRKDBGrid
         AlignWithMargins = True
         Left = 0
-        Top = 179
+        Top = 183
         Width = 770
-        Height = 174
+        Height = 170
         Margins.Left = 0
         Margins.Right = 0
         Margins.Bottom = 0
@@ -31,6 +32,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
         Options = [dgTitles, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
         OptionsEx = [dgAutomaticColumSizes]
+        RecNoColumnName = 'RECNO'
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
@@ -83,7 +85,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       object DBNAConsultarAvaliados: TDBNavigator
         AlignWithMargins = True
         Left = 0
-        Top = 148
+        Top = 152
         Width = 770
         Height = 25
         Margins.Left = 0
@@ -138,7 +140,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         Left = 0
         Top = 0
         Width = 770
-        Height = 143
+        Height = 147
         Margins.Left = 0
         Margins.Top = 0
         Margins.Right = 0
@@ -147,47 +149,6 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         BevelOuter = bvNone
         Locked = True
         TabOrder = 3
-        DesignSize = (
-          770
-          143)
-        object GRBXPorDadosUnicos: TGroupBox
-          Left = 0
-          Top = -2
-          Width = 164
-          Height = 55
-          Caption = ' Por dados '#250'nicos (ou) '
-          TabOrder = 0
-          object KRLECodigo: TKRKLabeledEdit
-            Left = 6
-            Top = 27
-            Width = 64
-            Height = 21
-            EditFormat.FinalMask = '###.###.###.###.###.###.###'
-            EditFormat.Format = foInteger
-            EditLabel.Width = 33
-            EditLabel.Height = 13
-            EditLabel.Caption = 'C'#243'digo'
-            LabelSpacing = 1
-            MaxLength = 27
-            TabOrder = 0
-            OnKeyPress = KRLECodigoKeyPress
-          end
-          object KRLEIdentidade: TKRKLabeledEdit
-            Left = 76
-            Top = 27
-            Width = 82
-            Height = 21
-            EditFormat.FinalMask = '###.###.###.###.###.###.###'
-            EditFormat.Format = foInteger
-            EditLabel.Width = 52
-            EditLabel.Height = 13
-            EditLabel.Caption = 'Identidade'
-            LabelSpacing = 1
-            MaxLength = 27
-            TabOrder = 1
-            OnKeyPress = KRLEIdentidadeKeyPress
-          end
-        end
         object GRBXPorDadosCompletos: TGroupBox
           Left = 170
           Top = -2
@@ -249,12 +210,53 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
             OnKeyPress = KRLEFoneCelularKeyPress
           end
         end
-        object GRBXPorDadosParciais: TGroupBox
+        object GRBXPorDadosUnicos: TGroupBox
           Left = 0
-          Top = 52
+          Top = -2
+          Width = 164
+          Height = 55
+          Caption = ' Por dados '#250'nicos (ou) '
+          TabOrder = 0
+          object KRLECodigo: TKRKLabeledEdit
+            Left = 6
+            Top = 27
+            Width = 64
+            Height = 21
+            EditFormat.FinalMask = '###.###.###.###.###.###.###'
+            EditFormat.Format = foInteger
+            EditLabel.Width = 33
+            EditLabel.Height = 13
+            EditLabel.Caption = 'C'#243'digo'
+            LabelSpacing = 1
+            MaxLength = 27
+            TabOrder = 0
+            OnKeyPress = KRLECodigoKeyPress
+          end
+          object KRLEIdentidade: TKRKLabeledEdit
+            Left = 76
+            Top = 27
+            Width = 82
+            Height = 21
+            EditFormat.FinalMask = '###.###.###.###.###.###.###'
+            EditFormat.Format = foInteger
+            EditLabel.Width = 52
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Identidade'
+            LabelSpacing = 1
+            MaxLength = 27
+            TabOrder = 1
+            OnKeyPress = KRLEIdentidadeKeyPress
+          end
+        end
+        object GRBXPorDadosParciais: TGroupBox
+          AlignWithMargins = True
+          Left = 0
+          Top = 53
           Width = 770
           Height = 91
-          Anchors = [akLeft, akTop, akRight]
+          Margins.Left = 0
+          Margins.Right = 0
+          Align = alBottom
           Caption = ' Por dados parciais (e) '
           TabOrder = 2
           DesignSize = (
@@ -334,7 +336,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       end
       object GRBXContato: TGroupBox
         Left = 289
-        Top = 52
+        Top = 53
         Width = 228
         Height = 55
         Caption = ' Contato '
@@ -380,9 +382,76 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           TabOrder = 0
         end
       end
+      object GRBXDadosPessoais: TGroupBox
+        Left = 0
+        Top = -2
+        Width = 770
+        Height = 55
+        Anchors = [akLeft, akTop, akRight]
+        Caption = ' Dados pessoais '
+        TabOrder = 0
+        DesignSize = (
+          770
+          55)
+        object LABLGenero: TLabel
+          Left = 606
+          Top = 13
+          Width = 35
+          Height = 13
+          Anchors = [akTop, akRight]
+          Caption = 'G'#234'nero'
+          ExplicitLeft = 447
+        end
+        object DBCXGenero: TDBComboBox
+          Left = 606
+          Top = 27
+          Width = 70
+          Height = 21
+          Style = csDropDownList
+          Anchors = [akTop, akRight]
+          DataField = 'en_genero'
+          DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
+          Items.Strings = (
+            'Masculino'
+            'Feminino')
+          TabOrder = 1
+        end
+        object KLDEDataNascimento: TKRKLabeledDBEdit
+          Left = 682
+          Top = 27
+          Width = 82
+          Height = 21
+          Anchors = [akTop, akRight]
+          DataField = 'da_datanascimento'
+          DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
+          DBEditFormat.FinalMask = '##/##/####'
+          DBEditFormat.KeepMask = True
+          DBEditFormat.Format = foDate
+          EditLabel.Width = 55
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Nascimento'
+          LabelSpacing = 1
+          MaxLength = 10
+          TabOrder = 2
+        end
+        object KLDENome: TKRKLabeledDBEdit
+          Left = 6
+          Top = 27
+          Width = 594
+          Height = 21
+          Anchors = [akLeft, akTop, akRight]
+          DataField = 'va_nome'
+          DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
+          EditLabel.Width = 73
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Nome completo'
+          LabelSpacing = 1
+          TabOrder = 0
+        end
+      end
       object GRBXDocumentos: TGroupBox
         Left = 0
-        Top = 52
+        Top = 53
         Width = 283
         Height = 55
         Caption = ' Documentos '
@@ -540,76 +609,9 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           TabOrder = 2
         end
       end
-      object GRBXDadosPessoais: TGroupBox
-        Left = 0
-        Top = -2
-        Width = 770
-        Height = 55
-        Anchors = [akLeft, akTop, akRight]
-        Caption = ' Dados pessoais '
-        TabOrder = 0
-        DesignSize = (
-          770
-          55)
-        object LABLGenero: TLabel
-          Left = 606
-          Top = 13
-          Width = 35
-          Height = 13
-          Anchors = [akTop, akRight]
-          Caption = 'G'#234'nero'
-          ExplicitLeft = 447
-        end
-        object DBCXGenero: TDBComboBox
-          Left = 606
-          Top = 27
-          Width = 70
-          Height = 21
-          Style = csDropDownList
-          Anchors = [akTop, akRight]
-          DataField = 'en_genero'
-          DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
-          Items.Strings = (
-            'Masculino'
-            'Feminino')
-          TabOrder = 1
-        end
-        object KLDEDataNascimento: TKRKLabeledDBEdit
-          Left = 682
-          Top = 27
-          Width = 82
-          Height = 21
-          Anchors = [akTop, akRight]
-          DataField = 'da_datanascimento'
-          DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
-          DBEditFormat.FinalMask = '##/##/####'
-          DBEditFormat.KeepMask = True
-          DBEditFormat.Format = foDate
-          EditLabel.Width = 55
-          EditLabel.Height = 13
-          EditLabel.Caption = 'Nascimento'
-          LabelSpacing = 1
-          MaxLength = 10
-          TabOrder = 2
-        end
-        object KLDENome: TKRKLabeledDBEdit
-          Left = 6
-          Top = 27
-          Width = 594
-          Height = 21
-          Anchors = [akLeft, akTop, akRight]
-          DataField = 'va_nome'
-          DataSource = KRDMAvaliadosGerenciar.DTSRAvaliados
-          EditLabel.Width = 73
-          EditLabel.Height = 13
-          EditLabel.Caption = 'Nome completo'
-          LabelSpacing = 1
-          TabOrder = 0
-        end
-      end
       object GRBXEndereco: TGroupBox
         Left = 0
-        Top = 106
+        Top = 108
         Width = 770
         Height = 91
         Anchors = [akLeft, akTop, akRight]
@@ -806,13 +808,13 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
       object GRBXObservacoes: TGroupBox
         AlignWithMargins = True
         Left = 0
-        Top = 200
+        Top = 199
         Width = 770
-        Height = 175
+        Height = 174
         Margins.Left = 0
         Margins.Top = 0
         Margins.Right = 0
-        Align = alBottom
+        Anchors = [akLeft, akTop, akRight, akBottom]
         Caption = ' Observa'#231#245'es '
         TabOrder = 4
         object DBMOObservacoes: TDBMemo
@@ -820,7 +822,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
           Left = 6
           Top = 15
           Width = 758
-          Height = 153
+          Height = 152
           Margins.Left = 4
           Margins.Top = 0
           Margins.Right = 4
@@ -5897,6 +5899,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
         Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
         OptionsEx = [dgAutomaticColumSizes]
         ReadOnly = True
+        RecNoColumnName = 'RECNO'
         TabOrder = 1
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
@@ -6103,12 +6106,11 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
     ExplicitWidth = 784
     inherited LABLCaption: TLabel
       Height = 38
-      ExplicitHeight = 38
     end
   end
   inherited IMLIToolBarAtivo: TImageList
     Bitmap = {
-      494C0101020008001C0220002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800380220002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -6645,7 +6647,7 @@ inherited KRFMAvaliadosGerenciar: TKRFMAvaliadosGerenciar
   end
   inherited IMLIToolBarInativo: TImageList
     Bitmap = {
-      494C0101020008002C0220002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800480220002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

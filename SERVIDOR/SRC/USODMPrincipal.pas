@@ -15,6 +15,7 @@ type
   protected
     procedure DoAfterUpdateRecord(SourceDS: TDataSet; DeltaDS: TCustomClientDataSet; UpdateKind: TUpdateKind); override;
     procedure DoGetTableName(DataSet: TDataSet; var TableName: WideString); override;
+    procedure DoGetProviderAttributes(DataSet: TDataSet; List: TList); override;
   public
     constructor Create(aOwner: TComponent); override;
   end;
@@ -239,6 +240,27 @@ begin
   end;
   { Chama o evento OnAfterUpdateRecord }
   inherited;
+end;
+
+{ TODO : Este método é executado sempre que um conjunto de dados do servidor é
+requisitado e serve para customizar o pacote enviado ao cliente com informações
+adicionais. O cliente, por sua vez pode obter o valor de um parâmetro usando o
+método GetOptionalParameter do TClientDataset. Este método deve ser evitado caso
+não seja estritamente necessário obter dados adicionais todas as vezes que um
+select for executado }
+procedure TDataSetProvider.DoGetProviderAttributes(DataSet: TDataSet; List: TList);
+//var
+//  Attr: PPacketAttribute;
+begin
+  inherited;
+//  New(Attr);
+//  List.Add(Attr);
+//  with Attr^ do
+//  begin
+//    Name := 'Parametro';
+//    Value := 'Este é o único parâmetro adicional!';
+//    IncludeInDelta := False;
+//  end;
 end;
 
 procedure TDataSetProvider.DoGetTableName(DataSet: TDataSet; var TableName: WideString);

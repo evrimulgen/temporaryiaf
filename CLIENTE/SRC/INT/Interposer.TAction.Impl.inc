@@ -44,8 +44,6 @@ var
 begin
   if Value <> inherited Visible then
   begin
-//    inherited Visible := FPermitida and Value;
-
     for I := 0 to Pred(Clients.Count) do
     begin
       Link := TObject(Clients.List[I]) as TActionLink;
@@ -58,6 +56,11 @@ begin
           TALH(Link).SetVisible(FPermitida and Value);
       end;
     end;
+    { Isso estava comentado, mas estava causando problemas, pois getvisible
+    estava retornando sempre false. Ao ativar esta linha novamente os tabsheets
+    aparecem errados, mas esta linha tem de permanecer ativa, então foi feita
+    uma gambiarra para que o page control funcionasse direito }
+    inherited Visible := FPermitida and Value;
     Change;
   end;
 end;

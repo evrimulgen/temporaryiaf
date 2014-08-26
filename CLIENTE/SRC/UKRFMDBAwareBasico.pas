@@ -142,9 +142,15 @@ begin
       Break; { Apenas o primeiro ActionMainMenuBar é afetado! }
     end;
 
-    { Cada TTabSheet deve ser atribuído à sua ação correspondente, desde que haja uma ação no DataModule que seja  }
+    { Cada TTabSheet deve ser atribuído à sua ação correspondente, desde que
+    haja uma ação no DataModule com o mesmo nome }
     if Components[i] is TTabSheet then
       for j := 0 to Pred(TKRKDataModule(Owner).ComponentCount) do
+        { está sendo usado ActnList.TAction porque ao se usar apenas TAction
+        estaríamos comparando com no nosso TAction local p qual nunca será o
+        mesmo TAction do datamodule. Usar ActnList.TAction garante que a
+        comparação seja feita pelo ancestral comum tanto do TAction local como
+        daquele existente no DM }
         if (TKRKDataModule(Owner).Components[j] is ActnList.TAction) and (TKRKDataModule(Owner).Components[j].Name = 'ACTN' + Components[i].Name) then
         begin
           TAction(TKRKDataModule(Owner).Components[j]).Caption := TTabSheet(Components[i]).Caption;
@@ -152,6 +158,10 @@ begin
           opcional. Assim, ações que não tem um método execute, permanecem
           habilitadas, assim como todos os clientes conectados a elas }
           TAction(TKRKDataModule(Owner).Components[j]).DisableIfNoHandler := False;
+          { A linha abaixo instrui que uma mudança nas permissões vai alterar a
+          visibilidade do componente, isto é, sem permissão = invisível. O
+          padrão é apenas desabilitar, mas como estamos falando de tabsheets, o
+          correto é ocultar }
           TAction(TKRKDataModule(Owner).Components[j]).PermissionTogglesVisibility := True;
           TTabSheet(Components[i]).Action := TAction(TKRKDataModule(Owner).Components[j]);
         end;
